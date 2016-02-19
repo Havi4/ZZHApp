@@ -7,7 +7,8 @@
 //
 
 #import "HaviBaseTableViewCell.h"
+#import "JASwipeCell.h"
 
-@interface MyDeviceTableViewCell : HaviBaseTableViewCell
+@interface MyDeviceTableViewCell : JASwipeCell
 
 @end

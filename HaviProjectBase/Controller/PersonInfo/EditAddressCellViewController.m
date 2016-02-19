@@ -7,9 +7,8 @@
 //
 
 #import "EditAddressCellViewController.h"
-#import "SHPutClient.h"
 
-@interface EditAddressCellViewController ()<UITextViewDelegate>
+@interface EditAddressCellViewController ()<UITextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UIButton *backButton;
 @property (nonatomic,strong) UITableView *cellTableView;
 @property (nonatomic,strong) UITextView *cellTextField;
@@ -22,12 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.bgImageView.image = [UIImage imageNamed:@""];
+    self.backgroundImageView.image = [UIImage imageNamed:@""];
     [self createNavWithTitle:nil createMenuItem:^UIView *(int nIndex) {
         if (nIndex == 1)
         {
             _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",selectedThemeIndex]];
+            UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",1]];
             [_backButton setImage:i forState:UIControlStateNormal];
             [_backButton setFrame:CGRectMake(-5, 0, 44, 44)];
             [_backButton addTarget:self action:@selector(backToView:) forControlEvents:UIControlEventTouchUpInside];
@@ -37,7 +36,7 @@
             doneButton.frame = CGRectMake(self.view.frame.size.width-65, 0, 60, 44);
             [doneButton setTitle:@"保存" forState:UIControlStateNormal];
             doneButton.titleLabel.font = [UIFont systemFontOfSize:15];
-            [doneButton setTitleColor:selectedThemeIndex==0?DefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [doneButton setTitleColor:1==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [doneButton addTarget:self action:@selector(saveInfo:) forControlEvents:UIControlEventTouchUpInside];
             return doneButton;
         }
@@ -62,7 +61,6 @@
         [self.view makeToast:@"地址只能由10-40个中文字符组成" duration:3 position:@"center"];
         return;
     }
-    
     [self saveUserInfoWithKey:self.cellString andData:self.cellTextField.text];
 }
 
@@ -70,29 +68,20 @@
 - (void)saveUserInfoWithKey:(NSString *)key andData:(NSString *)data
 {
     
-    [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:YES];
-    SHPutClient *client = [SHPutClient shareInstance];
+    [[UIApplication sharedApplication]incrementNetworkActivityCount];
+//
     NSDictionary *dic = @{
-                          @"UserID": thirdPartyLoginUserId, //关键字，必须传递
+                          @"UserID": kUserID, //关键字，必须传递
                           key:data,
                           };
-    NSDictionary *header = @{
-                             @"AccessToken":@"123456789",
-                             };
-    [client modifyUserInfo:header andWithPara:dic];
-    [client startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-        NSDictionary *resposeDic = (NSDictionary *)request.responseJSONObject;
-        [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
-        if ([[resposeDic objectForKey:@"ReturnCode"]intValue]==200) {
-            [self.navigationController popViewControllerAnimated:YES];
-            if (self.saveButtonClicked) {
-                self.saveButtonClicked(1);
-            }
-        }else{
-            [self.view makeToast:@"稍后重试" duration:2 position:@"center"];
+    ZZHAPIManager *manager = [ZZHAPIManager sharedAPIManager];
+    [manager requestChangeUserInfoParam:dic andBlock:^(BaseModel *resultModel, NSError *error) {
+        DeBugLog(@"更新%@",resultModel.errorMessage);
+        if (self.saveButtonClicked) {
+            self.saveButtonClicked(1);
         }
-    } failure:^(YTKBaseRequest *request) {
-        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
+        [[UIApplication sharedApplication]decrementNetworkActivityCount];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 

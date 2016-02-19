@@ -8,16 +8,68 @@
 
 #import "LeftSideTableViewCell.h"
 
+@interface LeftSideTableViewCell ()
+{
+    UIImageView *_leftIconImage;
+    UILabel *_leftTitleLabel;
+    UIImageView *_leftArrowImage;
+}
+@end
+
 @implementation LeftSideTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _leftIconImage = [[UIImageView alloc]init];
+        _leftTitleLabel = [[UILabel alloc]init];
+        _leftTitleLabel.textColor = kDefaultColor;
+        _leftTitleLabel.font = [UIFont systemFontOfSize:20];
+        _leftArrowImage = [[UIImageView alloc]init];
+        _leftArrowImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",0]];
+        [self addSubview:_leftArrowImage];
+        [self addSubview:_leftIconImage];
+        [self addSubview:_leftTitleLabel];
+        [_leftIconImage makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(self).offset(20);
+            make.width.equalTo(@25);
+            make.height.equalTo(@25);
+        }];
+        [_leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(_leftIconImage.mas_right).offset(10);
+            make.height.equalTo(self);
+            make.width.equalTo(@100);
+        }];
+        [_leftArrowImage makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.rightMargin.equalTo(self).offset(-5);
+            make.width.equalTo(@12);
+            make.height.equalTo(@20);
+        }];
+        
+    }
+    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)configure:(UITableViewCell *)cell
+        customObj:(id)obj
+        indexPath:(NSIndexPath *)indexPath
+{
+    // Rewrite this func in SubClass !
+    NSDictionary *dic = obj;
+    _leftIconImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@0",[dic objectForKey:@"iconTitle"]]];
+    _leftTitleLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"iconName"]];
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.145f green:0.733f blue:0.957f alpha:0.15f];
 }
 
++ (CGFloat)getCellHeightWithCustomObj:(id)obj
+                            indexPath:(NSIndexPath *)indexPath
+{
+    // Rewrite this func in SubClass if necessary
+    return 60.0f ; // default cell height
+}
 @end

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HaviBaseTableViewCell.h"
 
-@interface EditInfoCellTableViewCell : UITableViewCell
+@interface EditInfoCellTableViewCell : HaviBaseTableViewCell
+
+@property (nonatomic, copy) void (^tapTextSaveBlock)(NSString *textValue);
+
+@property (nonatomic, copy) void (^textChanageBlock)(NSString *textValue);
 
 @end

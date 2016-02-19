@@ -7,7 +7,6 @@
 //
 
 #import "PersonInfoNaviView.h"
-//#import "UIImageView+WebCache.h"
 @interface PersonInfoNaviView()
 
 @property (nonatomic, strong) UIImageView *backImageView;
@@ -30,8 +29,7 @@
         _backImageView.contentMode = UIViewContentModeScaleAspectFill;
         
         _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width*0.5-80*0.5, 0.23*frame.size.height, 80, 80)];
-//        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:headerImageURL]];
-        _headerImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",selectedThemeIndex]];
+        [_headerImageView setImageWithURL:[NSURL URLWithString:headerImageURL] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]]];
         [_headerImageView.layer setMasksToBounds:YES];
         _headerImageView.layer.cornerRadius = _headerImageView.frame.size.width/2.0f;
         _headerImageView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -133,6 +131,9 @@
     }
 }
 
-
+- (void)dealloc
+{
+    [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
+}
 
 @end

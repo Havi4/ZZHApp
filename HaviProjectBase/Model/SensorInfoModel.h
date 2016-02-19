@@ -22,6 +22,7 @@
 @property (assign, nonatomic) int respirationRate;
 @property (strong, nonatomic) NSString *lastBodyMovingDateTime;
 @property (strong, nonatomic) NSString *isAnybodyOnBed;
+@property (nonatomic, strong) NSArray *detailSensorInfoList;
 
 @end
 
@@ -34,6 +35,5 @@
 @interface SensorInfoModel : BaseModel
 
 @property (nonatomic, strong) SensorDetail *sensorDetail;
-@property (nonatomic, strong) NSArray *detailSensorInfoList;
 
 @end

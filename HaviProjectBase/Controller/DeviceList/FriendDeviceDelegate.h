@@ -10,4 +10,6 @@
 
 @interface FriendDeviceDelegate : BaseTableViewDataDelegate
 
+@property (nonatomic, copy) void (^cellRightButtonTaped)(CellSelectType type, NSIndexPath *indexPath, id item, UITableViewCell *cell);
+
 @end

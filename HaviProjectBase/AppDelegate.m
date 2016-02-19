@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "LeftSideViewController.h"
+#import "CenterViewController.h"
+#import "BaseNaviViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +21,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setAppSetting];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.sideMenuController = [[JASidePanelController alloc] init];
+    self.sideMenuController.shouldDelegateAutorotateToVisiblePanel = NO;
+    
+    self.sideMenuController.leftPanel = [[LeftSideViewController alloc] init];
+    self.sideMenuController.centerPanel = [[BaseNaviViewController alloc] initWithRootViewController:[[CenterViewController alloc] init]];
+    
+    self.window.rootViewController = self.sideMenuController;
+    //状态栏
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+#pragma mark settings
+
+- (void)setAppSetting
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *dataPath = [[NSBundle mainBundle]pathForResource:@"ReturnCode" ofType:@"plist"];
+        returnErrorMessage = [NSDictionary dictionaryWithContentsOfFile:dataPath];
+    });
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   LeftSidePlist.plist
-   HaviProjectBase
-
-   Created by Havi on 16/2/4.
-   Copyright (c) 2016年 Havi. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<array>
+	<dict>
+		<key>iconName</key>
+		<string>今日数据</string>
+		<key>iconTitle</key>
+		<string>icon_todays_data_</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>数据分析</string>
+		<key>iconTitle</key>
+		<string>icon_data_analysis_</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>设备管理</string>
+		<key>iconTitle</key>
+		<string>icon_equipment_management_</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>睡眠设置</string>
+		<key>iconTitle</key>
+		<string>icon_alarm_clock_</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>消        息</string>
+		<key>iconTitle</key>
+		<string>icon_message_</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>设        定</string>
+		<key>iconTitle</key>
+		<string>icon_setting_</string>
+	</dict>
+</array>
 </plist>

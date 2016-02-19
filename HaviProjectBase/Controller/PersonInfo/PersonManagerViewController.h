@@ -10,7 +10,5 @@
 
 @interface PersonManagerViewController : UIViewController
 
-
-
 @end
 

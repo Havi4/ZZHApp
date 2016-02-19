@@ -10,4 +10,8 @@
 
 @interface EditUUIDView : UIView
 
+@property (nonatomic, copy) void (^bindDeviceButtonTaped)(NSString *barUUID);
+
+@property (nonatomic, copy) void (^scanBarButtonTaped)(NSInteger index);
+
 @end

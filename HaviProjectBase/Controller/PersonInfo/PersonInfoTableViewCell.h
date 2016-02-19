@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HaviBaseTableViewCell.h"
 
-@interface PersonInfoTableViewCell : UITableViewCell
+@interface PersonInfoTableViewCell : HaviBaseTableViewCell
+
+- (CGFloat)heightForText:(NSString *)text;
 
 @end

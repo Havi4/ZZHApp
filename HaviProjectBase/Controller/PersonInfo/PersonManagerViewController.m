@@ -7,35 +7,32 @@
 //
 #define kWindowHeight 205.0f
 #import "PersonManagerViewController.h"
-#import "CoolNavi.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import <MobileCoreServices/UTCoreTypes.h>
+#import "PersonInfoNaviView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "ImageUtil.h"
-#import <AudioToolbox/AudioToolbox.h>
-#import "MTStatusBarOverlay.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
-#import "SHGetClient.h"
-#import "PersonDetailTableViewCell.h"
-#import "RMDateSelectionViewController.h"
-#import "SHPutClient.h"
+#import <MobileCoreServices/UTCoreTypes.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "PersonDataDelegate.h"
+#import "PersonInfoTableViewCell.h"
+#import "UserInfoDetailModel.h"
 #import "EditCellInfoViewController.h"
 #import "EditAddressCellViewController.h"
+#import "JDStatusBarNotification.h"
+#import "ImageUtil.h"
+#import "RMDateSelectionViewController.h"
+#import "RMPickerViewController.h"
+#import "ODRefreshControl.h"
 
-@interface PersonManagerViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,RMDateSelectionViewControllerDelegate>
+@interface PersonManagerViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) CoolNavi *headerView;
-@property (nonatomic, strong) NSDictionary *userInfoDic;
-@property (nonatomic, strong) NSArray *cellIconArr;
-@property (nonatomic, strong) NSArray *cellTitleArr;
-@property (nonatomic, strong) NSArray *cellKeyDicArr;
+@property (nonatomic, strong) UITableView *personInfoTableView;
+@property (nonatomic, strong) PersonInfoNaviView *headerView;
+@property (nonatomic, strong) PersonDataDelegate *personDataDelegate;
+@property (nonatomic, strong) UserInfoDetailModel *userInfoModel;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
-@property (nonatomic,strong) RMDateSelectionViewController *datePickerSelectionVC;
-@property (nonatomic,strong) RMDateSelectionViewController *gerderPicker;
-@property (nonatomic,strong) RMDateSelectionViewController *heightPicker;
-@property (nonatomic,strong) RMDateSelectionViewController *weightPicker;
+@property (nonatomic, strong) NSArray *genderArray;
+@property (nonatomic, strong) NSArray *weightArray;
+@property (nonatomic, strong) NSArray *heightArray;
 
 @end
 
@@ -43,84 +40,255 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.cellIconArr = @[@[@"name",@"birthday",@"gender",@"icon_phone_1",@"emergency_Contact",@"icon_phone1"],@[@"height",@"weight",@"home"]];
-    self.cellTitleArr = @[@[@"姓名:",@"生日:",@"性别:",@"紧急联系人:",@"紧急联系人电话:"],@[@"身高:",@"体重:",@"家庭住址:"]];
-    self.cellKeyDicArr = @[@[@"UserName",@"Birthday",@"Gender",@"EmergencyContact",@"Telephone"],@[@"Height",@"Weight",@"Address"]];
+    [self getUserDetailInfo];
+    [self addSubViews];
+    [self addTableViewDataHandle];
+    //
+}
+
+- (void)addSubViews
+{
     [self.navigationController setNavigationBarHidden:YES];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    _headerView = [[CoolNavi alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kWindowHeight)backGroudImage:@"background" headerImageURL:@"http://d.hiphotos.baidu.com/image/pic/item/0ff41bd5ad6eddc4f263b0fc3adbb6fd52663334.jpg" title:@"匿名用户" subTitle:@""];
-    __block typeof(self) weakSelf = self;
-    _headerView.scrollView = self.tableView;
+    [self.view addSubview:self.personInfoTableView];
+    _headerView = [[PersonInfoNaviView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kWindowHeight)backGroudImage:@"person_background" headerImageURL:@"http://webservice.meddo99.com:9000/v1/file/DownloadFile/meddo99.com$13122785292" title:@"匿名用户" subTitle:@""];
+    @weakify(self);
+    _headerView.scrollView = self.personInfoTableView;
     _headerView.imgActionBlock = ^(){
-        [weakSelf tapIconImage:nil];
+        @strongify(self);
+        [self tapIconImage:nil];
     };
+    [self.view addSubview:_headerView];
     NSArray *arr = self.navigationController.viewControllers;
     
     if ([self isEqual:[arr objectAtIndex:0]]) {
-
-       
         UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"re_order_%d",1]];
         [_headerView.backButton setImage:i forState:UIControlStateNormal];
         _headerView.backBlock = ^(){
-            [weakSelf.sideMenuViewController presentLeftMenuViewController];
+            @strongify(self);
+            [self.sidePanelController showLeftPanelAnimated:YES];
         };
     }else{
         UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",1]];
         [_headerView.backButton setImage:i forState:UIControlStateNormal];
         _headerView.backBlock = ^(){
-            [weakSelf backToView];
+            @strongify(self);
+            [self.sidePanelController setCenterPanelHidden:NO animated:YES duration:0.2f];
         };
     }
-    [self.view addSubview:_headerView];
+
+}
+
+- (void)addTableViewDataHandle
+{
+    /*ios系统
+
+    self.refreshControl = [[ODRefreshControl alloc] initInScrollView:_headerView.scrollView];;
+    [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.tintColor = [UIColor redColor];
+     */
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"刷新中..."];
+    self.refreshControl.tintColor = [UIColor grayColor];
+    [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
+    [self.personInfoTableView addSubview:self.refreshControl];
+    TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
+        if (self.userInfoModel) {
+            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.userInfoModel];
+        }else{
+            [cell configure:cell customObj:item indexPath:indexPath];
+        }
+        
+    };
+    CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
+        return [PersonInfoTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath withOtherObj:self.userInfoModel];
+    };
+    @weakify(self);
+    DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){
+        @strongify(self);
+        [self didSeletedCellIndexPath:indexPath withData:item];
+    };
+    NSString *dataPath = [[NSBundle mainBundle]pathForResource:@"PersonInfoPlist" ofType:@"plist"];
+    NSArray *dataArr = [NSArray arrayWithContentsOfFile:dataPath];
+    self.personDataDelegate = [[PersonDataDelegate alloc]initWithItems:dataArr cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
+    [self.personDataDelegate handleTableViewDataSourceAndDelegate:self.personInfoTableView];
+}
+
+- (void)refreshAction{
+    [self getUserDetailInfo];
+}
+
+#pragma mark get user info
+
+- (void)getUserDetailInfo
+{
+    NSDictionary *userIdDic = @{
+                           @"UserID":kUserID,
+                           };
+    ZZHAPIManager *apiManager = [ZZHAPIManager sharedAPIManager];
+    [apiManager requestUserInfoWithParam:userIdDic andBlock:^(UserInfoDetailModel *userInfo, NSError *error) {
+        [self.refreshControl endRefreshing];
+        self.userInfoModel = userInfo;
+        [self.personInfoTableView reloadData];
+    }];
+}
+
+- (void)saveUserInfoWithKey:(NSString *)key andData:(NSString *)data
+{
     
+    [[UIApplication sharedApplication]incrementNetworkActivityCount];
     //
-    [self queryUserInfo];
+    NSDictionary *dic = @{
+                          @"UserID": kUserID, //关键字，必须传递
+                          key:data,
+                          };
+    ZZHAPIManager *manager = [ZZHAPIManager sharedAPIManager];
+    [manager requestChangeUserInfoParam:dic andBlock:^(BaseModel *resultModel, NSError *error) {
+        DeBugLog(@"更新%@",resultModel.errorMessage);
+        [self getUserDetailInfo];
+        [[UIApplication sharedApplication]decrementNetworkActivityCount];
+    }];
+}
+
+
+#pragma mark setter
+- (UITableView *)personInfoTableView
+{
+    if (!_personInfoTableView) {
+        _personInfoTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _personInfoTableView.backgroundColor = [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00];
+    }
+    return _personInfoTableView;
 }
 
 //获取用户基本信息
-- (void)queryUserInfo
+- (void)didSeletedCellIndexPath:(NSIndexPath *)indexPath withData:(id)data
 {
-    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                        [UIImage imageNamed:@"havi1_1"],
-                        [UIImage imageNamed:@"havi1_2"],
-                        [UIImage imageNamed:@"havi1_3"],
-                        [UIImage imageNamed:@"havi1_4"],
-                        [UIImage imageNamed:@"havi1_5"]];
-    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-    [MMProgressHUD showWithTitle:nil status:nil images:images];
-    SHGetClient *client = [SHGetClient shareInstance];
-    if ([client isExecuting]) {
-        [client stop];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            [self openDateSelectionController:nil];
+        }else if (indexPath.row == 2){
+            [self openPickerController:@"gender"];
+        }else{
+            EditCellInfoViewController *cellInfo = [[EditCellInfoViewController alloc]init];
+            cellInfo.saveButtonClicked = ^(NSUInteger index) {
+                [self getUserDetailInfo];
+            };
+            
+            if(indexPath.row==0){
+                cellInfo.cellInfoType = @"UserName";
+                [self.navigationController pushViewController:cellInfo animated:YES];
+            }else if (indexPath.row==3){
+                cellInfo.cellInfoType = @"EmergencyContact";
+                [self.navigationController pushViewController:cellInfo animated:YES];
+            }else if (indexPath.row==4){
+                cellInfo.cellInfoType = @"Telephone";
+                [self.navigationController pushViewController:cellInfo animated:YES];
+            }
+        }
+        
+    }else if(indexPath.section == 1){
+        if (indexPath.row == 2) {
+            EditAddressCellViewController *cell = [[EditAddressCellViewController alloc]init];
+            cell.cellInfoType = @"Address";
+            if (self.userInfoModel.nUserInfo.address.length > 0) {
+                cell.cellInfoString = self.userInfoModel.nUserInfo.address;
+            }
+            cell.saveButtonClicked = ^(NSUInteger index) {
+                [self getUserDetailInfo];
+            };
+            [self.navigationController pushViewController:cell animated:YES];
+        }else if(indexPath.row == 0){
+            [self openPickerController:@"height"];
+        }else if (indexPath.row == 1){
+            [self openPickerController:@"weight"];
+        }
     }
-    NSDictionary *dic = @{
-                          @"UserId": thirdPartyLoginUserId, //手机号码
-                          };
-    NSDictionary *header = @{
-                             @"AccessToken":@"123456789"
-                             };
-    
-    [client queryUserInfoWithHeader:header andWithPara:dic];
-    if ([client cacheJson]) {
-        self.userInfoDic = (NSDictionary*)[client cacheJson];
-        [self.tableView reloadData];
-    }
-    [client startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-        [MMProgressHUD dismissAfterDelay:0.3];
-        [[MMProgressHUD sharedHUD] setDismissAnimationCompletion:^{
-            NSDictionary *dic = (NSDictionary *)request.responseJSONObject;
-            self.userInfoDic = dic;
-            [self.tableView reloadData];
-            NSString *titlePhone = [[self.userInfoDic objectForKey:@"UserInfo"] objectForKey:@"CellPhone"];
-            self.headerView.titleLabel.text = titlePhone;
-        }];
-    } failure:^(YTKBaseRequest *request) {
-        [MMProgressHUD dismiss];
-        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
-    }];
-    
 }
 
+- (void)openDateSelectionController:(id)sender {
+    //Create select action
+    RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        NSString *date = [[NSString stringWithFormat:@"%@",((UIDatePicker *)controller.contentView).date]substringToIndex:10];
+        [self saveUserInfoWithKey:@"Birthday" andData:date];
+    }];
+    
+    //Create cancel action
+    RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+        
+    }];
+    
+    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite];
+    [dateSelectionController addAction:selectAction];
+    [dateSelectionController addAction:cancelAction];
+    //Create date selection view controller
+    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
+    //Now just present the date selection controller using the standard iOS presentation method
+    [self presentViewController:dateSelectionController animated:YES completion:nil];
+}
+
+- (void)openPickerController:(NSString *)type {
+    //Create select action
+    RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+        NSMutableArray *selectedRows = [NSMutableArray array];
+        
+        for(NSInteger i=0 ; i<[picker numberOfComponents] ; i++) {
+            [selectedRows addObject:@([picker selectedRowInComponent:i])];
+        }
+        int index = [[selectedRows objectAtIndex:0] intValue];
+        if (picker.tag == 101) {
+            [self saveUserInfoWithKey:@"Gender" andData:[self.genderArray objectAtIndex:index]];
+        }else if (picker.tag == 102){
+            [self saveUserInfoWithKey:@"Weight" andData:[self.genderArray objectAtIndex:index]];
+        }else if (picker.tag == 103){
+            [self saveUserInfoWithKey:@"Height" andData:[self.genderArray objectAtIndex:index]];
+        }
+        
+    }];
+    
+    
+    RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+        NSLog(@"Row selection was canceled");
+    }];
+    
+    //Create picker view controller
+    RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:RMActionControllerStyleWhite];
+    [pickerController addAction:cancelAction];
+    [pickerController addAction:selectAction];
+    pickerController.picker.delegate = self;
+    pickerController.picker.dataSource = self;
+    if ([type isEqualToString:@"gender"]) {
+        pickerController.picker.tag = 101;
+        self.genderArray = @[@"男",@"女"];
+    }else if ([type isEqualToString:@"weight"]){
+        pickerController.picker.tag = 102;
+        self.genderArray = @[@"60",@"61",@"62",@"63",@"64",@"65",@"66",@"67",@"68",@"69",@"70",@"71",@"72",@"73",@"74",@"75",@"76",@"77",@"78",@"79",@"80",@"81"];
+    }else if ([type isEqualToString:@"height"]){
+        pickerController.picker.tag = 103;
+        self.genderArray = @[@"160",@"161",@"162",@"163",@"164",@"165",@"166",@"167",@"168",@"169",@"170",@"171",@"172",@"173",@"174",@"175",@"176",@"177",@"178",@"179",@"180",@"181"];
+    }
+    
+    //Now just present the picker controller using the standard iOS presentation method
+    [self presentViewController:pickerController animated:YES completion:nil];
+}
+
+#pragma mark picker delegate
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.genderArray.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [NSString stringWithFormat:@"%@",[self.genderArray objectAtIndex:row]];
+}
 #pragma mark 拍照
 - (void)tapIconImage:(UIGestureRecognizer *)gesture
 {
@@ -169,18 +337,13 @@
                     NSString *mediaType = AVMediaTypeVideo;
                     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
                     if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied){
-                        [self.view makeToast:@"请在设置中打开照相机权限" duration:3 position:@"center"];
-                        NSLog(@"相机权限受限");
                     }else{
                         sourceType = UIImagePickerControllerSourceTypeCamera;
                         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
                         imagePickerController.mediaTypes = @[(NSString*) kUTTypeImage];
                         imagePickerController.delegate = self;
-                        
                         imagePickerController.allowsEditing = YES;
-                        
                         imagePickerController.sourceType = sourceType;
-                        
                         [self presentViewController:imagePickerController animated:YES completion:^{}];
                     }
                     
@@ -192,19 +355,14 @@
                     ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
                     if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied){
                         //无权限
-                        [self.view makeToast:@"请在设置中打开照片库权限" duration:3 position:@"center"];
                     }else{
                         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
                         imagePickerController.mediaTypes = @[(NSString*) kUTTypeImage];
                         imagePickerController.delegate = self;
-                        
                         imagePickerController.allowsEditing = YES;
-                        
                         imagePickerController.sourceType = sourceType;
-                        
                         [self presentViewController:imagePickerController animated:YES completion:^{
-                            //                        self.navigationController.navigationBarHidden = YES;
                         }];
                     }
                     break;
@@ -250,17 +408,14 @@
      * UIImagePickerControllerMediaMetadata    // an NSDictionary containing metadata from a captured photo
      */
     // 保存图片至本地，方法见下文
-//    [HaviAnimationView animationMoveUp:self.iconImageButton duration:1.8];
-//    self.iconImageButton.image = image;
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *imageData = [self calculateIconImage:image];
         [self uploadWithImageData:imageData];
     });
     
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     [self setNeedsStatusBarAppearanceUpdate];
 }
+
 #define UploadImageSize          100000
 - (NSData *)calculateIconImage:(UIImage *)image
 {
@@ -293,24 +448,24 @@
     NSDictionary *dicHeader = @{
                                 @"AccessToken": @"123456789",
                                 };
-    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/file/UploadFile/%@",BaseUrl,thirdPartyLoginUserId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/file/UploadFile/%@",kAppBaseURL,kUserID];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
     [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
     [self setRequest:request withImageData:imageData];
-    HaviLog(@"开始上传...");
+    DeBugLog(@"开始上传...");
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[dic objectForKey:@"ReturnCode"] intValue]==200) {
-            [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:[NSString stringWithFormat:@"%@%@",thirdPartyLoginUserId,thirdPartyLoginPlatform]];
-            [[NSUserDefaults standardUserDefaults]synchronize];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [JDStatusBarNotification showWithStatus:@"头像上传成功" dismissAfter:2 styleName:JDStatusBarStyleDark];
-                self.headerView.headerImageView.image = [UIImage imageWithData:imageData];
+                NSString *url = @"http://webservice.meddo99.com:9000/v1/file/DownloadFile/meddo99.com$13122785292";
+                [self.headerView.headerImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"iconImageChanged" object:nil];
+                }];
+                
             });
-
-            
         }
-        HaviLog(@"8.18测试结果Result--%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        DeBugLog(@"8.18测试结果Result--%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         
     }];
 }
@@ -337,303 +492,10 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    HaviLog(@"cancel");
     [self dismissViewControllerAnimated:YES completion:^{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
         [self setNeedsStatusBarAppearanceUpdate];
     }];
-}
-
-- (void)backToView
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _tableView.backgroundColor = [UIColor whiteColor];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        CGRect rect = _tableView.frame;
-        rect.origin.y = 0;
-        _tableView.frame = rect;
-        [self.view addSubview:_tableView];
-    }
-    return _tableView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.001;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 30;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (section==0) {
-        return 5;
-    }else{
-        return 3;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellReuseIdentifier  = @"cell";
-    
-    PersonDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier];
-    if (!cell) {
-        cell = [[PersonDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseIdentifier andIndexPath:indexPath];
-        cell.selectionStyle  = UITableViewCellSelectionStyleGray;
-    }
-    cell.personInfoTitle = [[self.cellTitleArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-    cell.personInfoIconString = [[self.cellIconArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-    if (self.userInfoDic.count>0) {
-        if (indexPath.section==1 && indexPath.row==0) {
-            cell.personInfoString = [NSString stringWithFormat:@"%@ CM",[[self.userInfoDic objectForKey:@"UserInfo"]objectForKey:[[self.cellKeyDicArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]]];
-            
-        }else if (indexPath.section==1 && indexPath.row==1){
-            cell.personInfoString = [NSString stringWithFormat:@"%@ KG",[[self.userInfoDic objectForKey:@"UserInfo"]objectForKey:[[self.cellKeyDicArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]]];
-        }else{
-            cell.personInfoString = [NSString stringWithFormat:@"%@",[[self.userInfoDic objectForKey:@"UserInfo"]objectForKey:[[self.cellKeyDicArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]]];
-        }
-    }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
-}
-
-
-#pragma mark - UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section==1&&indexPath.row==2) {
-        if ([self heightForText:[NSString stringWithFormat:@"%@",[[self.userInfoDic objectForKey:@"UserInfo"]objectForKey:[[self.cellKeyDicArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]]]]<60) {
-            return 60;
-        }else{
-            return [self heightForText:[NSString stringWithFormat:@"%@",[[self.userInfoDic objectForKey:@"UserInfo"]objectForKey:[[self.cellKeyDicArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]]]];
-        }
-    }else{
-        return 60;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section==0) {
-        if (indexPath.row==1){
-            [self tapedBirth:nil];
-        }else if (indexPath.row==2){
-            [self tapedGender:nil];
-        }else{
-            EditCellInfoViewController *cellInfo = [[EditCellInfoViewController alloc]init];
-            if(indexPath.row==0){
-                cellInfo.cellInfoType = @"UserName";
-            }else if (indexPath.row==3){
-                cellInfo.cellInfoType = @"EmergencyContact";
-            }else if (indexPath.row==4){
-                cellInfo.cellInfoType = @"Telephone";
-            }
-            cellInfo.saveButtonClicked = ^(NSUInteger index) {
-                [self queryUserInfo];
-            };
-            [self.navigationController pushViewController:cellInfo animated:YES];
-        }
-    }else{
-        if (indexPath.row==0) {
-            [self tapedHeight:nil];
-        }else if (indexPath.row==1){
-            [self tapedWeight:nil];
-        }else{
-            EditAddressCellViewController *cell = [[EditAddressCellViewController alloc]init];
-            cell.cellInfoType = @"Address";
-            if ([NSString stringWithFormat:@"%@",[[self.userInfoDic objectForKey:@"UserInfo"]objectForKey:[[self.cellKeyDicArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]]].length>0) {
-                cell.cellInfoString = [NSString stringWithFormat:@"%@",[[self.userInfoDic objectForKey:@"UserInfo"]objectForKey:[[self.cellKeyDicArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]]];
-            }
-            cell.saveButtonClicked = ^(NSUInteger index) {
-                [self queryUserInfo];
-            };
-            [self.navigationController pushViewController:cell animated:YES];
-        }
-        
-    }
-}
-
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (thirdPartyLoginIcon.length>0) {
-        [self.headerView.headerImageView setImageWithURL:[NSURL URLWithString:thirdPartyLoginIcon] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",selectedThemeIndex]]];
-    }else{
-        if ([[[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@%@",thirdPartyLoginUserId,thirdPartyLoginPlatform]]isEqual:@""]) {
-            NSString *url = [NSString stringWithFormat:@"%@/v1/file/DownloadFile/%@",BaseUrl,thirdPartyLoginUserId];
-            [self.headerView.headerImageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",selectedThemeIndex]]];
-        }else{
-            if ([UIImage imageWithData:[[NSUserDefaults standardUserDefaults]dataForKey:[NSString stringWithFormat:@"%@%@",thirdPartyLoginUserId,thirdPartyLoginPlatform]]]) {
-                
-                self.headerView.headerImageView.image = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults]dataForKey:[NSString stringWithFormat:@"%@%@",thirdPartyLoginUserId,thirdPartyLoginPlatform]]];
-            }
-        }
-        
-    }
-}
-
-#pragma mark 选择器
-
-- (void)tapedHeight:(UITapGestureRecognizer *)gesture
-{
-    if (!_heightPicker) {
-        self.heightPicker = [RMDateSelectionViewController dateSelectionControllerWith:PickerViewListType];
-        _heightPicker.delegate = self;
-        _heightPicker.titleLabel.hidden = YES;
-        _heightPicker.hideNowButton = YES;
-        NSMutableArray *arr = [[NSMutableArray alloc]init];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            for (int i=50; i<200; i++) {
-                [arr addObject:[NSString stringWithFormat:@"%d CM",i]];
-            }
-            _heightPicker.pickerDataArray = arr;
-        });
-    }
-    _heightPicker.title = @"height";
-    [_heightPicker show];
-}
-
-- (void)tapedWeight:(UITapGestureRecognizer *)gesture
-{
-    if (!_weightPicker) {
-        self.weightPicker = [RMDateSelectionViewController dateSelectionControllerWith:PickerViewListType];
-        _weightPicker.delegate = self;
-        _weightPicker.titleLabel.hidden = YES;
-        _weightPicker.hideNowButton = YES;
-        NSMutableArray *arr = [[NSMutableArray alloc]init];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            for (int i=40; i<100; i++) {
-                [arr addObject:[NSString stringWithFormat:@"%d KG",i]];
-            }
-            _weightPicker.pickerDataArray = arr;
-        });
-    }
-    _weightPicker.title = @"weight";
-    [_weightPicker show];
-}
-
-- (void)tapedGender:(UITapGestureRecognizer *)gesture
-{
-    if (!_gerderPicker) {
-        self.gerderPicker = [RMDateSelectionViewController dateSelectionControllerWith:PickerViewListType];
-        _gerderPicker.delegate = self;
-        _gerderPicker.titleLabel.hidden = YES;
-        _gerderPicker.hideNowButton = YES;
-        _gerderPicker.pickerDataArray = @[@"男",@"女"];
-    }
-    _gerderPicker.title = @"gender";
-    [_gerderPicker show];
-}
-
-- (void)tapedBirth:(UITapGestureRecognizer *)gesture
-{
-    if (!_datePickerSelectionVC) {
-        self.datePickerSelectionVC = [RMDateSelectionViewController dateSelectionControllerWith:PickerViewDateType];
-        _datePickerSelectionVC.delegate = self;
-        _datePickerSelectionVC.datePicker.datePickerMode = UIDatePickerModeDate;
-        _datePickerSelectionVC.titleLabel.hidden = YES;
-        _datePickerSelectionVC.hideNowButton = YES;
-    }
-    _datePickerSelectionVC.title = @"date";
-    [_datePickerSelectionVC show];
-}
-#pragma mark - RMDAteSelectionViewController Delegates
-- (void)dateSelectionViewController:(RMDateSelectionViewController *)vc didSelectDate:(NSString *)aDate {
-    if (aDate) {
-        
-        if ([vc.title isEqualToString:@"date"]) {
-            NSString *dateString = [NSString stringWithFormat:@"%@",aDate];
-            NSString *dateSubString = [dateString substringWithRange:NSMakeRange(0, 10)];
-            [self saveUserInfoWithKey:@"Birthday" andData:dateSubString];
-        }else if ([vc.title isEqualToString:@"gender"]){
-            [self saveUserInfoWithKey:@"Gender" andData:aDate];
-        }else if ([vc.title isEqualToString:@"height"]){
-            NSRange range = [aDate rangeOfString:@" CM"];
-            NSString *height = [aDate substringToIndex:range.location];
-            [self saveUserInfoWithKey:@"Height" andData:height];
-        }else if ([vc.title isEqualToString:@"weight"]){
-            NSRange range = [aDate rangeOfString:@" KG"];
-            NSString *weight = [aDate substringToIndex:range.location];
-            [self saveUserInfoWithKey:@"Weight" andData:weight];
-        }
-    }
-    
-}
-
-- (void)dateSelectionViewControllerDidCancel:(RMDateSelectionViewController *)vc {
-    HaviLog(@"Date selection was canceled");
-}
-
-#pragma mark 更新信息
-- (void)saveUserInfoWithKey:(NSString *)key andData:(NSString *)data
-{
-    if (data.length>0) {
-        
-        NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                            [UIImage imageNamed:@"havi1_1"],
-                            [UIImage imageNamed:@"havi1_2"],
-                            [UIImage imageNamed:@"havi1_3"],
-                            [UIImage imageNamed:@"havi1_4"],
-                            [UIImage imageNamed:@"havi1_5"]];
-        [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-        [MMProgressHUD showWithTitle:nil status:nil images:images];
-        
-        SHPutClient *client = [SHPutClient shareInstance];
-        NSDictionary *dic = @{
-                              @"UserID": thirdPartyLoginUserId, //关键字，必须传递
-                              key:data,
-                              };
-        NSDictionary *header = @{
-                                 @"AccessToken":@"123456789",
-                                 };
-        [client modifyUserInfo:header andWithPara:dic];
-        [client startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-            NSDictionary *resposeDic = (NSDictionary *)request.responseJSONObject;
-            HaviLog(@"保存%@",resposeDic);
-            if ([[resposeDic objectForKey:@"ReturnCode"]intValue]==200) {
-                [MMProgressHUD dismiss];
-                [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-                    [self queryUserInfo];
-                }];
-            }else{
-                [MMProgressHUD dismissWithError:[NSString stringWithFormat:@"%@",resposeDic] afterDelay:2];
-            }
-        } failure:^(YTKBaseRequest *request) {
-            [MMProgressHUD dismiss];
-            [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
-        }];
-    }
-}
-
-#pragma mark 计算高度
-- (CGFloat)heightForText:(NSString *)text
-{
-    //设置计算文本时字体的大小,以什么标准来计算
-    NSDictionary *attrbute = @{NSFontAttributeName:[UIFont systemFontOfSize:17]};
-    CGFloat width = self.view.frame.size.width-185;
-    return [text boundingRectWithSize:CGSizeMake(width, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attrbute context:nil].size.height+15;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HaviBaseTableViewCell.h"
 
-@interface LeftSideTableViewCell : UITableViewCell
+@interface LeftSideTableViewCell : HaviBaseTableViewCell
 
 @end

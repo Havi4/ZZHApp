@@ -7,20 +7,15 @@
 //
 
 #import "DeviceListViewController.h"
-#import "MessageListViewController.h"
 #import "FriendDeviceListViewController.h"
 #import "UISearchBar+Common.h"
-#import "UIColor+expanded.h"
-#import "UIView+Frame.h"
 #import "AddProductNameViewController.h"
-#import "DeviceManagerViewController.h"
 #import "MyDeviceListViewController.h"
 
 @interface DeviceListViewController ()<UISearchBarDelegate,UISearchDisplayDelegate>
 
 @property UISegmentedControl *segmentTitle;
-@property DeviceManagerViewController *myDeviceList;
-@property FriendDeviceListViewController *friendDeviceList;
+@property (nonatomic, strong) FriendDeviceListViewController *friendDeviceList;
 @property (nonatomic, strong) MyDeviceListViewController *myNewDeviceList;
 @property (nonatomic, strong) UIButton *rightMenuButton;
 
@@ -39,13 +34,15 @@
 
 - (void)initNavigationBar
 {
+    self.navigationController.navigationBarHidden = YES;
     [self createNavWithTitle:@"" createMenuItem:^UIView *(int nIndex)
      {
          if (nIndex == 1)
          {
              return self.menuButton;
-         }else if (nIndex == 0){
-             [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"plus_math_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+         }
+         else if (nIndex == 0){
+             [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"plus_math_%d",1]] forState:UIControlStateNormal];
              [self.rightMenuButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
              return self.rightMenuButton;
          }
@@ -63,23 +60,39 @@
     return _rightMenuButton;
 }
 
+- (MyDeviceListViewController*)myNewDeviceList
+{
+    if (!_myNewDeviceList) {
+        _myNewDeviceList = [[MyDeviceListViewController alloc]init];
+        _myNewDeviceList.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
+        _myNewDeviceList.view.tag = 1001;
+    }
+    return _myNewDeviceList;
+}
+
+- (FriendDeviceListViewController *)friendDeviceList
+{
+    if (!_friendDeviceList) {
+        _friendDeviceList = [[FriendDeviceListViewController alloc]init];
+        _friendDeviceList.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
+        _friendDeviceList.view.tag = 1002;
+    }
+    return _friendDeviceList;
+}
+
 //设置导航栏中的titleView
 - (void)setNaviTitleView
 {
     self.segmentTitle = [[UISegmentedControl alloc] initWithItems:@[@"我的设备", @"他人设备"]];
     self.segmentTitle.selectedSegmentIndex = 0;
-    self.segmentTitle.tintColor = selectedThemeIndex==0?DefaultColor:[UIColor whiteColor];
+    self.segmentTitle.tintColor = 1==0?kDefaultColor:[UIColor whiteColor];
     self.segmentTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.segmentTitle.frame = CGRectMake(70, 30, self.view.frame.size.width-140, 25);
     [self.segmentTitle addTarget:self action:@selector(switchView) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.segmentTitle];
-    _myNewDeviceList = [[MyDeviceListViewController alloc]init];
-    _myNewDeviceList.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
-    _myDeviceList.view.tag = 1001;
-    _friendDeviceList = [[FriendDeviceListViewController alloc]init];
-    _friendDeviceList.view.tag = 1002;
-    [self addChildViewController:_myNewDeviceList];
-    [self addChildViewController:_friendDeviceList];
+    
+    [self addChildViewController:self.myNewDeviceList];
+    
     [self.view addSubview:_myNewDeviceList.view];
 }
 
@@ -93,21 +106,21 @@
     }
     switch (_segmentTitle.selectedSegmentIndex) {
         case 0: {
-            [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"plus_math_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+            [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"plus_math_%d",1]] forState:UIControlStateNormal];
             [self.rightMenuButton removeTarget:self action:@selector(searchDevice:) forControlEvents:UIControlEventTouchUpInside];
             [self.rightMenuButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_myNewDeviceList.view];
-            [_myNewDeviceList refreshBegining];
             _myNewDeviceList.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
             break;
         }
         case 1: {
-            
-            [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"search_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+            if (![self.childViewControllers containsObject:self.friendDeviceList]) {
+                [self addChildViewController:self.friendDeviceList];
+            }
+            [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"search_%d",1]] forState:UIControlStateNormal];
             [self.rightMenuButton removeTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
             [self.rightMenuButton addTarget:self action:@selector(searchDevice:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_friendDeviceList.view];
-            [_friendDeviceList refreshBegining];
             _friendDeviceList.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
             
             break;
@@ -125,66 +138,29 @@
 
 - (void)searchDevice:(UIButton*)sender
 {
-    
-
     _searchBar = ({
-        
-        UISearchBar *searchBar = [[UISearchBar alloc] init];
+        SearchBarCustom *searchBar = [[SearchBarCustom alloc] init];
         searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 64);
         searchBar.delegate = self;
         [searchBar sizeToFit];
         [searchBar setPlaceholder:@"输入手机号查找相应的设备"];
-        [searchBar setTintColor:[UIColor whiteColor]];
+        [searchBar setTintColor:[UIColor blueColor]];
+        searchBar.showsCancelButton = YES;
         [searchBar setTranslucent:NO];
-//        searchBar.backgroundColor=[UIColor colorWithHexString:@"0x28303b"];
         [searchBar insertBGColor:[UIColor colorWithHexString:@"0x28303b"]];
+        [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
         searchBar;
     });
     [self.navigationController.view addSubview:_searchBar];
     self.navigationController.view.backgroundColor = [UIColor redColor];
-    [_searchBar setY:20];
+    [_searchBar setTop:20];
     [_searchBar setHeight:64];
-
-    
-
     _searchDisplayVC = ({
-        
         SearchBarDisplayController *searchVC = [[SearchBarDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
         searchVC.parentVC = self;
         searchVC;
     });
-    
     [_searchBar becomeFirstResponder];
-}
-
-#pragma mark UISearchBarDelegate Support
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-    
-    return YES;
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    HaviLog(@"%@",searchText);
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    
-}
-
-#pragma mark -
-#pragma mark UISearchDisplayDelegate Support
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
-    
-}
-
-- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller {
-    
 }
 
 - (void)didReceiveMemoryWarning {

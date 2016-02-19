@@ -10,4 +10,7 @@
 
 @interface ReactiveSingleViewController : BaseViewController
 
+@property (nonatomic,strong) NSString *deviceName;
+@property (nonatomic,strong) NSString *deviceUUID;
+
 @end

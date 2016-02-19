@@ -38,7 +38,14 @@
              @"respirationRate" : @"RespirationRate",
              @"lastBodyMovingDateTime" : @"LastBodyMovingDateTime",
              @"isAnybodyOnBed" : @"IsAnybodyOnBed",
+             @"detailSensorInfoList" : @"DetailSensorInfo",
+             };
+}
 
+//属性的类型说明数组中对象是什么
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{
+             @"detailSensorInfoList" : SensorList.class,
              };
 }
 
@@ -64,14 +71,8 @@
              @"errorMessage" : @"ErrorMessage",
              @"date"        :@"Date",
              @"sensorDetail" : @"SensorInfo",
-             @"detailSensorInfo" : @"DetailSensorInfo",
              
              };
 }
-//属性的类型说明数组中对象是什么
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{
-             @"detailSensorInfo" : SensorList.class,
-             };
-}
+
 @end

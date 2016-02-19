@@ -8,14 +8,80 @@
 
 #import "IconImageView.h"
 
+@interface IconImageView ()
+{
+    UIImageView *_iconImageView;
+    UILabel *_nameLabel;
+    NSString *_iconUrl;
+}
+
+@end
+
 @implementation IconImageView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _iconImageView = [[UIImageView alloc]init];
+        _iconImageView.layer.cornerRadius = 35;
+        _iconImageView.layer.masksToBounds = YES;
+        _iconImageView.layer.shouldRasterize = YES;
+        _iconImageView.userInteractionEnabled = YES;
+        _iconImageView.layer.borderWidth = 1;
+        _iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        _iconImageView.layer.rasterizationScale = [UIScreen screenScale];
+        [self addSubview:_iconImageView];
+        _nameLabel = [[UILabel alloc]init];
+        _nameLabel.userInteractionEnabled = YES;
+        _nameLabel.textColor = kDefaultColor;
+        _nameLabel.font = [UIFont systemFontOfSize:20];
+        [self addSubview:_nameLabel];
+        
+        [_iconImageView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(self).offset(10);
+            make.width.equalTo(@70);
+            make.height.equalTo(@70);
+        }];
+        [_nameLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_iconImageView.rightMargin).offset(20);
+            make.centerY.equalTo(self);
+        }];
+        @weakify(self);
+        UITapGestureRecognizer *iconTapGesture = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id sender) {
+            @strongify(self);
+            if (self.tapIconBlock) {
+                self.tapIconBlock(1);
+            }
+        }];
+        UITapGestureRecognizer *nameTapGesture = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id sender) {
+            @strongify(self);
+            if (self.tapIconBlock) {
+                self.tapIconBlock(1);
+            }
+        }];
+        [_iconImageView addGestureRecognizer:iconTapGesture];
+        [_nameLabel addGestureRecognizer:nameTapGesture];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshImage) name:@"iconImageChanged" object:nil];
+    }
+    return self;
 }
-*/
+
+- (void)setUserIconURL:(NSString *)userIconURL
+{
+    _iconUrl = userIconURL;
+    [_iconImageView setImageWithURL:[NSURL URLWithString:userIconURL] placeholder:[UIImage imageNamed:@"head_placeholder"]];
+}
+
+- (void)refreshImage
+{
+    [_iconImageView setImageWithURL:[NSURL URLWithString:_iconUrl] placeholder:[UIImage imageNamed:@"head_placeholder"]];
+}
+
+- (void)setUserName:(NSString *)userName
+{
+    _nameLabel.text = userName;
+}
 
 @end

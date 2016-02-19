@@ -17,6 +17,7 @@
 
 @interface FriendDeviceList : NSObject
 
+@property (strong, nonatomic) NSString *friendUserID;
 @property (strong, nonatomic) NSString *deviceUUID;
 @property (strong, nonatomic) NSString *nDescription;
 @property (strong, nonatomic) NSString *isActivated;

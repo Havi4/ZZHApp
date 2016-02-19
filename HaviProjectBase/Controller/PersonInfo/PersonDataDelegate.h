@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseTableViewDataDelegate.h"
 
-@interface PersonDataDelegate : NSObject
+@interface PersonDataDelegate : BaseTableViewDataDelegate
 
 @end

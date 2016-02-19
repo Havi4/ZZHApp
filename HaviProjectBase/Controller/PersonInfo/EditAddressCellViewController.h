@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) void (^saveButtonClicked)(NSUInteger index);
 
+
 @property (nonatomic,strong) NSString *cellInfoType;
 @property (nonatomic,strong) NSString *cellInfoString;
 

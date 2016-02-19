@@ -8,11 +8,11 @@
 
 #import "BaseViewController.h"
 #import "SearchBarDisplayController.h"
-
+#import "SearchBarCustom.h"
 @interface DeviceListViewController : BaseViewController
 
 //搜索
-@property (nonatomic, strong) UISearchBar       *searchBar;
+@property (nonatomic, strong) SearchBarCustom  *searchBar;
 @property (strong, nonatomic) SearchBarDisplayController *searchDisplayVC;
 
 @end

@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   PersonInfoPlist.plist
-   HaviProjectBase
-
-   Created by Havi on 16/2/5.
-   Copyright (c) 2016年 Havi. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<array>
+	<array>
+		<dict>
+			<key>cellData</key>
+			<string>userName</string>
+			<key>cellName</key>
+			<string>姓名:</string>
+			<key>cellIcon</key>
+			<string>name</string>
+		</dict>
+		<dict>
+			<key>cellData</key>
+			<string>birthday</string>
+			<key>cellName</key>
+			<string>生日:</string>
+			<key>cellIcon</key>
+			<string>birthday</string>
+		</dict>
+		<dict>
+			<key>cellData</key>
+			<string>gender</string>
+			<key>cellName</key>
+			<string>性别:</string>
+			<key>cellIcon</key>
+			<string>gender</string>
+		</dict>
+		<dict>
+			<key>cellData</key>
+			<string>emergencyContact</string>
+			<key>cellName</key>
+			<string>紧急联系人:</string>
+			<key>cellIcon</key>
+			<string>emergency_Contact</string>
+		</dict>
+		<dict>
+			<key>cellData</key>
+			<string>telephone</string>
+			<key>cellName</key>
+			<string>紧急联系人电话:</string>
+			<key>cellIcon</key>
+			<string>icon_phone1</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>cellData</key>
+			<string>height</string>
+			<key>cellName</key>
+			<string>身高:</string>
+			<key>cellIcon</key>
+			<string>height</string>
+		</dict>
+		<dict>
+			<key>cellData</key>
+			<string>weight</string>
+			<key>cellName</key>
+			<string>体重:</string>
+			<key>cellIcon</key>
+			<string>weight</string>
+		</dict>
+		<dict>
+			<key>cellData</key>
+			<string>address</string>
+			<key>cellName</key>
+			<string>家庭住址:</string>
+			<key>cellIcon</key>
+			<string>home</string>
+		</dict>
+	</array>
+</array>
 </plist>

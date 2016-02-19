@@ -45,6 +45,7 @@
 + (NSDictionary *)modelCustomPropertyMapper
 {
     return @{
+             @"friendUserID" : @"FriendUserID",
              @"returnCode" : @"ReturnCode",
              @"errorMessage" : @"ErrorMessage",
              @"date":@"Date",

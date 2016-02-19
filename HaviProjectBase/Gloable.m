@@ -8,6 +8,6 @@
 
 #import "Gloable.h"
 
-@implementation Gloable
+int selectedThemeIndex = 1;
 
-@end
+NSDictionary *returnErrorMessage = nil;

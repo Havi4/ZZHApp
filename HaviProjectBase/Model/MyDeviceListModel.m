@@ -13,6 +13,7 @@
 + (NSDictionary *)modelCustomPropertyMapper
 {
     return @{
+             @"friendUserID" : @"FriendUserID",
              @"deviceUUID" : @"UUID",
              @"nDescription" : @"Description",
              @"isActivated":@"IsActivated",

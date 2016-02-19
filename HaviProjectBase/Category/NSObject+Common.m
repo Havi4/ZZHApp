@@ -7,16 +7,127 @@
 //
 
 #import "NSObject+Common.h"
-//#import "NSString+Common.h"
-
+#import "JDStatusBarNotification.h"
 #define kPath_ImageCache @"ImageCache"
 #define kPath_ResponseCache @"ResponseCache"
 
 #define kTestKey @"BaseURLIsTest"
-#import "ZZHNetWorkAPIClient.h"
+#import "HaviNetWorkAPIClient.h"
 
 
 @implementation NSObject (Common)
+
+#pragma mark Tip M
++ (NSString *)tipFromError:(NSError *)error{
+    if (error && error.userInfo) {
+        NSMutableString *tipStr = [[NSMutableString alloc] init];
+        if ([error.userInfo objectForKey:@"msg"]) {
+            NSArray *msgArray = [[error.userInfo objectForKey:@"msg"] allValues];
+            NSUInteger num = [msgArray count];
+            for (int i = 0; i < num; i++) {
+                NSString *msgStr = [msgArray objectAtIndex:i];
+                if (i+1 < num) {
+                    [tipStr appendString:[NSString stringWithFormat:@"%@\n", msgStr]];
+                }else{
+                    [tipStr appendString:msgStr];
+                }
+            }
+        }else{
+            if ([error.userInfo objectForKey:@"NSLocalizedDescription"]) {
+                tipStr = [error.userInfo objectForKey:@"NSLocalizedDescription"];
+            }else{
+                [tipStr appendFormat:@"ErrorCode%ld", (long)error.code];
+            }
+        }
+        return tipStr;
+    }
+    return nil;
+}
++ (BOOL)showError:(NSError *)error{
+    if ([JDStatusBarNotification isVisible]) {//如果statusBar上面正在显示信息，则不再用hud显示error
+        NSLog(@"如果statusBar上面正在显示信息，则不再用hud显示error");
+        return NO;
+    }
+    NSString *tipStr = [NSObject tipFromError:error];
+    [NSObject showHudTipStr:tipStr];
+    return YES;
+}
++ (void)showHudTipStr:(NSString *)tipStr{
+    if (tipStr && tipStr.length > 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:kKeyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15.0];
+        hud.detailsLabelText = tipStr;
+        hud.margin = 10.f;
+        hud.removeFromSuperViewOnHide = YES;
+        [hud hide:YES afterDelay:1.5];
+    }
+}
++ (void)showStatusBarQueryStr:(NSString *)tipStr{
+    [JDStatusBarNotification showWithStatus:tipStr styleName:JDStatusBarStyleSuccess];
+    [JDStatusBarNotification showActivityIndicator:YES indicatorStyle:UIActivityIndicatorViewStyleWhite];
+}
++ (void)showStatusBarSuccessStr:(NSString *)tipStr{
+    if ([JDStatusBarNotification isVisible]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showActivityIndicator:NO indicatorStyle:UIActivityIndicatorViewStyleWhite];
+            [JDStatusBarNotification showWithStatus:tipStr dismissAfter:1.5 styleName:JDStatusBarStyleSuccess];
+        });
+    }else{
+        [JDStatusBarNotification showActivityIndicator:NO indicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [JDStatusBarNotification showWithStatus:tipStr dismissAfter:1.0 styleName:JDStatusBarStyleSuccess];
+    }
+}
++ (void)showStatusBarErrorStr:(NSString *)errorStr{
+    if ([JDStatusBarNotification isVisible]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showActivityIndicator:NO indicatorStyle:UIActivityIndicatorViewStyleWhite];
+            [JDStatusBarNotification showWithStatus:errorStr dismissAfter:1.5 styleName:JDStatusBarStyleError];
+        });
+    }else{
+        [JDStatusBarNotification showActivityIndicator:NO indicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [JDStatusBarNotification showWithStatus:errorStr dismissAfter:1.5 styleName:JDStatusBarStyleError];
+    }
+}
+
++ (void)showStatusBarError:(NSError *)error{
+    NSString *errorStr = [NSObject tipFromError:error];
+    [NSObject showStatusBarErrorStr:errorStr];
+}
+
++ (void)showHud
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:kKeyWindow animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.removeFromSuperViewOnHide = YES;
+}
+
++ (void)hideHud
+{
+    NSArray *arr = kKeyWindow.subviews;
+    for (UIView *view in arr) {
+        if ([view isKindOfClass:[MBProgressHUD class]]) {
+            MBProgressHUD *hub = (MBProgressHUD *)view;
+            [hub hide:YES];
+        }
+    }
+}
+
++ (void)showHUBAnimation
+{
+    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
+                        [UIImage imageNamed:@"havi1_1"],
+                        [UIImage imageNamed:@"havi1_2"],
+                        [UIImage imageNamed:@"havi1_3"],
+                        [UIImage imageNamed:@"havi1_4"],
+                        [UIImage imageNamed:@"havi1_5"]];
+    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
+    [MMProgressHUD showWithTitle:nil status:nil images:images];
+}
++ (void)hideHUBAnimation
+{
+   [MMProgressHUD dismiss]; 
+}
 
 #pragma mark baseUrl 处理url
 //处理基本的BaseUrl
@@ -24,9 +135,9 @@
 {
     NSString *baseURLStr = nil;
     if ([self baseURLStrIsTest]) {
-        baseURLStr = AppTestBaseURL;
+        baseURLStr = kAppTestBaseURL;
     }else{
-        baseURLStr = AppBaseURL;
+        baseURLStr = kAppBaseURL;
     }
     return baseURLStr;
 }
@@ -43,7 +154,7 @@
     [userDefault setObject:@(isTest) forKey:kTestKey];
     [userDefault synchronize];
     //将api中的client改变为测试环境
-    [ZZHNetWorkAPIClient changedJSONClient];
+    [HaviNetWorkAPIClient changedJSONClient];
     //我们可以在切换之后进行其他的操作，比如改变导航栏的颜色
     [[UINavigationBar appearance] setBackgroundImage: [UIImage imageWithColor:[UIColor colorWithHexString:isTest?@"0x3bbd79": @"0x28303b"]] forBarMetrics:UIBarMetricsDefault];
 }
@@ -145,11 +256,13 @@
 + (BOOL)saveResponseData:(NSDictionary *)data toPath:(NSString *)requestPath{
 //    User *loginUser = [Login curLoginUser];
     //对于只有登录成功的才进行缓存
+    NSMutableString *subString = [[NSMutableString alloc]initWithString:requestPath];
+    [subString replaceOccurrencesOfString:@"/" withString:@"_" options:NSCaseInsensitiveSearch range:NSMakeRange(0, requestPath.length)];
     BOOL loginUser = YES;
     if (!loginUser) {
         return NO;
     }else{
-        requestPath = [NSString stringWithFormat:@"%@_%@", @"tocken", requestPath];
+        requestPath = [NSString stringWithFormat:@"%@_%@", @"tocken", subString];
     }
     if ([self createDirInCache:kPath_ResponseCache]) {
         NSString *abslutePath = [NSString stringWithFormat:@"%@/%s.plist", [self pathInCacheDirectory:kPath_ResponseCache], [requestPath UTF8String]];
@@ -160,12 +273,13 @@
 }
 
 + (id) loadResponseWithPath:(NSString *)requestPath{//返回一个NSDictionary类型的json数据
-//    User *loginUser = [Login curLoginUser];
-    BOOL loginUser = NO;
+    NSMutableString *subString = [[NSMutableString alloc]initWithString:requestPath];
+    [subString replaceOccurrencesOfString:@"/" withString:@"_" options:NSCaseInsensitiveSearch range:NSMakeRange(0, requestPath.length)];
+    BOOL loginUser = YES;
     if (!loginUser) {
         return nil;
     }else{
-        requestPath = [NSString stringWithFormat:@"%@_%@", @"tocken", requestPath];
+        requestPath = [NSString stringWithFormat:@"%@_%@", @"tocken", subString];
     }
     NSString *abslutePath = [NSString stringWithFormat:@"%@/%s.plist", [self pathInCacheDirectory:kPath_ResponseCache], [requestPath UTF8String]];
     return [NSMutableDictionary dictionaryWithContentsOfFile:abslutePath];
@@ -205,5 +319,23 @@
 }
 
 //处理网络失败
+-(id)handleResponse:(id)responseJSON{
+    return [self handleResponse:responseJSON autoShowError:YES];
+}
+-(id)handleResponse:(id)responseJSON autoShowError:(BOOL)autoShowError{
+    NSError *error = nil;
+    //code为非0值时，表示有错
+    NSNumber *resultCode = [responseJSON valueForKeyPath:@"ReturnCode"];
+    
+    if (resultCode.intValue != 200) {
+        error = [NSError errorWithDomain:[NSObject baseURLStr] code:resultCode.intValue userInfo:responseJSON];
+        DeBugLog(@"报错%@",error);
+        NSString *showError = [returnErrorMessage objectForKey:[NSString stringWithFormat:@"%@",resultCode]];
+        if (autoShowError) {
+            [NSObject showHudTipStr:showError];
+        }
+    }
+    return error;
+}
 
 @end

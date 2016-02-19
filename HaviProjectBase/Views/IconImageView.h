@@ -10,4 +10,10 @@
 
 @interface IconImageView : UIView
 
+@property (nonatomic, strong) NSString *userIconURL;
+
+@property (nonatomic, strong) NSString *userName;
+
+@property (nonatomic, copy) void (^tapIconBlock)(NSUInteger index);
+
 @end

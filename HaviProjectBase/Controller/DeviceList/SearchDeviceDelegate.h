@@ -8,6 +8,6 @@
 
 #import "BaseTableViewDataDelegate.h"
 
-@interface SearchDevice : BaseTableViewDataDelegate
+@interface SearchDeviceDelegate : BaseTableViewDataDelegate
 
 @end

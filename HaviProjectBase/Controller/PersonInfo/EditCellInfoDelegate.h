@@ -10,4 +10,6 @@
 
 @interface EditCellInfoDelegate : BaseTableViewDataDelegate
 
+@property (nonatomic, copy) void (^chanageTextFieldBlock)(NSString *textValue);
+
 @end

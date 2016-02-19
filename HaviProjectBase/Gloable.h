@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface Gloable : NSObject
-
-@end
+//主题
+extern int selectedThemeIndex;
+//返回值对象
+extern NSDictionary *returnErrorMessage;
