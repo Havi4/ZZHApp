@@ -53,7 +53,7 @@
             _contentView = ({
                 UIView *view = [[UIView alloc] init];
                 view.frame = CGRectMake(0.0f, 64.0f, kScreen_Width, kScreen_Height - 64.0f);
-                view.backgroundColor = [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00];
+                view.backgroundColor = KTableViewBackGroundColor;
                 view.userInteractionEnabled = YES;
                 UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickedContentView:)];
                 [view addGestureRecognizer:tapGestureRecognizer];

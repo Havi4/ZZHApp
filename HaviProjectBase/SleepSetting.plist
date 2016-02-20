@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>习惯睡觉时间</string>
+	<string>习惯起床时间</string>
+	<string>睡眠提醒</string>
+	<string>久睡超时警告</string>
+	<string>离床时间警告</string>
+</array>
+</plist>

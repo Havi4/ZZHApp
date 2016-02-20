@@ -14,6 +14,20 @@ typedef enum {
     ReactiveCell,
 }CellSelectType;
 
+typedef enum {
+    MessageAccept = 0,
+    MessageRefuse,
+} MessageType;
+
+typedef enum {
+    SleepSettingStartTime = 0,
+    SleepSettingEndTime,
+    SleepSettingAlertTime,
+    SleepSettingLongTime,
+    SleepSettingLeaveBedTime,
+} SleepSettingType;
+
+
 @interface BaseTableViewDataDelegate : NSObject<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *items;

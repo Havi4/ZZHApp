@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) NSArray *resultArr;
 @property (nonatomic, strong) UILabel *messageLabel;
-@property (nonatomic, strong) NSString *selectDeviceUUID;
+@property (nonatomic, strong) DeviceList *selectDeviceUUID;
 @property (nonatomic, strong) JASwipeCell *selectTableViewCell;
 
 @end
@@ -47,11 +47,10 @@
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
-        return 60;
+        return 70;
     };
     @weakify(self);
     DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){
-        DeBugLog(@"select cell %ld",(long)indexPath.row);
         @strongify(self);
         [self changeUUID:indexPath obj:item];
     };
@@ -117,7 +116,7 @@
     DeviceList *deviceModel = obj;
     if (type == DeleteCell) {
         self.selectTableViewCell = (JASwipeCell *)tableCell;
-        [self deleteMyDevice:deviceModel.deviceUUID];
+        [self deleteMyDevice:deviceModel];
         
     }else if (type == RenameCell){
         [self renameMyDevice:deviceModel];
@@ -142,7 +141,7 @@
     }
 }
 
-- (void)deleteMyDevice:(NSString *)deviceUUID
+- (void)deleteMyDevice:(DeviceList *)deviceUUID
 {
     self.selectDeviceUUID = deviceUUID;
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"" message:@"您确认删除该设备？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
@@ -162,6 +161,43 @@
         name.deviceInfo = deviceInfo;
         [self.navigationController pushViewController:name animated:YES];
     }
+}
+
+#pragma mark alertView delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==1001) {
+        switch (buttonIndex) {
+            case 0:{
+                [self.selectTableViewCell resetContainerView];
+                break;
+            }
+            case 1:{
+                [self deleteMySureUUID:self.selectDeviceUUID];
+                break;
+            }
+                
+            default:
+                break;
+        }
+        
+    }else if (alertView.tag == 1002){
+    }
+}
+
+- (void)deleteMySureUUID:(DeviceList *)friendInfo
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    NSDictionary *dic8 = @{
+                           @"RequestUserId": kUserID, //申请加好友的人
+                           @"ResponseUserId": friendInfo.friendUserID, //被请求的用户
+                           };
+    [client requestRemoveFriendParam:dic8 andBlock:^(BaseModel *resultModel, NSError *error) {
+        if ([resultModel.returnCode intValue]==200) {
+            [self getFriendDeviceList];
+        }
+    }];
 }
 
 @end

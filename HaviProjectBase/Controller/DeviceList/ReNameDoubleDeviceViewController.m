@@ -54,7 +54,7 @@
         make.bottom.equalTo(self.view.mas_bottom);
         make.right.equalTo(self.view.mas_right).offset(0);
     }];
-    self.sideTableView.backgroundColor = [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00];
+    self.sideTableView.backgroundColor = KTableViewBackGroundColor;
     self.sideTableView.delegate = self;
     self.sideTableView.dataSource = self;
     [_nameTextField becomeFirstResponder];

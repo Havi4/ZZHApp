@@ -156,7 +156,7 @@
 {
     if (!_personInfoTableView) {
         _personInfoTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-        _personInfoTableView.backgroundColor = [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00];
+        _personInfoTableView.backgroundColor = KTableViewBackGroundColor;
     }
     return _personInfoTableView;
 }

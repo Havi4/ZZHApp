@@ -67,6 +67,8 @@
     if (!cell) {
         cell = [[FriendDeviceTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
     }
+    [cell addActionButtons:[self rightButtonsWithTable:tableView] withButtonWidth:kJAButtonWidth withButtonPosition:JAButtonLocationRight];
+    cell.delegate = self;
     self.configureCellBlock(indexPath,item,cell);
     return cell;
 }

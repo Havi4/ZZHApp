@@ -18,6 +18,8 @@
              @"nDescription" : @"Description",
              @"isActivated":@"IsActivated",
              @"detailDeviceList" : @"DetailDevice",
+             @"cellPhone" : @"CellPhone",
+             @"friendUserName" : @"FriendUserName",
              };
 }
 //属性的类型说明数组中对象是什么

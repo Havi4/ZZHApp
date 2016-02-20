@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00];
+    self.view.backgroundColor = KTableViewBackGroundColor;
     [self createNavWithTitle:@"重命名设备" createMenuItem:^UIView *(int nIndex)
      {
          if (nIndex == 1)
@@ -46,7 +46,7 @@
         make.height.equalTo(@49);
         make.right.equalTo(self.view.mas_right).offset(0);
     }];
-    self.sideTableView.backgroundColor = [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00];
+    self.sideTableView.backgroundColor = KTableViewBackGroundColor;
     self.sideTableView.delegate = self;
     self.sideTableView.dataSource = self;
     [_nameTextField becomeFirstResponder];

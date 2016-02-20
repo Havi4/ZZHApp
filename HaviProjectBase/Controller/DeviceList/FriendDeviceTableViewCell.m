@@ -28,7 +28,7 @@
         _messageIcon = [[UIImageView alloc]init];
         [self.topContentView addSubview:_messageIcon];
         _messageIcon.frame = CGRectMake(0, 10, 20, 20);
-        _messageIcon.image = [UIImage imageNamed:@"head_portrait_0"];
+        _messageIcon.image = [UIImage imageNamed:@"head_placeholder"];
         _messageIcon.layer.cornerRadius = 22.5;
         _messageIcon.layer.masksToBounds = YES;
         
@@ -112,8 +112,14 @@
             _selectImageView.hidden = NO;
         }
         NSString *url = [NSString stringWithFormat:@"%@/v1/file/DownloadFile/%@",kAppBaseURL,deviceModel.friendUserID];
-        [_messageIcon setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"head_portrait_0"]];
+        [_messageIcon setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"head_placeholder"]];
         _messageTime.text = deviceModel.nDescription;
+        _messagePhone.text = deviceModel.cellPhone;
+        if (deviceModel.friendUserName.length == 0) {
+            _messageName.text = @"匿名用户";
+        }else{
+            _messageName.text = deviceModel.friendUserName;
+        }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor lightGrayColor];

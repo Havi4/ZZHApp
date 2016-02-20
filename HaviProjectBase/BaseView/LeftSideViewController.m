@@ -14,6 +14,8 @@
 //侧栏
 #import "PersonManagerViewController.h"
 #import "DeviceListViewController.h"
+#import "MessageListViewController.h"
+#import "SleepSettingViewController.h"
 
 @interface LeftSideViewController ()
 
@@ -51,6 +53,8 @@
     [self addControllerToCellArrayWithClassName:@"CenterViewController"];
     [self addControllerToCellArrayWithClassName:@""];
     [self addControllerToCellArrayWithClassName:@"DeviceListViewController"];
+    [self addControllerToCellArrayWithClassName:@"SleepSettingViewController"];
+    [self addControllerToCellArrayWithClassName:@"MessageListViewController"];
     /**
      *  测试
      */

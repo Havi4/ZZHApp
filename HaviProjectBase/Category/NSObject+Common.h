@@ -35,4 +35,9 @@
 #pragma mark NetError
 -(id)handleResponse:(id)responseJSON;
 -(id)handleResponse:(id)responseJSON autoShowError:(BOOL)autoShowError;
+
+#pragma mark 顶层controller
+
++ (UIViewController *)appRootViewController;
+
 @end

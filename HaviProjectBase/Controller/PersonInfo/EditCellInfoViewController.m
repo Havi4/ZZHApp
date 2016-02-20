@@ -103,7 +103,7 @@
 {
     if (!_cellTableView) {
         _cellTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,64, self.view.frame.size.width, self.view.frame.size.height-64) style:UITableViewStyleGrouped];
-        _cellTableView.backgroundColor = [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00];
+        _cellTableView.backgroundColor = KTableViewBackGroundColor;
     }
     return _cellTableView;
 }
