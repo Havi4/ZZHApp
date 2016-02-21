@@ -10,6 +10,6 @@
 
 @interface SettingDataDelegate : BaseTableViewDataDelegate
 
-@property (nonatomic, copy) void (^DidTapedButtonBlock)(SleepSettingType type,NSIndexPath *indexPath,id item);
+@property (nonatomic, copy) void (^DidTapedButtonBlock)(SleepSettingButtonType type,NSIndexPath *indexPath,id item);
 
 @end

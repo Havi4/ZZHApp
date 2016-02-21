@@ -42,4 +42,8 @@
 #define ISIPHON4 [UIScreen mainScreen].bounds.size.height==480 ? YES:NO
 #define ISIPHON6 [UIScreen mainScreen].bounds.size.height>568 ? YES:NO
 
+//睡眠设置中
+
+#define kAlarmStatusValue @"kAlarmStatusValue"
+#define kAlarmTimeValue @"kAlarmTimeValue"
 

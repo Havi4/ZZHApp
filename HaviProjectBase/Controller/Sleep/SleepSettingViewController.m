@@ -139,15 +139,16 @@
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
         return 49;
     };
+    @weakify(self);
+    DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){
+        @strongify(self);
+        [self getUserDetailInfo];
+    };
     NSString *dataPath = [[NSBundle mainBundle]pathForResource:@"SleepSetting" ofType:@"plist"];
     NSArray *dataArr = [NSArray arrayWithContentsOfFile:dataPath];
 
-    self.settingDelegate = [[SettingDataDelegate alloc]initWithItems:dataArr cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:nil];
-    @weakify(self);
-    self.settingDelegate.DidTapedButtonBlock = ^(SleepSettingType type, NSIndexPath *indexPath, id item){
-        @strongify(self);
-//        [self sendSleepSetting:type obj:item];
-    };
+    self.settingDelegate = [[SettingDataDelegate alloc]initWithItems:dataArr cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
+    
     [self.settingDelegate handleTableViewDataSourceAndDelegate:self.sleepSettingView];
     [self.sleepSettingView makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(0);

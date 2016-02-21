@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIButton *cellInfoButton;
 @property (nonatomic, strong) UISwitch *cellInfoSwitch;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 @end
 
@@ -58,7 +59,9 @@
     if (indexPath.section < 2) {
         _cellInfoSwitch.hidden = YES;
     }
+    self.indexPath = indexPath;
     if (objInfo) {
+        
         UserInfoDetailModel *userInfo = objInfo;
         switch (indexPath.section) {
             case 0:
@@ -73,11 +76,37 @@
                 break;
             }
             case 2:{
-//                NSString *cellString = userInfo.nUserInfo.sleepStartTime;
-//                [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
+                [[NSUserDefaults standardUserDefaults]registerDefaults:@{kAlarmStatusValue:@"False"}];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                [[NSUserDefaults standardUserDefaults]registerDefaults:@{kAlarmTimeValue:@"08:00"}];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                if ([[[NSUserDefaults standardUserDefaults] objectForKey:kAlarmStatusValue]isEqualToString:@"False"]) {
+                    _cellInfoSwitch.on = NO;
+                    _cellInfoButton.userInteractionEnabled = NO;
+                }else{
+                    _cellInfoSwitch.on = YES;
+                    _cellInfoButton.userInteractionEnabled = YES;
+                }
+                NSString *time;
+                if ([[[NSUserDefaults standardUserDefaults]objectForKey:kAlarmTimeValue]isKindOfClass:[NSString class]]) {
+                    time = [[NSUserDefaults standardUserDefaults]objectForKey:kAlarmTimeValue];
+                }else{
+                    NSDate *date = [[NSUserDefaults standardUserDefaults]objectForKey:kAlarmTimeValue];
+                    NSString *hour = date.hour > 10 ? [NSString stringWithFormat:@"%d",(int)date.hour] : [NSString stringWithFormat:@"0%d",(int)date.hour];
+                    NSString *minute = date.minute > 10 ? [NSString stringWithFormat:@"%d",(int)date.minute] : [NSString stringWithFormat:@"0%d",(int)date.minute];
+                    time = [NSString stringWithFormat:@"%@:%@",hour,minute];
+                }
+                [_cellInfoButton setTitle:time forState:UIControlStateNormal];
                 break;
             }
             case 3:{
+                if ([userInfo.nUserInfo.isTimeoutAlarmSleepTooLong isEqualToString:@"True"]) {
+                    [_cellInfoSwitch setOn:YES];
+                    _cellInfoButton.userInteractionEnabled = YES;
+                }else{
+                    [_cellInfoSwitch setOn:NO];
+                    _cellInfoButton.userInteractionEnabled = NO;
+                }
                 int time = [userInfo.nUserInfo.alarmTimeSleepTooLong intValue];
                 if (time > 60) {
                     NSString *cellString = [NSString stringWithFormat:@"久睡%d小时%d分钟警告",time/60,time%60];
@@ -90,6 +119,13 @@
                 break;
             }
             case 4:{
+                if ([userInfo.nUserInfo.isTimeoutAlarmOutOfBed isEqualToString:@"True"]) {
+                    [_cellInfoSwitch setOn:YES];
+                    _cellInfoButton.userInteractionEnabled = YES;
+                }else{
+                    [_cellInfoSwitch setOn:NO];
+                    _cellInfoButton.userInteractionEnabled = NO;
+                }
                 int time = [userInfo.nUserInfo.alarmTimeOutOfBed intValue];
                 if (time > 60) {
                     NSString *cellString = [NSString stringWithFormat:@"离床%d分钟警告",time/60];
@@ -117,7 +153,14 @@
 
 - (void)cellSwitchTaped:(UISwitch *)sender
 {
-    DeBugLog(@"switch");
+    if (self.indexPath.section == 2) {
+        if (sender.on) {
+            _cellInfoButton.userInteractionEnabled = YES;
+        }else{
+            _cellInfoButton.userInteractionEnabled = NO;
+        }
+    }
+    self.cellInfoSwitchTaped(self,sender);
 }
 
 @end

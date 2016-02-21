@@ -22,6 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self setAppSetting];
+    [self registerLocalNotification];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.sideMenuController = [[JASidePanelController alloc] init];
@@ -38,6 +39,19 @@
 }
 
 #pragma mark settings
+
+- (void)registerLocalNotification
+{
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound |UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }else {
+        //ios7注册推送通知
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
+}
 
 - (void)setAppSetting
 {
@@ -68,5 +82,37 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification
+
+{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"接收到本地提醒 in app"
+                          
+                                                    message:notification.alertBody
+                          
+                                                   delegate:nil
+                          
+                                          cancelButtonTitle:@"确定"
+                          
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+    
+    //这里，你就可以通过notification的useinfo，干一些你想做的事情了
+    
+    application.applicationIconBadgeNumber -= 1;
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"收到");
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:
+(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"收到");
+}
+
 
 @end

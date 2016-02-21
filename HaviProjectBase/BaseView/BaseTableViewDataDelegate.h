@@ -25,7 +25,10 @@ typedef enum {
     SleepSettingAlertTime,
     SleepSettingLongTime,
     SleepSettingLeaveBedTime,
-} SleepSettingType;
+    SleepSettingSwitchAlertTime,
+    SleepSettingSwitchLongTime,
+    SleepSettingSwitchLeaveBedTime,
+} SleepSettingButtonType;
 
 
 @interface BaseTableViewDataDelegate : NSObject<UITableViewDelegate, UITableViewDataSource>

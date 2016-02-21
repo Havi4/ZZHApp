@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
+  - HKRLocalNotificationManager (0.6)
   - LBXScan (1.1.1):
     - ZXingObjC (~> 3.0)
   - Masonry (0.6.4)
@@ -28,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - HKRLocalNotificationManager (~> 0.6)
   - LBXScan (~> 1.1.1)
   - Masonry (~> 0.6.4)
   - MBProgressHUD (~> 0.9.2)
@@ -36,6 +38,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  HKRLocalNotificationManager: c5410563312df4dfde052f99dcfc913b8a26c474
   LBXScan: dfb4d8ae8e4cff2aa0c9e1771e43954dce1469a9
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -43,6 +46,6 @@ SPEC CHECKSUMS:
   YYKit: 76c3f2cee1a72d3c5b1d7fd8d170ee507fe5df68
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-PODFILE CHECKSUM: 05c1f90f9370cae3e360c477785145a71935e736
+PODFILE CHECKSUM: 4848ecd30480b0993044be139379a3435de284be
 
 COCOAPODS: 1.0.0.beta.2

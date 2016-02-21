@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy) void (^cellInfoButtonTaped)(UITableViewCell *cell,id item);
 
+@property (nonatomic, copy) void (^cellInfoSwitchTaped)(UITableViewCell *cell,id item);
+
 @end

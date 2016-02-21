@@ -175,6 +175,15 @@
 		2CF2E1E61C7860A90007A639 /* SettingDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1E51C7860A90007A639 /* SettingDataDelegate.m */; };
 		2CF2E1E91C7862B50007A639 /* SleepSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1E81C7862B50007A639 /* SleepSettingCell.m */; };
 		2CF2E1EB1C78682B0007A639 /* SleepSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E1EA1C78682B0007A639 /* SleepSetting.plist */; };
+		2CF2E1FC1C78A82C0007A639 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E1ED1C78A82C0007A639 /* DateTools.bundle */; };
+		2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1F11C78A82C0007A639 /* DTError.m */; };
+		2CF2E1FE1C78A82C0007A639 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1F31C78A82C0007A639 /* DTTimePeriod.m */; };
+		2CF2E1FF1C78A82C0007A639 /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1F51C78A82C0007A639 /* DTTimePeriodChain.m */; };
+		2CF2E2001C78A82C0007A639 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1F71C78A82C0007A639 /* DTTimePeriodCollection.m */; };
+		2CF2E2011C78A82C0007A639 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1F91C78A82C0007A639 /* DTTimePeriodGroup.m */; };
+		2CF2E2021C78A82C0007A639 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1FB1C78A82C0007A639 /* NSDate+DateTools.m */; };
+		2CF2E2051C796C360007A639 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E2041C796C360007A639 /* LocalNotificationManager.m */; };
+		2CF2E2071C7972410007A639 /* alarmSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2061C7972410007A639 /* alarmSound.wav */; };
 		5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */; };
 /* End PBXBuildFile section */
 
@@ -464,6 +473,24 @@
 		2CF2E1E71C7862B50007A639 /* SleepSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepSettingCell.h; sourceTree = "<group>"; };
 		2CF2E1E81C7862B50007A639 /* SleepSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SleepSettingCell.m; sourceTree = "<group>"; };
 		2CF2E1EA1C78682B0007A639 /* SleepSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SleepSetting.plist; sourceTree = "<group>"; };
+		2CF2E1ED1C78A82C0007A639 /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DateTools.bundle; sourceTree = "<group>"; };
+		2CF2E1EE1C78A82C0007A639 /* DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTools.h; sourceTree = "<group>"; };
+		2CF2E1EF1C78A82C0007A639 /* DTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTConstants.h; sourceTree = "<group>"; };
+		2CF2E1F01C78A82C0007A639 /* DTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTError.h; sourceTree = "<group>"; };
+		2CF2E1F11C78A82C0007A639 /* DTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTError.m; sourceTree = "<group>"; };
+		2CF2E1F21C78A82C0007A639 /* DTTimePeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTimePeriod.h; sourceTree = "<group>"; };
+		2CF2E1F31C78A82C0007A639 /* DTTimePeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriod.m; sourceTree = "<group>"; };
+		2CF2E1F41C78A82C0007A639 /* DTTimePeriodChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTimePeriodChain.h; sourceTree = "<group>"; };
+		2CF2E1F51C78A82C0007A639 /* DTTimePeriodChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodChain.m; sourceTree = "<group>"; };
+		2CF2E1F61C78A82C0007A639 /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTimePeriodCollection.h; sourceTree = "<group>"; };
+		2CF2E1F71C78A82C0007A639 /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodCollection.m; sourceTree = "<group>"; };
+		2CF2E1F81C78A82C0007A639 /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTimePeriodGroup.h; sourceTree = "<group>"; };
+		2CF2E1F91C78A82C0007A639 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodGroup.m; sourceTree = "<group>"; };
+		2CF2E1FA1C78A82C0007A639 /* NSDate+DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateTools.h"; sourceTree = "<group>"; };
+		2CF2E1FB1C78A82C0007A639 /* NSDate+DateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateTools.m"; sourceTree = "<group>"; };
+		2CF2E2031C796C360007A639 /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
+		2CF2E2041C796C360007A639 /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationManager.m; sourceTree = "<group>"; };
+		2CF2E2061C7972410007A639 /* alarmSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarmSound.wav; sourceTree = "<group>"; };
 		4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HaviProjectBase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD59D461E54074340889743 /* Pods-HaviProjectBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.debug.xcconfig"; sourceTree = "<group>"; };
 		63A2D9002C58A4DE4A995D75 /* Pods-HaviProjectBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.release.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.release.xcconfig"; sourceTree = "<group>"; };
@@ -645,6 +672,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2CF2E1EC1C78A82C0007A639 /* DateTools */,
 				2CF2E1A61C760A340007A639 /* LBXAlertAction */,
 				2CF2E1821C75C6D30007A639 /* AlertClasses */,
 				2CF2E16F1C75B3FB0007A639 /* XHRealTimeBlur */,
@@ -813,6 +841,7 @@
 				2CD014DB1C64CA1E001F9514 /* PersonInfoPlist.plist */,
 				2CF2E1B61C76D9FE0007A639 /* ReturnCode.plist */,
 				2CF2E1EA1C78682B0007A639 /* SleepSetting.plist */,
+				2CF2E2061C7972410007A639 /* alarmSound.wav */,
 				2CD75B181C61B57000E7E076 /* Supporting Files */,
 			);
 			path = HaviProjectBase;
@@ -874,6 +903,8 @@
 				2CD0150D1C70298E001F9514 /* ImageUtil.m */,
 				2CF2E1761C75B5A40007A639 /* RexpUntil.h */,
 				2CF2E1771C75B5A40007A639 /* RexpUntil.m */,
+				2CF2E2031C796C360007A639 /* LocalNotificationManager.h */,
+				2CF2E2041C796C360007A639 /* LocalNotificationManager.m */,
 			);
 			name = Category;
 			path = HaviProjectBase/Category;
@@ -1134,6 +1165,28 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		2CF2E1EC1C78A82C0007A639 /* DateTools */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2E1ED1C78A82C0007A639 /* DateTools.bundle */,
+				2CF2E1EE1C78A82C0007A639 /* DateTools.h */,
+				2CF2E1EF1C78A82C0007A639 /* DTConstants.h */,
+				2CF2E1F01C78A82C0007A639 /* DTError.h */,
+				2CF2E1F11C78A82C0007A639 /* DTError.m */,
+				2CF2E1F21C78A82C0007A639 /* DTTimePeriod.h */,
+				2CF2E1F31C78A82C0007A639 /* DTTimePeriod.m */,
+				2CF2E1F41C78A82C0007A639 /* DTTimePeriodChain.h */,
+				2CF2E1F51C78A82C0007A639 /* DTTimePeriodChain.m */,
+				2CF2E1F61C78A82C0007A639 /* DTTimePeriodCollection.h */,
+				2CF2E1F71C78A82C0007A639 /* DTTimePeriodCollection.m */,
+				2CF2E1F81C78A82C0007A639 /* DTTimePeriodGroup.h */,
+				2CF2E1F91C78A82C0007A639 /* DTTimePeriodGroup.m */,
+				2CF2E1FA1C78A82C0007A639 /* NSDate+DateTools.h */,
+				2CF2E1FB1C78A82C0007A639 /* NSDate+DateTools.m */,
+			);
+			path = DateTools;
+			sourceTree = "<group>";
+		};
 		CF7BFF0E6F0E4DC8986D8E4C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1266,6 +1319,7 @@
 				2CF2E1691C759F530007A639 /* havi1_6@2x.png in Resources */,
 				2CF2E1B71C76D9FE0007A639 /* ReturnCode.plist in Resources */,
 				2CD014761C62FB17001F9514 /* left_bg_night@2x.png in Resources */,
+				2CF2E2071C7972410007A639 /* alarmSound.wav in Resources */,
 				2CF2E1D61C771F1A0007A639 /* refuse@2x.png in Resources */,
 				2CF2E1D51C771F1A0007A639 /* apply@2x.png in Resources */,
 				2CF2E1251C74749B0007A639 /* choose@2x.png in Resources */,
@@ -1289,6 +1343,7 @@
 				2CF2E1D41C771F1A0007A639 /* accept@2x.png in Resources */,
 				2CF2E1651C759F530007A639 /* havi1_2@2x.png in Resources */,
 				2CD0148E1C633FF3001F9514 /* icon_todays_data_0@2x.png in Resources */,
+				2CF2E1FC1C78A82C0007A639 /* DateTools.bundle in Resources */,
 				2CD014C91C639710001F9514 /* re_order_0@2x.png in Resources */,
 				2CD014971C634001001F9514 /* icon_equipment_management_1@2x.png in Resources */,
 				2CD014AD1C634CF5001F9514 /* week_1@2x.png in Resources */,
@@ -1417,8 +1472,10 @@
 				2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */,
 				2CF2E1941C75C6D30007A639 /* MMPopupWindow.m in Sources */,
 				2CF2E1B01C760A340007A639 /* LBXAlertAction.m in Sources */,
+				2CF2E2021C78A82C0007A639 /* NSDate+DateTools.m in Sources */,
 				2CD75B701C61C2D000E7E076 /* BaseModel.m in Sources */,
 				2CD014D81C64BF1C001F9514 /* BaseTableViewDataDelegate.m in Sources */,
+				2CF2E2001C78A82C0007A639 /* DTTimePeriodCollection.m in Sources */,
 				2CF2E1911C75C6D30007A639 /* MMPopupCategory.m in Sources */,
 				2CD75B771C61C2D000E7E076 /* ServerTimeModel.m in Sources */,
 				2CD75B6D1C61C2D000E7E076 /* GlobalModel.m in Sources */,
@@ -1427,11 +1484,14 @@
 				2CF2E1811C75BA2D0007A639 /* SearchDeviceDelegate.m in Sources */,
 				2CD75B781C61C2D000E7E076 /* ServerTimeModelTwo.m in Sources */,
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
+				2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */,
 				2CF2E1431C7587EA0007A639 /* Gloable.m in Sources */,
 				2CD75B6F1C61C2D000E7E076 /* AddUserModel.m in Sources */,
 				2CF2E1951C75C6D30007A639 /* MMSheetView.m in Sources */,
+				2CF2E2051C796C360007A639 /* LocalNotificationManager.m in Sources */,
 				2CD75B6E1C61C2D000E7E076 /* SleepQualityModel.m in Sources */,
 				2CD015291C7076D4001F9514 /* MyDeviceListViewController.m in Sources */,
+				2CF2E2011C78A82C0007A639 /* DTTimePeriodGroup.m in Sources */,
 				2CF2E1721C75B3FB0007A639 /* XHRealTimeBlur.m in Sources */,
 				2CD015351C7080FE001F9514 /* MyDeviceDelegate.m in Sources */,
 				2CD015011C6FFC3A001F9514 /* Toast+UIView.m in Sources */,
@@ -1445,6 +1505,7 @@
 				2CF2E13A1C7480170007A639 /* FriendDeviceTableViewCell.m in Sources */,
 				2CD014D11C64BB0B001F9514 /* PersonInfoTableViewCell.m in Sources */,
 				2CD75B1D1C61B57000E7E076 /* AppDelegate.m in Sources */,
+				2CF2E1FF1C78A82C0007A639 /* DTTimePeriodChain.m in Sources */,
 				2CD015301C70774A001F9514 /* JASwipeCell.m in Sources */,
 				2CD015141C704485001F9514 /* RMDateSelectionViewController.m in Sources */,
 				2CD014FC1C6EABDF001F9514 /* EditInfoCellTableViewCell.m in Sources */,
@@ -1462,6 +1523,7 @@
 				2CF2E1E11C785C330007A639 /* SleepSettingViewController.m in Sources */,
 				2CF2E1E91C7862B50007A639 /* SleepSettingCell.m in Sources */,
 				2CD75B991C61F62B00E7E076 /* JASidePanelController.m in Sources */,
+				2CF2E1FE1C78A82C0007A639 /* DTTimePeriod.m in Sources */,
 				2CF2E1D01C7711CE0007A639 /* MessageShowTableViewCell.m in Sources */,
 				2CD015281C7076D4001F9514 /* FriendDeviceListViewController.m in Sources */,
 				2CF2E16E1C75B3BA0007A639 /* SearchBarDisplayController.m in Sources */,
