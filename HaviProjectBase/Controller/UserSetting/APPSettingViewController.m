@@ -13,11 +13,10 @@
 #import "UserProtocolViewController.h"
 #import "AboutMeViewController.h"
 #import "SelectThemeViewController.h"
-//#import "PassCodeSettingViewController.h"
+#import "PassCodeSettingViewController.h"
 //#import "LoginViewController.h"
-//#import "AppDelegate.h"
+#import "AppDelegate.h"
 //#import "WeiBoLogoutAPI.h"
-//#import "PersonManagerViewController.h"
 
 @interface APPSettingViewController ()
 
@@ -48,7 +47,7 @@
          }
          return nil;
      }];
-    [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"ModifyPassWordViewController",@"SelectThemeViewController",@""]];
+    [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"ModifyPassWordViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
     [self addControllerToCellArrayWithClassName:@[@"UserProtocolViewController",@"AboutMeViewController"]];
     [self addControllerToCellArrayWithClassName:@[@""]];
     

@@ -204,6 +204,25 @@
 		2CF2E23A1C7AB15B0007A639 /* common_green_checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2391C7AB15B0007A639 /* common_green_checkbox@2x.png */; };
 		2CF2E23C1C7AB25F0007A639 /* pic_bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E23B1C7AB25F0007A639 /* pic_bg_1@2x.png */; };
 		2CF2E23E1C7AB2710007A639 /* pic_bg_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E23D1C7AB2710007A639 /* pic_bg_0@2x.png */; };
+		2CF2E24A1C7AB7E80007A639 /* digitCell.psd in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2411C7AB7E80007A639 /* digitCell.psd */; };
+		2CF2E24B1C7AB7E80007A639 /* failedBg.psd in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2421C7AB7E80007A639 /* failedBg.psd */; };
+		2CF2E24C1C7AB7E80007A639 /* papasscode_background2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2431C7AB7E80007A639 /* papasscode_background2@2x.png */; };
+		2CF2E24D1C7AB7E80007A639 /* papasscode_failed_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2441C7AB7E80007A639 /* papasscode_failed_bg.png */; };
+		2CF2E24E1C7AB7E80007A639 /* papasscode_failed_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2451C7AB7E80007A639 /* papasscode_failed_bg@2x.png */; };
+		2CF2E24F1C7AB7E80007A639 /* papasscode_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2461C7AB7E80007A639 /* papasscode_marker.png */; };
+		2CF2E2501C7AB7E80007A639 /* papasscode_marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2471C7AB7E80007A639 /* papasscode_marker@2x.png */; };
+		2CF2E2511C7AB7E80007A639 /* PAPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E2491C7AB7E80007A639 /* PAPasscodeViewController.m */; };
+		2CF2E2541C7AB7F70007A639 /* PassCodeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E2531C7AB7F70007A639 /* PassCodeSettingViewController.m */; };
+		2CF2E2561C7ABBB50007A639 /* papasscode_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2551C7ABBB50007A639 /* papasscode_background@2x.png */; };
+		2CF2E2601C7ABDFD0007A639 /* CKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E25D1C7ABDFD0007A639 /* CKTextField.m */; };
+		2CF2E2611C7ABDFD0007A639 /* LabelLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E25F1C7ABDFD0007A639 /* LabelLine.m */; };
+		2CF2E26B1C7AC77F0007A639 /* ZWIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E26A1C7AC77F0007A639 /* ZWIntroductionViewController.m */; };
+		2CF2E26F1C7AD1E30007A639 /* pic_introduce_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E26C1C7AD1E30007A639 /* pic_introduce_1@2x.png */; };
+		2CF2E2701C7AD1E30007A639 /* pic_introduce_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E26D1C7AD1E30007A639 /* pic_introduce_2@2x.png */; };
+		2CF2E2711C7AD1E30007A639 /* pic_introduce_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E26E1C7AD1E30007A639 /* pic_introduce_3@2x.png */; };
+		2CF2E2751C7AD22D0007A639 /* font_1_min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2721C7AD22D0007A639 /* font_1_min@2x.png */; };
+		2CF2E2761C7AD22D0007A639 /* font_2_min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2731C7AD22D0007A639 /* font_2_min@2x.png */; };
+		2CF2E2771C7AD22D0007A639 /* font_3_min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2741C7AD22D0007A639 /* font_3_min@2x.png */; };
 		5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */; };
 /* End PBXBuildFile section */
 
@@ -540,6 +559,30 @@
 		2CF2E2391C7AB15B0007A639 /* common_green_checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_green_checkbox@2x.png"; sourceTree = "<group>"; };
 		2CF2E23B1C7AB25F0007A639 /* pic_bg_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bg_1@2x.png"; sourceTree = "<group>"; };
 		2CF2E23D1C7AB2710007A639 /* pic_bg_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bg_0@2x.png"; sourceTree = "<group>"; };
+		2CF2E2411C7AB7E80007A639 /* digitCell.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = digitCell.psd; sourceTree = "<group>"; };
+		2CF2E2421C7AB7E80007A639 /* failedBg.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = failedBg.psd; sourceTree = "<group>"; };
+		2CF2E2431C7AB7E80007A639 /* papasscode_background2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "papasscode_background2@2x.png"; sourceTree = "<group>"; };
+		2CF2E2441C7AB7E80007A639 /* papasscode_failed_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = papasscode_failed_bg.png; sourceTree = "<group>"; };
+		2CF2E2451C7AB7E80007A639 /* papasscode_failed_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "papasscode_failed_bg@2x.png"; sourceTree = "<group>"; };
+		2CF2E2461C7AB7E80007A639 /* papasscode_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = papasscode_marker.png; sourceTree = "<group>"; };
+		2CF2E2471C7AB7E80007A639 /* papasscode_marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "papasscode_marker@2x.png"; sourceTree = "<group>"; };
+		2CF2E2481C7AB7E80007A639 /* PAPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPasscodeViewController.h; sourceTree = "<group>"; };
+		2CF2E2491C7AB7E80007A639 /* PAPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPasscodeViewController.m; sourceTree = "<group>"; };
+		2CF2E2521C7AB7F70007A639 /* PassCodeSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassCodeSettingViewController.h; sourceTree = "<group>"; };
+		2CF2E2531C7AB7F70007A639 /* PassCodeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassCodeSettingViewController.m; sourceTree = "<group>"; };
+		2CF2E2551C7ABBB50007A639 /* papasscode_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "papasscode_background@2x.png"; sourceTree = "<group>"; };
+		2CF2E25C1C7ABDFD0007A639 /* CKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextField.h; sourceTree = "<group>"; };
+		2CF2E25D1C7ABDFD0007A639 /* CKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKTextField.m; sourceTree = "<group>"; };
+		2CF2E25E1C7ABDFD0007A639 /* LabelLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelLine.h; sourceTree = "<group>"; };
+		2CF2E25F1C7ABDFD0007A639 /* LabelLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelLine.m; sourceTree = "<group>"; };
+		2CF2E2691C7AC77F0007A639 /* ZWIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWIntroductionViewController.h; sourceTree = "<group>"; };
+		2CF2E26A1C7AC77F0007A639 /* ZWIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWIntroductionViewController.m; sourceTree = "<group>"; };
+		2CF2E26C1C7AD1E30007A639 /* pic_introduce_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_introduce_1@2x.png"; sourceTree = "<group>"; };
+		2CF2E26D1C7AD1E30007A639 /* pic_introduce_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_introduce_2@2x.png"; sourceTree = "<group>"; };
+		2CF2E26E1C7AD1E30007A639 /* pic_introduce_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_introduce_3@2x.png"; sourceTree = "<group>"; };
+		2CF2E2721C7AD22D0007A639 /* font_1_min@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "font_1_min@2x.png"; sourceTree = "<group>"; };
+		2CF2E2731C7AD22D0007A639 /* font_2_min@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "font_2_min@2x.png"; sourceTree = "<group>"; };
+		2CF2E2741C7AD22D0007A639 /* font_3_min@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "font_3_min@2x.png"; sourceTree = "<group>"; };
 		4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HaviProjectBase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD59D461E54074340889743 /* Pods-HaviProjectBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.debug.xcconfig"; sourceTree = "<group>"; };
 		63A2D9002C58A4DE4A995D75 /* Pods-HaviProjectBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.release.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.release.xcconfig"; sourceTree = "<group>"; };
@@ -607,6 +650,12 @@
 				2CF2E1D31C771F1A0007A639 /* refuse@2x.png */,
 				2CF2E2251C79DB320007A639 /* pic_about@2x.png */,
 				2CF2E2391C7AB15B0007A639 /* common_green_checkbox@2x.png */,
+				2CF2E26C1C7AD1E30007A639 /* pic_introduce_1@2x.png */,
+				2CF2E26D1C7AD1E30007A639 /* pic_introduce_2@2x.png */,
+				2CF2E26E1C7AD1E30007A639 /* pic_introduce_3@2x.png */,
+				2CF2E2721C7AD22D0007A639 /* font_1_min@2x.png */,
+				2CF2E2731C7AD22D0007A639 /* font_2_min@2x.png */,
+				2CF2E2741C7AD22D0007A639 /* font_3_min@2x.png */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -729,6 +778,9 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2CF2E2681C7AC77F0007A639 /* ZWIntroductionViewController */,
+				2CF2E25B1C7ABDFD0007A639 /* UISubClass */,
+				2CF2E23F1C7AB7E80007A639 /* PAPasscode */,
 				2CF2E1EC1C78A82C0007A639 /* DateTools */,
 				2CF2E1A61C760A340007A639 /* LBXAlertAction */,
 				2CF2E1821C75C6D30007A639 /* AlertClasses */,
@@ -1039,6 +1091,7 @@
 		2CD75B7B1C61C3D700E7E076 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2CF2E2571C7ABC740007A639 /* Login */,
 				2CF2E2081C79A22E0007A639 /* UserSetting */,
 				2CF2E1DE1C785BFD0007A639 /* SleepSetting */,
 				2CF2E1C51C7710D90007A639 /* Message */,
@@ -1264,6 +1317,8 @@
 				2CF2E21F1C79D6B90007A639 /* AboutMeViewController.m */,
 				2CF2E22E1C7AAE420007A639 /* SelectThemeViewController.h */,
 				2CF2E22F1C7AAE420007A639 /* SelectThemeViewController.m */,
+				2CF2E2521C7AB7F70007A639 /* PassCodeSettingViewController.h */,
+				2CF2E2531C7AB7F70007A639 /* PassCodeSettingViewController.m */,
 			);
 			path = UserSetting;
 			sourceTree = "<group>";
@@ -1288,6 +1343,58 @@
 				2CF2E2121C79D1690007A639 /* AppSettingTableViewCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		2CF2E23F1C7AB7E80007A639 /* PAPasscode */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2E2401C7AB7E80007A639 /* Assets */,
+				2CF2E2481C7AB7E80007A639 /* PAPasscodeViewController.h */,
+				2CF2E2491C7AB7E80007A639 /* PAPasscodeViewController.m */,
+			);
+			path = PAPasscode;
+			sourceTree = "<group>";
+		};
+		2CF2E2401C7AB7E80007A639 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2E2411C7AB7E80007A639 /* digitCell.psd */,
+				2CF2E2421C7AB7E80007A639 /* failedBg.psd */,
+				2CF2E2431C7AB7E80007A639 /* papasscode_background2@2x.png */,
+				2CF2E2441C7AB7E80007A639 /* papasscode_failed_bg.png */,
+				2CF2E2451C7AB7E80007A639 /* papasscode_failed_bg@2x.png */,
+				2CF2E2461C7AB7E80007A639 /* papasscode_marker.png */,
+				2CF2E2471C7AB7E80007A639 /* papasscode_marker@2x.png */,
+				2CF2E2551C7ABBB50007A639 /* papasscode_background@2x.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		2CF2E2571C7ABC740007A639 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2CF2E25B1C7ABDFD0007A639 /* UISubClass */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2E25C1C7ABDFD0007A639 /* CKTextField.h */,
+				2CF2E25D1C7ABDFD0007A639 /* CKTextField.m */,
+				2CF2E25E1C7ABDFD0007A639 /* LabelLine.h */,
+				2CF2E25F1C7ABDFD0007A639 /* LabelLine.m */,
+			);
+			path = UISubClass;
+			sourceTree = "<group>";
+		};
+		2CF2E2681C7AC77F0007A639 /* ZWIntroductionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2E2691C7AC77F0007A639 /* ZWIntroductionViewController.h */,
+				2CF2E26A1C7AC77F0007A639 /* ZWIntroductionViewController.m */,
+			);
+			path = ZWIntroductionViewController;
 			sourceTree = "<group>";
 		};
 		CF7BFF0E6F0E4DC8986D8E4C /* Pods */ = {
@@ -1370,6 +1477,11 @@
 					2CD75B141C61B57000E7E076 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = CF99UB3L46;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					2CD75B2D1C61B57000E7E076 = {
 						CreatedOnToolsVersion = 7.2;
@@ -1412,8 +1524,10 @@
 				2CF2E1631C759F530007A639 /* havi1_0@2x.png in Resources */,
 				2CD014EA1C64CD22001F9514 /* icon_phone1@2x.png in Resources */,
 				2CD014E71C64CD22001F9514 /* gender@2x.png in Resources */,
+				2CF2E24F1C7AB7E80007A639 /* papasscode_marker.png in Resources */,
 				2CF2E1261C74749B0007A639 /* icon_double@2x.png in Resources */,
 				2CF2E1DA1C7739760007A639 /* message_back@2x.png in Resources */,
+				2CF2E2751C7AD22D0007A639 /* font_1_min@2x.png in Resources */,
 				2CD014961C634001001F9514 /* icon_data_analysis_1@2x.png in Resources */,
 				2CD014981C634001001F9514 /* icon_message_1.png in Resources */,
 				2CF2E1681C759F530007A639 /* havi1_5@2x.png in Resources */,
@@ -1429,6 +1543,7 @@
 				2CF2E1D51C771F1A0007A639 /* apply@2x.png in Resources */,
 				2CF2E1251C74749B0007A639 /* choose@2x.png in Resources */,
 				2CF2E2381C7AB01F0007A639 /* skinpeeler_tint_bg@2x.png in Resources */,
+				2CF2E2771C7AD22D0007A639 /* font_3_min@2x.png in Resources */,
 				2CD0148B1C633FF3001F9514 /* icon_equipment_management_0@2x.png in Resources */,
 				2CF2E1641C759F530007A639 /* havi1_1@2x.png in Resources */,
 				2CD014F41C6E31DC001F9514 /* navigation_bar_bg_1@2x.png in Resources */,
@@ -1438,6 +1553,7 @@
 				2CD014C31C63963C001F9514 /* btn_back_0@2x.png in Resources */,
 				2CF2E14B1C7590550007A639 /* textbox_save_settings_0@2x.png in Resources */,
 				2CF2E2171C79D2EC0007A639 /* AppSetting1.plist in Resources */,
+				2CF2E24A1C7AB7E80007A639 /* digitCell.psd in Resources */,
 				2CD014991C634001001F9514 /* icon_setting_1@2x.png in Resources */,
 				2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */,
 				2CD0149C1C634305001F9514 /* btn_right_0@2x.png in Resources */,
@@ -1445,9 +1561,11 @@
 				2CD014E81C64CD22001F9514 /* height@2x.png in Resources */,
 				2CF2E16B1C759F530007A639 /* havi1_8@2x.png in Resources */,
 				2CD014DC1C64CA1E001F9514 /* PersonInfoPlist.plist in Resources */,
+				2CF2E24E1C7AB7E80007A639 /* papasscode_failed_bg@2x.png in Resources */,
 				2CD014E91C64CD22001F9514 /* home@2x.png in Resources */,
 				2CF2E1B21C76A94A0007A639 /* CodeScan.bundle in Resources */,
 				2CF2E1D41C771F1A0007A639 /* accept@2x.png in Resources */,
+				2CF2E24B1C7AB7E80007A639 /* failedBg.psd in Resources */,
 				2CF2E1651C759F530007A639 /* havi1_2@2x.png in Resources */,
 				2CD0148E1C633FF3001F9514 /* icon_todays_data_0@2x.png in Resources */,
 				2CF2E1FC1C78A82C0007A639 /* DateTools.bundle in Resources */,
@@ -1457,9 +1575,12 @@
 				2CD014951C634001001F9514 /* icon_alarm_clock_1@2x.png in Resources */,
 				2CD014E51C64CD22001F9514 /* birthday@2x.png in Resources */,
 				2CD014C01C6393AF001F9514 /* person_background@2x.png in Resources */,
+				2CF2E2711C7AD1E30007A639 /* pic_introduce_3@2x.png in Resources */,
 				2CD014A71C634CE7001F9514 /* week_0@2x.png in Resources */,
 				2CD014E61C64CD22001F9514 /* emergency_Contact@2x.png in Resources */,
+				2CF2E24C1C7AB7E80007A639 /* papasscode_background2@2x.png in Resources */,
 				2CF2E1271C74749B0007A639 /* icon_solo@2x.png in Resources */,
+				2CF2E2561C7ABBB50007A639 /* papasscode_background@2x.png in Resources */,
 				2CD0148A1C633FF3001F9514 /* icon_data_analysis_0@2x.png in Resources */,
 				2CD0149A1C634001001F9514 /* icon_todays_data_1@2x.png in Resources */,
 				2CF2E23C1C7AB25F0007A639 /* pic_bg_1@2x.png in Resources */,
@@ -1475,16 +1596,21 @@
 				2CF2E1501C7590930007A639 /* plus_math_1@2x.png in Resources */,
 				2CF2E2151C79D2180007A639 /* AppSetting.plist in Resources */,
 				2CD014C11C6393AF001F9514 /* person_background@3x.png in Resources */,
+				2CF2E2501C7AB7E80007A639 /* papasscode_marker@2x.png in Resources */,
 				2CF2E16A1C759F530007A639 /* havi1_7@2x.png in Resources */,
 				2CF2E1521C7590930007A639 /* textbox_hollow_1@2x.png in Resources */,
 				2CF2E1C31C7701710007A639 /* double_bed@2x.png in Resources */,
 				2CF2E1EB1C78682B0007A639 /* SleepSetting.plist in Resources */,
 				2CF2E1C41C7701710007A639 /* edit_double_bed@2x.png in Resources */,
 				2CF2E23A1C7AB15B0007A639 /* common_green_checkbox@2x.png in Resources */,
+				2CF2E24D1C7AB7E80007A639 /* papasscode_failed_bg.png in Resources */,
+				2CF2E26F1C7AD1E30007A639 /* pic_introduce_1@2x.png in Resources */,
+				2CF2E2761C7AD22D0007A639 /* font_2_min@2x.png in Resources */,
 				2CF2E2221C79DAD70007A639 /* textbox_devicename_0@2x.png in Resources */,
 				2CD0148D1C633FF3001F9514 /* icon_setting_0@2x.png in Resources */,
 				2CF2E1511C7590930007A639 /* search_1@2x.png in Resources */,
 				2CF2E1661C759F530007A639 /* havi1_3@2x.png in Resources */,
+				2CF2E2701C7AD1E30007A639 /* pic_introduce_2@2x.png in Resources */,
 				2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */,
 				2CF2E1671C759F530007A639 /* havi1_4@2x.png in Resources */,
 				2CF2E2281C79DB5D0007A639 /* protocol.html in Resources */,
@@ -1574,6 +1700,7 @@
 				2CD0151B1C70497A001F9514 /* RMActionController.m in Sources */,
 				2CF2E19B1C76025D0007A639 /* AddProductNameViewController.m in Sources */,
 				2CF2E1781C75B5A40007A639 /* RexpUntil.m in Sources */,
+				2CF2E2541C7AB7F70007A639 /* PassCodeSettingViewController.m in Sources */,
 				2CD75B8F1C61CCC600E7E076 /* NSObject+Common.m in Sources */,
 				2CF2E2131C79D1690007A639 /* AppSettingTableViewCell.m in Sources */,
 				2CF2E1591C7593FC0007A639 /* ReNameDoubleDeviceViewController.m in Sources */,
@@ -1608,6 +1735,7 @@
 				2CF2E1951C75C6D30007A639 /* MMSheetView.m in Sources */,
 				2CF2E2051C796C360007A639 /* LocalNotificationManager.m in Sources */,
 				2CF2E2201C79D6B90007A639 /* AboutMeViewController.m in Sources */,
+				2CF2E26B1C7AC77F0007A639 /* ZWIntroductionViewController.m in Sources */,
 				2CD75B6E1C61C2D000E7E076 /* SleepQualityModel.m in Sources */,
 				2CD015291C7076D4001F9514 /* MyDeviceListViewController.m in Sources */,
 				2CF2E2011C78A82C0007A639 /* DTTimePeriodGroup.m in Sources */,
@@ -1645,6 +1773,7 @@
 				2CF2E1E91C7862B50007A639 /* SleepSettingCell.m in Sources */,
 				2CD75B991C61F62B00E7E076 /* JASidePanelController.m in Sources */,
 				2CF2E1FE1C78A82C0007A639 /* DTTimePeriod.m in Sources */,
+				2CF2E2511C7AB7E80007A639 /* PAPasscodeViewController.m in Sources */,
 				2CF2E1D01C7711CE0007A639 /* MessageShowTableViewCell.m in Sources */,
 				2CD015281C7076D4001F9514 /* FriendDeviceListViewController.m in Sources */,
 				2CF2E16E1C75B3BA0007A639 /* SearchBarDisplayController.m in Sources */,
@@ -1672,6 +1801,8 @@
 				2CD014F11C6E2024001F9514 /* EditAddressCellViewController.m in Sources */,
 				2CD75B7A1C61C2D000E7E076 /* UserInfoDetailModel.m in Sources */,
 				2CF2E1C01C76FDCB0007A639 /* NameDoubleViewController.m in Sources */,
+				2CF2E2601C7ABDFD0007A639 /* CKTextField.m in Sources */,
+				2CF2E2611C7ABDFD0007A639 /* LabelLine.m in Sources */,
 				2CD75BA01C61F89600E7E076 /* BaseNaviViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

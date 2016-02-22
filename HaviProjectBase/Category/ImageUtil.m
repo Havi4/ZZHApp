@@ -117,6 +117,8 @@
             transform = CGAffineTransformTranslate(transform, 0, self.size.height);
             transform = CGAffineTransformRotate(transform, -M_PI_2);
             break;
+        default:{
+        }
     }
     
     switch (self.imageOrientation) {
@@ -131,6 +133,8 @@
             transform = CGAffineTransformTranslate(transform, self.size.height, 0);
             transform = CGAffineTransformScale(transform, -1, 1);
             break;
+        default:{
+        }
     }
     
     // Now we draw the underlying CGImage into a new context, applying the transform

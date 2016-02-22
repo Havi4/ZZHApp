@@ -50,3 +50,9 @@
 //换肤
 #define kReloadAppTheme @"kReloadAppTheme"
 
+#define kAppPassWordKeyNoti      @"appPassWordKey"
+#define kAppPassWorkSetOkNoti    @"AppPassWorkSetOkNoti"
+#define kAppPassWordCancelNoti   @"AppPassWordCancelNoti"
+
+#define kAppIntroduceViewKey   @"kAppIntroduceViewKey"
+

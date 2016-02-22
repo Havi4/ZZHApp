@@ -11,8 +11,11 @@
 #import "LeftSideViewController.h"
 #import "CenterViewController.h"
 #import "BaseNaviViewController.h"
+#import "ZWIntroductionViewController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 
 @end
 
@@ -34,7 +37,9 @@
     self.window.rootViewController = self.sideMenuController;
     //状态栏
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    //
     [self.window makeKeyAndVisible];
+    [self setIntroduceView];
     return YES;
 }
 
@@ -59,6 +64,30 @@
         NSString *dataPath = [[NSBundle mainBundle]pathForResource:@"ReturnCode" ofType:@"plist"];
         returnErrorMessage = [NSDictionary dictionaryWithContentsOfFile:dataPath];
     });
+}
+
+#pragma mark 设置引导画面
+
+- (void)setIntroduceView
+{
+    BOOL hasSet = [[NSUserDefaults standardUserDefaults]objectForKey:kAppIntroduceViewKey];
+    if (hasSet) {
+        return;
+    }
+    NSArray *coverImageNames = @[@"font_1_min", @"font_2_min", @"font_3_min"];
+    NSArray *backgroundImageNames = @[@"pic_introduce_1", @"pic_introduce_2", @"pic_introduce_3"];
+    
+    self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:backgroundImageNames];
+    [self.window addSubview:self.introductionView.view];
+    
+    __weak AppDelegate *weakSelf = self;
+    self.introductionView.didSelectedEnter = ^() {
+        weakSelf.introductionView = nil;
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAppIntroduceViewKey];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+    };
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
