@@ -184,6 +184,26 @@
 		2CF2E2021C78A82C0007A639 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E1FB1C78A82C0007A639 /* NSDate+DateTools.m */; };
 		2CF2E2051C796C360007A639 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E2041C796C360007A639 /* LocalNotificationManager.m */; };
 		2CF2E2071C7972410007A639 /* alarmSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2061C7972410007A639 /* alarmSound.wav */; };
+		2CF2E20B1C79CCC50007A639 /* APPSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E20A1C79CCC50007A639 /* APPSettingViewController.m */; };
+		2CF2E2101C79D0510007A639 /* AppSettingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E20F1C79D0510007A639 /* AppSettingDelegate.m */; };
+		2CF2E2131C79D1690007A639 /* AppSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E2121C79D1690007A639 /* AppSettingTableViewCell.m */; };
+		2CF2E2151C79D2180007A639 /* AppSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2141C79D2180007A639 /* AppSetting.plist */; };
+		2CF2E2171C79D2EC0007A639 /* AppSetting1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2161C79D2EC0007A639 /* AppSetting1.plist */; };
+		2CF2E21C1C79D6600007A639 /* ModifyPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E2191C79D6600007A639 /* ModifyPassWordViewController.m */; };
+		2CF2E21D1C79D6600007A639 /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E21B1C79D6600007A639 /* UserProtocolViewController.m */; };
+		2CF2E2201C79D6B90007A639 /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E21F1C79D6B90007A639 /* AboutMeViewController.m */; };
+		2CF2E2221C79DAD70007A639 /* textbox_devicename_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2211C79DAD70007A639 /* textbox_devicename_0@2x.png */; };
+		2CF2E2241C79DAFE0007A639 /* textbox_devicename_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2231C79DAFE0007A639 /* textbox_devicename_1@2x.png */; };
+		2CF2E2261C79DB320007A639 /* pic_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2251C79DB320007A639 /* pic_about@2x.png */; };
+		2CF2E2281C79DB5D0007A639 /* protocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2271C79DB5D0007A639 /* protocol.html */; };
+		2CF2E2301C7AAE420007A639 /* SelectThemeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E22D1C7AAE420007A639 /* SelectThemeCollectionViewCell.m */; };
+		2CF2E2311C7AAE420007A639 /* SelectThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E22F1C7AAE420007A639 /* SelectThemeViewController.m */; };
+		2CF2E2341C7AAEB00007A639 /* ThemeSelectConfigureObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E2331C7AAEB00007A639 /* ThemeSelectConfigureObj.m */; };
+		2CF2E2361C7AB0110007A639 /* skinpeeler_dark_color_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2351C7AB0110007A639 /* skinpeeler_dark_color_bg@2x.png */; };
+		2CF2E2381C7AB01F0007A639 /* skinpeeler_tint_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2371C7AB01F0007A639 /* skinpeeler_tint_bg@2x.png */; };
+		2CF2E23A1C7AB15B0007A639 /* common_green_checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2391C7AB15B0007A639 /* common_green_checkbox@2x.png */; };
+		2CF2E23C1C7AB25F0007A639 /* pic_bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E23B1C7AB25F0007A639 /* pic_bg_1@2x.png */; };
+		2CF2E23E1C7AB2710007A639 /* pic_bg_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E23D1C7AB2710007A639 /* pic_bg_0@2x.png */; };
 		5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */; };
 /* End PBXBuildFile section */
 
@@ -491,6 +511,35 @@
 		2CF2E2031C796C360007A639 /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
 		2CF2E2041C796C360007A639 /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationManager.m; sourceTree = "<group>"; };
 		2CF2E2061C7972410007A639 /* alarmSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarmSound.wav; sourceTree = "<group>"; };
+		2CF2E2091C79CCC50007A639 /* APPSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPSettingViewController.h; sourceTree = "<group>"; };
+		2CF2E20A1C79CCC50007A639 /* APPSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPSettingViewController.m; sourceTree = "<group>"; };
+		2CF2E20E1C79D0510007A639 /* AppSettingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettingDelegate.h; sourceTree = "<group>"; };
+		2CF2E20F1C79D0510007A639 /* AppSettingDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettingDelegate.m; sourceTree = "<group>"; };
+		2CF2E2111C79D1690007A639 /* AppSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettingTableViewCell.h; sourceTree = "<group>"; };
+		2CF2E2121C79D1690007A639 /* AppSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettingTableViewCell.m; sourceTree = "<group>"; };
+		2CF2E2141C79D2180007A639 /* AppSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppSetting.plist; sourceTree = "<group>"; };
+		2CF2E2161C79D2EC0007A639 /* AppSetting1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppSetting1.plist; sourceTree = "<group>"; };
+		2CF2E2181C79D6600007A639 /* ModifyPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPassWordViewController.h; sourceTree = "<group>"; };
+		2CF2E2191C79D6600007A639 /* ModifyPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPassWordViewController.m; sourceTree = "<group>"; };
+		2CF2E21A1C79D6600007A639 /* UserProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProtocolViewController.h; sourceTree = "<group>"; };
+		2CF2E21B1C79D6600007A639 /* UserProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProtocolViewController.m; sourceTree = "<group>"; };
+		2CF2E21E1C79D6B90007A639 /* AboutMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutMeViewController.h; sourceTree = "<group>"; };
+		2CF2E21F1C79D6B90007A639 /* AboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutMeViewController.m; sourceTree = "<group>"; };
+		2CF2E2211C79DAD70007A639 /* textbox_devicename_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textbox_devicename_0@2x.png"; sourceTree = "<group>"; };
+		2CF2E2231C79DAFE0007A639 /* textbox_devicename_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textbox_devicename_1@2x.png"; sourceTree = "<group>"; };
+		2CF2E2251C79DB320007A639 /* pic_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_about@2x.png"; sourceTree = "<group>"; };
+		2CF2E2271C79DB5D0007A639 /* protocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = protocol.html; sourceTree = "<group>"; };
+		2CF2E22C1C7AAE420007A639 /* SelectThemeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectThemeCollectionViewCell.h; sourceTree = "<group>"; };
+		2CF2E22D1C7AAE420007A639 /* SelectThemeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectThemeCollectionViewCell.m; sourceTree = "<group>"; };
+		2CF2E22E1C7AAE420007A639 /* SelectThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectThemeViewController.h; sourceTree = "<group>"; };
+		2CF2E22F1C7AAE420007A639 /* SelectThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectThemeViewController.m; sourceTree = "<group>"; };
+		2CF2E2321C7AAEB00007A639 /* ThemeSelectConfigureObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeSelectConfigureObj.h; sourceTree = "<group>"; };
+		2CF2E2331C7AAEB00007A639 /* ThemeSelectConfigureObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeSelectConfigureObj.m; sourceTree = "<group>"; };
+		2CF2E2351C7AB0110007A639 /* skinpeeler_dark_color_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skinpeeler_dark_color_bg@2x.png"; sourceTree = "<group>"; };
+		2CF2E2371C7AB01F0007A639 /* skinpeeler_tint_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skinpeeler_tint_bg@2x.png"; sourceTree = "<group>"; };
+		2CF2E2391C7AB15B0007A639 /* common_green_checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_green_checkbox@2x.png"; sourceTree = "<group>"; };
+		2CF2E23B1C7AB25F0007A639 /* pic_bg_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bg_1@2x.png"; sourceTree = "<group>"; };
+		2CF2E23D1C7AB2710007A639 /* pic_bg_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bg_0@2x.png"; sourceTree = "<group>"; };
 		4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HaviProjectBase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD59D461E54074340889743 /* Pods-HaviProjectBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.debug.xcconfig"; sourceTree = "<group>"; };
 		63A2D9002C58A4DE4A995D75 /* Pods-HaviProjectBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.release.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.release.xcconfig"; sourceTree = "<group>"; };
@@ -556,6 +605,8 @@
 				2CF2E1D11C771F1A0007A639 /* accept@2x.png */,
 				2CF2E1D21C771F1A0007A639 /* apply@2x.png */,
 				2CF2E1D31C771F1A0007A639 /* refuse@2x.png */,
+				2CF2E2251C79DB320007A639 /* pic_about@2x.png */,
+				2CF2E2391C7AB15B0007A639 /* common_green_checkbox@2x.png */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -581,6 +632,9 @@
 				2CF2E1461C7590550007A639 /* textbox_hollow_0@2x.png */,
 				2CF2E1471C7590550007A639 /* textbox_save_settings_0@2x.png */,
 				2CF2E19C1C7604E20007A639 /* qr_code_0@2x.png */,
+				2CF2E2211C79DAD70007A639 /* textbox_devicename_0@2x.png */,
+				2CF2E2371C7AB01F0007A639 /* skinpeeler_tint_bg@2x.png */,
+				2CF2E23D1C7AB2710007A639 /* pic_bg_0@2x.png */,
 			);
 			path = darkColor;
 			sourceTree = "<group>";
@@ -605,6 +659,9 @@
 				2CF2E14D1C7590930007A639 /* search_1@2x.png */,
 				2CF2E14E1C7590930007A639 /* textbox_hollow_1@2x.png */,
 				2CF2E14F1C7590930007A639 /* textbox_save_settings_1@2x.png */,
+				2CF2E2231C79DAFE0007A639 /* textbox_devicename_1@2x.png */,
+				2CF2E2351C7AB0110007A639 /* skinpeeler_dark_color_bg@2x.png */,
+				2CF2E23B1C7AB25F0007A639 /* pic_bg_1@2x.png */,
 				2CF2E19E1C7605270007A639 /* qr_code_1@2x.png */,
 				2CF2E15A1C759F530007A639 /* havi1_0@2x.png */,
 				2CF2E15B1C759F530007A639 /* havi1_1@2x.png */,
@@ -841,6 +898,9 @@
 				2CD014DB1C64CA1E001F9514 /* PersonInfoPlist.plist */,
 				2CF2E1B61C76D9FE0007A639 /* ReturnCode.plist */,
 				2CF2E1EA1C78682B0007A639 /* SleepSetting.plist */,
+				2CF2E2141C79D2180007A639 /* AppSetting.plist */,
+				2CF2E2161C79D2EC0007A639 /* AppSetting1.plist */,
+				2CF2E2271C79DB5D0007A639 /* protocol.html */,
 				2CF2E2061C7972410007A639 /* alarmSound.wav */,
 				2CD75B181C61B57000E7E076 /* Supporting Files */,
 			);
@@ -979,7 +1039,8 @@
 		2CD75B7B1C61C3D700E7E076 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2CF2E1DE1C785BFD0007A639 /* Sleep */,
+				2CF2E2081C79A22E0007A639 /* UserSetting */,
+				2CF2E1DE1C785BFD0007A639 /* SleepSetting */,
 				2CF2E1C51C7710D90007A639 /* Message */,
 				2CD015201C707581001F9514 /* DeviceList */,
 				2CD014AE1C63558E001F9514 /* PersonInfo */,
@@ -1136,7 +1197,7 @@
 			name = views;
 			sourceTree = "<group>";
 		};
-		2CF2E1DE1C785BFD0007A639 /* Sleep */ = {
+		2CF2E1DE1C785BFD0007A639 /* SleepSetting */ = {
 			isa = PBXGroup;
 			children = (
 				2CF2E1E31C785CCE0007A639 /* Views */,
@@ -1144,6 +1205,7 @@
 				2CF2E1DF1C785C330007A639 /* SleepSettingViewController.h */,
 				2CF2E1E01C785C330007A639 /* SleepSettingViewController.m */,
 			);
+			name = SleepSetting;
 			path = Sleep;
 			sourceTree = "<group>";
 		};
@@ -1185,6 +1247,47 @@
 				2CF2E1FB1C78A82C0007A639 /* NSDate+DateTools.m */,
 			);
 			path = DateTools;
+			sourceTree = "<group>";
+		};
+		2CF2E2081C79A22E0007A639 /* UserSetting */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2E20D1C79D0260007A639 /* Views */,
+				2CF2E20C1C79D0190007A639 /* ViewModel */,
+				2CF2E2091C79CCC50007A639 /* APPSettingViewController.h */,
+				2CF2E20A1C79CCC50007A639 /* APPSettingViewController.m */,
+				2CF2E2181C79D6600007A639 /* ModifyPassWordViewController.h */,
+				2CF2E2191C79D6600007A639 /* ModifyPassWordViewController.m */,
+				2CF2E21A1C79D6600007A639 /* UserProtocolViewController.h */,
+				2CF2E21B1C79D6600007A639 /* UserProtocolViewController.m */,
+				2CF2E21E1C79D6B90007A639 /* AboutMeViewController.h */,
+				2CF2E21F1C79D6B90007A639 /* AboutMeViewController.m */,
+				2CF2E22E1C7AAE420007A639 /* SelectThemeViewController.h */,
+				2CF2E22F1C7AAE420007A639 /* SelectThemeViewController.m */,
+			);
+			path = UserSetting;
+			sourceTree = "<group>";
+		};
+		2CF2E20C1C79D0190007A639 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2E20E1C79D0510007A639 /* AppSettingDelegate.h */,
+				2CF2E20F1C79D0510007A639 /* AppSettingDelegate.m */,
+				2CF2E2321C7AAEB00007A639 /* ThemeSelectConfigureObj.h */,
+				2CF2E2331C7AAEB00007A639 /* ThemeSelectConfigureObj.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		2CF2E20D1C79D0260007A639 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2E22C1C7AAE420007A639 /* SelectThemeCollectionViewCell.h */,
+				2CF2E22D1C7AAE420007A639 /* SelectThemeCollectionViewCell.m */,
+				2CF2E2111C79D1690007A639 /* AppSettingTableViewCell.h */,
+				2CF2E2121C79D1690007A639 /* AppSettingTableViewCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		CF7BFF0E6F0E4DC8986D8E4C /* Pods */ = {
@@ -1316,13 +1419,16 @@
 				2CF2E1681C759F530007A639 /* havi1_5@2x.png in Resources */,
 				2CF2E19F1C7605270007A639 /* qr_code_1@2x.png in Resources */,
 				2CD014C71C6396D4001F9514 /* re_order_1@2x.png in Resources */,
+				2CF2E2361C7AB0110007A639 /* skinpeeler_dark_color_bg@2x.png in Resources */,
 				2CF2E1691C759F530007A639 /* havi1_6@2x.png in Resources */,
+				2CF2E23E1C7AB2710007A639 /* pic_bg_0@2x.png in Resources */,
 				2CF2E1B71C76D9FE0007A639 /* ReturnCode.plist in Resources */,
 				2CD014761C62FB17001F9514 /* left_bg_night@2x.png in Resources */,
 				2CF2E2071C7972410007A639 /* alarmSound.wav in Resources */,
 				2CF2E1D61C771F1A0007A639 /* refuse@2x.png in Resources */,
 				2CF2E1D51C771F1A0007A639 /* apply@2x.png in Resources */,
 				2CF2E1251C74749B0007A639 /* choose@2x.png in Resources */,
+				2CF2E2381C7AB01F0007A639 /* skinpeeler_tint_bg@2x.png in Resources */,
 				2CD0148B1C633FF3001F9514 /* icon_equipment_management_0@2x.png in Resources */,
 				2CF2E1641C759F530007A639 /* havi1_1@2x.png in Resources */,
 				2CD014F41C6E31DC001F9514 /* navigation_bar_bg_1@2x.png in Resources */,
@@ -1331,6 +1437,7 @@
 				2CD014891C633FF3001F9514 /* icon_alarm_clock_0@2x.png in Resources */,
 				2CD014C31C63963C001F9514 /* btn_back_0@2x.png in Resources */,
 				2CF2E14B1C7590550007A639 /* textbox_save_settings_0@2x.png in Resources */,
+				2CF2E2171C79D2EC0007A639 /* AppSetting1.plist in Resources */,
 				2CD014991C634001001F9514 /* icon_setting_1@2x.png in Resources */,
 				2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */,
 				2CD0149C1C634305001F9514 /* btn_right_0@2x.png in Resources */,
@@ -1355,31 +1462,38 @@
 				2CF2E1271C74749B0007A639 /* icon_solo@2x.png in Resources */,
 				2CD0148A1C633FF3001F9514 /* icon_data_analysis_0@2x.png in Resources */,
 				2CD0149A1C634001001F9514 /* icon_todays_data_1@2x.png in Resources */,
+				2CF2E23C1C7AB25F0007A639 /* pic_bg_1@2x.png in Resources */,
 				2CD014AB1C634CF5001F9514 /* month_1@2x.png in Resources */,
 				2CD014C51C639688001F9514 /* btn_back_1@2x.png in Resources */,
 				2CD014DA1C64C5A1001F9514 /* person_back_right@2x.png in Resources */,
+				2CF2E2241C79DAFE0007A639 /* textbox_devicename_1@2x.png in Resources */,
 				2CD014A51C634CE7001F9514 /* month_0@2x.png in Resources */,
 				2CD75B251C61B57000E7E076 /* Assets.xcassets in Resources */,
 				2CD0149E1C634312001F9514 /* btn_right_1@2x.png in Resources */,
 				2CF2E1531C7590930007A639 /* textbox_save_settings_1@2x.png in Resources */,
 				2CF2E1481C7590550007A639 /* plus_math_0@2x.png in Resources */,
 				2CF2E1501C7590930007A639 /* plus_math_1@2x.png in Resources */,
+				2CF2E2151C79D2180007A639 /* AppSetting.plist in Resources */,
 				2CD014C11C6393AF001F9514 /* person_background@3x.png in Resources */,
 				2CF2E16A1C759F530007A639 /* havi1_7@2x.png in Resources */,
 				2CF2E1521C7590930007A639 /* textbox_hollow_1@2x.png in Resources */,
 				2CF2E1C31C7701710007A639 /* double_bed@2x.png in Resources */,
 				2CF2E1EB1C78682B0007A639 /* SleepSetting.plist in Resources */,
 				2CF2E1C41C7701710007A639 /* edit_double_bed@2x.png in Resources */,
+				2CF2E23A1C7AB15B0007A639 /* common_green_checkbox@2x.png in Resources */,
+				2CF2E2221C79DAD70007A639 /* textbox_devicename_0@2x.png in Resources */,
 				2CD0148D1C633FF3001F9514 /* icon_setting_0@2x.png in Resources */,
 				2CF2E1511C7590930007A639 /* search_1@2x.png in Resources */,
 				2CF2E1661C759F530007A639 /* havi1_3@2x.png in Resources */,
 				2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */,
 				2CF2E1671C759F530007A639 /* havi1_4@2x.png in Resources */,
+				2CF2E2281C79DB5D0007A639 /* protocol.html in Resources */,
 				2CF2E1491C7590550007A639 /* search_0@2x.png in Resources */,
 				2CF2E19D1C7604E20007A639 /* qr_code_0@2x.png in Resources */,
 				2CD014821C6335F4001F9514 /* LeftSidePlist.plist in Resources */,
 				2CD014EC1C64CD22001F9514 /* weight@2x.png in Resources */,
 				2CD014EB1C64CD22001F9514 /* name@2x.png in Resources */,
+				2CF2E2261C79DB320007A639 /* pic_about@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1461,6 +1575,7 @@
 				2CF2E19B1C76025D0007A639 /* AddProductNameViewController.m in Sources */,
 				2CF2E1781C75B5A40007A639 /* RexpUntil.m in Sources */,
 				2CD75B8F1C61CCC600E7E076 /* NSObject+Common.m in Sources */,
+				2CF2E2131C79D1690007A639 /* AppSettingTableViewCell.m in Sources */,
 				2CF2E1591C7593FC0007A639 /* ReNameDoubleDeviceViewController.m in Sources */,
 				2CF2E1581C7593FC0007A639 /* ReNameDeviceNameViewController.m in Sources */,
 				2CF2E1AE1C760A340007A639 /* UIActionSheet+Block.m in Sources */,
@@ -1468,6 +1583,7 @@
 				2CD0150B1C7028DC001F9514 /* JDStatusBarView.m in Sources */,
 				2CF2E1921C75C6D30007A639 /* MMPopupitem.m in Sources */,
 				2CD014BD1C6355F1001F9514 /* PersonManagerViewController.m in Sources */,
+				2CF2E2341C7AAEB00007A639 /* ThemeSelectConfigureObj.m in Sources */,
 				2CD014F91C6E3B7F001F9514 /* EditCellInfoDelegate.m in Sources */,
 				2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */,
 				2CF2E1941C75C6D30007A639 /* MMPopupWindow.m in Sources */,
@@ -1482,6 +1598,8 @@
 				2CD75B891C61C68900E7E076 /* HaviNetWorkAPIClient.m in Sources */,
 				2CD75BA31C61F8D300E7E076 /* LeftSideViewController.m in Sources */,
 				2CF2E1811C75BA2D0007A639 /* SearchDeviceDelegate.m in Sources */,
+				2CF2E2301C7AAE420007A639 /* SelectThemeCollectionViewCell.m in Sources */,
+				2CF2E2311C7AAE420007A639 /* SelectThemeViewController.m in Sources */,
 				2CD75B781C61C2D000E7E076 /* ServerTimeModelTwo.m in Sources */,
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
 				2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */,
@@ -1489,9 +1607,11 @@
 				2CD75B6F1C61C2D000E7E076 /* AddUserModel.m in Sources */,
 				2CF2E1951C75C6D30007A639 /* MMSheetView.m in Sources */,
 				2CF2E2051C796C360007A639 /* LocalNotificationManager.m in Sources */,
+				2CF2E2201C79D6B90007A639 /* AboutMeViewController.m in Sources */,
 				2CD75B6E1C61C2D000E7E076 /* SleepQualityModel.m in Sources */,
 				2CD015291C7076D4001F9514 /* MyDeviceListViewController.m in Sources */,
 				2CF2E2011C78A82C0007A639 /* DTTimePeriodGroup.m in Sources */,
+				2CF2E21C1C79D6600007A639 /* ModifyPassWordViewController.m in Sources */,
 				2CF2E1721C75B3FB0007A639 /* XHRealTimeBlur.m in Sources */,
 				2CD015351C7080FE001F9514 /* MyDeviceDelegate.m in Sources */,
 				2CD015011C6FFC3A001F9514 /* Toast+UIView.m in Sources */,
@@ -1516,6 +1636,7 @@
 				2CF2E1CD1C77117D0007A639 /* MessageDataDelegate.m in Sources */,
 				2CD014801C632A3B001F9514 /* UITableViewCell+ConfigureTableViewCell.m in Sources */,
 				2CD75B791C61C2D000E7E076 /* TagListModel.m in Sources */,
+				2CF2E20B1C79CCC50007A639 /* APPSettingViewController.m in Sources */,
 				2CF2E17E1C75B7470007A639 /* UIImage+Common.m in Sources */,
 				2CD75B1A1C61B57000E7E076 /* main.m in Sources */,
 				2CD0150A1C7028DC001F9514 /* JDStatusBarStyle.m in Sources */,
@@ -1540,7 +1661,9 @@
 				2CF2E1371C747D920007A639 /* FriendDeviceDelegate.m in Sources */,
 				2CD75B711C61C2D000E7E076 /* BeingRequestModel.m in Sources */,
 				2CF2E1BD1C76E4360007A639 /* EditUUIDView.m in Sources */,
+				2CF2E2101C79D0510007A639 /* AppSettingDelegate.m in Sources */,
 				2CD75BAB1C6203BB00E7E076 /* HaviBaseTableViewCell.m in Sources */,
+				2CF2E21D1C79D6600007A639 /* UserProtocolViewController.m in Sources */,
 				2CF2E1341C747CF90007A639 /* ODRefreshControl.m in Sources */,
 				2CF2E1401C7579520007A639 /* ReactiveDoubleViewController.m in Sources */,
 				2CD75B741C61C2D000E7E076 /* MyDeviceListModel.m in Sources */,

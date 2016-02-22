@@ -11,6 +11,7 @@
 #import "LBXScanWrapper.h"
 #import "EditUUIDView.h"
 #import "NameDoubleViewController.h"
+#import "ReactiveSingleViewController.h"
 
 @interface QBarScanViewController ()
 
@@ -274,7 +275,8 @@
                         break;
                     }
                     case 1:{
-                        
+                        ReactiveSingleViewController *doubleUDP = [[ReactiveSingleViewController alloc]init];
+                        [self.navigationController pushViewController:doubleUDP animated:YES];
                         break;
                     }
                         
@@ -286,19 +288,6 @@
         }
     }];
 }
-
-- (void)showNextVCWithScanResult:(LBXScanResult*)strResult
-{
-//    ScanResultViewController *vc = [ScanResultViewController new];
-//    vc.imgScan = strResult.imgScanned;
-//    
-//    vc.strScan = strResult.strScanned;
-//    
-//    vc.strCodeType = strResult.strBarCodeType;
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
-}
-
 
 #pragma mark -底部功能项
 - (void)backToHome:(UIButton *)sender

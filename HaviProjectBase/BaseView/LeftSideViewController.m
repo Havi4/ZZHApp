@@ -16,6 +16,7 @@
 #import "DeviceListViewController.h"
 #import "MessageListViewController.h"
 #import "SleepSettingViewController.h"
+#import "APPSettingViewController.h"
 
 @interface LeftSideViewController ()
 
@@ -55,6 +56,7 @@
     [self addControllerToCellArrayWithClassName:@"DeviceListViewController"];
     [self addControllerToCellArrayWithClassName:@"SleepSettingViewController"];
     [self addControllerToCellArrayWithClassName:@"MessageListViewController"];
+    [self addControllerToCellArrayWithClassName:@"APPSettingViewController"];
     /**
      *  测试
      */

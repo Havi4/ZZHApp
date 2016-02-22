@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(100, 100, 50, 50)];
     [icon setImageWithURL:[NSURL URLWithString:@"http://webservice.meddo99.com:9000/v1/file/DownloadFile/meddo99.com$13122785292"] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation];
     [self.view addSubview:icon];

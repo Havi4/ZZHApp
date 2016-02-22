@@ -72,10 +72,14 @@
         [_headerView.backButton setImage:i forState:UIControlStateNormal];
         _headerView.backBlock = ^(){
             @strongify(self);
-            [self.sidePanelController setCenterPanelHidden:NO animated:YES duration:0.2f];
+            NSArray *arr = self.navigationController.viewControllers;
+            if ([arr containsObject:self]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [self.sidePanelController setCenterPanelHidden:NO animated:YES duration:0.2f];
+            }
         };
     }
-
 }
 
 - (void)addTableViewDataHandle

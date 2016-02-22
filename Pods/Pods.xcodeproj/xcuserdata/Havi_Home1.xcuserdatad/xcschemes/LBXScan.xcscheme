@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '062378618BC1301DEEB17C43'
+               BlueprintIdentifier = 'B25BB009C3E528ECF225AA51'
                BlueprintName = 'LBXScan'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libLBXScan.a'>

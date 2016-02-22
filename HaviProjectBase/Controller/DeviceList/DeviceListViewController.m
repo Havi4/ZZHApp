@@ -152,7 +152,6 @@
         searchBar;
     });
     [self.navigationController.view addSubview:_searchBar];
-    self.navigationController.view.backgroundColor = [UIColor redColor];
     [_searchBar setTop:20];
     [_searchBar setHeight:64];
     _searchDisplayVC = ({

@@ -47,3 +47,6 @@
 #define kAlarmStatusValue @"kAlarmStatusValue"
 #define kAlarmTimeValue @"kAlarmTimeValue"
 
+//换肤
+#define kReloadAppTheme @"kReloadAppTheme"
+

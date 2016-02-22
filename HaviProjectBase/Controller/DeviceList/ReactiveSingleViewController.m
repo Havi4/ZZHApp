@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad {
     self.navigationController.navigationBarHidden = YES;
+    self.backgroundImageView.image = [UIImage imageNamed:@""];
     [super viewDidLoad];
     /*
     sniffer = [[Sniffer alloc]init];

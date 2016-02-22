@@ -37,6 +37,7 @@
 {
     if (_backgroundImageView==nil) {
         _backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        _backgroundImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"pic_bg_%d",selectedThemeIndex]];
     }
     return _backgroundImageView;
 }
