@@ -149,6 +149,16 @@ static ZZHAPIManager *_apiManager = nil;
     }];
 }
 
+- (void)requestCheckAllDeviceListParams:(NSDictionary *)params andBlock:(void (^)(AllDeviceModel *myDeviceList,NSError *error))block
+{
+    NSString *aPath = @"v1/user/UserAndFriendDevices";
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:params withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+        NSDictionary *dic = (NSDictionary *)data;
+        AllDeviceModel *myDeviceModel = [AllDeviceModel modelWithDictionary:dic];
+        block(myDeviceModel,error);
+    }];
+}
+
 - (void)requestCheckMyDeviceListParams:(NSDictionary *)params andBlock:(void (^)(MyDeviceListModel *myDeviceList,NSError *error))block
 {
     NSString *aPath = @"v1/user/UserDeviceList";
@@ -230,6 +240,17 @@ static ZZHAPIManager *_apiManager = nil;
         NSDictionary *dic = (NSDictionary *)data;
         BaseModel *resultModel = [BaseModel modelWithDictionary:dic];
         block(resultModel,error);
+    }];
+}
+
+//推送id
+- (void)requestRegisterUserIdForPush:(NSDictionary *)params andBlock:(void (^)(BaseModel *baseModel,NSError *error))block
+{
+    NSString *aPath = @"v1/user/UpdateLoginInfo";
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:params withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+        NSDictionary *dic = (NSDictionary *)data;
+        BaseModel *globalModel = [BaseModel modelWithDictionary:dic];
+        block(globalModel,error);
     }];
 }
 

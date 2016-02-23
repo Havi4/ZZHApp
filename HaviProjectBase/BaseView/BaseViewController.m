@@ -7,8 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import "WXApi.h"
+#import "WeiboSDK.h"
+#import "AppDelegate.h"
+#import <TencentOpenAPI/QQApiInterface.h>
 
-@interface BaseViewController ()
+@interface BaseViewController ()<LXActivityDelegate>
 
 @property (nonatomic, assign) float nSpaceNavY;
 @property (nonatomic, strong) UIImageView *statusBarView;//状态栏
@@ -72,6 +76,203 @@
     }
     return _rightButton;
 }
+
+- (LXActivity*)shareNewMenuView
+{
+    
+    NSArray *shareButtonTitleArray = @[@"朋友圈",@"微信好友",@"新浪微博",@"QQ好友",@"QQ空间"];
+    NSArray *shareButtonImageNameArray = @[@"icon_wechat",@"weixin",@"sina",@"qq",@"qqzone"];
+    
+    _shareNewMenuView = [[LXActivity alloc] initWithTitle:@"分享到社交平台" delegate:self cancelButtonTitle:nil ShareButtonTitles:shareButtonTitleArray withShareButtonImagesName:shareButtonImageNameArray];
+    return _shareNewMenuView;
+}
+
+#pragma mark lxactivity delegate
+
+- (void)didClickOnImageIndex:(NSInteger *)imageIndex
+{
+    NSLog(@"%d",(int)imageIndex);
+    if ((int)imageIndex ==0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self sendImageContent];
+        });
+        
+    }else if ((int)imageIndex==1){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self sendImageToFriend];
+        });
+    }else if ((int)imageIndex == 2){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self shareButtonPressed];
+        });
+    }else if ((int)imageIndex == 3){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self shareButtonQQ];
+        });
+    }else if ((int)imageIndex == 4){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self shareButtonQQZone];
+        });
+    }
+}
+
+
+#pragma mark 分享到qq
+
+- (void)shareButtonQQZone
+{
+    NSString *utf8String = @"http://www.meddo.com.cn";
+    NSString *title = @"智照护";
+    NSString *description = @"我正在使用智照护App监控我的睡眠";
+    NSString *previewImageUrl = @"http://www.meddo.com.cn/images/logo.jpg";
+    QQApiNewsObject *newsObj = [QQApiNewsObject
+                                objectWithURL:[NSURL URLWithString:utf8String]
+                                title:title
+                                description:description
+                                previewImageURL:[NSURL URLWithString:previewImageUrl]];
+    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
+    //将内容分享到qzone
+    QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
+    if (sent ==0 || sent==7) {
+        DeBugLog(@"分享成功");
+    }else{
+        [self.view makeToast:@"分享出错啦" duration:2 position:@"center"];
+    }
+}
+
+- (void)shareButtonQQ
+{
+    NSData *data;
+    UIImage *image1 = [UIImage captureScreen];
+    
+    if (UIImagePNGRepresentation(image1) == nil) {
+        
+        data = UIImageJPEGRepresentation(image1, 1);
+        
+    } else {
+        
+        data = UIImagePNGRepresentation(image1);
+    }    //
+    QQApiImageObject *imgObj = [QQApiImageObject objectWithData:data
+                                               previewImageData:data
+                                                          title:@"智照护"
+                                                    description:@"我正在使用智照护app监控我的睡眠"];
+    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:imgObj];
+    //将内容分享到qq
+    QQApiSendResultCode sent = [QQApiInterface sendReq:req];
+    if (sent ==0) {
+        DeBugLog(@"分享成功");
+    }else{
+        [self.view makeToast:@"分享出错啦" duration:2 position:@"center"];
+    }
+    
+}
+
+#pragma mark 分享到微博
+- (void)shareButtonPressed
+{
+    AppDelegate *myDelegate =(AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    WBAuthorizeRequest *authRequest = [WBAuthorizeRequest request];
+    authRequest.redirectURI = kWBRedirectURL;
+    authRequest.scope = @"all";
+    
+    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:[self messageToShare] authInfo:authRequest access_token:myDelegate.wbtoken];
+    request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
+                         @"Other_Info_1": [NSNumber numberWithInt:123],
+                         @"Other_Info_2": @[@"obj1", @"obj2"],
+                         @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+    //    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
+    [WeiboSDK sendRequest:request];
+}
+
+- (WBMessageObject *)messageToShare
+{
+    WBMessageObject *message = [WBMessageObject message];
+    message.text = NSLocalizedString(@"我正在使用智照护App监控我的睡眠,快来使用啦!", nil);
+    WBImageObject *image = [WBImageObject object];
+    NSData *data;
+    UIImage *image1 = [UIImage captureScreen];
+    
+    if (UIImagePNGRepresentation(image1) == nil) {
+        
+        data = UIImageJPEGRepresentation(image1, 1);
+        
+    } else {
+        
+        data = UIImagePNGRepresentation(image1);
+    }
+    image.imageData = data;
+    message.imageObject = image;
+    return message;
+}
+#pragma mark 分享给好友
+- (void)sendImageToFriend
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = @"专访张小龙：产品之上的世界观";
+    message.description = @"微信的平台化发展方向是否真的会让这个原本简洁的产品变得臃肿？在国际化发展方向上，微信面临的问题真的是文化差异壁垒吗？腾讯高级副总裁、微信产品负责人张小龙给出了自己的回复。";
+    UIImage *image = [UIImage captureScreen];
+    [message setThumbImage:image];
+    
+    WXImageObject *ext = [WXImageObject object];
+    NSData *data;
+    if (UIImagePNGRepresentation(image) == nil) {
+        
+        data = UIImageJPEGRepresentation(image, 1);
+        
+    } else {
+        
+        data = UIImagePNGRepresentation(image);
+    }
+    ext.imageData = data;
+    
+    message.mediaObject = ext;
+    message.mediaTagName = @"WECHAT_TAG_JUMP_APP";
+    message.messageExt = @"这是第三方带的测试字段";
+    message.messageAction = @"<action>dotalist</action>";
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = WXSceneSession;
+    
+    [WXApi sendReq:req];
+}
+#pragma mark 分享到朋友圈
+- (void)sendImageContent
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    UIImage *image = [UIImage captureScreen];
+    [message setThumbImage:image];
+    WXImageObject *ext = [WXImageObject object];
+    NSData *data;
+    if (UIImagePNGRepresentation(image) == nil) {
+        
+        data = UIImageJPEGRepresentation(image, 1);
+        
+    } else {
+        
+        data = UIImagePNGRepresentation(image);
+    }
+    ext.imageData = data;
+    
+    message.mediaObject = ext;
+    message.title = @"智照护";
+    message.mediaTagName = @"WECHAT_TAG_JUMP_APP";
+    message.messageExt = @"智照护-您的睡眠管家";
+    message.messageAction = @"<action>dotalist</action>";
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = WXSceneTimeline;
+    
+    [WXApi sendReq:req];
+}
+
 
 #pragma mark 设置导航栏
 

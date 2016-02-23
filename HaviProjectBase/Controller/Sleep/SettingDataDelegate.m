@@ -334,6 +334,11 @@
             notiString = @"久睡超时时间修改成功";
             break;
         }
+        case SleepSettingLeaveBedTime:{
+            key = @"AlarmTimeOutOfBed";
+            notiString = @"离床时间修改成功";
+            break;
+        }
         case SleepSettingSwitchLeaveBedTime:
         {
             key = @"IsTimeoutAlarmOutOfBed";

@@ -24,7 +24,7 @@
     self = [super init];
     if (self) {
         _iconImageView = [[UIImageView alloc]init];
-        _iconImageView.layer.cornerRadius = 35;
+        _iconImageView.layer.cornerRadius = 30;
         _iconImageView.layer.masksToBounds = YES;
         _iconImageView.layer.shouldRasterize = YES;
         _iconImageView.userInteractionEnabled = YES;
@@ -41,8 +41,8 @@
         [_iconImageView makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(10);
-            make.width.equalTo(@70);
-            make.height.equalTo(@70);
+            make.width.equalTo(@60);
+            make.height.equalTo(@60);
         }];
         [_nameLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_iconImageView.rightMargin).offset(20);

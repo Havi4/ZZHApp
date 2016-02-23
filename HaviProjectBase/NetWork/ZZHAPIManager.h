@@ -19,6 +19,7 @@
 #import "GlobalModel.h"
 #import "SensorDataModel.h"
 #import "SleepQualityModel.h"
+#import "AllDeviceModel.h"
 
 @interface ZZHAPIManager : NSObject
 
@@ -75,6 +76,7 @@
 
 - (void)requestCheckSensorInfoParams:(NSDictionary *)params andBlcok:(void (^)(SensorInfoModel *sensorModel,NSError *error))block;
 
+- (void)requestCheckAllDeviceListParams:(NSDictionary *)params andBlock:(void (^)(AllDeviceModel *myDeviceList,NSError *error))block;
 //查看我的设备列表
 
 - (void)requestCheckMyDeviceListParams:(NSDictionary *)params andBlock:(void (^)(MyDeviceListModel *myDeviceList,NSError *error))block;
@@ -111,6 +113,8 @@
 //查看传感器数据
 
 - (void)requestGetSensorDataParams:(NSDictionary *)params andBlock:(void (^)(SensorDataModel *sensorModel,NSError *error))block;
+//推送id
+- (void)requestRegisterUserIdForPush:(NSDictionary *)params andBlock:(void (^)(BaseModel *baseModel,NSError *error))block;
 
 //睡眠质量
 

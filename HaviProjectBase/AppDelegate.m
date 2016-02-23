@@ -7,13 +7,15 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
 #import "LeftSideViewController.h"
-#import "CenterViewController.h"
 #import "BaseNaviViewController.h"
 #import "ZWIntroductionViewController.h"
+#import "LoginViewController.h"
+#import "LaunchStartView.h"
+#import "WXApi.h"
+#import "WeiboSDK.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<TencentSessionDelegate>
 
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 
@@ -28,13 +30,19 @@
     [self registerLocalNotification];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.sideMenuController = [[JASidePanelController alloc] init];
-    self.sideMenuController.shouldDelegateAutorotateToVisiblePanel = NO;
+    [self setThirdAppSetting];
     
-    self.sideMenuController.leftPanel = [[LeftSideViewController alloc] init];
-    self.sideMenuController.centerPanel = [[BaseNaviViewController alloc] initWithRootViewController:[[CenterViewController alloc] init]];
-    
-    self.window.rootViewController = self.sideMenuController;
+    if ([UserManager GetUserObj]) {
+        [self setRootViewController];
+    }else{
+        LoginViewController *login = [[LoginViewController alloc]init];
+        @weakify(self);
+        login.loginButtonClicked = ^(NSUInteger index){
+            @strongify(self);
+            [self setRootViewController];
+        };
+        self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:login];
+    }
     //状态栏
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     //
@@ -45,12 +53,39 @@
 
 #pragma mark settings
 
+- (void)setRootViewController
+{
+    self.centerView = [[CenterViewController alloc]init];
+    self.sideMenuController = [[JASidePanelController alloc] init];
+    self.sideMenuController.shouldDelegateAutorotateToVisiblePanel = NO;
+    
+    self.sideMenuController.leftPanel = [[LeftSideViewController alloc] init];
+    self.sideMenuController.centerPanel = [[BaseNaviViewController alloc] initWithRootViewController:self.centerView];
+    self.window.rootViewController = self.sideMenuController;
+}
+
+- (void)setThirdAppSetting
+{
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1104815310" andDelegate:self];
+    //微博注册
+    [WeiboSDK registerApp:kWBAPPKey];
+    [WeiboSDK enableDebugMode:YES];
+    //向微信注册
+    [WXApi registerApp:kWXAPPKey];
+    //因为有闹钟的印象，清楚闹钟。
+    int picIndex = [ThemeSelectConfigureObj defaultConfigure].nThemeIndex;
+    selectedThemeIndex = picIndex;
+}
+
 - (void)registerLocalNotification
 {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
     {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound |UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
+#endif
     }else {
         //ios7注册推送通知
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:

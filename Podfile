@@ -7,4 +7,5 @@ pod 'Masonry', '~> 0.6.4'
 pod 'MMProgressHUD', '~> 0.3.2'
 pod 'MBProgressHUD', '~> 0.9.2'
 pod 'HKRLocalNotificationManager', '~> 0.6'
+pod 'DKNightVersion', '~> 1.2'
 end

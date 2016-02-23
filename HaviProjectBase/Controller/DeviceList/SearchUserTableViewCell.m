@@ -7,7 +7,6 @@
 //
 
 #import "SearchUserTableViewCell.h"
-#import "MMAlertView.h"
 
 @interface SearchUserTableViewCell ()
 

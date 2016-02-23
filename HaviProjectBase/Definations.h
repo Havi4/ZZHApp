@@ -17,6 +17,18 @@
 #define kUserID @"meddo99.com$13122785292"
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 
+#define kWXPlatform @"wx.com"
+#define kSinaPlatform @"sina.com"
+#define kTXPlatform @"qq.com"
+#define kMeddoPlatform @"meddo99.com"
+
+#define kWXAPPKey @"wx7be2e0c9ebd9e161"
+#define kWXAPPSecret @"8fc579120ceceae54cb43dc2a17f1d54"
+//
+#define kWBAPPKey @"2199355574"
+#define kWBRedirectURL @"http://www.meddo.com"
+
+
 
 #define StatusbarSize 20
 #define kDefaultWordFont      [UIFont systemFontOfSize:17]
@@ -35,6 +47,7 @@
 #define kUnreadButtonColor      [UIColor colorWithRed:0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1]
 #define KTableViewBackGroundColor [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00]
 
+#define kButtonViewWidth [UIScreen mainScreen].bounds.size.width - 40
 #define kScreen_Bounds [UIScreen mainScreen].bounds
 #define kScreen_Height [UIScreen mainScreen].bounds.size.height
 #define kScreen_Width [UIScreen mainScreen].bounds.size.width

@@ -25,7 +25,7 @@
         _leftIconImage = [[UIImageView alloc]init];
         _leftTitleLabel = [[UILabel alloc]init];
         _leftTitleLabel.textColor = kDefaultColor;
-        _leftTitleLabel.font = [UIFont systemFontOfSize:20];
+        _leftTitleLabel.font = kDefaultWordFont;
         _leftArrowImage = [[UIImageView alloc]init];
         _leftArrowImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",0]];
         [self addSubview:_leftArrowImage];
@@ -34,8 +34,8 @@
         [_leftIconImage makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(20);
-            make.width.equalTo(@25);
-            make.height.equalTo(@25);
+            make.width.equalTo(@17);
+            make.height.equalTo(@17);
         }];
         [_leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
@@ -70,6 +70,6 @@
                             indexPath:(NSIndexPath *)indexPath
 {
     // Rewrite this func in SubClass if necessary
-    return 60.0f ; // default cell height
+    return 49.0f; // default cell height
 }
 @end

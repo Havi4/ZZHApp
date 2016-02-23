@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface RexpUntil : NSObject
+
 #pragma 正则匹配手机号
+
 + (BOOL)checkTelNumber:(NSString *) telNumber;
 
 @end

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>个人资料</string>
+		<string>皮肤设置</string>
+		<string>App密码设定</string>
+	</array>
+	<array>
+		<string>用户协议</string>
+		<string>关于迈动</string>
+	</array>
+	<array>
+		<string>退出登录</string>
+	</array>
+</array>
+</plist>

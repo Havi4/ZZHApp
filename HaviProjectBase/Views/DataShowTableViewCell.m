@@ -35,13 +35,13 @@
         [self addSubview:cellLabel];
         [leftImage makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(20);
-            make.width.equalTo(@25);
-            make.height.equalTo(@25);
+            make.width.equalTo(@17);
+            make.height.equalTo(@17);
             make.centerY.equalTo(cellLabel.mas_centerY);
         }];
         //
         cellLabel.textColor = kDefaultColor;
-        cellLabel.font = [UIFont systemFontOfSize:20];
+        cellLabel.font = kDefaultWordFont;
         [cellLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftImage.mas_right).offset(10);
             make.top.equalTo(self).offset(10);
@@ -53,7 +53,7 @@
         [buttonType1 makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(20);
             make.top.equalTo(cellLabel.mas_bottom).offset(10);
-            make.bottom.equalTo(self.mas_bottom).offset(-10);
+            make.bottom.equalTo(self.mas_bottom).offset(-15);
             make.height.equalTo(buttonType1.mas_width);
         }];
         [buttonType1 setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"week_%d",0]] forState:UIControlStateNormal];
@@ -65,7 +65,7 @@
         [buttonType2 makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(buttonType1.mas_right).offset(20);
             make.top.equalTo(cellLabel.mas_bottom).offset(10);
-            make.bottom.equalTo(self.mas_bottom).offset(-10);
+            make.bottom.equalTo(self.mas_bottom).offset(-15);
             make.centerY.equalTo(buttonType1.mas_centerY);
             make.height.equalTo(buttonType2.mas_width);
         }];
@@ -78,7 +78,7 @@
         [buttonType3 makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(buttonType2.mas_right).offset(20);
             make.top.equalTo(cellLabel.mas_bottom).offset(10);
-            make.bottom.equalTo(self.mas_bottom).offset(-10);
+            make.bottom.equalTo(self.mas_bottom).offset(-15);
             make.centerY.equalTo(buttonType1.mas_centerY);
             make.height.equalTo(buttonType3.mas_width);
         }];

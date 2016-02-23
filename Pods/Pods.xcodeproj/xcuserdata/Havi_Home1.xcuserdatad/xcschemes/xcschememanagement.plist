@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DKNightVersion.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HKRLocalNotificationManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,17 +57,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>23780432442424FC9A8D9A7EE4979392</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2B915A6BC25F4384AE958333181ACC74</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>367596A06FF8D242C4B9F71C7177D49E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -73,6 +68,11 @@
 			<true/>
 		</dict>
 		<key>5B0BD2DECAB32BFCFD79325EA6EAC852</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>661574ED433E858F9E17EF4A397C6AC1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -88,6 +88,16 @@
 			<true/>
 		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A58A8622BD5B9F52D4CC17238F7F44CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D0F22DB9A100B3F8D23EF5B575991F0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

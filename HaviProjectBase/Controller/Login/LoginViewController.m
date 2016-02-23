@@ -8,29 +8,28 @@
 
 #import "LoginViewController.h"
 #import "CKTextField.h"
-//#import "LabelLine.h"
-//#import "GetCodeViewController.h"
+#import "WXApi.h"
+#import "WeiboSDK.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "LabelLine.h"
+#import "AppDelegate.h"
+#import "GetInavlideCodeApi.h"
+#import "GetCodeViewController.h"
 //#import "STAlertView.h"
 //#import "ZWIntroductionViewController.h"
-//#import "AppDelegate.h"
 ////api
-//#import "GetInavlideCodeApi.h"
 //#import "RegisterPhoneViewController.h"
 ////
-//#import "WXApi.h"
-//#import "WeiboSDK.h"
-//#import <TencentOpenAPI/TencentOAuth.h>
 //#import "MMPopupView.h"
 //#import "APService.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,WXApiDelegate>
 @property (nonatomic,strong) CKTextField *nameText;
 @property (nonatomic,strong) UITextField *passWordText;
-@property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 
 @property (nonatomic,strong)  NSString *cellPhone;
 @property (assign,nonatomic)  int forgetPassWord;
-@property (nonatomic,strong) RegisterPhoneViewController *phoneView;
+//@property (nonatomic,strong) RegisterPhoneViewController *phoneView;
 @end
 
 @implementation LoginViewController
@@ -38,14 +37,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //接受消息，弹出输入电话号码
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showPhoneInputView) name:ShowPhoneInputViewNoti object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showPhoneInputView) name:ShowPhoneInputViewNoti object:nil];
     // Do any additional setup after loading the view.
-    int picIndex = [QHConfiguredObj defaultConfigure].nThemeIndex;
+    self.navigationController.navigationBarHidden = YES;
+    int picIndex = [ThemeSelectConfigureObj defaultConfigure].nThemeIndex;
     NSString *imageName = [NSString stringWithFormat:@"icon_logo_login_%d",picIndex];
     UIImageView *logoImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:imageName]];
     [self.view addSubview:logoImage];
     self.nameText = [[CKTextField alloc]init];
-    [self.nameText setMaxLength:@"5"];
+    [self.nameText setMaxLength:@"11"];
     [self.view addSubview:self.nameText];
     self.passWordText = [[UITextField alloc]init];
     [self.view addSubview:self.passWordText];
@@ -71,7 +71,7 @@
     }
     self.nameText.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passWordText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.nameText.keyboardType = UIKeyboardTypePhonePad;
+    self.nameText.keyboardType = UIKeyboardTypeNumberPad;
     self.passWordText.keyboardType = UIKeyboardTypeAlphabet;
     self.passWordText.secureTextEntry = YES;
     //
@@ -80,24 +80,24 @@
 //
     int padding = (self.view.bounds.size.height/2 - 200)/3;
     [logoImage makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.centerX);
-        make.bottom.equalTo(self.nameText.top).offset(-padding);
-        make.height.width.equalTo(100);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.bottom.equalTo(self.nameText.mas_top).offset(-padding);
+        make.height.width.equalTo(@100);
     }];
 //
     [self.nameText makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.centerX);
-        make.width.equalTo(ButtonViewWidth);
-        make.height.equalTo(ButtonHeight);
-        make.centerY.equalTo(self.passWordText.centerY).offset(-54);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.equalTo(@(kButtonViewWidth));
+        make.height.equalTo(@49);
+        make.centerY.equalTo(self.passWordText.mas_centerY).offset(-54);
         
     }];
 //    
     [self.passWordText makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.centerX);
-        make.width.equalTo(ButtonViewWidth);
-        make.height.equalTo(ButtonHeight);
-        make.centerY.equalTo(self.view.centerY).offset(-32);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.equalTo(@(kButtonViewWidth));
+        make.height.equalTo(@49);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-32);
     }];
 //
 //    添加小图标
@@ -116,23 +116,21 @@
     
 //    添加button
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [loginButton setBackgroundColor:[UIColor colorWithRed:0.259f green:0.718f blue:0.686f alpha:1.00f]];
-    [loginButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"btn_login_bg_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+    [loginButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_devicename_%d",selectedThemeIndex]] forState:UIControlStateNormal];
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
-    [loginButton setTitleColor:selectedThemeIndex==0?DefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    loginButton.titleLabel.font = DefaultWordFont;
+    [loginButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    loginButton.titleLabel.font = kDefaultWordFont;
     [loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     loginButton.layer.cornerRadius = 0;
     loginButton.layer.masksToBounds = YES;
     [self.view addSubview:loginButton];
     
-//txtbox_no_add_0@2x
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [registerButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"txtbox_no_add_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+    [registerButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_hollow_%d",selectedThemeIndex]] forState:UIControlStateNormal];
     registerButton.tag = 10001;
     [registerButton setTitle:@"还没有帐号" forState:UIControlStateNormal];
-    registerButton.titleLabel.font = DefaultWordFont;
-    [registerButton setTitleColor:selectedThemeIndex==0?DefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    registerButton.titleLabel.font = kDefaultWordFont;
+    [registerButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [registerButton addTarget:self action:@selector(registerButton:) forControlEvents:UIControlEventTouchUpInside];
     registerButton.layer.cornerRadius = 0;
     registerButton.layer.masksToBounds = YES;
@@ -140,17 +138,17 @@
     
 //
     [loginButton makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.centerX);
-        make.width.equalTo(ButtonViewWidth);
-        make.height.equalTo(ButtonHeight);
-        make.centerY.equalTo(self.view.centerY).offset(32);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.equalTo(@(kButtonViewWidth));
+        make.height.equalTo(@49);
+        make.centerY.equalTo(self.view.mas_centerY).offset(32);
     }];
     
     [registerButton makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.centerX);
-        make.width.equalTo(ButtonViewWidth);
-        make.height.equalTo(ButtonHeight);
-        make.centerY.equalTo(loginButton.centerY).offset(54);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.equalTo(@(kButtonViewWidth));
+        make.height.equalTo(@49);
+        make.centerY.equalTo(loginButton.mas_centerY).offset(54);
     }];
 //
     LabelLine *forgetButton = [[LabelLine alloc]init];
@@ -159,12 +157,12 @@
     forgetButton.userInteractionEnabled = YES;
     [forgetButton addGestureRecognizer:tap];
     forgetButton.backgroundColor = [UIColor clearColor];
-    forgetButton.font = DefaultWordFont;
-    forgetButton.textColor = selectedThemeIndex==0?DefaultColor:[UIColor whiteColor];
+    forgetButton.font = kDefaultWordFont;
+    forgetButton.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
     [self.view addSubview:forgetButton];
     [forgetButton makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(registerButton.bottom).offset(10);
-        make.right.equalTo(self.view.right).offset(-20);
+        make.top.equalTo(registerButton.mas_bottom).offset(10);
+        make.right.equalTo(self.view.mas_right).offset(-20);
     }];
     //第三方登录
     UILabel *thirdLoginLabel = [[UILabel alloc]init];
@@ -173,30 +171,30 @@
         [self.view addSubview:thirdLoginLabel];
         thirdLoginLabel.text = @"其他登录方式";
         thirdLoginLabel.font = [UIFont systemFontOfSize:15];
-        thirdLoginLabel.textColor = selectedThemeIndex==0?DefaultColor:[UIColor whiteColor];
+        thirdLoginLabel.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
         [thirdLoginLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view.centerX);
-            make.top.equalTo(forgetButton.bottom).offset(0);
-            make.height.equalTo(40);
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.top.equalTo(forgetButton.mas_bottom).offset(0);
+            make.height.equalTo(@40);
         }];
         UIView *leftLineView = [[UIView alloc]init];
         [self.view addSubview:leftLineView];
-        leftLineView.backgroundColor = selectedThemeIndex==0?DefaultColor:[UIColor whiteColor];
+        leftLineView.backgroundColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
         [leftLineView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(thirdLoginLabel.centerY);
-            make.height.equalTo(0.5);
-            make.left.equalTo(self.view.left).offset(15);
-            make.right.equalTo(thirdLoginLabel.left).offset(-15);
+            make.centerY.equalTo(thirdLoginLabel.mas_centerY);
+            make.height.equalTo(@0.5);
+            make.left.equalTo(self.view.mas_left).offset(15);
+            make.right.equalTo(thirdLoginLabel.mas_left).offset(-15);
         }];
         
         UIView *rightLineView = [[UIView alloc]init];
         [self.view addSubview:rightLineView];
-        rightLineView.backgroundColor = selectedThemeIndex==0?DefaultColor:[UIColor whiteColor];
+        rightLineView.backgroundColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
         [rightLineView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(thirdLoginLabel.centerY);
-            make.height.equalTo(0.5);
-            make.left.equalTo(thirdLoginLabel.right).offset(15);
-            make.right.equalTo(self.view.right).offset(-15);
+            make.centerY.equalTo(thirdLoginLabel.mas_centerY);
+            make.height.equalTo(@0.5);
+            make.left.equalTo(thirdLoginLabel.mas_right).offset(15);
+            make.right.equalTo(self.view.mas_right).offset(-15);
         }];
         //
     }
@@ -207,10 +205,10 @@
         [weixinButton addTarget:self action:@selector(weixinButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [weixinButton setBackgroundImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
         [weixinButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(weixinButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX).offset(-centerfriend);
+            make.height.equalTo(weixinButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX).offset(-centerfriend);
         }];
         
         UIButton *sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -219,10 +217,10 @@
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
         float centerfriend = self.view.frame.size.width/4;
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(sinaButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX).offset(centerfriend);
+            make.height.equalTo(sinaButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX).offset(centerfriend);
         }];
 
 
@@ -233,10 +231,10 @@
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
         float centerfriend = self.view.frame.size.width/4;
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(sinaButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX).offset(centerfriend);
+            make.height.equalTo(sinaButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX).offset(centerfriend);
         }];
         
         UIButton *qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -244,10 +242,10 @@
         [qqButton addTarget:self action:@selector(qqButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [qqButton setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         [qqButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(qqButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX).offset(-centerfriend);
+            make.height.equalTo(qqButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX).offset(-centerfriend);
         }];
     }else if ([WXApi isWXAppInstalled]&&[TencentOAuth iphoneQQInstalled]&&![WeiboSDK isWeiboAppInstalled]){
         UIButton *weixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -255,10 +253,10 @@
         [weixinButton addTarget:self action:@selector(weixinButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [weixinButton setBackgroundImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
         [weixinButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(weixinButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX).offset(centerfriend);
+            make.height.equalTo(weixinButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX).offset(centerfriend);
         }];
         
         UIButton *qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -266,10 +264,10 @@
         [qqButton addTarget:self action:@selector(qqButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [qqButton setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         [qqButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(qqButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX).offset(-centerfriend);
+            make.height.equalTo(qqButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX).offset(-centerfriend);
         }];
     }else if (![WXApi isWXAppInstalled]&&![TencentOAuth iphoneQQInstalled]&&[WeiboSDK isWeiboAppInstalled]){
         UIButton *sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -277,10 +275,10 @@
         [self.view addSubview:sinaButton];
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(sinaButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX);
+            make.height.equalTo(sinaButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX);
         }];
     }else if ([WXApi isWXAppInstalled]&&![TencentOAuth iphoneQQInstalled]&&![WeiboSDK isWeiboAppInstalled]){
         UIButton *weixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -288,9 +286,9 @@
         [weixinButton addTarget:self action:@selector(weixinButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [weixinButton setBackgroundImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
         [weixinButton makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view.centerX);
-            make.height.equalTo(weixinButton.width);
-            make.height.equalTo(60);
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.height.equalTo(weixinButton.mas_width);
+            make.height.equalTo(@60);
             make.top.equalTo(thirdLoginLabel.bottom).offset(10);
         }];
     }else if (![WXApi isWXAppInstalled]&&[TencentOAuth iphoneQQInstalled]&&![WeiboSDK isWeiboAppInstalled]){
@@ -300,10 +298,10 @@
         [qqButton addTarget:self action:@selector(qqButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [qqButton setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         [qqButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(qqButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX);
+            make.height.equalTo(qqButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX);
         }];
     }else if ([WXApi isWXAppInstalled]&&[WeiboSDK isWeiboAppInstalled]&&[TencentOAuth iphoneQQInstalled]){
         UIButton *weixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -311,10 +309,10 @@
         [weixinButton addTarget:self action:@selector(weixinButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [weixinButton setBackgroundImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
         [weixinButton makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view.centerX);
-            make.height.equalTo(weixinButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.height.equalTo(weixinButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
         }];
         
         UIButton *qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -324,10 +322,10 @@
         float centerfriend = self.view.frame.size.width/4;
         [qqButton setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         [qqButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(qqButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX).offset(-centerfriend);
+            make.height.equalTo(qqButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX).offset(-centerfriend);
         }];
         
         UIButton *sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -335,47 +333,35 @@
         [self.view addSubview:sinaButton];
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(sinaButton.width);
-            make.height.equalTo(60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
-            make.centerX.equalTo(self.view.centerX).offset(centerfriend);
+            make.height.equalTo(sinaButton.mas_width);
+            make.height.equalTo(@60);
+            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(self.view.mas_centerX).offset(centerfriend);
         }];
-        
     }
-    
-    
-//
-    //设置引导画面
-    [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"firstInApp":@"YES"}];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"firstInApp"] isEqualToString:@"YES"]) {
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        [self setIntroduceView];
-    }
-
 }
 
 - (void)showPhoneInputView
 {
-    self.phoneView = [[RegisterPhoneViewController alloc]init];
-    [self.view addSubview:self.phoneView.view];
-    CABasicAnimation *theAnimation;
-    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
-    theAnimation.delegate = self;
-    theAnimation.duration = 0.4;
-    theAnimation.repeatCount = 0;
-    theAnimation.removedOnCompletion = FALSE;
-    theAnimation.fillMode = kCAFillModeForwards;
-    theAnimation.autoreverses = NO;
-    theAnimation.fromValue = [NSNumber numberWithFloat:[UIScreen mainScreen].bounds.size.width];
-    theAnimation.toValue = [NSNumber numberWithFloat:0];
-    [self.phoneView.view.layer addAnimation:theAnimation forKey:@"animateLayer"];
+//    self.phoneView = [[RegisterPhoneViewController alloc]init];
+//    [self.view addSubview:self.phoneView.view];
+//    CABasicAnimation *theAnimation;
+//    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
+//    theAnimation.delegate = self;
+//    theAnimation.duration = 0.4;
+//    theAnimation.repeatCount = 0;
+//    theAnimation.removedOnCompletion = FALSE;
+//    theAnimation.fillMode = kCAFillModeForwards;
+//    theAnimation.autoreverses = NO;
+//    theAnimation.fromValue = [NSNumber numberWithFloat:[UIScreen mainScreen].bounds.size.width];
+//    theAnimation.toValue = [NSNumber numberWithFloat:0];
+//    [self.phoneView.view.layer addAnimation:theAnimation forKey:@"animateLayer"];
 }
 
 //userbutton taped
 - (void)weixinButtonTaped:(UIButton *)sender
 {
-    isThirdLogin = YES;
+//    isThirdLogin = YES;
     SendAuthReq* req = [[SendAuthReq alloc] init];
     req.scope = @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact";
     req.state = @"xxx";
@@ -386,7 +372,7 @@
 
 - (void)qqButtonTaped:(UIButton *)sender
 {
-    isThirdLogin = YES;
+//    isThirdLogin = YES;
     NSArray* permissions = [NSArray arrayWithObjects:
                             kOPEN_PERMISSION_GET_USER_INFO,
                             kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
@@ -417,9 +403,9 @@
 
 - (void)sinaButtonTaped: (UIButton *)sender
 {
-    isThirdLogin = YES;
+//    isThirdLogin = YES;
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-    request.redirectURI = WBRedirectURL;
+    request.redirectURI = kWBRedirectURL;
     request.scope = @"all";
     request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
                          @"Other_Info_1": [NSNumber numberWithInt:123],
@@ -429,58 +415,29 @@
 }
 
 
-- (void)setIntroduceView
-{
-    NSArray *coverImageNames = @[@"", @"", @""];
-    NSArray *backgroundImageNames = @[@"pic_introduce_1", @"pic_introduce_2", @"pic_introduce_3"];
-    self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:backgroundImageNames];
-    __weak LoginViewController *weakSelf = self;
-    [self.view addSubview:self.introductionView.view];
-    self.introductionView.didSelectedEnter = ^() {
-        [weakSelf.introductionView.view removeFromSuperview];
-        weakSelf.introductionView = nil;
-        [[NSUserDefaults standardUserDefaults]setObject:@"NO" forKey:@"firstInApp"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        
-    };
-}
-
 - (void)login:(UIButton *)sender
 {
-    if (![self isNetworkExist]) {
-        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
-        return;
-    }
     if ([self.nameText.text isEqualToString:@""]) {
-        [self.view makeToast:@"请输入电话号码" duration:1.5 position:@"center"];
+        [NSObject showHudTipStr:@"请输入电话号码"];
         return;
     }
     if ([self.passWordText.text isEqualToString:@""]) {
-        [self.view makeToast:@"请输入密码" duration:1.5 position:@"center"];
+        [NSObject showHudTipStr:@"请输入密码"];
         return;
     }
-    //获取设备状态
-    
-    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                        [UIImage imageNamed:@"havi1_1"],
-                        [UIImage imageNamed:@"havi1_2"],
-                        [UIImage imageNamed:@"havi1_3"],
-                        [UIImage imageNamed:@"havi1_4"],
-                        [UIImage imageNamed:@"havi1_5"]];
-    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-    [MMProgressHUD showWithTitle:nil status:nil images:images];
-    NSDictionary *header = @{
-                             @"AccessToken":@"123456789"
-                             };
-    NSString *url = [NSString stringWithFormat:@"v1/user/UserLogin?UserIDOrigianal=%@&Password=%@",self.nameText.text,self.passWordText.text];
-    [WTRequestCenter getWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,url] headers:header parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {
-        NSDictionary *resposeDic = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        if ([[resposeDic objectForKey:@"ReturnCode"]intValue]==200) {
-            thirdPartyLoginPlatform = MeddoPlatform;
-            thirdPartyLoginUserId = [resposeDic objectForKey:@"UserID"];
+
+    NSDictionary *dic1 = @{
+                           @"UserIDOrigianal":self.nameText.text,
+                           @"Password": self.passWordText.text ,//传递明文，服务器端做加密存储
+                           };
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestUserLoginWithParam:dic1 andBlock:^(AddUserModel *loginModel, NSError *error) {
+        if (loginModel) {
+            thirdPartyLoginPlatform = kMeddoPlatform;
+            thirdPartyLoginUserId = loginModel.userId;
             NSRange range = [thirdPartyLoginUserId rangeOfString:@"$"];
-            thirdPartyLoginNickName = [[resposeDic objectForKey:@"UserID"] substringFromIndex:range.location+range.length];
-            thirdPartyLoginOriginalId = [[resposeDic objectForKey:@"UserID"] substringFromIndex:range.location+range.length];
+            thirdPartyLoginNickName = [loginModel.userId substringFromIndex:range.location+range.length];
+            thirdPartyLoginOriginalId = [loginModel.userId substringFromIndex:range.location+range.length];
             thirdPartyLoginIcon = @"";
             thirdPartyLoginToken = @"";
             thirdMeddoPhone = self.nameText.text;
@@ -488,28 +445,14 @@
             [UserManager setGlobalOauth];
             [self uploadRegisterID];
             self.loginButtonClicked(1);
-            [MMProgressHUD dismissAfterDelay:0.3];
-        }else if ([[resposeDic objectForKey:@"ReturnCode"]intValue]==10012) {
-            [MMProgressHUD dismiss];
-            [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-                [self.view makeToast:@"密码或者帐号错误,请重试。" duration:2 position:@"center"];
-            }];
-        }else{
-            [MMProgressHUD dismiss];
-            [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-                NSString *error = [resposeDic objectForKey:@"ErrorMessage"];
-                [self.view makeToast:error duration:2 position:@"center"];
-            }];
         }
-    } failed:^(NSURLResponse *response, NSError *error) {
-        [MMProgressHUD dismiss];
-        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
     }];
 }
 
 - (void)uploadRegisterID
 {
-    NSString *registerID = [APService registrationID];
+//    NSString *registerID = [APService registrationID];
+    NSString *registerID;
     if (registerID.length > 0) {
         NSDictionary *dic = @{
                               @"UserId": thirdPartyLoginUserId, //关键字，必须传递
@@ -517,39 +460,20 @@
                               @"AppVersion" : [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
                               @"OSName" : @"iOS",
                               @"OSVersion" : [UIDevice currentDevice].systemVersion,
-                              @"CellPhoneModal" : [self machineModelName],
+                              @"CellPhoneModal" : [UIDevice currentDevice].machineModelName,
                               };
-        NSDictionary *header = @{
-                                 @"AccessToken":@"123456789"
-                                 };
-        __weak __typeof(self)weakSelf = self;
-        [WTRequestCenter postWithURL:[NSString stringWithFormat:@"%@v1/user/UpdateLoginInfo",BaseUrl] header:header parameters:dic finished:^(NSURLResponse *response, NSData *data) {
-            NSDictionary *resposeDic = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            if ([[resposeDic objectForKey:@"ReturnCode"] intValue] != 200) {
-                [weakSelf uploadRegisterID];
-            }else{
-                HaviLog(@"上传registerID ok");
-            }
-        } failed:^(NSURLResponse *response, NSError *error) {
+        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+        [client requestRegisterUserIdForPush:dic andBlock:^(BaseModel *baseModel, NSError *error) {
             
         }];
-    }else {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self uploadRegisterID];
-
-        });
     }
 }
 
-
 - (void)registerButton:(UIButton *)sender
 {
-    if (self.view.frame.origin.y!=0) {
-        CGRect rect = self.view.frame;
-        rect.origin.y = 0;
-        self.view.frame = rect;
-    }
-    self.getCodeButtonClicked(1);
+//    self.getCodeButtonClicked(1);
+    GetCodeViewController *get = [[GetCodeViewController alloc]init];
+    [self.navigationController pushViewController:get animated:YES];
 }
 
 - (void)forgetPassWord:(UITapGestureRecognizer *)gesture
@@ -564,27 +488,14 @@
 #pragma mark 获取验证码
 - (void)getPassWordSelf:(NSString *)cellPhone
 {
-    if (![self isNetworkExist]) {
-        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
-        return;
-    }
-    
     if (cellPhone.length == 0) {
-        [self.view makeToast:@"请输入手机号" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入手机号"];
         return;
     }
     if (cellPhone.length != 11) {
-        [self.view makeToast:@"请输入正确的手机号" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入正确的手机号"];
         return;
     }
-    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                        [UIImage imageNamed:@"havi1_1"],
-                        [UIImage imageNamed:@"havi1_2"],
-                        [UIImage imageNamed:@"havi1_3"],
-                        [UIImage imageNamed:@"havi1_4"],
-                        [UIImage imageNamed:@"havi1_5"]];
-    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-    [MMProgressHUD showWithTitle:nil status:nil images:images];
     self.forgetPassWord = [self getRandomNumber:100000 to:1000000];
     NSString *codeMessage = [NSString stringWithFormat:@"您的密码已经重置，新密码是%d,请及时修改您的密码。",self.forgetPassWord];
     NSDictionary *dicPara = @{
@@ -598,7 +509,7 @@
         if ([[string substringFromIndex:range.location +range.length]intValue]==0) {
             [self modifyPassWord];
         }else{
-            [MMProgressHUD dismissWithError:string afterDelay:2];
+            [NSObject showHudTipStr:@"短信运营商出错啦"];
         }
     }];
 
@@ -613,30 +524,14 @@
 {
     
     NSDictionary *dic = @{
-                          @"UserID": [NSString stringWithFormat:@"%@$%@",MeddoPlatform,self.cellPhone], //关键字，必须传递
+                          @"UserID": [NSString stringWithFormat:@"%@$%@",kMeddoPlatform,self.cellPhone], //关键字，必须传递
                           @"Password": [NSString stringWithFormat:@"%d",self.forgetPassWord], //密码
                         };
-    NSDictionary *header = @{
-                             @"AccessToken":@"123456789"
-                             };
-    [WTRequestCenter putWithURL:[NSString stringWithFormat:@"%@v1/user/ModifyUserInfo",BaseUrl] header:header parameters:dic finished:^(NSURLResponse *response, NSData *data) {
-         NSDictionary *resposeDic = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        HaviLog(@"新的密码是%d",self.forgetPassWord);
-        if ([[resposeDic objectForKey:@"ReturnCode"]intValue]==200) {
-            [MMProgressHUD dismiss];
-            [[MMProgressHUD sharedHUD] setDismissAnimationCompletion:^{
-                self.passWordText.text = @"";
-                [self.view makeToast:@"新的密码已发送到您手机,请查收" duration:3 position:@"center"];
-            }];
-        }else{
-            [MMProgressHUD dismissWithError:[NSString stringWithFormat:@"%@",resposeDic] afterDelay:3];
-            self.passWordText.text = @"";
-        }
-    } failed:^(NSURLResponse *response, NSError *error) {
-        [MMProgressHUD dismiss];
-        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestChangeUserInfoParam:dic andBlock:^(BaseModel *resultModel, NSError *error) {
+        [NSObject showHudTipStr:@"新的密码已发送到您手机,请查收"];
+        self.passWordText.text = @"";
     }];
-    
 }
 
 #pragma mark textfeild delegate
@@ -665,36 +560,30 @@
     return YES;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    [super viewDidAppear:animated];
-    
-    if (![self isNetworkExist]) {
-        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
-        return;
-    }
-    if ([UserManager IsUserLogged]) {
-        
-        NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                            [UIImage imageNamed:@"havi1_1"],
-                            [UIImage imageNamed:@"havi1_2"],
-                            [UIImage imageNamed:@"havi1_3"],
-                            [UIImage imageNamed:@"havi1_4"],
-                            [UIImage imageNamed:@"havi1_5"]];
-        [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-        [MMProgressHUD showWithTitle:nil status:nil images:images];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.loginButtonClicked(1);
-            [MMProgressHUD dismiss];
-            [self uploadRegisterID];
-            //监听网络
-            AppDelegate *app = [UIApplication sharedApplication].delegate;
-            [app setWifiNotification];
-            
-        });
-    }
+    return YES;
+}
 
+- (void)textFieldChanged:(NSNotification *)noti
+{
+    UITextField *textField = (UITextField *)noti.object;
+    if ([textField isEqual:self.nameText]) {
+        if (self.nameText.text.length>11) {
+            self.nameText.text = [self.nameText.text substringToIndex:11];
+            [self shake:self.nameText];
+        }
+    }
+}
+
+- (void)shake:(UITextField *)textField
+{
+    textField.layer.transform = CATransform3DMakeTranslation(10.0, 0.0, 0.0);
+    [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.2 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        textField.layer.transform = CATransform3DIdentity;
+    } completion:^(BOOL finished) {
+        textField.layer.transform = CATransform3DIdentity;
+    }];
 }
 
 
@@ -702,6 +591,19 @@
 {
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:self.nameText];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidChangeNotification object:self.nameText];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LXActivity.h"
 
 @interface BaseViewController : UIViewController
 
@@ -16,6 +17,7 @@
 
 @property (nonatomic, strong) UIButton *rightButton;//自定义右侧按钮
 
+@property (nonatomic, strong) LXActivity *shareNewMenuView;//社交分享
 
 
 //set back image to all views

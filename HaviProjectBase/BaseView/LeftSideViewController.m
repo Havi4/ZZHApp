@@ -126,8 +126,8 @@
 - (void)addConstraintsToViews
 {
     [_userIconImageView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(20);
-        make.top.equalTo(self.view).offset(64);
+        make.left.equalTo(self.view).offset(15);
+        make.top.equalTo(self.view).offset(44);
         make.height.equalTo(@90);
         make.width.equalTo(self.view).multipliedBy(0.75);
     }];
@@ -143,9 +143,7 @@
 #pragma mark userAction
 
 - (void)tapedUserInfoView
-{
-    DeBugLog(@"taped userinfo");
-    
+{    
     self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:self.personInfo];
     self.personInfo.navigationController.navigationBarHidden = YES;
 }

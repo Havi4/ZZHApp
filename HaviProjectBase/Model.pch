@@ -34,5 +34,10 @@
 #import "Gloable.h"
 #import "DateTools.h"
 #import "LBXAlertAction.h"
+#import "UserManager.h"
+#import "ThemeSelectConfigureObj.h"
+#import "MMAlertView.h"
+#import "ImageUtil.h"
+#import "KxMenu.h"
 
 #endif /* Model_pch */

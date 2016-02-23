@@ -16,4 +16,5 @@
 
 @interface UIImage (fixOrientation)
 - (UIImage *)fixOrientation;
++ (UIImage *) captureScreen;
 @end

@@ -105,43 +105,31 @@
     if (class) {
         UIViewController *controller = class.new;
         [self.navigationController pushViewController:controller animated:YES];
+    }else{
+        [self logoutMyId];
     }
 }
 
 #pragma mark setter
-/*
+
 - (void)logoutMyId
 {
-    HaviLog(@"登出");
-    
-    //微博登出
-    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    if ([thirdPartyLoginPlatform isEqualToString:SinaPlatform]) {
-        [WeiBoLogoutAPI weiBoLogoutWithTocken:app.wbtoken parameters:nil finished:^(NSURLResponse *response, NSData *data) {
-            NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"微博登出结果%@",obj);
-        } failed:^(NSURLResponse *response, NSError *error) {
-            
-        }];
-    }
-    [[NSUserDefaults standardUserDefaults]setObject:@"18:00" forKey:UserDefaultStartTime ];
-    [[NSUserDefaults standardUserDefaults]setObject:@"06:00" forKey:UserDefaultEndTime ];
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc]initWithRootViewController:app.containerView] animated:YES];
-    [self.sideMenuViewController hideMenuViewController];
-    isDoubleDevice = NO;
     [UserManager resetUserInfo];
-    thirdHardDeviceUUID = thirdHardDeviceUUID;
-    [[NSNotificationCenter defaultCenter]postNotificationName:ThirdUserLogoutNoti object:nil];
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return TableViewCellHeight;
-}
-
-//使得tableview顶格
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.001;
+    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//    if ([thirdPartyLoginPlatform isEqualToString:SinaPlatform]) {
+//        [WeiBoLogoutAPI weiBoLogoutWithTocken:app.wbtoken parameters:nil finished:^(NSURLResponse *response, NSData *data) {
+//            NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//            NSLog(@"微博登出结果%@",obj);
+//        } failed:^(NSURLResponse *response, NSError *error) {
+//            
+//        }];
+//    }
+//    [[NSUserDefaults standardUserDefaults]setObject:@"18:00" forKey:UserDefaultStartTime ];
+//    [[NSUserDefaults standardUserDefaults]setObject:@"06:00" forKey:UserDefaultEndTime ];
+//    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc]initWithRootViewController:app.containerView] animated:YES];
+//    [self.sideMenuViewController hideMenuViewController];
+//    isDoubleDevice = NO;
+//    [[NSNotificationCenter defaultCenter]postNotificationName:ThirdUserLogoutNoti object:nil];
 }
 
 
@@ -152,17 +140,16 @@
 
 - (void)reloadThemeImage
 {
-    [super reloadThemeImage];
-    UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"re_order_%d",selectedThemeIndex]];
-    [self.menuButton setImage:i forState:UIControlStateNormal];
-    self.bgImageView.image = [UIImage imageNamed:@""];
+//    [super reloadThemeImage];
+//    UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"re_order_%d",selectedThemeIndex]];
+//    [self.menuButton setImage:i forState:UIControlStateNormal];
+//    self.bgImageView.image = [UIImage imageNamed:@""];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-*/
 /*
 #pragma mark - Navigation
 
