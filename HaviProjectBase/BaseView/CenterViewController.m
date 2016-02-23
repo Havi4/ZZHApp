@@ -9,11 +9,15 @@
 #import "CenterViewController.h"
 #import "BaseViewContainerView.h"
 #import "DataShowViewController.h"
+#import "CLWeeklyCalendarView.h"
 
-@interface CenterViewController ()
+static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
+@interface CenterViewController ()<CLWeeklyCalendarViewDelegate>
 
 @property (nonatomic, strong) BaseViewContainerView *containerDataView;
 @property (nonatomic, strong) DeviceList *activeDeviceInfo;
+@property (nonatomic, strong) CLWeeklyCalendarView* calendarView;
+
 @property (nonatomic, strong) UIButton *leftMenuButton;
 @property (nonatomic, strong) UIButton *rightMenuButton;
 
@@ -27,6 +31,7 @@
     self.backgroundImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"pic_bg_center_%d",selectedThemeIndex]];
     [self initNaviBarView];
     [self queryDeviceListForControllers];
+    [self.view addSubview:self.calendarView];
 }
 
 - (void)queryDeviceListForControllers
@@ -46,30 +51,13 @@
     self.containerDataView.view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.containerDataView.view];
     [self addChildViewController:self.containerDataView];
-//    self.containerDataView.pagingViewMovingRedefine = ^(UIScrollView *scrollView, NSArray *subviews){
-//        float mid   = [UIScreen mainScreen].bounds.size.width/2 - 45.0;
-//        float width = [UIScreen mainScreen].bounds.size.width;
-//        CGFloat xOffset = scrollView.contentOffset.x;
-//        int i = 0;
-//        for(UILabel *v in subviews){
-//            CGFloat alpha = 0.0;
-//            if(v.frame.origin.x < mid)
-//                alpha = 1 - (xOffset - i*width) / width;
-//            else if(v.frame.origin.x >mid)
-//                alpha=(xOffset - i*width) / width + 1;
-//            else if(v.frame.origin.x == mid-5)
-//                alpha = 1.0;
-//            i++;
-//            v.alpha = alpha;
-//        }
-//    };
     self.containerDataView.didChangedPage = ^(NSInteger currentPageIndex){
         // Do something
         NSLog(@"index %ld", (long)currentPageIndex);
     };
+    [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height - 100];
     [self.containerDataView.navigationBarView addSubview:self.leftMenuButton];
     [self.containerDataView.navigationBarView addSubview:self.rightMenuButton];
-
 }
 
 - (void)checkUserDevice:(void (^)(DeviceList *device, NSError *error))block
@@ -144,6 +132,31 @@
         [_rightMenuButton addTarget:self action:@selector(showMoreInfo:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightMenuButton;
+}
+
+-(CLWeeklyCalendarView *)calendarView
+{
+    if(!_calendarView){
+        _calendarView = [[CLWeeklyCalendarView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-CALENDER_VIEW_HEIGHT, self.view.bounds.size.width, CALENDER_VIEW_HEIGHT)];
+        _calendarView.delegate = self;
+    }
+    return _calendarView;
+}
+
+#pragma mark calendar delegate
+
+- (NSDictionary *)CLCalendarBehaviorAttributes
+{
+    return @{
+             CLCalendarDayTitleTextColor : kDefaultColor,
+             CLCalendarSelectedDatePrintFontSize:@19,
+             CLCalendarBackgroundImageColor:[UIColor clearColor],
+             };
+}
+
+-(void)dailyCalendarViewDidSelect: (NSDate *)date
+{
+    DeBugLog(@"选择日期是%@",date);
 }
 
 #pragma mark showMoreInfo

@@ -58,6 +58,7 @@
     self.centerView = [[CenterViewController alloc]init];
     self.sideMenuController = [[JASidePanelController alloc] init];
     self.sideMenuController.shouldDelegateAutorotateToVisiblePanel = NO;
+    self.sideMenuController.recognizesPanGesture = NO;
     
     self.sideMenuController.leftPanel = [[LeftSideViewController alloc] init];
     self.sideMenuController.centerPanel = [[BaseNaviViewController alloc] initWithRootViewController:self.centerView];
