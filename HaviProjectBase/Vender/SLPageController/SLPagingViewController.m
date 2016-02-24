@@ -263,7 +263,7 @@
     if(controller.title){
         UILabel *item = [UILabel new];
         [item setText:controller.title];
-        item.textColor = kDefaultColor;
+        item.dk_textColorPicker = kTextColorPicker;
         v = item;
     }
     else if(controller.navigationItem && controller.navigationItem.titleView){
@@ -394,7 +394,7 @@
         self.pageControl.currentPage   = 0;
         if(self.currentPageControlColor) self.pageControl.currentPageIndicatorTintColor = self.currentPageControlColor;
         if(self.tintPageControlColor) self.pageControl.pageIndicatorTintColor = self.tintPageControlColor;
-        
+        self.pageControl.dk_tintColorPicker = kTextColorPicker;
     }
     [self.view bringSubviewToFront:self.navigationBarView];
     [self scrollTitle:_scrollView subviews:self.navItemsViews];

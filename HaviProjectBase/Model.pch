@@ -39,5 +39,6 @@
 #import "MMAlertView.h"
 #import "ImageUtil.h"
 #import "KxMenu.h"
+#import "DKNightVersion.h"
 
 #endif /* Model_pch */

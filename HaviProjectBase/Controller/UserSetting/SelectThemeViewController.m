@@ -80,7 +80,12 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     [ThemeSelectConfigureObj defaultConfigure].nThemeIndex = (int)indexPath.row;
     [_collectionV reloadData];
-    
+    if ((int)indexPath.row == 0) {
+        [DKNightVersionManager dawnComing];
+    } else {
+        [DKNightVersionManager nightFalling];
+    }
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[NSNotificationCenter defaultCenter] postNotificationName:kReloadAppTheme object:nil];
 }
 

@@ -33,6 +33,10 @@
 #define StatusbarSize 20
 #define kDefaultWordFont      [UIFont systemFontOfSize:17]
 #define kDefaultColor [UIColor colorWithRed:0.145f green:0.733f blue:0.957f alpha:1.00f]
+#define kLightColor [UIColor whiteColor]
+
+#define kTextColorPicker DKColorWithColors(kDefaultColor, kLightColor)
+#define kViewTintColorPicker DKColorWithColors(kDefaultColor, kLightColor)
 
 #if DEBUG
 #define DeBugLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

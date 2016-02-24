@@ -49,13 +49,6 @@
 		2C9EF2E41C7C3AF8000704E2 /* HAVIPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF2E31C7C3AF8000704E2 /* HAVIPageControl.m */; };
 		2C9EF2E61C7C43A1000704E2 /* btn_point_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2E51C7C43A1000704E2 /* btn_point_1@2x.png */; };
 		2C9EF2E81C7C43C6000704E2 /* btn_point_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2E71C7C43C6000704E2 /* btn_point_0@2x.png */; };
-		2C9EF2F91C7C512C000704E2 /* CLWeeklyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF2EB1C7C512C000704E2 /* CLWeeklyCalendarView.m */; };
-		2C9EF2FA1C7C512C000704E2 /* DailyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF2ED1C7C512C000704E2 /* DailyCalendarView.m */; };
-		2C9EF2FB1C7C512C000704E2 /* DayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF2EF1C7C512C000704E2 /* DayTitleLabel.m */; };
-		2C9EF2FC1C7C512C000704E2 /* NSDate+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF2F21C7C512C000704E2 /* NSDate+CL.m */; };
-		2C9EF2FD1C7C512C000704E2 /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF2F41C7C512C000704E2 /* NSDictionary+CL.m */; };
-		2C9EF2FE1C7C512C000704E2 /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF2F61C7C512C000704E2 /* UIColor+CL.m */; };
-		2C9EF2FF1C7C512C000704E2 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF2F81C7C512C000704E2 /* UIImage+CL.m */; };
 		2C9EF3181C7C8936000704E2 /* menology_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF3171C7C8936000704E2 /* menology_1@2x.png */; };
 		2C9EF31D1C7C9CE8000704E2 /* CenterDataShowDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF31C1C7C9CE8000704E2 /* CenterDataShowDataDelegate.m */; };
 		2C9EF3201C7CA18A000704E2 /* CenterDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF31F1C7CA18A000704E2 /* CenterDataTableViewCell.m */; };
@@ -68,6 +61,15 @@
 		2C9EF34F1C7D7C04000704E2 /* leave_apng_1.apng in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF34B1C7D7C04000704E2 /* leave_apng_1.apng */; };
 		2C9EF3501C7D7C04000704E2 /* breath_apng_1.apng in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF34C1C7D7C04000704E2 /* breath_apng_1.apng */; };
 		2C9EF3521C7D7DAC000704E2 /* heart_apng_1.apng in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF3511C7D7DAC000704E2 /* heart_apng_1.apng */; };
+		2C9EF3541C7D8B42000704E2 /* cell_seperator_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF3531C7D8B42000704E2 /* cell_seperator_1@2x.png */; };
+		2C9EF3561C7D8B89000704E2 /* cell_seperator_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF3551C7D8B89000704E2 /* cell_seperator_0@2x.png */; };
+		2C9EF3711C7D996B000704E2 /* CLWeeklyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF3631C7D996B000704E2 /* CLWeeklyCalendarView.m */; };
+		2C9EF3721C7D996B000704E2 /* DailyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF3651C7D996B000704E2 /* DailyCalendarView.m */; };
+		2C9EF3731C7D996B000704E2 /* DayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF3671C7D996B000704E2 /* DayTitleLabel.m */; };
+		2C9EF3741C7D996B000704E2 /* NSDate+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF36A1C7D996B000704E2 /* NSDate+CL.m */; };
+		2C9EF3751C7D996B000704E2 /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF36C1C7D996B000704E2 /* NSDictionary+CL.m */; };
+		2C9EF3761C7D996B000704E2 /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF36E1C7D996B000704E2 /* UIColor+CL.m */; };
+		2C9EF3771C7D996B000704E2 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF3701C7D996B000704E2 /* UIImage+CL.m */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -374,20 +376,6 @@
 		2C9EF2E31C7C3AF8000704E2 /* HAVIPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAVIPageControl.m; sourceTree = "<group>"; };
 		2C9EF2E51C7C43A1000704E2 /* btn_point_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_point_1@2x.png"; sourceTree = "<group>"; };
 		2C9EF2E71C7C43C6000704E2 /* btn_point_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_point_0@2x.png"; sourceTree = "<group>"; };
-		2C9EF2EA1C7C512C000704E2 /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
-		2C9EF2EB1C7C512C000704E2 /* CLWeeklyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWeeklyCalendarView.m; sourceTree = "<group>"; };
-		2C9EF2EC1C7C512C000704E2 /* DailyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyCalendarView.h; sourceTree = "<group>"; };
-		2C9EF2ED1C7C512C000704E2 /* DailyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyCalendarView.m; sourceTree = "<group>"; };
-		2C9EF2EE1C7C512C000704E2 /* DayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayTitleLabel.h; sourceTree = "<group>"; };
-		2C9EF2EF1C7C512C000704E2 /* DayTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayTitleLabel.m; sourceTree = "<group>"; };
-		2C9EF2F11C7C512C000704E2 /* NSDate+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CL.h"; sourceTree = "<group>"; };
-		2C9EF2F21C7C512C000704E2 /* NSDate+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CL.m"; sourceTree = "<group>"; };
-		2C9EF2F31C7C512C000704E2 /* NSDictionary+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CL.h"; sourceTree = "<group>"; };
-		2C9EF2F41C7C512C000704E2 /* NSDictionary+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CL.m"; sourceTree = "<group>"; };
-		2C9EF2F51C7C512C000704E2 /* UIColor+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CL.h"; sourceTree = "<group>"; };
-		2C9EF2F61C7C512C000704E2 /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
-		2C9EF2F71C7C512C000704E2 /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
-		2C9EF2F81C7C512C000704E2 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
 		2C9EF3171C7C8936000704E2 /* menology_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menology_1@2x.png"; sourceTree = "<group>"; };
 		2C9EF31B1C7C9CE8000704E2 /* CenterDataShowDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterDataShowDataDelegate.h; sourceTree = "<group>"; };
 		2C9EF31C1C7C9CE8000704E2 /* CenterDataShowDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterDataShowDataDelegate.m; sourceTree = "<group>"; };
@@ -402,6 +390,22 @@
 		2C9EF34B1C7D7C04000704E2 /* leave_apng_1.apng */ = {isa = PBXFileReference; lastKnownFileType = file; path = leave_apng_1.apng; sourceTree = "<group>"; };
 		2C9EF34C1C7D7C04000704E2 /* breath_apng_1.apng */ = {isa = PBXFileReference; lastKnownFileType = file; path = breath_apng_1.apng; sourceTree = "<group>"; };
 		2C9EF3511C7D7DAC000704E2 /* heart_apng_1.apng */ = {isa = PBXFileReference; lastKnownFileType = file; path = heart_apng_1.apng; sourceTree = "<group>"; };
+		2C9EF3531C7D8B42000704E2 /* cell_seperator_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_seperator_1@2x.png"; sourceTree = "<group>"; };
+		2C9EF3551C7D8B89000704E2 /* cell_seperator_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_seperator_0@2x.png"; sourceTree = "<group>"; };
+		2C9EF3621C7D996B000704E2 /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
+		2C9EF3631C7D996B000704E2 /* CLWeeklyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWeeklyCalendarView.m; sourceTree = "<group>"; };
+		2C9EF3641C7D996B000704E2 /* DailyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyCalendarView.h; sourceTree = "<group>"; };
+		2C9EF3651C7D996B000704E2 /* DailyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyCalendarView.m; sourceTree = "<group>"; };
+		2C9EF3661C7D996B000704E2 /* DayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayTitleLabel.h; sourceTree = "<group>"; };
+		2C9EF3671C7D996B000704E2 /* DayTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayTitleLabel.m; sourceTree = "<group>"; };
+		2C9EF3691C7D996B000704E2 /* NSDate+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CL.h"; sourceTree = "<group>"; };
+		2C9EF36A1C7D996B000704E2 /* NSDate+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CL.m"; sourceTree = "<group>"; };
+		2C9EF36B1C7D996B000704E2 /* NSDictionary+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CL.h"; sourceTree = "<group>"; };
+		2C9EF36C1C7D996B000704E2 /* NSDictionary+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CL.m"; sourceTree = "<group>"; };
+		2C9EF36D1C7D996B000704E2 /* UIColor+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CL.h"; sourceTree = "<group>"; };
+		2C9EF36E1C7D996B000704E2 /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
+		2C9EF36F1C7D996B000704E2 /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
+		2C9EF3701C7D996B000704E2 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -855,35 +859,6 @@
 			path = KxMenu;
 			sourceTree = "<group>";
 		};
-		2C9EF2E91C7C512C000704E2 /* CLWeeklyCalendar */ = {
-			isa = PBXGroup;
-			children = (
-				2C9EF2EA1C7C512C000704E2 /* CLWeeklyCalendarView.h */,
-				2C9EF2EB1C7C512C000704E2 /* CLWeeklyCalendarView.m */,
-				2C9EF2EC1C7C512C000704E2 /* DailyCalendarView.h */,
-				2C9EF2ED1C7C512C000704E2 /* DailyCalendarView.m */,
-				2C9EF2EE1C7C512C000704E2 /* DayTitleLabel.h */,
-				2C9EF2EF1C7C512C000704E2 /* DayTitleLabel.m */,
-				2C9EF2F01C7C512C000704E2 /* Misc */,
-			);
-			path = CLWeeklyCalendar;
-			sourceTree = "<group>";
-		};
-		2C9EF2F01C7C512C000704E2 /* Misc */ = {
-			isa = PBXGroup;
-			children = (
-				2C9EF2F11C7C512C000704E2 /* NSDate+CL.h */,
-				2C9EF2F21C7C512C000704E2 /* NSDate+CL.m */,
-				2C9EF2F31C7C512C000704E2 /* NSDictionary+CL.h */,
-				2C9EF2F41C7C512C000704E2 /* NSDictionary+CL.m */,
-				2C9EF2F51C7C512C000704E2 /* UIColor+CL.h */,
-				2C9EF2F61C7C512C000704E2 /* UIColor+CL.m */,
-				2C9EF2F71C7C512C000704E2 /* UIImage+CL.h */,
-				2C9EF2F81C7C512C000704E2 /* UIImage+CL.m */,
-			);
-			path = Misc;
-			sourceTree = "<group>";
-		};
 		2C9EF3191C7C9BC2000704E2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,6 +875,35 @@
 				2C9EF31F1C7CA18A000704E2 /* CenterDataTableViewCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		2C9EF3611C7D996B000704E2 /* CLWeeklyCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF3621C7D996B000704E2 /* CLWeeklyCalendarView.h */,
+				2C9EF3631C7D996B000704E2 /* CLWeeklyCalendarView.m */,
+				2C9EF3641C7D996B000704E2 /* DailyCalendarView.h */,
+				2C9EF3651C7D996B000704E2 /* DailyCalendarView.m */,
+				2C9EF3661C7D996B000704E2 /* DayTitleLabel.h */,
+				2C9EF3671C7D996B000704E2 /* DayTitleLabel.m */,
+				2C9EF3681C7D996B000704E2 /* Misc */,
+			);
+			path = CLWeeklyCalendar;
+			sourceTree = "<group>";
+		};
+		2C9EF3681C7D996B000704E2 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF3691C7D996B000704E2 /* NSDate+CL.h */,
+				2C9EF36A1C7D996B000704E2 /* NSDate+CL.m */,
+				2C9EF36B1C7D996B000704E2 /* NSDictionary+CL.h */,
+				2C9EF36C1C7D996B000704E2 /* NSDictionary+CL.m */,
+				2C9EF36D1C7D996B000704E2 /* UIColor+CL.h */,
+				2C9EF36E1C7D996B000704E2 /* UIColor+CL.m */,
+				2C9EF36F1C7D996B000704E2 /* UIImage+CL.h */,
+				2C9EF3701C7D996B000704E2 /* UIImage+CL.m */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		2CD0146E1C62F5C6001F9514 /* common */ = {
@@ -949,6 +953,7 @@
 		2CD014701C62F5C6001F9514 /* darkColor */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF3551C7D8B89000704E2 /* cell_seperator_0@2x.png */,
 				2C9EF3411C7D7A12000704E2 /* breath_apng_0.apng */,
 				2C9EF3431C7D7B51000704E2 /* leave_apng_0.apng */,
 				2C9EF3441C7D7B51000704E2 /* getup_apng_0.apng */,
@@ -991,6 +996,7 @@
 		2CD014711C62F5C6001F9514 /* lightColor */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF3531C7D8B42000704E2 /* cell_seperator_1@2x.png */,
 				2C9EF3511C7D7DAC000704E2 /* heart_apng_1.apng */,
 				2C9EF3491C7D7C04000704E2 /* getup_apng_1.apng */,
 				2C9EF34B1C7D7C04000704E2 /* leave_apng_1.apng */,
@@ -1090,7 +1096,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
-				2C9EF2E91C7C512C000704E2 /* CLWeeklyCalendar */,
+				2C9EF3611C7D996B000704E2 /* CLWeeklyCalendar */,
 				2C9EF2D31C7C1B58000704E2 /* KxMenu */,
 				2C9EF2CF1C7C18C4000704E2 /* LXActivity */,
 				2C58728E1C7BF0BE001C2F3A /* SLPageController */,
@@ -1992,6 +1998,7 @@
 				2CD014C01C6393AF001F9514 /* person_background@2x.png in Resources */,
 				2CF2E2711C7AD1E30007A639 /* pic_introduce_3@2x.png in Resources */,
 				2CD014A71C634CE7001F9514 /* week_0@2x.png in Resources */,
+				2C9EF3561C7D8B89000704E2 /* cell_seperator_0@2x.png in Resources */,
 				2CD014E61C64CD22001F9514 /* emergency_Contact@2x.png in Resources */,
 				2CF2E24C1C7AB7E80007A639 /* papasscode_background2@2x.png in Resources */,
 				2CF2E1271C74749B0007A639 /* icon_solo@2x.png in Resources */,
@@ -2035,6 +2042,7 @@
 				2CF2E1511C7590930007A639 /* search_1@2x.png in Resources */,
 				2CF2E1661C759F530007A639 /* havi1_3@2x.png in Resources */,
 				2CF2E2701C7AD1E30007A639 /* pic_introduce_2@2x.png in Resources */,
+				2C9EF3541C7D8B42000704E2 /* cell_seperator_1@2x.png in Resources */,
 				2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */,
 				2CF2E1671C759F530007A639 /* havi1_4@2x.png in Resources */,
 				2CF2E2281C79DB5D0007A639 /* protocol.html in Resources */,
@@ -2122,12 +2130,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CD75B9D1C61F87E00E7E076 /* BaseViewController.m in Sources */,
-				2C9EF2FC1C7C512C000704E2 /* NSDate+CL.m in Sources */,
 				2CD014A11C6347C3001F9514 /* DataShowTableViewCell.m in Sources */,
 				2CD014CD1C643636001F9514 /* PersonDataDelegate.m in Sources */,
 				2CF2E1931C75C6D30007A639 /* MMPopupView.m in Sources */,
 				2CD0151B1C70497A001F9514 /* RMActionController.m in Sources */,
-				2C9EF2FF1C7C512C000704E2 /* UIImage+CL.m in Sources */,
 				2CF2E19B1C76025D0007A639 /* AddProductNameViewController.m in Sources */,
 				2CF2E1781C75B5A40007A639 /* RexpUntil.m in Sources */,
 				2CF2E2541C7AB7F70007A639 /* PassCodeSettingViewController.m in Sources */,
@@ -2135,6 +2141,7 @@
 				2CF2E2131C79D1690007A639 /* AppSettingTableViewCell.m in Sources */,
 				2CF2E1591C7593FC0007A639 /* ReNameDoubleDeviceViewController.m in Sources */,
 				2C9EF2E11C7C2AFC000704E2 /* AllDeviceModel.m in Sources */,
+				2C9EF3751C7D996B000704E2 /* NSDictionary+CL.m in Sources */,
 				2CF2E1581C7593FC0007A639 /* ReNameDeviceNameViewController.m in Sources */,
 				2CF2E1AE1C760A340007A639 /* UIActionSheet+Block.m in Sources */,
 				2CD75B731C61C2D000E7E076 /* FriendListModel.m in Sources */,
@@ -2162,7 +2169,6 @@
 				2CD75B781C61C2D000E7E076 /* ServerTimeModelTwo.m in Sources */,
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
 				2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */,
-				2C9EF2FD1C7C512C000704E2 /* NSDictionary+CL.m in Sources */,
 				2CD75B6F1C61C2D000E7E076 /* AddUserModel.m in Sources */,
 				2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */,
 				2CF2E1951C75C6D30007A639 /* MMSheetView.m in Sources */,
@@ -2186,26 +2192,28 @@
 				2CD015091C7028DC001F9514 /* JDStatusBarNotification.m in Sources */,
 				2CD0147D1C6307CF001F9514 /* LeftSideTableViewCell.m in Sources */,
 				2CF2E1AF1C760A340007A639 /* UIAlertView+Block.m in Sources */,
+				2C9EF3731C7D996B000704E2 /* DayTitleLabel.m in Sources */,
 				2CD75BA61C61F8E200E7E076 /* CenterViewController.m in Sources */,
 				2CF2E13A1C7480170007A639 /* FriendDeviceTableViewCell.m in Sources */,
 				2CD014D11C64BB0B001F9514 /* PersonInfoTableViewCell.m in Sources */,
 				2CD75B1D1C61B57000E7E076 /* AppDelegate.m in Sources */,
+				2C9EF3741C7D996B000704E2 /* NSDate+CL.m in Sources */,
 				2CF2E1FF1C78A82C0007A639 /* DTTimePeriodChain.m in Sources */,
+				2C9EF3761C7D996B000704E2 /* UIColor+CL.m in Sources */,
 				2CD015301C70774A001F9514 /* JASwipeCell.m in Sources */,
 				2C5872801C7B44E6001C2F3A /* GetCodeViewController.m in Sources */,
 				2CD015141C704485001F9514 /* RMDateSelectionViewController.m in Sources */,
 				2CD014FC1C6EABDF001F9514 /* EditInfoCellTableViewCell.m in Sources */,
 				2CD014F21C6E2024001F9514 /* EditCellInfoViewController.m in Sources */,
-				2C9EF2FB1C7C512C000704E2 /* DayTitleLabel.m in Sources */,
 				2CD015231C707651001F9514 /* DeviceListViewController.m in Sources */,
 				2CD75B761C61C2D000E7E076 /* SensorInfoModel.m in Sources */,
 				2CD0151E1C705197001F9514 /* RMPickerViewController.m in Sources */,
-				2C9EF2FE1C7C512C000704E2 /* UIColor+CL.m in Sources */,
 				2CF2E1CD1C77117D0007A639 /* MessageDataDelegate.m in Sources */,
 				2CD014801C632A3B001F9514 /* UITableViewCell+ConfigureTableViewCell.m in Sources */,
 				2CD75B791C61C2D000E7E076 /* TagListModel.m in Sources */,
 				2CF2E20B1C79CCC50007A639 /* APPSettingViewController.m in Sources */,
 				2CF2E17E1C75B7470007A639 /* UIImage+Common.m in Sources */,
+				2C9EF3721C7D996B000704E2 /* DailyCalendarView.m in Sources */,
 				2C9EF31D1C7C9CE8000704E2 /* CenterDataShowDataDelegate.m in Sources */,
 				2C9EF2E41C7C3AF8000704E2 /* HAVIPageControl.m in Sources */,
 				2CD75B1A1C61B57000E7E076 /* main.m in Sources */,
@@ -2213,7 +2221,6 @@
 				2CF2E1E61C7860A90007A639 /* SettingDataDelegate.m in Sources */,
 				2CF2E1E11C785C330007A639 /* SleepSettingViewController.m in Sources */,
 				2CF2E1E91C7862B50007A639 /* SleepSettingCell.m in Sources */,
-				2C9EF2FA1C7C512C000704E2 /* DailyCalendarView.m in Sources */,
 				2CD75B991C61F62B00E7E076 /* JASidePanelController.m in Sources */,
 				2CF2E1FE1C78A82C0007A639 /* DTTimePeriod.m in Sources */,
 				2CF2E2511C7AB7E80007A639 /* PAPasscodeViewController.m in Sources */,
@@ -2221,7 +2228,6 @@
 				2CD015281C7076D4001F9514 /* FriendDeviceListViewController.m in Sources */,
 				2CF2E16E1C75B3BA0007A639 /* SearchBarDisplayController.m in Sources */,
 				2CF2E1981C75D2670007A639 /* SearchBarCustom.m in Sources */,
-				2C9EF2F91C7C512C000704E2 /* CLWeeklyCalendarView.m in Sources */,
 				2CD0150E1C70298E001F9514 /* ImageUtil.m in Sources */,
 				2CF2E1751C75B4490007A639 /* SearchUserTableViewCell.m in Sources */,
 				2CF2E13D1C7579440007A639 /* ReactiveSingleViewController.m in Sources */,
@@ -2229,6 +2235,7 @@
 				2CD015381C70BD92001F9514 /* MyDeviceTableViewCell.m in Sources */,
 				2CD014B91C6355F1001F9514 /* PersonInfoNaviView.m in Sources */,
 				2C58727D1C7B17BC001C2F3A /* GetInavlideCodeApi.m in Sources */,
+				2C9EF3771C7D996B000704E2 /* UIImage+CL.m in Sources */,
 				2CF2E17B1C75B6F50007A639 /* UISearchBar+Common.m in Sources */,
 				2CD75B8C1C61C6B400E7E076 /* ZZHAPIManager.m in Sources */,
 				2CF2E1901C75C6D30007A639 /* MMAlertView.m in Sources */,
@@ -2246,6 +2253,7 @@
 				2CD75B741C61C2D000E7E076 /* MyDeviceListModel.m in Sources */,
 				2CF2E1B51C76AFE40007A639 /* QBarScanViewController.m in Sources */,
 				2CD0152F1C70774A001F9514 /* JAActionButton.m in Sources */,
+				2C9EF3711C7D996B000704E2 /* CLWeeklyCalendarView.m in Sources */,
 				2CD014F11C6E2024001F9514 /* EditAddressCellViewController.m in Sources */,
 				2CD75B7A1C61C2D000E7E076 /* UserInfoDetailModel.m in Sources */,
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,

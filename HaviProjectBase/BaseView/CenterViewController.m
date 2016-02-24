@@ -28,10 +28,10 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.backgroundImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"pic_bg_center_%d",selectedThemeIndex]];
+    self.backgroundImageView.dk_imagePicker = DKImageWithNames(@"pic_bg_center_0", @"pic_bg_center_1");
     [self initNaviBarView];
     [self queryDeviceListForControllers];
-    [self.view addSubview:self.calendarView];
+    [self initDatePicker];
 }
 
 - (void)queryDeviceListForControllers
@@ -42,6 +42,11 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         self.activeDeviceInfo = device;
         [self initCenterViewControllers];
     }];
+}
+
+- (void)initDatePicker
+{
+    [self.view addSubview:self.calendarView];
 }
 
 - (void)initNaviBarView
@@ -55,7 +60,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         // Do something
         NSLog(@"index %ld", (long)currentPageIndex);
     };
-    [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height - 106];
+    [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height - CALENDER_VIEW_HEIGHT];
     [self.containerDataView.navigationBarView addSubview:self.leftMenuButton];
     [self.containerDataView.navigationBarView addSubview:self.rightMenuButton];
 }
@@ -115,8 +120,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     if (!_leftMenuButton) {
         _leftMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _leftMenuButton.backgroundColor = [UIColor clearColor];
-        UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"re_order_%d",selectedThemeIndex]];
-        [_leftMenuButton setImage:i forState:UIControlStateNormal];
+        [_leftMenuButton dk_setImage:DKImageWithNames(@"re_order_0", @"re_order_1") forState:UIControlStateNormal];
         [_leftMenuButton setFrame:CGRectMake(0, 20, 44, 44)];
         [_leftMenuButton addTarget:self action:@selector(showLeftView) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -128,8 +132,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     if (!_rightMenuButton) {
         _rightMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _rightMenuButton.backgroundColor = [UIColor clearColor];
-        UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"btn_point_%d",selectedThemeIndex]];
-        [_rightMenuButton setImage:i forState:UIControlStateNormal];
+        [_rightMenuButton dk_setImage:DKImageWithNames(@"btn_point_0", @"btn_point_1") forState:UIControlStateNormal];
         [_rightMenuButton setFrame:CGRectMake(self.view.frame.size.width-50, 20, 44, 44)];
         [_rightMenuButton addTarget:self action:@selector(showMoreInfo:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -144,9 +147,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     }
     return _calendarView;
 }
-
 #pragma mark calendar delegate
-
 - (NSDictionary *)CLCalendarBehaviorAttributes
 {
     return @{
@@ -160,7 +161,6 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     DeBugLog(@"选择日期是%@",date);
 }
-
 #pragma mark showMoreInfo
 
 - (void)showMoreInfo:(UIButton *)sender

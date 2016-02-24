@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UITableView *dataShowTableView;
 @property (nonatomic, strong) CenterDataShowDataDelegate *dataDelegate;
+@property (nonatomic, strong) SleepQualityModel *sleepQualityModel;
 
 @end
 
@@ -23,6 +24,7 @@
     self.backgroundImageView.image = [UIImage imageNamed:@""];
     self.view.backgroundColor = [UIColor clearColor];
     [self addTableViewDataHandle];
+    [self getSleepDataWithData:nil];
 }
 
 #pragma mark setter
@@ -42,7 +44,7 @@
 {
     [self.view addSubview:self.dataShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
-        [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:nil];
+        [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
@@ -57,6 +59,22 @@
     NSArray *arr = [NSArray arrayWithContentsOfFile:path];
     self.dataDelegate = [[CenterDataShowDataDelegate alloc]initWithItems:arr cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
     [self.dataDelegate handleTableViewDataSourceAndDelegate:self.dataShowTableView];
+}
+
+- (void)getSleepDataWithData:(NSString *)dateString
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    NSDictionary *dic19 = @{
+                            @"UUID" : self.deviceUUID,
+                            @"FromDate": @"20151221", //申请加好友的人
+                            @"EndDate": @"20151222", //被请求的用户
+                            };
+    @weakify(self);
+    [client requestGetSleepQualityParams:dic19 andBlock:^(SleepQualityModel *qualityModel, NSError *error) {
+        @strongify(self);
+        self.sleepQualityModel = qualityModel;
+        [self.dataShowTableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

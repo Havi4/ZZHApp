@@ -277,7 +277,7 @@ static ZZHAPIManager *_apiManager = nil;
 - (void)requestGetSleepQualityParams:(NSDictionary *)params andBlock:(void (^)(SleepQualityModel *qualityModel,NSError *error))block
 {
     
-    NSString *aPath = [NSString stringWithFormat:@"v1/app/SleepQuality?UUID=%@&UserId=%@&FromDate=%@&EndDate=%@&FromTime=18:00&EndTime=18:00",@"161b63e838d1",kUserID,[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"]];
+    NSString *aPath = [NSString stringWithFormat:@"v1/app/SleepQuality?UUID=%@&UserId=%@&FromDate=%@&EndDate=%@&FromTime=18:00&EndTime=18:00",[params objectForKey:@"UUID"],kUserID,[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"]];
     [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:params withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
         NSDictionary *dic = (NSDictionary *)data;
         SleepQualityModel *sleepModel = [SleepQualityModel modelWithDictionary:dic];

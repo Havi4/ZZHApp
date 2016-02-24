@@ -74,8 +74,6 @@
     //向微信注册
     [WXApi registerApp:kWXAPPKey];
     //因为有闹钟的印象，清楚闹钟。
-    int picIndex = [ThemeSelectConfigureObj defaultConfigure].nThemeIndex;
-    selectedThemeIndex = picIndex;
 }
 
 - (void)registerLocalNotification
@@ -100,6 +98,14 @@
         NSString *dataPath = [[NSBundle mainBundle]pathForResource:@"ReturnCode" ofType:@"plist"];
         returnErrorMessage = [NSDictionary dictionaryWithContentsOfFile:dataPath];
     });
+    int picIndex = [ThemeSelectConfigureObj defaultConfigure].nThemeIndex;
+    selectedThemeIndex = picIndex;
+    if (selectedThemeIndex == 0) {
+        [DKNightVersionManager dawnComing];
+    } else {
+        [DKNightVersionManager nightFalling];
+    }
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 #pragma mark 设置引导画面

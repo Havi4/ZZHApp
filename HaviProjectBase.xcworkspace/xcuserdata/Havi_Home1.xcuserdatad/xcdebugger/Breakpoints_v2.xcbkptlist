@@ -218,7 +218,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/%E5%93%88%E7%BB%B4%E7%BB%83%E4%B9%A0/HaviProjectBase/HaviProjectBase/Controller/Login/LoginViewController.m"
-                  timestampString = "477978993.855564"
+                  timestampString = "477987425.580795"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "481"
@@ -233,7 +233,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/%E5%93%88%E7%BB%B4%E7%BB%83%E4%B9%A0/HaviProjectBase/HaviProjectBase/Controller/Login/LoginViewController.m"
-                  timestampString = "477978993.855749"
+                  timestampString = "477987425.580958"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "481"
@@ -249,13 +249,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HaviProjectBase/Controller/Home/CenterDataTableViewCell.m"
-            timestampString = "477978903.139483"
+            filePath = "HaviProjectBase/BaseView/CenterViewController.m"
+            timestampString = "477993449.159721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "-configure:customObj:indexPath:withOtherInfo:"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-initCenterViewControllers"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/BaseView/CenterViewController.m"
+            timestampString = "477992823.583407"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-queryDeviceListForControllers"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
