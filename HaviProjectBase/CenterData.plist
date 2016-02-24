@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>cellIcon</key>
+		<string>heart_apng_</string>
+		<key>cellTitle</key>
+		<string>心率</string>
+	</dict>
+	<dict>
+		<key>cellIcon</key>
+		<string>breath_apng_</string>
+		<key>cellTitle</key>
+		<string>呼吸</string>
+	</dict>
+	<dict>
+		<key>cellIcon</key>
+		<string>leave_apng_</string>
+		<key>cellTitle</key>
+		<string>离床</string>
+	</dict>
+	<dict>
+		<key>cellIcon</key>
+		<string>getup_apng_</string>
+		<key>cellTitle</key>
+		<string>体动</string>
+	</dict>
+</array>
+</plist>

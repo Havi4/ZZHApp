@@ -8,7 +8,7 @@
 
 #import "Gloable.h"
 
-int selectedThemeIndex = 0;
+int selectedThemeIndex = 1;
 
 NSDictionary *returnErrorMessage = nil;
 

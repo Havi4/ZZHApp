@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface DataShowViewController : BaseViewController
+@interface CenterDataShowViewController : BaseViewController
 
 @property (nonatomic, strong) NSString *deviceUUID;
 

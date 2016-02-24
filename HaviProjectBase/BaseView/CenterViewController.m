@@ -8,7 +8,7 @@
 
 #import "CenterViewController.h"
 #import "BaseViewContainerView.h"
-#import "DataShowViewController.h"
+#import "CenterDataShowViewController.h"
 #import "CLWeeklyCalendarView.h"
 
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
@@ -55,7 +55,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         // Do something
         NSLog(@"index %ld", (long)currentPageIndex);
     };
-    [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height - 100];
+    [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height - 106];
     [self.containerDataView.navigationBarView addSubview:self.leftMenuButton];
     [self.containerDataView.navigationBarView addSubview:self.rightMenuButton];
 }
@@ -90,17 +90,19 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void)initCenterViewControllers
 {
     if (self.activeDeviceInfo.detailDeviceList.count == 0) {
-        DataShowViewController *dataShow = [[DataShowViewController alloc]init];
+        CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
         dataShow.title = self.activeDeviceInfo.nDescription;
         dataShow.deviceUUID = self.activeDeviceInfo.deviceUUID;
+        dataShow.view.frame = self.containerDataView.view.bounds;
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
     }else{
         @weakify(self);
         [self.activeDeviceInfo.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
-            DataShowViewController *dataShow = [[DataShowViewController alloc]init];
+            CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
             dataShow.title = obj.detailDescription;
             dataShow.deviceUUID = obj.detailUUID;
+            dataShow.view.frame = self.containerDataView.view.bounds;
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
         }];
     }
