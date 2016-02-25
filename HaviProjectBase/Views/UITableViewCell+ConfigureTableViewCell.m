@@ -35,7 +35,7 @@
     if (!obj) {
         return 0.0f ; // if obj is null .
     }
-    return 44.0f ; // default cell height
+    return 49.0f ; // default cell height
 }
 
 + (CGFloat)getCellHeightWithCustomObj:(id)obj

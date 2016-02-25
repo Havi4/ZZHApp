@@ -8,12 +8,16 @@
 
 #import "CenterDataShowViewController.h"
 #import "CenterDataShowDataDelegate.h"
+#import "CenterGaugeTableViewCell.h"
+#import "CenterDataTableViewCell.h"
+#import "SleepModelChange.h"
 
 @interface CenterDataShowViewController ()
 
 @property (nonatomic, strong) UITableView *dataShowTableView;
 @property (nonatomic, strong) CenterDataShowDataDelegate *dataDelegate;
 @property (nonatomic, strong) SleepQualityModel *sleepQualityModel;
+
 
 @end
 
@@ -40,16 +44,31 @@
     return _dataShowTableView;
 }
 
+
 - (void)addTableViewDataHandle
 {
     [self.view addSubview:self.dataShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
-        [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+        if (indexPath.row != 4) {
+            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+        }else{
+            __block UILabel *label = item;
+            [SleepModelChange changeSleepDuration:self.sleepQualityModel callBack:^(id callBack) {
+                label.text = (NSString *)callBack;
+            }];
+        }
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
-        return 49;
+        if (indexPath.row < 4) {
+            return [CenterDataTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
+        }else if (indexPath.row == 4){
+            return 40;
+        }else{
+            return [CenterGaugeTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
+        }
     };
+    
     @weakify(self);
     DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){
         @strongify(self);

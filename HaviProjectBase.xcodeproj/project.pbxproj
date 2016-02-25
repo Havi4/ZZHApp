@@ -70,6 +70,12 @@
 		2C9EF3751C7D996B000704E2 /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF36C1C7D996B000704E2 /* NSDictionary+CL.m */; };
 		2C9EF3761C7D996B000704E2 /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF36E1C7D996B000704E2 /* UIColor+CL.m */; };
 		2C9EF3771C7D996B000704E2 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF3701C7D996B000704E2 /* UIImage+CL.m */; };
+		2C9EF3801C7DA15A000704E2 /* CHCircleGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF37A1C7DA15A000704E2 /* CHCircleGaugeView.m */; };
+		2C9EF3811C7DA15A000704E2 /* CirlcleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF37D1C7DA15A000704E2 /* CirlcleView.m */; };
+		2C9EF3821C7DA15A000704E2 /* UILabel+FlickerNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF37F1C7DA15A000704E2 /* UILabel+FlickerNumber.m */; };
+		2C9EF3851C7DA1AB000704E2 /* CenterGaugeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF3841C7DA1AB000704E2 /* CenterGaugeTableViewCell.m */; };
+		2C9EF3881C7DAA8C000704E2 /* SleepModelChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF3871C7DAA8C000704E2 /* SleepModelChange.m */; };
+		2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF38A1C7DE662000704E2 /* CAShapeLayer+Night.m */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -406,6 +412,19 @@
 		2C9EF36E1C7D996B000704E2 /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
 		2C9EF36F1C7D996B000704E2 /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
 		2C9EF3701C7D996B000704E2 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
+		2C9EF3791C7DA15A000704E2 /* CHCircleGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCircleGaugeView.h; sourceTree = "<group>"; };
+		2C9EF37A1C7DA15A000704E2 /* CHCircleGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCircleGaugeView.m; sourceTree = "<group>"; };
+		2C9EF37B1C7DA15A000704E2 /* CHCircleGaugeViewDebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCircleGaugeViewDebugMacros.h; sourceTree = "<group>"; };
+		2C9EF37C1C7DA15A000704E2 /* CirlcleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CirlcleView.h; sourceTree = "<group>"; };
+		2C9EF37D1C7DA15A000704E2 /* CirlcleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CirlcleView.m; sourceTree = "<group>"; };
+		2C9EF37E1C7DA15A000704E2 /* UILabel+FlickerNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FlickerNumber.h"; sourceTree = "<group>"; };
+		2C9EF37F1C7DA15A000704E2 /* UILabel+FlickerNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FlickerNumber.m"; sourceTree = "<group>"; };
+		2C9EF3831C7DA1AB000704E2 /* CenterGaugeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterGaugeTableViewCell.h; sourceTree = "<group>"; };
+		2C9EF3841C7DA1AB000704E2 /* CenterGaugeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterGaugeTableViewCell.m; sourceTree = "<group>"; };
+		2C9EF3861C7DAA8C000704E2 /* SleepModelChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepModelChange.h; sourceTree = "<group>"; };
+		2C9EF3871C7DAA8C000704E2 /* SleepModelChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SleepModelChange.m; sourceTree = "<group>"; };
+		2C9EF3891C7DE662000704E2 /* CAShapeLayer+Night.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+Night.h"; sourceTree = "<group>"; };
+		2C9EF38A1C7DE662000704E2 /* CAShapeLayer+Night.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+Night.m"; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -873,6 +892,8 @@
 			children = (
 				2C9EF31E1C7CA18A000704E2 /* CenterDataTableViewCell.h */,
 				2C9EF31F1C7CA18A000704E2 /* CenterDataTableViewCell.m */,
+				2C9EF3831C7DA1AB000704E2 /* CenterGaugeTableViewCell.h */,
+				2C9EF3841C7DA1AB000704E2 /* CenterGaugeTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -904,6 +925,20 @@
 				2C9EF3701C7D996B000704E2 /* UIImage+CL.m */,
 			);
 			path = Misc;
+			sourceTree = "<group>";
+		};
+		2C9EF3781C7DA15A000704E2 /* CHCircleGaugeView */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF3791C7DA15A000704E2 /* CHCircleGaugeView.h */,
+				2C9EF37A1C7DA15A000704E2 /* CHCircleGaugeView.m */,
+				2C9EF37B1C7DA15A000704E2 /* CHCircleGaugeViewDebugMacros.h */,
+				2C9EF37C1C7DA15A000704E2 /* CirlcleView.h */,
+				2C9EF37D1C7DA15A000704E2 /* CirlcleView.m */,
+				2C9EF37E1C7DA15A000704E2 /* UILabel+FlickerNumber.h */,
+				2C9EF37F1C7DA15A000704E2 /* UILabel+FlickerNumber.m */,
+			);
+			path = CHCircleGaugeView;
 			sourceTree = "<group>";
 		};
 		2CD0146E1C62F5C6001F9514 /* common */ = {
@@ -1096,6 +1131,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF3781C7DA15A000704E2 /* CHCircleGaugeView */,
 				2C9EF3611C7D996B000704E2 /* CLWeeklyCalendar */,
 				2C9EF2D31C7C1B58000704E2 /* KxMenu */,
 				2C9EF2CF1C7C18C4000704E2 /* LXActivity */,
@@ -1333,6 +1369,8 @@
 				2CF2E17A1C75B6F50007A639 /* UISearchBar+Common.m */,
 				2CF2E17C1C75B7470007A639 /* UIImage+Common.h */,
 				2CF2E17D1C75B7470007A639 /* UIImage+Common.m */,
+				2C9EF3891C7DE662000704E2 /* CAShapeLayer+Night.h */,
+				2C9EF38A1C7DE662000704E2 /* CAShapeLayer+Night.m */,
 				2CD0150C1C70298E001F9514 /* ImageUtil.h */,
 				2CD0150D1C70298E001F9514 /* ImageUtil.m */,
 				2CF2E1761C75B5A40007A639 /* RexpUntil.h */,
@@ -1341,6 +1379,8 @@
 				2CF2E2041C796C360007A639 /* LocalNotificationManager.m */,
 				2C9EF2E21C7C3AF8000704E2 /* HAVIPageControl.h */,
 				2C9EF2E31C7C3AF8000704E2 /* HAVIPageControl.m */,
+				2C9EF3861C7DAA8C000704E2 /* SleepModelChange.h */,
+				2C9EF3871C7DAA8C000704E2 /* SleepModelChange.m */,
 			);
 			name = Category;
 			path = HaviProjectBase/Category;
@@ -2142,6 +2182,7 @@
 				2CF2E1591C7593FC0007A639 /* ReNameDoubleDeviceViewController.m in Sources */,
 				2C9EF2E11C7C2AFC000704E2 /* AllDeviceModel.m in Sources */,
 				2C9EF3751C7D996B000704E2 /* NSDictionary+CL.m in Sources */,
+				2C9EF3811C7DA15A000704E2 /* CirlcleView.m in Sources */,
 				2CF2E1581C7593FC0007A639 /* ReNameDeviceNameViewController.m in Sources */,
 				2CF2E1AE1C760A340007A639 /* UIActionSheet+Block.m in Sources */,
 				2CD75B731C61C2D000E7E076 /* FriendListModel.m in Sources */,
@@ -2150,6 +2191,7 @@
 				2CD014BD1C6355F1001F9514 /* PersonManagerViewController.m in Sources */,
 				2CF2E2341C7AAEB00007A639 /* ThemeSelectConfigureObj.m in Sources */,
 				2CD014F91C6E3B7F001F9514 /* EditCellInfoDelegate.m in Sources */,
+				2C9EF3821C7DA15A000704E2 /* UILabel+FlickerNumber.m in Sources */,
 				2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */,
 				2CF2E1941C75C6D30007A639 /* MMPopupWindow.m in Sources */,
 				2CF2E1B01C760A340007A639 /* LBXAlertAction.m in Sources */,
@@ -2208,6 +2250,7 @@
 				2CD015231C707651001F9514 /* DeviceListViewController.m in Sources */,
 				2CD75B761C61C2D000E7E076 /* SensorInfoModel.m in Sources */,
 				2CD0151E1C705197001F9514 /* RMPickerViewController.m in Sources */,
+				2C9EF3801C7DA15A000704E2 /* CHCircleGaugeView.m in Sources */,
 				2CF2E1CD1C77117D0007A639 /* MessageDataDelegate.m in Sources */,
 				2CD014801C632A3B001F9514 /* UITableViewCell+ConfigureTableViewCell.m in Sources */,
 				2CD75B791C61C2D000E7E076 /* TagListModel.m in Sources */,
@@ -2229,11 +2272,13 @@
 				2CF2E16E1C75B3BA0007A639 /* SearchBarDisplayController.m in Sources */,
 				2CF2E1981C75D2670007A639 /* SearchBarCustom.m in Sources */,
 				2CD0150E1C70298E001F9514 /* ImageUtil.m in Sources */,
+				2C9EF3851C7DA1AB000704E2 /* CenterGaugeTableViewCell.m in Sources */,
 				2CF2E1751C75B4490007A639 /* SearchUserTableViewCell.m in Sources */,
 				2CF2E13D1C7579440007A639 /* ReactiveSingleViewController.m in Sources */,
 				2CD75B9A1C61F62B00E7E076 /* UIViewController+JASidePanel.m in Sources */,
 				2CD015381C70BD92001F9514 /* MyDeviceTableViewCell.m in Sources */,
 				2CD014B91C6355F1001F9514 /* PersonInfoNaviView.m in Sources */,
+				2C9EF3881C7DAA8C000704E2 /* SleepModelChange.m in Sources */,
 				2C58727D1C7B17BC001C2F3A /* GetInavlideCodeApi.m in Sources */,
 				2C9EF3771C7D996B000704E2 /* UIImage+CL.m in Sources */,
 				2CF2E17B1C75B6F50007A639 /* UISearchBar+Common.m in Sources */,
@@ -2257,6 +2302,7 @@
 				2CD014F11C6E2024001F9514 /* EditAddressCellViewController.m in Sources */,
 				2CD75B7A1C61C2D000E7E076 /* UserInfoDetailModel.m in Sources */,
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,
+				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,
 				2C5872871C7B4D5D001C2F3A /* RegisterViewController.m in Sources */,
 				2CF2E1C01C76FDCB0007A639 /* NameDoubleViewController.m in Sources */,
 				2CF2E2801C7ADFE50007A639 /* LoginViewController.m in Sources */,

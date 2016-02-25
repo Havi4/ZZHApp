@@ -40,5 +40,6 @@
 #import "ImageUtil.h"
 #import "KxMenu.h"
 #import "DKNightVersion.h"
+#import "CAShapeLayer+Night.h"
 
 #endif /* Model_pch */

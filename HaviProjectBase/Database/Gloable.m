@@ -28,3 +28,6 @@ NSString *thirdLeftDeviceName = @"";
 NSString *thirdRightDeviceName = @"";
 NSString *isMineDevice = @"NO";
 NSString *registeredID = @"";
+
+NSDate *selectedDateToUse = nil;
+

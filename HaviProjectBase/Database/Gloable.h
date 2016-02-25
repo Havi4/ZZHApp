@@ -29,3 +29,6 @@ extern NSString *thirdRightDeviceName;
 extern NSString *isMineDevice;
 extern NSString *registeredID;
 
+extern NSDate *selectedDateToUse;
+
+
