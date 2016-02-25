@@ -8,6 +8,13 @@
 
 #import "BaseTableViewDataDelegate.h"
 
+typedef enum {
+    cellTapEndTime = 0,
+    cellTapWantSleep,
+} cellTapType;
+
 @interface CenterDataShowDataDelegate : BaseTableViewDataDelegate
+
+@property (nonatomic, copy) void (^cellSelectedTaped)(id callBackResult ,cellTapType type);
 
 @end

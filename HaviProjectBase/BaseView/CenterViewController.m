@@ -160,6 +160,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 -(void)dailyCalendarViewDidSelect: (NSDate *)date
 {
     DeBugLog(@"选择日期是%@",date);
+    selectedDateToUse = date;
 }
 #pragma mark showMoreInfo
 

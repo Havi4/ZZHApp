@@ -66,4 +66,27 @@
     });
 }
 
++ (void)changeSleepQualityModel:(id)obj callBack:(void(^)(id callBack))block
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        SleepQualityModel *model = obj;
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:model.data];
+        //        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
+        //        NSString *subString = [selectString substringToIndex:10];
+        //测试
+        NSString *subString = @"2015-12-21";
+        __block QualityDetailModel *detail;
+        [arr enumerateObjectsUsingBlock:^( QualityDetailModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.date isEqualToString:subString]) {
+                detail = obj;
+                *stop = YES;
+            }
+        }];
+        dispatch_async_on_main_queue(^{
+            block(detail);
+        });
+    });
+
+}
+
 @end

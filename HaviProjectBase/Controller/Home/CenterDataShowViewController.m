@@ -49,20 +49,23 @@
 {
     [self.view addSubview:self.dataShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
-        if (indexPath.row != 4) {
+        if (indexPath.row < 4 || indexPath.row == 5) {
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
-        }else{
+        }else if(indexPath.row == 4){
             __block UILabel *label = item;
             [SleepModelChange changeSleepDuration:self.sleepQualityModel callBack:^(id callBack) {
                 label.text = (NSString *)callBack;
             }];
+        }else if(indexPath.row == 6){
+            UIButton *button = item;
+            [button addTarget:self action:@selector(sendSleepStart) forControlEvents:UIControlEventTouchUpInside];
         }
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
         if (indexPath.row < 4) {
             return [CenterDataTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
-        }else if (indexPath.row == 4){
+        }else if (indexPath.row == 4 || indexPath.row == 6){
             return 40;
         }else{
             return [CenterGaugeTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
@@ -78,6 +81,10 @@
     NSArray *arr = [NSArray arrayWithContentsOfFile:path];
     self.dataDelegate = [[CenterDataShowDataDelegate alloc]initWithItems:arr cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
     [self.dataDelegate handleTableViewDataSourceAndDelegate:self.dataShowTableView];
+    self.dataDelegate.cellSelectedTaped = ^(id callBackResult ,cellTapType type){
+        @strongify(self);
+        [self sendCellTapResult:callBackResult type:type];
+    };
 }
 
 - (void)getSleepDataWithData:(NSString *)dateString
@@ -95,6 +102,70 @@
         [self.dataShowTableView reloadData];
     }];
 }
+
+- (void)sendCellTapResult:(id)result type:(cellTapType)type
+{
+    switch (type) {
+        case cellTapEndTime:
+        {
+            [self sendSleepEndTime:result];
+            break;
+        }
+        case cellTapWantSleep:{
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+- (void)sendSleepEndTime:(NSDate *)endDate
+{
+    NSString *endString = [NSString stringWithFormat:@"%ld:%ld",(long)endDate.hour,(long)endDate.minute];
+    NSString *date1 = @"2015-12-21";
+    NSString *date = [NSString stringWithFormat:@"%@ %@:00",date1,endString];
+    /*
+    NSDate *date1 = [selectedDateToUse dateByAddingDays:0];
+    NSString *dateString = [NSString stringWithFormat:@"%@",date1];
+    NSString *date = [NSString stringWithFormat:@"%@%@:00",[dateString substringToIndex:11],endString];
+     */
+    NSDictionary *dic = @{
+                          @"UUID" : self.deviceUUID,
+                          @"UserID" : kUserID,
+                          @"Tags" :@[ @{
+                                          @"Tag": @"<%睡眠时间记录%>",
+                                          @"TagType": @"1",
+                                          @"UserTagDate": date,
+                                          }],
+                          };
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestAddUserTagsParams:dic andBlock:^(BaseModel *resultModel, NSError *error) {
+        DeBugLog(@"睡眠成功");
+        [self getSleepDataWithData:nil];
+    }];
+}
+
+- (void)sendSleepStart
+{
+    DeBugLog(@"sleep start");
+    NSDate *date = [[NSDate date]dateByAddingHours:8];
+    NSString *dateString = [NSString stringWithFormat:@"%@",date];
+    NSDictionary *dic = @{
+                          @"UUID" : self.deviceUUID,
+                          @"UserID" : kUserID,
+                          @"Tags" : @[@{
+                                          @"Tag": @"<%睡眠时间记录%>",
+                                          @"TagType": @"-1",
+                                          @"UserTagDate": dateString,
+                                          }],
+                          };
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestAddUserTagsParams:dic andBlock:^(BaseModel *resultModel, NSError *error) {
+        DeBugLog(@"睡眠开始");
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

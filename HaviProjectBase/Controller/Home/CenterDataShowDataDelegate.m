@@ -9,10 +9,12 @@
 #import "CenterDataShowDataDelegate.h"
 #import "CenterDataTableViewCell.h"
 #import "CenterGaugeTableViewCell.h"
+#import "RMDateSelectionViewController.h"
 
 @interface CenterDataShowDataDelegate ()
 
 @property (nonatomic, strong) UILabel *leftSleepTimeLabel;//睡眠时长
+@property (nonatomic, strong) UIButton *iWantSleepLabel;
 
 @end
 
@@ -45,6 +47,20 @@
     return _leftSleepTimeLabel;
 }
 
+- (UIButton *)iWantSleepLabel
+{
+    if (_iWantSleepLabel==nil) {
+        _iWantSleepLabel = [[UIButton alloc]init];
+        _iWantSleepLabel.frame = CGRectMake((kScreen_Width-90)/2, 14, 90,25);
+        [_iWantSleepLabel setTitle:@"我要睡觉" forState:UIControlStateNormal];
+        [_iWantSleepLabel dk_setBackgroundImage:DKImageWithNames(@"btn_textbox_0", @"btn_textbox_1") forState:UIControlStateNormal];
+        [_iWantSleepLabel dk_setTitleColorPicker:DKColorWithColors([UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f], [UIColor whiteColor]) forState:UIControlStateNormal];
+        [_iWantSleepLabel.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    }
+    return _iWantSleepLabel;
+}
+
+
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.items objectAtIndex:indexPath.row];
@@ -60,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.items.count + 2;
+    return self.items.count + 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -85,17 +101,35 @@
         return cell;
     }else if(indexPath.row == 4){
         UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
         [cell addSubview:self.leftSleepTimeLabel];
         self.configureCellBlock(indexPath,self.leftSleepTimeLabel,cell);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         return cell;
-    }else {
+    }else if(indexPath.row == 5){
         CenterGaugeTableViewCell *cell = (CenterGaugeTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cellGauge"];
         if (!cell) {
             cell = [[CenterGaugeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellGauge"];
         }
         self.configureCellBlock(indexPath,nil,cell);
+        @weakify(self);
+        cell.cellClockTaped = ^(id index){
+            @strongify(self);
+            [self cellIconSelected];
+        };
+        return cell;
+    }else{
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
+        if (!cell) {
+            cell = [[CenterGaugeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
+        }
+        [cell addSubview:self.iWantSleepLabel];
+        self.configureCellBlock(indexPath,self.iWantSleepLabel,cell);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         return cell;
     }
 }
@@ -107,7 +141,7 @@
     if (indexPath.row < 4) {
         id item = [self itemAtIndexPath:indexPath];
         return self.heightConfigureBlock(indexPath,item);
-    }else{
+    }else {
         return self.heightConfigureBlock(indexPath,nil);
     }
 }
@@ -123,5 +157,29 @@
     }
 }
 
+- (void)cellIconSelected
+{
+    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite];
+    @weakify(self);
+    RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        NSDate *date = ((UIDatePicker *)controller.contentView).date;
+        @strongify(self);
+        if (self.cellSelectedTaped) {
+            self.cellSelectedTaped(date,cellTapEndTime);
+        }
+    }];
+    
+    //Create cancel action
+    RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+        
+    }];
+    
+    [dateSelectionController addAction:selectAction];
+    [dateSelectionController addAction:cancelAction];
+    //Create date selection view controller
+    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
+    //Now just present the date selection controller using the standard iOS presentation method
+    [[NSObject appRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
+}
 
 @end

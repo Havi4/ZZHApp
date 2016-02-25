@@ -10,4 +10,6 @@
 
 @interface CenterGaugeTableViewCell : HaviBaseTableViewCell
 
+@property (nonatomic, copy) void (^cellClockTaped)(id callBackResult);
+
 @end

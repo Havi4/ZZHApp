@@ -13,5 +13,6 @@
 + (void)changeSleepDuration:(id)obj callBack:(void(^)(id callBack))block;
 
 + (void)changeSleepValueDuration:(id)obj callBack:(void(^)(id callBack))block;
++ (void)changeSleepQualityModel:(id)obj callBack:(void(^)(id callBack))block;
 
 @end
