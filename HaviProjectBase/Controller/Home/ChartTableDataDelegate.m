@@ -31,16 +31,16 @@
     return self;
 }
 
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [[self.items objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-}
-
 - (void)handleTableViewDataSourceAndDelegate:(UITableView *)tableView
 {
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.tableHeaderView = self.titleView;
+}
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.items objectAtIndex:indexPath.row];
 }
 
 - (ChartTableTitleView*)titleView
@@ -55,7 +55,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 50;
     return self.items.count;
 }
 
@@ -76,11 +75,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    id item = [self itemAtIndexPath:indexPath];
     ChartTableDataViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     if (!cell) {
         cell = [[ChartTableDataViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
     }
-    self.configureCellBlock(indexPath,nil,cell);
+    self.configureCellBlock(indexPath,item,cell);
     return cell;
 }
 
@@ -89,6 +89,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.heightConfigureBlock(indexPath,nil);
+}
+
+- (void)reloadTableViewHeaderWith:(id)data withType:(SensorDataType)type{
+    [self.titleView reloadTableViewHeaderWith:data withType:type];
 }
 
 @end

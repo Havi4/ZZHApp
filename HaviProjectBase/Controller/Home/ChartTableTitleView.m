@@ -17,7 +17,6 @@
 @property (nonatomic, strong) UILabel *circleTitle;
 @property (nonatomic, strong) UILabel *circleSubTitle;
 
-
 @end
 
 @implementation ChartTableTitleView
@@ -92,7 +91,7 @@
     if (_leaveImage==nil) {
         _leaveImage = [[UIImageView alloc]init];
         //                       WithFrame:CGRectMake(100, 0, 51, 34)];
-        _leaveImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"ic_body_movement_%d",selectedThemeIndex]];
+        _leaveImage.image = [UIImage imageNamed:[NSString stringWithFormat:@""]];
     }
     return _leaveImage;
 }
@@ -102,7 +101,7 @@
     if (_sleepTimeLabel==nil) {
         _sleepTimeLabel = [[UILabel alloc]init];
         //                           WithFrame:CGRectMake(151, 2, 100, 30)];
-        _sleepTimeLabel.text = @"睡眠时长:0小时";
+        _sleepTimeLabel.text = @"睡眠时长:0时0分";
         _sleepTimeLabel.font = [UIFont systemFontOfSize:17];
         _sleepTimeLabel.textColor = [UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f];
         
@@ -125,7 +124,7 @@
 {
     if (_timesLabel == nil) {
         _timesLabel = [[UILabel alloc]init];
-        _timesLabel.text = @"0";
+        _timesLabel.text = @"";
         _timesLabel.font = [UIFont systemFontOfSize:25];
         _timesLabel.textAlignment = NSTextAlignmentCenter;
         _timesLabel.textColor = [UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f];
@@ -136,7 +135,7 @@
 - (UILabel *)circleTitle{
     if (_circleTitle==nil) {
         _circleTitle = [[UILabel alloc]init];
-        _circleTitle.text = @"您昨晚体动";
+        _circleTitle.text = @"";
         _circleTitle.font = [UIFont systemFontOfSize:15];
         _circleTitle.textAlignment = NSTextAlignmentCenter;
         _circleTitle.dk_textColorPicker = kTextColorPicker;
@@ -151,13 +150,33 @@
         _circleSubTitle = [[UILabel alloc]init];
         _circleSubTitle.font = [UIFont systemFontOfSize:15];
         _circleSubTitle.textAlignment = NSTextAlignmentCenter;
-        _circleSubTitle.text = @"次";
+        _circleSubTitle.text = @"";
         _circleSubTitle.dk_textColorPicker = kTextColorPicker;
-        
     }
     return _circleSubTitle;
 }
 
-
+- (void)reloadTableViewHeaderWith:(id)data withType:(SensorDataType)type
+{
+    if (data) {
+        SleepQualityModel *model = data;
+        if (type == SensorDataLeave) {
+            _leaveImage.dk_imagePicker = DKImageWithNames(@"ic_getup_0", @"ic_getup_1");
+            _timesLabel.text = [NSString stringWithFormat:@"%d",[model.outOfBedTimes intValue]];
+            _circleTitle.text = @"您昨晚离床";
+            
+        }else if (type == SensorDataTurn){
+            _leaveImage.dk_imagePicker = DKImageWithNames(@"ic_body_movement_0", @"ic_body_movement_1");
+            _timesLabel.text = [NSString stringWithFormat:@"%d",[model.bodyMovementTimes intValue]];
+            _circleTitle.text = @"您昨晚体动";
+        }
+        @weakify(self);
+        [SleepModelChange changeSleepDuration:data callBack:^(id callBack) {
+            @strongify(self);
+            self.sleepTimeLabel.text = [NSString stringWithFormat:@"睡眠时长:%@",callBack];
+        }];
+        
+    }
+}
 
 @end

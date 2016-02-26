@@ -140,4 +140,25 @@
     }
 }
 
++ (void)filterSensorLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block
+{
+    @synchronized(self) {
+        if (sensorData) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
+                NSArray *sensorInfo = sensorArr.propertyDataList;
+                NSMutableArray *arr = [[NSMutableArray alloc]init];
+                [sensorInfo enumerateObjectsUsingBlock:^(PropertyData *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj.propertyValue intValue]==1) {
+                        [arr addObject:obj];
+                    }
+                }];
+                dispatch_async_on_main_queue(^{
+                    block(arr);
+                });
+            });
+        }
+    }
+}
+
 @end

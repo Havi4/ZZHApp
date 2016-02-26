@@ -14,9 +14,7 @@
 @property (nonatomic, strong) UITableView *sensorShowTableView;
 @property (nonatomic, strong) ChartTableDataDelegate *sensorDelegate;
 @property (nonatomic, strong) SleepQualityModel *sleepQualityModel;
-@property (nonatomic, strong) SensorDataModel *sensorDataModel;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-
 
 @end
 
@@ -38,6 +36,7 @@
     [self.sensorShowTableView addSubview:self.refreshControl];
     [self.view addSubview:self.sensorShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
+        [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:@(self.sensorType)];
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
@@ -82,9 +81,7 @@
     [client requestGetSleepQualityParams:dic19 andBlock:^(SleepQualityModel *qualityModel, NSError *error) {
         @strongify(self);
         [self.refreshControl endRefreshing];
-        self.sleepQualityModel = qualityModel;
-//        [self.sensorShowTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationNone];
-//        [self.sensorShowTableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] withRowAnimation:UITableViewRowAnimationNone];
+        [self.sensorDelegate reloadTableViewHeaderWith:qualityModel withType:self.sensorType];
     }];
 }
 
@@ -95,14 +92,17 @@
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic18 = @{
                             @"UUID" : self.deviceUUID,
-                            @"DataProperty":@(self.sensorType+3),
+                            @"DataProperty":@(self.sensorType-1),
                             @"FromDate": @"20151221",
                             @"EndDate": @"20151222",
                             };
     [client requestGetSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
-        
-        self.sensorDataModel = sensorModel;
-//        [self.sensorShowTableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] withRowAnimation:UITableViewRowAnimationNone];
+        @weakify(self);
+        [SleepModelChange filterSensorLeaveDataWithTime:sensorModel callBack:^(id callBack) {
+            @strongify(self);
+            self.sensorDelegate.items = callBack;
+            [self.sensorShowTableView reloadData];
+        }];
     }];
     
 }

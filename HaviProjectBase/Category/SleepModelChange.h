@@ -19,4 +19,6 @@
 
 + (void)filterSensorDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block;
 
++ (void)filterSensorLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block;
+
 @end

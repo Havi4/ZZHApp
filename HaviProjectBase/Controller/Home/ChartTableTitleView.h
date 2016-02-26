@@ -10,4 +10,6 @@
 
 @interface ChartTableTitleView : UIView
 
+- (void)reloadTableViewHeaderWith:(id)data withType:(SensorDataType)type;
+
 @end

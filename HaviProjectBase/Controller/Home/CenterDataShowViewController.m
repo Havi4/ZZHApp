@@ -194,7 +194,7 @@
             [self.navigationController pushViewController:controller animated:YES];
         }else {
             ChartTableContainerViewController *controller = (ChartTableContainerViewController*)class.new;
-            if (indexPath.row == 0) {
+            if (indexPath.row == 2) {
                 controller.sensorType = SensorDataLeave;
             }else{
                 controller.sensorType = SensorDataTurn;

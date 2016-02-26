@@ -10,4 +10,6 @@
 
 @interface ChartTableDataDelegate : BaseTableViewDataDelegate
 
+- (void)reloadTableViewHeaderWith:(id)data withType:(SensorDataType)type;
+
 @end
