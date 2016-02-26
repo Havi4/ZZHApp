@@ -12,6 +12,7 @@
 #import "CenterDataTableViewCell.h"
 #import "SleepModelChange.h"
 #import "ChartContainerViewController.h"
+#import "ChartTableContainerViewController.h"
 
 @interface CenterDataShowViewController ()
 
@@ -39,6 +40,8 @@
     self.controllersArr = @[].mutableCopy;
     [self addControllersToWithControllerName:@"ChartContainerViewController"];
     [self addControllersToWithControllerName:@"ChartContainerViewController"];
+    [self addControllersToWithControllerName:@"ChartTableContainerViewController"];
+    [self addControllersToWithControllerName:@"ChartTableContainerViewController"];
 }
 #pragma mark setter
 
@@ -187,6 +190,14 @@
                 controller.sensorType = SensorDataHeart;
             }else{
                 controller.sensorType = SensorDataBreath;
+            }
+            [self.navigationController pushViewController:controller animated:YES];
+        }else {
+            ChartTableContainerViewController *controller = (ChartTableContainerViewController*)class.new;
+            if (indexPath.row == 0) {
+                controller.sensorType = SensorDataLeave;
+            }else{
+                controller.sensorType = SensorDataTurn;
             }
             [self.navigationController pushViewController:controller animated:YES];
         }

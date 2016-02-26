@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 
-@interface LeaveContainerViewController : BaseViewController
+@interface ChartTableContainerViewController : BaseViewController
+
+@property (nonatomic, assign) SensorDataType sensorType;
 
 @end
