@@ -17,4 +17,6 @@
 
 + (NSString *)chageDateFormatteToQueryString:(NSDate *)date;
 
++ (void)filterSensorDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block;
+
 @end

@@ -6,11 +6,11 @@
 //  Copyright © 2016年 Havi. All rights reserved.
 //
 
-#import "HeartContainerViewController.h"
+#import "ChartContainerViewController.h"
 #import "BaseViewContainerView.h"
-#import "HeartDataViewController.h"
+#import "ChartDataViewController.h"
 
-@interface HeartContainerViewController ()
+@interface ChartContainerViewController ()
 
 @property (nonatomic, strong) BaseViewContainerView *containerDataView;
 @property (nonatomic, strong) UIButton *leftMenuButton;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation HeartContainerViewController
+@implementation ChartContainerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +47,7 @@
 - (void)initCenterViewControllers
 {
     if (gloableActiveDevice.detailDeviceList.count == 0) {
-        HeartDataViewController *dataShow = [[HeartDataViewController alloc]init];
+        ChartDataViewController *dataShow = [[ChartDataViewController alloc]init];
         dataShow.title = gloableActiveDevice.nDescription;
         dataShow.deviceUUID = gloableActiveDevice.deviceUUID;
         dataShow.sensorType = self.sensorType;
@@ -56,7 +56,7 @@
         @weakify(self);
         [gloableActiveDevice.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
-            HeartDataViewController *dataShow = [[HeartDataViewController alloc]init];
+            ChartDataViewController *dataShow = [[ChartDataViewController alloc]init];
             dataShow.deviceUUID = obj.detailUUID;
             dataShow.title = obj.detailDescription;
             dataShow.sensorType = self.sensorType;

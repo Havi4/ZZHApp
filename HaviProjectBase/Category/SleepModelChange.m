@@ -103,4 +103,41 @@
     }
 }
 
++ (void)filterSensorDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block
+{
+
+    @synchronized(self) {
+        if (sensorData) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
+                NSArray *sensorInfo = sensorArr.propertyDataList;
+                NSMutableArray *arr = [[NSMutableArray alloc]init];
+                for (int i=0; i<kChartDataCount; i++) {
+                    if (sensorArr.properyType == 3) {
+                        [arr addObject:[NSNumber numberWithFloat:60]];
+                    }else{
+                        [arr addObject:[NSNumber numberWithFloat:15]];
+                    }
+                }
+                for (int i = 0; i<sensorInfo.count; i++) {
+                    PropertyData *dic = [sensorInfo objectAtIndex:i];
+                    NSString *date = dic.propertyDate;
+                    NSString *hourDate1 = [date substringWithRange:NSMakeRange(11, 2)];
+                    NSString *minuteDate2 = [date substringWithRange:NSMakeRange(14, 2)];
+                    int indexIn = 0;
+                    if ([hourDate1 intValue]<18) {
+                        indexIn = (int)((24 -18)*60 + [hourDate1 intValue]*60 + [minuteDate2 intValue])/kCharDataIntervalTime;
+                    }else {
+                        indexIn = (int)(([hourDate1 intValue]-18)*60 + [minuteDate2 intValue])/kCharDataIntervalTime;
+                    }
+                    [arr replaceObjectAtIndex:indexIn withObject:[NSNumber numberWithFloat:[dic.propertyValue floatValue]]];
+                }
+                dispatch_async_on_main_queue(^{
+                    block(arr);
+                });
+            });
+        }
+    }
+}
+
 @end

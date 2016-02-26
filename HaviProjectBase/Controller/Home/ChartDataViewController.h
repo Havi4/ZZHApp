@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface HeartDataViewController : BaseViewController
+@interface ChartDataViewController : BaseViewController
 
 @property (nonatomic, strong) NSString *deviceUUID;
 

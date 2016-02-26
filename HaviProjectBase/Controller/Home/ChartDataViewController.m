@@ -6,26 +6,28 @@
 //  Copyright © 2016年 Havi. All rights reserved.
 //
 
-#import "HeartDataViewController.h"
+#import "ChartDataViewController.h"
 #import "SensorDataDelegate.h"
 #import "SensorTitleTableViewCell.h"
 
-@interface HeartDataViewController ()
+@interface ChartDataViewController ()
 
 @property (nonatomic, strong) UITableView *sensorShowTableView;
 @property (nonatomic, strong) SensorDataDelegate *sensorDelegate;
 @property (nonatomic, strong) SleepQualityModel *sleepQualityModel;
+@property (nonatomic, strong) SensorDataModel *sensorDataModel;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
-@implementation HeartDataViewController
+@implementation ChartDataViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addTableViewDataHandle];
     [self getSleepQualityData];
+    [self getSensorData];
 }
 
 - (void)addTableViewDataHandle
@@ -39,11 +41,15 @@
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
                 [cell configure:cell customObj:@(self.sensorType) indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+            }else if(indexPath.row == 1){
+                [cell configure:cell customObj:@(self.sensorType) indexPath:indexPath withOtherInfo:self.sensorDataModel];
             }
             
         }else{
             if (indexPath.row == 1) {
                 [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+            }else if (indexPath.row ==0){
+                cell.textLabel.text = self.sensorType == SensorDataHeart? @"心率分析":@"呼吸分析";
             }else if(indexPath.row > 1){
                 [cell configure:cell customObj:@(self.sensorType) indexPath:indexPath withOtherInfo:self.sleepQualityModel];
             }
@@ -101,13 +107,34 @@
         @strongify(self);
         [self.refreshControl endRefreshing];
         self.sleepQualityModel = qualityModel;
-        [self.sensorShowTableView reloadData];
+        [self.sensorShowTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationNone];
+        [self.sensorShowTableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] withRowAnimation:UITableViewRowAnimationNone];
     }];
+}
+
+- (void)getSensorData
+{
+    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
+    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:1]];
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    NSDictionary *dic18 = @{
+                            @"UUID" : self.deviceUUID,
+                            @"DataProperty":@(self.sensorType+3),
+                            @"FromDate": @"20151221",
+                            @"EndDate": @"20151222",
+                            };
+    [client requestGetSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
+        
+        self.sensorDataModel = sensorModel;
+        [self.sensorShowTableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+
 }
 
 - (void)refreshAction
 {
     [self getSleepQualityData];
+    [self getSensorData];
 }
 
 

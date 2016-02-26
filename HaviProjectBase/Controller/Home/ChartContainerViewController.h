@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface HeartContainerViewController : BaseViewController
+@interface ChartContainerViewController : BaseViewController
 
 @property (nonatomic, assign) SensorDataType sensorType;
 

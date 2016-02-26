@@ -11,8 +11,7 @@
 #import "CenterGaugeTableViewCell.h"
 #import "CenterDataTableViewCell.h"
 #import "SleepModelChange.h"
-#import "HeartContainerViewController.h"
-#import "BreathContainerViewController.h"
+#import "ChartContainerViewController.h"
 
 @interface CenterDataShowViewController ()
 
@@ -38,7 +37,8 @@
 - (void)initPushController
 {
     self.controllersArr = @[].mutableCopy;
-    [self addControllersToWithControllerName:@"HeartContainerViewController"];
+    [self addControllersToWithControllerName:@"ChartContainerViewController"];
+    [self addControllersToWithControllerName:@"ChartContainerViewController"];
 }
 #pragma mark setter
 
@@ -182,7 +182,7 @@
     Class class = NSClassFromString(className);
     if (class) {
         if (indexPath.row <2) {
-            HeartContainerViewController *controller = (HeartContainerViewController*)class.new;
+            ChartContainerViewController *controller = (ChartContainerViewController*)class.new;
             if (indexPath.row == 0) {
                 controller.sensorType = SensorDataHeart;
             }else{

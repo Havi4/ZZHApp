@@ -12,6 +12,12 @@
 #import "SensorSleepDurationCell.h"
 #import "SensorReportTableViewCell.h"
 
+@interface SensorDataDelegate ()
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@end
+
 @implementation SensorDataDelegate
 
 - (id)initWithItems:(NSArray *)cellItems cellIdentifier:(NSString *)cellIdentifier configureCellBlock:(TableViewCellConfigureBlock)configureCellBlock cellHeightBlock:(CellHeightBlock)cellHeightBlock didSelectBlock:(DidSelectCellBlock)didSelectBlock
@@ -36,6 +42,7 @@
 {
     tableView.delegate = self;
     tableView.dataSource = self;
+    self.tableView = tableView;
 }
 
 #pragma mark delegate
@@ -84,7 +91,7 @@
             if (cell == nil) {
                 cell = [[SensorChartTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellChart"];
             }
-            cell.backgroundColor = [UIColor redColor];
+            self.configureCellBlock(indexPath,nil,cell);
             return cell;
         }
     }else{
@@ -95,7 +102,6 @@
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
                 
             }
-            cell.textLabel.text = @"心率分析";
             cell.textLabel.font = [UIFont systemFontOfSize:18];
             cell.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f], [UIColor colorWithRed:0.475f green:0.686f blue:0.820f alpha:1.00f]);
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
@@ -108,7 +114,7 @@
                 make.height.equalTo(@0.5);
                 make.width.equalTo(cell.mas_width);
             }];
-
+            self.configureCellBlock(indexPath,nil,cell);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else if(indexPath.row == 1){
@@ -129,6 +135,21 @@
         
     }
     return nil;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
+    view.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f]:[UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f];
+    return view;
+    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
+    view.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f]:[UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f];
+    return view;
 }
 
 #pragma mark datasource
@@ -154,6 +175,7 @@
 //        self.didSelectCellBlock(indexPath,item);
 //    }
 }
+
 
 
 @end
