@@ -32,9 +32,9 @@
         double subsecond2 = modf([sleepDuration floatValue], &second2);
         NSString *sleepTimeDuration= @"";
         if((int)round(subsecond2*60)<10){
-            sleepTimeDuration = [NSString stringWithFormat:@"睡眠时长:%@小时0%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+            sleepTimeDuration = [NSString stringWithFormat:@"%@时0%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
         }else{
-            sleepTimeDuration = [NSString stringWithFormat:@"睡眠时长:%@小时%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+            sleepTimeDuration = [NSString stringWithFormat:@"%@时%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
         }
         dispatch_async_on_main_queue(^{
             block(sleepTimeDuration);
@@ -48,10 +48,9 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         SleepQualityModel *model = obj;
         NSMutableArray *arr = [NSMutableArray arrayWithArray:model.data];
-        //        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
-        //        NSString *subString = [selectString substringToIndex:10];
+        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
+        NSString *subString = [selectString substringToIndex:10];
         //测试
-        NSString *subString = @"2015-12-21";
         __block QualityDetailModel *detail;
         [arr enumerateObjectsUsingBlock:^( QualityDetailModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.date isEqualToString:subString]) {
@@ -71,9 +70,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         SleepQualityModel *model = obj;
         NSMutableArray *arr = [NSMutableArray arrayWithArray:model.data];
-        //        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
-        //        NSString *subString = [selectString substringToIndex:10];
-        //测试
+//        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
+//        NSString *subString = [selectString substringToIndex:10];
         NSString *subString = @"2015-12-21";
         __block QualityDetailModel *detail;
         [arr enumerateObjectsUsingBlock:^( QualityDetailModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -87,6 +85,22 @@
         });
     });
 
+}
+
++ (NSString *)chageDateFormatteToQueryString:(NSDate *)date
+{
+    @synchronized(self) {
+        NSString *month = [NSString stringWithFormat:@"%ld",date.month];
+        if (date.month < 10) {
+            month = [NSString stringWithFormat:@"0%ld",date.month];
+        }
+        NSString *day = [NSString stringWithFormat:@"%ld",date.day];
+        if (date.day < 10) {
+            day = [NSString stringWithFormat:@"0%ld",date.day];
+        }
+        NSString *queryString = [NSString stringWithFormat:@"%ld%@%@",date.year,month,day];
+        return queryString;
+    }
 }
 
 @end

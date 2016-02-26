@@ -41,7 +41,7 @@
 {
     if (_backgroundImageView==nil) {
         _backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-        _backgroundImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"pic_bg_%d",selectedThemeIndex]];
+        _backgroundImageView.dk_imagePicker = DKImageWithNames(@"pic_bg_0", @"pic_bg_1");
     }
     return _backgroundImageView;
 }
@@ -51,8 +51,7 @@
     if (!_menuButton) {
         _menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _menuButton.backgroundColor = [UIColor clearColor];
-        UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"re_order_%d",1]];
-        [_menuButton setImage:i forState:UIControlStateNormal];
+        [_menuButton dk_setImage:DKImageWithNames(@"re_order_0", @"re_order_1") forState:UIControlStateNormal];
         [_menuButton setFrame:CGRectMake(0, 0, 44, 44)];
         [_menuButton addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -64,7 +63,7 @@
     if (!_leftButton) {
         _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _leftButton.frame = CGRectMake(0, 0, 44, 44);
-        [_leftButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+        [_leftButton dk_setImage:DKImageWithNames(@"btn_back_0", @"btn_back_1") forState:UIControlStateNormal];
     }
     return _leftButton;
 }

@@ -100,9 +100,9 @@
         self.configureCellBlock(indexPath,item,cell);
         return cell;
     }else if(indexPath.row == 4){
-        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
         [cell addSubview:self.leftSleepTimeLabel];
         self.configureCellBlock(indexPath,self.leftSleepTimeLabel,cell);
@@ -176,9 +176,7 @@
     
     [dateSelectionController addAction:selectAction];
     [dateSelectionController addAction:cancelAction];
-    //Create date selection view controller
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
-    //Now just present the date selection controller using the standard iOS presentation method
     [[NSObject appRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
 }
 

@@ -11,13 +11,17 @@
 #import "CenterGaugeTableViewCell.h"
 #import "CenterDataTableViewCell.h"
 #import "SleepModelChange.h"
+#import "HeartContainerViewController.h"
+#import "BreathContainerViewController.h"
 
 @interface CenterDataShowViewController ()
 
 @property (nonatomic, strong) UITableView *dataShowTableView;
 @property (nonatomic, strong) CenterDataShowDataDelegate *dataDelegate;
 @property (nonatomic, strong) SleepQualityModel *sleepQualityModel;
-
+@property (nonatomic, strong) NSString *queryStartTime;
+@property (nonatomic, strong) NSString *queryEndTime;
+@property (nonatomic, strong) NSMutableArray *controllersArr;
 
 @end
 
@@ -28,9 +32,14 @@
     self.backgroundImageView.image = [UIImage imageNamed:@""];
     self.view.backgroundColor = [UIColor clearColor];
     [self addTableViewDataHandle];
-    [self getSleepDataWithData:nil];
+    [self initPushController];
 }
 
+- (void)initPushController
+{
+    self.controllersArr = @[].mutableCopy;
+    [self addControllersToWithControllerName:@"HeartContainerViewController"];
+}
 #pragma mark setter
 
 - (UITableView *)dataShowTableView
@@ -49,12 +58,14 @@
 {
     [self.view addSubview:self.dataShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
-        if (indexPath.row < 4 || indexPath.row == 5) {
+        if (indexPath.row < 4) {
+            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+        }else if (indexPath.row == 5){
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }else if(indexPath.row == 4){
             __block UILabel *label = item;
             [SleepModelChange changeSleepDuration:self.sleepQualityModel callBack:^(id callBack) {
-                label.text = (NSString *)callBack;
+                label.text = [NSString stringWithFormat:@"睡眠时长:%@",callBack];
             }];
         }else if(indexPath.row == 6){
             UIButton *button = item;
@@ -75,7 +86,7 @@
     @weakify(self);
     DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){
         @strongify(self);
-//        [self didSeletedCellIndexPath:indexPath withData:item];
+        [self didSeletedCellIndexPath:indexPath withData:item];
     };
     NSString *path = [[NSBundle mainBundle]pathForResource:@"CenterData" ofType:@"plist"];
     NSArray *arr = [NSArray arrayWithContentsOfFile:path];
@@ -87,13 +98,15 @@
     };
 }
 
-- (void)getSleepDataWithData:(NSString *)dateString
+- (void)getSleepDataWithStartTime:(NSString *)startTime endTime:(NSString *)endTime
 {
+    self.queryStartTime = startTime;
+    self.queryEndTime = endTime;
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic19 = @{
                             @"UUID" : self.deviceUUID,
-                            @"FromDate": @"20151221", //申请加好友的人
-                            @"EndDate": @"20151222", //被请求的用户
+                            @"FromDate": self.queryStartTime,
+                            @"EndDate": self.queryEndTime,
                             };
     @weakify(self);
     [client requestGetSleepQualityParams:dic19 andBlock:^(SleepQualityModel *qualityModel, NSError *error) {
@@ -109,9 +122,6 @@
         case cellTapEndTime:
         {
             [self sendSleepEndTime:result];
-            break;
-        }
-        case cellTapWantSleep:{
             break;
         }
             
@@ -142,7 +152,7 @@
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestAddUserTagsParams:dic andBlock:^(BaseModel *resultModel, NSError *error) {
         DeBugLog(@"睡眠成功");
-        [self getSleepDataWithData:nil];
+        [self getSleepDataWithStartTime:self.queryStartTime endTime:self.queryEndTime];
     }];
 }
 
@@ -166,6 +176,27 @@
     }];
 }
 
+- (void)didSeletedCellIndexPath:(NSIndexPath *)indexPath withData:(id)obj
+{
+    NSString *className = [self.controllersArr objectOrNilAtIndex:indexPath.row];
+    Class class = NSClassFromString(className);
+    if (class) {
+        if (indexPath.row <2) {
+            HeartContainerViewController *controller = (HeartContainerViewController*)class.new;
+            if (indexPath.row == 0) {
+                controller.sensorType = SensorDataHeart;
+            }else{
+                controller.sensorType = SensorDataBreath;
+            }
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    }
+}
+
+- (void)addControllersToWithControllerName:(NSString *)name
+{
+    [self.controllersArr addObject:name];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

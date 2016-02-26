@@ -30,4 +30,6 @@ NSString *isMineDevice = @"NO";
 NSString *registeredID = @"";
 
 NSDate *selectedDateToUse = nil;
+BOOL isDoubleDevice = NO;
+DeviceList *gloableActiveDevice = nil;
 

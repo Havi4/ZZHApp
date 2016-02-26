@@ -30,5 +30,8 @@ extern NSString *isMineDevice;
 extern NSString *registeredID;
 
 extern NSDate *selectedDateToUse;
+extern BOOL isDoubleDevice;
+extern DeviceList *gloableActiveDevice;
+
 
 

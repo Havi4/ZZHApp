@@ -8,29 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    DeleteCell = 0,
-    RenameCell,
-    ReactiveCell,
-}CellSelectType;
-
-typedef enum {
-    MessageAccept = 0,
-    MessageRefuse,
-} MessageType;
-
-typedef enum {
-    SleepSettingStartTime = 0,
-    SleepSettingEndTime,
-    SleepSettingAlertTime,
-    SleepSettingLongTime,
-    SleepSettingLeaveBedTime,
-    SleepSettingSwitchAlertTime,
-    SleepSettingSwitchLongTime,
-    SleepSettingSwitchLeaveBedTime,
-} SleepSettingButtonType;
-
-
 @interface BaseTableViewDataDelegate : NSObject<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *items;

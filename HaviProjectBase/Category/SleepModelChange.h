@@ -15,4 +15,6 @@
 + (void)changeSleepValueDuration:(id)obj callBack:(void(^)(id callBack))block;
 + (void)changeSleepQualityModel:(id)obj callBack:(void(^)(id callBack))block;
 
++ (NSString *)chageDateFormatteToQueryString:(NSDate *)date;
+
 @end

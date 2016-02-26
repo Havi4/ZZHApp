@@ -40,6 +40,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     [self checkUserDevice:^(DeviceList *device, NSError *error) {
         @strongify(self);
         self.activeDeviceInfo = device;
+        gloableActiveDevice = device;
         [self initCenterViewControllers];
     }];
 }
@@ -47,6 +48,9 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void)initDatePicker
 {
     [self.view addSubview:self.calendarView];
+    if (selectedDateToUse) {
+        [self.calendarView redrawToDate:selectedDateToUse];
+    }
 }
 
 - (void)initNaviBarView
@@ -95,12 +99,14 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void)initCenterViewControllers
 {
     if (self.activeDeviceInfo.detailDeviceList.count == 0) {
+        isDoubleDevice = NO;
         CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
         dataShow.title = self.activeDeviceInfo.nDescription;
         dataShow.deviceUUID = self.activeDeviceInfo.deviceUUID;
         dataShow.view.frame = self.containerDataView.view.bounds;
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
     }else{
+        isDoubleDevice = YES;
         @weakify(self);
         [self.activeDeviceInfo.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
@@ -161,6 +167,11 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     DeBugLog(@"选择日期是%@",date);
     selectedDateToUse = date;
+    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:date];
+    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[date dateByAddingDays:1]];
+    [self.containerDataView.childViewControllers enumerateObjectsUsingBlock:^(__kindof CenterDataShowViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
+    }];
 }
 #pragma mark showMoreInfo
 

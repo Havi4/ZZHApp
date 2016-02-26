@@ -290,7 +290,7 @@
                                            @"Description":self.txLeftNameView.text,
                                            },
                                        @{
-                                           @"UUID":((DetailDeviceList *)[_sortedDetailDevice objectAtIndex:1]),
+                                           @"UUID":((DetailDeviceList *)[_sortedDetailDevice objectAtIndex:1]).detailUUID,
                                            @"Description":self.txRightNameView.text,
                                            }
                                        ]

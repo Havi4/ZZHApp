@@ -41,5 +41,7 @@
 #import "KxMenu.h"
 #import "DKNightVersion.h"
 #import "CAShapeLayer+Night.h"
+#import "SleepModelChange.h"
+#import "EnumTypeDefine.h"
 
 #endif /* Model_pch */
