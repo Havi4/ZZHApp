@@ -10,4 +10,6 @@
 
 @interface ReportChartTableCell : HaviBaseTableViewCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style withReportType:(ReportViewType)type reuseIdentifier:(NSString *)reuseIdentifier;
+
 @end

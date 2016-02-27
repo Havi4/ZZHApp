@@ -38,7 +38,7 @@
     [self.view addSubview:self.reportShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
         if (indexPath.section == 0) {
-            
+            [cell configure:cell customObj:@{@"queryStartTime":self.queryStartTime==nil ? @"20151221" : self.queryStartTime,@"queryEndTime":self.queryEndTime==nil ? @"20151221":self.queryEndTime} indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }else if (indexPath.section == 1){
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }else if (indexPath.section == 2){

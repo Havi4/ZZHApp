@@ -17,6 +17,13 @@ typedef enum {
 
 + (instancetype)sharedInstance;
 
+@property (nonatomic,strong) NSDateFormatter *dateFormmatter;
+@property (nonatomic,strong) NSDateFormatter *dateMonthFormmatter;
+@property (nonatomic,strong) NSCalendar *calender;
+@property (nonatomic,strong) NSTimeZone *tmZone;
+@property (nonatomic,strong) NSDateComponents *dateComponents;
+
+
 //获取当前日期所在的周
 - (NSString *)getCurrentWeekInOneYear:(NSDate *)nowDate;
 //获取当前日期所在的月

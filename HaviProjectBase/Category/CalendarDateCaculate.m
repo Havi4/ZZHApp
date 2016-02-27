@@ -13,12 +13,6 @@ static CalendarDateCaculate *shareInstance = nil;
 
 @interface CalendarDateCaculate ()
 
-@property (nonatomic,strong) NSDateFormatter *dateFormmatter;
-@property (nonatomic,strong) NSDateFormatter *dateMonthFormmatter;
-@property (nonatomic,strong) NSCalendar *calender;
-@property (nonatomic,strong) NSTimeZone *tmZone;
-@property (nonatomic,strong) NSDateComponents *dateComponents;
-
 
 @end
 

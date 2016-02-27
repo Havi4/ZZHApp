@@ -132,9 +132,9 @@
     if (indexPath.section == 0) {
         ReportChartTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellChart"];
         if (!cell) {
-            cell = [[ReportChartTableCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellChart"];
+            cell = [[ReportChartTableCell alloc]initWithStyle:UITableViewCellStyleDefault withReportType:self.type reuseIdentifier:@"cellChart"];
         }
-        cell.backgroundColor = [UIColor redColor];
+        self.configureCellBlock(indexPath,nil,cell);
         return cell;
     }else if (indexPath.section == 1){
         id item = [self.items objectAtIndex:indexPath.row];

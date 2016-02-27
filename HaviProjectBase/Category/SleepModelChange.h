@@ -23,4 +23,6 @@
 
 + (void)getSleepLongOrShortDurationWith:(id)obj type:(int)type callBack:(void(^)(id longSleep))block;
 
++ (void)filterReportData:(NSArray *)reportData queryDate:(id)query callBack:(void (^)(id qualityBack,id sleepDurationBack))block;
+
 @end

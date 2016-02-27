@@ -7,6 +7,7 @@
 //
 
 #import "SleepModelChange.h"
+#import "CalendarDateCaculate.h"
 
 @implementation SleepModelChange
 
@@ -178,6 +179,45 @@
             });
         });
     }
+}
+
++ (void)filterReportData:(NSArray *)reportData queryDate:(id)query callBack:(void (^)(id qualityBack,id sleepDurationBack))block
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSMutableArray *mutableArr = [[NSMutableArray alloc]init];
+        NSMutableArray *mutableTimeArr = [[NSMutableArray alloc]init];
+        if (mutableArr.count>0) {
+            [mutableArr removeAllObjects];
+        }
+        if (mutableTimeArr.count>0) {
+            [mutableTimeArr removeAllObjects];
+        }
+        for (int i=0; i<7; i++) {
+            [mutableArr addObject:[NSString stringWithFormat:@"0"]];
+            [mutableTimeArr addObject:[NSString stringWithFormat:@"0"]];
+        }
+        NSString *queryStart = [(NSDictionary *)query objectForKey:@"queryStartTime"];
+        NSString *queryEnd = [(NSDictionary *)query objectForKey:@"queryEndTime"];
+        NSString *year = [queryStart substringWithRange:NSMakeRange(0, 4)];
+        NSString *month = [queryStart substringWithRange:NSMakeRange(4, 2)];
+        NSString *day = [queryStart substringWithRange:NSMakeRange(6, 2)];
+        NSString *fromDateString = [NSString stringWithFormat:@"%@年%@月%@日",year,month,day];
+        NSDate *fromDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:fromDateString];
+        for (int i=0; i<reportData.count; i++) {
+            QualityDetailModel *dic = [reportData objectAtIndex:i];
+            NSString *dateString = dic.date;
+            NSString *toDateString = [NSString stringWithFormat:@"%@年%@月%@日",[dateString substringWithRange:NSMakeRange(0, 4)],[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
+            NSDate *toDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:toDateString];
+            NSDateComponents *dayComponents = [[[CalendarDateCaculate sharedInstance] calender] components:NSDayCalendarUnit fromDate:fromDate toDate:toDate options:0];
+            [mutableArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
+            [mutableTimeArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
+            
+        }
+        dispatch_async_on_main_queue(^{
+            block(mutableArr,mutableTimeArr);
+        });
+    });
 }
 
 @end
