@@ -92,7 +92,7 @@ static CalendarDateCaculate *shareInstance = nil;
         NSString *year = [monthTitleString substringToIndex:range.location];
         NSRange range1 = [monthSub rangeOfString:@"到"];
         NSString *now = [NSString stringWithFormat:@"%@年%@",year,[monthSub substringToIndex:range1.location]];
-        NSDate *nowdate = [self.dateFormmatter dateFromString:now];
+        NSDate *nowdate = [[self.dateFormmatter dateFromString:now]dateByAddingHours:8];
         int step = type == CalendarStepTypeLast ? -7 : 7;
         self.dateComponents.day = step;
         NSDate *nextWeekStart = [[NSCalendar currentCalendar] dateByAddingComponents:self.dateComponents toDate:nowdate options:0];//下周的日期
