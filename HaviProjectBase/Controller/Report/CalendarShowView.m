@@ -408,4 +408,9 @@
     }
 }
 
+- (void)didMoveToWindow
+{
+    [self changeQueryDate];
+}
+
 @end

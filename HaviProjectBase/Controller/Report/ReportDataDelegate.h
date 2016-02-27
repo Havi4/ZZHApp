@@ -12,5 +12,6 @@
 
 - (void)handleTableViewDataSourceAndDelegate:(UITableView *)tableView withReportType:(ReportViewType)type;
 
+@property (nonatomic, copy) void (^selectDateFromCalendar)(NSString *fromDate,NSString *endDate);
 
 @end

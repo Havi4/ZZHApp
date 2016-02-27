@@ -160,6 +160,10 @@
 		2C9EF4751C80B692000704E2 /* WeekCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4711C80B692000704E2 /* WeekCalenderView.m */; };
 		2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4781C80B791000704E2 /* AMBlurView.m */; };
 		2C9EF47C1C80B791000704E2 /* CHTumblrMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF47A1C80B791000704E2 /* CHTumblrMenuView.m */; };
+		2C9EF4811C816051000704E2 /* ReportDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF47E1C816051000704E2 /* ReportDataTableViewCell.m */; };
+		2C9EF4821C816051000704E2 /* ReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4801C816051000704E2 /* ReportTableViewCell.m */; };
+		2C9EF4841C81675B000704E2 /* ReportTitle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4831C81675B000704E2 /* ReportTitle.plist */; };
+		2C9EF4871C816AD4000704E2 /* ReportSleepViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4861C816AD4000704E2 /* ReportSleepViewCell.m */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -645,6 +649,13 @@
 		2C9EF4781C80B791000704E2 /* AMBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBlurView.m; sourceTree = "<group>"; };
 		2C9EF4791C80B791000704E2 /* CHTumblrMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTumblrMenuView.h; sourceTree = "<group>"; };
 		2C9EF47A1C80B791000704E2 /* CHTumblrMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTumblrMenuView.m; sourceTree = "<group>"; };
+		2C9EF47D1C816051000704E2 /* ReportDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportDataTableViewCell.h; sourceTree = "<group>"; };
+		2C9EF47E1C816051000704E2 /* ReportDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportDataTableViewCell.m; sourceTree = "<group>"; };
+		2C9EF47F1C816051000704E2 /* ReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTableViewCell.h; sourceTree = "<group>"; };
+		2C9EF4801C816051000704E2 /* ReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTableViewCell.m; sourceTree = "<group>"; };
+		2C9EF4831C81675B000704E2 /* ReportTitle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ReportTitle.plist; sourceTree = "<group>"; };
+		2C9EF4851C816AD4000704E2 /* ReportSleepViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportSleepViewCell.h; sourceTree = "<group>"; };
+		2C9EF4861C816AD4000704E2 /* ReportSleepViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSleepViewCell.m; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -1274,6 +1285,12 @@
 				2C9EF45D1C805378000704E2 /* CalendarShowView.m */,
 				2C9EF45F1C80565B000704E2 /* ReportChartTableCell.h */,
 				2C9EF4601C80565B000704E2 /* ReportChartTableCell.m */,
+				2C9EF47D1C816051000704E2 /* ReportDataTableViewCell.h */,
+				2C9EF47E1C816051000704E2 /* ReportDataTableViewCell.m */,
+				2C9EF47F1C816051000704E2 /* ReportTableViewCell.h */,
+				2C9EF4801C816051000704E2 /* ReportTableViewCell.m */,
+				2C9EF4851C816AD4000704E2 /* ReportSleepViewCell.h */,
+				2C9EF4861C816AD4000704E2 /* ReportSleepViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1713,6 +1730,7 @@
 				2CF2E2141C79D2180007A639 /* AppSetting.plist */,
 				2CF2E2161C79D2EC0007A639 /* AppSetting1.plist */,
 				2C9EF3211C7D4791000704E2 /* CenterData.plist */,
+				2C9EF4831C81675B000704E2 /* ReportTitle.plist */,
 				2CF2E2271C79DB5D0007A639 /* protocol.html */,
 				2CF2E2061C7972410007A639 /* alarmSound.wav */,
 				2CD75B181C61B57000E7E076 /* Supporting Files */,
@@ -2542,6 +2560,7 @@
 				2C9EF44B1C80389F000704E2 /* ic_dot_1.png in Resources */,
 				2CF2E1491C7590550007A639 /* search_0@2x.png in Resources */,
 				2C9EF2C61C7C1026000704E2 /* navi_bg_night_0@2x.png in Resources */,
+				2C9EF4841C81675B000704E2 /* ReportTitle.plist in Resources */,
 				2C9EF2CC1C7C12BF000704E2 /* pic_bg_center_0@2x.png in Resources */,
 				2C5872841C7B4AC3001C2F3A /* btn_gain_1@2x.png in Resources */,
 				2CF2E19D1C7604E20007A639 /* qr_code_0@2x.png in Resources */,
@@ -2659,6 +2678,7 @@
 				2C9EF4731C80B692000704E2 /* NSDate+NSDateLogic.m in Sources */,
 				2CF2E1B01C760A340007A639 /* LBXAlertAction.m in Sources */,
 				2CF2E2021C78A82C0007A639 /* NSDate+DateTools.m in Sources */,
+				2C9EF4811C816051000704E2 /* ReportDataTableViewCell.m in Sources */,
 				2CD75B701C61C2D000E7E076 /* BaseModel.m in Sources */,
 				2CD014D81C64BF1C001F9514 /* BaseTableViewDataDelegate.m in Sources */,
 				2CF2E2001C78A82C0007A639 /* DTTimePeriodCollection.m in Sources */,
@@ -2670,6 +2690,7 @@
 				2CD75B891C61C68900E7E076 /* HaviNetWorkAPIClient.m in Sources */,
 				2C9EF3D11C7F0ACE000704E2 /* SleepTimeTagView.m in Sources */,
 				2CD75BA31C61F8D300E7E076 /* LeftSideViewController.m in Sources */,
+				2C9EF4821C816051000704E2 /* ReportTableViewCell.m in Sources */,
 				2C9EF4751C80B692000704E2 /* WeekCalenderView.m in Sources */,
 				2C9EF4001C7FE23E000704E2 /* MPGraphView.m in Sources */,
 				2CF2E1811C75BA2D0007A639 /* SearchDeviceDelegate.m in Sources */,
@@ -2756,6 +2777,7 @@
 				2CF2E1FE1C78A82C0007A639 /* DTTimePeriod.m in Sources */,
 				2CF2E2511C7AB7E80007A639 /* PAPasscodeViewController.m in Sources */,
 				2C9EF3911C7E927D000704E2 /* StartTimeView.m in Sources */,
+				2C9EF4871C816AD4000704E2 /* ReportSleepViewCell.m in Sources */,
 				2CF2E1D01C7711CE0007A639 /* MessageShowTableViewCell.m in Sources */,
 				2CD015281C7076D4001F9514 /* FriendDeviceListViewController.m in Sources */,
 				2CF2E16E1C75B3BA0007A639 /* SearchBarDisplayController.m in Sources */,

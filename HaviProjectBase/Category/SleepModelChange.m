@@ -90,15 +90,15 @@
 + (NSString *)chageDateFormatteToQueryString:(NSDate *)date
 {
     @synchronized(self) {
-        NSString *month = [NSString stringWithFormat:@"%ld",date.month];
+        NSString *month = [NSString stringWithFormat:@"%ld",(long)date.month];
         if (date.month < 10) {
-            month = [NSString stringWithFormat:@"0%ld",date.month];
+            month = [NSString stringWithFormat:@"0%ld",(long)date.month];
         }
-        NSString *day = [NSString stringWithFormat:@"%ld",date.day];
+        NSString *day = [NSString stringWithFormat:@"%ld",(long)date.day];
         if (date.day < 10) {
-            day = [NSString stringWithFormat:@"0%ld",date.day];
+            day = [NSString stringWithFormat:@"0%ld",(long)date.day];
         }
-        NSString *queryString = [NSString stringWithFormat:@"%ld%@%@",date.year,month,day];
+        NSString *queryString = [NSString stringWithFormat:@"%ld%@%@",(long)date.year,month,day];
         return queryString;
     }
 }
@@ -158,6 +158,25 @@
                 });
             });
         }
+    }
+}
+
++ (void)getSleepLongOrShortDurationWith:(id)obj type:(int)type callBack:(void(^)(id longSleep))block
+{
+    @synchronized(self) {//1最长，-1最短
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            SleepQualityModel *model = obj;
+            QualityDetailModel *longInfo = nil;
+            for (QualityDetailModel *dic in model.data) {
+                if ([dic.tagFlag intValue]== type) {
+                    longInfo = dic;
+                    break;
+                }
+            }
+            dispatch_async_on_main_queue(^{
+                block(longInfo);
+            });
+        });
     }
 }
 

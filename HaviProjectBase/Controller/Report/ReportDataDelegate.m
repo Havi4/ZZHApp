@@ -10,6 +10,9 @@
 #import "ReportDataDelegate.h"
 #import "CalendarShowView.h"
 #import "ReportChartTableCell.h"
+#import "ReportTableViewCell.h"
+#import "ReportDataTableViewCell.h"
+#import "ReportSleepViewCell.h"
 
 @interface ReportDataDelegate ()
 
@@ -35,7 +38,7 @@
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[self.items objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
+    return [self.items objectAtIndex:indexPath.row];
 }
 
 - (void)handleTableViewDataSourceAndDelegate:(UITableView *)tableView withReportType:(ReportViewType)type
@@ -74,7 +77,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -127,30 +130,74 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
+        ReportChartTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellChart"];
+        if (!cell) {
+            cell = [[ReportChartTableCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellChart"];
+        }
+        cell.backgroundColor = [UIColor redColor];
+        return cell;
+    }else if (indexPath.section == 1){
+        id item = [self.items objectAtIndex:indexPath.row];
         if (indexPath.row == 0) {
-            ReportChartTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellChart"];
+            static NSString *cellIndentifier = @"cellOne";
+            ReportTableViewCell *cell = (ReportTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
             if (!cell) {
-                cell = [[ReportChartTableCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellChart"];
+                cell = [[ReportTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+                
             }
-            cell.backgroundColor = [UIColor redColor];
+            self.configureCellBlock(indexPath,item,cell);
+            return cell;
+        }else{
+            NSString *cellIndentifier = [NSString stringWithFormat:@"cellTwo"];
+            ReportDataTableViewCell *cell = (ReportDataTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+            if (!cell) {
+                cell = [[ReportDataTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+                
+            }
+            self.configureCellBlock(indexPath,item,cell);
+            return cell;
+        }
+        
+    }else{
+        if (indexPath.row == 0) {
+            static NSString *cellIndentifier = @"cellOne";
+            ReportTableViewCell *cell = (ReportTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+            if (!cell) {
+                cell = [[ReportTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+                
+            }
+            self.configureCellBlock(indexPath,nil,cell);
+            return cell;
+        }else{
+            static NSString *cellIndentifier = @"cellSleep";
+            ReportSleepViewCell *cell = (ReportSleepViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+            if (!cell) {
+                cell = [[ReportSleepViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+                
+            }
+            self.configureCellBlock(indexPath,nil,cell);
             return cell;
         }
     }
-    return nil;
 }
 
 - (void)selectDateFrom:(NSString *)dateFrom dateEnd:(NSString *)dateEnd
 {
-    DeBugLog(@"开始%@:结束%@",dateFrom,dateEnd);
+    self.selectDateFromCalendar(dateFrom,dateEnd);
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    id item = [self itemAtIndexPath:indexPath];
-    //    if (self.didSelectCellBlock) {
-    //        self.didSelectCellBlock(indexPath,item);
-    //    }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {    
+    if (scrollView.contentSize.height>scrollView.frame.size.height&&scrollView.contentOffset.y>0) {
+        if (scrollView.contentSize.height-scrollView.contentOffset.y < scrollView.frame.size.height) {
+            scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.frame.size.height);
+            return;
+        }
+    }
+    if (scrollView.contentSize.height<scrollView.frame.size.height) {
+        scrollView.contentOffset = CGPointMake(0, 0);
+        return;
+    }
+    
 }
 
 @end

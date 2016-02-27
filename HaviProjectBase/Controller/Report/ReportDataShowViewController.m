@@ -13,6 +13,10 @@
 
 @property (nonatomic, strong) UITableView *reportShowTableView;
 @property (nonatomic, strong) ReportDataDelegate *reportDelegate;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) SleepQualityModel *sleepQualityModel;
+@property (nonatomic, strong) NSString *queryStartTime;
+@property (nonatomic, strong) NSString *queryEndTime;
 
 @end
 
@@ -22,12 +26,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addTableViewDataHandle];
+    
 }
 
 - (void)addTableViewDataHandle
 {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.dk_tintColorPicker = kTextColorPicker;
+    [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
+    [self.reportShowTableView addSubview:self.refreshControl];
     [self.view addSubview:self.reportShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
+        if (indexPath.section == 0) {
+            
+        }else if (indexPath.section == 1){
+            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+        }else if (indexPath.section == 2){
+            [cell configure:cell customObj:@(self.reportType) indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+        }
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
@@ -36,8 +52,15 @@
     
     DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){
     };
-    self.reportDelegate = [[ReportDataDelegate alloc]initWithItems:nil cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"ReportTitle" ofType:@"plist"];
+    NSArray *title = [NSArray arrayWithContentsOfFile:path];
+    self.reportDelegate = [[ReportDataDelegate alloc]initWithItems:title cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
     [self.reportDelegate handleTableViewDataSourceAndDelegate:self.reportShowTableView withReportType:self.reportType];
+    @weakify(self);
+    self.reportDelegate.selectDateFromCalendar = ^(NSString *fromDate,NSString *endDate){
+        @strongify(self);
+        [self getSleepDataWithFromDate:fromDate endDate:endDate];
+    };
 }
 
 - (UITableView *)reportShowTableView
@@ -50,6 +73,45 @@
     return _reportShowTableView;
 }
 
+- (void)getSleepDataWithFromDate:(NSString *)fromDate endDate:(NSString *)endDate
+{
+    DeBugLog(@"开始%@:结束%@",fromDate,endDate);
+    self.queryStartTime = fromDate;
+    self.queryEndTime = endDate;
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    NSDictionary *dic19 = @{
+                            @"UUID" : self.deviceUUID,
+                            @"FromDate": self.queryStartTime,
+                            @"EndDate": self.queryEndTime,
+                            };
+    @weakify(self);
+    [client requestGetSleepQualityParams:dic19 andBlock:^(SleepQualityModel *qualityModel, NSError *error) {
+        @strongify(self);
+        self.sleepQualityModel = qualityModel;
+        //[self.reportShowTableView reloadData];不使用避免无限加载
+        [self.reportShowTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
+        [self.reportShowTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationNone];
+        [self.reportShowTableView reloadSection:2 withRowAnimation:UITableViewRowAnimationNone];
+    }];
+}
+
+- (void)refreshAction
+{
+    [self.refreshControl endRefreshing];
+}
+
+- (void)getFirstQueryDate
+{
+    switch (self.reportType) {
+        case ReportViewWeek:
+        {
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
