@@ -35,3 +35,8 @@ typedef enum {
     SensorDataLeave,
 } SensorDataType;
 
+typedef enum {
+    ReportViewWeek = 0,
+    ReportViewMonth,
+    ReportViewQuater,
+} ReportViewType;

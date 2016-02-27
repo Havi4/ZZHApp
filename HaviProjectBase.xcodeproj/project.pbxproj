@@ -146,6 +146,20 @@
 		2C9EF4481C80388E000704E2 /* ic_line_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4461C80388E000704E2 /* ic_line_0.png */; };
 		2C9EF44B1C80389F000704E2 /* ic_dot_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4491C80389F000704E2 /* ic_dot_1.png */; };
 		2C9EF44C1C80389F000704E2 /* ic_line_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF44A1C80389F000704E2 /* ic_line_1.png */; };
+		2C9EF4521C804ADC000704E2 /* ReportVewContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4511C804ADC000704E2 /* ReportVewContainerController.m */; };
+		2C9EF4551C804B9F000704E2 /* ReportDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4541C804B9F000704E2 /* ReportDataDelegate.m */; };
+		2C9EF45B1C804C45000704E2 /* ReportDataShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF45A1C804C45000704E2 /* ReportDataShowViewController.m */; };
+		2C9EF45E1C805378000704E2 /* CalendarShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF45D1C805378000704E2 /* CalendarShowView.m */; };
+		2C9EF4611C80565B000704E2 /* ReportChartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4601C80565B000704E2 /* ReportChartTableCell.m */; };
+		2C9EF4631C80586B000704E2 /* menology_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4621C80586B000704E2 /* menology_1@2x.png */; };
+		2C9EF4651C80588A000704E2 /* menology_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4641C80588A000704E2 /* menology_0@2x.png */; };
+		2C9EF4681C805CCB000704E2 /* CalendarDateCaculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4671C805CCB000704E2 /* CalendarDateCaculate.m */; };
+		2C9EF4721C80B692000704E2 /* MonthCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF46B1C80B692000704E2 /* MonthCalenderView.m */; };
+		2C9EF4731C80B692000704E2 /* NSDate+NSDateLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF46D1C80B692000704E2 /* NSDate+NSDateLogic.m */; };
+		2C9EF4741C80B692000704E2 /* QuaterCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF46F1C80B692000704E2 /* QuaterCalenderView.m */; };
+		2C9EF4751C80B692000704E2 /* WeekCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4711C80B692000704E2 /* WeekCalenderView.m */; };
+		2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4781C80B791000704E2 /* AMBlurView.m */; };
+		2C9EF47C1C80B791000704E2 /* CHTumblrMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF47A1C80B791000704E2 /* CHTumblrMenuView.m */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -605,6 +619,32 @@
 		2C9EF4461C80388E000704E2 /* ic_line_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_line_0.png; sourceTree = "<group>"; };
 		2C9EF4491C80389F000704E2 /* ic_dot_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_dot_1.png; sourceTree = "<group>"; };
 		2C9EF44A1C80389F000704E2 /* ic_line_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_line_1.png; sourceTree = "<group>"; };
+		2C9EF4501C804ADC000704E2 /* ReportVewContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReportVewContainerController.h; path = Report/ReportVewContainerController.h; sourceTree = "<group>"; };
+		2C9EF4511C804ADC000704E2 /* ReportVewContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportVewContainerController.m; path = Report/ReportVewContainerController.m; sourceTree = "<group>"; };
+		2C9EF4531C804B9F000704E2 /* ReportDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportDataDelegate.h; sourceTree = "<group>"; };
+		2C9EF4541C804B9F000704E2 /* ReportDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportDataDelegate.m; sourceTree = "<group>"; };
+		2C9EF4591C804C45000704E2 /* ReportDataShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReportDataShowViewController.h; path = Report/ReportDataShowViewController.h; sourceTree = "<group>"; };
+		2C9EF45A1C804C45000704E2 /* ReportDataShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportDataShowViewController.m; path = Report/ReportDataShowViewController.m; sourceTree = "<group>"; };
+		2C9EF45C1C805378000704E2 /* CalendarShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarShowView.h; sourceTree = "<group>"; };
+		2C9EF45D1C805378000704E2 /* CalendarShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarShowView.m; sourceTree = "<group>"; };
+		2C9EF45F1C80565B000704E2 /* ReportChartTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportChartTableCell.h; sourceTree = "<group>"; };
+		2C9EF4601C80565B000704E2 /* ReportChartTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportChartTableCell.m; sourceTree = "<group>"; };
+		2C9EF4621C80586B000704E2 /* menology_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menology_1@2x.png"; sourceTree = "<group>"; };
+		2C9EF4641C80588A000704E2 /* menology_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menology_0@2x.png"; sourceTree = "<group>"; };
+		2C9EF4661C805CCB000704E2 /* CalendarDateCaculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDateCaculate.h; sourceTree = "<group>"; };
+		2C9EF4671C805CCB000704E2 /* CalendarDateCaculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDateCaculate.m; sourceTree = "<group>"; };
+		2C9EF46A1C80B692000704E2 /* MonthCalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalenderView.h; sourceTree = "<group>"; };
+		2C9EF46B1C80B692000704E2 /* MonthCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCalenderView.m; sourceTree = "<group>"; };
+		2C9EF46C1C80B692000704E2 /* NSDate+NSDateLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NSDateLogic.h"; sourceTree = "<group>"; };
+		2C9EF46D1C80B692000704E2 /* NSDate+NSDateLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NSDateLogic.m"; sourceTree = "<group>"; };
+		2C9EF46E1C80B692000704E2 /* QuaterCalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuaterCalenderView.h; sourceTree = "<group>"; };
+		2C9EF46F1C80B692000704E2 /* QuaterCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuaterCalenderView.m; sourceTree = "<group>"; };
+		2C9EF4701C80B692000704E2 /* WeekCalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCalenderView.h; sourceTree = "<group>"; };
+		2C9EF4711C80B692000704E2 /* WeekCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCalenderView.m; sourceTree = "<group>"; };
+		2C9EF4771C80B791000704E2 /* AMBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBlurView.h; sourceTree = "<group>"; };
+		2C9EF4781C80B791000704E2 /* AMBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBlurView.m; sourceTree = "<group>"; };
+		2C9EF4791C80B791000704E2 /* CHTumblrMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTumblrMenuView.h; sourceTree = "<group>"; };
+		2C9EF47A1C80B791000704E2 /* CHTumblrMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTumblrMenuView.m; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -1208,6 +1248,62 @@
 			path = MPBView;
 			sourceTree = "<group>";
 		};
+		2C9EF44D1C804849000704E2 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF44F1C804965000704E2 /* Views */,
+				2C9EF44E1C80495D000704E2 /* ViewModel */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		2C9EF44E1C80495D000704E2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF4531C804B9F000704E2 /* ReportDataDelegate.h */,
+				2C9EF4541C804B9F000704E2 /* ReportDataDelegate.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		2C9EF44F1C804965000704E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF4691C80B692000704E2 /* CalenderView */,
+				2C9EF45C1C805378000704E2 /* CalendarShowView.h */,
+				2C9EF45D1C805378000704E2 /* CalendarShowView.m */,
+				2C9EF45F1C80565B000704E2 /* ReportChartTableCell.h */,
+				2C9EF4601C80565B000704E2 /* ReportChartTableCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2C9EF4691C80B692000704E2 /* CalenderView */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF46A1C80B692000704E2 /* MonthCalenderView.h */,
+				2C9EF46B1C80B692000704E2 /* MonthCalenderView.m */,
+				2C9EF46C1C80B692000704E2 /* NSDate+NSDateLogic.h */,
+				2C9EF46D1C80B692000704E2 /* NSDate+NSDateLogic.m */,
+				2C9EF46E1C80B692000704E2 /* QuaterCalenderView.h */,
+				2C9EF46F1C80B692000704E2 /* QuaterCalenderView.m */,
+				2C9EF4701C80B692000704E2 /* WeekCalenderView.h */,
+				2C9EF4711C80B692000704E2 /* WeekCalenderView.m */,
+			);
+			path = CalenderView;
+			sourceTree = "<group>";
+		};
+		2C9EF4761C80B791000704E2 /* TumblrMenu */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF4771C80B791000704E2 /* AMBlurView.h */,
+				2C9EF4781C80B791000704E2 /* AMBlurView.m */,
+				2C9EF4791C80B791000704E2 /* CHTumblrMenuView.h */,
+				2C9EF47A1C80B791000704E2 /* CHTumblrMenuView.m */,
+			);
+			path = TumblrMenu;
+			sourceTree = "<group>";
+		};
 		2CD0146E1C62F5C6001F9514 /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1261,6 +1357,7 @@
 		2CD014701C62F5C6001F9514 /* darkColor */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF4641C80588A000704E2 /* menology_0@2x.png */,
 				2C9EF4451C80388E000704E2 /* ic_dot_0.png */,
 				2C9EF4461C80388E000704E2 /* ic_line_0.png */,
 				2C9EF43D1C8037DA000704E2 /* ic_body_movement_0.png */,
@@ -1316,6 +1413,7 @@
 		2CD014711C62F5C6001F9514 /* lightColor */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF4621C80586B000704E2 /* menology_1@2x.png */,
 				2C9EF4491C80389F000704E2 /* ic_dot_1.png */,
 				2C9EF44A1C80389F000704E2 /* ic_line_1.png */,
 				2C9EF4411C8037EA000704E2 /* ic_body_movement_1.png */,
@@ -1432,6 +1530,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF4761C80B791000704E2 /* TumblrMenu */,
 				2C9EF4031C7FE30B000704E2 /* MPBView */,
 				2C9EF3FB1C7FE23E000704E2 /* MPGraph */,
 				2C9EF3D21C7F0B99000704E2 /* CBChart */,
@@ -1687,6 +1786,8 @@
 				2C9EF2E31C7C3AF8000704E2 /* HAVIPageControl.m */,
 				2C9EF3861C7DAA8C000704E2 /* SleepModelChange.h */,
 				2C9EF3871C7DAA8C000704E2 /* SleepModelChange.m */,
+				2C9EF4661C805CCB000704E2 /* CalendarDateCaculate.h */,
+				2C9EF4671C805CCB000704E2 /* CalendarDateCaculate.m */,
 			);
 			name = Category;
 			path = HaviProjectBase/Category;
@@ -1769,6 +1870,11 @@
 		2CD75B7B1C61C3D700E7E076 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF44D1C804849000704E2 /* Report */,
+				2C9EF4501C804ADC000704E2 /* ReportVewContainerController.h */,
+				2C9EF4511C804ADC000704E2 /* ReportVewContainerController.m */,
+				2C9EF4591C804C45000704E2 /* ReportDataShowViewController.h */,
+				2C9EF45A1C804C45000704E2 /* ReportDataShowViewController.m */,
 				2CF2E2571C7ABC740007A639 /* Login */,
 				2CF2E2081C79A22E0007A639 /* UserSetting */,
 				2CF2E1DE1C785BFD0007A639 /* SleepSetting */,
@@ -2318,6 +2424,7 @@
 				2CF2E1641C759F530007A639 /* havi1_1@2x.png in Resources */,
 				2C9EF2C31C7C0FFA000704E2 /* btn_ellipse_0@2x.png in Resources */,
 				2CF2E2A61C7AE30E0007A639 /* textbox_password_0@2x.png in Resources */,
+				2C9EF4651C80588A000704E2 /* menology_0@2x.png in Resources */,
 				2C5872721C7AFC63001C2F3A /* LaunchScreen.storyboard in Resources */,
 				2C9EF41F1C7FEF13000704E2 /* night_icon@2x.png in Resources */,
 				2C58725C1C7AED5C001C2F3A /* icon_logo_login_0@2x.png in Resources */,
@@ -2405,6 +2512,7 @@
 				2C9EF3931C7E973F000704E2 /* ic_compile_0.png in Resources */,
 				2CF2E2501C7AB7E80007A639 /* papasscode_marker@2x.png in Resources */,
 				2CF2E16A1C759F530007A639 /* havi1_7@2x.png in Resources */,
+				2C9EF4631C80586B000704E2 /* menology_1@2x.png in Resources */,
 				2CF2E1521C7590930007A639 /* textbox_hollow_1@2x.png in Resources */,
 				2CF2E1C31C7701710007A639 /* double_bed@2x.png in Resources */,
 				2CF2E2A41C7AE2950007A639 /* textbox_password_1@2x.png in Resources */,
@@ -2548,6 +2656,7 @@
 				2C9EF3821C7DA15A000704E2 /* UILabel+FlickerNumber.m in Sources */,
 				2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */,
 				2CF2E1941C75C6D30007A639 /* MMPopupWindow.m in Sources */,
+				2C9EF4731C80B692000704E2 /* NSDate+NSDateLogic.m in Sources */,
 				2CF2E1B01C760A340007A639 /* LBXAlertAction.m in Sources */,
 				2CF2E2021C78A82C0007A639 /* NSDate+DateTools.m in Sources */,
 				2CD75B701C61C2D000E7E076 /* BaseModel.m in Sources */,
@@ -2561,6 +2670,7 @@
 				2CD75B891C61C68900E7E076 /* HaviNetWorkAPIClient.m in Sources */,
 				2C9EF3D11C7F0ACE000704E2 /* SleepTimeTagView.m in Sources */,
 				2CD75BA31C61F8D300E7E076 /* LeftSideViewController.m in Sources */,
+				2C9EF4751C80B692000704E2 /* WeekCalenderView.m in Sources */,
 				2C9EF4001C7FE23E000704E2 /* MPGraphView.m in Sources */,
 				2CF2E1811C75BA2D0007A639 /* SearchDeviceDelegate.m in Sources */,
 				2C58728D1C7B5177001C2F3A /* HaviAnimationView.m in Sources */,
@@ -2569,6 +2679,7 @@
 				2CD75B781C61C2D000E7E076 /* ServerTimeModelTwo.m in Sources */,
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
 				2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */,
+				2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */,
 				2CD75B6F1C61C2D000E7E076 /* AddUserModel.m in Sources */,
 				2C9EF4331C802CB0000704E2 /* ChartTableDataDelegate.m in Sources */,
 				2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */,
@@ -2584,12 +2695,14 @@
 				2C9EF3EF1C7F0B99000704E2 /* MonthReportView.m in Sources */,
 				2C5872981C7BF173001C2F3A /* BaseViewContainerView.m in Sources */,
 				2CD015291C7076D4001F9514 /* MyDeviceListViewController.m in Sources */,
+				2C9EF4551C804B9F000704E2 /* ReportDataDelegate.m in Sources */,
 				2CF2E2011C78A82C0007A639 /* DTTimePeriodGroup.m in Sources */,
 				2CF2E21C1C79D6600007A639 /* ModifyPassWordViewController.m in Sources */,
 				2CF2E1721C75B3FB0007A639 /* XHRealTimeBlur.m in Sources */,
 				2C9EF3F01C7F0B99000704E2 /* PNBar.m in Sources */,
 				2CD015351C7080FE001F9514 /* MyDeviceDelegate.m in Sources */,
 				2C9EF3F31C7F0B99000704E2 /* QuaterReportView.m in Sources */,
+				2C9EF4681C805CCB000704E2 /* CalendarDateCaculate.m in Sources */,
 				2CD015011C6FFC3A001F9514 /* Toast+UIView.m in Sources */,
 				2CF2E1C81C7711350007A639 /* MessageListViewController.m in Sources */,
 				2C9EF2D21C7C18C4000704E2 /* LXActivity.m in Sources */,
@@ -2615,6 +2728,7 @@
 				2C5872801C7B44E6001C2F3A /* GetCodeViewController.m in Sources */,
 				2CD015141C704485001F9514 /* RMDateSelectionViewController.m in Sources */,
 				2C9EF3F71C7F0B99000704E2 /* WeekReportView.m in Sources */,
+				2C9EF4741C80B692000704E2 /* QuaterCalenderView.m in Sources */,
 				2CD014FC1C6EABDF001F9514 /* EditInfoCellTableViewCell.m in Sources */,
 				2CD014F21C6E2024001F9514 /* EditCellInfoViewController.m in Sources */,
 				2CD015231C707651001F9514 /* DeviceListViewController.m in Sources */,
@@ -2645,9 +2759,11 @@
 				2CF2E1D01C7711CE0007A639 /* MessageShowTableViewCell.m in Sources */,
 				2CD015281C7076D4001F9514 /* FriendDeviceListViewController.m in Sources */,
 				2CF2E16E1C75B3BA0007A639 /* SearchBarDisplayController.m in Sources */,
+				2C9EF4521C804ADC000704E2 /* ReportVewContainerController.m in Sources */,
 				2C9EF3AC1C7EEA6C000704E2 /* ChartDataViewController.m in Sources */,
 				2CF2E1981C75D2670007A639 /* SearchBarCustom.m in Sources */,
 				2CD0150E1C70298E001F9514 /* ImageUtil.m in Sources */,
+				2C9EF4721C80B692000704E2 /* MonthCalenderView.m in Sources */,
 				2C9EF3851C7DA1AB000704E2 /* CenterGaugeTableViewCell.m in Sources */,
 				2CF2E1751C75B4490007A639 /* SearchUserTableViewCell.m in Sources */,
 				2CF2E13D1C7579440007A639 /* ReactiveSingleViewController.m in Sources */,
@@ -2656,6 +2772,7 @@
 				2C9EF3EC1C7F0B99000704E2 /* CBChartView.m in Sources */,
 				2CD014B91C6355F1001F9514 /* PersonInfoNaviView.m in Sources */,
 				2C9EF3881C7DAA8C000704E2 /* SleepModelChange.m in Sources */,
+				2C9EF47C1C80B791000704E2 /* CHTumblrMenuView.m in Sources */,
 				2C9EF4011C7FE23E000704E2 /* MPPlot.m in Sources */,
 				2C58727D1C7B17BC001C2F3A /* GetInavlideCodeApi.m in Sources */,
 				2C9EF3771C7D996B000704E2 /* UIImage+CL.m in Sources */,
@@ -2686,14 +2803,17 @@
 				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,
 				2C5872871C7B4D5D001C2F3A /* RegisterViewController.m in Sources */,
 				2C9EF43C1C8033CA000704E2 /* ChartTableDataViewCell.m in Sources */,
+				2C9EF45B1C804C45000704E2 /* ReportDataShowViewController.m in Sources */,
 				2CF2E1C01C76FDCB0007A639 /* NameDoubleViewController.m in Sources */,
 				2CF2E2801C7ADFE50007A639 /* LoginViewController.m in Sources */,
+				2C9EF4611C80565B000704E2 /* ReportChartTableCell.m in Sources */,
 				2CF2E2601C7ABDFD0007A639 /* CKTextField.m in Sources */,
 				2C5872651C7AF491001C2F3A /* LaunchStartView.m in Sources */,
 				2CF2E2611C7ABDFD0007A639 /* LabelLine.m in Sources */,
 				2C9EF3F41C7F0B99000704E2 /* SleepAnalisis.m in Sources */,
 				2CD75BA01C61F89600E7E076 /* BaseNaviViewController.m in Sources */,
 				2C9EF39C1C7EC5F9000704E2 /* ChartContainerViewController.m in Sources */,
+				2C9EF45E1C805378000704E2 /* CalendarShowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

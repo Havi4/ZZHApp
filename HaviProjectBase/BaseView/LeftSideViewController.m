@@ -17,6 +17,7 @@
 #import "MessageListViewController.h"
 #import "SleepSettingViewController.h"
 #import "APPSettingViewController.h"
+#import "ReportVewContainerController.h"
 
 @interface LeftSideViewController ()
 
@@ -151,6 +152,26 @@
 - (void)tapReportView:(UIButton *)button
 {
     DeBugLog(@"taped report %ld",button.tag);
+    ReportVewContainerController *reportView = [[ReportVewContainerController alloc]init];
+    switch (button.tag) {
+        case 101:
+        {
+            reportView.reportType = ReportViewWeek;
+            break;
+        }
+        case 102:{
+            reportView.reportType = ReportViewMonth;
+            break;
+        }
+        case 103:{
+            reportView.reportType = ReportViewQuater;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:reportView];
 }
 
 - (void)didSeletedCellIndexPath:(NSIndexPath *)indexPath withData:(id)data

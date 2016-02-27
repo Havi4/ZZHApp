@@ -150,7 +150,7 @@
         _circleSubTitle = [[UILabel alloc]init];
         _circleSubTitle.font = [UIFont systemFontOfSize:15];
         _circleSubTitle.textAlignment = NSTextAlignmentCenter;
-        _circleSubTitle.text = @"";
+        _circleSubTitle.text = @"次";
         _circleSubTitle.dk_textColorPicker = kTextColorPicker;
     }
     return _circleSubTitle;
