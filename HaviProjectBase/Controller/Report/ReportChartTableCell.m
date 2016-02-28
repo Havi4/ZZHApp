@@ -154,12 +154,11 @@
             NSString *month = [queryStart substringWithRange:NSMakeRange(4, 2)];
             NSString *day = [queryStart substringWithRange:NSMakeRange(6, 2)];
             NSString *fromDateString = [NSString stringWithFormat:@"%@年%@月%@日",year,month,day];
-            NSDate *fromDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:fromDateString];
+            NSDate *fromDate = [[[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:fromDateString]dateByAddingHours:8];
             self.dayNums = [fromDate getdayNumsInOneMonth];
             [self changeXvaluel:self.dayNums];
             self.monthReport.sleepQulityDataValues = qualityBack;
             self.monthReport.sleepTimeDataValues = sleepDurationBack;
-            NSLog(@"坐标数目%d,qulity数目%lu,duration%lu",(int)self.dayNums,(unsigned long)[(NSArray*)qualityBack count],(unsigned long)[(NSArray*)sleepDurationBack count]);
             [self.monthReport reloadChartView];
         }];
     }else if (self.reportType == ReportViewQuater){
