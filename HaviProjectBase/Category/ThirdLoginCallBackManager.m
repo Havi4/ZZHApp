@@ -9,8 +9,6 @@
 #import "ThirdLoginCallBackManager.h"
 #import "LoginViewController.h"
 #import "RegisterPhoneViewController.h"
-#import <TencentOpenAPI/TencentOAuth.h>
-#import <TencentOpenAPI/QQApiInterface.h>
 #import "WXApi.h"
 #import "WeiboSDK.h"
 #import "WeiXinAPI.h"
@@ -21,8 +19,6 @@ static ThirdLoginCallBackManager *shareInstance = nil;
 
 @interface ThirdLoginCallBackManager ()<WXApiDelegate,WeiboSDKDelegate,TencentSessionDelegate>
 
-@property (strong, nonatomic) NSString *wbtoken;
-@property (strong, nonatomic) NSString *wbCurrentUserID;
 @property (nonatomic,strong) NSDictionary *ThirdPlatformInfoDic;
 @property (nonatomic,strong) NSString *thirdPlatform;
 @property (nonatomic,strong) NSString *tencentID;
@@ -39,6 +35,11 @@ static ThirdLoginCallBackManager *shareInstance = nil;
         shareInstance = [[ThirdLoginCallBackManager alloc]init];
     });
     return shareInstance;
+}
+
+- (void)initTencentCallBackHandle
+{
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1104815310" andDelegate:self];
 }
 
 - (BOOL)weixinCallBackHandleOpenURL:(NSURL *)url
@@ -200,14 +201,13 @@ static ThirdLoginCallBackManager *shareInstance = nil;
 
 - (void)tencentDidLogin
 {
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    if (app.tencentOAuth.accessToken && 0 != [app.tencentOAuth.accessToken length])
+    if (_tencentOAuth.accessToken && 0 != [_tencentOAuth.accessToken length])
     {
         //  记录登录用户的OpenID、Token以及过期时间
-        if ([app.tencentOAuth getUserInfo]) {
+        if ([_tencentOAuth getUserInfo]) {
             //检测帐号
-            self.tencentID = app.tencentOAuth.openId;
-            DeBugLog(@"用户的信息是%@",app.tencentOAuth.passData);
+            self.tencentID = _tencentOAuth.openId;
+            DeBugLog(@"用户的信息是%@",_tencentOAuth.passData);
             
         }
     }

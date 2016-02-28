@@ -16,7 +16,7 @@
 #import "WeiboSDK.h"
 #import "ThirdLoginCallBackManager.h"
 
-@interface AppDelegate ()<TencentSessionDelegate>
+@interface AppDelegate ()
 
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 
@@ -68,7 +68,8 @@
 
 - (void)setThirdAppSetting
 {
-    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1104815310" andDelegate:self];
+    
+    [[ThirdLoginCallBackManager sharedInstance]initTencentCallBackHandle];
     //微博注册
     [WeiboSDK registerApp:kWBAPPKey];
     [WeiboSDK enableDebugMode:YES];

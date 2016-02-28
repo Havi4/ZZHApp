@@ -15,13 +15,7 @@
 #import "AppDelegate.h"
 #import "GetInavlideCodeApi.h"
 #import "GetCodeViewController.h"
-//#import "STAlertView.h"
-//#import "ZWIntroductionViewController.h"
-////api
-//#import "RegisterPhoneViewController.h"
-////
-//#import "MMPopupView.h"
-//#import "APService.h"
+#import "ThirdLoginCallBackManager.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,WXApiDelegate>
 @property (nonatomic,strong) CKTextField *nameText;
@@ -397,7 +391,7 @@
                             kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
                             kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
                             nil];
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    ThirdLoginCallBackManager *app = [ThirdLoginCallBackManager sharedInstance];
     [app.tencentOAuth authorize:permissions inSafari:NO];
 }
 

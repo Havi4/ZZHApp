@@ -2386,7 +2386,7 @@
 				TargetAttributes = {
 					2CD75B141C61B57000E7E076 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = Q4CAL7ETKY;
+						DevelopmentTeam = CF99UB3L46;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3033,7 +3033,7 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libWeiboSDK",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/WeChatSDK_1.5_OnlyIphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3062,7 +3062,7 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libWeiboSDK",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/WeChatSDK_1.5_OnlyIphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

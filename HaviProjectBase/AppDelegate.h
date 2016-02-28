@@ -15,15 +15,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) TencentOAuth *tencentOAuth;
-
 @property (strong, nonatomic) CenterViewController *centerView;
 
 @property (strong, nonatomic) JASidePanelController *sideMenuController;
-
-@property (strong, nonatomic) NSString *wbtoken;
-
-@property (strong, nonatomic) NSString *wbCurrentUserID;
 
 - (void)setRootViewController;
 

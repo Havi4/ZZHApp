@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/Login/LoginViewController.m"
-            timestampString = "477840936.877031"
+            timestampString = "478363712.824081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
+            startingLineNumber = "475"
+            endingLineNumber = "475"
             landmarkName = "-forgetPassWord:"
             landmarkType = "5">
             <Locations>

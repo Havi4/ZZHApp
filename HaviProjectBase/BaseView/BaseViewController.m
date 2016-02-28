@@ -11,6 +11,7 @@
 #import "WeiboSDK.h"
 #import "AppDelegate.h"
 #import <TencentOpenAPI/QQApiInterface.h>
+#import "ThirdLoginCallBackManager.h"
 
 @interface BaseViewController ()<LXActivityDelegate>
 
@@ -172,7 +173,7 @@
 #pragma mark 分享到微博
 - (void)shareButtonPressed
 {
-    AppDelegate *myDelegate =(AppDelegate*)[[UIApplication sharedApplication] delegate];
+    ThirdLoginCallBackManager *myDelegate =[ThirdLoginCallBackManager sharedInstance];
     
     WBAuthorizeRequest *authRequest = [WBAuthorizeRequest request];
     authRequest.redirectURI = kWBRedirectURL;
