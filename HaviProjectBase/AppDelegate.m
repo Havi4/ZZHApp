@@ -14,6 +14,7 @@
 #import "LaunchStartView.h"
 #import "WXApi.h"
 #import "WeiboSDK.h"
+#import "ThirdLoginCallBackManager.h"
 
 @interface AppDelegate ()<TencentSessionDelegate>
 
@@ -158,32 +159,38 @@
 
 {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"接收到本地提醒 in app"
-                          
-                                                    message:notification.alertBody
-                          
-                                                   delegate:nil
-                          
-                                          cancelButtonTitle:@"确定"
-                          
-                                          otherButtonTitles:nil];
-    
-    [alert show];
-    
-    //这里，你就可以通过notification的useinfo，干一些你想做的事情了
-    
     application.applicationIconBadgeNumber -= 1;
     
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"收到");
+#pragma mark 第三方回调函数
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    //wb2199355574://response?id=C332B448-99AA-48CB-9588-D18D3F122F9D&sdkversion=2.5
+    //
+    NSRange range = [[NSString stringWithFormat:@"%@",url]rangeOfString:@"://"];
+    if ([[[NSString stringWithFormat:@"%@",url] substringToIndex:range.location]isEqualToString:@"wb2199355574"]) {
+        return [[ThirdLoginCallBackManager sharedInstance]weiboCallBackHandleOpenURL:url];
+    }else if([[[NSString stringWithFormat:@"%@",url] substringToIndex:range.location]isEqualToString:@"wx7be2e0c9ebd9e161"]){
+        return  [[ThirdLoginCallBackManager sharedInstance] weixinCallBackHandleOpenURL:url];
+    }else{
+        return YES;
+    }
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:
-(void (^)(UIBackgroundFetchResult))completionHandler {
-    NSLog(@"收到");
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //从第三方回来
+    if ([sourceApplication isEqualToString:@"com.tencent.xin"]) {
+        return  [[ThirdLoginCallBackManager sharedInstance] weixinCallBackHandleOpenURL:url];;
+    }else if ([sourceApplication isEqualToString:@"com.sina.weibo"]){
+        return [[ThirdLoginCallBackManager sharedInstance]weiboCallBackHandleOpenURL:url];
+    }else if ([sourceApplication isEqualToString:@"com.tencent.mqq"]){
+        return [[ThirdLoginCallBackManager sharedInstance]tencentCallBackHandleOpenURL:url];
+    }
+    return YES;
 }
+
 
 
 @end

@@ -25,5 +25,7 @@
 
 @property (strong, nonatomic) NSString *wbCurrentUserID;
 
+- (void)setRootViewController;
+
 @end
 

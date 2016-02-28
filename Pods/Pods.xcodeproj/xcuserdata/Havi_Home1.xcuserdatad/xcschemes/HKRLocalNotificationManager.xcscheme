@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '016C7A274C3C5AFAF0C8C982'
+               BlueprintIdentifier = '167EC3DF2EE47FB707DB811C'
                BlueprintName = 'HKRLocalNotificationManager'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libHKRLocalNotificationManager.a'>

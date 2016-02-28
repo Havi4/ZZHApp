@@ -17,10 +17,10 @@
 #define kUserID @"meddo99.com$13122785292"
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 
-#define kWXPlatform @"wx.com"
-#define kSinaPlatform @"sina.com"
-#define kTXPlatform @"qq.com"
-#define kMeddoPlatform @"meddo99.com"
+#define kWXPlatform @"wx.com1"
+#define kSinaPlatform @"sina.com1"
+#define kTXPlatform @"qq.com1"
+#define kMeddoPlatform @"meddo99.com1"
 
 #define kWXAPPKey @"wx7be2e0c9ebd9e161"
 #define kWXAPPSecret @"8fc579120ceceae54cb43dc2a17f1d54"
