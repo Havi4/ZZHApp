@@ -34,7 +34,7 @@
         [self addSubview:_iconImageView];
         _nameLabel = [[UILabel alloc]init];
         _nameLabel.userInteractionEnabled = YES;
-        _nameLabel.textColor = kDefaultColor;
+        _nameLabel.dk_textColorPicker = kTextColorPicker;
         _nameLabel.font = [UIFont systemFontOfSize:20];
         [self addSubview:_nameLabel];
         

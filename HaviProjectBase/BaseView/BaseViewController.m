@@ -285,9 +285,7 @@
 {
     UIImageView *navIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, _nSpaceNavY, self.view.frame.size.width, 64-_nSpaceNavY)];
     navIV.tag = 3000;
-//    int picIndex = [QHConfiguredObj defaultConfigure].nThemeIndex;
-    NSString *imageName = [NSString stringWithFormat:@"navigation_bar_bg_%d",1];
-    [navIV setImage:[UIImage imageNamed:imageName]];
+    navIV.dk_imagePicker = DKImageWithNames(@"navigation_bar_bg_0", @"navigation_bar_bg_1");
     [self.view addSubview:navIV];
     
     /* { 导航条 } */
@@ -304,7 +302,7 @@
         [titleLabel setText:szTitle];
         titleLabel.tag = 3001;
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [titleLabel setTextColor:selectedThemeIndex == 0?kDefaultColor:[UIColor whiteColor]];
+        titleLabel.dk_textColorPicker = kTextColorPicker;
         [titleLabel setFont:kDefaultWordFont];
         [titleLabel setBackgroundColor:[UIColor clearColor]];
         [_navView addSubview:titleLabel];
@@ -346,7 +344,7 @@
         [_clearNaviTitleLabel setText:szTitle];
         _clearNaviTitleLabel.tag = 2001;
         [_clearNaviTitleLabel setTextAlignment:NSTextAlignmentCenter];
-        [_clearNaviTitleLabel setTextColor:selectedThemeIndex == 0?kDefaultColor:[UIColor whiteColor]];
+        _clearNaviTitleLabel.dk_textColorPicker = kTextColorPicker;
         [_clearNaviTitleLabel setFont:kDefaultWordFont];
         [_clearNaviTitleLabel setBackgroundColor:[UIColor clearColor]];
         [_clearNavView addSubview:_clearNaviTitleLabel];

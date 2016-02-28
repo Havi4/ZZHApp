@@ -29,8 +29,7 @@
         if (nIndex == 1)
         {
             _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",1]];
-            [_backButton setImage:i forState:UIControlStateNormal];
+            [_backButton dk_setImage:DKImageWithNames(@"btn_back_0", @"btn_back_1") forState:UIControlStateNormal];
             [_backButton setFrame:CGRectMake(-5, 0, 44, 44)];
             [_backButton addTarget:self action:@selector(backToView:) forControlEvents:UIControlEventTouchUpInside];
             return _backButton;
@@ -39,7 +38,7 @@
             doneButton.frame = CGRectMake(self.view.frame.size.width-65, 0, 60, 44);
             [doneButton setTitle:@"保存" forState:UIControlStateNormal];
             doneButton.titleLabel.font = [UIFont systemFontOfSize:15];
-            [doneButton setTitleColor:1==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [doneButton dk_setTitleColorPicker:kTextColorPicker forState:UIControlStateNormal];
             [doneButton addTarget:self action:@selector(saveDown:) forControlEvents:UIControlEventTouchUpInside];
             return doneButton;
         }

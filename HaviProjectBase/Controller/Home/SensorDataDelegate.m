@@ -140,7 +140,7 @@
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
-    view.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f]:[UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f];
+    view.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
     return view;
     
 }
@@ -148,7 +148,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
-    view.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f]:[UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f];
+    view.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
     return view;
 }
 
@@ -166,16 +166,5 @@
         return 60;
     }
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    id item = [self itemAtIndexPath:indexPath];
-//    if (self.didSelectCellBlock) {
-//        self.didSelectCellBlock(indexPath,item);
-//    }
-}
-
-
 
 @end

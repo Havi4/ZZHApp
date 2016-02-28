@@ -101,7 +101,7 @@
         _listTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _listTableView.backgroundColor = [UIColor clearColor];
         _listTableView.tableFooterView = [[UIView alloc]init];
-        [_listTableView setSeparatorColor:kDefaultColor];
+        _listTableView.dk_separatorColorPicker = kTextColorPicker;
     }
     return _listTableView;
 }

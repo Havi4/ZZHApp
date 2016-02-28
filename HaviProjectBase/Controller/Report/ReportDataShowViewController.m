@@ -8,6 +8,7 @@
 
 #import "ReportDataShowViewController.h"
 #import "ReportDataDelegate.h"
+#import "CalendarDateCaculate.h"
 
 @interface ReportDataShowViewController ()
 
@@ -26,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addTableViewDataHandle];
-    
+    [self getFirstQueryDate];
 }
 
 - (void)addTableViewDataHandle
@@ -69,6 +70,7 @@
         _reportShowTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height -64) style:UITableViewStylePlain];
         _reportShowTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _reportShowTableView.backgroundColor = [UIColor clearColor];
+        _reportShowTableView.showsVerticalScrollIndicator = NO;
     }
     return _reportShowTableView;
 }
@@ -87,6 +89,7 @@
     @weakify(self);
     [client requestGetSleepQualityParams:dic19 andBlock:^(SleepQualityModel *qualityModel, NSError *error) {
         @strongify(self);
+        [self.refreshControl endRefreshing];
         self.sleepQualityModel = qualityModel;
         //[self.reportShowTableView reloadData];不使用避免无限加载
         [self.reportShowTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
@@ -97,7 +100,7 @@
 
 - (void)refreshAction
 {
-    [self.refreshControl endRefreshing];
+    [self getSleepDataWithFromDate:self.queryStartTime endDate:self.queryEndTime];
 }
 
 - (void)getFirstQueryDate
@@ -105,6 +108,46 @@
     switch (self.reportType) {
         case ReportViewWeek:
         {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSString *monthTitle = [[CalendarDateCaculate sharedInstance] getCurrentWeekInOneYear:[NSDate date]];
+                NSString *subTitle = [[CalendarDateCaculate sharedInstance]getWeekTimeDuration:[NSDate date]];
+                NSString *year = [monthTitle substringWithRange:NSMakeRange(0, 4)];
+                NSString *fromMonth = [subTitle substringWithRange:NSMakeRange(0, 2)];
+                NSString *fromDay = [subTitle substringWithRange:NSMakeRange(3, 2)];
+                NSString *toMonth = [subTitle substringWithRange:NSMakeRange(7, 2)];
+                NSString *toDay = [subTitle substringWithRange:NSMakeRange(10, 2)];
+                NSString *fromDate = [NSString stringWithFormat:@"%@%@%@",year,fromMonth,fromDay];
+                NSString *toDate = [NSString stringWithFormat:@"%@%@%@",year,toMonth,toDay];
+                
+                [self getSleepDataWithFromDate:fromDate endDate:toDate];
+            });
+            break;
+        }
+        case ReportViewMonth:{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSString *monthTitle = [[CalendarDateCaculate sharedInstance]getCurrentMonthInOneYear:[NSDate date]];
+                NSString *year = [monthTitle substringWithRange:NSMakeRange(0, 4)];
+                NSString *fromMonth = [monthTitle substringWithRange:NSMakeRange(5, 2)];
+                NSString *fromDate = [NSString stringWithFormat:@"%@%@%@",year,fromMonth,@"01"];
+                NSString *toDate = @"";
+                toDate = [NSString stringWithFormat:@"%@%@%ld",year,fromMonth,[[CalendarDateCaculate sharedInstance] getCurrentMonthDayNum:year month:fromMonth]];
+                DeBugLog(@"from:%@,end:%@",fromDate,toDate);
+                [self getSleepDataWithFromDate:fromDate endDate:toDate];
+            });
+            break;
+        }
+        case ReportViewQuater:{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSString *monthTitle = [[CalendarDateCaculate sharedInstance] getCurrentQuaterInOneYear:[NSDate date]];
+                NSString *subTitle = [[CalendarDateCaculate sharedInstance] getQuaterTimeDuration:[NSDate date]];
+                NSString *year = [monthTitle substringWithRange:NSMakeRange(0, 4)];
+                NSString *fromMonth = [subTitle substringWithRange:NSMakeRange(0, 2)];
+                NSString *fromDateString = [NSString stringWithFormat:@"%@%@%@",year,fromMonth,@"01"];
+                NSString *toMonth = [subTitle substringWithRange:NSMakeRange(4, 2)];
+                NSString *toDateString = [NSString stringWithFormat:@"%@%@%ld",year,toMonth,(long)[[CalendarDateCaculate sharedInstance] getCurrentMonthDayNum:year month:toMonth]];
+                DeBugLog(@"from:%@,end:%@",fromDateString,toDateString);
+                [self getSleepDataWithFromDate:fromDateString endDate:toDateString];
+            });
             break;
         }
             

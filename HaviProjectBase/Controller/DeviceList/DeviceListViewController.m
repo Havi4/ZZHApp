@@ -14,7 +14,7 @@
 
 @interface DeviceListViewController ()<UISearchBarDelegate,UISearchDisplayDelegate>
 
-@property UISegmentedControl *segmentTitle;
+@property (nonatomic, strong) UISegmentedControl *segmentTitle;
 @property (nonatomic, strong) FriendDeviceListViewController *friendDeviceList;
 @property (nonatomic, strong) MyDeviceListViewController *myNewDeviceList;
 @property (nonatomic, strong) UIButton *rightMenuButton;
@@ -42,7 +42,7 @@
              return self.menuButton;
          }
          else if (nIndex == 0){
-             [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"plus_math_%d",1]] forState:UIControlStateNormal];
+             [self.rightMenuButton dk_setBackgroundImage:DKImageWithNames(@"plus_math_0", @"plus_math_1") forState:UIControlStateNormal];
              [self.rightMenuButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
              return self.rightMenuButton;
          }
@@ -85,7 +85,7 @@
 {
     self.segmentTitle = [[UISegmentedControl alloc] initWithItems:@[@"我的设备", @"他人设备"]];
     self.segmentTitle.selectedSegmentIndex = 0;
-    self.segmentTitle.tintColor = 1==0?kDefaultColor:[UIColor whiteColor];
+    self.segmentTitle.dk_tintColorPicker = kTextColorPicker;
     self.segmentTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.segmentTitle.frame = CGRectMake(70, 30, self.view.frame.size.width-140, 25);
     [self.segmentTitle addTarget:self action:@selector(switchView) forControlEvents:UIControlEventValueChanged];
@@ -106,7 +106,7 @@
     }
     switch (_segmentTitle.selectedSegmentIndex) {
         case 0: {
-            [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"plus_math_%d",1]] forState:UIControlStateNormal];
+            [self.rightMenuButton dk_setBackgroundImage:DKImageWithNames(@"plus_math_0", @"plus_math_1") forState:UIControlStateNormal];
             [self.rightMenuButton removeTarget:self action:@selector(searchDevice:) forControlEvents:UIControlEventTouchUpInside];
             [self.rightMenuButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_myNewDeviceList.view];
@@ -117,7 +117,7 @@
             if (![self.childViewControllers containsObject:self.friendDeviceList]) {
                 [self addChildViewController:self.friendDeviceList];
             }
-            [self.rightMenuButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"search_%d",1]] forState:UIControlStateNormal];
+            [self.rightMenuButton dk_setBackgroundImage:DKImageWithNames(@"search_0", @"search_1") forState:UIControlStateNormal];
             [self.rightMenuButton removeTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
             [self.rightMenuButton addTarget:self action:@selector(searchDevice:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_friendDeviceList.view];

@@ -79,6 +79,7 @@
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     [ThemeSelectConfigureObj defaultConfigure].nThemeIndex = (int)indexPath.row;
+    selectedThemeIndex = (int)indexPath.row;
     [_collectionV reloadData];
     if ((int)indexPath.row == 0) {
         [DKNightVersionManager dawnComing];

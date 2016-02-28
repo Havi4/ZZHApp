@@ -24,10 +24,10 @@
     if (self) {
         _leftIconImage = [[UIImageView alloc]init];
         _leftTitleLabel = [[UILabel alloc]init];
-        _leftTitleLabel.textColor = kDefaultColor;
+        _leftTitleLabel.dk_textColorPicker = kTextColorPicker;
         _leftTitleLabel.font = kDefaultWordFont;
         _leftArrowImage = [[UIImageView alloc]init];
-        _leftArrowImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",0]];
+        _leftArrowImage.dk_imagePicker = DKImageWithNames(@"btn_right_0", @"btn_right_1");
         [self addSubview:_leftArrowImage];
         [self addSubview:_leftIconImage];
         [self addSubview:_leftTitleLabel];
@@ -60,7 +60,7 @@
 {
     // Rewrite this func in SubClass !
     NSDictionary *dic = obj;
-    _leftIconImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@0",[dic objectForKey:@"iconTitle"]]];
+    _leftIconImage.dk_imagePicker = DKImageWithNames([NSString stringWithFormat:@"%@0",[dic objectForKey:@"iconTitle"]], [NSString stringWithFormat:@"%@1",[dic objectForKey:@"iconTitle"]]);
     _leftTitleLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"iconName"]];
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.145f green:0.733f blue:0.957f alpha:0.15f];

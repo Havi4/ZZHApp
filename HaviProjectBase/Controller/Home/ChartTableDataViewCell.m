@@ -74,7 +74,7 @@
         //
         rightTitleLabel = [[UILabel alloc]init];
         [self addSubview:rightTitleLabel];
-        rightTitleLabel.textColor = selectedThemeIndex == 0?[UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f]:[UIColor whiteColor];
+        rightTitleLabel.dk_textColorPicker = DKColorWithColors([UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f], [UIColor whiteColor]);
         rightTitleLabel.textAlignment = NSTextAlignmentLeft;
         rightTitleLabel.text = @"9月1日";
         rightTitleLabel.font = [UIFont systemFontOfSize:15];
@@ -88,7 +88,7 @@
         }];
         righSubtTitleLabel = [[UILabel alloc]init];
         [self addSubview:righSubtTitleLabel];
-        righSubtTitleLabel.textColor = selectedThemeIndex == 0?[UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f]:[UIColor whiteColor];
+        righSubtTitleLabel.dk_textColorPicker = DKColorWithColors([UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f], [UIColor whiteColor]);
         righSubtTitleLabel.font = [UIFont systemFontOfSize:17];
         righSubtTitleLabel.textAlignment = NSTextAlignmentLeft;
         righSubtTitleLabel.text = @"22:12";

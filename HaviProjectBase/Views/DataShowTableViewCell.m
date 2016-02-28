@@ -40,7 +40,7 @@
             make.centerY.equalTo(cellLabel.mas_centerY);
         }];
         //
-        cellLabel.textColor = kDefaultColor;
+        cellLabel.dk_textColorPicker = kTextColorPicker;
         cellLabel.font = kDefaultWordFont;
         [cellLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftImage.mas_right).offset(10);
@@ -56,7 +56,7 @@
             make.bottom.equalTo(self.mas_bottom).offset(-15);
             make.height.equalTo(buttonType1.mas_width);
         }];
-        [buttonType1 setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"week_%d",0]] forState:UIControlStateNormal];
+        [buttonType1 dk_setBackgroundImage:DKImageWithNames(@"week_0", @"week_1") forState:UIControlStateNormal];
         buttonType1.tag = 101;
         //
 // button2
@@ -70,7 +70,7 @@
             make.height.equalTo(buttonType2.mas_width);
         }];
         [buttonType2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [buttonType2 setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"month_%d",0]] forState:UIControlStateNormal];
+        [buttonType2 dk_setBackgroundImage:DKImageWithNames(@"month_0", @"month_1") forState:UIControlStateNormal];
         buttonType2.tag = 102;
 //button3
         buttonType3 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -82,7 +82,7 @@
             make.centerY.equalTo(buttonType1.mas_centerY);
             make.height.equalTo(buttonType3.mas_width);
         }];
-        [buttonType3 setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"quarter_%d",0]] forState:UIControlStateNormal];
+        [buttonType3 dk_setBackgroundImage:DKImageWithNames(@"quarter_0", @"quarter_1") forState:UIControlStateNormal];
         buttonType3.tag = 103;
 
         buttonArray = @[buttonType1,buttonType2,buttonType3];
@@ -97,7 +97,7 @@
 {
     // Rewrite this func in SubClass !
     NSDictionary *dic = obj;
-    leftImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@0",[dic objectForKey:@"iconTitle"]]];
+    leftImage.dk_imagePicker = DKImageWithNames([NSString stringWithFormat:@"%@0",[dic objectForKey:@"iconTitle"]],[NSString stringWithFormat:@"%@1",[dic objectForKey:@"iconTitle"]]);
     cellLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"iconName"]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     for (int i = 0; i<buttonArray.count; i++) {

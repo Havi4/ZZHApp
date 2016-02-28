@@ -12,6 +12,7 @@
 #import "RMPickerViewController.h"
 #import "JDStatusBarNotification.h"
 #import "LocalNotificationManager.h"
+#import "CalendarDateCaculate.h"
 
 @interface SettingDataDelegate ()<UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -278,8 +279,15 @@
 {
     [[NSUserDefaults standardUserDefaults]setObject:status forKey:kAlarmStatusValue];
     if ([status isEqualToString:@"True"]) {
-        NSDate *date = [[NSUserDefaults standardUserDefaults]objectForKey:kAlarmTimeValue];
-        [self changeUserAlarm:date];
+        id date = [[NSUserDefaults standardUserDefaults]objectForKey:kAlarmTimeValue];
+        if ([date isKindOfClass:[NSDate class]]) {
+            [self changeUserAlarm:date];
+        }else{
+            NSString *dateString = [NSString stringWithFormat:@"%@",[NSDate date]];
+            NSString *new = [NSString stringWithFormat:@"%@ %@",[dateString substringToIndex:10],date];
+            NSDate *dat = [[[CalendarDateCaculate sharedInstance] dateFormmatterOne]dateFromString:new];
+            [self changeUserAlarm:dat];
+        }
     }else{
         [[LocalNotificationManager sharedManager]cancelAllNotifications];
     }

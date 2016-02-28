@@ -43,8 +43,6 @@
         _chartGraphView.heartViewLeft.horizonValue = 140;
         _chartGraphView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor colorWithRed:0.008f green:0.839f blue:0.573f alpha:.70f]:[UIColor colorWithRed:0.008f green:0.839f blue:0.573f alpha:.70f];
         [_chartGraphView addSubview:self.layerFloatView];
-//        _chartGraphView.heartViewLeft.graphTitle = @"xinlv";
-//        [_chartGraphView addSubview:self.layerFloatView];
         
     }
     return _chartGraphView;
@@ -58,7 +56,6 @@
         _scrollContainerView.contentSize = CGSizeMake(self.frame.size.width*4, 180);
         _scrollContainerView.showsHorizontalScrollIndicator = NO;
         _scrollContainerView.delegate = self;
-//        [_scrollContainerView addSubview:self.yCoorBackView];
     }
     return _scrollContainerView;
 }
@@ -67,7 +64,7 @@
 {
     if (!_yCoorBackView) {
         _yCoorBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 160)];
-        _yCoorBackView.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.075f green:0.149f blue:0.290f alpha:1.00f]:[UIColor colorWithRed:0.408f green:0.616f blue:0.757f alpha:1.00f];
+        _yCoorBackView.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.075f green:0.149f blue:0.290f alpha:1.00f], [UIColor colorWithRed:0.408f green:0.616f blue:0.757f alpha:1.00f]);
         UILabel *sixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 70, 20, 20)];
         sixLabel.text = self.type == 0? @"60" : @"15";
         sixLabel.textAlignment = NSTextAlignmentLeft;
@@ -75,7 +72,7 @@
         sixLabel.font = [UIFont systemFontOfSize:14];
         [_yCoorBackView addSubview:sixLabel];
         UIView *sixLine = [[UIView alloc]initWithFrame:CGRectMake(17, 79.5, self.frame.size.width-17, 1)];
-        sixLine.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f]:[UIColor colorWithWhite:1 alpha:0.3];
+        sixLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f], [UIColor colorWithWhite:1 alpha:0.3]);
         [_yCoorBackView addSubview:sixLine];
         
         UILabel *fiveLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 104, 20, 20)];
@@ -85,7 +82,7 @@
         fiveLabel.font = [UIFont systemFontOfSize:14];
         [_yCoorBackView addSubview:fiveLabel];
         UIView *fiveLine = [[UIView alloc]initWithFrame:CGRectMake(17, 114, self.frame.size.width-17, 1)];
-        fiveLine.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f]:[UIColor colorWithWhite:1 alpha:0.3];
+        fiveLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f], [UIColor colorWithWhite:1 alpha:0.3]);
         [_yCoorBackView addSubview:fiveLine];
         
         UILabel *sevenLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 33, 20, 20)];
@@ -95,7 +92,7 @@
         sevenLabel.font = [UIFont systemFontOfSize:14];
         [_yCoorBackView addSubview:sevenLabel];
         UIView *sevenLine = [[UIView alloc]initWithFrame:CGRectMake(17, 43, self.frame.size.width-17, 1)];
-        sevenLine.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f]:[UIColor colorWithWhite:1 alpha:0.3];
+        sevenLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f], [UIColor colorWithWhite:1 alpha:0.3]);
         [_yCoorBackView addSubview:sevenLine];
     }
     return _yCoorBackView;

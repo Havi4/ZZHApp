@@ -76,7 +76,7 @@
 -(UIView *)getLineCoor
 {
     UIView *lineView = [[UIView alloc] init];
-    lineView.backgroundColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+    lineView.dk_backgroundColorPicker = kTextColorPicker;
     lineView.alpha = 0.3;
     lineView.frame = CGRectMake(0, self.frame.size.height - bottomLineMargin, self.frame.size.width, 1);
     return lineView;
@@ -120,13 +120,13 @@
             label.backgroundColor = [UIColor clearColor];
             label.text = xValue;
             label.tag = 1001;
-            label.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+            label.dk_textColorPicker = kTextColorPicker;
             label.font = [UIFont systemFontOfSize:13];
             label.textAlignment = NSTextAlignmentCenter;
             [self addSubview:label];
             //
             UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-2, 1, 2)];
-            labelLine.backgroundColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+            labelLine.dk_backgroundColorPicker = kTextColorPicker;
             labelLine.tag = 1002;
             //
             [self.xPoints addObject:[NSValue valueWithCGPoint:CGPointMake(labelLine.frame.origin.x, cY)]];

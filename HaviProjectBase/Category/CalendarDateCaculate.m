@@ -309,6 +309,15 @@ static CalendarDateCaculate *shareInstance = nil;
     return _dateFormmatter;
 }
 
+- (NSDateFormatter *)dateFormmatterOne
+{
+    if (!_dateFormmatter) {
+        _dateFormmatter = [[NSDateFormatter alloc]init];
+        [_dateFormmatter setDateFormat:@"yyyy-mm-dd HH:mm"];
+    }
+    return _dateFormmatter;
+}
+
 - (NSDateFormatter *)dateMonthFormmatter
 {
     if (!_dateMonthFormmatter) {
