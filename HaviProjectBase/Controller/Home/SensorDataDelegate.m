@@ -167,4 +167,18 @@
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentSize.height>scrollView.frame.size.height&&scrollView.contentOffset.y>0) {
+        if (scrollView.contentSize.height-scrollView.contentOffset.y < scrollView.frame.size.height) {
+            scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.frame.size.height);
+            return;
+        }
+    }
+    if (scrollView.contentSize.height<scrollView.frame.size.height) {
+        scrollView.contentOffset = CGPointMake(0, 0);
+        return;
+    }
+    
+}
+
 @end

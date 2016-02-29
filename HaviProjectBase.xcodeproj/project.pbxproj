@@ -182,6 +182,8 @@
 		2C9EF4BB1C83E3BA000704E2 /* leaveAlert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4BA1C83E3BA000704E2 /* leaveAlert.wav */; };
 		2C9EF4BE1C83EA4A000704E2 /* UIBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4BD1C83EA4A000704E2 /* UIBadgeView.m */; };
 		2C9EF4C31C83EA80000704E2 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4C21C83EA80000704E2 /* NSString+Common.m */; };
+		2C9EF4C51C844379000704E2 /* sad-75_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4C41C844379000704E2 /* sad-75_0.png */; };
+		2C9EF4C71C844388000704E2 /* sad-75_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4C61C844388000704E2 /* sad-75_1.png */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -707,6 +709,8 @@
 		2C9EF4BD1C83EA4A000704E2 /* UIBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBadgeView.m; sourceTree = "<group>"; };
 		2C9EF4C11C83EA80000704E2 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		2C9EF4C21C83EA80000704E2 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
+		2C9EF4C41C844379000704E2 /* sad-75_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sad-75_0.png"; sourceTree = "<group>"; };
+		2C9EF4C61C844388000704E2 /* sad-75_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sad-75_1.png"; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -1454,6 +1458,7 @@
 		2CD014701C62F5C6001F9514 /* darkColor */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF4C41C844379000704E2 /* sad-75_0.png */,
 				2C9EF4641C80588A000704E2 /* menology_0@2x.png */,
 				2C9EF4451C80388E000704E2 /* ic_dot_0.png */,
 				2C9EF4461C80388E000704E2 /* ic_line_0.png */,
@@ -1510,6 +1515,7 @@
 		2CD014711C62F5C6001F9514 /* lightColor */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF4C61C844388000704E2 /* sad-75_1.png */,
 				2C9EF4621C80586B000704E2 /* menology_1@2x.png */,
 				2C9EF4491C80389F000704E2 /* ic_dot_1.png */,
 				2C9EF44A1C80389F000704E2 /* ic_line_1.png */,
@@ -2531,6 +2537,7 @@
 				2CF2E2171C79D2EC0007A639 /* AppSetting1.plist in Resources */,
 				2C9EF3471C7D7B51000704E2 /* getup_apng_0.apng in Resources */,
 				2CF2E24A1C7AB7E80007A639 /* digitCell.psd in Resources */,
+				2C9EF4C51C844379000704E2 /* sad-75_0.png in Resources */,
 				2CD014991C634001001F9514 /* icon_setting_1@2x.png in Resources */,
 				2C9EF4B91C83DDC6000704E2 /* PushConfig.plist in Resources */,
 				2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */,
@@ -2596,6 +2603,7 @@
 				2C9EF3181C7C8936000704E2 /* menology_1@2x.png in Resources */,
 				2CF2E1481C7590550007A639 /* plus_math_0@2x.png in Resources */,
 				2CF2E1501C7590930007A639 /* plus_math_1@2x.png in Resources */,
+				2C9EF4C71C844388000704E2 /* sad-75_1.png in Resources */,
 				2CF2E2151C79D2180007A639 /* AppSetting.plist in Resources */,
 				2CF2E29E1C7AE0660007A639 /* res1thumb.png in Resources */,
 				2CD014C11C6393AF001F9514 /* person_background@3x.png in Resources */,

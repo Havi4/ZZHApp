@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EnumTypeDefine.h"
 
 @interface SleepModelChange : NSObject
 
@@ -17,7 +18,7 @@
 
 + (NSString *)chageDateFormatteToQueryString:(NSDate *)date;
 
-+ (void)filterSensorDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block;
++ (void)filterSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)type callBack:(void(^)(id callBack))block;
 
 + (void)filterSensorLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block;
 

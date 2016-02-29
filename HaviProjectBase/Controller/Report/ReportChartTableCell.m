@@ -11,7 +11,7 @@
 #import "NSDate+NSDateLogic.h"
 #import "CalendarDateCaculate.h"
 
-@interface ReportChartTableCell ()
+@interface ReportChartTableCell ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong) NewWeekReport *weekReport;
 @property (nonatomic,strong) NewWeekReport *monthReport;
@@ -19,6 +19,7 @@
 @property (nonatomic,strong) UIScrollView *dataScrollView;
 @property (nonatomic,assign) NSInteger dayNums;
 @property (nonatomic,assign) ReportViewType reportType;
+@property (nonatomic,strong) UIView *noDataImageView;
 
 @end
 
@@ -83,6 +84,24 @@
     return _monthReport;
 }
 
+- (UIView*)noDataImageView
+{
+    if (!_noDataImageView) {
+        _noDataImageView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 105)];
+        UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(59, 16, 32.5, 32.5)];
+        image.dk_imagePicker = DKImageWithNames(@"sad-75_0", @"sad-75_1");
+        [_noDataImageView addSubview:image];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 49, 150, 30)];
+        label.text= @"没有数据哦!";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:17];
+        label.dk_textColorPicker = kTextColorPicker;
+        [_noDataImageView addSubview:label];
+    }
+    return _noDataImageView;
+}
+
+
 - (void)changeXvaluel:(NSInteger )daysNum
 {
     if (self.dayNums==30) {
@@ -135,6 +154,32 @@
     // Rewrite this func in SubClass !
     //obj,请求时间
     SleepQualityModel *model = objInfo;
+    if (model.data.count == 0) {
+        switch (self.reportType) {
+            case ReportViewWeek:
+            {
+                [self.weekReport addSubview:self.noDataImageView];
+                self.noDataImageView.center = self.weekReport.center;
+                break;
+            }
+            case ReportViewMonth:{
+                [self.dataScrollView addSubview:self.noDataImageView];
+                self.noDataImageView.center = self.dataScrollView.center;
+                break;
+            }
+            case ReportViewQuater:{
+                [self.quaterReport addSubview:self.noDataImageView];
+                self.noDataImageView.center = self.quaterReport.center;
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }else{
+        [self.noDataImageView removeFromSuperview];
+        self.noDataImageView = nil;
+    }
     if (self.reportType == ReportViewWeek) {
         @weakify(self);
         [SleepModelChange filterReportData:model.data queryDate:obj callBack:^(id qualityBack, id sleepDurationBack) {
@@ -200,7 +245,7 @@
         }
     }
     CGPoint centerPoint = CGPointMake(scrollView.contentOffset.x + self.frame.size.width/2, scrollView.center.y);
-//    self.noDataImageView.center = centerPoint;
+    self.noDataImageView.center = centerPoint;
     
 }
 @end

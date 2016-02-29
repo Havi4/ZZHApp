@@ -134,7 +134,7 @@
     SensorDataModel *model = objInfo;
     [self.scrollContainerView addSubview:self.yCoorBackView];
     @weakify(self);
-    [SleepModelChange filterSensorDataWithTime:model callBack:^(id callBack) {
+    [SleepModelChange filterSensorDataWithTime:model withType:self.type callBack:^(id callBack) {
         @strongify(self);
         self.chartGraphView.heartViewLeft.values = (NSArray *)callBack;
         self.changedArr = callBack;

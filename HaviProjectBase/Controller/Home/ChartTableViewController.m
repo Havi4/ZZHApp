@@ -55,6 +55,7 @@
         _sensorShowTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height -64) style:UITableViewStylePlain];
         _sensorShowTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _sensorShowTableView.backgroundColor = [UIColor clearColor];
+        _sensorShowTableView.showsVerticalScrollIndicator = NO;
     }
     return _sensorShowTableView;
 }
@@ -65,18 +66,11 @@
     NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
     NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:1]];
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
-    /*
      NSDictionary *dic19 = @{
-     @"UUID" : self.deviceUUID,
-     @"FromDate": queryFromDate,
-     @"EndDate": queryEndDate,
+         @"UUID" : self.deviceUUID,
+         @"FromDate": queryFromDate,
+         @"EndDate": queryEndDate,
      };
-     */
-    NSDictionary *dic19 = @{
-                            @"UUID" : self.deviceUUID,
-                            @"FromDate": @"20151221",
-                            @"EndDate": @"20151222",
-                            };
     @weakify(self);
     [client requestGetSleepQualityParams:dic19 andBlock:^(SleepQualityModel *qualityModel, NSError *error) {
         @strongify(self);
@@ -93,8 +87,8 @@
     NSDictionary *dic18 = @{
                             @"UUID" : self.deviceUUID,
                             @"DataProperty":@(self.sensorType-1),
-                            @"FromDate": @"20151221",
-                            @"EndDate": @"20151222",
+                            @"FromDate": queryFromDate,
+                            @"EndDate": queryEndDate,
                             };
     [client requestGetSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
         @weakify(self);

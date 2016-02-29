@@ -105,7 +105,7 @@
     }
 }
 
-+ (void)filterSensorDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block
++ (void)filterSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType callBack:(void(^)(id callBack))block
 {
 
     @synchronized(self) {
@@ -115,7 +115,7 @@
                 NSArray *sensorInfo = sensorArr.propertyDataList;
                 NSMutableArray *arr = [[NSMutableArray alloc]init];
                 for (int i=0; i<kChartDataCount; i++) {
-                    if (sensorArr.properyType == 3) {
+                    if (SensorDataHeart == sensorType) {
                         [arr addObject:[NSNumber numberWithFloat:60]];
                     }else{
                         [arr addObject:[NSNumber numberWithFloat:15]];
@@ -151,7 +151,7 @@
                 NSArray *sensorInfo = sensorArr.propertyDataList;
                 NSMutableArray *arr = [[NSMutableArray alloc]init];
                 [sensorInfo enumerateObjectsUsingBlock:^(PropertyData *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if ([obj.propertyValue intValue]==1) {
+                    if ([obj.propertyValue intValue]==1 || [obj.propertyValue intValue]==3) {
                         [arr addObject:obj];
                     }
                 }];
