@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/PersonInfo/PersonManagerViewController.m"
-            timestampString = "478425235.605842"
+            timestampString = "478426468.957254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-saveUserInfoWithKey:andData:"
             landmarkType = "5">
          </BreakpointContent>

@@ -50,12 +50,25 @@
 {
     [self.navigationController setNavigationBarHidden:YES];
     [self.view addSubview:self.personInfoTableView];
-    _headerView = [[PersonInfoNaviView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kWindowHeight)backGroudImage:@"person_background" headerImageURL:@"http://webservice.meddo99.com:9000/v1/file/DownloadFile/meddo99.com$13122785292" title:@"匿名用户" subTitle:@""];
+    NSString *iconUrl = thirdPartyLoginIcon.length == 0?[NSString stringWithFormat:@"%@%@",@"http://webservice.meddo99.com:9000/v1/file/DownloadFile/",thirdPartyLoginUserId]:thirdPartyLoginIcon;
+    NSMutableString *userId = [[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@",thirdPartyLoginNickName]];
+    NSString *name;
+    if (userId.length == 0) {
+        name = @"匿名用户";
+    }else if ([userId intValue]>0){
+        [userId replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        name = userId;
+    }else{
+        name = userId;
+    }
+    _headerView = [[PersonInfoNaviView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kWindowHeight)backGroudImage:@"person_background" headerImageURL:iconUrl title:name subTitle:@""];
     @weakify(self);
     _headerView.scrollView = self.personInfoTableView;
     _headerView.imgActionBlock = ^(){
         @strongify(self);
-        [self tapIconImage:nil];
+        if (thirdPartyLoginIcon.length == 0) {
+            [self tapIconImage:nil];
+        }
     };
     [self.view addSubview:_headerView];
     NSArray *arr = self.navigationController.viewControllers;

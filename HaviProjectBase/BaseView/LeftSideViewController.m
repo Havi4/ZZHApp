@@ -58,11 +58,27 @@
     [self addControllerToCellArrayWithClassName:@"SleepSettingViewController"];
     [self addControllerToCellArrayWithClassName:@"MessageListViewController"];
     [self addControllerToCellArrayWithClassName:@"APPSettingViewController"];
-    /**
-     *  测试
-     */
-    _userIconImageView.userIconURL = @"http://webservice.meddo99.com:9000/v1/file/DownloadFile/meddo99.com$13122785292";
-    _userIconImageView.userName = @"havi";
+    [self setUserInfo];
+}
+
+- (void)setUserInfo
+{
+    NSMutableString *userId = [[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@",thirdPartyLoginNickName]];
+    if (userId.length == 0) {
+        _userIconImageView.userName = @"匿名用户";
+    }else if ([userId intValue]>0){
+        [userId replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        _userIconImageView.userName = userId;
+    }else{
+        _userIconImageView.userName = userId;
+    }
+    
+    
+    if (thirdPartyLoginIcon.length>0) {
+        _userIconImageView.userIconURL = thirdPartyLoginIcon;
+    }else{
+        _userIconImageView.userIconURL = [NSString stringWithFormat:@"%@%@",@"http://webservice.meddo99.com:9000/v1/file/DownloadFile/",thirdPartyLoginUserId];
+    }
 }
 
 - (void)addTableViewDataHandle
@@ -211,16 +227,5 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
     [self.listTableView reloadData];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
