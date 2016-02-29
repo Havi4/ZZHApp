@@ -335,23 +335,6 @@
     }
 }
 
-- (void)showPhoneInputView
-{
-//    self.phoneView = [[RegisterPhoneViewController alloc]init];
-//    [self.view addSubview:self.phoneView.view];
-//    CABasicAnimation *theAnimation;
-//    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
-//    theAnimation.delegate = self;
-//    theAnimation.duration = 0.4;
-//    theAnimation.repeatCount = 0;
-//    theAnimation.removedOnCompletion = FALSE;
-//    theAnimation.fillMode = kCAFillModeForwards;
-//    theAnimation.autoreverses = NO;
-//    theAnimation.fromValue = [NSNumber numberWithFloat:[UIScreen mainScreen].bounds.size.width];
-//    theAnimation.toValue = [NSNumber numberWithFloat:0];
-//    [self.phoneView.view.layer addAnimation:theAnimation forKey:@"animateLayer"];
-}
-
 //userbutton taped
 - (void)weixinButtonTaped:(UIButton *)sender
 {

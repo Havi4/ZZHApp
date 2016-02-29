@@ -136,7 +136,6 @@
     [backButton addTarget:self action:@selector(backToHomeView:) forControlEvents:UIControlEventTouchUpInside];
     backButton.layer.cornerRadius = 5;
     backButton.layer.masksToBounds = YES;
-//    [self.view addSubview:backButton];
     
     //
     [nextButton makeConstraints:^(MASConstraintMaker *make) {
@@ -187,53 +186,6 @@
 
         }
     }];
-    
-//    [WTRequestCenter getWithURL:[NSString stringWithFormat:@"%@v1/user/UserInfo?UserID=%@",BaseUrl,[dic objectForKey:@"UserID"] ] headers:header parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {
-//        NSDictionary *resposeDic = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//        HaviLog(@"检测结果是userid 是%@：%@",[dic objectForKey:@"UserID"],resposeDic);
-//        if ([[resposeDic objectForKey:@"ReturnCode"]intValue]==200) {
-//            [self.view makeToast:@"该手机号已经注册" duration:2 position:@"center"];
-//            //发现第三方帐号没有注册过
-//        }else if ([[resposeDic objectForKey:@"ReturnCode"]intValue]==10029){
-//            NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-//                                [UIImage imageNamed:@"havi1_1"],
-//                                [UIImage imageNamed:@"havi1_2"],
-//                                [UIImage imageNamed:@"havi1_3"],
-//                                [UIImage imageNamed:@"havi1_4"],
-//                                [UIImage imageNamed:@"havi1_5"]];
-//            [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-//            [MMProgressHUD showWithTitle:nil status:nil images:images];
-//            self.randomCode = [self getRandomNumber:1000 to:10000];
-//            NSString *codeMessage = [NSString stringWithFormat:@"您的验证码是%d",self.randomCode];
-//            HaviLog(@"生产的验证码是%d",self.randomCode);
-//            NSDictionary *dicPara = @{
-//                                      @"cell" : self.phoneText.text,
-//                                      @"codeMessage" : codeMessage,
-//                                      };
-//            GetInavlideCodeApi *client = [GetInavlideCodeApi shareInstance];
-//            [client getInvalideCode:dicPara witchBlock:^(NSData *receiveData) {
-//                NSString *string = [[NSString alloc]initWithData:receiveData encoding:NSUTF8StringEncoding];
-//                NSRange range = [string rangeOfString:@"<error>"];
-//                if ([[string substringFromIndex:range.location +range.length]intValue]==0) {
-//                    [MMProgressHUD dismiss];
-//                    [[MMProgressHUD sharedHUD] setDismissAnimationCompletion:^{
-//                        [self.view makeToast:@"验证码发送成功" duration:2 position:@"center"];
-//                    }];
-//                    timeToShow = 60;
-//                    [self showTime];
-//                }else{
-//                    [MMProgressHUD dismiss];
-//                    [[MMProgressHUD sharedHUD] setDismissAnimationCompletion:^{
-//                        [self.view makeToast:@"验证码发送失败,请稍候重试" duration:2 position:@"center"];
-//                    }];
-//                }
-//            }];
-//        }
-//    } failed:^(NSURLResponse *response, NSError *error) {
-//        [MMProgressHUD dismiss];
-//        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
-//    }];
-    
     
 }
 
@@ -300,15 +252,16 @@
 
 - (void)registerUser:(UIButton *)button
 {
-    if (self.phoneText.text.length == 0) {
-        [self.view makeToast:@"请输入手机号" duration:2 position:@"center"];
-        return;
-    }
-    if ([self.codeText.text intValue]!=self.randomCode || [self.codeText.text intValue]<999) {
-        [self.view makeToast:@"验证码错误" duration:2 position:@"center"];
-        return;
-    }
+//    if (self.phoneText.text.length == 0) {
+//        [self.view makeToast:@"请输入手机号" duration:2 position:@"center"];
+//        return;
+//    }
+//    if ([self.codeText.text intValue]!=self.randomCode || [self.codeText.text intValue]<999) {
+//        [self.view makeToast:@"验证码错误" duration:2 position:@"center"];
+//        return;
+//    }
     RegisterViewController *reg = [[RegisterViewController alloc]init];
+    reg.cellPhoneNum = self.phoneText.text;
     [self.navigationController pushViewController:reg animated:YES];
 }
 

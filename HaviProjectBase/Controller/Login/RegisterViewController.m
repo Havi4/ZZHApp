@@ -15,6 +15,7 @@
 #import "ImageUtil.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AppDelegate.h"
 
 @interface RegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate>
 @property (nonatomic,strong) UITextField *nameText;
@@ -171,53 +172,28 @@
         [self.view makeToast:@"请输入密码" duration:2 position:@"center"];
         return;
     }
-    
-    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                        [UIImage imageNamed:@"havi1_1"],
-                        [UIImage imageNamed:@"havi1_2"],
-                        [UIImage imageNamed:@"havi1_3"],
-                        [UIImage imageNamed:@"havi1_4"],
-                        [UIImage imageNamed:@"havi1_5"]];
-    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-    [MMProgressHUD showWithTitle:nil status:nil images:images];
     NSDictionary *dic = @{
-                          @"CellPhone": self.cellPhoneNum, //手机号码
+                          @"CellPhone": @"", //手机号码
                           @"Email": @"", //邮箱地址，可留空，扩展注册用
                           @"Password": self.passWordText.text ,//传递明文，服务器端做加密存储
                           @"UserValidationServer" : kMeddoPlatform,
-                          @"UserIdOriginal":@""
+                          @"UserIdOriginal":self.cellPhoneNum,
                           };
-    NSDictionary *header = @{
-                             @"AccessToken":@"123456789"
-                             };
-//    [WTRequestCenter postWithURL:[NSString stringWithFormat:@"%@v1/user/UserRegister",BaseUrl] header:header parameters:dic finished:^(NSURLResponse *response, NSData *data) {
-//        NSDictionary *responseDic = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//        if ([[responseDic objectForKey:@"ReturnCode"]intValue]==10005) {
-//            [MMProgressHUD dismissWithError:@"该手机号已注册" afterDelay:2];
-//        }else if([[responseDic objectForKey:@"ReturnCode"]intValue]==200){
-//            [MMProgressHUD dismiss];
-//            [[MMProgressHUD sharedHUD] setDismissAnimationCompletion:^{
-//                [self.view makeToast:@"注册成功" duration:2 position:@"center"];
-//            }];
-//            self.registerSuccessed(1);
-//            thirdPartyLoginPlatform = MeddoPlatform;
-//            thirdPartyLoginUserId = [responseDic objectForKey:@"UserID"];
-//            if (self.iconData) {
-//                [self uploadWithImageData:self.iconData withUserId:thirdPartyLoginUserId];
-//            }
-//
-//            NSRange range = [thirdPartyLoginUserId rangeOfString:@"$"];
-//            thirdPartyLoginNickName = [[responseDic objectForKey:@"UserID"] substringFromIndex:range.location+range.length];
-//            thirdPartyLoginIcon = @"";
-//            thirdPartyLoginToken = @"";
-//            [UserManager setGlobalOauth];
-//        }else{
-//            [MMProgressHUD dismiss];
-//        }
-//    } failed:^(NSURLResponse *response, NSError *error) {
-//        [MMProgressHUD dismiss];
-//        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
-//    }];
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestAddUserWithParams:dic andBlock:^(AddUserModel *userModel, NSError *error) {
+        thirdPartyLoginPlatform = kMeddoPlatform;
+        thirdPartyLoginUserId = userModel.userId;
+        NSRange range = [thirdPartyLoginUserId rangeOfString:@"$"];
+        thirdPartyLoginNickName = [userModel.userId substringFromIndex:range.location+range.length];
+        thirdPartyLoginIcon = @"";
+        thirdPartyLoginToken = @"";
+        [UserManager setGlobalOauth];
+        if (self.iconData) {
+            [self uploadWithImageData:self.iconData withUserId:thirdPartyLoginUserId];
+        }
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        [app setRootViewController];
+    }];
     
 }
 
