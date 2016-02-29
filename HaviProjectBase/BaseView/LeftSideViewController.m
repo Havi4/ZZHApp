@@ -73,7 +73,7 @@
             ((DataShowTableViewCell *)cell).buttonTaped = @selector(tapReportView:);
             [cell configure:cell customObj:item indexPath:indexPath];
         }else{
-            [cell configure:cell customObj:item indexPath:indexPath];
+            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:nil];
         }
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
@@ -182,6 +182,11 @@
         UIViewController *controller = class.new;
         self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];
     }
+    if (indexPath.row == 4) {
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:kBadgeKey];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        [self.listTableView reloadData];
+    }
     
 }
 
@@ -193,6 +198,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showBadageValue:(NSString *)badageValue
+{
+    NSInteger appBadage =  (int)[[NSUserDefaults standardUserDefaults] integerForKey:kBadgeKey];
+    appBadage +=1;
+    [[NSUserDefaults standardUserDefaults] setInteger:appBadage forKey:kBadgeKey];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    [self.listTableView reloadData];
 }
 
 

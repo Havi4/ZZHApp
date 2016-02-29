@@ -7,6 +7,7 @@
 //
 
 #import "LeftSideTableViewCell.h"
+#import "UIBadgeView.h"
 
 @interface LeftSideTableViewCell ()
 {
@@ -14,6 +15,9 @@
     UILabel *_leftTitleLabel;
     UIImageView *_leftArrowImage;
 }
+
+@property (nonatomic, strong) UIBadgeView *badageView;
+
 @end
 
 @implementation LeftSideTableViewCell
@@ -31,6 +35,7 @@
         [self addSubview:_leftArrowImage];
         [self addSubview:_leftIconImage];
         [self addSubview:_leftTitleLabel];
+        [_leftTitleLabel addSubview:_badageView];
         [_leftIconImage makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(20);
@@ -54,11 +59,33 @@
     return self;
 }
 
+- (UIBadgeView *)badageView
+{
+    if (_badageView == nil) {
+        NSInteger appBadage =  (int)[[NSUserDefaults standardUserDefaults] integerForKey:kBadgeKey];
+        _badageView = [UIBadgeView viewWithBadgeTip:[NSString stringWithFormat:@"%d",(int)appBadage]];
+    }
+    return _badageView;
+}
+
 - (void)configure:(UITableViewCell *)cell
         customObj:(id)obj
         indexPath:(NSIndexPath *)indexPath
+    withOtherInfo:(id)objInfo
 {
     // Rewrite this func in SubClass !
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kBadgeKey:@0}];
+    NSInteger appBadage =  (int)[[NSUserDefaults standardUserDefaults] integerForKey:kBadgeKey];
+    if (appBadage > 0) {
+        if (indexPath.row == 4) {
+            [_leftTitleLabel addSubview:self.badageView];
+            self.badageView.badgeValue = [NSString stringWithFormat:@"%d",(int)appBadage];
+            [self.badageView setCenter:CGPointMake(80, 15)];
+        }
+    }else{
+        [self.badageView removeFromSuperview];
+        self.badageView = nil;
+    }
     NSDictionary *dic = obj;
     _leftIconImage.dk_imagePicker = DKImageWithNames([NSString stringWithFormat:@"%@0",[dic objectForKey:@"iconTitle"]], [NSString stringWithFormat:@"%@1",[dic objectForKey:@"iconTitle"]]);
     _leftTitleLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"iconName"]];
@@ -72,4 +99,7 @@
     // Rewrite this func in SubClass if necessary
     return 49.0f; // default cell height
 }
+
+
+
 @end

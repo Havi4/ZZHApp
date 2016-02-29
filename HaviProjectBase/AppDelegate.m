@@ -15,6 +15,7 @@
 #import "WXApi.h"
 #import "WeiboSDK.h"
 #import "ThirdLoginCallBackManager.h"
+#import "JPushNotiManager.h"
 
 @interface AppDelegate ()
 
@@ -28,10 +29,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self setAppSetting];
-    [self registerLocalNotification];
+//    [self registerLocalNotification];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [self setThirdAppSetting];
+    [self setThirdAppSettingWith:launchOptions];
     
     if ([UserManager GetUserObj]) {
         [self setRootViewController];
@@ -66,7 +67,7 @@
     self.window.rootViewController = self.sideMenuController;
 }
 
-- (void)setThirdAppSetting
+- (void)setThirdAppSettingWith:(NSDictionary *)launchOptions
 {
     
     [[ThirdLoginCallBackManager sharedInstance]initTencentCallBackHandle];
@@ -76,6 +77,12 @@
     //向微信注册
     [WXApi registerApp:kWXAPPKey];
     //因为有闹钟的印象，清楚闹钟。
+    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                   UIRemoteNotificationTypeSound |
+                                                   UIRemoteNotificationTypeAlert)
+                                       categories:nil];
+    [APService setupWithOption:launchOptions];
+    [APService crashLogON];
 }
 
 - (void)registerLocalNotification
@@ -137,6 +144,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [application setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -159,9 +167,6 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification
 
 {
-    
-    application.applicationIconBadgeNumber -= 1;
-    
 }
 
 #pragma mark 第三方回调函数
@@ -192,6 +197,22 @@
     return YES;
 }
 
+#pragma mark 推送
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [APService registerDeviceToken:deviceToken];
+    registeredID = [APService registrationID];
+}
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    JPushNotiManager *manager = [JPushNotiManager sharedInstance];
+    [manager handPushApplication:application receiveRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:
+(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    JPushNotiManager *manager = [JPushNotiManager sharedInstance];
+    [manager handPushApplication:application receiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+}
 
 @end

@@ -176,6 +176,12 @@
 		2C9EF4AC1C82FBC3000704E2 /* WTURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4A41C82FBC3000704E2 /* WTURLRequestSerialization.m */; };
 		2C9EF4AD1C82FBC3000704E2 /* WTURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4A61C82FBC3000704E2 /* WTURLSessionManager.m */; };
 		2C9EF4B01C832EC8000704E2 /* RegisterPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4AF1C832EC8000704E2 /* RegisterPhoneViewController.m */; };
+		2C9EF4B41C83D97B000704E2 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9EF4B31C83D97B000704E2 /* libPushSDK-1.8.8.a */; };
+		2C9EF4B71C83D9BD000704E2 /* JPushNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4B61C83D9BD000704E2 /* JPushNotiManager.m */; };
+		2C9EF4B91C83DDC6000704E2 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4B81C83DDC6000704E2 /* PushConfig.plist */; };
+		2C9EF4BB1C83E3BA000704E2 /* leaveAlert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4BA1C83E3BA000704E2 /* leaveAlert.wav */; };
+		2C9EF4BE1C83EA4A000704E2 /* UIBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4BD1C83EA4A000704E2 /* UIBadgeView.m */; };
+		2C9EF4C31C83EA80000704E2 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4C21C83EA80000704E2 /* NSString+Common.m */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -691,6 +697,16 @@
 		2C9EF4A61C82FBC3000704E2 /* WTURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTURLSessionManager.m; sourceTree = "<group>"; };
 		2C9EF4AE1C832EC8000704E2 /* RegisterPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPhoneViewController.h; sourceTree = "<group>"; };
 		2C9EF4AF1C832EC8000704E2 /* RegisterPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPhoneViewController.m; sourceTree = "<group>"; };
+		2C9EF4B21C83D97B000704E2 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		2C9EF4B31C83D97B000704E2 /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
+		2C9EF4B51C83D9BD000704E2 /* JPushNotiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotiManager.h; sourceTree = "<group>"; };
+		2C9EF4B61C83D9BD000704E2 /* JPushNotiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPushNotiManager.m; sourceTree = "<group>"; };
+		2C9EF4B81C83DDC6000704E2 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		2C9EF4BA1C83E3BA000704E2 /* leaveAlert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = leaveAlert.wav; sourceTree = "<group>"; };
+		2C9EF4BC1C83EA4A000704E2 /* UIBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBadgeView.h; sourceTree = "<group>"; };
+		2C9EF4BD1C83EA4A000704E2 /* UIBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBadgeView.m; sourceTree = "<group>"; };
+		2C9EF4C11C83EA80000704E2 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
+		2C9EF4C21C83EA80000704E2 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -1064,6 +1080,7 @@
 				5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */,
 				2CF2E2A21C7AE0E80007A639 /* TencentOpenAPI.framework in Frameworks */,
 				2CF2E29B1C7AE0660007A639 /* libWeChatSDK.a in Frameworks */,
+				2C9EF4B41C83D97B000704E2 /* libPushSDK-1.8.8.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1369,6 +1386,15 @@
 				2C9EF4A61C82FBC3000704E2 /* WTURLSessionManager.m */,
 			);
 			path = ThirdLoginSession;
+			sourceTree = "<group>";
+		};
+		2C9EF4B11C83D97B000704E2 /* JPushlib */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF4B21C83D97B000704E2 /* APService.h */,
+				2C9EF4B31C83D97B000704E2 /* libPushSDK-1.8.8.a */,
+			);
+			path = JPushlib;
 			sourceTree = "<group>";
 		};
 		2CD0146E1C62F5C6001F9514 /* common */ = {
@@ -1773,6 +1799,7 @@
 				2C5872701C7AFC63001C2F3A /* LaunchScreen.storyboard */,
 				2CD75B241C61B57000E7E076 /* Assets.xcassets */,
 				2CD75B291C61B57000E7E076 /* Info.plist */,
+				2C9EF4B81C83DDC6000704E2 /* PushConfig.plist */,
 				2CD014811C6335F4001F9514 /* LeftSidePlist.plist */,
 				2CD014DB1C64CA1E001F9514 /* PersonInfoPlist.plist */,
 				2CF2E1B61C76D9FE0007A639 /* ReturnCode.plist */,
@@ -1783,6 +1810,7 @@
 				2C9EF4831C81675B000704E2 /* ReportTitle.plist */,
 				2CF2E2271C79DB5D0007A639 /* protocol.html */,
 				2CF2E2061C7972410007A639 /* alarmSound.wav */,
+				2C9EF4BA1C83E3BA000704E2 /* leaveAlert.wav */,
 				2CD75B181C61B57000E7E076 /* Supporting Files */,
 			);
 			path = HaviProjectBase;
@@ -1844,6 +1872,10 @@
 				2C9EF4381C803146000704E2 /* UIColor+expanded.m */,
 				2C9EF3891C7DE662000704E2 /* CAShapeLayer+Night.h */,
 				2C9EF38A1C7DE662000704E2 /* CAShapeLayer+Night.m */,
+				2C9EF4BC1C83EA4A000704E2 /* UIBadgeView.h */,
+				2C9EF4BD1C83EA4A000704E2 /* UIBadgeView.m */,
+				2C9EF4C11C83EA80000704E2 /* NSString+Common.h */,
+				2C9EF4C21C83EA80000704E2 /* NSString+Common.m */,
 				2CD0150C1C70298E001F9514 /* ImageUtil.h */,
 				2CD0150D1C70298E001F9514 /* ImageUtil.m */,
 				2CF2E1761C75B5A40007A639 /* RexpUntil.h */,
@@ -1858,6 +1890,8 @@
 				2C9EF4671C805CCB000704E2 /* CalendarDateCaculate.m */,
 				2C9EF4941C82F8CA000704E2 /* ThirdLoginCallBackManager.h */,
 				2C9EF4951C82F8CA000704E2 /* ThirdLoginCallBackManager.m */,
+				2C9EF4B51C83D9BD000704E2 /* JPushNotiManager.h */,
+				2C9EF4B61C83D9BD000704E2 /* JPushNotiManager.m */,
 			);
 			name = Category;
 			path = HaviProjectBase/Category;
@@ -2279,6 +2313,7 @@
 		2CF2E2811C7AE0660007A639 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF4B11C83D97B000704E2 /* JPushlib */,
 				2CF2E2A01C7AE0E80007A639 /* Tencent */,
 				2CF2E28F1C7AE0660007A639 /* WeChatSDK_1.5_OnlyIphone */,
 			);
@@ -2496,6 +2531,7 @@
 				2C9EF3471C7D7B51000704E2 /* getup_apng_0.apng in Resources */,
 				2CF2E24A1C7AB7E80007A639 /* digitCell.psd in Resources */,
 				2CD014991C634001001F9514 /* icon_setting_1@2x.png in Resources */,
+				2C9EF4B91C83DDC6000704E2 /* PushConfig.plist in Resources */,
 				2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */,
 				2C9EF4401C8037DB000704E2 /* ic_getup_0.png in Resources */,
 				2C9EF2E61C7C43A1000704E2 /* btn_point_1@2x.png in Resources */,
@@ -2572,6 +2608,7 @@
 				2CF2E1EB1C78682B0007A639 /* SleepSetting.plist in Resources */,
 				2C9EF3BF1C7EFB79000704E2 /* icon_heart_rate_0@2x.png in Resources */,
 				2C9EF3C71C7EFBCA000704E2 /* icon_heart_rate_1@2x.png in Resources */,
+				2C9EF4BB1C83E3BA000704E2 /* leaveAlert.wav in Resources */,
 				2CF2E1C41C7701710007A639 /* edit_double_bed@2x.png in Resources */,
 				2C9EF2CA1C7C1031000704E2 /* navi_bg_night_1@2x.png in Resources */,
 				2CF2E23A1C7AB15B0007A639 /* common_green_checkbox@2x.png in Resources */,
@@ -2701,6 +2738,7 @@
 				2CF2E1581C7593FC0007A639 /* ReNameDeviceNameViewController.m in Sources */,
 				2CF2E1AE1C760A340007A639 /* UIActionSheet+Block.m in Sources */,
 				2CD75B731C61C2D000E7E076 /* FriendListModel.m in Sources */,
+				2C9EF4B71C83D9BD000704E2 /* JPushNotiManager.m in Sources */,
 				2CD0150B1C7028DC001F9514 /* JDStatusBarView.m in Sources */,
 				2C9EF3F61C7F0B99000704E2 /* TurnChartView.m in Sources */,
 				2C9EF4A71C82FBC3000704E2 /* WeiBoAPI.m in Sources */,
@@ -2837,6 +2875,7 @@
 				2CD014B91C6355F1001F9514 /* PersonInfoNaviView.m in Sources */,
 				2C9EF3881C7DAA8C000704E2 /* SleepModelChange.m in Sources */,
 				2C9EF47C1C80B791000704E2 /* CHTumblrMenuView.m in Sources */,
+				2C9EF4BE1C83EA4A000704E2 /* UIBadgeView.m in Sources */,
 				2C9EF4011C7FE23E000704E2 /* MPPlot.m in Sources */,
 				2C58727D1C7B17BC001C2F3A /* GetInavlideCodeApi.m in Sources */,
 				2C9EF3771C7D996B000704E2 /* UIImage+CL.m in Sources */,
@@ -2866,6 +2905,7 @@
 				2CD75B7A1C61C2D000E7E076 /* UserInfoDetailModel.m in Sources */,
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,
 				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,
+				2C9EF4C31C83EA80000704E2 /* NSString+Common.m in Sources */,
 				2C5872871C7B4D5D001C2F3A /* RegisterViewController.m in Sources */,
 				2C9EF43C1C8033CA000704E2 /* ChartTableDataViewCell.m in Sources */,
 				2C9EF45B1C804C45000704E2 /* ReportDataShowViewController.m in Sources */,
@@ -2945,7 +2985,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Pan (EJXFR28D5Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: joseph.dai@ihotkeys.com (W2B87YL55J)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2967,7 +3007,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "d744a35c-eeed-4311-a520-2246156dcb45";
+				PROVISIONING_PROFILE = "ff107db2-c8af-41e6-a40c-a1c9a041846b";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3004,7 +3044,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "d744a35c-eeed-4311-a520-2246156dcb45";
+				PROVISIONING_PROFILE = "ff107db2-c8af-41e6-a40c-a1c9a041846b";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3032,6 +3072,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libWeiboSDK",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/WeChatSDK_1.5_OnlyIphone",
+					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3061,6 +3102,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libWeiboSDK",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/WeChatSDK_1.5_OnlyIphone",
+					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";

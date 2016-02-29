@@ -28,6 +28,7 @@
 #define kWBAPPKey @"2199355574"
 #define kWBRedirectURL @"http://www.meddo.com"
 
+#define kBadgeKey [NSString stringWithFormat:@"badge%@",thirdPartyLoginUserId]
 
 
 #define StatusbarSize 20

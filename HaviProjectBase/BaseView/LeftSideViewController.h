@@ -10,4 +10,6 @@
 
 @interface LeftSideViewController : BaseViewController
 
+- (void)showBadageValue:(NSString *)badageValue;
+
 @end
