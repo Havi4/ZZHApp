@@ -184,6 +184,15 @@
 		2C9EF4C31C83EA80000704E2 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4C21C83EA80000704E2 /* NSString+Common.m */; };
 		2C9EF4C51C844379000704E2 /* sad-75_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4C41C844379000704E2 /* sad-75_0.png */; };
 		2C9EF4C71C844388000704E2 /* sad-75_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4C61C844388000704E2 /* sad-75_1.png */; };
+		2C9EF4DB1C844FA3000704E2 /* CalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4CA1C844FA3000704E2 /* CalendarDayCell.m */; };
+		2C9EF4DC1C844FA3000704E2 /* CalendarDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4CC1C844FA3000704E2 /* CalendarDayModel.m */; };
+		2C9EF4DD1C844FA3000704E2 /* CalendarHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4CE1C844FA3000704E2 /* CalendarHomeViewController.m */; };
+		2C9EF4DE1C844FA3000704E2 /* CalendarLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4D01C844FA3000704E2 /* CalendarLogic.m */; };
+		2C9EF4DF1C844FA3000704E2 /* CalendarMonthCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4D21C844FA3000704E2 /* CalendarMonthCollectionViewLayout.m */; };
+		2C9EF4E01C844FA3000704E2 /* CalendarMonthHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4D41C844FA3000704E2 /* CalendarMonthHeaderView.m */; };
+		2C9EF4E11C844FA3000704E2 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4D61C844FA3000704E2 /* CalendarViewController.m */; };
+		2C9EF4E21C844FA3000704E2 /* chack.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4D71C844FA3000704E2 /* chack.png */; };
+		2C9EF4E31C844FA3000704E2 /* NSDate+WQCalendarLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4DA1C844FA3000704E2 /* NSDate+WQCalendarLogic.m */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -711,6 +720,24 @@
 		2C9EF4C21C83EA80000704E2 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
 		2C9EF4C41C844379000704E2 /* sad-75_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sad-75_0.png"; sourceTree = "<group>"; };
 		2C9EF4C61C844388000704E2 /* sad-75_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sad-75_1.png"; sourceTree = "<group>"; };
+		2C9EF4C91C844FA3000704E2 /* CalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDayCell.h; sourceTree = "<group>"; };
+		2C9EF4CA1C844FA3000704E2 /* CalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDayCell.m; sourceTree = "<group>"; };
+		2C9EF4CB1C844FA3000704E2 /* CalendarDayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDayModel.h; sourceTree = "<group>"; };
+		2C9EF4CC1C844FA3000704E2 /* CalendarDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDayModel.m; sourceTree = "<group>"; };
+		2C9EF4CD1C844FA3000704E2 /* CalendarHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarHomeViewController.h; sourceTree = "<group>"; };
+		2C9EF4CE1C844FA3000704E2 /* CalendarHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarHomeViewController.m; sourceTree = "<group>"; };
+		2C9EF4CF1C844FA3000704E2 /* CalendarLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarLogic.h; sourceTree = "<group>"; };
+		2C9EF4D01C844FA3000704E2 /* CalendarLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarLogic.m; sourceTree = "<group>"; };
+		2C9EF4D11C844FA3000704E2 /* CalendarMonthCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarMonthCollectionViewLayout.h; sourceTree = "<group>"; };
+		2C9EF4D21C844FA3000704E2 /* CalendarMonthCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMonthCollectionViewLayout.m; sourceTree = "<group>"; };
+		2C9EF4D31C844FA3000704E2 /* CalendarMonthHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarMonthHeaderView.h; sourceTree = "<group>"; };
+		2C9EF4D41C844FA3000704E2 /* CalendarMonthHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMonthHeaderView.m; sourceTree = "<group>"; };
+		2C9EF4D51C844FA3000704E2 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		2C9EF4D61C844FA3000704E2 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		2C9EF4D71C844FA3000704E2 /* chack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chack.png; sourceTree = "<group>"; };
+		2C9EF4D81C844FA3000704E2 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		2C9EF4D91C844FA3000704E2 /* NSDate+WQCalendarLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WQCalendarLogic.h"; sourceTree = "<group>"; };
+		2C9EF4DA1C844FA3000704E2 /* NSDate+WQCalendarLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WQCalendarLogic.m"; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -1405,6 +1432,31 @@
 			path = JPushlib;
 			sourceTree = "<group>";
 		};
+		2C9EF4C81C844FA3000704E2 /* ZFCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF4C91C844FA3000704E2 /* CalendarDayCell.h */,
+				2C9EF4CA1C844FA3000704E2 /* CalendarDayCell.m */,
+				2C9EF4CB1C844FA3000704E2 /* CalendarDayModel.h */,
+				2C9EF4CC1C844FA3000704E2 /* CalendarDayModel.m */,
+				2C9EF4CD1C844FA3000704E2 /* CalendarHomeViewController.h */,
+				2C9EF4CE1C844FA3000704E2 /* CalendarHomeViewController.m */,
+				2C9EF4CF1C844FA3000704E2 /* CalendarLogic.h */,
+				2C9EF4D01C844FA3000704E2 /* CalendarLogic.m */,
+				2C9EF4D11C844FA3000704E2 /* CalendarMonthCollectionViewLayout.h */,
+				2C9EF4D21C844FA3000704E2 /* CalendarMonthCollectionViewLayout.m */,
+				2C9EF4D31C844FA3000704E2 /* CalendarMonthHeaderView.h */,
+				2C9EF4D41C844FA3000704E2 /* CalendarMonthHeaderView.m */,
+				2C9EF4D51C844FA3000704E2 /* CalendarViewController.h */,
+				2C9EF4D61C844FA3000704E2 /* CalendarViewController.m */,
+				2C9EF4D71C844FA3000704E2 /* chack.png */,
+				2C9EF4D81C844FA3000704E2 /* Color.h */,
+				2C9EF4D91C844FA3000704E2 /* NSDate+WQCalendarLogic.h */,
+				2C9EF4DA1C844FA3000704E2 /* NSDate+WQCalendarLogic.m */,
+			);
+			path = ZFCalendar;
+			sourceTree = "<group>";
+		};
 		2CD0146E1C62F5C6001F9514 /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1634,6 +1686,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF4C81C844FA3000704E2 /* ZFCalendar */,
 				2C9EF4761C80B791000704E2 /* TumblrMenu */,
 				2C9EF4031C7FE30B000704E2 /* MPBView */,
 				2C9EF3FB1C7FE23E000704E2 /* MPGraph */,
@@ -2480,6 +2533,7 @@
 				2C9EF3C51C7EFBCA000704E2 /* icon_breathe_1@2x.png in Resources */,
 				2CD014EA1C64CD22001F9514 /* icon_phone1@2x.png in Resources */,
 				2CD014E71C64CD22001F9514 /* gender@2x.png in Resources */,
+				2C9EF4E21C844FA3000704E2 /* chack.png in Resources */,
 				2CF2E24F1C7AB7E80007A639 /* papasscode_marker.png in Resources */,
 				2CF2E1261C74749B0007A639 /* icon_double@2x.png in Resources */,
 				2CF2E1DA1C7739760007A639 /* message_back@2x.png in Resources */,
@@ -2751,14 +2805,17 @@
 				2CD0150B1C7028DC001F9514 /* JDStatusBarView.m in Sources */,
 				2C9EF3F61C7F0B99000704E2 /* TurnChartView.m in Sources */,
 				2C9EF4A71C82FBC3000704E2 /* WeiBoAPI.m in Sources */,
+				2C9EF4DD1C844FA3000704E2 /* CalendarHomeViewController.m in Sources */,
 				2CF2E1921C75C6D30007A639 /* MMPopupitem.m in Sources */,
 				2CD014BD1C6355F1001F9514 /* PersonManagerViewController.m in Sources */,
 				2CF2E2341C7AAEB00007A639 /* ThemeSelectConfigureObj.m in Sources */,
 				2CD014F91C6E3B7F001F9514 /* EditCellInfoDelegate.m in Sources */,
 				2C9EF3821C7DA15A000704E2 /* UILabel+FlickerNumber.m in Sources */,
+				2C9EF4DE1C844FA3000704E2 /* CalendarLogic.m in Sources */,
 				2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */,
 				2CF2E1941C75C6D30007A639 /* MMPopupWindow.m in Sources */,
 				2C9EF4731C80B692000704E2 /* NSDate+NSDateLogic.m in Sources */,
+				2C9EF4E01C844FA3000704E2 /* CalendarMonthHeaderView.m in Sources */,
 				2CF2E1B01C760A340007A639 /* LBXAlertAction.m in Sources */,
 				2CF2E2021C78A82C0007A639 /* NSDate+DateTools.m in Sources */,
 				2C9EF4811C816051000704E2 /* ReportDataTableViewCell.m in Sources */,
@@ -2805,15 +2862,18 @@
 				2CD015291C7076D4001F9514 /* MyDeviceListViewController.m in Sources */,
 				2C9EF4551C804B9F000704E2 /* ReportDataDelegate.m in Sources */,
 				2CF2E2011C78A82C0007A639 /* DTTimePeriodGroup.m in Sources */,
+				2C9EF4E31C844FA3000704E2 /* NSDate+WQCalendarLogic.m in Sources */,
 				2CF2E21C1C79D6600007A639 /* ModifyPassWordViewController.m in Sources */,
 				2CF2E1721C75B3FB0007A639 /* XHRealTimeBlur.m in Sources */,
 				2C9EF3F01C7F0B99000704E2 /* PNBar.m in Sources */,
 				2CD015351C7080FE001F9514 /* MyDeviceDelegate.m in Sources */,
+				2C9EF4DC1C844FA3000704E2 /* CalendarDayModel.m in Sources */,
 				2C9EF3F31C7F0B99000704E2 /* QuaterReportView.m in Sources */,
 				2C9EF4681C805CCB000704E2 /* CalendarDateCaculate.m in Sources */,
 				2CD015011C6FFC3A001F9514 /* Toast+UIView.m in Sources */,
 				2CF2E1C81C7711350007A639 /* MessageListViewController.m in Sources */,
 				2C9EF2D21C7C18C4000704E2 /* LXActivity.m in Sources */,
+				2C9EF4DB1C844FA3000704E2 /* CalendarDayCell.m in Sources */,
 				2CD0147A1C62FDCB001F9514 /* LeftSideTableDataDelegate.m in Sources */,
 				2C58728A1C7B4DAF001C2F3A /* btRippleButtton.m in Sources */,
 				2CD015091C7028DC001F9514 /* JDStatusBarNotification.m in Sources */,
@@ -2877,6 +2937,7 @@
 				2C9EF4721C80B692000704E2 /* MonthCalenderView.m in Sources */,
 				2C9EF3851C7DA1AB000704E2 /* CenterGaugeTableViewCell.m in Sources */,
 				2CF2E1751C75B4490007A639 /* SearchUserTableViewCell.m in Sources */,
+				2C9EF4DF1C844FA3000704E2 /* CalendarMonthCollectionViewLayout.m in Sources */,
 				2CF2E13D1C7579440007A639 /* ReactiveSingleViewController.m in Sources */,
 				2CD75B9A1C61F62B00E7E076 /* UIViewController+JASidePanel.m in Sources */,
 				2CD015381C70BD92001F9514 /* MyDeviceTableViewCell.m in Sources */,
@@ -2895,6 +2956,7 @@
 				2CF2E1371C747D920007A639 /* FriendDeviceDelegate.m in Sources */,
 				2CD75B711C61C2D000E7E076 /* BeingRequestModel.m in Sources */,
 				2C9EF2DE1C7C2811000704E2 /* CenterDataShowViewController.m in Sources */,
+				2C9EF4E11C844FA3000704E2 /* CalendarViewController.m in Sources */,
 				2CF2E1BD1C76E4360007A639 /* EditUUIDView.m in Sources */,
 				2C9EF4961C82F8CA000704E2 /* ThirdLoginCallBackManager.m in Sources */,
 				2C9EF3201C7CA18A000704E2 /* CenterDataTableViewCell.m in Sources */,

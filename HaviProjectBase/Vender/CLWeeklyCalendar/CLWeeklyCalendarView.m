@@ -130,6 +130,10 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     if (!_calendarView) {
         _calendarView = [[UIImageView alloc]initWithFrame:CGRectMake(WEATHER_ICON_LEFT+WEATHER_ICON_WIDTH+DATE_LABEL_INFO_WIDTH-5, 10, 20, 20)];
         _calendarView.image = [UIImage imageNamed:@"menology_1"];
+        UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCalendar:)];
+        _calendarView.userInteractionEnabled = YES;
+
+        [_calendarView addGestureRecognizer:singleFingerTap];
     }
     return _calendarView;
 }
@@ -285,6 +289,14 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     [self adjustDailyInfoLabelAndWeatherIcon : NO];
     self.dateInfoLabel.text = day;
 }
+
+- (void)tapCalendar:(UIGestureRecognizer *)tap
+{
+    if (self.tapedCalendar) {
+        self.tapedCalendar(1);
+    }
+}
+
 -(void)dailyInfoViewDidClick: (UIGestureRecognizer *)tap
 {
     //Click to jump back to today

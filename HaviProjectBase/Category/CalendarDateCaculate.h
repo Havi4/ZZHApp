@@ -20,6 +20,8 @@ typedef enum {
 @property (nonatomic,strong) NSDateFormatter *dateFormmatter;
 @property (nonatomic,strong) NSDateFormatter *dateFormmatterOne;
 @property (nonatomic,strong) NSDateFormatter *dateMonthFormmatter;
+@property (nonatomic, strong) NSDateFormatter *dateFormmatterBase;//格式化日期
+
 @property (nonatomic,strong) NSCalendar *calender;
 @property (nonatomic,strong) NSTimeZone *tmZone;
 @property (nonatomic,strong) NSDateComponents *dateComponents;

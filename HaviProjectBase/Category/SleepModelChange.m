@@ -17,10 +17,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         SleepQualityModel *model = obj;
         NSMutableArray *arr = [NSMutableArray arrayWithArray:model.data];
-//        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
-//        NSString *subString = [selectString substringToIndex:10];
-        //测试
-        NSString *subString = @"2015-12-21";
+        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
+        NSString *subString = [selectString substringToIndex:10];
         __block QualityDetailModel *detail;
         [arr enumerateObjectsUsingBlock:^( QualityDetailModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.date isEqualToString:subString]) {
@@ -72,9 +70,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         SleepQualityModel *model = obj;
         NSMutableArray *arr = [NSMutableArray arrayWithArray:model.data];
-//        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
-//        NSString *subString = [selectString substringToIndex:10];
-        NSString *subString = @"2015-12-21";
+        NSString *selectString = [NSString stringWithFormat:@"%@",selectedDateToUse];
+        NSString *subString = [selectString substringToIndex:10];
         __block QualityDetailModel *detail;
         [arr enumerateObjectsUsingBlock:^( QualityDetailModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.date isEqualToString:subString]) {

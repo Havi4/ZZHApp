@@ -10,6 +10,8 @@
 #import "BaseViewContainerView.h"
 #import "CenterDataShowViewController.h"
 #import "CLWeeklyCalendarView.h"
+#import "CalendarHomeViewController.h"
+#import "CalendarDateCaculate.h"
 
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @interface CenterViewController ()<CLWeeklyCalendarViewDelegate>
@@ -17,6 +19,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @property (nonatomic, strong) BaseViewContainerView *containerDataView;
 @property (nonatomic, strong) DeviceList *activeDeviceInfo;
 @property (nonatomic, strong) CLWeeklyCalendarView* calendarView;
+@property (nonatomic, strong) CalendarHomeViewController *chvc;//日历包括农历
 
 @property (nonatomic, strong) UIButton *leftMenuButton;
 @property (nonatomic, strong) UIButton *rightMenuButton;
@@ -154,9 +157,48 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     if(!_calendarView){
         _calendarView = [[CLWeeklyCalendarView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-CALENDER_VIEW_HEIGHT, self.view.bounds.size.width, CALENDER_VIEW_HEIGHT)];
         _calendarView.delegate = self;
+        @weakify(self);
+        _calendarView.tapedCalendar = ^(NSInteger index){
+            @strongify(self);
+            [self showCalendar];
+        };
     }
     return _calendarView;
 }
+
+#pragma mark setter
+- (CalendarHomeViewController *)chvc
+{
+    if (_chvc == nil) {
+        _chvc = [[CalendarHomeViewController alloc]init];
+        _chvc.view.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.008 green:0.114 blue:0.227 alpha:1.00], [UIColor colorWithRed:0.322 green:0.592 blue:0.761 alpha:1.00]);
+        _chvc.calendartitle = @"日历";
+        NSDate *date = [[NSDate date]dateByAddingHours:8];
+        NSDate *oldDate = [[CalendarDateCaculate sharedInstance].dateFormmatterBase dateFromString:@"20150101"];
+        int day = (int)[date daysFrom:oldDate]+1;
+        [_chvc setAirPlaneToDay:day ToDateforString:[NSString stringWithFormat:@"2015-01-01"]];//
+    }
+    return _chvc;
+}
+
+
+- (void)showCalendar
+{
+    @weakify(self);
+    self.chvc.calendarblock = ^(CalendarDayModel *model){
+        NSDate *selectedDate = [model date];
+        @strongify(self);
+        selectedDateToUse = selectedDate;
+        [self.calendarView redrawToDate:selectedDate];
+        
+    };
+    self.navigationController.navigationBarHidden = NO;
+    
+    [self.navigationController.navigationBar setBackgroundImage:selectedThemeIndex == 0 ? [UIImage imageNamed:@"navigation_bar_bg_0"]:[UIImage imageNamed:@"navigation_bar_bg_1"] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.dk_tintColorPicker= DKColorWithColors([UIColor colorWithRed:0.008 green:0.114 blue:0.227 alpha:1.00], [UIColor colorWithRed:0.322 green:0.592 blue:0.761 alpha:1.00]);
+    [self.navigationController pushViewController:self.chvc animated:YES];
+}
+
 #pragma mark calendar delegate
 - (NSDictionary *)CLCalendarBehaviorAttributes
 {

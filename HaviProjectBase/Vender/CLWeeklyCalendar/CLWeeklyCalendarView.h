@@ -30,6 +30,8 @@ extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage co
 @property (nonatomic, weak) id<CLWeeklyCalendarViewDelegate> delegate;
 @property (nonatomic, strong) NSDate *selectedDate;
 
+@property (nonatomic, copy) void (^tapedCalendar)(NSInteger index);
+
 - (void)redrawToDate: (NSDate *)dt;
 
 -(void)updateWeatherIconByKey: (NSString *)key;
