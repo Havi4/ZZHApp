@@ -94,7 +94,7 @@
 {
     ZZHAPIManager *apiManager = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic12 = @{
-                            @"UserID":kUserID,
+                            @"UserID":thirdPartyLoginUserId,
                             };
     [apiManager requestCheckMyDeviceListParams:dic12 andBlock:^(MyDeviceListModel *myDeviceList, NSError *error) {
         [self.refreshControl endRefreshing];
@@ -125,7 +125,7 @@
     if (model) {
         
         NSDictionary *dic14 = @{
-                                @"UserID": kUserID,
+                                @"UserID": thirdPartyLoginUserId,
                                 @"UUID": model.deviceUUID,
                                 };
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
@@ -299,7 +299,7 @@
 - (void)deleteMySureUUID:(NSString *)deviceUUID
 {
     NSDictionary *dic = @{
-                            @"UserID": kUserID,
+                            @"UserID": thirdPartyLoginUserId,
                             @"UUID": deviceUUID,
                             };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];

@@ -99,7 +99,7 @@
 {
     ZZHAPIManager *apiManager = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic12 = @{
-                            @"UserID":kUserID,
+                            @"UserID":thirdPartyLoginUserId,
                             };
     [apiManager requestCheckFriendDeviceListParams:dic12 andBlock:^(MyDeviceListModel *friendDevice, NSError *error) {
         [self.refreshControl endRefreshing];
@@ -129,7 +129,7 @@
     if (model) {
         
         NSDictionary *dic14 = @{
-                                @"UserID": kUserID,
+                                @"UserID": thirdPartyLoginUserId,
                                 @"UUID": model.deviceUUID,
                                 };
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
@@ -190,7 +190,7 @@
 {
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic8 = @{
-                           @"RequestUserId": kUserID, //申请加好友的人
+                           @"RequestUserId": thirdPartyLoginUserId, //申请加好友的人
                            @"ResponseUserId": friendInfo.friendUserID, //被请求的用户
                            };
     [client requestRemoveFriendParam:dic8 andBlock:^(BaseModel *resultModel, NSError *error) {

@@ -639,12 +639,12 @@
 		2C9EF4461C80388E000704E2 /* ic_line_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_line_0.png; sourceTree = "<group>"; };
 		2C9EF4491C80389F000704E2 /* ic_dot_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_dot_1.png; sourceTree = "<group>"; };
 		2C9EF44A1C80389F000704E2 /* ic_line_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_line_1.png; sourceTree = "<group>"; };
-		2C9EF4501C804ADC000704E2 /* ReportVewContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReportVewContainerController.h; path = Report/ReportVewContainerController.h; sourceTree = "<group>"; };
-		2C9EF4511C804ADC000704E2 /* ReportVewContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportVewContainerController.m; path = Report/ReportVewContainerController.m; sourceTree = "<group>"; };
+		2C9EF4501C804ADC000704E2 /* ReportVewContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVewContainerController.h; sourceTree = "<group>"; };
+		2C9EF4511C804ADC000704E2 /* ReportVewContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportVewContainerController.m; sourceTree = "<group>"; };
 		2C9EF4531C804B9F000704E2 /* ReportDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportDataDelegate.h; sourceTree = "<group>"; };
 		2C9EF4541C804B9F000704E2 /* ReportDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportDataDelegate.m; sourceTree = "<group>"; };
-		2C9EF4591C804C45000704E2 /* ReportDataShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReportDataShowViewController.h; path = Report/ReportDataShowViewController.h; sourceTree = "<group>"; };
-		2C9EF45A1C804C45000704E2 /* ReportDataShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportDataShowViewController.m; path = Report/ReportDataShowViewController.m; sourceTree = "<group>"; };
+		2C9EF4591C804C45000704E2 /* ReportDataShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportDataShowViewController.h; sourceTree = "<group>"; };
+		2C9EF45A1C804C45000704E2 /* ReportDataShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportDataShowViewController.m; sourceTree = "<group>"; };
 		2C9EF45C1C805378000704E2 /* CalendarShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarShowView.h; sourceTree = "<group>"; };
 		2C9EF45D1C805378000704E2 /* CalendarShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarShowView.m; sourceTree = "<group>"; };
 		2C9EF45F1C80565B000704E2 /* ReportChartTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportChartTableCell.h; sourceTree = "<group>"; };
@@ -1303,6 +1303,10 @@
 			children = (
 				2C9EF44F1C804965000704E2 /* Views */,
 				2C9EF44E1C80495D000704E2 /* ViewModel */,
+				2C9EF4501C804ADC000704E2 /* ReportVewContainerController.h */,
+				2C9EF4511C804ADC000704E2 /* ReportVewContainerController.m */,
+				2C9EF4591C804C45000704E2 /* ReportDataShowViewController.h */,
+				2C9EF45A1C804C45000704E2 /* ReportDataShowViewController.m */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -1579,6 +1583,7 @@
 				2C9EF3CC1C7F0522000704E2 /* EnumTypeDefine.h */,
 			);
 			name = ViewModel;
+			path = ../../BaseView;
 			sourceTree = "<group>";
 		};
 		2CD014AE1C63558E001F9514 /* PersonInfo */ = {
@@ -1845,7 +1850,6 @@
 		2CD75B4B1C61C25300E7E076 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
-				2CD014771C62FDB3001F9514 /* ViewModel */,
 				2CD75B9B1C61F87E00E7E076 /* BaseViewController.h */,
 				2CD75B9C1C61F87E00E7E076 /* BaseViewController.m */,
 				2CD75B9E1C61F89600E7E076 /* BaseNaviViewController.h */,
@@ -1976,10 +1980,6 @@
 			isa = PBXGroup;
 			children = (
 				2C9EF44D1C804849000704E2 /* Report */,
-				2C9EF4501C804ADC000704E2 /* ReportVewContainerController.h */,
-				2C9EF4511C804ADC000704E2 /* ReportVewContainerController.m */,
-				2C9EF4591C804C45000704E2 /* ReportDataShowViewController.h */,
-				2C9EF45A1C804C45000704E2 /* ReportDataShowViewController.m */,
 				2CF2E2571C7ABC740007A639 /* Login */,
 				2CF2E2081C79A22E0007A639 /* UserSetting */,
 				2CF2E1DE1C785BFD0007A639 /* SleepSetting */,
@@ -2030,6 +2030,7 @@
 				2CD75B971C61F62B00E7E076 /* UIViewController+JASidePanel.h */,
 				2CD75B981C61F62B00E7E076 /* UIViewController+JASidePanel.m */,
 				2CD014D51C64BD77001F9514 /* CellHeaderDefines.h */,
+				2CD014771C62FDB3001F9514 /* ViewModel */,
 			);
 			path = SedeMenu;
 			sourceTree = "<group>";

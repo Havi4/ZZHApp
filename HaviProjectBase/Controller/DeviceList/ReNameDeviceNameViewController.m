@@ -151,7 +151,7 @@
     if (self.deviceInfo.friendUserID.length > 0) {
         NSDictionary *para = @{
                                @"FriendUserID": self.deviceInfo.friendUserID,
-                               @"UserID":kUserID,
+                               @"UserID":thirdPartyLoginUserId,
                                @"DeviceList":@[
                                        @{
                                            @"UUID":self.deviceInfo.deviceUUID,
@@ -167,7 +167,7 @@
         }];
     }else{
         NSDictionary *para = @{
-                               @"UserID":kUserID,
+                               @"UserID":thirdPartyLoginUserId,
                                @"DeviceList":@[
                                        @{
                                            @"UUID":self.deviceInfo.deviceUUID,

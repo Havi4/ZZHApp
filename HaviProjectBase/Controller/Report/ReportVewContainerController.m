@@ -49,7 +49,7 @@
 {
     if (gloableActiveDevice.detailDeviceList.count == 0) {
         ReportDataShowViewController *dataShow = [[ReportDataShowViewController alloc]init];
-        dataShow.title = gloableActiveDevice.nDescription;
+        dataShow.title = gloableActiveDevice.nDescription.length == 0?@"":gloableActiveDevice.nDescription;
         dataShow.deviceUUID = gloableActiveDevice.deviceUUID;
         dataShow.reportType = self.reportType;
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];

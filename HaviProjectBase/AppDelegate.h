@@ -21,5 +21,7 @@
 
 - (void)setRootViewController;
 
+- (void)setLoginViewController;
+
 @end
 

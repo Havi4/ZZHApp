@@ -34,6 +34,8 @@
         _cellInfoData = [[UILabel alloc]init];
         [self addSubview:_cellInfoData];
         _cellInfoData.numberOfLines = 0;
+        _cellInfoData.font = kTextNormalWordFont;
+        _cellInfoTitle.font = kTextNormalWordFont;
         //add contranints
         [_cellInfoIcon makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(15);
@@ -123,7 +125,11 @@
         NSString *addString = [NSString stringWithFormat:@"%@",userModel.nUserInfo.address];
         NSDictionary *attrbute = @{NSFontAttributeName:[UIFont systemFontOfSize:17]};
         CGFloat width = 320-185;
-        return [addString boundingRectWithSize:CGSizeMake(width, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attrbute context:nil].size.height+15;
+        CGFloat height = [addString boundingRectWithSize:CGSizeMake(width, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attrbute context:nil].size.height+15;
+        if (height < 60) {
+            height = 60;
+        }
+        return height;
     }else {
         return 60;
     }

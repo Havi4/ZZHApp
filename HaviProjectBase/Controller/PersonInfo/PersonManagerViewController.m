@@ -84,15 +84,7 @@
 
 - (void)addTableViewDataHandle
 {
-    /*ios系统
-
-    self.refreshControl = [[ODRefreshControl alloc] initInScrollView:_headerView.scrollView];;
-    [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl.tintColor = [UIColor redColor];
-     */
-
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"刷新中..."];
     self.refreshControl.tintColor = [UIColor grayColor];
     [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
     [self.personInfoTableView addSubview:self.refreshControl];
@@ -127,7 +119,7 @@
 - (void)getUserDetailInfo
 {
     NSDictionary *userIdDic = @{
-                           @"UserID":kUserID,
+                           @"UserID":thirdPartyLoginUserId,
                            };
     ZZHAPIManager *apiManager = [ZZHAPIManager sharedAPIManager];
     [apiManager requestUserInfoWithParam:userIdDic andBlock:^(UserInfoDetailModel *userInfo, NSError *error) {
@@ -139,11 +131,14 @@
 
 - (void)saveUserInfoWithKey:(NSString *)key andData:(NSString *)data
 {
-    
+    if (data.length == 0) {
+        [NSObject showHudTipStr:@"保存内容为空"];
+        return;
+    }
     [[UIApplication sharedApplication]incrementNetworkActivityCount];
     //
     NSDictionary *dic = @{
-                          @"UserID": kUserID, //关键字，必须传递
+                          @"UserID": thirdPartyLoginUserId, //关键字，必须传递
                           key:data,
                           };
     ZZHAPIManager *manager = [ZZHAPIManager sharedAPIManager];
@@ -452,7 +447,7 @@
     NSDictionary *dicHeader = @{
                                 @"AccessToken": @"123456789",
                                 };
-    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/file/UploadFile/%@",kAppBaseURL,kUserID];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/file/UploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
     [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
     [self setRequest:request withImageData:imageData];

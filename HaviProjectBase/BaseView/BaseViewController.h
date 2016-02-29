@@ -45,5 +45,8 @@
  *  @param menuItem 自定义导航栏返回键和有侧键
  */
 - (void)createClearBgNavWithTitle:(NSString *)szTitle andTitleColor:(UIColor *)color createMenuItem:(UIView *(^)(int nIndex))menuItem;
-
+/**
+ *  展示没有绑定设备的提示
+ */
+- (void)showNoDeviceBindingAlert;
 @end

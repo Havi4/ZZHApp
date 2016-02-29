@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "ThirdLoginCallBackManager.h"
+#import "MMPopupItem.h"
 
 @interface BaseViewController ()<LXActivityDelegate>
 
@@ -304,7 +305,7 @@
         titleLabel.tag = 3001;
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         titleLabel.dk_textColorPicker = kTextColorPicker;
-        [titleLabel setFont:kDefaultWordFont];
+        [titleLabel setFont:kTextTitleWordFont];
         [titleLabel setBackgroundColor:[UIColor clearColor]];
         [_navView addSubview:titleLabel];
     }
@@ -412,6 +413,17 @@
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
+- (void)showNoDeviceBindingAlert
+{
+    MMPopupItemHandler block = ^(NSInteger index){
+        DeBugLog(@"clickd %@ button",@(index));
+    };
+    NSArray *items =
+    @[MMItemMake(@"取消", MMItemTypeNormal, block),MMItemMake(@"确定", MMItemTypeNormal, block)];
+    MMAlertView *alert = [[MMAlertView alloc]initWithTitle:@"提示" detail:@"您还没有绑定我们的床垫设备,没有办法显示数据,是否现在绑定?" items:items];
+    [alert show];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

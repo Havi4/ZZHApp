@@ -77,12 +77,10 @@ static JPushNotiManager *shareInstance = nil;
         } break;
         case 107:{
             //异常登录
-//            if (![self.window.subviews containsObject:_loginView.view]) {
-//                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:alertString delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-//                [alert show];
-//                alert.tag = 107;
-//                [self loginAgain];
-//            }
+            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            [app setLoginViewController];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:alertString delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+            [alert show];
         } break;
         case 108:{
             //版本更新

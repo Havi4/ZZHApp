@@ -371,7 +371,7 @@
             break;
     }
     NSDictionary *dic3 = @{
-                           @"UserID":kUserID,
+                           @"UserID":thirdPartyLoginUserId,
                            key: info, //真实姓名
                            };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];

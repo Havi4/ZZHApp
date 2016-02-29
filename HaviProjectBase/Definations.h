@@ -14,10 +14,9 @@
 
 #define kAppBaseURL @"http://webservice.meddo99.com:9000/"
 #define kAppTestBaseURL @"http://webservice.meddo99.com:9001/"
-#define kUserID @"meddo99.com$13122785292"
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 
-#define kWXPlatform @"wx.com1"
+#define kWXPlatform @"wx.com2"
 #define kSinaPlatform @"sina.com1"
 #define kTXPlatform @"qq.com1"
 #define kMeddoPlatform @"meddo99.com1"
@@ -50,7 +49,11 @@
 #define kMoreButtonColor        [UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1]
 #define kArchiveButtonColor     [UIColor colorWithRed:60.0/255.0 green:112.0/255.0 blue:168/255.0 alpha:1]
 #define kUnreadButtonColor      [UIColor colorWithRed:0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1]
-#define KTableViewBackGroundColor [UIColor colorWithRed:0.945 green:0.945 blue:0.945 alpha:1.00]
+#define KTableViewBackGroundColor [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.00]
+#define kTableViewCellBackGroundColor [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00]
+
+#define kTextNormalWordFont [UIFont systemFontOfSize:17]
+#define kTextTitleWordFont [UIFont systemFontOfSize:19]
 
 #define kButtonViewWidth [UIScreen mainScreen].bounds.size.width - 40
 #define kScreen_Bounds [UIScreen mainScreen].bounds

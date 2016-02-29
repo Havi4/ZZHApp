@@ -37,7 +37,7 @@
             UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
             doneButton.frame = CGRectMake(self.view.frame.size.width-65, 0, 60, 44);
             [doneButton setTitle:@"保存" forState:UIControlStateNormal];
-            doneButton.titleLabel.font = [UIFont systemFontOfSize:15];
+            doneButton.titleLabel.font = kTextNormalWordFont;
             [doneButton dk_setTitleColorPicker:kTextColorPicker forState:UIControlStateNormal];
             [doneButton addTarget:self action:@selector(saveDown:) forControlEvents:UIControlEventTouchUpInside];
             return doneButton;
@@ -77,13 +77,29 @@
 
 - (void)saveDown:(UIButton *)sender
 {
+    
+    if ([self.cellString isEqual:@"UserName"]||[self.cellString isEqual:@"EmergencyContact"]) {
+        if (![self checkIsValiadForString:self.textFiledString]) {
+            [NSObject showHudTipStr:@"姓名只能由2-8位数字、字母、中文组成"];
+            return;
+        }
+    }else{
+        if (![self checkIsValiadForNum:self.textFiledString]) {
+            [NSObject showHudTipStr:@"请输入11位有效手机号码"];
+            return;
+        }
+    }
     [self saveInfo:self.textFiledString];
 }
 
 - (void)saveInfo:(NSString *)value
 {
+    if (value.length == 0) {
+        [NSObject showHudTipStr:@"保存内容不能为空"];
+        return;
+    }
     NSDictionary *dic = @{
-                          @"UserID": kUserID, //关键字，必须传递
+                          @"UserID": thirdPartyLoginUserId, //关键字，必须传递
                           self.cellString:value,
                           };
     ZZHAPIManager *manager = [ZZHAPIManager sharedAPIManager];
@@ -95,6 +111,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
+
 
 #pragma mark setter 
 
@@ -115,6 +132,32 @@
 - (void)setCellInfoType:(NSString *)cellInfoType
 {
     self.cellString = cellInfoType;
+}
+
+- (BOOL)checkIsValiadForString:(NSString *)checkString
+{
+    NSString *regex = @"[a-zA-Z\u4e00-\u9fa5]{2,6}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    if ([pred evaluateWithObject:checkString]) {
+        
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (BOOL)checkIsValiadForNum:(NSString *)checkString
+{
+    NSString *regex = @"1[0-9]{10}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    if ([pred evaluateWithObject:checkString]) {
+        
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 

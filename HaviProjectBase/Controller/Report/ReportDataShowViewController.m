@@ -77,6 +77,13 @@
 
 - (void)getSleepDataWithFromDate:(NSString *)fromDate endDate:(NSString *)endDate
 {
+    if (self.deviceUUID.length == 0) {
+        [self.refreshControl endRefreshing];
+        dispatch_async_on_main_queue(^{
+            [self showNoDeviceBindingAlert];
+        });
+        return;
+    }
     DeBugLog(@"开始%@:结束%@",fromDate,endDate);
     self.queryStartTime = fromDate;
     self.queryEndTime = endDate;

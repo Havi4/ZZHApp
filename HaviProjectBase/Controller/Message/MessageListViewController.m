@@ -76,7 +76,7 @@
 - (void)getMessageList
 {
     NSDictionary *dic5 = @{
-                           @"UserId":kUserID,
+                           @"UserId":thirdPartyLoginUserId,
                            };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestBeingRequestFriendParam:dic5 andBlock:^(BeingRequestModel *beingModel, NSError *error) {
@@ -148,7 +148,7 @@
     RequestUserInfo *info = userInfo;
     NSDictionary *para = @{
                            @"RequestUserId":info.userID,
-                           @"ResponseUserId":kUserID,
+                           @"ResponseUserId":thirdPartyLoginUserId,
                            @"StatusCode" : @"1",
                            };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
@@ -165,7 +165,7 @@
     RequestUserInfo *info = userInfo;
     NSDictionary *para = @{
                            @"RequestUserId":info.userID,
-                           @"ResponseUserId":kUserID,
+                           @"ResponseUserId":thirdPartyLoginUserId,
                            @"StatusCode" : @"-1",
                            };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];

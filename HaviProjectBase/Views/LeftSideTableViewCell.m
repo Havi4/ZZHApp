@@ -29,7 +29,7 @@
         _leftIconImage = [[UIImageView alloc]init];
         _leftTitleLabel = [[UILabel alloc]init];
         _leftTitleLabel.dk_textColorPicker = kTextColorPicker;
-        _leftTitleLabel.font = kDefaultWordFont;
+        _leftTitleLabel.font = kTextNormalWordFont;
         _leftArrowImage = [[UIImageView alloc]init];
         _leftArrowImage.dk_imagePicker = DKImageWithNames(@"btn_right_0", @"btn_right_1");
         [self addSubview:_leftArrowImage];

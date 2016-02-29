@@ -34,7 +34,7 @@
             UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
             doneButton.frame = CGRectMake(self.view.frame.size.width-65, 0, 60, 44);
             [doneButton setTitle:@"保存" forState:UIControlStateNormal];
-            doneButton.titleLabel.font = [UIFont systemFontOfSize:15];
+            doneButton.titleLabel.font = kTextNormalWordFont;
             [doneButton dk_setTitleColorPicker:kTextColorPicker forState:UIControlStateNormal];
             [doneButton addTarget:self action:@selector(saveInfo:) forControlEvents:UIControlEventTouchUpInside];
             return doneButton;
@@ -52,12 +52,12 @@
 - (void)saveInfo:(UIButton *)sender
 {
     if (self.cellTextField.text.length==0) {
-        [self.view makeToast:@"请输入地址信息" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入地址信息"];
         return;
     }
     
     if (![self checkIsValiadForString:self.cellTextField.text]) {
-        [self.view makeToast:@"地址只能由10-40个中文字符组成" duration:3 position:@"center"];
+        [NSObject showHudTipStr:@"地址只能由10-40个中文字符组成"];
         return;
     }
     [self saveUserInfoWithKey:self.cellString andData:self.cellTextField.text];
@@ -70,7 +70,7 @@
     [[UIApplication sharedApplication]incrementNetworkActivityCount];
 //
     NSDictionary *dic = @{
-                          @"UserID": kUserID, //关键字，必须传递
+                          @"UserID": thirdPartyLoginUserId, //关键字，必须传递
                           key:data,
                           };
     ZZHAPIManager *manager = [ZZHAPIManager sharedAPIManager];
@@ -117,7 +117,7 @@
 {
     if (!_cellFooterView) {
         _cellFooterView = [[UILabel alloc]init];
-        _cellFooterView.text = @"I";
+        _cellFooterView.text = @"";
         _cellFooterView.frame = CGRectMake(15, 0, self.view.frame.size.width-30, 30);
         _cellFooterView.font = [UIFont systemFontOfSize:11];
         _cellFooterView.alpha = 0.4;
@@ -201,7 +201,7 @@
         if ([self checkIsValiadForString:textView.text]) {
             [self saveInfo:nil];
         }else{
-            [self.view makeToast:@"超出地址字数范围" duration:2 position:@"center"];
+            [NSObject showHudTipStr:@"超出地址字数范围"];
         }
         return NO;
     }else{
@@ -216,7 +216,7 @@
                 NSString *s = [text substringWithRange:rg];
                 [textView setText:[textView.text stringByReplacingCharactersInRange:range withString:s]];
             }
-            [self.view makeToast:@"超出地址字数" duration:2 position:@"center"];
+            [NSObject showHudTipStr:@"超出地址字数范围"];
             return NO;
         }
     }
@@ -234,17 +234,5 @@
         return NO;
     }
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

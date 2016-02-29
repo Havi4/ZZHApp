@@ -67,6 +67,18 @@
     self.window.rootViewController = self.sideMenuController;
 }
 
+- (void)setLoginViewController
+{
+    LoginViewController *login = [[LoginViewController alloc]init];
+    @weakify(self);
+    login.loginButtonClicked = ^(NSUInteger index){
+        @strongify(self);
+        [self setRootViewController];
+    };
+    self.window.rootViewController = nil;
+    self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:login];
+}
+
 - (void)setThirdAppSettingWith:(NSDictionary *)launchOptions
 {
     

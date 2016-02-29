@@ -191,7 +191,7 @@
 {
     NSString *responseId = ((UserList *)[self.requestUser objectAtIndex:indexPath.row]).userID;
     NSDictionary *para = @{
-                           @"RequestUserId":kUserID,
+                           @"RequestUserId":thirdPartyLoginUserId,
                            @"ResponseUserId":responseId,
                            @"Comment":commentRequest,
                            };

@@ -115,21 +115,8 @@
 - (void)logoutMyId
 {
     [UserManager resetUserInfo];
-    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//    if ([thirdPartyLoginPlatform isEqualToString:SinaPlatform]) {
-//        [WeiBoLogoutAPI weiBoLogoutWithTocken:app.wbtoken parameters:nil finished:^(NSURLResponse *response, NSData *data) {
-//            NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//            NSLog(@"微博登出结果%@",obj);
-//        } failed:^(NSURLResponse *response, NSError *error) {
-//            
-//        }];
-//    }
-//    [[NSUserDefaults standardUserDefaults]setObject:@"18:00" forKey:UserDefaultStartTime ];
-//    [[NSUserDefaults standardUserDefaults]setObject:@"06:00" forKey:UserDefaultEndTime ];
-//    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc]initWithRootViewController:app.containerView] animated:YES];
-//    [self.sideMenuViewController hideMenuViewController];
-//    isDoubleDevice = NO;
-//    [[NSNotificationCenter defaultCenter]postNotificationName:ThirdUserLogoutNoti object:nil];
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    [app setLoginViewController];
 }
 
 
@@ -138,26 +125,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)reloadThemeImage
-{
-//    [super reloadThemeImage];
-//    UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"re_order_%d",selectedThemeIndex]];
-//    [self.menuButton setImage:i forState:UIControlStateNormal];
-//    self.bgImageView.image = [UIImage imageNamed:@""];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

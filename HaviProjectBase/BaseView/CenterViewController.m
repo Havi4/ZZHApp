@@ -31,7 +31,6 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.backgroundImageView.dk_imagePicker = DKImageWithNames(@"pic_bg_center_0", @"pic_bg_center_1");
     [self initNaviBarView];
     [self queryDeviceListForControllers];
-    [self initDatePicker];
 }
 
 - (void)queryDeviceListForControllers
@@ -92,6 +91,10 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
                     *stop = YES;
                 }
             }];
+            if(myDeviceList.myDeviceList.count == 0 && myDeviceList.friendDeviceList.count == 0){
+                NSError *error = [NSError errorWithDomain:@"没有" code:00000 userInfo:nil];
+                block(nil,error);
+            }
         }
     }];
 }
@@ -101,7 +104,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     if (self.activeDeviceInfo.detailDeviceList.count == 0) {
         isDoubleDevice = NO;
         CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
-        dataShow.title = self.activeDeviceInfo.nDescription;
+        dataShow.title = self.activeDeviceInfo.nDescription.length == 0?@"":self.activeDeviceInfo.nDescription;
         dataShow.deviceUUID = self.activeDeviceInfo.deviceUUID;
         dataShow.view.frame = self.containerDataView.view.bounds;
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
@@ -117,6 +120,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
         }];
     }
+    
 }
 
 #pragma mark setter
@@ -205,6 +209,12 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     }else if ([item.title isEqualToString:@"分享应用"]){
         [self shareApp:nil];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initDatePicker];
 }
 
 #pragma mark user action

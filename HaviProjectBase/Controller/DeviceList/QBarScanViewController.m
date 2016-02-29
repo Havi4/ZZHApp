@@ -232,7 +232,7 @@
 - (void)bindingDeviceWithUUID:(NSString *)uuid
 {
     NSDictionary *dic13 = @{
-                            @"UserID": kUserID,
+                            @"UserID": thirdPartyLoginUserId,
                             @"UUID": uuid,
                             @"Description":self.deviceDescription,
                             };
@@ -255,7 +255,7 @@
 - (void)activeUserDefaultDevice:(NSString *)UUID
 {
     NSDictionary *dic14 = @{
-                            @"UserID": kUserID,
+                            @"UserID": thirdPartyLoginUserId,
                             @"UUID": UUID,
                             };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];

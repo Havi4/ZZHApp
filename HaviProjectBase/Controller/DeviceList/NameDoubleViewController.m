@@ -193,7 +193,7 @@
         return [obj1.subDeviceUUID compare:obj2.subDeviceUUID options:NSCaseInsensitiveSearch];
     }];
     NSDictionary *para = @{
-                           @"UserID":kUserID,
+                           @"UserID":thirdPartyLoginUserId,
                            @"DeviceList":@[
                                    @{
                                        @"UUID":self.barUUIDString,
@@ -263,7 +263,7 @@
 - (void)activeUUID:(NSString *)UUID
 {
     NSDictionary *dic14 = @{
-                            @"UserID": kUserID,
+                            @"UserID": thirdPartyLoginUserId,
                             @"UUID": UUID,
                             };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];

@@ -22,9 +22,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _cellTextField = [[UITextField alloc]init];
-        _cellTextField.font = [UIFont systemFontOfSize:15];
+        _cellTextField.font = kTextNormalWordFont;
         _cellTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _cellTextField.placeholder = @"输入";
+        _cellTextField.placeholder = @"";
         _cellTextField.delegate = self;
         _cellTextField.returnKeyType = UIReturnKeyDone;
         [self addSubview:_cellTextField];
@@ -33,8 +33,6 @@
             make.right.equalTo(self.mas_right).offset(-10);
             make.centerY.equalTo(self.mas_centerY);
         }];
-        self.backgroundView.backgroundColor = [UIColor whiteColor];
-        self.backgroundColor = [UIColor whiteColor];
          [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:_cellTextField];
     }
     return self;
@@ -48,6 +46,7 @@
     [self setPlaceHolderString:obj];
     self.placeHolder = obj;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = kTableViewCellBackGroundColor;
 }
 
 
@@ -61,15 +60,14 @@
             self.tapTextSaveBlock(textField.text);
             return YES;
         }else{
-            
-            [self makeToast:@"姓名只能由2-8位数字、字母、中文组成" duration:3 position:[NSValue valueWithCGPoint:CGPointMake(self.size.width/2, 200)]];
+            [NSObject showHudTipStr:@"姓名只能由2-8位数字、字母、中文组成"];
         }
     }else{
          if ([self checkIsValiadForNum:textField.text]) {
              self.tapTextSaveBlock(textField.text);
              return YES;
          }else{
-             [self makeToast:@"手机格式有误" duration:3 position:[NSValue valueWithCGPoint:CGPointMake(self.size.width/2, 200)]];
+             [NSObject showHudTipStr:@"手机格式有误"];
          }
     }
     return YES;
@@ -87,7 +85,7 @@
     }else if ([string isEqual:@"EmergencyContact"]){
         self.cellTextField.placeholder = @"请输入您的紧急联系人";
     }else if ([string isEqual:@"Telephone"]){
-        self.cellTextField.placeholder = @"请输入紧急联系人的手机或者座机";
+        self.cellTextField.placeholder = @"请输入紧急联系人的手机";
         self.cellTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
 

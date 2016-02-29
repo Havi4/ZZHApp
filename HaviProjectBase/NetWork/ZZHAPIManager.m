@@ -131,7 +131,7 @@ static ZZHAPIManager *_apiManager = nil;
 
 - (void)requestCheckUserTagsParams:(NSDictionary *)params andBlock:(void (^)(TagListModel *tagListModel,NSError *error))block
 {
-    NSString *aPath = [NSString stringWithFormat:@"v1/user/UserTags?UserId=%@&FromDate=%@&EndDate=%@&FromTime=18:00&EndTime=18:00",kUserID,[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"]];
+    NSString *aPath = [NSString stringWithFormat:@"v1/user/UserTags?UserId=%@&FromDate=%@&EndDate=%@&FromTime=18:00&EndTime=18:00",thirdPartyLoginUserId,[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"]];
     [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:params withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
         NSDictionary *dic = (NSDictionary *)data;
         TagListModel *tagModel = [TagListModel modelWithDictionary:dic];
@@ -277,7 +277,7 @@ static ZZHAPIManager *_apiManager = nil;
 - (void)requestGetSleepQualityParams:(NSDictionary *)params andBlock:(void (^)(SleepQualityModel *qualityModel,NSError *error))block
 {
     
-    NSString *aPath = [NSString stringWithFormat:@"v1/app/SleepQuality?UUID=%@&UserId=%@&FromDate=%@&EndDate=%@&FromTime=18:00&EndTime=18:00",[params objectForKey:@"UUID"],kUserID,[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"]];
+    NSString *aPath = [NSString stringWithFormat:@"v1/app/SleepQuality?UUID=%@&UserId=%@&FromDate=%@&EndDate=%@&FromTime=18:00&EndTime=18:00",[params objectForKey:@"UUID"],thirdPartyLoginUserId,[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"]];
     [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:params withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
         NSDictionary *dic = (NSDictionary *)data;
         SleepQualityModel *sleepModel = [SleepQualityModel modelWithDictionary:dic];

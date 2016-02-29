@@ -13,6 +13,7 @@
 #import "SleepModelChange.h"
 #import "ChartContainerViewController.h"
 #import "ChartTableContainerViewController.h"
+#import "MMPopupItem.h"
 
 @interface CenterDataShowViewController ()
 
@@ -33,6 +34,9 @@
     self.view.backgroundColor = [UIColor clearColor];
     [self addTableViewDataHandle];
     [self initPushController];
+    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[NSDate date]];
+    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[[NSDate date] dateByAddingDays:1]];
+    [self getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
 }
 
 - (void)initPushController
@@ -103,6 +107,10 @@
 
 - (void)getSleepDataWithStartTime:(NSString *)startTime endTime:(NSString *)endTime
 {
+    if (self.deviceUUID.length == 0) {
+        [self showNoDeviceBindingAlert];
+        return;
+    }
     self.queryStartTime = startTime;
     self.queryEndTime = endTime;
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
@@ -135,6 +143,10 @@
 
 - (void)sendSleepEndTime:(NSDate *)endDate
 {
+    if (self.deviceUUID.length == 0) {
+        [self showNoDeviceBindingAlert];
+        return;
+    }
     NSString *endString = [NSString stringWithFormat:@"%ld:%ld",(long)endDate.hour,(long)endDate.minute];
     NSString *date1 = @"2015-12-21";
     NSString *date = [NSString stringWithFormat:@"%@ %@:00",date1,endString];
@@ -145,7 +157,7 @@
      */
     NSDictionary *dic = @{
                           @"UUID" : self.deviceUUID,
-                          @"UserID" : kUserID,
+                          @"UserID" : thirdPartyLoginUserId,
                           @"Tags" :@[ @{
                                           @"Tag": @"<%睡眠时间记录%>",
                                           @"TagType": @"1",
@@ -162,11 +174,15 @@
 - (void)sendSleepStart
 {
     DeBugLog(@"sleep start");
+    if (self.deviceUUID.length == 0) {
+        [self showNoDeviceBindingAlert];
+        return;
+    }
     NSDate *date = [[NSDate date]dateByAddingHours:8];
     NSString *dateString = [NSString stringWithFormat:@"%@",date];
     NSDictionary *dic = @{
                           @"UUID" : self.deviceUUID,
-                          @"UserID" : kUserID,
+                          @"UserID" : thirdPartyLoginUserId,
                           @"Tags" : @[@{
                                           @"Tag": @"<%睡眠时间记录%>",
                                           @"TagType": @"-1",
@@ -181,6 +197,10 @@
 
 - (void)didSeletedCellIndexPath:(NSIndexPath *)indexPath withData:(id)obj
 {
+    if (self.deviceUUID.length == 0) {
+        [self showNoDeviceBindingAlert];
+        return;
+    }
     NSString *className = [self.controllersArr objectOrNilAtIndex:indexPath.row];
     Class class = NSClassFromString(className);
     if (class) {
@@ -213,15 +233,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

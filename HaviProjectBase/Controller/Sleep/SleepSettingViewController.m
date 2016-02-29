@@ -83,7 +83,7 @@
 - (void)getUserDetailInfo
 {
     NSDictionary *userIdDic = @{
-                                @"UserID":kUserID,
+                                @"UserID":thirdPartyLoginUserId,
                                 };
     ZZHAPIManager *apiManager = [ZZHAPIManager sharedAPIManager];
     [apiManager requestUserInfoWithParam:userIdDic andBlock:^(UserInfoDetailModel *userInfo, NSError *error) {
