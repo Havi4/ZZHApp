@@ -64,6 +64,7 @@
 {
     if (_cellStartView==nil) {
         _cellStartView = [[StartTimeView alloc]init];
+        _cellStartView.hidden = YES;
         
     }
     return _cellStartView;
@@ -73,6 +74,7 @@
 {
     if (_cellEndView == nil) {
         _cellEndView = [[EndTimeView alloc]init];
+        _cellEndView.hidden = YES;
     }
     return _cellEndView;
 }

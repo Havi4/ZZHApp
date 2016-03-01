@@ -23,7 +23,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _cellInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_cellInfoButton setTitle:@"测试" forState:UIControlStateNormal];
+        [_cellInfoButton setTitle:@"" forState:UIControlStateNormal];
         [_cellInfoButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
         [_cellInfoButton addTarget:self action:@selector(cellButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [_cellInfoButton setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor]] forState:UIControlStateSelected];

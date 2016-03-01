@@ -10,7 +10,7 @@
 #import "ChartGrapheView.h"
 #import "FloatLayerView.h"
 
-@interface SensorChartTableViewCell ()
+@interface SensorChartTableViewCell ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong) ChartGrapheView *chartGraphView;
 @property (nonatomic,strong) UIScrollView *scrollContainerView;

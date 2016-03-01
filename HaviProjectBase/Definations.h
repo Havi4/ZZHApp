@@ -89,7 +89,7 @@
 #define kCharDataIntervalTime 2
 #define kChartDataCount (24*60/kCharDataIntervalTime)
 #define kHeartMinAlarmValue 50
-#define kHeartMaxAlarmValue 60
+#define kHeartMaxAlarmValue 100
 #define kHeartHorizonbleAlarmValue 140
 #define kBreathHorizonbleAlarmValue 40
 #define kBreathMinAlarmValue 5
