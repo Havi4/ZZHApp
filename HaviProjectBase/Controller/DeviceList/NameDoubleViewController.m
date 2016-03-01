@@ -28,7 +28,7 @@
 - (void)initSubView
 {
     self.backgroundImageView.image = [UIImage imageNamed:@""];
-    self.view.backgroundColor = [UIColor colorWithRed:0.188f green:0.184f blue:0.239f alpha:1.00f];
+    self.view.backgroundColor = KTableViewBackGroundColor;
     UILabel *titleLabel = [[UILabel alloc]init];
     [self.view addSubview:titleLabel];
     [titleLabel makeConstraints:^(MASConstraintMaker *make) {
@@ -215,49 +215,6 @@
             [self activeUUID:self.barUUIDString];
         }
     }];
-    /*
-    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                        [UIImage imageNamed:@"havi1_1"],
-                        [UIImage imageNamed:@"havi1_2"],
-                        [UIImage imageNamed:@"havi1_3"],
-                        [UIImage imageNamed:@"havi1_4"],
-                        [UIImage imageNamed:@"havi1_5"]];
-    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-    [MMProgressHUD showWithTitle:nil status:nil images:images];
-    NSArray *_arrDeatilListDescription = [self.dicDetailDevice  objectForKey:@"DetailSensorInfo"];
-    NSArray *_sortedDetailDevice = [_arrDeatilListDescription sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        return [[obj1 objectForKey:@"UUID"] compare:[obj2 objectForKey:@"UUID"] options:NSCaseInsensitiveSearch];
-    }];
-    NSDictionary *header = @{
-                             @"AccessToken":@"123456789"
-                             };
-    
-    NSString *urlString = [NSString stringWithFormat:@"v1/user/RenameUserDevice"];
-
-    [WTRequestCenter putWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,urlString] header:header parameters:para finished:^(NSURLResponse *response, NSData *data) {
-        [MMProgressHUD dismiss];
-        NSDictionary *resposeDic = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        if ([[resposeDic objectForKey:@"ReturnCode"]intValue]==200) {
-            HaviLog(@"当前用户%@设备信息%@",thirdPartyLoginUserId,resposeDic);
-            thirdHardDeviceUUID = self.barUUIDString;
-            thirdHardDeviceName = self.doubleDeviceName;
-            thirdLeftDeviceUUID = [[[self.dicDetailDevice objectForKey:@"DetailSensorInfo"]objectAtIndex:0]objectForKey:@"UUID"];
-            thirdRightDeviceUUID = [[[self.dicDetailDevice objectForKey:@"DetailSensorInfo"]objectAtIndex:1]objectForKey:@"UUID"];
-            thirdLeftDeviceName = self.leftText.text;
-            thirdRightDeviceName = self.rightText.text;
-            [UserManager setGlobalOauth];
-            [[NSNotificationCenter defaultCenter]postNotificationName:CHANGEDEVICEUUID object:nil];
-            DoubleDUPViewController *udp = [[DoubleDUPViewController alloc]init];
-            udp.productName = self.doubleDeviceName;//测试
-            thirdHardDeviceUUID = self.barUUIDString;
-            udp.productUUID = self.barUUIDString;
-            [self.navigationController pushViewController:udp animated:YES];
-        }
-        
-    } failed:^(NSURLResponse *response, NSError *error) {
-        
-    }];
-    */
 }
 //激活
 - (void)activeUUID:(NSString *)UUID

@@ -8,7 +8,6 @@
 
 #import "FriendDeviceListViewController.h"
 #import "JASwipeCell.h"
-#import "ODRefreshControl.h"
 #import "FriendDeviceDelegate.h"
 #import "ReNameDeviceNameViewController.h"
 #import "ReNameDoubleDeviceViewController.h"
@@ -16,7 +15,7 @@
 @interface FriendDeviceListViewController ()
 
 @property (nonatomic, strong) UITableView *friendDeviceListView;
-@property (nonatomic, strong) ODRefreshControl *refreshControl;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) FriendDeviceDelegate *friendDeviceDelegate;
 
 @property (nonatomic, strong) NSArray *resultArr;
@@ -34,13 +33,14 @@
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self addTableViewDataHandle];
-    [self getFriendDeviceList];
 }
 
 - (void)addTableViewDataHandle
 {
-    self.refreshControl = [[ODRefreshControl alloc] initInScrollView:self.friendDeviceListView];;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor grayColor];
     [self.refreshControl addTarget:self action:@selector(getFriendDeviceList) forControlEvents:UIControlEventValueChanged];
+    [self.friendDeviceListView addSubview:self.refreshControl];
     [self.view addSubview:self.friendDeviceListView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
         [cell configure:cell customObj:item indexPath:indexPath];
@@ -103,6 +103,11 @@
                             };
     [apiManager requestCheckFriendDeviceListParams:dic12 andBlock:^(MyDeviceListModel *friendDevice, NSError *error) {
         [self.refreshControl endRefreshing];
+        if (friendDevice.deviceList.count==0) {
+            [self.friendDeviceListView addSubview:self.messageLabel];
+        }else{
+            [self.messageLabel removeFromSuperview];
+        }
         self.friendDeviceDelegate.items = friendDevice.deviceList;
         [self.friendDeviceListView reloadData];
     }];
@@ -199,5 +204,13 @@
         }
     }];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getFriendDeviceList];
+    
+}
+
 
 @end

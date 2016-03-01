@@ -29,7 +29,8 @@
 - (void)initControllerView
 {
     self.navigationController.navigationBarHidden = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.backgroundImageView.image = [UIImage imageNamed:@""];
+    self.view.backgroundColor = KTableViewBackGroundColor;
     [self createNavWithTitle:@"重命名设备" createMenuItem:^UIView *(int nIndex)
      {
          if (nIndex == 1)
@@ -75,7 +76,6 @@
         _nameTextField.frame = CGRectMake(15, 0, self.view.frame.size.width-30, 49);
         _nameTextField.borderStyle = UITextBorderStyleNone;
         _nameTextField.placeholder = @"设备名称";
-        _nameTextField.textColor = [UIColor grayColor];
         _nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _nameTextField.delegate = self;
         
@@ -99,7 +99,6 @@
         _txRightNameView.frame = CGRectMake(15, 0, self.view.frame.size.width-30, 49);
         _txRightNameView.borderStyle = UITextBorderStyleNone;
         _txRightNameView.placeholder = @"Right";
-        _txRightNameView.textColor = [UIColor grayColor];
         _txRightNameView.clearButtonMode = UITextFieldViewModeWhileEditing;
         _txRightNameView.delegate = self;
         
@@ -114,7 +113,6 @@
         _txLeftNameView.frame = CGRectMake(15, 0, self.view.frame.size.width-30, 49);
         _txLeftNameView.borderStyle = UITextBorderStyleNone;
         _txLeftNameView.placeholder = @"Left";
-        _txLeftNameView.textColor = [UIColor grayColor];
         _txLeftNameView.clearButtonMode = UITextFieldViewModeWhileEditing;
         _txLeftNameView.delegate = self;
         
@@ -169,7 +167,7 @@
     }else if (indexPath.section==2){
         [cell addSubview:self.txRightNameView];
         DetailDeviceList *model = (DetailDeviceList*)[_sortedDetailDevice  objectAtIndex:1];
-        self.txLeftNameView.text = [NSString stringWithFormat:@"%@",model.detailDescription];
+        self.txRightNameView.text = [NSString stringWithFormat:@"%@",model.detailDescription];
     }
     
     cell.backgroundColor = [UIColor whiteColor];

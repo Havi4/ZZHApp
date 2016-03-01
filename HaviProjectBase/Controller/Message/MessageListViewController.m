@@ -7,7 +7,6 @@
 //
 
 #import "MessageListViewController.h"
-#import "ODRefreshControl.h"
 #import "MessageShowTableViewCell.h"
 #import "AddProductNameViewController.h"
 #import "MessageDataDelegate.h"
@@ -15,7 +14,7 @@
 @interface MessageListViewController ()<UIActionSheetDelegate>
 
 @property (nonatomic, strong) UITableView *messageShowListView;
-@property (nonatomic, strong) ODRefreshControl *refreshControl;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) MessageDataDelegate *messageDelegate;
 @property (nonatomic, strong) UILabel *messageLabel;
 
@@ -46,8 +45,11 @@
 
 - (void)addTableViewDataHandle
 {
-    self.refreshControl = [[ODRefreshControl alloc] initInScrollView:self.messageShowListView];;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor grayColor];
     [self.refreshControl addTarget:self action:@selector(getMessageList) forControlEvents:UIControlEventValueChanged];
+    [self.messageShowListView addSubview:self.refreshControl];
+
     [self.view addSubview:self.messageShowListView];
     
     
@@ -86,6 +88,11 @@
             return [p2.requestDate compare:p1.requestDate];
             
         }];
+        if (sortedArray.count ==0) {
+            [self.messageShowListView addSubview:self.messageLabel];
+        }else{
+            [self.messageLabel removeFromSuperview];
+        }
         self.messageDelegate.items = sortedArray;
         [self.messageShowListView reloadData];
     }];

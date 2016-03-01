@@ -33,3 +33,5 @@ NSDate *selectedDateToUse = nil;
 BOOL isDoubleDevice = NO;
 DeviceList *gloableActiveDevice = nil;
 
+YYReachability *netReachability = nil;
+

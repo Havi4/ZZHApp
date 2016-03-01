@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.backgroundImageView.image = [UIImage imageNamed:@""];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = KTableViewBackGroundColor;
     self.navigationController.navigationBarHidden = YES;
     [self createNavWithTitle:@"修改密码" createMenuItem:^UIView *(int nIndex)
      {

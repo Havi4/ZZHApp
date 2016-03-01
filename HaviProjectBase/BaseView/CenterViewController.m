@@ -40,6 +40,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.backgroundImageView.dk_imagePicker = DKImageWithNames(@"pic_bg_center_0", @"pic_bg_center_1");
     [self initNaviBarView];
     [self queryDeviceListForControllers];
+    [self initDatePicker];
 }
 
 - (void)queryDeviceListForControllers
@@ -278,7 +279,6 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self initDatePicker];
 }
 
 #pragma mark user action

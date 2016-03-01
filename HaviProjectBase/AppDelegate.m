@@ -35,6 +35,7 @@
     [self setThirdAppSettingWith:launchOptions];
     [self getSuggestionList];
     
+    
     if ([UserManager GetUserObj]) {
         [self setRootViewController];
     }else{
@@ -50,6 +51,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     //
     [self.window makeKeyAndVisible];
+    [self setNetworkNoti];
     [self setIntroduceView];
     return YES;
 }
@@ -66,6 +68,7 @@
     self.sideMenuController.leftPanel = [[LeftSideViewController alloc] init];
     self.sideMenuController.centerPanel = [[BaseNaviViewController alloc] initWithRootViewController:self.centerView];
     self.window.rootViewController = self.sideMenuController;
+
 }
 
 - (void)setLoginViewController
@@ -96,6 +99,26 @@
                                        categories:nil];
     [APService setupWithOption:launchOptions];
     [APService crashLogON];
+}
+
+- (void)setNetworkNoti
+{
+    YYReachability *reachablity = [YYReachability reachabilityWithHostname:@"www.baidu.com"];
+    reachablity.notifyBlock = ^(YYReachability *reachability){
+        netReachability = reachablity;
+        if (reachablity.status == YYReachabilityStatusNone) {
+            [NSObject showHudTipStr:@"您的手机没有网络,请检查您的网络"];
+        }else if (reachablity.status == YYReachabilityStatusWWAN){
+            if (reachablity.wwanStatus == YYReachabilityWWANStatus2G) {
+                [NSObject showHudTipStr:@"您正在使用手机2G网络"];
+            }else if (reachablity.wwanStatus == YYReachabilityWWANStatus3G){
+                [NSObject showHudTipStr:@"您正在使用手机3G网络"];
+            }else if (reachablity.wwanStatus == YYReachabilityWWANStatus4G){
+                [NSObject showHudTipStr:@"您正在使用手机4G网络"];
+            }
+            
+        }
+    };
 }
 
 - (void)registerLocalNotification

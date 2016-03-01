@@ -24,7 +24,7 @@
     if (self) {
         _cellInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_cellInfoButton setTitle:@"测试" forState:UIControlStateNormal];
-        [_cellInfoButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_cellInfoButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
         [_cellInfoButton addTarget:self action:@selector(cellButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [_cellInfoButton setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor]] forState:UIControlStateSelected];
         [_cellInfoButton.titleLabel setTextAlignment:NSTextAlignmentLeft];
@@ -66,12 +66,12 @@
         switch (indexPath.section) {
             case 0:
             {
-                NSString *cellString = userInfo.nUserInfo.sleepStartTime;
+                NSString *cellString = userInfo.nUserInfo.sleepStartTime.length == 0 ? @"18:00":userInfo.nUserInfo.sleepStartTime;
                 [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
                 break;
             }
             case 1:{
-                NSString *cellString = userInfo.nUserInfo.sleepEndTime;
+                NSString *cellString = userInfo.nUserInfo.sleepEndTime.length == 0?@"06:00":userInfo.nUserInfo.sleepEndTime;
                 [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
                 break;
             }

@@ -14,11 +14,11 @@
 #include <net/if.h>
 #import <dlfcn.h>
 #import "DeviceListViewController.h"
-//#import "HFSmtlkV30.h"
+#import "HFSmtlkV30.h"
 
 @interface ReactiveDoubleViewController ()<UITextFieldDelegate>
 {
-//    HFSmtlkV30 *smtlk;
+    HFSmtlkV30 *smtlk;
     int smtlkState;
     int showKey;
     NSInteger times;
@@ -35,9 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /*
     smtlk=[[HFSmtlkV30 alloc] initWithDelegate:self];
-     */
     smtlkState= 0;
     showKey= 1;
     macArray=[[NSMutableArray alloc] init];
@@ -199,7 +197,6 @@
 
 - (void)cancelButtonDone:(UIButton *)button
 {
-    //    self.navigationController.navigationBarHidden = NO;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -226,19 +223,18 @@
         findTimes= 0;
         [macArray removeAllObjects];
         // start to do smtlk
-//        [self startSmartLink];
+        [self startSmartLink];
     }
     else
     {
         // stop smtlk
-//        [self stopSmartLink];
+        [self stopSmartLink];
         smtlkState= 0;
         isfinding = NO;
     }
 }
 
 // do smartLink
-/*测试
 - (void)startSmartLink
 {
     [smtlk SmtlkV30StartWithKey:self.textFiledPassWord.text];
@@ -315,7 +311,6 @@
     [MMProgressHUD dismiss];
     [self.view makeToast:@"激活成功" duration:3 position:@"center"];
 }
-*/
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -211,6 +211,8 @@
 		2C9EF5121C854E8B000704E2 /* pic_bad_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF50D1C854E8B000704E2 /* pic_bad_4@2x.png */; };
 		2C9EF5131C854E8B000704E2 /* pic_bad_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF50E1C854E8B000704E2 /* pic_bad_5@2x.png */; };
 		2C9EF5161C8550D8000704E2 /* AssessmentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5151C8550D8000704E2 /* AssessmentListModel.m */; };
+		2C9EF51C1C858B4E000704E2 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9EF5191C858B4E000704E2 /* libSmartLinkV30Lib.a */; };
+		2C9EF51D1C858B4E000704E2 /* libSniffer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9EF51A1C858B4E000704E2 /* libSniffer.a */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -785,6 +787,10 @@
 		2C9EF50E1C854E8B000704E2 /* pic_bad_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bad_5@2x.png"; sourceTree = "<group>"; };
 		2C9EF5141C8550D8000704E2 /* AssessmentListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentListModel.h; sourceTree = "<group>"; };
 		2C9EF5151C8550D8000704E2 /* AssessmentListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentListModel.m; sourceTree = "<group>"; };
+		2C9EF5181C858B4E000704E2 /* HFSmtlkV30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFSmtlkV30.h; sourceTree = "<group>"; };
+		2C9EF5191C858B4E000704E2 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
+		2C9EF51A1C858B4E000704E2 /* libSniffer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSniffer.a; sourceTree = "<group>"; };
+		2C9EF51B1C858B4E000704E2 /* Sniffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sniffer.h; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -1149,12 +1155,14 @@
 				2C58727A1C7B055E001C2F3A /* Foundation.framework in Frameworks */,
 				2C5872781C7B0539001C2F3A /* CoreText.framework in Frameworks */,
 				2C5872761C7B050A001C2F3A /* UIKit.framework in Frameworks */,
+				2C9EF51D1C858B4E000704E2 /* libSniffer.a in Frameworks */,
 				2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */,
 				2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */,
 				2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */,
 				2CF2E2AC1C7AE9AE0007A639 /* Security.framework in Frameworks */,
 				2CF2E2AA1C7AE9990007A639 /* MobileCoreServices.framework in Frameworks */,
 				2CF2E2A81C7AE9080007A639 /* SystemConfiguration.framework in Frameworks */,
+				2C9EF51C1C858B4E000704E2 /* libSmartLinkV30Lib.a in Frameworks */,
 				5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */,
 				2CF2E2A21C7AE0E80007A639 /* TencentOpenAPI.framework in Frameworks */,
 				2CF2E29B1C7AE0660007A639 /* libWeChatSDK.a in Frameworks */,
@@ -1521,6 +1529,17 @@
 				2C9EF4F41C852CE6000704E2 /* SlideAnimation.m */,
 			);
 			path = Animation;
+			sourceTree = "<group>";
+		};
+		2C9EF5171C858B4E000704E2 /* libSmartLinkStaticLib */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF5181C858B4E000704E2 /* HFSmtlkV30.h */,
+				2C9EF5191C858B4E000704E2 /* libSmartLinkV30Lib.a */,
+				2C9EF51A1C858B4E000704E2 /* libSniffer.a */,
+				2C9EF51B1C858B4E000704E2 /* Sniffer.h */,
+			);
+			path = libSmartLinkStaticLib;
 			sourceTree = "<group>";
 		};
 		2CD0146E1C62F5C6001F9514 /* common */ = {
@@ -2457,6 +2476,7 @@
 		2CF2E2811C7AE0660007A639 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF5171C858B4E000704E2 /* libSmartLinkStaticLib */,
 				2C9EF4B11C83D97B000704E2 /* JPushlib */,
 				2CF2E2A01C7AE0E80007A639 /* Tencent */,
 				2CF2E28F1C7AE0660007A639 /* WeChatSDK_1.5_OnlyIphone */,
@@ -3246,6 +3266,7 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libWeiboSDK",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/WeChatSDK_1.5_OnlyIphone",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
+					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3276,6 +3297,7 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libWeiboSDK",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/WeChatSDK_1.5_OnlyIphone",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
+					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";

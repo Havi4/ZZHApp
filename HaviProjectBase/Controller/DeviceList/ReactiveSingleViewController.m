@@ -16,11 +16,11 @@
 #include <net/if.h>
 #import <dlfcn.h>
 
-//#import "Sniffer.h"
+#import "Sniffer.h"
 
 @interface ReactiveSingleViewController ()<UITextFieldDelegate>
 {
-//    Sniffer *sniffer;
+    Sniffer *sniffer;
     dispatch_queue_t   queue;
     NSInteger   times;
 }
@@ -38,10 +38,8 @@
     self.navigationController.navigationBarHidden = YES;
     self.backgroundImageView.image = [UIImage imageNamed:@""];
     [super viewDidLoad];
-    /*
     sniffer = [[Sniffer alloc]init];
     sniffer.delegate = self;
-     */
     //udp启动    //
     self.noReceiveData = YES;
     // Do any additional setup after loading the view.
@@ -210,20 +208,17 @@
     [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
     [MMProgressHUD showWithTitle:nil status:nil images:images];
     self.noReceiveData = YES;
-    
+    NSError *error =[sniffer startSniffer:[self fetchSSIDInfo] password:self.textFiledPassWord.text];
+    if (error) {
+        [MMProgressHUD dismiss];
+        [NSObject showStatusBarErrorStr:[NSString stringWithFormat:@"硬件出错了%@",error.localizedDescription]];
+    }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(120 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.noReceiveData) {
             [self stopUDPAndAgain];
         }
     });
     //这里是调用不同的硬件设备
-    /*
-    NSError *error =[sniffer startSniffer:[self fetchSSIDInfo] password:self.textFiledPassWord.text];
-    if (error) {
-        [MMProgressHUD dismiss];
-        [self.view makeToast:[NSString stringWithFormat:@"硬件报错%@",error.localizedDescription] duration:2 position:@"center"];
-    }
-     */
 }
 #pragma mark 江波龙硬件设备配置
 //激活设备超时提示
@@ -339,15 +334,14 @@
 //停止配置设备
 -(void)stopSniffer{
     //停止配置设备 如果不停止会一直在配置
-//    [sniffer stopSniffer];
+    [sniffer stopSniffer];
 }
 
 #pragma mark 江波龙硬件回调
 //设备配置成功 回调函数 获得设备的 ip 地址
 - (void)onDeviceOnline:(NSString*)ip{
-//    [self stopSniffer];
-//    sniffer = nil;
-//    HardWareIP = ip;
+    [self stopSniffer];
+    sniffer = nil;
     //江波龙
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), queue, ^{
         [self getInfo:ip];

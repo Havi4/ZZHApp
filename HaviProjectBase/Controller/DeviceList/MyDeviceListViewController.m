@@ -7,7 +7,6 @@
 //
 
 #import "MyDeviceListViewController.h"
-#import "ODRefreshControl.h"
 #import "MyDeviceDelegate.h"
 #import "JAActionButton.h"
 #import "JASwipeCell.h"
@@ -20,7 +19,7 @@
 
 @property (nonatomic, strong) UITableView *myDeviceListView;
 @property (nonatomic, strong) MyDeviceDelegate *myDeviceDelegate;
-@property (nonatomic, strong) ODRefreshControl *refreshControl;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @property (nonatomic, strong) JASwipeCell *selectTableViewCell;
 @property (nonatomic, strong) NSString *selectDeviceUUID;
@@ -35,13 +34,14 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     [self addTableViewDataHandle];
-    [self getUserDeviceList];
 }
 
 - (void)addTableViewDataHandle
 {
-    self.refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myDeviceListView];;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor grayColor];
     [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
+    [self.myDeviceListView addSubview:self.refreshControl];
     [self.view addSubview:self.myDeviceListView];
     
     
@@ -83,6 +83,20 @@
     return _myDeviceListView;
 }
 
+- (UILabel *)messageLabel
+{
+    if (!_messageLabel) {
+        _messageLabel = [[UILabel alloc]init];
+        _messageLabel.frame = CGRectMake(0, self.myDeviceListView.frame.size.height/2-100,self.myDeviceListView.frame.size.width , 40);
+        _messageLabel.text = @"没有相应设备！";
+        _messageLabel.font = [UIFont systemFontOfSize:17];
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.textColor = [UIColor grayColor];
+        
+    }
+    return _messageLabel;
+}
+
 - (void)refreshAction{
     
     [self getUserDeviceList];
@@ -98,6 +112,11 @@
                             };
     [apiManager requestCheckMyDeviceListParams:dic12 andBlock:^(MyDeviceListModel *myDeviceList, NSError *error) {
         [self.refreshControl endRefreshing];
+        if (myDeviceList.deviceList.count==0) {
+            [self.myDeviceListView addSubview:self.messageLabel];
+        }else{
+            [self.messageLabel removeFromSuperview];
+        }
         self.myDeviceDelegate.items = myDeviceList.deviceList;
         [self.myDeviceListView reloadData];
     }];
@@ -174,104 +193,6 @@
     }
 }
 
-/*
-#pragma mark 操作设备
-- (void)deleteFriendSureUUID:(NSString *)deviceUUID
-{
-    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                        [UIImage imageNamed:@"havi1_1"],
-                        [UIImage imageNamed:@"havi1_2"],
-                        [UIImage imageNamed:@"havi1_3"],
-                        [UIImage imageNamed:@"havi1_4"],
-                        [UIImage imageNamed:@"havi1_5"]];
-    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-    [MMProgressHUD showWithTitle:nil status:nil images:images];
-    NSString *urlString = [NSString stringWithFormat:@"%@v1/user/DeleteUserDevice",BaseUrl];
-    NSDictionary *header = @{
-                             @"AccessToken":@"123456789"
-                             };
-    NSDictionary *para = @{
-                           @"UserID":thirdPartyLoginUserId,
-                           @"UUID": deviceUUID,
-                           };
-    [WTRequestCenter putWithURL:urlString header:header parameters:para finished:^(NSURLResponse *response, NSData *data) {
-        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        HaviLog(@"数据是%@",obj);
-        if ([[obj objectForKey:@"ReturnCode"]intValue]==200) {
-            [MMProgressHUD dismiss];
-            [self getUserDeviceList];
-        }else{
-            [MMProgressHUD dismissWithError:[obj objectForKey:@"ErrorMessage"] afterDelay:2];
-            [self.selectTableViewCell resetContainerView];
-        }
-    } failed:^(NSURLResponse *response, NSError *error) {
-        [MMProgressHUD dismiss];
-        [self.view makeToast:@"网络出错啦,请检查您的网络" duration:2 position:@"center"];
-    }];
-}
-
-#pragma mark rename device
-
-- (void)renameFriendDevice:(NSIndexPath *)indexPath
-{
-    [self.selectTableViewCell resetContainerView];
-    if ([[[self.deviceArr objectAtIndex:indexPath.row] objectForKey:@"DetailDevice"] count]>0) {
-        ReNameDoubleDeviceViewController *name = [[ReNameDoubleDeviceViewController alloc]init];
-        name.deviceInfo = [self.deviceArr objectAtIndex:indexPath.row];
-        [self.navigationController pushViewController:name animated:YES];
-    }else{
-        ReNameDeviceNameViewController *name = [[ReNameDeviceNameViewController alloc]init];
-        name.deviceInfo = [self.deviceArr objectAtIndex:indexPath.row];
-        [self.navigationController pushViewController:name animated:YES];
-    }
-}
-
-- (void)reActiveFriendDevice:(NSIndexPath *)indexPath
-{
-    NSDictionary *dic = [self.deviceArr objectAtIndex:indexPath.row];
-    if ([[[self.deviceArr objectAtIndex:indexPath.row] objectForKey:@"DetailDevice"] count]>0) {
-        DoubleDUPViewController *udp = [[DoubleDUPViewController alloc]init];
-        udp.productName = [dic objectForKey:@"Description"];//测试
-        thirdHardDeviceUUID = [dic objectForKey:@"UUID"];
-        udp.productUUID = [dic objectForKey:@"UUID"];
-        [self.navigationController pushViewController:udp animated:YES];
-    }else{
-        UDPAddProductViewController *udp = [[UDPAddProductViewController alloc]init];
-        udp.productName = [dic objectForKey:@"Description"];;
-        thirdHardDeviceUUID = [dic objectForKey:@"UUID"];
-        udp.productUUID = [dic objectForKey:@"UUID"];
-        [self.navigationController pushViewController:udp animated:YES];
-    }
-}
-
-- (UILabel *)messageLabel
-{
-    if (!_messageLabel) {
-        _messageLabel = [[UILabel alloc]init];
-        _messageLabel.frame = CGRectMake(0, self.sideTableView.frame.size.height/2-100,self.sideTableView.frame.size.width , 40);
-        _messageLabel.text = @"您还没有绑定设备！";
-        _messageLabel.font = [UIFont systemFontOfSize:17];
-        _messageLabel.textAlignment = NSTextAlignmentCenter;
-        _messageLabel.textColor = [UIColor grayColor];
-        
-    }
-    return _messageLabel;
-}
-
-//在界面出现的时候进行刷新数据
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    //获取数据
-    [self getUserDeviceList];
-}
-- (void)refreshBegining
-{
-    [self refresh];
-    
-}
-*/
-
 #pragma mark alertView delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -308,6 +229,13 @@
             [self getUserDeviceList];
         }
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getUserDeviceList];
+
 }
 
 - (void)didReceiveMemoryWarning {

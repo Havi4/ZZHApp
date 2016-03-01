@@ -33,5 +33,7 @@ extern NSDate *selectedDateToUse;
 extern BOOL isDoubleDevice;
 extern DeviceList *gloableActiveDevice;
 
+extern YYReachability *netReachability;
+
 
 
