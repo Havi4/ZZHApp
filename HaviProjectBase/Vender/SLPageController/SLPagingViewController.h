@@ -213,6 +213,9 @@ typedef void(^SLPagingViewDidChanged)(NSInteger currentPage);
  */
 -(void)addViewControllers:(UIViewController *) controller needToRefresh:(BOOL) refresh;
 
+-(void)removeAllViewControllerToRefresh:(BOOL) refresh;
+
+
 /**
  *  Allows to update the navigationBar's background color
  *

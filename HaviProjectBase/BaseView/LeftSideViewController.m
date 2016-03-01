@@ -11,6 +11,7 @@
 #import "LeftSideTableDataDelegate.h"
 #import "LeftSideTableViewCell.h"
 #import "DataShowTableViewCell.h"
+#import "AppDelegate.h"
 //侧栏
 #import "PersonManagerViewController.h"
 #import "DeviceListViewController.h"
@@ -59,6 +60,7 @@
     [self addControllerToCellArrayWithClassName:@"MessageListViewController"];
     [self addControllerToCellArrayWithClassName:@"APPSettingViewController"];
     [self setUserInfo];
+
 }
 
 - (void)setUserInfo

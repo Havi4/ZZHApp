@@ -47,6 +47,9 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     @weakify(self)
     [self checkUserDevice:^(DeviceList *device, NSError *error) {
         @strongify(self);
+        [self.containerDataView.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj removeFromParentViewController];
+        }];
         self.activeDeviceInfo = device;
         gloableActiveDevice = device;
         [self initCenterViewControllers];
@@ -270,9 +273,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     modal.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:modal animated:YES completion:nil];
     
-    
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {

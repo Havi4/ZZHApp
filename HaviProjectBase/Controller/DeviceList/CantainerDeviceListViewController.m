@@ -59,9 +59,6 @@
     }];
     
     [self.view addSubview:self.sideTableView];
-    self.sideTableView.backgroundColor = [UIColor clearColor];
-    self.sideTableView.delegate = self;
-    self.sideTableView.dataSource = self;
     self.sideTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.sideTableView.frame = CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height-44);
     
@@ -89,7 +86,7 @@
         if (self.deviceArr.count == 0) {
             [self.view addSubview:self.noDataImageView];
         }else {
-            [self.sideTableView removeFromSuperview];
+            [self.noDataImageView removeFromSuperview];
         }
         [self.sideTableView reloadData];
     }];    
@@ -106,8 +103,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString *cellIndentifier = [NSString stringWithFormat:@"cell%ld",(long)indexPath.row];
-    ContainerTableViewCell *cell = [[ContainerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+    NSString *cellIndentifier = [NSString stringWithFormat:@"cell"];
+    ContainerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+    if (!cell) {
+        cell = [[ContainerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        
+    }
     cell.backgroundColor = [UIColor clearColor];
     DeviceList *deviceInfo = [self.deviceArr objectAtIndex:indexPath.row];
     cell.cellUserDescription = [NSString stringWithFormat:@"%@", deviceInfo.nDescription];
@@ -184,6 +185,7 @@
     [client requestActiveMyDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
         if ([resultModel.returnCode intValue]==200) {
             [self cancelView:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
         }
     }];
 }

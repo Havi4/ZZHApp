@@ -287,6 +287,18 @@
        [self setupPagingProcess];
 }
 
+-(void)removeAllViewControllerToRefresh:(BOOL) refresh
+{
+    [self.scrollView removeFromSuperview];
+    self.scrollView = nil;
+    [self.viewControllers removeAllObjects];
+    [_navItemsViews removeAllObjects];
+    [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromParentViewController];
+        [obj.view removeFromSuperview];
+    }];
+}
+
 -(void)setNavigationBarColor:(UIColor*) color{
     if(color)
         self.navigationBarView.backgroundColor = color;

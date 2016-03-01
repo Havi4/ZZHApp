@@ -144,7 +144,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter]removeObserver:kPostEmergencyNoti];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kPostEmergencyNoti object:nil];
 }
 
 - (void)showHeartEmercenyView:(NSNotification *)noti
