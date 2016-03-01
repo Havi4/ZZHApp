@@ -12,9 +12,15 @@
 #import "CLWeeklyCalendarView.h"
 #import "CalendarHomeViewController.h"
 #import "CalendarDateCaculate.h"
+#import "CantainerDeviceListViewController.h"
+#import "ModalAnimation.h"
 
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
-@interface CenterViewController ()<CLWeeklyCalendarViewDelegate>
+@interface CenterViewController ()<CLWeeklyCalendarViewDelegate,UIViewControllerTransitioningDelegate>
+{
+    ModalAnimation *_modalAnimationController;
+}
+
 
 @property (nonatomic, strong) BaseViewContainerView *containerDataView;
 @property (nonatomic, strong) DeviceList *activeDeviceInfo;
@@ -247,11 +253,26 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     KxMenuItem *item = (KxMenuItem *)sender;
     if ([item.title isEqualToString:@"我的设备"]) {
-//        [self showDropDownView];
+        [self showDropDownView];
     }else if ([item.title isEqualToString:@"分享应用"]){
         [self shareApp:nil];
     }
 }
+
+#pragma mark dropDown Menu
+
+- (void)showDropDownView
+{
+    // Init dropdown view
+    _modalAnimationController = [[ModalAnimation alloc] init];
+    CantainerDeviceListViewController *modal = [[CantainerDeviceListViewController alloc] init];
+    modal.transitioningDelegate = self;
+    modal.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:modal animated:YES completion:nil];
+    
+    
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -270,6 +291,18 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     [self.shareNewMenuView showInView:self.view];
 }
+
+#pragma mark - Transitioning Delegate (Modal)
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    _modalAnimationController.type = AnimationTypePresent;
+    return _modalAnimationController;
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    _modalAnimationController.type = AnimationTypeDismiss;
+    return _modalAnimationController;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
