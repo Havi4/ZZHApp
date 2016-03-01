@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString *propertyDate;
 @property (strong, nonatomic) NSString *propertyValue;
+@property (strong, nonatomic) NSString *assessmentCode;
 
 @end
 

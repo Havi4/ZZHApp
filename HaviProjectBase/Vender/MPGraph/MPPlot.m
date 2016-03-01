@@ -308,12 +308,7 @@
         }];
         
     }else [self displayDetailViewAtPoint:button.center];
-
-    
-    
-
-    
-    
+  
 }
 
 - (void)displayDetailViewAtPoint:(CGPoint)point{

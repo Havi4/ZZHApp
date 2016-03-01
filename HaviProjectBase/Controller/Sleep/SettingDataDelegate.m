@@ -231,7 +231,7 @@
         dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
     }
     //Now just present the date selection controller using the standard iOS presentation method
-    [[NSObject appRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
+    [[NSObject appNaviRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
 }
 
 - (void)openPickerController:(SleepSettingButtonType)type {
@@ -270,7 +270,7 @@
     self.sleepLeaveBedTime = @[@"5秒",@"15秒",@"30秒",@"1分钟",@"5分钟",@"10分钟",@"15分钟",];
     
     //Now just present the picker controller using the standard iOS presentation method
-    [[NSObject appRootViewController] presentViewController:pickerController animated:YES completion:nil];
+    [[NSObject appNaviRootViewController] presentViewController:pickerController animated:YES completion:nil];
 }
 
 #pragma mark 控制本地通知

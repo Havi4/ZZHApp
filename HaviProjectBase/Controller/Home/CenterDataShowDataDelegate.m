@@ -177,7 +177,7 @@
     [dateSelectionController addAction:selectAction];
     [dateSelectionController addAction:cancelAction];
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
-    [[NSObject appRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
+    [[NSObject appNaviRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
 }
 
 @end

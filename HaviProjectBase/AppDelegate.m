@@ -33,6 +33,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self setThirdAppSettingWith:launchOptions];
+    [self getSuggestionList];
     
     if ([UserManager GetUserObj]) {
         [self setRootViewController];
@@ -151,6 +152,14 @@
         
     };
 
+}
+
+#pragma mark 获取专家建议表
+- (void)getSuggestionList
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestAssessmentListWithBlock:^(AssessmentListModel *assessList, NSError *error) {        
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

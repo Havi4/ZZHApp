@@ -29,6 +29,27 @@ static ZZHAPIManager *_apiManager = nil;
     }];
 }
 
+//获取专家建议表
+
+- (void)requestAssessmentListWithBlock:(void (^)(AssessmentListModel *assessList , NSError *error))blcok
+{
+    NSString *aPath = @"v1/app/AssessmentList";
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:nil withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+        NSDictionary *dic = (NSDictionary *)data;
+        NSArray *arrList = [dic objectForKey:@"Assessments"];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            for (int i = 0; i<arrList.count; i++) {
+                NSDictionary *dic = [arrList objectAtIndex:i];
+                [[NSUserDefaults standardUserDefaults]setObject:dic forKey:[NSString stringWithFormat:@"%@",[dic objectForKey:@"Code"]]];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+            }
+        });
+        //不需要回调
+//        AssessmentListModel *serverModel = [AssessmentListModel modelWithDictionary:dic];
+//        blcok(serverModel,error);
+    }];
+}
+
 - (void)requestAddUserWithParams:(NSDictionary *)params andBlock:(void (^)(AddUserModel *userModel, NSError *error))block
 {
     NSString *aPath = @"v1/user/UserRegister";
@@ -56,6 +77,17 @@ static ZZHAPIManager *_apiManager = nil;
         NSDictionary *dic = (NSDictionary *)data;
         UserInfoDetailModel *userInfoModel = [UserInfoDetailModel modelWithDictionary:dic];
         block(userInfoModel,error);
+    }];
+}
+
+//常看异常数据
+- (void)requestCheckSensorDataIrregularInfoParams:(NSDictionary *)params andBlcok:(void (^)(SensorDataModel *sensorModel,NSError *error))block
+{
+    NSString *urlString = [NSString stringWithFormat:@"v1/app/SensorDataIrregular?UUID=%@&DataProperty=%d&FromDate=%@&EndDate=%@&FromTime=18:00&EndTime=18:00",[params objectForKey:@"UUID"],[[params objectForKey:@"DataProperty"]intValue],[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"]];
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:urlString withParams:params withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+        NSDictionary *dic = (NSDictionary *)data;
+        SensorDataModel *loginModel = [SensorDataModel modelWithDictionary:dic];
+        block(loginModel,error);
     }];
 }
 

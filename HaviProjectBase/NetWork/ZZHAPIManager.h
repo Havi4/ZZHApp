@@ -20,6 +20,7 @@
 #import "SensorDataModel.h"
 #import "SleepQualityModel.h"
 #import "AllDeviceModel.h"
+#import "AssessmentListModel.h"
 
 @interface ZZHAPIManager : NSObject
 
@@ -28,6 +29,10 @@
 //获取服务器时间
 
 - (void)requestServerTimeWithBlock:(void (^)(ServerTimeModel *serVerTime , NSError *error))blcok;
+
+//获取专家建议表
+
+- (void)requestAssessmentListWithBlock:(void (^)(AssessmentListModel *assessList , NSError *error))blcok;
 
 //添加用户
 
@@ -71,7 +76,8 @@
 //查看用户标签
 
 - (void)requestCheckUserTagsParams:(NSDictionary *)params andBlock:(void (^)(TagListModel *tagListModel,NSError *error))block;
-
+//常看异常数据
+- (void)requestCheckSensorDataIrregularInfoParams:(NSDictionary *)params andBlcok:(void (^)(SensorDataModel *sensorModel,NSError *error))block;
 //查看sensorinfo
 
 - (void)requestCheckSensorInfoParams:(NSDictionary *)params andBlcok:(void (^)(SensorInfoModel *sensorModel,NSError *error))block;

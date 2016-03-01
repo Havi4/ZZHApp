@@ -38,6 +38,8 @@
 
 #pragma mark 顶层controller
 
-+ (UIViewController *)appRootViewController;
++ (UIViewController *)appPresentedRootViewController;
+
++ (UIViewController *)appNaviRootViewController;
 
 @end

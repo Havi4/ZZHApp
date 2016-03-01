@@ -327,12 +327,7 @@
 
 - (void)showAlarm:(UIButton *)button
 {
-    if (self.type == SensorDataHeart) {
-        
-//        [[NSNotificationCenter defaultCenter]postNotificationName:PostHeartEmergencyNoti object:nil];
-    }else if(self.type == SensorDataBreath){
-//        [[NSNotificationCenter defaultCenter]postNotificationName:PostBreatheEmergencyNoti object:nil];
-    }
+    [[NSNotificationCenter defaultCenter]postNotificationName:kPostEmergencyNoti object:nil userInfo:@{@"type":@(self.type)}];
 }
 
 @end

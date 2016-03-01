@@ -9,8 +9,14 @@
 #import "ChartDataViewController.h"
 #import "SensorDataDelegate.h"
 #import "SensorTitleTableViewCell.h"
+#import "DiagnoseReportViewController.h"
+#import "ModalAnimation.h"
+#import "UIView+UIDisplayedInScreen.h"
 
-@interface ChartDataViewController ()
+@interface ChartDataViewController ()<UIViewControllerTransitioningDelegate>
+{
+    ModalAnimation *_modalAnimationController;
+}
 
 @property (nonatomic, strong) UITableView *sensorShowTableView;
 @property (nonatomic, strong) SensorDataDelegate *sensorDelegate;
@@ -128,6 +134,67 @@
     [self getSleepQualityData];
     [self getSensorData];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showHeartEmercenyView:) name:kPostEmergencyNoti object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:kPostEmergencyNoti];
+}
+
+- (void)showHeartEmercenyView:(NSNotification *)noti
+{
+    if (![self.sensorShowTableView  isDisplayedInScreen]) {
+        return;
+    };
+    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
+    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:1]];
+
+    NSDictionary *dic18 = @{
+                            @"UUID" : self.deviceUUID,
+                            @"DataProperty":@(self.sensorType+3),
+                            @"FromDate": queryFromDate,
+                            @"EndDate": queryEndDate,
+                            };
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestCheckSensorDataIrregularInfoParams:dic18 andBlcok:^(SensorDataModel *sensorModel, NSError *error) {
+        SensorDataModel *irregularData = sensorModel;
+        NSString *title = self.sensorType + 3 == 3 ? @"心率":@"呼吸";
+        [self showExceptionView:irregularData withTitle:title queryDate:queryFromDate];
+    }];
+}
+
+- (void)showExceptionView:(SensorDataModel *)model withTitle:(NSString *)exceptionTitle queryDate:(NSString *)queryFrom
+{
+    _modalAnimationController = [[ModalAnimation alloc] init];
+    DiagnoseReportViewController *modal = [[DiagnoseReportViewController alloc] init];
+    modal.transitioningDelegate = self;
+    modal.dateTime = queryFrom;
+    modal.reportTitleString = exceptionTitle;
+    modal.modalPresentationStyle = UIModalPresentationCustom;
+    modal.exceptionDic = model;
+    modal.sleepDic = self.sleepQualityModel;
+    [self presentViewController:modal animated:YES completion:nil];
+}
+
+
+#pragma mark - Transitioning Delegate (Modal)
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    _modalAnimationController.type = AnimationTypePresent;
+    return _modalAnimationController;
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    _modalAnimationController.type = AnimationTypeDismiss;
+    return _modalAnimationController;
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {

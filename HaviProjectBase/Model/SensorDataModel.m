@@ -15,6 +15,7 @@
     return @{
              @"propertyDate" : @"At",
              @"propertyValue" : @"Value",
+             @"assessmentCode": @"AssessmentCode",
              };
 }
 
