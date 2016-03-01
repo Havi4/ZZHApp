@@ -44,7 +44,7 @@
 
 - (void)addSubView
 {
-    self.backgroundImageView.image = [UIImage imageNamed:@"left_bg_day"];
+    self.backgroundImageView.dk_imagePicker = DKImageWithNames( @"left_bg_night",@"left_bg_day");
     [self.view addSubview:self.userIconImageView];
     @weakify(self);
     self.userIconImageView.tapIconBlock = ^(NSUInteger index){

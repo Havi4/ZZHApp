@@ -213,6 +213,15 @@
 		2C9EF5161C8550D8000704E2 /* AssessmentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5151C8550D8000704E2 /* AssessmentListModel.m */; };
 		2C9EF51C1C858B4E000704E2 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9EF5191C858B4E000704E2 /* libSmartLinkV30Lib.a */; };
 		2C9EF51D1C858B4E000704E2 /* libSniffer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9EF51A1C858B4E000704E2 /* libSniffer.a */; };
+		2C9EF5321C8597C9000704E2 /* THPinInputCirclesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5231C8597C9000704E2 /* THPinInputCirclesView.m */; };
+		2C9EF5331C8597C9000704E2 /* THPinInputCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5251C8597C9000704E2 /* THPinInputCircleView.m */; };
+		2C9EF5341C8597C9000704E2 /* THPinNumButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5271C8597C9000704E2 /* THPinNumButton.m */; };
+		2C9EF5351C8597C9000704E2 /* THPinNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5291C8597C9000704E2 /* THPinNumPadView.m */; };
+		2C9EF5361C8597C9000704E2 /* THPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF52B1C8597C9000704E2 /* THPinView.m */; };
+		2C9EF5371C8597C9000704E2 /* THPinViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF52C1C8597C9000704E2 /* THPinViewController.bundle */; };
+		2C9EF5381C8597C9000704E2 /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF52E1C8597C9000704E2 /* THPinViewController.m */; };
+		2C9EF5391C8597C9000704E2 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5311C8597C9000704E2 /* UIImage+ImageEffects.m */; };
+		2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF53B1C859986000704E2 /* PinLockSetting.m */; };
 		2CD0146D1C623F3E001F9514 /* IconImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0146C1C623F3E001F9514 /* IconImageView.m */; };
 		2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */; };
 		2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014731C62FB17001F9514 /* left_bg_day@2x.png */; };
@@ -791,6 +800,24 @@
 		2C9EF5191C858B4E000704E2 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
 		2C9EF51A1C858B4E000704E2 /* libSniffer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSniffer.a; sourceTree = "<group>"; };
 		2C9EF51B1C858B4E000704E2 /* Sniffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sniffer.h; sourceTree = "<group>"; };
+		2C9EF5221C8597C9000704E2 /* THPinInputCirclesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCirclesView.h; sourceTree = "<group>"; };
+		2C9EF5231C8597C9000704E2 /* THPinInputCirclesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCirclesView.m; sourceTree = "<group>"; };
+		2C9EF5241C8597C9000704E2 /* THPinInputCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCircleView.h; sourceTree = "<group>"; };
+		2C9EF5251C8597C9000704E2 /* THPinInputCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCircleView.m; sourceTree = "<group>"; };
+		2C9EF5261C8597C9000704E2 /* THPinNumButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinNumButton.h; sourceTree = "<group>"; };
+		2C9EF5271C8597C9000704E2 /* THPinNumButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumButton.m; sourceTree = "<group>"; };
+		2C9EF5281C8597C9000704E2 /* THPinNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinNumPadView.h; sourceTree = "<group>"; };
+		2C9EF5291C8597C9000704E2 /* THPinNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumPadView.m; sourceTree = "<group>"; };
+		2C9EF52A1C8597C9000704E2 /* THPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinView.h; sourceTree = "<group>"; };
+		2C9EF52B1C8597C9000704E2 /* THPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinView.m; sourceTree = "<group>"; };
+		2C9EF52C1C8597C9000704E2 /* THPinViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = THPinViewController.bundle; sourceTree = "<group>"; };
+		2C9EF52D1C8597C9000704E2 /* THPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewController.h; sourceTree = "<group>"; };
+		2C9EF52E1C8597C9000704E2 /* THPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinViewController.m; sourceTree = "<group>"; };
+		2C9EF52F1C8597C9000704E2 /* THPinViewControllerMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewControllerMacros.h; sourceTree = "<group>"; };
+		2C9EF5301C8597C9000704E2 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		2C9EF5311C8597C9000704E2 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		2C9EF53A1C859986000704E2 /* PinLockSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinLockSetting.h; sourceTree = "<group>"; };
+		2C9EF53B1C859986000704E2 /* PinLockSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinLockSetting.m; sourceTree = "<group>"; };
 		2CD0146B1C623F3E001F9514 /* IconImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconImageView.h; sourceTree = "<group>"; };
 		2CD0146C1C623F3E001F9514 /* IconImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconImageView.m; sourceTree = "<group>"; };
 		2CD0146F1C62F5C6001F9514 /* head_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_placeholder@2x.png"; sourceTree = "<group>"; };
@@ -1542,6 +1569,29 @@
 			path = libSmartLinkStaticLib;
 			sourceTree = "<group>";
 		};
+		2C9EF5211C8597C9000704E2 /* THPinViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EF5221C8597C9000704E2 /* THPinInputCirclesView.h */,
+				2C9EF5231C8597C9000704E2 /* THPinInputCirclesView.m */,
+				2C9EF5241C8597C9000704E2 /* THPinInputCircleView.h */,
+				2C9EF5251C8597C9000704E2 /* THPinInputCircleView.m */,
+				2C9EF5261C8597C9000704E2 /* THPinNumButton.h */,
+				2C9EF5271C8597C9000704E2 /* THPinNumButton.m */,
+				2C9EF5281C8597C9000704E2 /* THPinNumPadView.h */,
+				2C9EF5291C8597C9000704E2 /* THPinNumPadView.m */,
+				2C9EF52A1C8597C9000704E2 /* THPinView.h */,
+				2C9EF52B1C8597C9000704E2 /* THPinView.m */,
+				2C9EF52C1C8597C9000704E2 /* THPinViewController.bundle */,
+				2C9EF52D1C8597C9000704E2 /* THPinViewController.h */,
+				2C9EF52E1C8597C9000704E2 /* THPinViewController.m */,
+				2C9EF52F1C8597C9000704E2 /* THPinViewControllerMacros.h */,
+				2C9EF5301C8597C9000704E2 /* UIImage+ImageEffects.h */,
+				2C9EF5311C8597C9000704E2 /* UIImage+ImageEffects.m */,
+			);
+			path = THPinViewController;
+			sourceTree = "<group>";
+		};
 		2CD0146E1C62F5C6001F9514 /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1778,6 +1828,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF5211C8597C9000704E2 /* THPinViewController */,
 				2C9EF4EA1C852CE6000704E2 /* Animation */,
 				2C9EF4C81C844FA3000704E2 /* ZFCalendar */,
 				2C9EF4761C80B791000704E2 /* TumblrMenu */,
@@ -2022,6 +2073,8 @@
 		2CD75B4C1C61C25300E7E076 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EF53A1C859986000704E2 /* PinLockSetting.h */,
+				2C9EF53B1C859986000704E2 /* PinLockSetting.m */,
 				2CD75B8D1C61CCC600E7E076 /* NSObject+Common.h */,
 				2CD75B8E1C61CCC600E7E076 /* NSObject+Common.m */,
 				2CF2E1791C75B6F50007A639 /* UISearchBar+Common.h */,
@@ -2789,6 +2842,7 @@
 				2CF2E26F1C7AD1E30007A639 /* pic_introduce_1@2x.png in Resources */,
 				2CF2E2761C7AD22D0007A639 /* font_2_min@2x.png in Resources */,
 				2CF2E2221C79DAD70007A639 /* textbox_devicename_0@2x.png in Resources */,
+				2C9EF5371C8597C9000704E2 /* THPinViewController.bundle in Resources */,
 				2CD0148D1C633FF3001F9514 /* icon_setting_0@2x.png in Resources */,
 				2CF2E1511C7590930007A639 /* search_1@2x.png in Resources */,
 				2CF2E1661C759F530007A639 /* havi1_3@2x.png in Resources */,
@@ -2934,6 +2988,7 @@
 				2CD75B701C61C2D000E7E076 /* BaseModel.m in Sources */,
 				2CD014D81C64BF1C001F9514 /* BaseTableViewDataDelegate.m in Sources */,
 				2CF2E2001C78A82C0007A639 /* DTTimePeriodCollection.m in Sources */,
+				2C9EF5381C8597C9000704E2 /* THPinViewController.m in Sources */,
 				2CF2E1911C75C6D30007A639 /* MMPopupCategory.m in Sources */,
 				2C9EF4391C803146000704E2 /* UIColor+expanded.m in Sources */,
 				2CD75B771C61C2D000E7E076 /* ServerTimeModel.m in Sources */,
@@ -2955,6 +3010,7 @@
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
 				2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */,
 				2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */,
+				2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */,
 				2CD75B6F1C61C2D000E7E076 /* AddUserModel.m in Sources */,
 				2C9EF4331C802CB0000704E2 /* ChartTableDataDelegate.m in Sources */,
 				2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */,
@@ -3008,6 +3064,7 @@
 				2C9EF3741C7D996B000704E2 /* NSDate+CL.m in Sources */,
 				2CF2E1FF1C78A82C0007A639 /* DTTimePeriodChain.m in Sources */,
 				2C9EF3761C7D996B000704E2 /* UIColor+CL.m in Sources */,
+				2C9EF5391C8597C9000704E2 /* UIImage+ImageEffects.m in Sources */,
 				2CD015301C70774A001F9514 /* JASwipeCell.m in Sources */,
 				2C5872801C7B44E6001C2F3A /* GetCodeViewController.m in Sources */,
 				2CD015141C704485001F9514 /* RMDateSelectionViewController.m in Sources */,
@@ -3015,6 +3072,7 @@
 				2C9EF4AB1C82FBC3000704E2 /* WTURLRequestOperation.m in Sources */,
 				2C9EF5031C8535A9000704E2 /* DiagnoseReportTableViewCell.m in Sources */,
 				2C9EF4741C80B692000704E2 /* QuaterCalenderView.m in Sources */,
+				2C9EF5351C8597C9000704E2 /* THPinNumPadView.m in Sources */,
 				2CD014FC1C6EABDF001F9514 /* EditInfoCellTableViewCell.m in Sources */,
 				2CD014F21C6E2024001F9514 /* EditCellInfoViewController.m in Sources */,
 				2CD015231C707651001F9514 /* DeviceListViewController.m in Sources */,
@@ -3048,11 +3106,14 @@
 				2C9EF4871C816AD4000704E2 /* ReportSleepViewCell.m in Sources */,
 				2CF2E1D01C7711CE0007A639 /* MessageShowTableViewCell.m in Sources */,
 				2CD015281C7076D4001F9514 /* FriendDeviceListViewController.m in Sources */,
+				2C9EF5361C8597C9000704E2 /* THPinView.m in Sources */,
 				2C9EF4A81C82FBC3000704E2 /* WeiBoLogoutAPI.m in Sources */,
+				2C9EF5341C8597C9000704E2 /* THPinNumButton.m in Sources */,
 				2CF2E16E1C75B3BA0007A639 /* SearchBarDisplayController.m in Sources */,
 				2C9EF4521C804ADC000704E2 /* ReportVewContainerController.m in Sources */,
 				2C9EF3AC1C7EEA6C000704E2 /* ChartDataViewController.m in Sources */,
 				2CF2E1981C75D2670007A639 /* SearchBarCustom.m in Sources */,
+				2C9EF5321C8597C9000704E2 /* THPinInputCirclesView.m in Sources */,
 				2CD0150E1C70298E001F9514 /* ImageUtil.m in Sources */,
 				2C9EF4721C80B692000704E2 /* MonthCalenderView.m in Sources */,
 				2C9EF3851C7DA1AB000704E2 /* CenterGaugeTableViewCell.m in Sources */,
@@ -3103,6 +3164,7 @@
 				2C9EF43C1C8033CA000704E2 /* ChartTableDataViewCell.m in Sources */,
 				2C9EF45B1C804C45000704E2 /* ReportDataShowViewController.m in Sources */,
 				2CF2E1C01C76FDCB0007A639 /* NameDoubleViewController.m in Sources */,
+				2C9EF5331C8597C9000704E2 /* THPinInputCircleView.m in Sources */,
 				2CF2E2801C7ADFE50007A639 /* LoginViewController.m in Sources */,
 				2C9EF4AD1C82FBC3000704E2 /* WTURLSessionManager.m in Sources */,
 				2C9EF4611C80565B000704E2 /* ReportChartTableCell.m in Sources */,

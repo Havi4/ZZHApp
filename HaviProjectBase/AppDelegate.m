@@ -16,6 +16,7 @@
 #import "WeiboSDK.h"
 #import "ThirdLoginCallBackManager.h"
 #import "JPushNotiManager.h"
+#import "PinLockSetting.h"
 
 @interface AppDelegate ()
 
@@ -53,6 +54,7 @@
     [self.window makeKeyAndVisible];
     [self setNetworkNoti];
     [self setIntroduceView];
+    [PinLockSetting sharedInstance];
     return YES;
 }
 
@@ -151,6 +153,8 @@
         [DKNightVersionManager nightFalling];
     }
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[NSUserDefaults standardUserDefaults]registerDefaults:@{kAppPassWordKeyNoti : @"NO"}];
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 #pragma mark 设置引导画面
