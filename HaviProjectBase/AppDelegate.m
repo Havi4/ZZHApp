@@ -162,7 +162,7 @@
 
 - (void)setIntroduceView
 {
-    BOOL hasSet = [[NSUserDefaults standardUserDefaults]objectForKey:kAppIntroduceViewKey];
+    BOOL hasSet = [[NSUserDefaults standardUserDefaults]boolForKey:kAppIntroduceViewKey];
     if (hasSet) {
         return;
     }
@@ -207,7 +207,7 @@
     if (registerID.length > 0) {
         NSDictionary *dic = @{
                               @"UserId": thirdPartyLoginUserId, //关键字，必须传递
-                              @"PushRegistrationId": registeredID, //密码
+                              @"PushRegistrationId": registerID, //密码
                               @"AppVersion" : [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
                               @"OSName" : @"iOS",
                               @"OSVersion" : [UIDevice currentDevice].systemVersion,
@@ -215,8 +215,9 @@
                               };
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestRegisterUserIdForPush:dic andBlock:^(BaseModel *baseModel, NSError *error) {
-            
         }];
+    }else{
+        [self uploadRegisterID];
     }
 }
 

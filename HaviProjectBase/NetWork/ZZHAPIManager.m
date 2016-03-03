@@ -279,7 +279,7 @@ static ZZHAPIManager *_apiManager = nil;
 - (void)requestRegisterUserIdForPush:(NSDictionary *)params andBlock:(void (^)(BaseModel *baseModel,NSError *error))block
 {
     NSString *aPath = @"v1/user/UpdateLoginInfo";
-    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:params withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:params withNetWorkMethod:Post andBlock:^(id data, NSError *error) {
         NSDictionary *dic = (NSDictionary *)data;
         BaseModel *globalModel = [BaseModel modelWithDictionary:dic];
         block(globalModel,error);
