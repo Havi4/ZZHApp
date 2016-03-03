@@ -55,6 +55,7 @@
     [self setNetworkNoti];
     [self setIntroduceView];
     [PinLockSetting sharedInstance];
+    [self uploadRegisterID];
     return YES;
 }
 
@@ -198,6 +199,25 @@
     self.centerView = nil;
     self.centerView = [[CenterViewController alloc]init];
     self.sideMenuController.centerPanel = [[UINavigationController alloc]initWithRootViewController:self.centerView];
+}
+
+- (void)uploadRegisterID
+{
+    NSString *registerID = [APService registrationID];
+    if (registerID.length > 0) {
+        NSDictionary *dic = @{
+                              @"UserId": thirdPartyLoginUserId, //关键字，必须传递
+                              @"PushRegistrationId": registeredID, //密码
+                              @"AppVersion" : [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
+                              @"OSName" : @"iOS",
+                              @"OSVersion" : [UIDevice currentDevice].systemVersion,
+                              @"CellPhoneModal" : [UIDevice currentDevice].machineModelName,
+                              };
+        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+        [client requestRegisterUserIdForPush:dic andBlock:^(BaseModel *baseModel, NSError *error) {
+            
+        }];
+    }
 }
 
 

@@ -16,6 +16,7 @@
 #import "GetInavlideCodeApi.h"
 #import "GetCodeViewController.h"
 #import "ThirdLoginCallBackManager.h"
+#import "APService.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,WXApiDelegate>
 @property (nonatomic,strong) CKTextField *nameText;
@@ -428,8 +429,7 @@
 
 - (void)uploadRegisterID
 {
-//    NSString *registerID = [APService registrationID];
-    NSString *registerID;
+    NSString *registerID = [APService registrationID];
     if (registerID.length > 0) {
         NSDictionary *dic = @{
                               @"UserId": thirdPartyLoginUserId, //关键字，必须传递

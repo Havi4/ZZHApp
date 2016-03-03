@@ -16,10 +16,10 @@
 #define kAppTestBaseURL @"http://webservice.meddo99.com:9001/"
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 
-#define kWXPlatform @"wx.com2"
-#define kSinaPlatform @"sina.com1"
-#define kTXPlatform @"qq.com1"
-#define kMeddoPlatform @"meddo99.com1"
+#define kWXPlatform @"wx.com"
+#define kSinaPlatform @"sina.com"
+#define kTXPlatform @"qq.com"
+#define kMeddoPlatform @"meddo99.com"
 
 #define kWXAPPKey @"wx7be2e0c9ebd9e161"
 #define kWXAPPSecret @"8fc579120ceceae54cb43dc2a17f1d54"
