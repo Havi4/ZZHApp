@@ -42,7 +42,7 @@
              return self.menuButton;
          }
          else if (nIndex == 0){
-             [self.rightMenuButton dk_setBackgroundImage:DKImageWithNames(@"plus_math_0", @"plus_math_1") forState:UIControlStateNormal];
+             [self.rightMenuButton dk_setImage:DKImageWithNames(@"plus_math_0", @"plus_math_1") forState:UIControlStateNormal];
              [self.rightMenuButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
              return self.rightMenuButton;
          }
@@ -55,7 +55,7 @@
 {
     if (!_rightMenuButton) {
         _rightMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightMenuButton.frame = CGRectMake(self.view.frame.size.width-35, 12, 20, 20);
+        _rightMenuButton.frame = CGRectMake(self.view.frame.size.width-49, 0, 49, 44);
     }
     return _rightMenuButton;
 }
@@ -106,7 +106,7 @@
     }
     switch (_segmentTitle.selectedSegmentIndex) {
         case 0: {
-            [self.rightMenuButton dk_setBackgroundImage:DKImageWithNames(@"plus_math_0", @"plus_math_1") forState:UIControlStateNormal];
+            [self.rightMenuButton dk_setImage:DKImageWithNames(@"plus_math_0", @"plus_math_1") forState:UIControlStateNormal];
             [self.rightMenuButton removeTarget:self action:@selector(searchDevice:) forControlEvents:UIControlEventTouchUpInside];
             [self.rightMenuButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_myNewDeviceList.view];
@@ -117,7 +117,7 @@
             if (![self.childViewControllers containsObject:self.friendDeviceList]) {
                 [self addChildViewController:self.friendDeviceList];
             }
-            [self.rightMenuButton dk_setBackgroundImage:DKImageWithNames(@"search_0", @"search_1") forState:UIControlStateNormal];
+            [self.rightMenuButton dk_setImage:DKImageWithNames(@"search_0", @"search_1") forState:UIControlStateNormal];
             [self.rightMenuButton removeTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
             [self.rightMenuButton addTarget:self action:@selector(searchDevice:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_friendDeviceList.view];

@@ -131,7 +131,7 @@
     //在这里请求最新的当日数据或者仅仅是更新数据。
     CGPoint point = [gesture locationInView:self.cellCircleView];
     if (point.x>(self.cellCircleView.frame.size.width- self.cellCircleView.frame.size.height)/2 && point.x <self.cellCircleView.frame.size.height+(self.cellCircleView.frame.size.width- self.cellCircleView.frame.size.height)/2) {
-        self.cellCircleView.value = 0.1;
+        self.cellCircleView.value = 0;
         [self.cellCircleView changeSleepQualityValue:self.value*20];//睡眠指数
         [self.cellCircleView changeSleepTimeValue:self.value*20];
     }
