@@ -34,8 +34,8 @@
     self.view.backgroundColor = [UIColor clearColor];
     [self addTableViewDataHandle];
     [self initPushController];
-    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[NSDate date]];
-    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[[NSDate date] dateByAddingDays:1]];
+    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[NSDate date]];
+    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[[NSDate date] dateByAddingDays:-1]];
     [self getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
 }
 

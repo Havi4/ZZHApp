@@ -193,12 +193,12 @@
                     }];
                     break;
                 }
-                NSString *startTime = [NSString stringWithFormat:@"%ld:%ld",date.hour,date.minute];
+                NSString *startTime = [NSString stringWithFormat:@"%@:%@",(date.hour > 10?[NSString stringWithFormat:@"%d",(int)date.hour]:[NSString stringWithFormat:@"0%d",(int)date.hour]),(date.minute > 10?[NSString stringWithFormat:@"%d",(int)date.minute]:[NSString stringWithFormat:@"0%d",(int)date.minute])];
                 [self changeUserSleepSettingInfo:startTime type:SleepSettingStartTime];
                 break;
             }
             case SleepSettingEndTime:{
-                NSString *endTime = [NSString stringWithFormat:@"%ld:%ld",date.hour,date.minute];
+                NSString *endTime = [NSString stringWithFormat:@"%@:%@",(date.hour > 10?[NSString stringWithFormat:@"%d",(int)date.hour]:[NSString stringWithFormat:@"0%d",(int)date.hour]),(date.minute > 10?[NSString stringWithFormat:@"%d",(int)date.minute]:[NSString stringWithFormat:@"0%d",(int)date.minute])];
                 [self changeUserSleepSettingInfo:endTime type:SleepSettingEndTime];
                 break;
             }

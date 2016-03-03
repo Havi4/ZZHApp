@@ -92,8 +92,8 @@
 
 - (void)getSleepQualityData
 {
-    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
-    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:1]];
+    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
+    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:-1]];
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic19 = @{
                             @"UUID" : self.deviceUUID,
@@ -112,8 +112,8 @@
 
 - (void)getSensorData
 {
-    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
-    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:1]];
+    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
+    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:-1]];
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic18 = @{
                             @"UUID" : self.deviceUUID,
@@ -152,8 +152,8 @@
     if (![self.sensorShowTableView  isDisplayedInScreen]) {
         return;
     };
-    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
-    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:1]];
+    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
+    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:-1]];
 
     NSDictionary *dic18 = @{
                             @"UUID" : self.deviceUUID,

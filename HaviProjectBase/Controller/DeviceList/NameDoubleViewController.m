@@ -9,7 +9,6 @@
 #import "NameDoubleViewController.h"
 #import "MMPopupItem.h"
 #import "LBXAlertAction.h"
-//#import "UDPAddProductViewController.h"
 #import "ReactiveDoubleViewController.h"
 
 @interface NameDoubleViewController ()
@@ -27,7 +26,6 @@
 
 - (void)initSubView
 {
-    self.backgroundImageView.image = [UIImage imageNamed:@""];
     self.view.backgroundColor = KTableViewBackGroundColor;
     UILabel *titleLabel = [[UILabel alloc]init];
     [self.view addSubview:titleLabel];

@@ -221,10 +221,9 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 -(void)dailyCalendarViewDidSelect: (NSDate *)date
 {
-    DeBugLog(@"选择日期是%@",date);
     selectedDateToUse = date;
-    NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:date];
-    NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[date dateByAddingDays:1]];
+    __block NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:date];
+    __block NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[date dateByAddingDays:-1]];
     [self.containerDataView.childViewControllers enumerateObjectsUsingBlock:^(__kindof CenterDataShowViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
     }];
