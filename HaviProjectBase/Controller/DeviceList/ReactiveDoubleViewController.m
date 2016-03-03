@@ -204,7 +204,7 @@
 - (void)searchHardware:(UIButton *)button
 {
     if ([self.textFiledName.text isEqualToString:@""]||[self.textFiledPassWord.text isEqualToString:@""]) {
-        [self.view makeToast:@"请输入网络名或者密码" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入网络名或者密码"];
         return;
     }
     NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
@@ -256,7 +256,7 @@
         [self stopSmartLink];
         smtlkState= 0;
         if ([macArray count]== 0)
-            [self.view makeToast:@"激活超时" duration:3 position:@"center"];
+            [NSObject showHudTipStr:@"激活超时"];
         return;
     }
     
@@ -269,7 +269,6 @@
 {
     if (times < 5)
     {
-        NSLog(@"smtlk second start");
         times++;
         [self startSmartLink];
         findTimes= 0;
@@ -299,7 +298,7 @@
     isfinding = NO;
     [smtlk SendSmartlinkEnd:msg moduelIp:host];
     [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-        [self.view makeToast:@"激活成功" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"激活成功"];
         for (UIViewController *controller in self.navigationController.viewControllers) {
             if ([controller isKindOfClass:[DeviceListViewController class]]) {
                 
@@ -309,7 +308,7 @@
         }
     }];
     [MMProgressHUD dismiss];
-    [self.view makeToast:@"激活成功" duration:3 position:@"center"];
+    [NSObject showHudTipStr:@"激活成功"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
