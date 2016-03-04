@@ -141,11 +141,6 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showHeartEmercenyView:) name:kPostEmergencyNoti object:nil];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:kPostEmergencyNoti object:nil];
-}
 
 - (void)showHeartEmercenyView:(NSNotification *)noti
 {
@@ -194,7 +189,10 @@
     return _modalAnimationController;
 }
 
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kPostEmergencyNoti object:nil];
+}
 
 
 - (void)didReceiveMemoryWarning {
