@@ -151,6 +151,7 @@
         [client requestActiveMyDeviceParams:dic14 andBlock:^(BaseModel *resultModel, NSError *error) {
             if ([resultModel.returnCode intValue]==200) {
                 [self getUserDeviceList];
+                gloableActiveDevice = model;
             }
         }];
     }

@@ -179,11 +179,11 @@
 - (void)bindingDeviceWithUUID:(NSString *)UUID
 {
     if (self.leftText.text.length == 0) {
-        [self.view makeToast:@"请输入左侧床垫名称" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入左侧床垫名称"];
         return;
     }
     if (self.rightText.text.length == 0) {
-        [self.view makeToast:@"请输入右侧床垫名称" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入右侧床垫名称"];
         return;
     }
     NSArray *_arrDeatilListDescription = self.dicDetailDevice;

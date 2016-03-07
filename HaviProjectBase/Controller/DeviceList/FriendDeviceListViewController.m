@@ -142,6 +142,7 @@
         [client requestActiveFriendDeviceParams:dic14 andBlock:^(BaseModel *resultModel, NSError *error) {
             if ([resultModel.returnCode intValue]==200) {
                 [self getFriendDeviceList];
+                gloableActiveDevice = model;
             }
         }];
     }

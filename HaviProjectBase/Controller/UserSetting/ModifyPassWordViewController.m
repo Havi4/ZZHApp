@@ -122,16 +122,16 @@
 - (void)savePassWord:(UIButton *)button
 {
     if (self.oldTextFieldPass.text.length == 0) {
-        [self.view makeToast:@"请输入旧密码" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入旧密码"];
         return;
     }
     if (self.changeTextFieldPass.text.length == 0 || self.confirmTextFieldPass.text.length == 0) {
-        [self.view makeToast:@"请输入新密码" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入新密码"];
         return;
     }
     
     if (![self.changeTextFieldPass.text isEqualToString:self.confirmTextFieldPass.text]) {
-        [self.view makeToast:@"新密码输入不一致" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"新密码输入不一致"];
         return;
     }
     [self saveDone];
@@ -146,7 +146,9 @@
                           @"OldPassword":self.oldTextFieldPass.text,//密码
                           };
     [client requestChangeUserInfoParam:dic andBlock:^(BaseModel *resultModel, NSError *error) {
-        [self.view makeToast:@"ok" duration:2 position:@"center"];
+        if ([resultModel.returnCode intValue] == 200) {
+            [NSObject showHudTipStr:@"密码修改成功"];
+        }
     }];
     
 }

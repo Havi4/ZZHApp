@@ -126,8 +126,12 @@
         if (!cell) {
             cell = [[CenterGaugeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
         }
-        [cell addSubview:self.iWantSleepLabel];
-        self.configureCellBlock(indexPath,self.iWantSleepLabel,cell);
+        if ((selectedDateToUse.year == [NSDate date].year)&&(selectedDateToUse.month == [NSDate date].month)&&(selectedDateToUse.day == [NSDate date].day) ) {
+            [cell addSubview:self.iWantSleepLabel];
+            self.configureCellBlock(indexPath,self.iWantSleepLabel,cell);
+        }else{
+            self.configureCellBlock(indexPath,nil,cell);
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         return cell;

@@ -188,7 +188,7 @@
 - (void)showBarCode:(UIButton *)sender
 {
     if (_productNameTextField.text.length == 0) {
-        [self.view makeToast:@"请输入设备名称" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入设备名称"];
         return;
     }
     LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];

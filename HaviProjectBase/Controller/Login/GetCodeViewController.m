@@ -149,11 +149,11 @@
 - (void)tapedGetCode:(UIButton *)sender
 {
     if (self.phoneText.text.length == 0) {
-        [self.view makeToast:@"请输入手机号" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入手机号"];
         return;
     }
     if (self.phoneText.text.length != 11) {
-        [self.view makeToast:@"请输入正确的手机号" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入正确的手机号"];
         return;
     }
     
@@ -176,11 +176,11 @@
                 NSString *string = [[NSString alloc]initWithData:receiveData encoding:NSUTF8StringEncoding];
                 NSRange range = [string rangeOfString:@"<error>"];
                 if ([[string substringFromIndex:range.location +range.length]intValue]==0) {
-                    [self.view makeToast:@"验证码发送成功" duration:2 position:@"center"];
+                    [NSObject showHudTipStr:@"验证码发送成功"];
                     timeToShow = 60;
                     [self showTime];
                 }else{
-                    [self.view makeToast:@"验证码发送失败,请稍候重试" duration:2 position:@"center"];
+                    [NSObject showHudTipStr:@"验证码发送失败,请稍候重试"];
                 }
             }];
 
@@ -252,14 +252,14 @@
 
 - (void)registerUser:(UIButton *)button
 {
-//    if (self.phoneText.text.length == 0) {
-//        [self.view makeToast:@"请输入手机号" duration:2 position:@"center"];
-//        return;
-//    }
-//    if ([self.codeText.text intValue]!=self.randomCode || [self.codeText.text intValue]<999) {
-//        [self.view makeToast:@"验证码错误" duration:2 position:@"center"];
-//        return;
-//    }
+    if (self.phoneText.text.length == 0) {
+        [NSObject showHudTipStr:@"请输入手机号"];
+        return;
+    }
+    if ([self.codeText.text intValue]!=self.randomCode || [self.codeText.text intValue]<999) {
+        [NSObject showHudTipStr:@"验证码错误"];
+        return;
+    }
     RegisterViewController *reg = [[RegisterViewController alloc]init];
     reg.cellPhoneNum = self.phoneText.text;
     [self.navigationController pushViewController:reg animated:YES];

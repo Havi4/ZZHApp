@@ -140,7 +140,7 @@
     if (sent ==0 || sent==7) {
         DeBugLog(@"分享成功");
     }else{
-        [self.view makeToast:@"分享出错啦" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"分享出错啦"];
     }
 }
 
@@ -167,7 +167,7 @@
     if (sent ==0) {
         DeBugLog(@"分享成功");
     }else{
-        [self.view makeToast:@"分享出错啦" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"分享出错啦"];
     }
     
 }

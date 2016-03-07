@@ -196,7 +196,7 @@
 - (void)searchHardware:(UIButton *)button
 {
     if ([self.textFiledName.text isEqualToString:@""]||[self.textFiledPassWord.text isEqualToString:@""]) {
-        [self.view makeToast:@"请输入网络名或者密码" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入网络名或者密码"];
         return;
     }
     NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
@@ -239,7 +239,7 @@
         int bOptVal= 1;
         if (setsockopt(sock, SOL_SOCKET, SO_BROADCAST, (const char*)&bOptVal, sizeof(int)))
         {
-            NSLog(@"socket option  SO_BROADCAST not support\n");
+            DeBugLog(@"socket option  SO_BROADCAST not support\n");
             
             close(sock);
             return;
@@ -249,7 +249,7 @@
         tv.tv_sec = 2;
         tv.tv_usec = 0;
         if(setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))<0){
-            NSLog(@"socket option  SO_RCVTIMEO not support\n");
+            DeBugLog(@"socket option  SO_RCVTIMEO not support\n");
             close(sock);
             return;
         }
@@ -272,9 +272,9 @@
         
         if (ret == -1)
         {
-            NSLog(@"errno=%i", errno);
+            DeBugLog(@"errno=%i", errno);
             NSString *recString = [NSString stringWithFormat:@"sendto %ld error: %s", times,  strerror(errno)];
-            [self.view makeToast:recString duration:1 position:@"center"];
+            [NSObject showHudTipStr:recString];
             //错误处理 是否再次发送find
         }
         else
@@ -283,11 +283,11 @@
             if (ret != -1)
             {
                 NSString *recString = [NSString stringWithFormat:@"receive %ld:%s",times, buffer];
-                NSLog(@"设备激活成功%@", recString);
+                DeBugLog(@"设备激活成功%@", recString);
                 
                 dispatch_async(dispatch_get_main_queue(), ^(){
                     [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-                        [self.view makeToast:@"设备激活成功" duration:2 position:@"center"];
+                        [NSObject showHudTipStr:@"设备激活成功"];
                         [self.navigationController popToRootViewControllerAnimated:YES];
                     }];
                     [MMProgressHUD dismiss];
@@ -302,7 +302,7 @@
                 NSString *recString = [NSString stringWithFormat:@"recvfrom (%ld) error: %s", (long)times, strerror(errno)];
                 dispatch_async(dispatch_get_main_queue(), ^(){
                     [MMProgressHUD dismiss];
-                    [self.view makeToast:recString duration:2 position:@"center"];
+                    [NSObject showHudTipStr:recString];
                 });
                 
                 //错误处理 是否再次发送find
@@ -323,7 +323,7 @@
             [self stopSniffer];
             [MMProgressHUD dismiss];
             [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-                [self.view makeToast:@"激活失败" duration:2 position:@"center"];
+                [NSObject showHudTipStr:@"激活失败"];
             }];
             
         }
@@ -354,7 +354,7 @@
     //接收到udp包后，将标识位改为no
     self.noReceiveData = NO;
     [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-        [self.view makeToast:@"激活成功" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"激活成功"];
         for (UIViewController *controller in self.navigationController.viewControllers) {
             if ([controller isKindOfClass:[DeviceListViewController class]]) {
                 

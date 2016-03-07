@@ -237,15 +237,15 @@
 {
     
     if (self.nameTextField.text.length == 0) {
-        [self.view makeToast:@"请输入设备名称" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入设备名称"];
         return;
     }
     if (self.txLeftNameView.text.length == 0) {
-        [self.view makeToast:@"请输入左侧床垫名称" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入左侧床垫名称"];
         return;
     }
     if (self.txRightNameView.text.length == 0) {
-        [self.view makeToast:@"请输入右侧床垫名称" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入右侧床垫名称"];
         return;
     }
     NSArray *_arrDeatilListDescription = self.deviceInfo.detailDeviceList;

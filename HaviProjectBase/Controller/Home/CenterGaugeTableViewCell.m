@@ -113,6 +113,10 @@
             NSString *sleepStartTime = detailModel.sleepStartTime;
             self.cellStartView.startTime = [sleepStartTime substringWithRange:NSMakeRange(11, 5)];
         }
+        if (abs((int)[selectedDateToUse daysFrom:[NSDate date]]) > 7) {
+            self.cellEndView.hidden = YES;
+            self.cellStartView.hidden = YES;
+        }
         
     }];
     cell.backgroundColor = [UIColor clearColor];

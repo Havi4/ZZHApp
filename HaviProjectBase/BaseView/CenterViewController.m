@@ -198,6 +198,11 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.chvc.calendarblock = ^(CalendarDayModel *model){
         NSDate *selectedDate = [model date];
         @strongify(self);
+        if ([selectedDate isLaterThan:[NSDate date]]) {
+            [NSObject showHudTipStr:@"不要着急,明天才会睡眠数据呦!"];
+            [self.calendarView redrawToDate:[NSDate date]];
+            return;
+        }
         selectedDateToUse = selectedDate;
         [self.calendarView redrawToDate:selectedDate];
         
@@ -221,6 +226,11 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 -(void)dailyCalendarViewDidSelect: (NSDate *)date
 {
+    if ([date isLaterThan:[NSDate date]]) {
+        [NSObject showHudTipStr:@"不要着急,明天才会睡眠数据呦!"];
+        [self.calendarView redrawToDate:[NSDate date]];
+        return;
+    }
     selectedDateToUse = date;
     __block NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:date];
     __block NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[date dateByAddingDays:-1]];

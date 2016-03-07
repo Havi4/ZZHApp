@@ -111,8 +111,8 @@
     };
     [[[MMAlertView alloc] initWithInputTitle:@"提示" detail:@"请输入验证信息，可以提高您的申请成功率" placeholder:@"我是***,希望查看您的设备" handler:^(NSString *text) {
         if (text.length==0) {
-            [[UIApplication sharedApplication].keyWindow makeToast:@"请输入验证信息" duration:2 position:@"center" ];
-            return ;
+            [NSObject showHudTipStr:@"请输入验证信息"];
+            return;
         }
         self.sendMessageTaped(self,text);
     }] showWithBlock:completeBlock];

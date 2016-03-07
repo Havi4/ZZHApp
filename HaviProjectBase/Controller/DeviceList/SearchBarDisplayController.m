@@ -197,7 +197,7 @@
                            };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestRequestToAddFriendParam:para andBlock:^(BaseModel *resultModel, NSError *error) {
-        [self.searchTableView makeToast:@"申请成功" duration:2 position:@"center" ];
+        [NSObject showHudTipStr:@"申请成功"];
     }];
 }
 

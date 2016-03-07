@@ -162,7 +162,7 @@
     [client requestChangeFriendRequestStatus:para andBlock:^(BaseModel *resultModel, NSError *error) {
         if (resultModel) {
             [self getMessageList];
-            [self.view makeToast:@"您已同意该用户的申请" duration:2 position:@"center"];
+            [NSObject showHudTipStr:@"您已同意该用户的申请"];
         }
     }];
 }
@@ -179,7 +179,7 @@
     [client requestChangeFriendRequestStatus:para andBlock:^(BaseModel *resultModel, NSError *error) {
         if (resultModel) {
             [self getMessageList];
-            [self.view makeToast:@"您已拒绝该用户的申请" duration:2 position:@"center"];
+            [NSObject showHudTipStr:@"您已拒绝该用户的申请"];
         }
     }];
 }

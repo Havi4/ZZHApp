@@ -308,7 +308,7 @@
     
     if (self.isOpenFlash)
     {
-        [_btnFlash setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_flash_down"] forState:UIControlStateNormal];
+        [_btnFlash setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_scan_off"] forState:UIControlStateNormal];
     }
     else
         [_btnFlash setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_flash_nor"] forState:UIControlStateNormal];
@@ -321,12 +321,14 @@
 - (void)editUUID
 {
     [UIView transitionFromView:self.view toView:self.editView duration:0.4f options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished) {
+        [self.scanObj stopScan];
     }];
 }
 
 - (void)showBarScan
 {
     [UIView transitionFromView:self.editView toView:self.view duration:0.4f options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished) {
+        [self reStartDevice];
     }];
 }
 

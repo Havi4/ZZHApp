@@ -165,11 +165,11 @@
 - (void)registerUser:(UIButton *)sender
 {
     if (![self.nameText.text isEqualToString:self.passWordText.text]) {
-        [self.view makeToast:@"密码不一致" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"密码不一致"];
         return;
     }
     if (self.passWordText.text.length == 0) {
-        [self.view makeToast:@"请输入密码" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"请输入密码"];
         return;
     }
     NSDictionary *dic = @{
@@ -250,8 +250,8 @@
                     NSString *mediaType = AVMediaTypeVideo;
                     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
                     if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied){
-                        [self.view makeToast:@"请在设置中打开照相机权限" duration:3 position:@"center"];
-                        NSLog(@"相机权限受限");
+                        [NSObject showHudTipStr:@"请在设置中打开照相机权限"];
+                        DeBugLog(@"相机权限受限");
                     }else{
                         sourceType = UIImagePickerControllerSourceTypeCamera;
                         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
@@ -273,7 +273,7 @@
                     ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
                     if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied){
                         //无权限
-                        [self.view makeToast:@"请在设置中打开照片库权限" duration:3 position:@"center"];
+                        [NSObject showHudTipStr:@"请在设置中打开照片库权限"];
                     }else{
                         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];

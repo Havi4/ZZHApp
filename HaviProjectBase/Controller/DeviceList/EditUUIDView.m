@@ -150,7 +150,7 @@
     if (_barCodeTextField.text.length > 0) {
         self.bindDeviceButtonTaped(_barCodeTextField.text);
     }else{
-        [self makeToast:@"设备号不能为空" duration:2 position:@"center"];
+        [NSObject showHudTipStr:@"设备号不能为空"];
     }
 }
 

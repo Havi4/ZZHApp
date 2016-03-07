@@ -75,8 +75,10 @@
                 label.text = [NSString stringWithFormat:@"睡眠时长:%@",callBack];
             }];
         }else if(indexPath.row == 6){
-            UIButton *button = item;
-            [button addTarget:self action:@selector(sendSleepStart) forControlEvents:UIControlEventTouchUpInside];
+            if (item) {
+                UIButton *button = item;
+                [button addTarget:self action:@selector(sendSleepStart) forControlEvents:UIControlEventTouchUpInside];
+            }
         }
         
     };
@@ -148,13 +150,9 @@
         return;
     }
     NSString *endString = [NSString stringWithFormat:@"%ld:%ld",(long)endDate.hour,(long)endDate.minute];
-    NSString *date1 = @"2015-12-21";
-    NSString *date = [NSString stringWithFormat:@"%@ %@:00",date1,endString];
-    /*
     NSDate *date1 = [selectedDateToUse dateByAddingDays:0];
     NSString *dateString = [NSString stringWithFormat:@"%@",date1];
     NSString *date = [NSString stringWithFormat:@"%@%@:00",[dateString substringToIndex:11],endString];
-     */
     NSDictionary *dic = @{
                           @"UUID" : self.deviceUUID,
                           @"UserID" : thirdPartyLoginUserId,
@@ -192,6 +190,7 @@
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestAddUserTagsParams:dic andBlock:^(BaseModel *resultModel, NSError *error) {
         DeBugLog(@"睡眠开始");
+        [NSObject showHudTipStr:@"做个好梦!"];
     }];
 }
 
