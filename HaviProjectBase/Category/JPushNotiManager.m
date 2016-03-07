@@ -77,6 +77,7 @@ static JPushNotiManager *shareInstance = nil;
         } break;
         case 107:{
             //异常登录
+            [UserManager resetUserInfo];
             AppDelegate *app = [UIApplication sharedApplication].delegate;
             [app setLoginViewController];
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:alertString delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
