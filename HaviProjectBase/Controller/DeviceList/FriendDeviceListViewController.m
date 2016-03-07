@@ -136,6 +136,7 @@
         NSDictionary *dic14 = @{
                                 @"UserID": thirdPartyLoginUserId,
                                 @"UUID": model.deviceUUID,
+                                @"FriendUserID":model.friendUserID,
                                 };
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestActiveFriendDeviceParams:dic14 andBlock:^(BaseModel *resultModel, NSError *error) {
