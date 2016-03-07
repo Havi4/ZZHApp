@@ -205,6 +205,9 @@
 {
     NSString *registerID = [APService registrationID];
     if (registerID.length > 0) {
+        if (thirdPartyLoginUserId.length == 0) {
+            return;
+        }
         NSDictionary *dic = @{
                               @"UserId": thirdPartyLoginUserId, //关键字，必须传递
                               @"PushRegistrationId": registerID, //密码
