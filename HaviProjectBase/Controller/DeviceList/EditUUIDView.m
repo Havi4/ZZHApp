@@ -78,7 +78,7 @@
     [self addSubview:_bindDeviceButton];
     
     _backToScanButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_backToScanButton setTitle:@"我要扫二维码" forState:UIControlStateNormal];
+    [_backToScanButton setTitle:@"我要扫码" forState:UIControlStateNormal];
     [_backToScanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_backToScanButton addTarget:self action:@selector(backToScanView) forControlEvents:UIControlEventTouchUpInside];
     [_backToScanButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_hollow_%d",selectedThemeIndex]] forState:UIControlStateNormal];
