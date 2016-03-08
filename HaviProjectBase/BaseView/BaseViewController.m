@@ -14,6 +14,7 @@
 #import "ThirdLoginCallBackManager.h"
 #import "MMPopupItem.h"
 #import "THPinViewController.h"
+#import "DeviceListViewController.h"
 
 @interface BaseViewController ()<LXActivityDelegate>
 
@@ -418,6 +419,10 @@
 {
     MMPopupItemHandler block = ^(NSInteger index){
         DeBugLog(@"clickd %@ button",@(index));
+        if (index == 1) {
+            DeviceListViewController *controller = [[DeviceListViewController alloc]init];
+            self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];
+        }
     };
     NSArray *items =
     @[MMItemMake(@"取消", MMItemTypeNormal, block),MMItemMake(@"确定", MMItemTypeNormal, block)];

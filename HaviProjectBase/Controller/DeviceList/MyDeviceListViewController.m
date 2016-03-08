@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @property (nonatomic, strong) JASwipeCell *selectTableViewCell;
-@property (nonatomic, strong) NSString *selectDeviceUUID;
+@property (nonatomic, strong) DeviceList *selectDevice;
 @property (nonatomic, strong) UILabel *messageLabel;
 
 @end
@@ -129,7 +129,7 @@
     DeviceList *deviceModel = obj;
     if (type == DeleteCell) {
         self.selectTableViewCell = (JASwipeCell *)tableCell;
-        [self deleteMyDevice:deviceModel.deviceUUID];
+        [self deleteMyDevice:deviceModel];
         
     }else if (type == RenameCell){
         [self renameMyDevice:deviceModel];
@@ -157,9 +157,9 @@
     }
 }
 
-- (void)deleteMyDevice:(NSString *)deviceUUID
+- (void)deleteMyDevice:(DeviceList *)deviceUUID
 {
-    self.selectDeviceUUID = deviceUUID;
+    self.selectDevice = deviceUUID;
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"" message:@"您确认删除该设备？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
     alertView.tag = 1001;
     [alertView show];
@@ -169,8 +169,6 @@
 {
     if (deviceInfo.detailDeviceList.count > 0) {
         ReactiveDoubleViewController *doubleUDP = [[ReactiveDoubleViewController alloc]init];
-//        doubleUDP.deviceName = deviceInfo.description;
-//        doubleUDP.deviceUUID = deviceInfo.deviceUUID;
         [self.navigationController pushViewController:doubleUDP animated:YES];
     }else{
         ReactiveSingleViewController *sigleUDP = [[ReactiveSingleViewController alloc]init];
@@ -205,7 +203,10 @@
                 break;
             }
             case 1:{
-                [self deleteMySureUUID:self.selectDeviceUUID];
+                [self deleteMySureUUID:self.selectDevice.deviceUUID];
+                if ([self.selectDevice.isActivated isEqualToString:@"True"]) {
+                    gloableActiveDevice = nil;
+                }
                 break;
             }
                 
