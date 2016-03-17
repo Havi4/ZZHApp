@@ -32,7 +32,8 @@
     [self setAppSetting];
 //    [self registerLocalNotification];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kAppIntroduceViewKey:@NO}];
+    [[NSUserDefaults standardUserDefaults]synchronize];
     [self setThirdAppSettingWith:launchOptions];
     [self getSuggestionList];
     
@@ -204,23 +205,23 @@
 - (void)uploadRegisterID
 {
     NSString *registerID = [APService registrationID];
-    if (registerID.length > 0) {
-        if (thirdPartyLoginUserId.length == 0) {
-            return;
+    for (int i=0; i<3; i++) {
+        if (registerID.length > 0) {
+            if (thirdPartyLoginUserId.length == 0) {
+                return;
+            }
+            NSDictionary *dic = @{
+                                  @"UserId": thirdPartyLoginUserId, //关键字，必须传递
+                                  @"PushRegistrationId": registerID, //密码
+                                  @"AppVersion" : [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
+                                  @"OSName" : @"iOS",
+                                  @"OSVersion" : [UIDevice currentDevice].systemVersion,
+                                  @"CellPhoneModal" : [UIDevice currentDevice].machineModelName,
+                                  };
+            ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+            [client requestRegisterUserIdForPush:dic andBlock:^(BaseModel *baseModel, NSError *error) {
+            }];
         }
-        NSDictionary *dic = @{
-                              @"UserId": thirdPartyLoginUserId, //关键字，必须传递
-                              @"PushRegistrationId": registerID, //密码
-                              @"AppVersion" : [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
-                              @"OSName" : @"iOS",
-                              @"OSVersion" : [UIDevice currentDevice].systemVersion,
-                              @"CellPhoneModal" : [UIDevice currentDevice].machineModelName,
-                              };
-        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
-        [client requestRegisterUserIdForPush:dic andBlock:^(BaseModel *baseModel, NSError *error) {
-        }];
-    }else{
-        [self uploadRegisterID];
     }
 }
 

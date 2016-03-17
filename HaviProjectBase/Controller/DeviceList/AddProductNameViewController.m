@@ -74,7 +74,7 @@
     UILabel *label2 = [[UILabel alloc]init];
     label2.textColor = [UIColor whiteColor];
     label2.numberOfLines = 0;
-    label2.text = @"2、请扫描二维码添加设备。";
+    label2.text = @"2、请扫描设备码添加设备。";
     [backView addSubview:label2];
     [label2 makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(labelCenter.mas_bottom);
@@ -127,7 +127,7 @@
     //
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:nextButton];
-    [nextButton setTitle:@"扫描设备二维码" forState:UIControlStateNormal];
+    [nextButton setTitle:@"扫描设备码" forState:UIControlStateNormal];
     [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(showBarCode:) forControlEvents:UIControlEventTouchUpInside];
 
