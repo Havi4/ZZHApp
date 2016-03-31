@@ -162,7 +162,7 @@
                           };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestUserInfoWithParam:dic andBlock:^(UserInfoDetailModel *userInfo, NSError *error) {
-        if (userInfo) {
+        if ([userInfo.returnCode intValue] != 10029) {
             [NSObject showHudTipStr:@"该手机号已经注册"];
         }else{
             self.randomCode = [self getRandomNumber:1000 to:10000];
