@@ -60,7 +60,7 @@
             self.tapTextSaveBlock(textField.text);
             return YES;
         }else{
-            [NSObject showHudTipStr:@"姓名只能由2-8位数字、字母、中文组成"];
+            [NSObject showHudTipStr:@"姓名只能由2-6位数字、字母、中文组成"];
         }
     }else{
          if ([self checkIsValiadForNum:textField.text]) {

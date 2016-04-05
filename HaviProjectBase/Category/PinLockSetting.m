@@ -41,7 +41,11 @@ static PinLockSetting *shareInstance = nil;
 - (void)removeAppSettingPassWord
 {
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:kAppPassWordKeyNoti] isEqualToString:@"NO"]) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification
+                                                      object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification
+                                                      object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification
                                                       object:nil];
     }
 }
@@ -51,7 +55,11 @@ static PinLockSetting *shareInstance = nil;
     if (![[[NSUserDefaults standardUserDefaults]objectForKey:kAppPassWordKeyNoti] isEqualToString:@"NO"]) {
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground)
-                                                     name:UIApplicationWillResignActiveNotification object:nil];
+                                                     name:UIApplicationWillEnterForegroundNotification  object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground)
+                                                     name:UIApplicationDidBecomeActiveNotification  object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground)
+                                                     name:UIApplicationWillResignActiveNotification  object:nil];
     }
 }
 
@@ -117,7 +125,11 @@ static PinLockSetting *shareInstance = nil;
         [[NSUserDefaults standardUserDefaults]synchronize];
         //移除后台检测
         if ([[[NSUserDefaults standardUserDefaults]objectForKey:kAppPassWordKeyNoti] isEqualToString:@"NO"]) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification
+                                                          object:nil];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification
+                                                          object:nil];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification
                                                           object:nil];
         }
     });

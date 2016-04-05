@@ -124,7 +124,7 @@
     [nextButton addTarget:self action:@selector(registerUser:) forControlEvents:UIControlEventTouchUpInside];
     nextButton.layer.cornerRadius = 0;
     nextButton.layer.masksToBounds = YES;
-    nextButton.userInteractionEnabled = YES;//测试使用
+    nextButton.userInteractionEnabled = YES;
     [self.view addSubview:nextButton];
     
     //
@@ -194,6 +194,7 @@
 {
     UITextField *textField = (UITextField *)noti.object;
     if ([textField isEqual:self.phoneText]) {
+        self.randomCode = 000000;
         if (self.phoneText.text.length>11) {
             self.phoneText.text = [self.phoneText.text substringToIndex:11];
             [self shake:self.phoneText];
@@ -202,7 +203,7 @@
         UIButton *button = (UIButton *)[self.view viewWithTag:1001];
         if (self.codeText.text.length == 4) {
             button.userInteractionEnabled = YES;
-            [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"btn_next_t_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_devicename_%d",selectedThemeIndex]] forState:UIControlStateNormal];
         }else if(self.codeText.text.length > 4){
             self.codeText.text = [self.codeText.text substringToIndex:4];
             [self shake:self.codeText];
