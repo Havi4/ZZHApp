@@ -95,6 +95,7 @@ static PinLockSetting *shareInstance = nil;
 
 - (BOOL)pinViewController:(THPinViewController *)pinViewController isPinValid:(NSString *)pin
 {
+    self.correctPin = [[NSUserDefaults standardUserDefaults]objectForKey:kAppPassWordKeyNoti];
     if ([pin isEqualToString:self.correctPin]) {
         return YES;
     } else {
