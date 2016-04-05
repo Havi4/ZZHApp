@@ -426,7 +426,7 @@
     };
     NSArray *items =
     @[MMItemMake(@"取消", MMItemTypeNormal, block),MMItemMake(@"确定", MMItemTypeNormal, block)];
-    MMAlertView *alert = [[MMAlertView alloc]initWithTitle:@"提示" detail:@"您还没有绑定我们的床垫设备,没有办法显示数据,是否现在绑定?" items:items];
+    MMAlertView *alert = [[MMAlertView alloc]initWithTitle:@"提示" detail:@"您还没有绑定或者激活床垫设备,没有办法显示数据,是否现在绑定或者激活?" items:items];
     [alert show];
     
 }

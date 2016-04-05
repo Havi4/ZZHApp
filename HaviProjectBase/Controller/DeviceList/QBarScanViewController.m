@@ -39,7 +39,10 @@
         @weakify(self);
         _editView.bindDeviceButtonTaped = ^(NSString *barUUID){
             @strongify(self);
-            [self checkIsDoubleBed:barUUID];
+            [UIView transitionFromView:self.editView toView:self.view duration:0.0f options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished) {
+                [self reStartDevice];
+                [self checkIsDoubleBed:barUUID];
+            }];
         };
         _editView.scanBarButtonTaped = ^(NSInteger index){
             @strongify(self);

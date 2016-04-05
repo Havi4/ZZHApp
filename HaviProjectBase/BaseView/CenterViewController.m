@@ -88,12 +88,15 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
                           @"UserID" : thirdPartyLoginUserId,
                           };
     [client requestCheckAllDeviceListParams:dic andBlock:^(AllDeviceModel *myDeviceList, NSError *error) {
+        __block BOOL noMyDevice = YES;
+        __block BOOL noFriendDevice = YES;
         if (myDeviceList) {
             NSArray *myDeviceListArr = myDeviceList.myDeviceList;
             [myDeviceListArr enumerateObjectsUsingBlock:^(DeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([obj.isActivated isEqualToString:@"True"]) {
                     block(obj,nil);
                     *stop = YES;
+                    noMyDevice = NO;
                 }
             }];
             
@@ -102,9 +105,10 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
                 if ([obj.isActivated isEqualToString:@"True"]) {
                     block(obj,nil);
                     *stop = YES;
+                    noFriendDevice = NO;
                 }
             }];
-            if(myDeviceList.myDeviceList.count == 0 && myDeviceList.friendDeviceList.count == 0){
+            if(noMyDevice && noFriendDevice){
                 NSError *error = [NSError errorWithDomain:@"没有" code:00000 userInfo:nil];
                 block(nil,error);
             }
