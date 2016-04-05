@@ -167,6 +167,7 @@
         }else{
             self.randomCode = [self getRandomNumber:1000 to:10000];
             NSString *codeMessage = [NSString stringWithFormat:@"您的验证码是%d",self.randomCode];
+            NSLog(@"验证码是%@",codeMessage);
             NSDictionary *dicPara = @{
                                       @"cell" : self.phoneText.text,
                                       @"codeMessage" : codeMessage,

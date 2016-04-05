@@ -327,7 +327,7 @@
     //code为非0值时，表示有错
     NSNumber *resultCode = [responseJSON valueForKeyPath:@"ReturnCode"];
     
-    if (resultCode.intValue != 200 && resultCode.intValue != 10029 && resultCode.intValue != 10013) {
+    if (resultCode.intValue != 200 && resultCode.intValue != 10029 && resultCode.intValue != 10013 && resultCode.intValue != 10012) {
         error = [NSError errorWithDomain:[NSObject baseURLStr] code:resultCode.intValue userInfo:responseJSON];
         DeBugLog(@"***********服务器提示：%@********************",error);
         NSString *showError = [returnErrorMessage objectForKey:[NSString stringWithFormat:@"%@",resultCode]];

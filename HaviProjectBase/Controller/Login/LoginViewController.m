@@ -410,7 +410,8 @@
                            };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestUserLoginWithParam:dic1 andBlock:^(AddUserModel *loginModel, NSError *error) {
-        if (loginModel) {
+        DeBugLog(@"登录信息是%@",loginModel);
+        if ([loginModel.returnCode intValue]==200) {
             thirdPartyLoginPlatform = kMeddoPlatform;
             thirdPartyLoginUserId = loginModel.userId;
             NSRange range = [thirdPartyLoginUserId rangeOfString:@"$"];
@@ -423,6 +424,8 @@
             [UserManager setGlobalOauth];
             [self uploadRegisterID];
             self.loginButtonClicked(1);
+        }else if ([loginModel.returnCode intValue]==10012){
+            [NSObject showHudTipStr:@"登录密码错误"];
         }
     }];
 }
