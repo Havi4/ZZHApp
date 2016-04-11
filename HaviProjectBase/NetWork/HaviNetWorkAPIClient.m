@@ -34,7 +34,6 @@ static HaviNetWorkAPIClient *_netWorkClient;
         [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [self.requestSerializer setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
         [self.requestSerializer setValue:url.absoluteString forHTTPHeaderField:@"Referer"];
-        
     }
     return self;
 }

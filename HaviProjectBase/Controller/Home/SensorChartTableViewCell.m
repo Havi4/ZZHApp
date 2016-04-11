@@ -167,7 +167,7 @@
     if (self.type == SensorDataHeart) {
         
         CGFloat xWidth = ([[UIScreen mainScreen] applicationFrame].size.width*4-2*20)/kChartDataCount;
-        int xIndex = (int)(xScaleValue/xWidth)-5;
+        int xIndex = (int)((xScaleValue-20)/xWidth);
         if (xIndex<kChartDataCount) {
             int xValue = [[self.changedArr objectAtIndex:xIndex] intValue];
             if (xValue==60) {
@@ -177,7 +177,7 @@
         }
     }else if(self.type == SensorDataBreath){
         CGFloat xWidth = ([[UIScreen mainScreen] applicationFrame].size.width*4-2*20)/kChartDataCount;
-        int xIndex = (int)(xScaleValue/xWidth)-5;
+        int xIndex = (int)((xScaleValue-20)/xWidth);
         if (xIndex<kChartDataCount) {
             int xValue = [[self.changedArr objectAtIndex:xIndex] intValue];
             if (xValue==15) {
