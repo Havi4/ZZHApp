@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>10034</key>
+	<string>双人床设备不允许单独添加</string>
 	<key>10001</key>
 	<string>http请求URL错误</string>
 	<key>10002</key>
