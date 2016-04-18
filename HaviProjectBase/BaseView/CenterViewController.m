@@ -231,7 +231,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 -(void)dailyCalendarViewDidSelect: (NSDate *)date
 {
     if ([date isLaterThan:[NSDate date]]) {
-        [NSObject showHudTipStr:@"不要着急,明天才会睡眠数据呦!"];
+        [NSObject showHudTipStr:@"不要着急,明天才会有睡眠数据呦!"];
         [self.calendarView redrawToDate:[NSDate date]];
         return;
     }

@@ -26,6 +26,7 @@
     BOOL isfinding ;
     NSMutableArray *macArray;
 }
+
 @property (nonatomic,strong) UITextField *textFiledName;
 @property (nonatomic,strong) UITextField *textFiledPassWord;
 
@@ -40,7 +41,6 @@
     showKey= 1;
     macArray=[[NSMutableArray alloc] init];
     self.navigationController.navigationBarHidden = YES;
-    smtlkState= 0;
     // Do any additional setup after loading the view.
     self.backgroundImageView.image = [UIImage imageNamed:@""];
     self.view.backgroundColor = [UIColor colorWithRed:0.188f green:0.184f blue:0.239f alpha:1.00f];
@@ -175,6 +175,7 @@
 
 #pragma mark text delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -248,9 +249,6 @@
 
 - (void)SmtlkTimeOut
 {
-    //findTimes++;
-    // NSLog(@"smtlkTimeOut, %ld", findTimes);
-    //if (findTimes== 20)
     if (!isfinding)
     {
         [self stopSmartLink];
@@ -261,29 +259,33 @@
     }
     
     [smtlk SendSmtlkFind];
-    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(SmtlkTimeOut) userInfo:nil repeats:NO];
+    
 }
 
 // SmartLink delegate
 - (void)SmtlkV30Finished
 {
-    if (times < 5)
+    if (times < 10)
     {
+        NSLog(@"第%ld次",times);
         times++;
         [self startSmartLink];
         findTimes= 0;
         isfinding = YES;
-        [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(SmtlkTimeOut) userInfo:nil repeats:NO];
+        [self SmtlkTimeOut];
+        sleep(1);
     }else{
         isfinding = NO;
         [self stopSmartLink];
+        [self SmtlkTimeOut];
     }
 }
-
 - (void)SmtlkV30ReceivedRspMAC:(NSString *)mac fromHost:(NSString *)host
 {
     NSLog(@"Receive MAC:%@",mac);
     NSLog(@"Receive IP:%@",host);
+    isfinding = NO;
+    [smtlk SmtlkV30Stop];
     NSInteger macNum=[macArray count];
     NSInteger i;
     for (i= 0; i< macNum; i++)
@@ -292,11 +294,8 @@
             return;
     }
     [macArray addObject:mac];
-    NSString* msg = [@"smart_config " stringByAppendingString:mac];
-    NSLog(@"msg %@",msg);
+    
     // 让模块停止发送信息。
-    isfinding = NO;
-    [smtlk SendSmartlinkEnd:msg moduelIp:host];
     [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
         [NSObject showHudTipStr:@"激活成功"];
         for (UIViewController *controller in self.navigationController.viewControllers) {
@@ -310,6 +309,14 @@
     [MMProgressHUD dismiss];
     [NSObject showHudTipStr:@"激活成功"];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [smtlk SmtlkV30Stop];
+    [smtlk SendSmartlinkEnd:@"" moduelIp:@""];
+    smtlk = nil;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
