@@ -265,7 +265,7 @@
 // SmartLink delegate
 - (void)SmtlkV30Finished
 {
-    if (times < 10)
+    if (times < 3)
     {
         NSLog(@"第%ld次",times);
         times++;
