@@ -29,7 +29,7 @@
         _backImageView.contentMode = UIViewContentModeScaleAspectFill;
         
         _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width*0.5-80*0.5, 0.23*frame.size.height, 80, 80)];
-        [_headerImageView setImageWithURL:[NSURL URLWithString:headerImageURL] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]]];
+        [_headerImageView setImageWithURL:[NSURL URLWithString:headerImageURL] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_placeholder"]]];
         [_headerImageView.layer setMasksToBounds:YES];
         _headerImageView.layer.cornerRadius = _headerImageView.frame.size.width/2.0f;
         _headerImageView.layer.borderColor = [UIColor whiteColor].CGColor;

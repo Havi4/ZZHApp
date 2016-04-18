@@ -207,6 +207,7 @@
                                        }
                                    ]
                            };
+    DeBugLog(@"初始化设备信息是%@",para);
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestRenameMyDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
         if (resultModel) {
