@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2DC9B31CC6170B008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DC9B21CC6170B008D28D1 /* libSmartLinkV30Lib.a */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -211,7 +212,6 @@
 		2C9EF5121C854E8B000704E2 /* pic_bad_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF50D1C854E8B000704E2 /* pic_bad_4@2x.png */; };
 		2C9EF5131C854E8B000704E2 /* pic_bad_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF50E1C854E8B000704E2 /* pic_bad_5@2x.png */; };
 		2C9EF5161C8550D8000704E2 /* AssessmentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5151C8550D8000704E2 /* AssessmentListModel.m */; };
-		2C9EF51C1C858B4E000704E2 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9EF5191C858B4E000704E2 /* libSmartLinkV30Lib.a */; };
 		2C9EF51D1C858B4E000704E2 /* libSniffer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9EF51A1C858B4E000704E2 /* libSniffer.a */; };
 		2C9EF5321C8597C9000704E2 /* THPinInputCirclesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5231C8597C9000704E2 /* THPinInputCirclesView.m */; };
 		2C9EF5331C8597C9000704E2 /* THPinInputCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5251C8597C9000704E2 /* THPinInputCircleView.m */; };
@@ -469,6 +469,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C2DC9B11CC6170B008D28D1 /* HFSmtlkV30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFSmtlkV30.h; sourceTree = "<group>"; };
+		2C2DC9B21CC6170B008D28D1 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -796,8 +798,6 @@
 		2C9EF50E1C854E8B000704E2 /* pic_bad_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bad_5@2x.png"; sourceTree = "<group>"; };
 		2C9EF5141C8550D8000704E2 /* AssessmentListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentListModel.h; sourceTree = "<group>"; };
 		2C9EF5151C8550D8000704E2 /* AssessmentListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentListModel.m; sourceTree = "<group>"; };
-		2C9EF5181C858B4E000704E2 /* HFSmtlkV30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFSmtlkV30.h; sourceTree = "<group>"; };
-		2C9EF5191C858B4E000704E2 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
 		2C9EF51A1C858B4E000704E2 /* libSniffer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSniffer.a; sourceTree = "<group>"; };
 		2C9EF51B1C858B4E000704E2 /* Sniffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sniffer.h; sourceTree = "<group>"; };
 		2C9EF5221C8597C9000704E2 /* THPinInputCirclesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCirclesView.h; sourceTree = "<group>"; };
@@ -1186,10 +1186,10 @@
 				2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */,
 				2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */,
 				2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */,
+				2C2DC9B31CC6170B008D28D1 /* libSmartLinkV30Lib.a in Frameworks */,
 				2CF2E2AC1C7AE9AE0007A639 /* Security.framework in Frameworks */,
 				2CF2E2AA1C7AE9990007A639 /* MobileCoreServices.framework in Frameworks */,
 				2CF2E2A81C7AE9080007A639 /* SystemConfiguration.framework in Frameworks */,
-				2C9EF51C1C858B4E000704E2 /* libSmartLinkV30Lib.a in Frameworks */,
 				5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */,
 				2CF2E2A21C7AE0E80007A639 /* TencentOpenAPI.framework in Frameworks */,
 				2CF2E29B1C7AE0660007A639 /* libWeChatSDK.a in Frameworks */,
@@ -1561,9 +1561,9 @@
 		2C9EF5171C858B4E000704E2 /* libSmartLinkStaticLib */ = {
 			isa = PBXGroup;
 			children = (
-				2C9EF5181C858B4E000704E2 /* HFSmtlkV30.h */,
-				2C9EF5191C858B4E000704E2 /* libSmartLinkV30Lib.a */,
 				2C9EF51A1C858B4E000704E2 /* libSniffer.a */,
+				2C2DC9B11CC6170B008D28D1 /* HFSmtlkV30.h */,
+				2C2DC9B21CC6170B008D28D1 /* libSmartLinkV30Lib.a */,
 				2C9EF51B1C858B4E000704E2 /* Sniffer.h */,
 			);
 			path = libSmartLinkStaticLib;

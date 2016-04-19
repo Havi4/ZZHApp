@@ -23,6 +23,7 @@ PODS:
     - DKNightVersion/Core
   - DKNightVersion/UIKit (1.2):
     - DKNightVersion/Core
+  - DXPopover (0.1.1)
   - HKRLocalNotificationManager (0.6)
   - LBXScan (1.1.1):
     - ZXingObjC (~> 3.0)
@@ -40,6 +41,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - DKNightVersion (~> 1.2)
+  - DXPopover (~> 0.1.1)
   - HKRLocalNotificationManager (~> 0.6)
   - LBXScan (~> 1.1.1)
   - Masonry (~> 0.6.4)
@@ -51,6 +53,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   DKNightVersion: 7c8cf41002c6dfa8db3ca71274bf1a9aaeaa4ff7
+  DXPopover: 13e6bbd1a0da4e62b2190de51f43a94850769e0f
   HKRLocalNotificationManager: c5410563312df4dfde052f99dcfc913b8a26c474
   LBXScan: dfb4d8ae8e4cff2aa0c9e1771e43954dce1469a9
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
@@ -60,6 +63,6 @@ SPEC CHECKSUMS:
   YYKit: 76c3f2cee1a72d3c5b1d7fd8d170ee507fe5df68
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-PODFILE CHECKSUM: d4dd622fdaa69cdefb80cc9c271da7c0f37770cc
+PODFILE CHECKSUM: 833cc5e59ae422c9c836c250448e72a4872e0f72
 
-COCOAPODS: 1.0.0.beta.2
+COCOAPODS: 1.0.0.beta.3

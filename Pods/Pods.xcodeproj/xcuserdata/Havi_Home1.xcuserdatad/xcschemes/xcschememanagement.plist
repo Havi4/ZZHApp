@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DXPopover-DXPopover.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DXPopover.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HKRLocalNotificationManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,6 +67,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>15E71DC389AF81EB7D768EBA0F13A0C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2B915A6BC25F4384AE958333181ACC74</key>
 		<dict>
 			<key>primary</key>
@@ -72,7 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>661574ED433E858F9E17EF4A397C6AC1</key>
+		<key>5EDB6EF00C051D9EA8016934DB51B331</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D0F22DB9A100B3F8D23EF5B575991F0C</key>
+		<key>BD25B2157D8BCA944D6FF3EC2B073ECB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9A82626691B7E55750652AC9FFC525E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,6 +9,7 @@
 #import "SensorChartTableViewCell.h"
 #import "ChartGrapheView.h"
 #import "FloatLayerView.h"
+#import "DXPopover.h"//弹出model
 
 @interface SensorChartTableViewCell ()<UIScrollViewDelegate>
 
@@ -56,6 +57,10 @@
         _scrollContainerView.contentSize = CGSizeMake(self.frame.size.width*4, 180);
         _scrollContainerView.showsHorizontalScrollIndicator = NO;
         _scrollContainerView.delegate = self;
+        _scrollContainerView.userInteractionEnabled = YES;
+        UILongPressGestureRecognizer * longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
+        longPressGr.minimumPressDuration = 1.0;
+        [_scrollContainerView addGestureRecognizer:longPressGr];
     }
     return _scrollContainerView;
 }
@@ -187,6 +192,29 @@
         }
     }
 }
+
+- (void)longPressToDo:(UILongPressGestureRecognizer *)gesture{
+    
+    if(gesture.state == UIGestureRecognizerStateBegan)
+    {
+        CGRect rect = CGRectMake(0, 0, self.frame.size.width, 155);
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:rect];
+        
+        textLabel.backgroundColor = kDefaultColor;
+        CGPoint location = [gesture locationInView:[UIApplication sharedApplication].keyWindow];
+        CGPoint timeLocation = [gesture locationInView:self.scrollContainerView];
+        
+        CGFloat cX = 0;
+        cX = (timeLocation.x - (self.frame.size.width*4)/(25)/2)/((self.frame.size.width*4)/25);
+        textLabel.text = [NSString stringWithFormat:@"坐标是%f",cX];
+        DXPopover *popover = [DXPopover popover];
+        popover.arrowSize = CGSizeMake(10, 5);
+        [popover showAtPoint:CGPointMake(location.x, 284) popoverPostion:DXPopoverPositionUp withContentView:textLabel inView:[UIApplication sharedApplication].keyWindow];
+        //add your code here
+    }
+    
+}
+
 
 
 @end
