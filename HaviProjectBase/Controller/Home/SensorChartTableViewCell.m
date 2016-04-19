@@ -204,10 +204,25 @@
         CGPoint location = [gesture locationInView:[UIApplication sharedApplication].keyWindow];
         CGPoint timeLocation = [gesture locationInView:self.scrollContainerView];
         
-        CGFloat cX = 0;
-        cX = (timeLocation.x - (self.frame.size.width*4)/(25)/2)/((self.frame.size.width*4)/25);
-        textLabel.text = [NSString stringWithFormat:@"坐标是%f",cX];
+        
+        float hour = (timeLocation.x - (self.frame.size.width*4)/25/2)/((self.frame.size.width*4)/25);
+        if (hour<0) {
+            hour = 0;
+            location = CGPointMake((self.frame.size.width*4)/25/2, location.y);
+        }
+        if (hour>24) {
+            hour = 24;
+            location = CGPointMake(self.frame.size.width-(self.frame.size.width*4)/25/2, location.y);
+        }
+        float minute = (hour - (int)hour)*60;
+        int hourEnd = (18+(int)hour)<24?(18+(int)hour):(18+(int)hour-24);
+        NSString *hr = hourEnd < 10?[NSString stringWithFormat:@"0%d",hourEnd]:[NSString stringWithFormat:@"%d",hourEnd];
+        NSString *mi = (int)minute>9?[NSString stringWithFormat:@"%d",(int)minute]:[NSString stringWithFormat:@"0%d",(int)minute];
+        NSString *time = [NSString stringWithFormat:@"时间是%@:%@",hr,mi];
+        textLabel.text = [NSString stringWithFormat:@"%@",time];
         DXPopover *popover = [DXPopover popover];
+        popover.backgroundColor = kDefaultColor;
+        popover.cornerRadius = 2;
         popover.arrowSize = CGSizeMake(10, 5);
         [popover showAtPoint:CGPointMake(location.x, 284) popoverPostion:DXPopoverPositionUp withContentView:textLabel inView:[UIApplication sharedApplication].keyWindow];
         //add your code here
