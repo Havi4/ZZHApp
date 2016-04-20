@@ -15,6 +15,7 @@
 #import <dlfcn.h>
 #import "DeviceListViewController.h"
 #import "HFSmtlkV30.h"
+#import "SmartLinkInstance.h"
 
 @interface ReactiveDoubleViewController ()<UITextFieldDelegate>
 {
@@ -36,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    smtlk=[[HFSmtlkV30 alloc] initWithDelegate:self];
+    smtlk = [SmartLinkInstance sharedManagerWithDelegate:self];
     smtlkState= 0;
     showKey= 1;
     macArray=[[NSMutableArray alloc] init];

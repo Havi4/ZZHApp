@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C2DC9B31CC6170B008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DC9B21CC6170B008D28D1 /* libSmartLinkV30Lib.a */; };
+		2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */; };
+		2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -471,6 +473,10 @@
 /* Begin PBXFileReference section */
 		2C2DC9B11CC6170B008D28D1 /* HFSmtlkV30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFSmtlkV30.h; sourceTree = "<group>"; };
 		2C2DC9B21CC6170B008D28D1 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
+		2C2DC9B41CC714CD008D28D1 /* LongpressShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongpressShowView.h; sourceTree = "<group>"; };
+		2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongpressShowView.m; sourceTree = "<group>"; };
+		2C2DC9B71CC71728008D28D1 /* SmartLinkInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartLinkInstance.h; sourceTree = "<group>"; };
+		2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartLinkInstance.m; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1305,6 +1311,8 @@
 				2C9EF38F1C7E927D000704E2 /* StartTimeView.m */,
 				2C9EF4341C802EB3000704E2 /* ChartTableTitleView.h */,
 				2C9EF4351C802EB3000704E2 /* ChartTableTitleView.m */,
+				2C2DC9B41CC714CD008D28D1 /* LongpressShowView.h */,
+				2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2107,6 +2115,8 @@
 				2C9EF4951C82F8CA000704E2 /* ThirdLoginCallBackManager.m */,
 				2C9EF4B51C83D9BD000704E2 /* JPushNotiManager.h */,
 				2C9EF4B61C83D9BD000704E2 /* JPushNotiManager.m */,
+				2C2DC9B71CC71728008D28D1 /* SmartLinkInstance.h */,
+				2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */,
 			);
 			name = Category;
 			path = HaviProjectBase/Category;
@@ -3005,6 +3015,7 @@
 				2CF2E1811C75BA2D0007A639 /* SearchDeviceDelegate.m in Sources */,
 				2C58728D1C7B5177001C2F3A /* HaviAnimationView.m in Sources */,
 				2CF2E2301C7AAE420007A639 /* SelectThemeCollectionViewCell.m in Sources */,
+				2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */,
 				2CF2E2311C7AAE420007A639 /* SelectThemeViewController.m in Sources */,
 				2CD75B781C61C2D000E7E076 /* ServerTimeModelTwo.m in Sources */,
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
@@ -3044,6 +3055,7 @@
 				2CD015011C6FFC3A001F9514 /* Toast+UIView.m in Sources */,
 				2C9EF5091C854963000704E2 /* UIView+UIDisplayedInScreen.m in Sources */,
 				2CF2E1C81C7711350007A639 /* MessageListViewController.m in Sources */,
+				2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */,
 				2C9EF2D21C7C18C4000704E2 /* LXActivity.m in Sources */,
 				2C9EF4DB1C844FA3000704E2 /* CalendarDayCell.m in Sources */,
 				2CD0147A1C62FDCB001F9514 /* LeftSideTableDataDelegate.m in Sources */,
