@@ -217,7 +217,15 @@
         int hourEnd = (18+(int)hour)<24?(18+(int)hour):(18+(int)hour-24);
         NSString *hr = hourEnd < 10?[NSString stringWithFormat:@"0%d",hourEnd]:[NSString stringWithFormat:@"%d",hourEnd];
         NSString *mi = (int)minute>9?[NSString stringWithFormat:@"%d",(int)minute]:[NSString stringWithFormat:@"0%d",(int)minute];
-        NSString *time = [NSString stringWithFormat:@"时间是%@:%@",hr,mi];
+        NSString *time = [NSString stringWithFormat:@"%@:%@",hr,mi];
+        NSString *tapTime = [NSString stringWithFormat:@"%@ %@",[[NSString stringWithFormat:@"%@",selectedDateToUse] substringToIndex:10],time];
+        self.pressView.xValues = @[time,time];
+        self.pressView.heartViewLeft.values = @[@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",];
+        [self.pressView.heartViewLeft animate];
+        self.pressView.heartViewLeft.minValue = 0;
+        self.pressView.heartViewLeft.maxValue = 100;
+        
+
         DXPopover *popover = [DXPopover popover];
         popover.backgroundColor = kDefaultColor;
         popover.cornerRadius = 2;
@@ -233,6 +241,7 @@
     if (_pressView == nil) {
         CGRect rect = CGRectMake(0, 0, self.frame.size.width, 155);
         _pressView = [[LongpressShowView alloc]initWithFrame:rect];
+        _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor colorWithRed:0.008f green:0.839f blue:0.573f alpha:.70f]:[UIColor colorWithRed:0.008f green:0.839f blue:0.573f alpha:.70f];
     }
     return _pressView;
 }

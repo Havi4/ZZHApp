@@ -25,7 +25,7 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f]:[UIColor colorWithRed:0.475f green:0.686f blue:0.820f alpha:1.00f];
         [self setUpCoordinateSystem];
-        [self setBackImage];
+//        [self setBackImage];
         
         [self addSubview:self.heartViewLeft];
         self.heartViewLeft.userInteractionEnabled = YES;
@@ -74,7 +74,7 @@
     UIView *lineView = [[UIView alloc] init];
     lineView.dk_backgroundColorPicker = kTextColorPicker;
     lineView.alpha = 0.3;
-    lineView.frame = CGRectMake(0, self.frame.size.height - bottomLineMargin, self.frame.size.width, 1);
+    lineView.frame = CGRectMake(0, self.frame.size.height - bottomLineMargin, self.frame.size.width, 0.5);
     return lineView;
 }
 
@@ -103,25 +103,18 @@
         }
     }
     if (values.count){
-        NSUInteger count = values.count;
+        NSUInteger count = 61;
         for (int i = 0; i < count; i++) {
-            NSString *xValue = values[i];
-            
             CGFloat cX = 0;
             cX = ((xCoordinateWidth) / (count)) * i;
-            
             CGFloat cY = self.frame.size.height - bottomLineMargin;
-            // 收集坐标点
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX, cY+3, ((xCoordinateWidth)/(count)), 10)];
-            label.backgroundColor = [UIColor clearColor];
-            label.text = xValue;
-            label.tag = 1001;
-            label.dk_textColorPicker = kTextColorPicker;
-            label.font = [UIFont systemFontOfSize:13];
-            label.textAlignment = NSTextAlignmentCenter;
-            [self addSubview:label];
             //
-            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-2, 1, 2)];
+            UILabel *labelLine;
+            if (i%10==0) {
+                labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-2.5, 0.5, 2.5)];
+            }else{
+                labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-1, 0.5, 1)];
+            }
             labelLine.dk_backgroundColorPicker = kTextColorPicker;
             labelLine.tag = 1002;
             //
@@ -130,6 +123,33 @@
         }
         //设置分割线
     }
+    CGFloat cY = self.frame.size.height - bottomLineMargin;
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((self.frame.size.width-40)/2, cY+3, 40, 10)];
+    label.backgroundColor = [UIColor clearColor];
+    label.text = [values objectAtIndex:0];
+    label.tag = 1001;
+    label.dk_textColorPicker = kTextColorPicker;
+    label.font = [UIFont systemFontOfSize:11];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:label];
+    /*
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, cY+3, 40, 10)];
+    label.backgroundColor = [UIColor clearColor];
+    label.text = [values objectAtIndex:0];
+    label.tag = 1001;
+    label.dk_textColorPicker = kTextColorPicker;
+    label.font = [UIFont systemFontOfSize:11];
+    label.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:label];
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width-45, cY+3, 40, 10)];
+    label1.backgroundColor = [UIColor clearColor];
+    label1.text = [values objectAtIndex:0];
+    label1.tag = 1001;
+    label1.dk_textColorPicker = kTextColorPicker;
+    label1.font = [UIFont systemFontOfSize:11];
+    label1.textAlignment = NSTextAlignmentRight;
+    [self addSubview:label1];
+     */
 }
 
 
