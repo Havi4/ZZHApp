@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C2DC9B31CC6170B008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DC9B21CC6170B008D28D1 /* libSmartLinkV30Lib.a */; };
 		2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */; };
 		2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */; };
+		2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -472,11 +472,11 @@
 
 /* Begin PBXFileReference section */
 		2C2DC9B11CC6170B008D28D1 /* HFSmtlkV30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFSmtlkV30.h; sourceTree = "<group>"; };
-		2C2DC9B21CC6170B008D28D1 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
 		2C2DC9B41CC714CD008D28D1 /* LongpressShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongpressShowView.h; sourceTree = "<group>"; };
 		2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongpressShowView.m; sourceTree = "<group>"; };
 		2C2DC9B71CC71728008D28D1 /* SmartLinkInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartLinkInstance.h; sourceTree = "<group>"; };
 		2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartLinkInstance.m; sourceTree = "<group>"; };
+		2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1192,7 +1192,7 @@
 				2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */,
 				2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */,
 				2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */,
-				2C2DC9B31CC6170B008D28D1 /* libSmartLinkV30Lib.a in Frameworks */,
+				2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */,
 				2CF2E2AC1C7AE9AE0007A639 /* Security.framework in Frameworks */,
 				2CF2E2AA1C7AE9990007A639 /* MobileCoreServices.framework in Frameworks */,
 				2CF2E2A81C7AE9080007A639 /* SystemConfiguration.framework in Frameworks */,
@@ -1570,8 +1570,8 @@
 			isa = PBXGroup;
 			children = (
 				2C9EF51A1C858B4E000704E2 /* libSniffer.a */,
+				2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */,
 				2C2DC9B11CC6170B008D28D1 /* HFSmtlkV30.h */,
-				2C2DC9B21CC6170B008D28D1 /* libSmartLinkV30Lib.a */,
 				2C9EF51B1C858B4E000704E2 /* Sniffer.h */,
 			);
 			path = libSmartLinkStaticLib;
@@ -3354,7 +3354,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ihotkeys Co., Ltd";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

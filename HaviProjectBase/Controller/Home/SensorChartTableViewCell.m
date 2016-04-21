@@ -10,6 +10,7 @@
 #import "ChartGrapheView.h"
 #import "FloatLayerView.h"
 #import "DXPopover.h"//弹出model
+#import "LongpressShowView.h"
 
 @interface SensorChartTableViewCell ()<UIScrollViewDelegate>
 
@@ -19,6 +20,7 @@
 @property (nonatomic,strong) FloatLayerView *layerFloatView;
 @property (nonatomic,strong) NSArray *changedArr;
 @property (nonatomic,assign) int type;
+@property (nonatomic,strong) LongpressShowView *pressView;
 
 @end
 
@@ -197,10 +199,7 @@
     
     if(gesture.state == UIGestureRecognizerStateBegan)
     {
-        CGRect rect = CGRectMake(0, 0, self.frame.size.width, 155);
-        UILabel *textLabel = [[UILabel alloc] initWithFrame:rect];
         
-        textLabel.backgroundColor = kDefaultColor;
         CGPoint location = [gesture locationInView:[UIApplication sharedApplication].keyWindow];
         CGPoint timeLocation = [gesture locationInView:self.scrollContainerView];
         
@@ -219,17 +218,23 @@
         NSString *hr = hourEnd < 10?[NSString stringWithFormat:@"0%d",hourEnd]:[NSString stringWithFormat:@"%d",hourEnd];
         NSString *mi = (int)minute>9?[NSString stringWithFormat:@"%d",(int)minute]:[NSString stringWithFormat:@"0%d",(int)minute];
         NSString *time = [NSString stringWithFormat:@"时间是%@:%@",hr,mi];
-        textLabel.text = [NSString stringWithFormat:@"%@",time];
         DXPopover *popover = [DXPopover popover];
         popover.backgroundColor = kDefaultColor;
         popover.cornerRadius = 2;
         popover.arrowSize = CGSizeMake(10, 5);
-        [popover showAtPoint:CGPointMake(location.x, 284) popoverPostion:DXPopoverPositionUp withContentView:textLabel inView:[UIApplication sharedApplication].keyWindow];
+        [popover showAtPoint:CGPointMake(location.x, 284) popoverPostion:DXPopoverPositionUp withContentView:self.pressView inView:[UIApplication sharedApplication].keyWindow];
         //add your code here
     }
     
 }
 
-
+- (LongpressShowView *)pressView
+{
+    if (_pressView == nil) {
+        CGRect rect = CGRectMake(0, 0, self.frame.size.width, 155);
+        _pressView = [[LongpressShowView alloc]initWithFrame:rect];
+    }
+    return _pressView;
+}
 
 @end

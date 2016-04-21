@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MPGraphView.h"
 
 @interface LongpressShowView : UIView
+
+@property (nonatomic,strong) MPGraphView *heartViewLeft;
+/**
+ *  x轴的坐标值
+ */
+@property (strong, nonatomic) NSArray *xValues;
+
+@property (strong, nonatomic) NSMutableArray *dataValues;
 
 @end

@@ -16,6 +16,9 @@
 #import "DeviceListViewController.h"
 #import "HFSmtlkV30.h"
 #import "SmartLinkInstance.h"
+#import "DeviceListViewController.h"
+#import "UIViewController+JASidePanel.h"
+#import "AppDelegate.h"
 
 @interface ReactiveDoubleViewController ()<UITextFieldDelegate>
 {
@@ -38,6 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     smtlk = [SmartLinkInstance sharedManagerWithDelegate:self];
+//    smtlk = [[HFSmtlkV30 alloc]initWithDelegate:self];
     smtlkState= 0;
     showKey= 1;
     macArray=[[NSMutableArray alloc] init];
@@ -217,6 +221,10 @@
                         [UIImage imageNamed:@"havi1_5"]];
     [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
     [MMProgressHUD showWithTitle:nil status:nil images:images];
+    times= 0;
+    smtlkState= 0;
+    isfinding = YES;
+    [macArray removeAllObjects];
     if (smtlkState== 0)
     {
         
@@ -254,8 +262,7 @@
     {
         [self stopSmartLink];
         smtlkState= 0;
-        if ([macArray count]== 0)
-            [NSObject showHudTipStr:@"激活超时"];
+        [NSObject showHudTipStr:@"激活超时"];
         return;
     }
     
@@ -287,28 +294,18 @@
     NSLog(@"Receive IP:%@",host);
     isfinding = NO;
     [smtlk SmtlkV30Stop];
-    NSInteger macNum=[macArray count];
-    NSInteger i;
-    for (i= 0; i< macNum; i++)
-    {
-        if ([mac isEqualToString:macArray[i]])
-            return;
-    }
-    [macArray addObject:mac];
-    
+    smtlkState = 0;
+    times = 0;
     // 让模块停止发送信息。
-    [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-        [NSObject showHudTipStr:@"激活成功"];
-        for (UIViewController *controller in self.navigationController.viewControllers) {
-            if ([controller isKindOfClass:[DeviceListViewController class]]) {
-                
-                [self.navigationController popToViewController:controller animated:YES];
-                break;
-            }
-        }
-    }];
     [MMProgressHUD dismiss];
     [NSObject showHudTipStr:@"激活成功"];
+    [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        DeviceListViewController *controller = [[DeviceListViewController alloc]init];
+        delegate.sideMenuController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self cancelButtonDone:nil];
+    }];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -316,6 +313,10 @@
     [smtlk SmtlkV30Stop];
     [smtlk SendSmartlinkEnd:@"" moduelIp:@""];
     smtlk = nil;
+}
+- (void)dealloc
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
