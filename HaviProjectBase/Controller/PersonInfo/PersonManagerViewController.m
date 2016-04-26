@@ -222,6 +222,10 @@
     //Create select action
     RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSString *date = [[NSString stringWithFormat:@"%@",((UIDatePicker *)controller.contentView).date]substringToIndex:10];
+        if ([((UIDatePicker *)controller.contentView).date isLaterThan:[NSDate date]]) {
+            [NSObject showHudTipStr:@"请选择正确的生日"];
+            return;
+        }
         [self saveUserInfoWithKey:@"Birthday" andData:date];
     }];
     
