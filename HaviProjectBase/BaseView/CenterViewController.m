@@ -185,6 +185,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     if (_chvc == nil) {
         _chvc = [[CalendarHomeViewController alloc]init];
+        _chvc.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
         _chvc.view.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.008 green:0.114 blue:0.227 alpha:1.00], [UIColor colorWithRed:0.322 green:0.592 blue:0.761 alpha:1.00]);
         _chvc.calendartitle = @"日历";
         NSDate *date = [[NSDate date]dateByAddingHours:8];

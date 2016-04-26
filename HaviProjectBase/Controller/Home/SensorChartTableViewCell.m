@@ -62,7 +62,7 @@
         _scrollContainerView.userInteractionEnabled = YES;
         UILongPressGestureRecognizer * longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
         longPressGr.minimumPressDuration = 1.0;
-        [_scrollContainerView addGestureRecognizer:longPressGr];
+//        [_scrollContainerView addGestureRecognizer:longPressGr];
     }
     return _scrollContainerView;
 }
