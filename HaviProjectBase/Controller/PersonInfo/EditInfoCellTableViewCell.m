@@ -60,7 +60,7 @@
             self.tapTextSaveBlock(textField.text);
             return YES;
         }else{
-            [NSObject showHudTipStr:@"姓名只能由2-6位数字、字母、中文组成"];
+            [NSObject showHudTipStr:@"姓名只能由2-8位数字、字母、中文组成"];
         }
     }else{
          if ([self checkIsValiadForNum:textField.text]) {
@@ -93,7 +93,7 @@
 
 - (BOOL)checkIsValiadForString:(NSString *)checkString
 {
-    NSString *regex = @"[a-zA-Z\u4e00-\u9fa5]{2,6}";
+    NSString *regex = @"[a-zA-Z0-9\u4e00-\u9fa5]{2,8}";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     
     if ([pred evaluateWithObject:checkString]) {

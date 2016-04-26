@@ -136,7 +136,7 @@
 
 - (BOOL)checkIsValiadForString:(NSString *)checkString
 {
-    NSString *regex = @"[a-zA-Z\u4e00-\u9fa5]{2,6}";
+    NSString *regex = @"[a-zA-Z0-9\u4e00-\u9fa5]{2,6}";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     
     if ([pred evaluateWithObject:checkString]) {
