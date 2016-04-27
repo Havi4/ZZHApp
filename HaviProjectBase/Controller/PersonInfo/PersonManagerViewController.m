@@ -50,7 +50,7 @@
 {
     [self.navigationController setNavigationBarHidden:YES];
     [self.view addSubview:self.personInfoTableView];
-    NSString *iconUrl = thirdPartyLoginIcon.length == 0?[NSString stringWithFormat:@"%@%@",@"http://webservice.meddo99.com:9000/v1/file/DownloadFile/",thirdPartyLoginUserId]:thirdPartyLoginIcon;
+    NSString *iconUrl = thirdPartyLoginIcon.length == 0?[NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId]:thirdPartyLoginIcon;
     NSMutableString *userId = [[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@",thirdPartyLoginNickName]];
     NSString *name;
     if (userId.length == 0) {
@@ -464,7 +464,7 @@
     NSDictionary *dicHeader = @{
                                 @"AccessToken": @"123456789",
                                 };
-    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/file/UploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@v1/file/UploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
     [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
     [self setRequest:request withImageData:imageData];
@@ -474,7 +474,7 @@
         if ([[dic objectForKey:@"ReturnCode"] intValue]==200) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [JDStatusBarNotification showWithStatus:@"头像上传成功" dismissAfter:2 styleName:JDStatusBarStyleDark];
-                NSString *url = [NSString stringWithFormat:@"%@%@",@"http://webservice.meddo99.com:9000/v1/file/DownloadFile/",thirdPartyLoginUserId];
+                NSString *url = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
                 [self.headerView.headerImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"iconImageChanged" object:nil];
                 }];

@@ -149,7 +149,9 @@
         [self showNoDeviceBindingAlert];
         return;
     }
-    NSString *endString = [NSString stringWithFormat:@"%ld:%ld",(long)endDate.hour,(long)endDate.minute];
+    NSString *hour = endDate.hour>9?[NSString stringWithFormat:@"%ld",endDate.hour]:[NSString stringWithFormat:@"0%ld",endDate.hour];
+    NSString *minute = endDate.minute>9?[NSString stringWithFormat:@"%ld",endDate.minute]:[NSString stringWithFormat:@"0%ld",endDate.minute];
+    NSString *endString = [NSString stringWithFormat:@"%@:%@",hour,minute];
     NSDate *date1 = [selectedDateToUse dateByAddingDays:0];
     NSString *dateString = [NSString stringWithFormat:@"%@",date1];
     NSString *date = [NSString stringWithFormat:@"%@%@:00",[dateString substringToIndex:11],endString];

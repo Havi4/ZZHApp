@@ -79,7 +79,7 @@
     if (thirdPartyLoginIcon.length>0) {
         _userIconImageView.userIconURL = thirdPartyLoginIcon;
     }else{
-        _userIconImageView.userIconURL = [NSString stringWithFormat:@"%@%@",@"http://webservice.meddo99.com:9000/v1/file/DownloadFile/",thirdPartyLoginUserId];
+        _userIconImageView.userIconURL = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
     }
 }
 
