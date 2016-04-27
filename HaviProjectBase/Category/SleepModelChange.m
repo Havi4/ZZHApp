@@ -231,11 +231,15 @@
         }
         
         NSString *queryStart = [(NSDictionary *)query objectForKey:@"queryStartTime"];
+        if ([queryStart isEqualToString:@"20151221"]) {
+            return;
+        }
         NSString *year = [queryStart substringWithRange:NSMakeRange(0, 4)];
         NSString *month = [queryStart substringWithRange:NSMakeRange(4, 2)];
         NSString *fromDateString = [NSString stringWithFormat:@"%@年%@月01日",year,month];
-        NSDate *fromDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:fromDateString];
+        NSDate *fromDate = [[[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:fromDateString] dateByAddingHours:8];
         NSInteger dayNums = [fromDate getdayNumsInOneMonth];
+        DeBugLog(@"测试时间数：%ld,fromdate 是%@",(long)dayNums,fromDate);
         for (int i=0; i<dayNums; i++) {
             [mutableArr addObject:[NSString stringWithFormat:@"0"]];
             [mutableTimeArr addObject:[NSString stringWithFormat:@"0"]];

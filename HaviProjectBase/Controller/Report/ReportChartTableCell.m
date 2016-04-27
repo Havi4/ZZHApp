@@ -193,6 +193,9 @@
     }else if (self.reportType == ReportViewMonth){
         @weakify(self);
         NSString *queryStart = [(NSDictionary *)obj objectForKey:@"queryStartTime"];
+        if ([queryStart isEqualToString:@"20151221"]) {
+            return;
+        }
         NSString *year = [queryStart substringWithRange:NSMakeRange(0, 4)];
         NSString *month = [queryStart substringWithRange:NSMakeRange(4, 2)];
         NSString *day = [queryStart substringWithRange:NSMakeRange(6, 2)];
