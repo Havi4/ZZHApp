@@ -201,6 +201,7 @@
             //            button.backgroundColor = [UIColor yellowColor];
             [button addTarget:self action:@selector(weekSelected:) forControlEvents:UIControlEventTouchUpInside];
             int monthNum = i*7 + j+1;
+            
             [button setTitle:[NSString stringWithFormat:@"%d",monthNum] forState:UIControlStateNormal];
             button.tag = monthNum;
             if (self.currentWeekNum == monthNum) {
@@ -208,6 +209,12 @@
             }
             [button setTitleColor:selectedThemeIndex == 0?[UIColor colorWithRed:0.404f green:0.639f blue:0.784f alpha:1.00f]:[UIColor whiteColor] forState:UIControlStateNormal];
             button.frame = CGRectMake(padding + j*(buttonWidth+padding), i*(buttonWidth) + 55, buttonWidth, buttonWidth);
+            if (monthNum == [self.currentWeek intValue]) {
+                button.layer.cornerRadius = buttonWidth/2;
+                button.layer.masksToBounds = YES;
+                button.backgroundColor = kDefaultColor;
+                [button setTitleColor:selectedThemeIndex == 0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
+            }
             if (monthNum<self.weekNums+1) {
                 [self.backView addSubview:button];
             }

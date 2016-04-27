@@ -175,7 +175,12 @@
             [button setTitleColor:selectedThemeIndex == 0?[UIColor colorWithRed:0.404f green:0.639f blue:0.784f alpha:1.00f]:[UIColor whiteColor] forState:UIControlStateNormal];
             button.frame = CGRectMake(padding + j*(buttonWidth+padding), i*(height+20) + 55, buttonWidth, 40);
             [self.backView addSubview:button];
-            
+            if (monthNum == [self.currentMonth intValue]) {
+                button.layer.cornerRadius = buttonWidth/2;
+                button.layer.masksToBounds = YES;
+                button.backgroundColor = kDefaultColor;
+                [button setTitleColor:selectedThemeIndex == 0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
+            }
         }
     }
     //

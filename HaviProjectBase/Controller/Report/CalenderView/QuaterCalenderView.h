@@ -15,6 +15,7 @@
 @end
 
 @interface QuaterCalenderView : UIView
+@property (nonatomic,strong) NSString *currentQuater;
 
 @property (nonatomic,strong) NSString *quaterTitle;
 @property (nonatomic,strong) id<SelectedQuater>delegate;

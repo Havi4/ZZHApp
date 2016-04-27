@@ -16,6 +16,7 @@
 @end
 
 @interface WeekCalenderView : UIView
+@property (nonatomic,strong) NSString *currentWeek;
 @property (nonatomic,strong) NSString *weekTitle;
 @property (nonatomic,strong) id<SelectedWeek>delegate;
 @property (nonatomic,assign) int currentWeekNum;

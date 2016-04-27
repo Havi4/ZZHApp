@@ -15,6 +15,7 @@
 @end
 
 @interface MonthCalenderView : UIView
+@property (nonatomic,strong) NSString *currentMonth;
 
 @property (nonatomic,strong) NSString *monthTitle;
 @property (nonatomic,strong) id<SelectedMonth>delegate;

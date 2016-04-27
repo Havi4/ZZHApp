@@ -234,15 +234,21 @@
     switch (self.reportType) {
         case ReportViewWeek:
         {
-            [self showWeekCalender:nil];
+            NSString *currentWeekL = [self.monthTitleLabel.text substringFromIndex:6];
+            NSString *c = [currentWeekL substringToIndex:currentWeekL.length-1];
+            [self showWeekCalender:c];
             break;
         }
         case ReportViewMonth:{
-            [self showMonthCalender:nil];
+            NSString *currentWeekL = [self.monthTitleLabel.text substringFromIndex:5];
+            NSString *c = [currentWeekL substringToIndex:currentWeekL.length-1];
+            [self showMonthCalender:c];
             break;
         }
         case ReportViewQuater:{
-            [self showQuaterCalender:nil];
+            NSString *currentWeekL = [self.monthTitleLabel.text substringFromIndex:6];
+            NSString *c = [currentWeekL substringToIndex:currentWeekL.length-2];
+            [self showQuaterCalender:c];
             break;
         }
             
@@ -254,10 +260,11 @@
 
 #pragma mark week
 
-- (void)showWeekCalender:(UITapGestureRecognizer *)gesture
+- (void)showWeekCalender:(NSString *)currentWeek
 {
     NSString *dateString = self.monthTitleLabel.text;
     WeekCalenderView *monthView = [[WeekCalenderView alloc]init];
+    monthView.currentWeek = currentWeek;
     monthView.frame = [UIScreen mainScreen].bounds;
     NSRange range = [dateString rangeOfString:@"年第"];
     NSString *sub1 = [dateString substringToIndex:range.location];
@@ -294,10 +301,11 @@
 }
 
 #pragma mark month
-- (void)showMonthCalender:(UITapGestureRecognizer *)gesture
+- (void)showMonthCalender:(NSString *)currentWeek
 {
     NSString *dateString = self.monthTitleLabel.text;
     MonthCalenderView *monthView = [[MonthCalenderView alloc]init];
+    monthView.currentMonth = currentWeek;
     monthView.frame = [UIScreen mainScreen].bounds;
     NSRange range = [dateString rangeOfString:@"年"];
     NSString *sub2 = [dateString substringWithRange:NSMakeRange(range.location+range.length, 2)];
@@ -330,11 +338,12 @@
 
 #pragma mark 季度
 
-- (void)showQuaterCalender:(UITapGestureRecognizer *)gesture
+- (void)showQuaterCalender:(NSString *)currentWeek
 {
     NSString *dateString = self.monthTitleLabel.text;
     QuaterCalenderView *monthView = [[QuaterCalenderView alloc]init];
     monthView.frame = [UIScreen mainScreen].bounds;
+    monthView.currentQuater = currentWeek;
     NSRange range = [dateString rangeOfString:@"年第"];
     NSString *sub1 = [dateString substringToIndex:range.location];
     NSString *sub2 = [dateString substringWithRange:NSMakeRange(range.location +range.length, 1)];

@@ -173,6 +173,12 @@
         [button setTitleColor:selectedThemeIndex == 0?[UIColor colorWithRed:0.404f green:0.639f blue:0.784f alpha:1.00f]:[UIColor whiteColor] forState:UIControlStateNormal];
         button.frame = CGRectMake(padding + i*(40+padding), 20 + 55, height, height);
         [self.backView addSubview:button];
+        if (button.tag == [self.currentQuater intValue]) {
+            button.layer.cornerRadius = height/2;
+            button.layer.masksToBounds = YES;
+            button.backgroundColor = kDefaultColor;
+            [button setTitleColor:selectedThemeIndex == 0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
     }
 
     //
