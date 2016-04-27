@@ -294,7 +294,7 @@
     @weakify(self);
     [[CalendarDateCaculate sharedInstance]getSelectWeekMonth:self.monthTitleLabel.text selectedMonth:monthString subMonth:self.monthLabel.text callBack:^(NSString *monthTitle, NSString *monthSubTitle) {
         @strongify(self);
-        self.monthTitleLabel.text = monthTitle;
+        self.monthTitleLabel.text = monthString;
         self.monthLabel.text = monthSubTitle;
         [self changeQueryDate];
     }];

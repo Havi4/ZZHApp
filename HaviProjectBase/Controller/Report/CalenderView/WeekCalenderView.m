@@ -215,7 +215,7 @@
                 button.backgroundColor = kDefaultColor;
                 [button setTitleColor:selectedThemeIndex == 0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
             }
-            if (monthNum<self.weekNums+1) {
+            if (monthNum<self.weekNums) {
                 [self.backView addSubview:button];
             }
             

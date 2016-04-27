@@ -62,12 +62,8 @@
             dataShow.sensorType = self.sensorType;
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
         }];
+        [self.containerDataView setCurrentIndex:selectPageIndex animated:NO];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.containerDataView setCurrentIndex:selectPageIndex animated:NO];
 }
 
 #pragma mark setter

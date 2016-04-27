@@ -252,6 +252,7 @@
     // save current index
     self.indexSelected = index;
     self.pageControl.currentPage   = index;
+    self.pageControl.userInteractionEnabled = NO;
     // Get the right position and update it
     CGFloat xOffset    = (index * ((int)SCREEN_SIZE.width));
     [self updateNavItems:xOffset];
@@ -400,7 +401,7 @@
             self.pageControl.frame         = (CGRect){0, 55, 0, 0};
             [self.navigationBarView addSubview:self.pageControl];
             [self.pageControl makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(_navigationBarView.mas_centerX).offset(3);
+                make.centerX.equalTo(_navigationBarView.mas_centerX).offset(2);
                 make.centerY.equalTo(_navigationBarView.mas_centerY).offset(23);
             }];
         }
@@ -486,9 +487,9 @@
 -(void)tapOnHeader:(UITapGestureRecognizer *)recognizer{
     if(self.isUserInteraction){
         // Get the wanted view
-        UIView *view = [self.viewControllers objectForKey:@(recognizer.view.tag)];
-        [self.scrollView scrollRectToVisible:view.frame
-                                    animated:YES];
+//        UIView *view = [self.viewControllers objectForKey:@(recognizer.view.tag)];
+//        [self.scrollView scrollRectToVisible:view.frame
+//                                    animated:YES];
     }
 }
 

@@ -28,7 +28,7 @@
         size.height = 4;     //自定义圆点的大小
         
         size.width = 4;      //自定义圆点的大小
-        [dot setFrame:CGRectMake(dot.frame.origin.x+2, dot.frame.origin.y, size.width, size.width)];
+        [dot setFrame:CGRectMake(dot.frame.origin.x, dot.frame.origin.y, size.width, size.width)];
         dot.layer.cornerRadius = 2;
         dot.layer.masksToBounds = YES;
     }

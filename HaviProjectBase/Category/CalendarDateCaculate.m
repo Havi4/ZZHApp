@@ -91,12 +91,23 @@ static CalendarDateCaculate *shareInstance = nil;
         NSRange range = [monthTitleString rangeOfString:@"年"];
         NSString *year = [monthTitleString substringToIndex:range.location];
         NSRange range1 = [monthSub rangeOfString:@"到"];
-        NSString *now = [NSString stringWithFormat:@"%@年%@",year,[monthSub substringToIndex:range1.location]];
+        NSString *yue1 = [monthSub substringToIndex:range1.location];
+        NSString *yue2 = [monthSub substringFromIndex:range1.location+1];
+        NSRange rangeyue1 = [yue1 rangeOfString:@"月"];
+        NSRange rangeyue2 = [yue2 rangeOfString:@"月"];
+        NSString *yue11 = [yue1 substringToIndex:rangeyue1.location];
+        NSString *yue12 = [yue2 substringToIndex:rangeyue2.location];
+        int year1 = [year intValue];
+        if ([yue11 intValue]>[yue12 intValue]) {
+            year1 -=1;
+        }
+        NSString *now = [NSString stringWithFormat:@"%d年%@",year1,[monthSub substringToIndex:range1.location]];
+        
         NSDate *nowdate = [[self.dateFormmatter dateFromString:now]dateByAddingHours:8];
         int step = type == CalendarStepTypeLast ? -7 : 7;
         self.dateComponents.day = step;
         NSDate *nextWeekStart = [[NSCalendar currentCalendar] dateByAddingComponents:self.dateComponents toDate:nowdate options:0];//下周的日期
-        NSString *lastMonthTitle = [self getCurrentWeekInOneYear:nextWeekStart];//上周的周数
+        
         //计算范围
         NSDate *dateOut = nil;
         NSTimeInterval count = 0;
@@ -107,6 +118,15 @@ static CalendarDateCaculate *shareInstance = nil;
         NSString *newStart = [NSString stringWithFormat:@"%@月%@日",[start substringWithRange:NSMakeRange(0, 2)],[start substringWithRange:NSMakeRange(3, 2)]];
         NSString *end = [[NSString stringWithFormat:@"%@",nextWeekEnd] substringWithRange:NSMakeRange(5, 5)];
         NSString *newEnd = [NSString stringWithFormat:@"%@月%@日",[end substringWithRange:NSMakeRange(0, 2)],[end substringWithRange:NSMakeRange(3, 2)]];
+        NSString *lastMonthTitle = @"";
+        lastMonthTitle = [self getCurrentWeekInOneYear:nextWeekEnd];//上周的周数;
+        if (type == CalendarStepTypeNext) {
+            if ([yue11 intValue]>[yue12 intValue]) {
+                lastMonthTitle = [self getCurrentWeekInOneYear:nextWeekStart];//上周的周
+            }
+        }
+        
+        
         NSString *subMonth;
         if (b) {
             subMonth = [NSString stringWithFormat:@"%@到%@",newStart,newEnd];
