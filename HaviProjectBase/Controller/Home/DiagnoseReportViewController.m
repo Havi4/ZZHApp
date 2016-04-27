@@ -210,8 +210,9 @@
 
 - (void)setDateTime:(NSString *)dateTime
 {
+    NSString *selectDate = [NSString stringWithFormat:@"%@",selectedDateToUse];
     
-    NSString *timeString = [NSString stringWithFormat:@"%@年%@月%@日",[dateTime substringWithRange:NSMakeRange(0, 4)],[dateTime substringWithRange:NSMakeRange(4, 2)],[dateTime substringWithRange:NSMakeRange(6, 2)]];
+    NSString *timeString = [NSString stringWithFormat:@"%@年%@月%@日",[selectDate substringWithRange:NSMakeRange(0, 4)],[selectDate substringWithRange:NSMakeRange(5, 2)],[selectDate substringWithRange:NSMakeRange(8, 2)]];
     dateLabelString = timeString;
 }
 
