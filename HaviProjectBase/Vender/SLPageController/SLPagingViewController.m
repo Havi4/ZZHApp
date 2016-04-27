@@ -251,8 +251,10 @@
     }
     // save current index
     self.indexSelected = index;
+    self.pageControl.currentPage   = index;
     // Get the right position and update it
     CGFloat xOffset    = (index * ((int)SCREEN_SIZE.width));
+    [self updateNavItems:xOffset];
     [self.scrollView setContentOffset:CGPointMake(xOffset, self.scrollView.contentOffset.y) animated:animated];
 }
 

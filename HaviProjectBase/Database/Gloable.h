@@ -28,6 +28,7 @@ extern NSString *thirdLeftDeviceName;
 extern NSString *thirdRightDeviceName;
 extern NSString *isMineDevice;
 extern NSString *registeredID;
+extern NSInteger selectPageIndex;
 
 extern NSDate *selectedDateToUse;
 extern BOOL isDoubleDevice;

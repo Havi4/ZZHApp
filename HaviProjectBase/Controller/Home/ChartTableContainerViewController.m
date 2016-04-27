@@ -65,6 +65,10 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.containerDataView setCurrentIndex:selectPageIndex animated:NO];
+}
 
 #pragma mark setter
 

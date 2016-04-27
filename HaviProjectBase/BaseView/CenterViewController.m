@@ -21,7 +21,6 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     ModalAnimation *_modalAnimationController;
 }
 
-
 @property (nonatomic, strong) BaseViewContainerView *containerDataView;
 @property (nonatomic, strong) DeviceList *activeDeviceInfo;
 @property (nonatomic, strong) CLWeeklyCalendarView* calendarView;
@@ -75,6 +74,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.containerDataView.didChangedPage = ^(NSInteger currentPageIndex){
         // Do something
         NSLog(@"index %ld", (long)currentPageIndex);
+        selectPageIndex = currentPageIndex;
     };
     [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height - CALENDER_VIEW_HEIGHT];
     [self.containerDataView.navigationBarView addSubview:self.leftMenuButton];
