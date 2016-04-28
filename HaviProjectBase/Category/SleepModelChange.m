@@ -9,6 +9,7 @@
 #import "SleepModelChange.h"
 #import "CalendarDateCaculate.h"
 #import "NSDate+NSDateLogic.h"
+#import <YYKit.h>
 
 @implementation SleepModelChange
 
@@ -207,8 +208,10 @@
             NSString *toDateString = [NSString stringWithFormat:@"%@年%@月%@日",[dateString substringWithRange:NSMakeRange(0, 4)],[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
             NSDate *toDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:toDateString];
             NSDateComponents *dayComponents = [[[CalendarDateCaculate sharedInstance] calender] components:NSDayCalendarUnit fromDate:fromDate toDate:toDate options:0];
-            [mutableArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
-            [mutableTimeArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
+            if (dayComponents.day>0 && dayComponents.day < 7) {
+                [mutableArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
+                [mutableTimeArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
+            }
             
         }
         dispatch_async_on_main_queue(^{
@@ -250,8 +253,10 @@
             NSString *toDateString = [NSString stringWithFormat:@"%@年%@月%@日",[dateString substringWithRange:NSMakeRange(0, 4)],[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
             NSDate *toDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:toDateString];
             NSDateComponents *dayComponents = [[[CalendarDateCaculate sharedInstance] calender] components:NSDayCalendarUnit fromDate:fromDate toDate:toDate options:0];
-            [mutableArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
-            [mutableTimeArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
+            if (dayComponents.day>0 && dayComponents.day < dayNums) {
+                [mutableArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
+                [mutableTimeArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
+            }
             
         }
         dispatch_async_on_main_queue(^{
@@ -284,8 +289,10 @@
             NSString *dateString = dic.date;
             NSString *month = [dateString substringWithRange:NSMakeRange(5, 2)];
             int path = [month intValue]-[monthFrom intValue];
-            [mutableArr replaceObjectAtIndex:path withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
-            [mutableTimeArr replaceObjectAtIndex:path withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
+            if (path>0 && path<3) {
+                [mutableArr replaceObjectAtIndex:path withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
+                [mutableTimeArr replaceObjectAtIndex:path withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
+            }
             
         }
         dispatch_async_on_main_queue(^{

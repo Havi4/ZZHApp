@@ -37,7 +37,9 @@
     [self setThirdAppSettingWith:launchOptions];
     [self getSuggestionList];
     
-    
+    if (thirdPartyLoginUserId.length == 0) {
+        [UserManager resetUserInfo];
+    }
     if ([UserManager GetUserObj]) {
         [self setRootViewController];
     }else{
@@ -64,6 +66,7 @@
 
 - (void)setRootViewController
 {
+    
     self.centerView = [[CenterViewController alloc]init];
     self.sideMenuController = [[JASidePanelController alloc] init];
     self.sideMenuController.shouldDelegateAutorotateToVisiblePanel = NO;

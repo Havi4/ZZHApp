@@ -181,6 +181,7 @@
                           };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestAddUserWithParams:dic andBlock:^(AddUserModel *userModel, NSError *error) {
+        
         thirdPartyLoginPlatform = kMeddoPlatform;
         thirdPartyLoginUserId = userModel.userId;
         NSRange range = [thirdPartyLoginUserId rangeOfString:@"$"];

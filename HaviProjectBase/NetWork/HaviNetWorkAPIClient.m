@@ -108,16 +108,14 @@ static HaviNetWorkAPIClient *_netWorkClient;
                 [NSObject hideHud];
                 DeBugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
                 id error = [self handleResponse:responseObject autoShowError:autoShowError];
-                if (error) {
-                    block(nil, error);
-                }else{
+                if (!error) {
                     block(responseObject, nil);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [NSObject hideHud];
                 [[UIApplication sharedApplication]decrementNetworkActivityCount];
                 !autoShowError || [NSObject showError:error];
-                block(nil, error);
+//                block(nil, error);
             }];
             break;
         }
@@ -128,9 +126,7 @@ static HaviNetWorkAPIClient *_netWorkClient;
                 [[UIApplication sharedApplication]decrementNetworkActivityCount];
                 DeBugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
                 id error = [self handleResponse:responseObject autoShowError:autoShowError];
-                if (error) {
-                    block(nil, error);
-                }else{
+                if (!error) {
                     block(responseObject, nil);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -138,7 +134,6 @@ static HaviNetWorkAPIClient *_netWorkClient;
                 [[UIApplication sharedApplication]decrementNetworkActivityCount];
                 DeBugLog(@"\n===========response===========\n%@:\n%@", aPath, error);
                 !autoShowError || [NSObject showError:error];
-                block(nil, error);
             }];
             break;
         }
@@ -147,16 +142,13 @@ static HaviNetWorkAPIClient *_netWorkClient;
                 [[UIApplication sharedApplication]decrementNetworkActivityCount];
                 DeBugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
                 id error = [self handleResponse:responseObject autoShowError:autoShowError];
-                if (error) {
-                    block(nil, error);
-                }else{
+                if (!error) {
                     block(responseObject, nil);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [[UIApplication sharedApplication]decrementNetworkActivityCount];
                 DeBugLog(@"\n===========response===========\n%@:\n%@", aPath, error);
                 !autoShowError || [NSObject showError:error];
-                block(nil, error);
             }];
             break;
         }
