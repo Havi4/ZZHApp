@@ -37,9 +37,6 @@
     [self setThirdAppSettingWith:launchOptions];
     [self getSuggestionList];
     
-    if (thirdPartyLoginUserId.length == 0) {
-        [UserManager resetUserInfo];
-    }
     if ([UserManager GetUserObj]) {
         [self setRootViewController];
     }else{

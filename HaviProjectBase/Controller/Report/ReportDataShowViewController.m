@@ -116,8 +116,8 @@
         case ReportViewWeek:
         {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *monthTitle = [[CalendarDateCaculate sharedInstance] getCurrentWeekInOneYear:[NSDate date]];
-                NSString *subTitle = [[CalendarDateCaculate sharedInstance]getWeekTimeDuration:[NSDate date]];
+                NSString *monthTitle = [[CalendarDateCaculate sharedInstance] getCurrentWeekInOneYear:[[NSDate date] dateByAddingHours:8]];
+                NSString *subTitle = [[CalendarDateCaculate sharedInstance]getWeekTimeDuration:[[NSDate date] dateByAddingHours:8]];
                 NSString *year = [monthTitle substringWithRange:NSMakeRange(0, 4)];
                 NSString *fromMonth = [subTitle substringWithRange:NSMakeRange(0, 2)];
                 NSString *fromDay = [subTitle substringWithRange:NSMakeRange(3, 2)];

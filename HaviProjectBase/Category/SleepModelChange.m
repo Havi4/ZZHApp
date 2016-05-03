@@ -208,7 +208,7 @@
             NSString *toDateString = [NSString stringWithFormat:@"%@年%@月%@日",[dateString substringWithRange:NSMakeRange(0, 4)],[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
             NSDate *toDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:toDateString];
             NSDateComponents *dayComponents = [[[CalendarDateCaculate sharedInstance] calender] components:NSDayCalendarUnit fromDate:fromDate toDate:toDate options:0];
-            if (dayComponents.day>0 && dayComponents.day < 7) {
+            if (dayComponents.day>-1 && dayComponents.day < 7) {
                 [mutableArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
                 [mutableTimeArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
             }
@@ -253,7 +253,7 @@
             NSString *toDateString = [NSString stringWithFormat:@"%@年%@月%@日",[dateString substringWithRange:NSMakeRange(0, 4)],[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
             NSDate *toDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:toDateString];
             NSDateComponents *dayComponents = [[[CalendarDateCaculate sharedInstance] calender] components:NSDayCalendarUnit fromDate:fromDate toDate:toDate options:0];
-            if (dayComponents.day>0 && dayComponents.day < dayNums) {
+            if (dayComponents.day>-1 && dayComponents.day < dayNums+1) {
                 [mutableArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
                 [mutableTimeArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
             }
