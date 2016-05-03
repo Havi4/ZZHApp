@@ -335,21 +335,25 @@
                           };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestAddUserWithParams:dic andBlock:^(AddUserModel *userModel, NSError *error) {
-        thirdPartyLoginPlatform = platform;
-        thirdPartyLoginOriginalId = thirdID;//
-        thirdPartyLoginUserId = userModel.userId;
-        thirdPartyLoginNickName = thirdName;
-        thirdPartyLoginToken = @"";
-        if ([platform isEqualToString:kWXPlatform]) {
-            thirdPartyLoginIcon = [NSString stringWithFormat:@"%@",[self.thirdPlatformInfoDic objectForKey:@"headimgurl"]];
-        }else if ([platform isEqualToString:kSinaPlatform]){
-            thirdPartyLoginIcon = [NSString stringWithFormat:@"%@",[self.thirdPlatformInfoDic objectForKey:@"avatar_hd"]];
-        }else {
-            thirdPartyLoginIcon = [NSString stringWithFormat:@"%@",[self.thirdPlatformInfoDic objectForKey:@"figureurl_qq_2"]];
+        if ([userModel.returnCode intValue]==200) {
+            thirdPartyLoginPlatform = platform;
+            thirdPartyLoginOriginalId = thirdID;//
+            thirdPartyLoginUserId = userModel.userId;
+            thirdPartyLoginNickName = thirdName;
+            thirdPartyLoginToken = @"";
+            if ([platform isEqualToString:kWXPlatform]) {
+                thirdPartyLoginIcon = [NSString stringWithFormat:@"%@",[self.thirdPlatformInfoDic objectForKey:@"headimgurl"]];
+            }else if ([platform isEqualToString:kSinaPlatform]){
+                thirdPartyLoginIcon = [NSString stringWithFormat:@"%@",[self.thirdPlatformInfoDic objectForKey:@"avatar_hd"]];
+            }else {
+                thirdPartyLoginIcon = [NSString stringWithFormat:@"%@",[self.thirdPlatformInfoDic objectForKey:@"figureurl_qq_2"]];
+            }
+            [UserManager setGlobalOauth];
+            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            [app setRootViewController];
+        }else{
+            [NSObject showHudTipStr:[NSString stringWithFormat:@"%@",error]];
         }
-        [UserManager setGlobalOauth];
-        AppDelegate *app = [UIApplication sharedApplication].delegate;
-        [app setRootViewController];
 
     }];
 }

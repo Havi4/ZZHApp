@@ -181,19 +181,23 @@
                           };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestAddUserWithParams:dic andBlock:^(AddUserModel *userModel, NSError *error) {
-        
-        thirdPartyLoginPlatform = kMeddoPlatform;
-        thirdPartyLoginUserId = userModel.userId;
-        NSRange range = [thirdPartyLoginUserId rangeOfString:@"$"];
-        thirdPartyLoginNickName = [userModel.userId substringFromIndex:range.location+range.length];
-        thirdPartyLoginIcon = @"";
-        thirdPartyLoginToken = @"";
-        [UserManager setGlobalOauth];
-        if (self.iconData) {
-            [self uploadWithImageData:self.iconData withUserId:thirdPartyLoginUserId];
+        if ([userModel.returnCode intValue]==200) {
+            thirdPartyLoginPlatform = kMeddoPlatform;
+            thirdPartyLoginUserId = userModel.userId;
+            NSRange range = [thirdPartyLoginUserId rangeOfString:@"$"];
+            thirdPartyLoginNickName = [userModel.userId substringFromIndex:range.location+range.length];
+            thirdPartyLoginIcon = @"";
+            thirdPartyLoginToken = @"";
+            [UserManager setGlobalOauth];
+            if (self.iconData) {
+                [self uploadWithImageData:self.iconData withUserId:thirdPartyLoginUserId];
+            }
+            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            [app setRootViewController];
+        }else{
+            [NSObject showHudTipStr:[NSString stringWithFormat:@"%@",error]];
         }
-        AppDelegate *app = [UIApplication sharedApplication].delegate;
-        [app setRootViewController];
+
     }];
     
 }
