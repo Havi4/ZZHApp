@@ -112,6 +112,7 @@
     cell.backgroundColor = [UIColor clearColor];
     DeviceList *deviceInfo = [self.deviceArr objectAtIndex:indexPath.row];
     cell.cellUserDescription = [NSString stringWithFormat:@"%@", deviceInfo.nDescription];
+    cell.selectImageView.hidden = YES;
     if ([deviceInfo.isActivated isEqualToString:@"True"]) {
         cell.selectImageView.hidden = NO;
     }else{
