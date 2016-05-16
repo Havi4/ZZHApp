@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C15EB761CDB1D7B00A43086 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB751CDB1D7B00A43086 /* CoreTelephony.framework */; };
+		2C15EB781CDB1D9400A43086 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB771CDB1D9400A43086 /* AudioToolbox.framework */; };
+		2C15EB7A1CDB1D9E00A43086 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */; };
+		2C15EB7C1CDB1DA800A43086 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB7B1CDB1DA800A43086 /* OpenGLES.framework */; };
+		2C15EB7E1CDB1DB900A43086 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB7D1CDB1DB900A43086 /* CoreMotion.framework */; };
+		2C15EB801CDB1DCC00A43086 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB7F1CDB1DCC00A43086 /* PgyUpdate.framework */; };
+		2C15EB821CDB1DE400A43086 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB811CDB1DE400A43086 /* PgySDK.framework */; };
 		2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */; };
 		2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */; };
 		2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */; };
@@ -323,6 +330,7 @@
 		2CD75BA31C61F8D300E7E076 /* LeftSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD75BA21C61F8D300E7E076 /* LeftSideViewController.m */; };
 		2CD75BA61C61F8E200E7E076 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD75BA51C61F8E200E7E076 /* CenterViewController.m */; };
 		2CD75BAB1C6203BB00E7E076 /* HaviBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD75BAA1C6203BB00E7E076 /* HaviBaseTableViewCell.m */; };
+		2CDB2DC81CE471B300E931F0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB2DC71CE471B300E931F0 /* Reachability.m */; };
 		2CF2E1251C74749B0007A639 /* choose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E1211C74749B0007A639 /* choose@2x.png */; };
 		2CF2E1261C74749B0007A639 /* icon_double@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E1221C74749B0007A639 /* icon_double@2x.png */; };
 		2CF2E1271C74749B0007A639 /* icon_solo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E1231C74749B0007A639 /* icon_solo@2x.png */; };
@@ -471,6 +479,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C15EB751CDB1D7B00A43086 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2C15EB771CDB1D9400A43086 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2C15EB7B1CDB1DA800A43086 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		2C15EB7D1CDB1DB900A43086 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		2C15EB7F1CDB1DCC00A43086 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PgyUpdate.framework; path = Pods/PgyUpdate/PgySDK/sdk/PgyUpdate.framework; sourceTree = "<group>"; };
+		2C15EB811CDB1DE400A43086 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PgySDK.framework; path = Pods/Pgyer/PgySDK/sdk/PgySDK.framework; sourceTree = "<group>"; };
 		2C2DC9B11CC6170B008D28D1 /* HFSmtlkV30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFSmtlkV30.h; sourceTree = "<group>"; };
 		2C2DC9B41CC714CD008D28D1 /* LongpressShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongpressShowView.h; sourceTree = "<group>"; };
 		2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongpressShowView.m; sourceTree = "<group>"; };
@@ -985,6 +1000,8 @@
 		2CD75BA51C61F8E200E7E076 /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterViewController.m; sourceTree = "<group>"; };
 		2CD75BA91C6203BB00E7E076 /* HaviBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaviBaseTableViewCell.h; sourceTree = "<group>"; };
 		2CD75BAA1C6203BB00E7E076 /* HaviBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaviBaseTableViewCell.m; sourceTree = "<group>"; };
+		2CDB2DC61CE471B300E931F0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		2CDB2DC71CE471B300E931F0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2CF2E1211C74749B0007A639 /* choose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "choose@2x.png"; sourceTree = "<group>"; };
 		2CF2E1221C74749B0007A639 /* icon_double@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_double@2x.png"; sourceTree = "<group>"; };
 		2CF2E1231C74749B0007A639 /* icon_solo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_solo@2x.png"; sourceTree = "<group>"; };
@@ -1185,6 +1202,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C15EB821CDB1DE400A43086 /* PgySDK.framework in Frameworks */,
+				2C15EB801CDB1DCC00A43086 /* PgyUpdate.framework in Frameworks */,
+				2C15EB7E1CDB1DB900A43086 /* CoreMotion.framework in Frameworks */,
+				2C15EB7C1CDB1DA800A43086 /* OpenGLES.framework in Frameworks */,
+				2C15EB7A1CDB1D9E00A43086 /* AVFoundation.framework in Frameworks */,
+				2C15EB781CDB1D9400A43086 /* AudioToolbox.framework in Frameworks */,
+				2C15EB761CDB1D7B00A43086 /* CoreTelephony.framework in Frameworks */,
 				2C58727A1C7B055E001C2F3A /* Foundation.framework in Frameworks */,
 				2C5872781C7B0539001C2F3A /* CoreText.framework in Frameworks */,
 				2C5872761C7B050A001C2F3A /* UIKit.framework in Frameworks */,
@@ -1223,6 +1247,13 @@
 		1B9E74FF866522760DA0D025 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C15EB811CDB1DE400A43086 /* PgySDK.framework */,
+				2C15EB7F1CDB1DCC00A43086 /* PgyUpdate.framework */,
+				2C15EB7D1CDB1DB900A43086 /* CoreMotion.framework */,
+				2C15EB7B1CDB1DA800A43086 /* OpenGLES.framework */,
+				2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */,
+				2C15EB771CDB1D9400A43086 /* AudioToolbox.framework */,
+				2C15EB751CDB1D7B00A43086 /* CoreTelephony.framework */,
 				2C5872791C7B055E001C2F3A /* Foundation.framework */,
 				2C5872771C7B0539001C2F3A /* CoreText.framework */,
 				2C5872751C7B050A001C2F3A /* UIKit.framework */,
@@ -1836,6 +1867,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2CDB2DC51CE471B300E931F0 /* Reachability */,
 				2C9EF5211C8597C9000704E2 /* THPinViewController */,
 				2C9EF4EA1C852CE6000704E2 /* Animation */,
 				2C9EF4C81C844FA3000704E2 /* ZFCalendar */,
@@ -2286,6 +2318,15 @@
 				2C5872641C7AF491001C2F3A /* LaunchStartView.m */,
 			);
 			name = BaseView;
+			sourceTree = "<group>";
+		};
+		2CDB2DC51CE471B300E931F0 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				2CDB2DC61CE471B300E931F0 /* Reachability.h */,
+				2CDB2DC71CE471B300E931F0 /* Reachability.m */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		2CF2E1311C747CF90007A639 /* ODRefreshControl */ = {
@@ -3172,6 +3213,7 @@
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,
 				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,
 				2C9EF4C31C83EA80000704E2 /* NSString+Common.m in Sources */,
+				2CDB2DC81CE471B300E931F0 /* Reachability.m in Sources */,
 				2C5872871C7B4D5D001C2F3A /* RegisterViewController.m in Sources */,
 				2C9EF43C1C8033CA000704E2 /* ChartTableDataViewCell.m in Sources */,
 				2C9EF45B1C804C45000704E2 /* ReportDataShowViewController.m in Sources */,
@@ -3330,6 +3372,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/WeChatSDK_1.5_OnlyIphone",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/Tencent",
+					"$(PROJECT_DIR)/Pods/PgyUpdate/PgySDK/sdk",
+					"$(PROJECT_DIR)/Pods/Pgyer/PgySDK/sdk",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HaviProjectBase/Model.pch";
 				INFOPLIST_FILE = HaviProjectBase/Info.plist;
@@ -3361,6 +3405,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/WeChatSDK_1.5_OnlyIphone",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/Tencent",
+					"$(PROJECT_DIR)/Pods/PgyUpdate/PgySDK/sdk",
+					"$(PROJECT_DIR)/Pods/Pgyer/PgySDK/sdk",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HaviProjectBase/Model.pch";
 				INFOPLIST_FILE = HaviProjectBase/Info.plist;
