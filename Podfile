@@ -10,6 +10,4 @@ pod 'HKRLocalNotificationManager', '~> 0.6'
 pod 'DKNightVersion', '~> 1.2'
 pod 'WeiboSDK', '~> 3.1.3'
 pod 'DXPopover', '~> 0.1.1'
-pod 'Pgyer'
-pod 'PgyUpdate'
 end

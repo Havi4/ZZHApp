@@ -222,24 +222,6 @@ THE SOFTWARE.</string>
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright 2015 pgyer.com. All rights reserved.
-</string>
-			<key>Title</key>
-			<string>PgyUpdate</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
-			<string>Copyright 2015 pgyer.com. All rights reserved.
-</string>
-			<key>Title</key>
-			<string>Pgyer</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
 			<string></string>
 			<key>Title</key>
 			<string>WeiboSDK</string>

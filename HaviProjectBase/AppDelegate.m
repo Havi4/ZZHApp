@@ -19,8 +19,6 @@
 #import "ThirdLoginCallBackManager.h"
 #import "JPushNotiManager.h"
 #import "PinLockSetting.h"
-#import <PgySDK/PgyManager.h>
-#import <PgyUpdate/PgyUpdateManager.h>
 
 @interface AppDelegate ()
 
@@ -63,7 +61,7 @@
     [self uploadRegisterID];
     
     //启动基本SDK
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"7eb7c775936eef758a5314cd4349f236"];
+//    [[PgyManager sharedPgyManager] startManagerWithAppId:@"7eb7c775936eef758a5314cd4349f236"];
     //启动更新检查SDK
 //    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"PGY_APP_ID"];
     return YES;
