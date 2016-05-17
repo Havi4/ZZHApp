@@ -47,7 +47,11 @@
          }
          return nil;
      }];
-    [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"ModifyPassWordViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
+    if ([thirdPartyLoginPlatform isEqualToString: kMeddoPlatform]) {
+        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"ModifyPassWordViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
+    }else{
+        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
+    }
     [self addControllerToCellArrayWithClassName:@[@"UserProtocolViewController",@"AboutMeViewController"]];
     [self addControllerToCellArrayWithClassName:@[@""]];
     
@@ -69,8 +73,15 @@
         @strongify(self);
         [self didSelectedCell:indexPath obj:item];
     };
-    NSString *dataPath = [[NSBundle mainBundle]pathForResource:@"AppSetting" ofType:@"plist"];
-    NSArray *dataArr = [NSArray arrayWithContentsOfFile:dataPath];
+    NSArray *dataArr = @[];
+    if ([thirdPartyLoginPlatform isEqualToString: kMeddoPlatform]){
+    
+        NSString *dataPath = [[NSBundle mainBundle]pathForResource:@"AppSetting" ofType:@"plist"];
+        dataArr = [NSArray arrayWithContentsOfFile:dataPath];
+    }else{
+        NSString *dataPath = [[NSBundle mainBundle]pathForResource:@"AppSetting1" ofType:@"plist"];
+        dataArr = [NSArray arrayWithContentsOfFile:dataPath];
+    }
     
     self.appDelegate = [[AppSettingDelegate alloc]initWithItems:dataArr cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
     

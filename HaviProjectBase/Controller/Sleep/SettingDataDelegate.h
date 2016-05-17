@@ -11,5 +11,6 @@
 @interface SettingDataDelegate : BaseTableViewDataDelegate
 
 @property (nonatomic, copy) void (^DidTapedButtonBlock)(SleepSettingButtonType type,NSIndexPath *indexPath,id item);
+@property (nonatomic, strong) UserInfoDetailModel *userInfo;
 
 @end

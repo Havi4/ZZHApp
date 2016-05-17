@@ -226,6 +226,8 @@
             [NSObject showHudTipStr:@"请选择正确的生日"];
             return;
         }
+        [[NSUserDefaults standardUserDefaults]setObject:((UIDatePicker *)controller.contentView).date forKey:@"userBirthday"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
         [self saveUserInfoWithKey:@"Birthday" andData:date];
     }];
     
@@ -239,6 +241,9 @@
     [dateSelectionController addAction:cancelAction];
     //Create date selection view controller
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"userBirthday"]) {
+        dateSelectionController.datePicker.date = [[NSUserDefaults standardUserDefaults]objectForKey:@"userBirthday"];
+    }
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
@@ -280,9 +285,17 @@
     }else if ([type isEqualToString:@"weight"]){
         pickerController.picker.tag = 102;
         self.genderArray = @[@"60",@"61",@"62",@"63",@"64",@"65",@"66",@"67",@"68",@"69",@"70",@"71",@"72",@"73",@"74",@"75",@"76",@"77",@"78",@"79",@"80",@"81"];
+        if(self.userInfoModel.nUserInfo.weight.length > 0){
+            NSUInteger index = [self.genderArray indexOfObject:self.userInfoModel.nUserInfo.weight];
+            [pickerController.picker selectRow:index inComponent:0 animated:NO];
+        }
     }else if ([type isEqualToString:@"height"]){
         pickerController.picker.tag = 103;
         self.genderArray = @[@"160",@"161",@"162",@"163",@"164",@"165",@"166",@"167",@"168",@"169",@"170",@"171",@"172",@"173",@"174",@"175",@"176",@"177",@"178",@"179",@"180",@"181"];
+        if(self.userInfoModel.nUserInfo.height.length > 0){
+            NSUInteger index = [self.genderArray indexOfObject:self.userInfoModel.nUserInfo.height];
+            [pickerController.picker selectRow:index inComponent:0 animated:NO];
+        }
     }
     
     //Now just present the picker controller using the standard iOS presentation method

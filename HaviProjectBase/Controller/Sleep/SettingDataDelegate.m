@@ -195,19 +195,27 @@
                 }
                 NSString *startTime = [NSString stringWithFormat:@"%@:%@",(date.hour > 10?[NSString stringWithFormat:@"%d",(int)date.hour]:[NSString stringWithFormat:@"0%d",(int)date.hour]),(date.minute > 10?[NSString stringWithFormat:@"%d",(int)date.minute]:[NSString stringWithFormat:@"0%d",(int)date.minute])];
                 [self changeUserSleepSettingInfo:startTime type:SleepSettingStartTime];
+                [[NSUserDefaults standardUserDefaults]setObject:date forKey:@"userSleepStart"];
+                [[NSUserDefaults standardUserDefaults]synchronize];
                 break;
             }
             case SleepSettingEndTime:{
                 NSString *endTime = [NSString stringWithFormat:@"%@:%@",(date.hour > 10?[NSString stringWithFormat:@"%d",(int)date.hour]:[NSString stringWithFormat:@"0%d",(int)date.hour]),(date.minute > 10?[NSString stringWithFormat:@"%d",(int)date.minute]:[NSString stringWithFormat:@"0%d",(int)date.minute])];
                 [self changeUserSleepSettingInfo:endTime type:SleepSettingEndTime];
+                [[NSUserDefaults standardUserDefaults]setObject:date forKey:@"userSleepEnd"];
+                [[NSUserDefaults standardUserDefaults]synchronize];
                 break;
             }
             case SleepSettingLongTime:{
                 NSString *endTime = [NSString stringWithFormat:@"%ld",date.hour*60 + date.minute];
                 [self changeUserSleepSettingInfo:endTime type:SleepSettingLongTime];
+                [[NSUserDefaults standardUserDefaults]setObject:date forKey:@"userLongDate"];
+                [[NSUserDefaults standardUserDefaults]synchronize];
                 break;
             }
             case SleepSettingAlertTime:{
+                [[NSUserDefaults standardUserDefaults]setObject:date forKey:@"userAlert"];
+                [[NSUserDefaults standardUserDefaults]synchronize];
                 [self changeUserAlarm:date];
                 break;
             }
@@ -227,8 +235,24 @@
     //Create date selection view controller
     if (type == SleepSettingLongTime) {
         dateSelectionController.datePicker.datePickerMode = UIDatePickerModeCountDownTimer;
-    }else{
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:@"userLongDate"]) {
+            dateSelectionController.datePicker.date = [[NSUserDefaults standardUserDefaults]objectForKey:@"userLongDate"];
+        }
+    }else if(type == SleepSettingStartTime){
         dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:@"userSleepStart"]) {
+            dateSelectionController.datePicker.date = [[NSUserDefaults standardUserDefaults]objectForKey:@"userSleepStart"];
+        }
+    }else if(type == SleepSettingEndTime){
+        dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:@"userSleepEnd"]) {
+            dateSelectionController.datePicker.date = [[NSUserDefaults standardUserDefaults]objectForKey:@"userSleepEnd"];
+        }
+    }else if(type == SleepSettingAlertTime){
+        dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:@"userAlert"]) {
+            dateSelectionController.datePicker.date = [[NSUserDefaults standardUserDefaults]objectForKey:@"userAlert"];
+        }
     }
     //Now just present the date selection controller using the standard iOS presentation method
     [[NSObject appNaviRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
@@ -268,6 +292,16 @@
     pickerController.picker.delegate = self;
     pickerController.picker.dataSource = self;
     self.sleepLeaveBedTime = @[@"5秒",@"15秒",@"30秒",@"1分钟",@"5分钟",@"10分钟",@"15分钟",];
+    int time = [self.userInfo.nUserInfo.alarmTimeOutOfBed intValue];
+    NSString *cellString = @"";
+    if (time > 60) {
+        cellString = [NSString stringWithFormat:@"%d分钟",time/60];
+        
+    }else{
+        cellString = [NSString stringWithFormat:@"%d秒",time];
+    }
+    NSUInteger index = [self.sleepLeaveBedTime indexOfObject:cellString];
+    [pickerController.picker selectRow:index inComponent:0 animated:NO];
     
     //Now just present the picker controller using the standard iOS presentation method
     [[NSObject appNaviRootViewController] presentViewController:pickerController animated:YES completion:nil];

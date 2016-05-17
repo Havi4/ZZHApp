@@ -88,6 +88,7 @@
     ZZHAPIManager *apiManager = [ZZHAPIManager sharedAPIManager];
     [apiManager requestUserInfoWithParam:userIdDic andBlock:^(UserInfoDetailModel *userInfo, NSError *error) {
         self.userInfoModel = userInfo;
+        self.settingDelegate.userInfo = userInfo;
         [self.sleepSettingView reloadData];
     }];
 }

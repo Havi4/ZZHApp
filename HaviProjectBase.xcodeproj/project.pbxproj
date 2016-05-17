@@ -12,8 +12,6 @@
 		2C15EB7A1CDB1D9E00A43086 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */; };
 		2C15EB7C1CDB1DA800A43086 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB7B1CDB1DA800A43086 /* OpenGLES.framework */; };
 		2C15EB7E1CDB1DB900A43086 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB7D1CDB1DB900A43086 /* CoreMotion.framework */; };
-		2C15EB801CDB1DCC00A43086 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB7F1CDB1DCC00A43086 /* PgyUpdate.framework */; };
-		2C15EB821CDB1DE400A43086 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB811CDB1DE400A43086 /* PgySDK.framework */; };
 		2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */; };
 		2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */; };
 		2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */; };
@@ -1202,8 +1200,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C15EB821CDB1DE400A43086 /* PgySDK.framework in Frameworks */,
-				2C15EB801CDB1DCC00A43086 /* PgyUpdate.framework in Frameworks */,
 				2C15EB7E1CDB1DB900A43086 /* CoreMotion.framework in Frameworks */,
 				2C15EB7C1CDB1DA800A43086 /* OpenGLES.framework in Frameworks */,
 				2C15EB7A1CDB1D9E00A43086 /* AVFoundation.framework in Frameworks */,
