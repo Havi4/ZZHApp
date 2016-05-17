@@ -251,7 +251,7 @@
             QualityDetailModel *dic = [reportData objectAtIndex:i];
             NSString *dateString = dic.date;
             NSString *toDateString = [NSString stringWithFormat:@"%@年%@月%@日",[dateString substringWithRange:NSMakeRange(0, 4)],[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
-            NSDate *toDate = [[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:toDateString];
+            NSDate *toDate = [[[[CalendarDateCaculate sharedInstance] dateFormmatter] dateFromString:toDateString]dateByAddingHours:8];
             NSDateComponents *dayComponents = [[[CalendarDateCaculate sharedInstance] calender] components:NSDayCalendarUnit fromDate:fromDate toDate:toDate options:0];
             if (dayComponents.day>-1 && dayComponents.day < dayNums+1) {
                 [mutableArr replaceObjectAtIndex:dayComponents.day withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];

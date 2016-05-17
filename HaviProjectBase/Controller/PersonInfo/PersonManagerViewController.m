@@ -282,6 +282,10 @@
     if ([type isEqualToString:@"gender"]) {
         pickerController.picker.tag = 101;
         self.genderArray = @[@"男",@"女"];
+        if(self.userInfoModel.nUserInfo.gender.length > 0){
+            NSUInteger index = [self.genderArray indexOfObject:self.userInfoModel.nUserInfo.gender];
+            [pickerController.picker selectRow:index inComponent:0 animated:NO];
+        }
     }else if ([type isEqualToString:@"weight"]){
         pickerController.picker.tag = 102;
         self.genderArray = @[@"60",@"61",@"62",@"63",@"64",@"65",@"66",@"67",@"68",@"69",@"70",@"71",@"72",@"73",@"74",@"75",@"76",@"77",@"78",@"79",@"80",@"81"];

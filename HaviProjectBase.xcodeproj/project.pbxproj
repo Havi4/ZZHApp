@@ -15,6 +15,7 @@
 		2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */; };
 		2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */; };
 		2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */; };
+		2C34AE331CEAC45400B24B6E /* pic_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C34AE321CEAC45400B24B6E /* pic_about@2x.png */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -413,7 +414,6 @@
 		2CF2E2201C79D6B90007A639 /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E21F1C79D6B90007A639 /* AboutMeViewController.m */; };
 		2CF2E2221C79DAD70007A639 /* textbox_devicename_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2211C79DAD70007A639 /* textbox_devicename_0@2x.png */; };
 		2CF2E2241C79DAFE0007A639 /* textbox_devicename_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2231C79DAFE0007A639 /* textbox_devicename_1@2x.png */; };
-		2CF2E2261C79DB320007A639 /* pic_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2251C79DB320007A639 /* pic_about@2x.png */; };
 		2CF2E2281C79DB5D0007A639 /* protocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2271C79DB5D0007A639 /* protocol.html */; };
 		2CF2E2301C7AAE420007A639 /* SelectThemeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E22D1C7AAE420007A639 /* SelectThemeCollectionViewCell.m */; };
 		2CF2E2311C7AAE420007A639 /* SelectThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E22F1C7AAE420007A639 /* SelectThemeViewController.m */; };
@@ -490,6 +490,7 @@
 		2C2DC9B71CC71728008D28D1 /* SmartLinkInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartLinkInstance.h; sourceTree = "<group>"; };
 		2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartLinkInstance.m; sourceTree = "<group>"; };
 		2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
+		2C34AE321CEAC45400B24B6E /* pic_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_about@2x.png"; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1134,7 +1135,6 @@
 		2CF2E21F1C79D6B90007A639 /* AboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutMeViewController.m; sourceTree = "<group>"; };
 		2CF2E2211C79DAD70007A639 /* textbox_devicename_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textbox_devicename_0@2x.png"; sourceTree = "<group>"; };
 		2CF2E2231C79DAFE0007A639 /* textbox_devicename_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textbox_devicename_1@2x.png"; sourceTree = "<group>"; };
-		2CF2E2251C79DB320007A639 /* pic_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_about@2x.png"; sourceTree = "<group>"; };
 		2CF2E2271C79DB5D0007A639 /* protocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = protocol.html; sourceTree = "<group>"; };
 		2CF2E22C1C7AAE420007A639 /* SelectThemeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectThemeCollectionViewCell.h; sourceTree = "<group>"; };
 		2CF2E22D1C7AAE420007A639 /* SelectThemeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectThemeCollectionViewCell.m; sourceTree = "<group>"; };
@@ -1664,8 +1664,8 @@
 				2CF2E1C21C7701710007A639 /* edit_double_bed@2x.png */,
 				2CF2E1D11C771F1A0007A639 /* accept@2x.png */,
 				2CF2E1D21C771F1A0007A639 /* apply@2x.png */,
+				2C34AE321CEAC45400B24B6E /* pic_about@2x.png */,
 				2CF2E1D31C771F1A0007A639 /* refuse@2x.png */,
-				2CF2E2251C79DB320007A639 /* pic_about@2x.png */,
 				2CF2E2391C7AB15B0007A639 /* common_green_checkbox@2x.png */,
 				2CF2E26C1C7AD1E30007A639 /* pic_introduce_1@2x.png */,
 				2CF2E26D1C7AD1E30007A639 /* pic_introduce_2@2x.png */,
@@ -2828,6 +2828,7 @@
 				2C5872551C7AEB6F001C2F3A /* icon_password_1@2x.png in Resources */,
 				2C9EF5101C854E8B000704E2 /* pic_bad_2@2x.png in Resources */,
 				2CD014AD1C634CF5001F9514 /* week_1@2x.png in Resources */,
+				2C34AE331CEAC45400B24B6E /* pic_about@2x.png in Resources */,
 				2CD014951C634001001F9514 /* icon_alarm_clock_1@2x.png in Resources */,
 				2CD014E51C64CD22001F9514 /* birthday@2x.png in Resources */,
 				2C9EF2CE1C7C12CB000704E2 /* pic_bg_center_1@2x.png in Resources */,
@@ -2916,7 +2917,6 @@
 				2C9EF3461C7D7B51000704E2 /* leave_apng_0.apng in Resources */,
 				2CD014EC1C64CD22001F9514 /* weight@2x.png in Resources */,
 				2CD014EB1C64CD22001F9514 /* name@2x.png in Resources */,
-				2CF2E2261C79DB320007A639 /* pic_about@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
