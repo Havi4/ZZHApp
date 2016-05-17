@@ -294,7 +294,7 @@
     self.sleepLeaveBedTime = @[@"5秒",@"15秒",@"30秒",@"1分钟",@"5分钟",@"10分钟",@"15分钟",];
     int time = [self.userInfo.nUserInfo.alarmTimeOutOfBed intValue];
     NSString *cellString = @"";
-    if (time > 60) {
+    if (time > 60 || time == 60) {
         cellString = [NSString stringWithFormat:@"%d分钟",time/60];
         
     }else{
