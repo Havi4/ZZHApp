@@ -300,8 +300,10 @@
     }else{
         cellString = [NSString stringWithFormat:@"%d秒",time];
     }
-    NSUInteger index = [self.sleepLeaveBedTime indexOfObject:cellString];
-    [pickerController.picker selectRow:index inComponent:0 animated:NO];
+    if ([self.sleepLeaveBedTime containsObject:cellString]) {
+        NSUInteger index = [self.sleepLeaveBedTime indexOfObject:cellString];
+        [pickerController.picker selectRow:index inComponent:0 animated:NO];
+    }
     
     //Now just present the picker controller using the standard iOS presentation method
     [[NSObject appNaviRootViewController] presentViewController:pickerController animated:YES completion:nil];

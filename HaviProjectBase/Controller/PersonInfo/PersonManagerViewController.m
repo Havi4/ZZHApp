@@ -288,17 +288,21 @@
         }
     }else if ([type isEqualToString:@"weight"]){
         pickerController.picker.tag = 102;
-        self.genderArray = @[@"60",@"61",@"62",@"63",@"64",@"65",@"66",@"67",@"68",@"69",@"70",@"71",@"72",@"73",@"74",@"75",@"76",@"77",@"78",@"79",@"80",@"81"];
+        self.genderArray = @[@"60",@"61",@"62",@"63",@"64",@"65",@"66",@"67",@"68",@"69",@"70",@"71",@"72",@"73",@"74",@"75",@"76",@"77",@"78",@"79",@"80",@"81",@"82",@"83",@"84",@"85"];
         if(self.userInfoModel.nUserInfo.weight.length > 0){
-            NSUInteger index = [self.genderArray indexOfObject:self.userInfoModel.nUserInfo.weight];
-            [pickerController.picker selectRow:index inComponent:0 animated:NO];
+            if ([self.genderArray containsObject:self.userInfoModel.nUserInfo.weight]) {
+                NSUInteger index = [self.genderArray indexOfObject:[NSString stringWithFormat:@"%d",[self.userInfoModel.nUserInfo.weight intValue]]];
+                [pickerController.picker selectRow:index inComponent:0 animated:NO];
+            }
         }
     }else if ([type isEqualToString:@"height"]){
         pickerController.picker.tag = 103;
         self.genderArray = @[@"160",@"161",@"162",@"163",@"164",@"165",@"166",@"167",@"168",@"169",@"170",@"171",@"172",@"173",@"174",@"175",@"176",@"177",@"178",@"179",@"180",@"181"];
         if(self.userInfoModel.nUserInfo.height.length > 0){
-            NSUInteger index = [self.genderArray indexOfObject:self.userInfoModel.nUserInfo.height];
-            [pickerController.picker selectRow:index inComponent:0 animated:NO];
+            if ([self.genderArray containsObject:self.userInfoModel.nUserInfo.height]) {
+                NSUInteger index = [self.genderArray indexOfObject:[NSString stringWithFormat:@"%d",[self.userInfoModel.nUserInfo.height intValue]]];
+                [pickerController.picker selectRow:index inComponent:0 animated:NO];
+            }
         }
     }
     

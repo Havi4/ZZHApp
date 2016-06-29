@@ -2685,7 +2685,7 @@
 				TargetAttributes = {
 					2CD75B141C61B57000E7E076 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = CF99UB3L46;
+						DevelopmentTeam = A4R9NHT83H;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3382,9 +3382,9 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6160d8cc-6b4d-42bc-b5e4-901ecd081a15";
 			};
 			name = Debug;
 		};
@@ -3415,9 +3415,9 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6160d8cc-6b4d-42bc-b5e4-901ecd081a15";
 			};
 			name = Release;
 		};
