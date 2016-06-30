@@ -10,4 +10,5 @@
 #import "HaviBaseTableViewCell.h"
 
 @interface CenterDataTableViewCell : HaviBaseTableViewCell
+
 @end
