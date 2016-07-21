@@ -24,6 +24,7 @@
 
 @property (nonatomic,strong)  NSString *cellPhone;
 @property (assign,nonatomic)  int forgetPassWord;
+@property (assign,nonatomic) float yCordinate;
 //@property (nonatomic,strong) RegisterPhoneViewController *phoneView;
 @end
 
@@ -32,10 +33,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //接受消息，弹出输入电话号码
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showPhoneInputView) name:ShowPhoneInputViewNoti object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
-    int picIndex = [ThemeSelectConfigureObj defaultConfigure].nThemeIndex;
     UIImageView *logoImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo"]];
     [self.view addSubview:logoImage];
     self.nameText = [[CKTextField alloc]init];
@@ -119,6 +122,7 @@
     
 //    添加button
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    loginButton.tag = 500;
     [loginButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background"]] forState:UIControlStateNormal];
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
     [loginButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -178,7 +182,6 @@
         }];
         //
     }
-    float centerfriend = (self.view.frame.size.width)/3;
     if ([WeiboSDK isWeiboAppInstalled]&&[WXApi isWXAppInstalled]&&![TencentOAuth iphoneQQInstalled]) {
         UIButton *weixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.view addSubview:weixinButton];
@@ -195,7 +198,6 @@
         [sinaButton addTarget:self action:@selector(sinaButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:sinaButton];
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
-        float centerfriend = self.view.frame.size.width/3;
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(sinaButton.mas_width);
             make.height.equalTo(@24);
@@ -567,6 +569,20 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidChangeNotification object:self.nameText];
 }
 
+- (void)keyboardWillShow:(NSNotification *)info
+{
+    CGRect keyboardBounds = [[[info userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    float f =  keyboardBounds.size.height;
+    UIButton *login = (UIButton *)[self.view viewWithTag:500];
+    float y = login.frame.origin.y;
+    self.yCordinate = f-(kScreenHeight - y -49);
+    self.view.frame = CGRectMake(0, -_yCordinate, self.view.frame.size.width, self.view.frame.size.height);
+    
+}
+- (void)keyboardWillHide:(NSNotification *)info
+{
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
