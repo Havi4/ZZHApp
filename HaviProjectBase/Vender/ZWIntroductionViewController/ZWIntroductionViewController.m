@@ -68,14 +68,15 @@
     
     self.pageControl = [[UIPageControl alloc] initWithFrame:[self frameOfPageControl]];
     self.pageControl.pageIndicatorTintColor = [UIColor grayColor];
-    [self.view addSubview:self.pageControl];
+    //3.0隐藏
+    //[self.view addSubview:self.pageControl];
     
     if (!self.enterButton) {
         self.enterButton = [UIButton new];
-        [self.enterButton setTitle:NSLocalizedString(@"进入", nil) forState:UIControlStateNormal];
+//        [self.enterButton setTitle:NSLocalizedString(@"进入", nil) forState:UIControlStateNormal];
         [self.enterButton setTitleColor:[UIColor colorWithRed:0.427 green:0.643 blue:0.267 alpha:1.00] forState:UIControlStateNormal];
-        self.enterButton.layer.borderWidth = 0.5;
-        self.enterButton.layer.borderColor = [UIColor colorWithRed:0.427 green:0.643 blue:0.267 alpha:1.00].CGColor;
+//        self.enterButton.layer.borderWidth = 0.5;
+//        self.enterButton.layer.borderColor = [UIColor colorWithRed:0.427 green:0.643 blue:0.267 alpha:1.00].CGColor;
     }
     
     [self.enterButton addTarget:self action:@selector(enter:) forControlEvents:UIControlEventTouchUpInside];
@@ -135,7 +136,7 @@
 {
     CGSize size = self.enterButton.bounds.size;
     if (CGSizeEqualToSize(size, CGSizeZero)) {
-        size = CGSizeMake(self.view.frame.size.width * 0.6, 40);
+        size = CGSizeMake(self.view.frame.size.width * 0.6, 100);
     }
     return CGRectMake(self.view.frame.size.width / 2 - size.width / 2, self.pageControl.frame.origin.y - size.height, size.width, size.height);
 }

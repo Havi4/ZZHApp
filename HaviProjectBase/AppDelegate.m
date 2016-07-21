@@ -244,8 +244,8 @@
     if (hasSet) {
         return;
     }
-    NSArray *coverImageNames = @[@"font_1_min", @"font_2_min", @"font_3_min"];
-    NSArray *backgroundImageNames = @[@"pic_introduce_1", @"pic_introduce_2", @"pic_introduce_3"];
+    NSArray *coverImageNames = @[@"IntroduceView1", @"IntroduceView2", @"IntroduceView3"];
+    NSArray *backgroundImageNames = @[@"back.png", @"back.png", @"back.png"];
     
     self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:backgroundImageNames];
     [self.window addSubview:self.introductionView.view];

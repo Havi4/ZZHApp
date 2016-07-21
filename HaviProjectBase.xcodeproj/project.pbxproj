@@ -45,6 +45,10 @@
 		2C5872941C7BF0BE001C2F3A /* SLPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872911C7BF0BE001C2F3A /* SLPagingViewController.m */; };
 		2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872931C7BF0BE001C2F3A /* UIColor+SLAddition.m */; };
 		2C5872981C7BF173001C2F3A /* BaseViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872971C7BF173001C2F3A /* BaseViewContainerView.m */; };
+		2C96A9FE1D40685400ACCA08 /* IntroduceView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */; };
+		2C96A9FF1D40685400ACCA08 /* IntroduceView2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */; };
+		2C96AA001D40685400ACCA08 /* IntroduceView3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FD1D40685400ACCA08 /* IntroduceView3.png */; };
+		2C96AA021D40743C00ACCA08 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA011D40743C00ACCA08 /* back.png */; };
 		2C9EF2C31C7C0FFA000704E2 /* btn_ellipse_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C11C7C0FFA000704E2 /* btn_ellipse_0@2x.png */; };
 		2C9EF2C61C7C1026000704E2 /* navi_bg_night_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C51C7C1026000704E2 /* navi_bg_night_0@2x.png */; };
 		2C9EF2CA1C7C1031000704E2 /* navi_bg_night_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C81C7C1031000704E2 /* navi_bg_night_1@2x.png */; };
@@ -530,6 +534,10 @@
 		2C5872931C7BF0BE001C2F3A /* UIColor+SLAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SLAddition.m"; sourceTree = "<group>"; };
 		2C5872961C7BF173001C2F3A /* BaseViewContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewContainerView.h; sourceTree = "<group>"; };
 		2C5872971C7BF173001C2F3A /* BaseViewContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewContainerView.m; sourceTree = "<group>"; };
+		2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView1.png; sourceTree = "<group>"; };
+		2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView2.png; sourceTree = "<group>"; };
+		2C96A9FD1D40685400ACCA08 /* IntroduceView3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView3.png; sourceTree = "<group>"; };
+		2C96AA011D40743C00ACCA08 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		2C9EF2C11C7C0FFA000704E2 /* btn_ellipse_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ellipse_0@2x.png"; sourceTree = "<group>"; };
 		2C9EF2C51C7C1026000704E2 /* navi_bg_night_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg_night_0@2x.png"; sourceTree = "<group>"; };
 		2C9EF2C81C7C1031000704E2 /* navi_bg_night_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg_night_1@2x.png"; sourceTree = "<group>"; };
@@ -1274,6 +1282,17 @@
 				2C5872931C7BF0BE001C2F3A /* UIColor+SLAddition.m */,
 			);
 			path = SLPageController;
+			sourceTree = "<group>";
+		};
+		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
+			isa = PBXGroup;
+			children = (
+				2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */,
+				2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */,
+				2C96A9FD1D40685400ACCA08 /* IntroduceView3.png */,
+				2C96AA011D40743C00ACCA08 /* back.png */,
+			);
+			path = v3.0UI;
 			sourceTree = "<group>";
 		};
 		2C9EF2CF1C7C18C4000704E2 /* LXActivity */ = {
@@ -2218,6 +2237,7 @@
 		2CD75B501C61C25300E7E076 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C96A9FA1D40675D00ACCA08 /* v3.0UI */,
 				2CF2E1B11C76A94A0007A639 /* CodeScan.bundle */,
 				2CD0146E1C62F5C6001F9514 /* common */,
 				2CD014701C62F5C6001F9514 /* darkColor */,
@@ -2685,7 +2705,7 @@
 				TargetAttributes = {
 					2CD75B141C61B57000E7E076 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = A4R9NHT83H;
+						DevelopmentTeam = CF99UB3L46;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2758,6 +2778,7 @@
 				2CF2E1B71C76D9FE0007A639 /* ReturnCode.plist in Resources */,
 				2C9EF3221C7D4791000704E2 /* CenterData.plist in Resources */,
 				2C9EF4FB1C852E69000704E2 /* btn_x_0@2x.png in Resources */,
+				2C96AA001D40685400ACCA08 /* IntroduceView3.png in Resources */,
 				2CD014761C62FB17001F9514 /* left_bg_night@2x.png in Resources */,
 				2C9EF50F1C854E8B000704E2 /* pic_bad_1@2x.png in Resources */,
 				2CF2E2071C7972410007A639 /* alarmSound.wav in Resources */,
@@ -2766,6 +2787,7 @@
 				2C9EF4441C8037EA000704E2 /* ic_getup_1.png in Resources */,
 				2C58725A1C7AEB97001C2F3A /* phone_0@2x.png in Resources */,
 				2C9EF2E81C7C43C6000704E2 /* btn_point_0@2x.png in Resources */,
+				2C96AA021D40743C00ACCA08 /* back.png in Resources */,
 				2CF2E1D61C771F1A0007A639 /* refuse@2x.png in Resources */,
 				2CF2E1D51C771F1A0007A639 /* apply@2x.png in Resources */,
 				2C58726C1C7AF552001C2F3A /* sina@2x.png in Resources */,
@@ -2790,6 +2812,7 @@
 				2CD014A61C634CE7001F9514 /* quarter_0@2x.png in Resources */,
 				2C58726F1C7AF583001C2F3A /* launch_image_0@2x.png in Resources */,
 				2CD014891C633FF3001F9514 /* icon_alarm_clock_0@2x.png in Resources */,
+				2C96A9FF1D40685400ACCA08 /* IntroduceView2.png in Resources */,
 				2CD014C31C63963C001F9514 /* btn_back_0@2x.png in Resources */,
 				2C9EF42C1C801CE7000704E2 /* btn_abnormal_1@2x.png in Resources */,
 				2CF2E14B1C7590550007A639 /* textbox_save_settings_0@2x.png in Resources */,
@@ -2906,6 +2929,7 @@
 				2CF2E2281C79DB5D0007A639 /* protocol.html in Resources */,
 				2C9EF44B1C80389F000704E2 /* ic_dot_1.png in Resources */,
 				2CF2E1491C7590550007A639 /* search_0@2x.png in Resources */,
+				2C96A9FE1D40685400ACCA08 /* IntroduceView1.png in Resources */,
 				2C9EF2C61C7C1026000704E2 /* navi_bg_night_0@2x.png in Resources */,
 				2C9EF4841C81675B000704E2 /* ReportTitle.plist in Resources */,
 				2C9EF2CC1C7C12BF000704E2 /* pic_bg_center_0@2x.png in Resources */,
@@ -3382,9 +3406,9 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6160d8cc-6b4d-42bc-b5e4-901ecd081a15";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -3395,7 +3419,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Meddo Medical Technology Co., Ltd. (A4R9NHT83H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: dai wengai (K5K86ZWE67)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3415,9 +3439,9 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6160d8cc-6b4d-42bc-b5e4-901ecd081a15";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
