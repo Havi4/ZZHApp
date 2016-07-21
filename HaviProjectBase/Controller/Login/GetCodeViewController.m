@@ -19,6 +19,7 @@
 @property (nonatomic,strong) UITextField *codeText;
 @property (nonatomic,strong) UIButton *getCodeButton;
 @property (nonatomic,assign) int randomCode;
+@property (assign,nonatomic) float yCordinate;
 
 @end
 
@@ -26,6 +27,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     // Do any additional setup after loading the view.
     [self createClearBgNavWithTitle:nil createMenuItem:^UIView *(int nIndex) {
         if (nIndex == 1)
@@ -45,38 +49,38 @@
     self.phoneText = [[UITextField alloc]init];
     [self.view addSubview:self.phoneText];
     self.phoneText.delegate = self;
-    self.phoneText.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor grayColor];
+    self.phoneText.textColor = selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor];
     self.phoneText.borderStyle = UITextBorderStyleNone;
     self.phoneText.font = kDefaultWordFont;
     self.phoneText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?kDefaultColor:[UIColor grayColor],NSFontAttributeName:kDefaultWordFont};
-    NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"手机号" attributes:boldFont];
+    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor],NSFontAttributeName:kDefaultWordFont};
+    NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入手机号" attributes:boldFont];
     self.phoneText.attributedPlaceholder = attrValue;
     self.phoneText.keyboardType = UIKeyboardTypePhonePad;
     //
     self.codeText = [[UITextField alloc]init];
     [self.view addSubview:self.codeText];
     self.codeText.delegate = self;
-    self.codeText.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor grayColor];
+    self.codeText.textColor = selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor];
     self.codeText.borderStyle = UITextBorderStyleNone;
     self.codeText.font = kDefaultWordFont;
-    NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"验证码" attributes:boldFont];
+    NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"请输入验证码" attributes:boldFont];
     self.codeText.attributedPlaceholder = attrValue1;
-    self.codeText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.codeText.clearButtonMode = UITextFieldViewModeNever;
     self.codeText.keyboardType = UIKeyboardTypePhonePad;
     //
     [self.phoneText makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(20);
         make.width.equalTo(@(kButtonViewWidth));
-        make.height.equalTo(@44);
-        make.top.equalTo(self.view.mas_top).offset(84);
+        make.height.equalTo(@49);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-22);
         
     }];
     //
-    self.phoneText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_password_%d",selectedThemeIndex]];
-    self.codeText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_password_%d",selectedThemeIndex]];
+    self.phoneText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textback"]];
+    self.codeText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textback"]];
     
-    UIImageView *nameImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"phone_%d",selectedThemeIndex]]];
+    UIImageView *nameImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"phone"]]];
     nameImage.frame = CGRectMake(0, 0,30, 20);
     nameImage.contentMode = UIViewContentModeScaleAspectFit;
     self.phoneText.leftViewMode = UITextFieldViewModeAlways;
@@ -85,11 +89,22 @@
     //
     [self.codeText makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(20);
-        make.height.equalTo(@44);
-        make.top.equalTo(self.phoneText.mas_bottom).offset(10);
+        make.width.equalTo(@(kButtonViewWidth));
+        make.height.equalTo(@49);
+        make.centerY.equalTo(self.view.mas_centerY).offset(22);
         
     }];
-    UIImageView *codeImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_password_%d",selectedThemeIndex]]];
+    
+    UIView *lineView = [[UIView alloc]init];
+    lineView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:lineView];
+    [lineView makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.equalTo(@(kButtonViewWidth));
+        make.height.equalTo(@0.5);
+        make.centerY.equalTo(self.view.mas_centerY);
+    }];
+    UIImageView *codeImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"password"]]];
     codeImage.frame = CGRectMake(0, 0,30, 20);
     codeImage.contentMode = UIViewContentModeScaleAspectFit;
     self.codeText.leftViewMode = UITextFieldViewModeAlways;
@@ -97,21 +112,20 @@
     self.codeText.leftView = codeImage;
     //
     self.getCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:self.getCodeButton];
-    [self.getCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [self.getCodeButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.codeText addSubview:self.getCodeButton];
+    [self.getCodeButton setTitle:@"验证码" forState:UIControlStateNormal];
+    [self.getCodeButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     self.getCodeButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.getCodeButton addTarget:self action:@selector(tapedGetCode:) forControlEvents:UIControlEventTouchUpInside];
-    [self.getCodeButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"btn_gain_%d",selectedThemeIndex]] forState:UIControlStateNormal];
-    self.getCodeButton.layer.cornerRadius = 0;
+    [self.getCodeButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background"]] forState:UIControlStateNormal];
+    self.getCodeButton.layer.cornerRadius = 5;
     self.getCodeButton.layer.masksToBounds = YES;
     //
     [self.getCodeButton makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.codeText.mas_centerY);
-        make.left.equalTo(self.codeText.mas_right).offset(5);
-        make.right.equalTo(self.view.mas_right).offset(-20);
-        make.height.equalTo(@44);
-        make.width.equalTo(self.codeText.mas_width).multipliedBy(0.5);
+        make.height.equalTo(@30);
+        make.centerY.equalTo(self.codeText.mas_centerY).offset(1);
+        make.right.equalTo(self.codeText.mas_right).offset(-10);
+        make.width.equalTo(@65);
     }];
     //
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -119,17 +133,17 @@
     nextButton.tag = 1001;
     nextButton.userInteractionEnabled = YES;
     [nextButton setTitle:@"下一步" forState:UIControlStateNormal];
-    [nextButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [nextButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     nextButton.titleLabel.font = kDefaultWordFont;
     [nextButton addTarget:self action:@selector(registerUser:) forControlEvents:UIControlEventTouchUpInside];
-    nextButton.layer.cornerRadius = 0;
+    nextButton.layer.cornerRadius = 5;
     nextButton.layer.masksToBounds = YES;
     nextButton.userInteractionEnabled = YES;
     [self.view addSubview:nextButton];
     
     //
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"btn_ID_frame"] forState:UIControlStateNormal];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"button_background"] forState:UIControlStateNormal];
     [backButton setTitle:@"返回" forState:UIControlStateNormal];
     backButton.titleLabel.font = kDefaultWordFont;
     [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -142,7 +156,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
         make.height.equalTo(@44);
-        make.top.equalTo(self.codeText.mas_bottom).offset(20);
+        make.top.equalTo(self.codeText.mas_bottom).offset(44);
     }];
 }
 
@@ -203,7 +217,7 @@
         UIButton *button = (UIButton *)[self.view viewWithTag:1001];
         if (self.codeText.text.length == 4) {
             button.userInteractionEnabled = YES;
-            [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_devicename_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background"]] forState:UIControlStateNormal];
         }else if(self.codeText.text.length > 4){
             self.codeText.text = [self.codeText.text substringToIndex:4];
             [self shake:self.codeText];
@@ -239,7 +253,7 @@
             timeToShow --;
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                NSString *buttonTitle = [NSString stringWithFormat:@"%ds后重发",timeToShow];
+                NSString *buttonTitle = [NSString stringWithFormat:@"%ds重发",timeToShow];
                 [self.getCodeButton setTitle:buttonTitle forState:UIControlStateNormal];
                 if (timeToShow<1) {
                     self.getCodeButton.userInteractionEnabled = YES;
@@ -313,6 +327,21 @@
 - (void)backToHomeView:(UIButton*)button
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)keyboardWillShow:(NSNotification *)info
+{
+    CGRect keyboardBounds = [[[info userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    float f =  keyboardBounds.size.height;
+    UIButton *login = (UIButton *)[self.view viewWithTag:1001];
+    float y = login.frame.origin.y;
+    self.yCordinate = f-(kScreenHeight - y -49);
+    self.view.frame = CGRectMake(0, -_yCordinate, self.view.frame.size.width, self.view.frame.size.height);
+    
+}
+- (void)keyboardWillHide:(NSNotification *)info
+{
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
