@@ -276,6 +276,7 @@
         [NSObject showHudTipStr:@"验证码错误"];
         return;
     }
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     RegisterViewController *reg = [[RegisterViewController alloc]init];
     reg.cellPhoneNum = self.phoneText.text;
     [self.navigationController pushViewController:reg animated:YES];

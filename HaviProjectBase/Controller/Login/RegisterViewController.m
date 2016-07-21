@@ -22,6 +22,7 @@
 @property (nonatomic,strong) UITextField *passWordText;
 @property (nonatomic,strong) BTRippleButtton *iconButton;
 @property (nonatomic,strong) NSData *iconData;
+@property (assign,nonatomic) float yCordinate;
 @end
 
 @implementation RegisterViewController
@@ -29,6 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 //    self.bgImageView.image = [UIImage imageNamed:@"pic_login_bg"];
 
     [self createClearBgNavWithTitle:nil createMenuItem:^UIView *(int nIndex) {
@@ -50,10 +54,10 @@
     self.nameText = [[UITextField alloc]init];
     [self.view addSubview:self.nameText];
     self.nameText.delegate = self;
-    [self.nameText setTextColor:selectedThemeIndex==0?kDefaultColor:[UIColor lightGrayColor]];
+    [self.nameText setTextColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor lightGrayColor]];
     self.nameText.borderStyle = UITextBorderStyleNone;
     self.nameText.font = kDefaultWordFont;
-    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?kDefaultColor:[UIColor grayColor],NSFontAttributeName:kDefaultWordFont};
+    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor],NSFontAttributeName:kDefaultWordFont};
     NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:boldFont];
     self.nameText.attributedPlaceholder = attrValue;
     self.nameText.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -65,7 +69,7 @@
     [self.view addSubview:self.passWordText];
     self.passWordText.delegate = self;
     [self.passWordText setReturnKeyType:UIReturnKeyDone];
-    self.passWordText.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor lightGrayColor];
+    self.passWordText.textColor = selectedThemeIndex==0?[UIColor grayColor]:[UIColor lightGrayColor];
     self.passWordText.borderStyle = UITextBorderStyleNone;
     self.passWordText.font = kDefaultWordFont;
     NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"请确认密码" attributes:boldFont];
@@ -74,9 +78,10 @@
     self.passWordText.keyboardType = UIKeyboardTypeAlphabet;
     self.passWordText.secureTextEntry = YES;
     //
-    self.nameText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_password_%d",selectedThemeIndex]];
-    self.passWordText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_password_%d",selectedThemeIndex]];
+    self.nameText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textback"]];
+    self.passWordText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textback"]];
     //
+    /*
     self.iconButton = [[BTRippleButtton alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"head_placeholder"]]
                                                     andFrame:CGRectMake((self.view.bounds.size.width-100)/2, 84, 100, 100)
                                                 onCompletion:^(BOOL success) {
@@ -85,44 +90,56 @@
     
     [self.iconButton setRippeEffectEnabled:YES];
     [self.iconButton setRippleEffectWithColor:[UIColor colorWithRed:0.953f green:0.576f blue:0.420f alpha:1.00f]];
-    [self.view addSubview:self.iconButton];
+//    [self.view addSubview:self.iconButton];
     self.iconButton.userInteractionEnabled = YES;
+     */
     //
      [self.nameText makeConstraints:^(MASConstraintMaker *make) {
      make.centerX.equalTo(self.view.mas_centerX);
      make.width.equalTo(@(kButtonViewWidth));
-     make.height.equalTo(@44);
-     make.top.equalTo(self.iconButton.mas_bottom).offset(20);
+     make.height.equalTo(@49);
+     make.centerY.equalTo(self.view.mas_centerY).offset(-22);
      
      }];
     //
     [self.passWordText makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
-        make.height.equalTo(@44);
-        make.top.equalTo(self.nameText.mas_bottom).offset(10);
+        make.height.equalTo(@49);
+        make.centerY.equalTo(self.view.mas_centerY).offset(22);
     }];
     //    添加小图标
-     UIImageView *phoneImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_password_%d",selectedThemeIndex]]];
+     UIImageView *phoneImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"password"]]];
      phoneImage.frame = CGRectMake(0, 0,30, 20);
      phoneImage.contentMode = UIViewContentModeScaleAspectFit;
      self.nameText.leftViewMode = UITextFieldViewModeAlways;
      self.nameText.leftView = phoneImage;
      //
-    UIImageView *passImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_password_%d",selectedThemeIndex]]];
+    UIImageView *passImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"password"]]];
     passImage.frame = CGRectMake(0, 0,30, 20);
     passImage.contentMode = UIViewContentModeScaleAspectFit;
     self.passWordText.leftViewMode = UITextFieldViewModeAlways;
     self.passWordText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.passWordText.leftView = passImage;
     //    添加button
+    UIView *lineView = [[UIView alloc]init];
+    lineView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:lineView];
+    [lineView makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.equalTo(@(kButtonViewWidth));
+        make.height.equalTo(@0.5);
+        make.centerY.equalTo(self.view.mas_centerY);
+    }];
+
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    registerButton.tag = 9000;
     [registerButton setTitle:@"完成注册" forState:UIControlStateNormal];
-    [registerButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_devicename_%d",selectedThemeIndex]] forState:UIControlStateNormal];
-    [registerButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [registerButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background"]] forState:UIControlStateNormal];
+    [registerButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     registerButton.titleLabel.font = kDefaultWordFont;
     [registerButton addTarget:self action:@selector(registerUser:) forControlEvents:UIControlEventTouchUpInside];
-    registerButton.layer.cornerRadius = 0;
+    registerButton.layer.cornerRadius = 5;
     registerButton.layer.masksToBounds = YES;
     [self.view addSubview:registerButton];
     
@@ -132,7 +149,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
         make.height.equalTo(@44);
-        make.top.equalTo(self.passWordText.mas_bottom).offset(20);
+        make.top.equalTo(self.passWordText.mas_bottom).offset(44);
     }];
     
     //协议说明
@@ -438,6 +455,21 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 //    self.backToCodeButtonClicked(1);
+}
+
+- (void)keyboardWillShow:(NSNotification *)info
+{
+    CGRect keyboardBounds = [[[info userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    float f =  keyboardBounds.size.height;
+    UIButton *login = (UIButton *)[self.view viewWithTag:9000];
+    float y = login.frame.origin.y;
+    self.yCordinate = f-(kScreenHeight - y -49);
+    self.view.frame = CGRectMake(0, -_yCordinate, self.view.frame.size.width, self.view.frame.size.height);
+    
+}
+- (void)keyboardWillHide:(NSNotification *)info
+{
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
