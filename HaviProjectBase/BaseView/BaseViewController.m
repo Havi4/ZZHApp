@@ -45,7 +45,7 @@
 {
     if (_backgroundImageView==nil) {
         _backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-        _backgroundImageView.dk_imagePicker = DKImageWithNames(@"pic_bg_0", @"pic_bg_1");
+        _backgroundImageView.dk_imagePicker = DKImageWithNames(@"background", @"background");
     }
     return _backgroundImageView;
 }

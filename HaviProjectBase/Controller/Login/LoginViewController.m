@@ -36,8 +36,7 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     int picIndex = [ThemeSelectConfigureObj defaultConfigure].nThemeIndex;
-    NSString *imageName = [NSString stringWithFormat:@"icon_logo_login_%d",picIndex];
-    UIImageView *logoImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:imageName]];
+    UIImageView *logoImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo"]];
     [self.view addSubview:logoImage];
     self.nameText = [[CKTextField alloc]init];
     [self.nameText setMaxLength:@"11"];
@@ -53,9 +52,9 @@
     self.nameText.font = kDefaultWordFont;
     self.passWordText.font = kDefaultWordFont;
     
-    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?kDefaultColor:[UIColor grayColor],NSFontAttributeName:kDefaultWordFont};
-    NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"电话号码" attributes:boldFont];
-    NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"密码" attributes:boldFont];
+    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?[UIColor lightGrayColor]:[UIColor lightGrayColor],NSFontAttributeName:kDefaultWordFont};
+    NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入手机号" attributes:boldFont];
+    NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:boldFont];
     self.nameText.attributedPlaceholder = attrValue;
     self.passWordText.attributedPlaceholder = attrValue1;
     if (thirdMeddoPhone) {
@@ -70,21 +69,24 @@
     self.passWordText.keyboardType = UIKeyboardTypeAlphabet;
     self.passWordText.secureTextEntry = YES;
     //
-    self.passWordText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_password_%d",selectedThemeIndex]];
-    self.nameText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_password_%d",selectedThemeIndex]];
+    self.passWordText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textback"]];
+    self.nameText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textback"]];
+    UIView *lineView = [[UIView alloc]init];
+    lineView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:lineView];
 //
-    int padding = (self.view.bounds.size.height/2 - 200)/3;
     [logoImage makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.bottom.equalTo(self.nameText.mas_top).offset(-padding);
-        make.height.width.equalTo(@100);
+        make.bottom.equalTo(self.view.mas_top).offset(143);
+        make.width.equalTo(@93);
+        make.width.equalTo(@183);
     }];
 //
     [self.nameText makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
         make.height.equalTo(@49);
-        make.centerY.equalTo(self.passWordText.mas_centerY).offset(-54);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-22);
         
     }];
 //    
@@ -92,17 +94,23 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
         make.height.equalTo(@49);
-        make.centerY.equalTo(self.view.mas_centerY).offset(-32);
+        make.centerY.equalTo(self.view.mas_centerY).offset(22);
+    }];
+    [lineView makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.equalTo(@(kButtonViewWidth));
+        make.height.equalTo(@0.5);
+        make.centerY.equalTo(self.view.mas_centerY);
     }];
 //
 //    添加小图标
-    UIImageView *phoneImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"phone_%d",selectedThemeIndex]]];
+    UIImageView *phoneImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"phone"]]];
     phoneImage.frame = CGRectMake(0, 0,30, 20);
     phoneImage.contentMode = UIViewContentModeScaleAspectFit;
     self.nameText.leftViewMode = UITextFieldViewModeAlways;
     self.nameText.leftView = phoneImage;
 //
-    UIImageView *passImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_password_%d",selectedThemeIndex]]];
+    UIImageView *passImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"password"]]];
     passImage.frame = CGRectMake(0, 0,30, 20);
     passImage.contentMode = UIViewContentModeScaleAspectFit;
     self.passWordText.leftViewMode = UITextFieldViewModeAlways;
@@ -111,9 +119,9 @@
     
 //    添加button
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loginButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_devicename_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+    [loginButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background"]] forState:UIControlStateNormal];
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
-    [loginButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [loginButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     loginButton.titleLabel.font = kDefaultWordFont;
     [loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     loginButton.layer.cornerRadius = 0;
@@ -121,14 +129,11 @@
     [self.view addSubview:loginButton];
     
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [registerButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_hollow_%d",selectedThemeIndex]] forState:UIControlStateNormal];
     registerButton.tag = 10001;
-    [registerButton setTitle:@"还没有帐号" forState:UIControlStateNormal];
+    [registerButton setTitle:@"注册" forState:UIControlStateNormal];
     registerButton.titleLabel.font = kDefaultWordFont;
-    [registerButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [registerButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     [registerButton addTarget:self action:@selector(registerButton:) forControlEvents:UIControlEventTouchUpInside];
-    registerButton.layer.cornerRadius = 0;
-    registerButton.layer.masksToBounds = YES;
     [self.view addSubview:registerButton];
     
 //
@@ -136,16 +141,11 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
         make.height.equalTo(@49);
-        make.centerY.equalTo(self.view.mas_centerY).offset(32);
+        make.top.equalTo(self.passWordText.mas_bottom).offset(44);
     }];
     
-    [registerButton makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.width.equalTo(@(kButtonViewWidth));
-        make.height.equalTo(@49);
-        make.centerY.equalTo(loginButton.mas_centerY).offset(54);
-    }];
-//
+    
+    //
     LabelLine *forgetButton = [[LabelLine alloc]init];
     forgetButton.text = @"忘记密码?";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(forgetPassWord:)];
@@ -153,10 +153,14 @@
     [forgetButton addGestureRecognizer:tap];
     forgetButton.backgroundColor = [UIColor clearColor];
     forgetButton.font = kDefaultWordFont;
-    forgetButton.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+    forgetButton.textColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
     [self.view addSubview:forgetButton];
     [forgetButton makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(registerButton.mas_bottom).offset(10);
+        make.top.equalTo(loginButton.mas_bottom).offset(10);
+        make.left.equalTo(self.view.mas_left).offset(20);
+    }];
+    [registerButton makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(forgetButton.mas_centerY);
         make.right.equalTo(self.view.mas_right).offset(-20);
     }];
     //第三方登录
@@ -164,36 +168,17 @@
     if ([WXApi isWXAppInstalled]||[WeiboSDK isWeiboAppInstalled]||[TencentOAuth iphoneQQInstalled]) {
         
         [self.view addSubview:thirdLoginLabel];
-        thirdLoginLabel.text = @"其他登录方式";
+        thirdLoginLabel.text = @"快捷登录";
         thirdLoginLabel.font = [UIFont systemFontOfSize:15];
-        thirdLoginLabel.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+        thirdLoginLabel.textColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
         [thirdLoginLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view.mas_centerX);
-            make.top.equalTo(forgetButton.mas_bottom).offset(0);
+            make.bottom.equalTo(self.view.mas_bottom).offset(2);
             make.height.equalTo(@40);
-        }];
-        UIView *leftLineView = [[UIView alloc]init];
-        [self.view addSubview:leftLineView];
-        leftLineView.backgroundColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
-        [leftLineView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(thirdLoginLabel.mas_centerY);
-            make.height.equalTo(@0.5);
-            make.left.equalTo(self.view.mas_left).offset(15);
-            make.right.equalTo(thirdLoginLabel.mas_left).offset(-15);
-        }];
-        
-        UIView *rightLineView = [[UIView alloc]init];
-        [self.view addSubview:rightLineView];
-        rightLineView.backgroundColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
-        [rightLineView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(thirdLoginLabel.mas_centerY);
-            make.height.equalTo(@0.5);
-            make.left.equalTo(thirdLoginLabel.mas_right).offset(15);
-            make.right.equalTo(self.view.mas_right).offset(-15);
+            make.left.equalTo(self.view.mas_left).offset(20);
         }];
         //
     }
-    float centerfriend = self.view.frame.size.width/4;
+    float centerfriend = (self.view.frame.size.width)/3;
     if ([WeiboSDK isWeiboAppInstalled]&&[WXApi isWXAppInstalled]&&![TencentOAuth iphoneQQInstalled]) {
         UIButton *weixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.view addSubview:weixinButton];
@@ -201,21 +186,21 @@
         [weixinButton setBackgroundImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
         [weixinButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(weixinButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view.mas_centerX).offset(-centerfriend);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
+            make.centerX.equalTo(self.view.mas_centerX).offset(-50);
         }];
         
         UIButton *sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [sinaButton addTarget:self action:@selector(sinaButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:sinaButton];
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
-        float centerfriend = self.view.frame.size.width/4;
+        float centerfriend = self.view.frame.size.width/3;
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(sinaButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view.mas_centerX).offset(centerfriend);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
+            make.centerX.equalTo(self.view.mas_centerX).offset(50);
         }];
 
 
@@ -224,12 +209,11 @@
         [sinaButton addTarget:self action:@selector(sinaButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:sinaButton];
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
-        float centerfriend = self.view.frame.size.width/4;
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(sinaButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view.mas_centerX).offset(centerfriend);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
+            make.centerX.equalTo(self.view.mas_centerX).offset(50);
         }];
         
         UIButton *qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -238,9 +222,9 @@
         [qqButton setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         [qqButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(qqButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view.mas_centerX).offset(-centerfriend);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
+            make.centerX.equalTo(self.view.mas_centerX).offset(-50);
         }];
     }else if ([WXApi isWXAppInstalled]&&[TencentOAuth iphoneQQInstalled]&&![WeiboSDK isWeiboAppInstalled]){
         UIButton *weixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -249,9 +233,9 @@
         [weixinButton setBackgroundImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
         [weixinButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(weixinButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view.mas_centerX).offset(centerfriend);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
+            make.centerX.equalTo(self.view.mas_centerX).offset(50);
         }];
         
         UIButton *qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -260,9 +244,9 @@
         [qqButton setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         [qqButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(qqButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view.mas_centerX).offset(-centerfriend);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
+            make.centerX.equalTo(self.view.mas_centerX).offset(-50);
         }];
     }else if (![WXApi isWXAppInstalled]&&![TencentOAuth iphoneQQInstalled]&&[WeiboSDK isWeiboAppInstalled]){
         UIButton *sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -271,8 +255,8 @@
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(sinaButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
             make.centerX.equalTo(self.view.mas_centerX);
         }];
     }else if ([WXApi isWXAppInstalled]&&![TencentOAuth iphoneQQInstalled]&&![WeiboSDK isWeiboAppInstalled]){
@@ -283,8 +267,8 @@
         [weixinButton makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view.mas_centerX);
             make.height.equalTo(weixinButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.bottom).offset(10);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.bottom).offset(-30);
         }];
     }else if (![WXApi isWXAppInstalled]&&[TencentOAuth iphoneQQInstalled]&&![WeiboSDK isWeiboAppInstalled]){
         UIButton *qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -294,8 +278,8 @@
         [qqButton setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         [qqButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(qqButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
             make.centerX.equalTo(self.view.mas_centerX);
         }];
     }else if ([WXApi isWXAppInstalled]&&[WeiboSDK isWeiboAppInstalled]&&[TencentOAuth iphoneQQInstalled]){
@@ -306,21 +290,20 @@
         [weixinButton makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view.mas_centerX);
             make.height.equalTo(weixinButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
         }];
         
         UIButton *qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
         [self.view addSubview:qqButton];
         [qqButton addTarget:self action:@selector(qqButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
-        float centerfriend = self.view.frame.size.width/4;
         [qqButton setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         [qqButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(qqButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view.mas_centerX).offset(-centerfriend);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
+            make.centerX.equalTo(self.view.mas_centerX).offset(-50);
         }];
         
         UIButton *sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -329,9 +312,9 @@
         [sinaButton setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
         [sinaButton makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(sinaButton.mas_width);
-            make.height.equalTo(@60);
-            make.top.equalTo(thirdLoginLabel.mas_bottom).offset(10);
-            make.centerX.equalTo(self.view.mas_centerX).offset(centerfriend);
+            make.height.equalTo(@24);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
+            make.centerX.equalTo(self.view.mas_centerX).offset(50);
         }];
     }
 }
