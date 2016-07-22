@@ -51,7 +51,6 @@
     [self addSubview:self.backgroundContainView];
     
     self.backgroundImageView = [[UIImageView alloc] init];
-    self.backgroundImageView.backgroundColor = [UIColor redColor];
     [self.backgroundContainView addSubview:self.backgroundImageView];
     
     self.sectionView = [[V2MenuSectionView alloc] init];
@@ -89,7 +88,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.backgroundColor = [UIColor darkGrayColor];
+    self.backgroundColor = [UIColor whiteColor];
 
     self.backgroundContainView.frame  = (CGRect){0, 0, self.width, kScreenHeight};
     self.backgroundImageView.frame    = (CGRect){kScreenWidth, 0, kScreenWidth, kScreenHeight};
@@ -106,12 +105,6 @@
 - (void)setOffsetProgress:(CGFloat)progress {
     
     progress = MIN(MAX(progress, 0.0), 1.0);
-    
-//    self.backgroundImageView.x     = self.width - kScreenWidth/2 * progress;
-//
-//    self.leftShadowImageView.alpha = progress;
-//    self.leftShadowImageView.x     = -5 + progress * 5;
-    
 }
 
 - (void)setBlurredImage:(UIImage *)blurredImage {

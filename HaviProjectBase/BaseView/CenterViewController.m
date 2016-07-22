@@ -21,6 +21,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     ModalAnimation *_modalAnimationController;
 }
 
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) BaseViewContainerView *containerDataView;
 @property (nonatomic, strong) DeviceList *activeDeviceInfo;
 @property (nonatomic, strong) CLWeeklyCalendarView* calendarView;
@@ -36,8 +37,8 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.backgroundImageView.dk_imagePicker = DKImageWithNames(@"pic_bg_center_0", @"pic_bg_center_1");
     [self initNaviBarView];
+    [self createBarItems];
     [self queryDeviceListForControllers];
     [self initDatePicker];
 }
@@ -62,6 +63,15 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     if (selectedDateToUse) {
         [self.calendarView redrawToDate:selectedDateToUse];
     }
+}
+
+- (void)createBarItems
+{
+    self.backgroundImageView.image = [UIImage imageNamed:@"home_back@3x"];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
+    }];
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
 }
 
 - (void)initNaviBarView

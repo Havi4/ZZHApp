@@ -8,10 +8,17 @@
 
 #import "ZZHRootViewController.h"
 #import "V2MenuView.h"
-#import "HomePageViewController.h"
+#import "CenterViewController.h"
 #import "SCNavigationController.h"
+//侧栏
+#import "PersonManagerViewController.h"
+#import "DeviceListViewController.h"
+#import "MessageListViewController.h"
+#import "SleepSettingViewController.h"
+#import "APPSettingViewController.h"
+#import "ReportVewContainerController.h"
 
-static CGFloat const kMenuWidth = 240.0;//侧栏的宽度
+CGFloat const kMenuWidth = 240.0;//侧栏的宽度
 
 @interface ZZHRootViewController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 
@@ -24,9 +31,18 @@ static CGFloat const kMenuWidth = 240.0;//侧栏的宽度
 @property (nonatomic, strong) UIScreenEdgePanGestureRecognizer *edgePanRecognizer;
 
 @property (nonatomic, strong) UIViewController *latestViewController;
-@property (nonatomic, strong) HomePageViewController *home;
+@property (nonatomic, strong) CenterViewController *home;
 @property (nonatomic, strong) SCNavigationController *homeNavi;
-@property (nonatomic, strong) UINavigationController *lastViewNavi;
+@property (nonatomic, strong) PersonManagerViewController *person;
+@property (nonatomic, strong) SCNavigationController *personNavi;
+@property (nonatomic, strong) DeviceListViewController *device;
+@property (nonatomic, strong) SCNavigationController *deviceNavi;
+@property (nonatomic, strong) MessageListViewController *message;
+@property (nonatomic, strong) SCNavigationController *messageNavi;
+@property (nonatomic, strong) SleepSettingViewController *sleep;
+@property (nonatomic, strong) SCNavigationController *sleepNavi;
+@property (nonatomic, strong) APPSettingViewController *setting;
+@property (nonatomic ,strong) SCNavigationController *settingNavi;
 @end
 
 @implementation ZZHRootViewController
@@ -139,29 +155,19 @@ static CGFloat const kMenuWidth = 240.0;//侧栏的宽度
     [self.view addSubview:self.viewControllerContainView];
 //
 //    
-    self.latestViewController       = [[UIViewController alloc] init];
-    self.lastViewNavi = [[UINavigationController alloc] initWithRootViewController:self.latestViewController];
-    self.home = [[HomePageViewController alloc]init];
+    self.home = [[CenterViewController alloc]init];
     self.homeNavi = [[SCNavigationController alloc]initWithRootViewController:self.home];
-//
-//    self.categoriesViewController = [[V2CategoriesViewController alloc] init];
-//    self.categoriesNavigationController = [[SCNavigationController alloc] initWithRootViewController:self.categoriesViewController];
-//    
-//    self.nodesViewController        = [[V2NodesViewController alloc] init];
-//    self.nodesNavigationController = [[SCNavigationController alloc] initWithRootViewController:self.nodesViewController];
-//    
-//    self.favouriteViewController      = [[V2CategoriesViewController alloc] init];
-//    self.favouriteViewController.favorite = YES;
-//    self.favoriteNavigationController = [[SCNavigationController alloc] initWithRootViewController:self.favouriteViewController];
-//    
-//    self.notificationViewController = [[V2NotificationViewController alloc] init];
-//    self.nofificationNavigationController = [[SCNavigationController alloc] initWithRootViewController:self.notificationViewController];
-//    
-//    self.profileViewController      = [[V2ProfileViewController alloc] init];
-//    self.profileViewController.isSelf = YES;
-//    self.profilenavigationController = [[SCNavigationController alloc] initWithRootViewController:self.profileViewController];
-//    
-    [self.viewControllerContainView addSubview:[self viewControllerForIndex:1].view];
+    self.person = [[PersonManagerViewController alloc]init];
+    self.personNavi = [[SCNavigationController alloc]initWithRootViewController:self.person];
+    self.device = [[DeviceListViewController alloc]init];
+    self.deviceNavi = [[SCNavigationController alloc]initWithRootViewController:self.device];
+    self.sleep = [[SleepSettingViewController alloc]init];
+    self.sleepNavi = [[SCNavigationController alloc]initWithRootViewController:self.sleep];
+    self.setting = [[APPSettingViewController alloc]init];
+    self.settingNavi = [[SCNavigationController alloc]initWithRootViewController:self.setting];
+    self.message = [[MessageListViewController alloc]init];
+    self.messageNavi = [[SCNavigationController alloc]initWithRootViewController:self.message];
+    [self.viewControllerContainView addSubview:[self viewControllerForIndex:0].view];
     self.currentSelectedIndex = 0;
 //
     self.rootBackgroundBlurView = [[UIImageView alloc] init];
@@ -250,7 +256,7 @@ static CGFloat const kMenuWidth = 240.0;//侧栏的宽度
     
     self.menuView.x = offset - kMenuWidth;
     [self.menuView setOffsetProgress:offset/kMenuWidth];
-    self.rootBackgroundButton.alpha = offset/kMenuWidth * 0.3;
+    self.rootBackgroundButton.alpha = offset/kMenuWidth * 0.6;
     
     UIViewController *previousViewController = [self viewControllerForIndex:self.currentSelectedIndex];
     
@@ -285,23 +291,23 @@ static CGFloat const kMenuWidth = 240.0;//侧栏的宽度
     
     switch (index) {
         case 0:
-            viewController = self.lastViewNavi;
-            break;
-        case 1:
             viewController = self.homeNavi;
             break;
-//        case 2:
-//            viewController = self.nodesNavigationController;
-//            break;
-//        case 3:
-//            viewController = self.favoriteNavigationController;
-//            break;
-//        case 4:
-//            viewController = self.nofificationNavigationController;
-//            break;
-//        case 5:
-//            viewController = self.profilenavigationController;
-//            break;
+        case 1:
+            
+            break;
+        case 2:
+            viewController = self.deviceNavi;
+            break;
+        case 3:
+            viewController = self.sleepNavi;
+            break;
+        case 4:
+            viewController = self.messageNavi;
+            break;
+        case 5:
+            viewController = self.settingNavi;
+            break;
         default:
             break;
     }

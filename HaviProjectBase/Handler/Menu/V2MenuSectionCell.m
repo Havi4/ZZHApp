@@ -7,6 +7,7 @@
 //
 
 #import "V2MenuSectionCell.h"
+#import "UIImage+Tint.h"
 
 static CGFloat const kCellHeight = 60;
 static CGFloat const kFontSize   = 16;
@@ -101,15 +102,9 @@ static CGFloat const kFontSize   = 16;
         
     } else {
         
-//        if (kSetting.theme == V2ThemeNight) {
-//            self.titleLabel.textColor = kFontColorBlackMid;
-//            self.backgroundColor = [UIColor clearColor];
-//            self.iconImageView.image = self.normalImage;
-//        } else {
-//            self.titleLabel.textColor = kFontColorBlackMid;
-//            self.backgroundColor = [UIColor clearColor];
-//            self.iconImageView.image = self.normalImage;
-//        }
+        self.titleLabel.textColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor clearColor];
+        self.iconImageView.image = self.normalImage;
         
     }
 
@@ -156,10 +151,8 @@ static CGFloat const kFontSize   = 16;
     
     NSString *highlightedImageName = [self.imageName stringByAppendingString:@"_highlighted"];
     
-//    self.highlightedImage= [[UIImage imageNamed:self.imageName] imageWithTintColor:kColorBlue];
-//    self.normalImage  = [[UIImage imageNamed:highlightedImageName] imageWithTintColor:kFontColorBlackMid];
-//    
-//    self.normalImage = self.normalImage.imageForCurrentTheme;
+    self.normalImage  = [[UIImage imageNamed:_imageName]imageWithTintColor:[UIColor blackColor]];
+//
 //    self.iconImageView.alpha = kSetting.imageViewAlphaForCurrentTheme;
 
 }

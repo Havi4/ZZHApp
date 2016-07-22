@@ -17,7 +17,7 @@
 static CGFloat const kAvatarHeight = 70.0f;
 
 @interface V2MenuSectionView () <UITableViewDelegate, UITableViewDataSource>
-
+@property (nonatomic, strong) UIImageView *profileBackView;
 @property (nonatomic, strong) UIImageView *avatarImageView;
 @property (nonatomic, strong) UIButton    *avatarButton;
 @property (nonatomic, strong) UIImageView *divideImageView;
@@ -40,8 +40,8 @@ static CGFloat const kAvatarHeight = 70.0f;
     if (self) {
         
         
-        self.sectionImageNameArray = @[@"qq", @"section_categories", @"section_nodes", @"section_fav", @"section_notification", @"section_profile"];
-        self.sectionTitleArray = @[@"最新", @"分类", @"节点", @"收藏", @"提醒", @"个人"];
+        self.sectionImageNameArray = @[@"icon_todays_data_0", @"icon_data_analysis_0", @"icon_equipment_management_0", @"icon_alarm_clock_0", @"icon_message", @"icon_setting_0"];
+        self.sectionTitleArray = @[@"今日数据", @"数据分析", @"设备管理", @"睡眠设置", @"我的消息", @"设        定"];
 
         [self configureTableView];
         [self configureProfileView];
@@ -71,11 +71,13 @@ static CGFloat const kAvatarHeight = 70.0f;
 }
 
 - (void)configureProfileView {
+    self.profileBackView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"profile_back"]];
+    [self addSubview:self.profileBackView];
     
     self.avatarImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"avatar_default"]];
     self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.avatarImageView.clipsToBounds = YES;
-    self.avatarImageView.layer.cornerRadius = 5; //kAvatarHeight / 2.0;
+    self.avatarImageView.layer.cornerRadius = 35; //kAvatarHeight / 2.0;
     self.avatarImageView.layer.borderColor = UIColorHex(0x8a8a8a).CGColor;
     self.avatarImageView.layer.borderWidth = 1.0f;
     [self addSubview:self.avatarImageView];
@@ -86,7 +88,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     
     self.divideImageView = [[UIImageView alloc] init];
     self.divideImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    self.divideImageView.image = [UIImage imageNamed:@"section_divide"];
+    self.divideImageView.image = [UIImage imageNamed:@"section_divide"];
     self.divideImageView.clipsToBounds = YES;
     [self addSubview:self.divideImageView];
 
@@ -127,9 +129,10 @@ static CGFloat const kAvatarHeight = 70.0f;
     
 //    CGFloat spaceHeight = (self.tableView.contentInsetTop - kAvatarHeight) / 3.0;
     self.avatarImageView.frame = (CGRect){30, 30, kAvatarHeight, kAvatarHeight};
+    self.profileBackView.frame = (CGRect){0,0,self.width,120};
     self.avatarButton.frame = self.avatarImageView.frame;
-//    self.divideImageView.frame = (CGRect){80, kAvatarHeight + 50, 80, 0.5};
-//    self.divideImageView.frame = (CGRect){-self.width, kAvatarHeight + 50, self.width * 2, 0.5};
+    self.divideImageView.frame = (CGRect){80, kAvatarHeight + 50, 80, 0.5};
+    self.divideImageView.frame = (CGRect){-self.width, kAvatarHeight + 50, self.width * 2, 0.5};
     self.tableView.frame = (CGRect){0, 0, self.width, self.height};
 //
 //    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[V2SettingManager manager].selectedSectionIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -157,7 +160,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.avatarButton.frame = self.avatarImageView.frame;
 
     self.divideImageView.y = self.avatarImageView.y + kAvatarHeight + (offsetY - (self.avatarImageView.y + kAvatarHeight)) / 2.0 + fabs(offsetY - self.tableView.contentInsetTop)/self.tableView.contentInsetTop * 8.0 + 10;
-    
+    self.profileBackView.frame = (CGRect){0,0,self.width,fabs(offsetY)};
     
 }
 

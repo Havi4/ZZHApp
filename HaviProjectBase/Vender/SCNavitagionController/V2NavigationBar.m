@@ -22,11 +22,11 @@
         
         self.frame = (CGRect){0, 0, kScreenWidth, 64};
         
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_back"]];
         
         self.lineView = [[UIView alloc] initWithFrame:(CGRect){0, 64, kScreenWidth, 0.5}];
         self.lineView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:self.lineView];
+//        [self addSubview:self.lineView];
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeChangeNotification) name:kThemeDidChangeNotification object:nil];
         
