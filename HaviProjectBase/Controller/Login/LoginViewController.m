@@ -270,7 +270,7 @@
             make.centerX.equalTo(self.view.mas_centerX);
             make.height.equalTo(weixinButton.mas_width);
             make.height.equalTo(@24);
-            make.top.equalTo(self.view.bottom).offset(-30);
+            make.top.equalTo(self.view.mas_bottom).offset(-30);
         }];
     }else if (![WXApi isWXAppInstalled]&&[TencentOAuth iphoneQQInstalled]&&![WeiboSDK isWeiboAppInstalled]){
         UIButton *qqButton = [UIButton buttonWithType:UIButtonTypeCustom];

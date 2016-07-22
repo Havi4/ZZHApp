@@ -19,10 +19,12 @@
 #import "ThirdLoginCallBackManager.h"
 #import "JPushNotiManager.h"
 #import "PinLockSetting.h"
+#import "ZZHRootViewController.h"
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
+@property (nonatomic, strong) ZZHRootViewController *rootView;
 
 @end
 
@@ -72,6 +74,7 @@
 - (void)setRootViewController
 {
     
+    /*
     self.centerView = [[CenterViewController alloc]init];
     self.sideMenuController = [[JASidePanelController alloc] init];
     self.sideMenuController.shouldDelegateAutorotateToVisiblePanel = NO;
@@ -80,7 +83,9 @@
     self.sideMenuController.leftPanel = [[LeftSideViewController alloc] init];
     self.sideMenuController.centerPanel = [[BaseNaviViewController alloc] initWithRootViewController:self.centerView];
     self.window.rootViewController = self.sideMenuController;
-
+     */
+    self.rootView = [[ZZHRootViewController alloc] init];
+    self.window.rootViewController = self.rootView;
 }
 
 - (void)setLoginViewController

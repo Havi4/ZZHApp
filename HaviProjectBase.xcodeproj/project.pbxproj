@@ -54,6 +54,25 @@
 		2C96AA121D40994B00ACCA08 /* qq@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA0F1D40994B00ACCA08 /* qq@3x.png */; };
 		2C96AA131D40994B00ACCA08 /* sina@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA101D40994B00ACCA08 /* sina@3x.png */; };
 		2C96AA141D40994B00ACCA08 /* weixin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA111D40994B00ACCA08 /* weixin@3x.png */; };
+		2C96AA201D40C5E000ACCA08 /* V2MenuSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA171D40C5E000ACCA08 /* V2MenuSectionCell.m */; };
+		2C96AA211D40C5E000ACCA08 /* V2MenuSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA191D40C5E000ACCA08 /* V2MenuSectionView.m */; };
+		2C96AA221D40C5E000ACCA08 /* V2MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA1B1D40C5E000ACCA08 /* V2MenuView.m */; };
+		2C96AA231D40C5E000ACCA08 /* V2SubMenuSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA1D1D40C5E000ACCA08 /* V2SubMenuSectionCell.m */; };
+		2C96AA241D40C5E000ACCA08 /* V2SubMenuSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA1F1D40C5E000ACCA08 /* V2SubMenuSectionView.m */; };
+		2C96AA271D40C86100ACCA08 /* ZZHRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA261D40C86100ACCA08 /* ZZHRootViewController.m */; };
+		2C96AA2A1D40D65800ACCA08 /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA291D40D65800ACCA08 /* ViewFrameAccessor.m */; };
+		2C96AA451D410AFA00ACCA08 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA441D410AFA00ACCA08 /* HomePageViewController.m */; };
+		2C96AA4B1D410CAD00ACCA08 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA4A1D410CAD00ACCA08 /* UIImage+Tint.m */; };
+		2C96AA4D1D410F2A00ACCA08 /* navi_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA4C1D410F2A00ACCA08 /* navi_menu@3x.png */; };
+		2C96AA5E1D41101A00ACCA08 /* SCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA501D41101A00ACCA08 /* SCBarButtonItem.m */; };
+		2C96AA5F1D41101A00ACCA08 /* SCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA531D41101A00ACCA08 /* SCNavigationController.m */; };
+		2C96AA601D41101A00ACCA08 /* SCNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA551D41101A00ACCA08 /* SCNavigationItem.m */; };
+		2C96AA611D41101A00ACCA08 /* SCNavigationPopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA571D41101A00ACCA08 /* SCNavigationPopAnimation.m */; };
+		2C96AA621D41101A00ACCA08 /* SCNavigationPushAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA591D41101A00ACCA08 /* SCNavigationPushAnimation.m */; };
+		2C96AA631D41101A00ACCA08 /* SCViewController+NaviBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA5B1D41101A00ACCA08 /* SCViewController+NaviBar.m */; };
+		2C96AA641D41101A00ACCA08 /* V2NavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA5D1D41101A00ACCA08 /* V2NavigationBar.m */; };
+		2C96AA661D41C35F00ACCA08 /* avatar_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA651D41C35F00ACCA08 /* avatar_default@3x.png */; };
+		2C96AA691D41C4A300ACCA08 /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96AA681D41C4A300ACCA08 /* ScrollViewFrameAccessor.m */; };
 		2C9EF2C31C7C0FFA000704E2 /* btn_ellipse_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C11C7C0FFA000704E2 /* btn_ellipse_0@2x.png */; };
 		2C9EF2C61C7C1026000704E2 /* navi_bg_night_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C51C7C1026000704E2 /* navi_bg_night_0@2x.png */; };
 		2C9EF2CA1C7C1031000704E2 /* navi_bg_night_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C81C7C1031000704E2 /* navi_bg_night_1@2x.png */; };
@@ -548,6 +567,43 @@
 		2C96AA0F1D40994B00ACCA08 /* qq@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq@3x.png"; sourceTree = "<group>"; };
 		2C96AA101D40994B00ACCA08 /* sina@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina@3x.png"; sourceTree = "<group>"; };
 		2C96AA111D40994B00ACCA08 /* weixin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weixin@3x.png"; sourceTree = "<group>"; };
+		2C96AA161D40C5E000ACCA08 /* V2MenuSectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2MenuSectionCell.h; sourceTree = "<group>"; };
+		2C96AA171D40C5E000ACCA08 /* V2MenuSectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2MenuSectionCell.m; sourceTree = "<group>"; };
+		2C96AA181D40C5E000ACCA08 /* V2MenuSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2MenuSectionView.h; sourceTree = "<group>"; };
+		2C96AA191D40C5E000ACCA08 /* V2MenuSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2MenuSectionView.m; sourceTree = "<group>"; };
+		2C96AA1A1D40C5E000ACCA08 /* V2MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2MenuView.h; sourceTree = "<group>"; };
+		2C96AA1B1D40C5E000ACCA08 /* V2MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2MenuView.m; sourceTree = "<group>"; };
+		2C96AA1C1D40C5E000ACCA08 /* V2SubMenuSectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2SubMenuSectionCell.h; sourceTree = "<group>"; };
+		2C96AA1D1D40C5E000ACCA08 /* V2SubMenuSectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2SubMenuSectionCell.m; sourceTree = "<group>"; };
+		2C96AA1E1D40C5E000ACCA08 /* V2SubMenuSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2SubMenuSectionView.h; sourceTree = "<group>"; };
+		2C96AA1F1D40C5E000ACCA08 /* V2SubMenuSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2SubMenuSectionView.m; sourceTree = "<group>"; };
+		2C96AA251D40C86100ACCA08 /* ZZHRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZHRootViewController.h; sourceTree = "<group>"; };
+		2C96AA261D40C86100ACCA08 /* ZZHRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZHRootViewController.m; sourceTree = "<group>"; };
+		2C96AA281D40D65800ACCA08 /* ViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFrameAccessor.h; sourceTree = "<group>"; };
+		2C96AA291D40D65800ACCA08 /* ViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFrameAccessor.m; sourceTree = "<group>"; };
+		2C96AA431D410AFA00ACCA08 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		2C96AA441D410AFA00ACCA08 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		2C96AA491D410CAD00ACCA08 /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
+		2C96AA4A1D410CAD00ACCA08 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
+		2C96AA4C1D410F2A00ACCA08 /* navi_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_menu@3x.png"; sourceTree = "<group>"; };
+		2C96AA4F1D41101A00ACCA08 /* SCBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBarButtonItem.h; sourceTree = "<group>"; };
+		2C96AA501D41101A00ACCA08 /* SCBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBarButtonItem.m; sourceTree = "<group>"; };
+		2C96AA511D41101A00ACCA08 /* SCNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavigation.h; sourceTree = "<group>"; };
+		2C96AA521D41101A00ACCA08 /* SCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavigationController.h; sourceTree = "<group>"; };
+		2C96AA531D41101A00ACCA08 /* SCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNavigationController.m; sourceTree = "<group>"; };
+		2C96AA541D41101A00ACCA08 /* SCNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavigationItem.h; sourceTree = "<group>"; };
+		2C96AA551D41101A00ACCA08 /* SCNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNavigationItem.m; sourceTree = "<group>"; };
+		2C96AA561D41101A00ACCA08 /* SCNavigationPopAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavigationPopAnimation.h; sourceTree = "<group>"; };
+		2C96AA571D41101A00ACCA08 /* SCNavigationPopAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNavigationPopAnimation.m; sourceTree = "<group>"; };
+		2C96AA581D41101A00ACCA08 /* SCNavigationPushAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavigationPushAnimation.h; sourceTree = "<group>"; };
+		2C96AA591D41101A00ACCA08 /* SCNavigationPushAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNavigationPushAnimation.m; sourceTree = "<group>"; };
+		2C96AA5A1D41101A00ACCA08 /* SCViewController+NaviBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCViewController+NaviBar.h"; sourceTree = "<group>"; };
+		2C96AA5B1D41101A00ACCA08 /* SCViewController+NaviBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCViewController+NaviBar.m"; sourceTree = "<group>"; };
+		2C96AA5C1D41101A00ACCA08 /* V2NavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2NavigationBar.h; sourceTree = "<group>"; };
+		2C96AA5D1D41101A00ACCA08 /* V2NavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2NavigationBar.m; sourceTree = "<group>"; };
+		2C96AA651D41C35F00ACCA08 /* avatar_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_default@3x.png"; sourceTree = "<group>"; };
+		2C96AA671D41C4A300ACCA08 /* ScrollViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewFrameAccessor.h; sourceTree = "<group>"; };
+		2C96AA681D41C4A300ACCA08 /* ScrollViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewFrameAccessor.m; sourceTree = "<group>"; };
 		2C9EF2C11C7C0FFA000704E2 /* btn_ellipse_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ellipse_0@2x.png"; sourceTree = "<group>"; };
 		2C9EF2C51C7C1026000704E2 /* navi_bg_night_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg_night_0@2x.png"; sourceTree = "<group>"; };
 		2C9EF2C81C7C1031000704E2 /* navi_bg_night_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg_night_1@2x.png"; sourceTree = "<group>"; };
@@ -1303,14 +1359,66 @@
 				2C96A9FD1D40685400ACCA08 /* IntroduceView3.png */,
 				2C96AA051D40880900ACCA08 /* logo@3x.png */,
 				2C96AA0B1D4089E300ACCA08 /* textback@3x.png */,
+				2C96AA4C1D410F2A00ACCA08 /* navi_menu@3x.png */,
 				2C96AA071D40882B00ACCA08 /* password@3x.png */,
 				2C96AA0D1D408F0E00ACCA08 /* button_background@3x.png */,
 				2C96AA081D40882B00ACCA08 /* phone@3x.png */,
 				2C96AA0F1D40994B00ACCA08 /* qq@3x.png */,
 				2C96AA101D40994B00ACCA08 /* sina@3x.png */,
 				2C96AA111D40994B00ACCA08 /* weixin@3x.png */,
+				2C96AA651D41C35F00ACCA08 /* avatar_default@3x.png */,
 			);
 			path = v3.0UI;
+			sourceTree = "<group>";
+		};
+		2C96AA151D40C5E000ACCA08 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				2C96AA161D40C5E000ACCA08 /* V2MenuSectionCell.h */,
+				2C96AA171D40C5E000ACCA08 /* V2MenuSectionCell.m */,
+				2C96AA181D40C5E000ACCA08 /* V2MenuSectionView.h */,
+				2C96AA191D40C5E000ACCA08 /* V2MenuSectionView.m */,
+				2C96AA1A1D40C5E000ACCA08 /* V2MenuView.h */,
+				2C96AA1B1D40C5E000ACCA08 /* V2MenuView.m */,
+				2C96AA1C1D40C5E000ACCA08 /* V2SubMenuSectionCell.h */,
+				2C96AA1D1D40C5E000ACCA08 /* V2SubMenuSectionCell.m */,
+				2C96AA1E1D40C5E000ACCA08 /* V2SubMenuSectionView.h */,
+				2C96AA1F1D40C5E000ACCA08 /* V2SubMenuSectionView.m */,
+				2C96AA251D40C86100ACCA08 /* ZZHRootViewController.h */,
+				2C96AA261D40C86100ACCA08 /* ZZHRootViewController.m */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		2C96AA421D40DB9300ACCA08 /* NewUI */ = {
+			isa = PBXGroup;
+			children = (
+				2C96AA431D410AFA00ACCA08 /* HomePageViewController.h */,
+				2C96AA441D410AFA00ACCA08 /* HomePageViewController.m */,
+			);
+			path = NewUI;
+			sourceTree = "<group>";
+		};
+		2C96AA4E1D41101A00ACCA08 /* SCNavitagionController */ = {
+			isa = PBXGroup;
+			children = (
+				2C96AA4F1D41101A00ACCA08 /* SCBarButtonItem.h */,
+				2C96AA501D41101A00ACCA08 /* SCBarButtonItem.m */,
+				2C96AA511D41101A00ACCA08 /* SCNavigation.h */,
+				2C96AA521D41101A00ACCA08 /* SCNavigationController.h */,
+				2C96AA531D41101A00ACCA08 /* SCNavigationController.m */,
+				2C96AA541D41101A00ACCA08 /* SCNavigationItem.h */,
+				2C96AA551D41101A00ACCA08 /* SCNavigationItem.m */,
+				2C96AA561D41101A00ACCA08 /* SCNavigationPopAnimation.h */,
+				2C96AA571D41101A00ACCA08 /* SCNavigationPopAnimation.m */,
+				2C96AA581D41101A00ACCA08 /* SCNavigationPushAnimation.h */,
+				2C96AA591D41101A00ACCA08 /* SCNavigationPushAnimation.m */,
+				2C96AA5A1D41101A00ACCA08 /* SCViewController+NaviBar.h */,
+				2C96AA5B1D41101A00ACCA08 /* SCViewController+NaviBar.m */,
+				2C96AA5C1D41101A00ACCA08 /* V2NavigationBar.h */,
+				2C96AA5D1D41101A00ACCA08 /* V2NavigationBar.m */,
+			);
+			path = SCNavitagionController;
 			sourceTree = "<group>";
 		};
 		2C9EF2CF1C7C18C4000704E2 /* LXActivity */ = {
@@ -1897,6 +2005,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C96AA4E1D41101A00ACCA08 /* SCNavitagionController */,
 				2CDB2DC51CE471B300E931F0 /* Reachability */,
 				2C9EF5211C8597C9000704E2 /* THPinViewController */,
 				2C9EF4EA1C852CE6000704E2 /* Animation */,
@@ -2179,6 +2288,12 @@
 				2C9EF4B61C83D9BD000704E2 /* JPushNotiManager.m */,
 				2C2DC9B71CC71728008D28D1 /* SmartLinkInstance.h */,
 				2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */,
+				2C96AA281D40D65800ACCA08 /* ViewFrameAccessor.h */,
+				2C96AA291D40D65800ACCA08 /* ViewFrameAccessor.m */,
+				2C96AA671D41C4A300ACCA08 /* ScrollViewFrameAccessor.h */,
+				2C96AA681D41C4A300ACCA08 /* ScrollViewFrameAccessor.m */,
+				2C96AA491D410CAD00ACCA08 /* UIImage+Tint.h */,
+				2C96AA4A1D410CAD00ACCA08 /* UIImage+Tint.m */,
 			);
 			name = Category;
 			path = HaviProjectBase/Category;
@@ -2265,6 +2380,7 @@
 		2CD75B7B1C61C3D700E7E076 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2C96AA421D40DB9300ACCA08 /* NewUI */,
 				2C9EF44D1C804849000704E2 /* Report */,
 				2CF2E2571C7ABC740007A639 /* Login */,
 				2CF2E2081C79A22E0007A639 /* UserSetting */,
@@ -2304,6 +2420,7 @@
 		2CD75B931C61F62B00E7E076 /* Handler */ = {
 			isa = PBXGroup;
 			children = (
+				2C96AA151D40C5E000ACCA08 /* Menu */,
 				2CD75B941C61F62B00E7E076 /* SedeMenu */,
 			);
 			name = Handler;
@@ -2866,6 +2983,7 @@
 				2C5872551C7AEB6F001C2F3A /* icon_password_1@2x.png in Resources */,
 				2C96AA091D40882B00ACCA08 /* password@3x.png in Resources */,
 				2C9EF5101C854E8B000704E2 /* pic_bad_2@2x.png in Resources */,
+				2C96AA4D1D410F2A00ACCA08 /* navi_menu@3x.png in Resources */,
 				2CD014AD1C634CF5001F9514 /* week_1@2x.png in Resources */,
 				2C34AE331CEAC45400B24B6E /* pic_about@2x.png in Resources */,
 				2CD014951C634001001F9514 /* icon_alarm_clock_1@2x.png in Resources */,
@@ -2944,6 +3062,7 @@
 				2C9EF3541C7D8B42000704E2 /* cell_seperator_1@2x.png in Resources */,
 				2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */,
 				2C9EF41E1C7FEF13000704E2 /* day_icon@2x.png in Resources */,
+				2C96AA661D41C35F00ACCA08 /* avatar_default@3x.png in Resources */,
 				2C9EF3A71C7ECA89000704E2 /* btn_share_0@2x.png in Resources */,
 				2CF2E1671C759F530007A639 /* havi1_4@2x.png in Resources */,
 				2CF2E2281C79DB5D0007A639 /* protocol.html in Resources */,
@@ -3038,13 +3157,16 @@
 				2CD014A11C6347C3001F9514 /* DataShowTableViewCell.m in Sources */,
 				2C9EF3F11C7F0B99000704E2 /* PNBarNew.m in Sources */,
 				2CD014CD1C643636001F9514 /* PersonDataDelegate.m in Sources */,
+				2C96AA5F1D41101A00ACCA08 /* SCNavigationController.m in Sources */,
 				2CF2E1931C75C6D30007A639 /* MMPopupView.m in Sources */,
 				2CD0151B1C70497A001F9514 /* RMActionController.m in Sources */,
 				2CF2E19B1C76025D0007A639 /* AddProductNameViewController.m in Sources */,
 				2C9EF4361C802EB3000704E2 /* ChartTableTitleView.m in Sources */,
+				2C96AA241D40C5E000ACCA08 /* V2SubMenuSectionView.m in Sources */,
 				2C9EF3CB1C7EFF46000704E2 /* SensorSleepDurationCell.m in Sources */,
 				2CF2E1781C75B5A40007A639 /* RexpUntil.m in Sources */,
 				2CF2E2541C7AB7F70007A639 /* PassCodeSettingViewController.m in Sources */,
+				2C96AA271D40C86100ACCA08 /* ZZHRootViewController.m in Sources */,
 				2C9EF3F51C7F0B99000704E2 /* TriangleView.m in Sources */,
 				2CD75B8F1C61CCC600E7E076 /* NSObject+Common.m in Sources */,
 				2C9EF4171C7FEC4D000704E2 /* FloatLayerView.m in Sources */,
@@ -3108,13 +3230,17 @@
 				2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */,
 				2CF2E1951C75C6D30007A639 /* MMSheetView.m in Sources */,
 				2CF2E2051C796C360007A639 /* LocalNotificationManager.m in Sources */,
+				2C96AA211D40C5E000ACCA08 /* V2MenuSectionView.m in Sources */,
+				2C96AA601D41101A00ACCA08 /* SCNavigationItem.m in Sources */,
 				2C9EF4E91C8523E6000704E2 /* ContainerTableViewCell.m in Sources */,
+				2C96AA631D41101A00ACCA08 /* SCViewController+NaviBar.m in Sources */,
 				2CF2E2201C79D6B90007A639 /* AboutMeViewController.m in Sources */,
 				2C9EF3AF1C7EF128000704E2 /* SensorDataDelegate.m in Sources */,
 				2C9EF48F1C81E831000704E2 /* SleepQualityBar.m in Sources */,
 				2CF2E27A1C7ADD960007A639 /* UserManager.m in Sources */,
 				2C5872941C7BF0BE001C2F3A /* SLPagingViewController.m in Sources */,
 				2CF2E26B1C7AC77F0007A639 /* ZWIntroductionViewController.m in Sources */,
+				2C96AA231D40C5E000ACCA08 /* V2SubMenuSectionCell.m in Sources */,
 				2CD75B6E1C61C2D000E7E076 /* SleepQualityModel.m in Sources */,
 				2C9EF4AC1C82FBC3000704E2 /* WTURLRequestSerialization.m in Sources */,
 				2C9EF3EE1C7F0B99000704E2 /* HeartChartView.m in Sources */,
@@ -3130,6 +3256,7 @@
 				2C9EF3F01C7F0B99000704E2 /* PNBar.m in Sources */,
 				2CD015351C7080FE001F9514 /* MyDeviceDelegate.m in Sources */,
 				2C9EF4DC1C844FA3000704E2 /* CalendarDayModel.m in Sources */,
+				2C96AA641D41101A00ACCA08 /* V2NavigationBar.m in Sources */,
 				2C9EF3F31C7F0B99000704E2 /* QuaterReportView.m in Sources */,
 				2C9EF5001C85358A000704E2 /* DiagnoseReportViewController.m in Sources */,
 				2C9EF4681C805CCB000704E2 /* CalendarDateCaculate.m in Sources */,
@@ -3137,6 +3264,7 @@
 				2C9EF5091C854963000704E2 /* UIView+UIDisplayedInScreen.m in Sources */,
 				2CF2E1C81C7711350007A639 /* MessageListViewController.m in Sources */,
 				2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */,
+				2C96AA621D41101A00ACCA08 /* SCNavigationPushAnimation.m in Sources */,
 				2C9EF2D21C7C18C4000704E2 /* LXActivity.m in Sources */,
 				2C9EF4DB1C844FA3000704E2 /* CalendarDayCell.m in Sources */,
 				2CD0147A1C62FDCB001F9514 /* LeftSideTableDataDelegate.m in Sources */,
@@ -3151,6 +3279,7 @@
 				2C9EF3B81C7EF616000704E2 /* SensorReportTableViewCell.m in Sources */,
 				2C9EF4301C802A3D000704E2 /* ChartTableViewController.m in Sources */,
 				2C9EF3F21C7F0B99000704E2 /* PNLineView.m in Sources */,
+				2C96AA451D410AFA00ACCA08 /* HomePageViewController.m in Sources */,
 				2CD014D11C64BB0B001F9514 /* PersonInfoTableViewCell.m in Sources */,
 				2C9EF3B21C7EF4C9000704E2 /* SensorTitleTableViewCell.m in Sources */,
 				2CD75B1D1C61B57000E7E076 /* AppDelegate.m in Sources */,
@@ -3187,6 +3316,7 @@
 				2C9EF2E41C7C3AF8000704E2 /* HAVIPageControl.m in Sources */,
 				2C9EF4F71C852CE6000704E2 /* ScaleAnimation.m in Sources */,
 				2CD75B1A1C61B57000E7E076 /* main.m in Sources */,
+				2C96AA611D41101A00ACCA08 /* SCNavigationPopAnimation.m in Sources */,
 				2CD0150A1C7028DC001F9514 /* JDStatusBarStyle.m in Sources */,
 				2CF2E1E61C7860A90007A639 /* SettingDataDelegate.m in Sources */,
 				2C9EF4F61C852CE6000704E2 /* ModalAnimation.m in Sources */,
@@ -3228,8 +3358,11 @@
 				2CD75B8C1C61C6B400E7E076 /* ZZHAPIManager.m in Sources */,
 				2C9EF3B51C7EF5DE000704E2 /* SensorChartTableViewCell.m in Sources */,
 				2CF2E1901C75C6D30007A639 /* MMAlertView.m in Sources */,
+				2C96AA5E1D41101A00ACCA08 /* SCBarButtonItem.m in Sources */,
 				2CF2E1371C747D920007A639 /* FriendDeviceDelegate.m in Sources */,
+				2C96AA221D40C5E000ACCA08 /* V2MenuView.m in Sources */,
 				2CD75B711C61C2D000E7E076 /* BeingRequestModel.m in Sources */,
+				2C96AA4B1D410CAD00ACCA08 /* UIImage+Tint.m in Sources */,
 				2C9EF2DE1C7C2811000704E2 /* CenterDataShowViewController.m in Sources */,
 				2C9EF4E11C844FA3000704E2 /* CalendarViewController.m in Sources */,
 				2CF2E1BD1C76E4360007A639 /* EditUUIDView.m in Sources */,
@@ -3241,6 +3374,7 @@
 				2CF2E21D1C79D6600007A639 /* UserProtocolViewController.m in Sources */,
 				2CF2E1341C747CF90007A639 /* ODRefreshControl.m in Sources */,
 				2C9EF3A21C7EC62B000704E2 /* ChartTableContainerViewController.m in Sources */,
+				2C96AA691D41C4A300ACCA08 /* ScrollViewFrameAccessor.m in Sources */,
 				2C9EF4E61C8523BD000704E2 /* CantainerDeviceListViewController.m in Sources */,
 				2CF2E1401C7579520007A639 /* ReactiveDoubleViewController.m in Sources */,
 				2CD75B741C61C2D000E7E076 /* MyDeviceListModel.m in Sources */,
@@ -3253,6 +3387,8 @@
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,
 				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,
 				2C9EF4C31C83EA80000704E2 /* NSString+Common.m in Sources */,
+				2C96AA201D40C5E000ACCA08 /* V2MenuSectionCell.m in Sources */,
+				2C96AA2A1D40D65800ACCA08 /* ViewFrameAccessor.m in Sources */,
 				2CDB2DC81CE471B300E931F0 /* Reachability.m in Sources */,
 				2C5872871C7B4D5D001C2F3A /* RegisterViewController.m in Sources */,
 				2C9EF43C1C8033CA000704E2 /* ChartTableDataViewCell.m in Sources */,
