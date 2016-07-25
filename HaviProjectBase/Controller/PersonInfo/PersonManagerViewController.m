@@ -21,6 +21,8 @@
 #import "RMDateSelectionViewController.h"
 #import "RMPickerViewController.h"
 #import "ODRefreshControl.h"
+#import "ProfileTableViewCell.h"
+#import "EditAddressTableViewController.h"
 
 @interface PersonManagerViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -29,6 +31,8 @@
 @property (nonatomic, strong) PersonDataDelegate *personDataDelegate;
 @property (nonatomic, strong) UserInfoDetailModel *userInfoModel;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) ProfileTableViewCell *profileCell;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @property (nonatomic, strong) NSArray *genderArray;
 @property (nonatomic, strong) NSArray *weightArray;
@@ -48,51 +52,28 @@
 
 - (void)addSubViews
 {
-    [self.navigationController setNavigationBarHidden:YES];
     [self.view addSubview:self.personInfoTableView];
-    NSString *iconUrl = thirdPartyLoginIcon.length == 0?[NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId]:thirdPartyLoginIcon;
-    NSMutableString *userId = [[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@",thirdPartyLoginNickName]];
-    NSString *name;
-    if (userId.length == 0) {
-        name = @"匿名用户";
-    }else if ([userId intValue]>0){
-        [userId replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
-        name = userId;
-    }else{
-        name = userId;
-    }
-    _headerView = [[PersonInfoNaviView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kWindowHeight)backGroudImage:@"person_background" headerImageURL:iconUrl title:name subTitle:@""];
-    @weakify(self);
-    _headerView.scrollView = self.personInfoTableView;
-    _headerView.imgActionBlock = ^(){
-        @strongify(self);
-        if (thirdPartyLoginIcon.length == 0) {
-            [self tapIconImage:nil];
-        }
-    };
-    [self.view addSubview:_headerView];
-    NSArray *arr = self.navigationController.viewControllers;
-    
-    if ([self isEqual:[arr objectAtIndex:0]]) {
-        UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"re_order_%d",1]];
-        [_headerView.backButton setImage:i forState:UIControlStateNormal];
-        _headerView.backBlock = ^(){
-            @strongify(self);
-            [self.sidePanelController showLeftPanelAnimated:YES];
-        };
-    }else{
-        UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",1]];
-        [_headerView.backButton setImage:i forState:UIControlStateNormal];
-        _headerView.backBlock = ^(){
-            @strongify(self);
-            NSArray *arr = self.navigationController.viewControllers;
-            if ([arr containsObject:self]) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }else{
-                [self.sidePanelController setCenterPanelHidden:NO animated:YES duration:0.2f];
-            }
-        };
-    }
+    UIView *view = [[UIView alloc]initWithFrame:(CGRect){0,0,self.view.frame.size.width,0}];
+    [self.view addSubview:view];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
+    }];
+    self.sc_navigationItem.title = @"个人资料";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+//    if ([self isEqual:[arr objectAtIndex:0]]) {
+//    }else{
+//        UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",1]];
+//        [_headerView.backButton setImage:i forState:UIControlStateNormal];
+//        _headerView.backBlock = ^(){
+//            @strongify(self);
+//            NSArray *arr = self.navigationController.viewControllers;
+//            if ([arr containsObject:self]) {
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }else{
+//                [self.sidePanelController setCenterPanelHidden:NO animated:YES duration:0.2f];
+//            }
+//        };
+//    }
 }
 
 - (void)addTableViewDataHandle
@@ -102,10 +83,14 @@
     [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
     [self.personInfoTableView addSubview:self.refreshControl];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
-        if (self.userInfoModel) {
-            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.userInfoModel];
+        if (indexPath.section ==0) {
+            [self configProfileWithCell:cell];
         }else{
-            [cell configure:cell customObj:item indexPath:indexPath];
+            if (self.userInfoModel) {
+                [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.userInfoModel];
+            }else{
+                [cell configure:cell customObj:item indexPath:indexPath];
+            }
         }
         
     };
@@ -121,6 +106,25 @@
     NSArray *dataArr = [NSArray arrayWithContentsOfFile:dataPath];
     self.personDataDelegate = [[PersonDataDelegate alloc]initWithItems:dataArr cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
     [self.personDataDelegate handleTableViewDataSourceAndDelegate:self.personInfoTableView];
+}
+
+- (void)configProfileWithCell:(UITableViewCell *)cell
+{
+    self.profileCell = (ProfileTableViewCell*)cell;
+    NSString *iconUrl = thirdPartyLoginIcon.length == 0?[NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId]:thirdPartyLoginIcon;
+    [_profileCell.userIcon setImageWithURL:[NSURL URLWithString:iconUrl] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_placeholder"]]];
+    
+    NSMutableString *userId = [[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@",thirdPartyLoginNickName]];
+    NSString *name;
+    if (userId.length == 0) {
+        name = @"匿名用户";
+    }else if ([userId intValue]>0){
+        [userId replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        name = userId;
+    }else{
+        name = userId;
+    }
+    _profileCell.userLabel.text = name;
 }
 
 - (void)refreshAction{
@@ -167,7 +171,7 @@
 - (UITableView *)personInfoTableView
 {
     if (!_personInfoTableView) {
-        _personInfoTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _personInfoTableView = [[UITableView alloc]initWithFrame:(CGRect){0,44,self.view.frame.size.width,self.view.frame.size.height-44} style:UITableViewStyleGrouped];
         _personInfoTableView.backgroundColor = KTableViewBackGroundColor;
     }
     return _personInfoTableView;
@@ -176,7 +180,7 @@
 //获取用户基本信息
 - (void)didSeletedCellIndexPath:(NSIndexPath *)indexPath withData:(id)data
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         if (indexPath.row == 1) {
             [self openDateSelectionController:nil];
         }else if (indexPath.row == 2){
@@ -199,9 +203,10 @@
             }
         }
         
-    }else if(indexPath.section == 1){
+    }else if(indexPath.section == 2){
         if (indexPath.row == 2) {
-            EditAddressCellViewController *cell = [[EditAddressCellViewController alloc]init];
+//            EditAddressCellViewController *cell = [[EditAddressCellViewController alloc]init];
+            EditAddressTableViewController *cell = [[EditAddressTableViewController alloc] init];
             cell.cellInfoType = @"Address";
             if (self.userInfoModel.nUserInfo.address.length > 0) {
                 cell.cellInfoString = self.userInfoModel.nUserInfo.address;
@@ -209,12 +214,18 @@
             cell.saveButtonClicked = ^(NSUInteger index) {
                 [self getUserDetailInfo];
             };
+            
             [self.navigationController pushViewController:cell animated:YES];
         }else if(indexPath.row == 0){
             [self openPickerController:@"height"];
         }else if (indexPath.row == 1){
             [self openPickerController:@"weight"];
         }
+    }else{
+        if (thirdPartyLoginIcon.length == 0) {
+            [self tapIconImage:nil];
+        }
+
     }
 }
 
@@ -496,7 +507,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [JDStatusBarNotification showWithStatus:@"头像上传成功" dismissAfter:2 styleName:JDStatusBarStyleDark];
                 NSString *url = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
-                [self.headerView.headerImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+                [self.profileCell.userIcon setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"iconImageChanged" object:nil];
                 }];
                 

@@ -1,14 +1,14 @@
 //
-//  EditAddressCellViewController.m
-//  SleepRecoding
+//  EditTableViewController.m
+//  HaviProjectBase
 //
-//  Created by Havi on 15/10/9.
-//  Copyright © 2015年 Havi. All rights reserved.
+//  Created by Havi on 16/7/25.
+//  Copyright © 2016年 Havi. All rights reserved.
 //
 
-#import "EditAddressCellViewController.h"
+#import "EditAddressTableViewController.h"
 
-@interface EditAddressCellViewController ()<UITextViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface EditAddressTableViewController ()<UITextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UIButton *backButton;
 @property (nonatomic,strong) UITableView *cellTableView;
 @property (nonatomic,strong) UITextView *cellTextField;
@@ -16,49 +16,24 @@
 @property (nonatomic,strong) NSString *cellString;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) SCBarButtonItem *rightBarItem;
-
 @end
 
-@implementation EditAddressCellViewController
+@implementation EditAddressTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-//    self.backgroundImageView.image = [UIImage imageNamed:@""];
-//    [self createNavWithTitle:nil createMenuItem:^UIView *(int nIndex) {
-//        if (nIndex == 1)
-//        {
-//            _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [_backButton dk_setImage:DKImageWithNames(@"btn_back_0", @"btn_back_1") forState:UIControlStateNormal];
-//            [_backButton setFrame:CGRectMake(-5, 0, 44, 44)];
-//            [_backButton addTarget:self action:@selector(backToView:) forControlEvents:UIControlEventTouchUpInside];
-//            return _backButton;
-//        }else if (nIndex==0){
-//            UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//            doneButton.frame = CGRectMake(self.view.frame.size.width-65, 0, 60, 44);
-//            [doneButton setTitle:@"保存" forState:UIControlStateNormal];
-//            doneButton.titleLabel.font = kTextNormalWordFont;
-//            [doneButton dk_setTitleColorPicker:kTextColorPicker forState:UIControlStateNormal];
-//            [doneButton addTarget:self action:@selector(saveInfo:) forControlEvents:UIControlEventTouchUpInside];
-//            return doneButton;
-//        }
-//        return nil;
-//    }];
-    
-    [self.view addSubview:self.cellTableView];
-    
+    // Uncomment the following line to preserve selection between presentations.
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
     self.sc_navigationItem.title = @"编辑地址";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_done"] style:SCBarButtonItemStylePlain handler:^(id sender) {
-        [self saveInfo:nil];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+    [self.view addSubview:self.cellTableView];
 }
-
 - (void)backToView:(UIButton *)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -83,7 +58,7 @@
 {
     
     [[UIApplication sharedApplication]incrementNetworkActivityCount];
-//
+    //
     NSDictionary *dic = @{
                           @"UserID": thirdPartyLoginUserId, //关键字，必须传递
                           key:data,
@@ -194,7 +169,7 @@
 - (void)setCellInfoType:(NSString *)cellInfoType
 {
     self.cellString = cellInfoType;
-    self.cellFooterView.text = @"地址只能由40个以内中文字符组成";
+    
     
     
 }
@@ -205,6 +180,7 @@
     if (self.cellInfoString) {
         self.cellTextField.text = self.cellInfoString;
     }
+    self.cellFooterView.text = @"地址只能由40个以内中文字符组成";
 }
 
 #pragma mark uitextfield
@@ -249,5 +225,8 @@
         return NO;
     }
 }
+
+#pragma mark - Table view data source
+
 
 @end

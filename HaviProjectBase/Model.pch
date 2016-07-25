@@ -52,5 +52,5 @@
 #import "SCViewController+NaviBar.h"
 
 static NSString * const kShowMenuNotification = @"ShowMenuNotificaion";
-
+static NSString * const kPostTapProfileImage = @"ShowProfileView";
 #endif /* Model_pch */

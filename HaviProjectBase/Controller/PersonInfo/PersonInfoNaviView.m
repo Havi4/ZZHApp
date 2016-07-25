@@ -51,7 +51,7 @@
         _subTitleLabel.textColor = [UIColor whiteColor];
         
         
-        [self addSubview:_backImageView];
+//        [self addSubview:_backImageView];
         [self addSubview:_headerImageView];
         [self addSubview:_titleLabel];
         [self addSubview:_subTitleLabel];

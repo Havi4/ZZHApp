@@ -22,6 +22,7 @@ static CGFloat const kAvatarHeight = 70.0f;
 @property (nonatomic, strong) UIButton    *avatarButton;
 @property (nonatomic, strong) UIImageView *divideImageView;
 @property (nonatomic, strong) UILabel     *usernameLabel;
+@property (nonatomic, strong) UILabel     *userPhoneLabel;
 
 //@property (nonatomic, strong) SCActionSheet      *actionSheet;
 
@@ -78,7 +79,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.avatarImageView.clipsToBounds = YES;
     self.avatarImageView.layer.cornerRadius = 35; //kAvatarHeight / 2.0;
-    self.avatarImageView.layer.borderColor = UIColorHex(0x8a8a8a).CGColor;
+    self.avatarImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.avatarImageView.layer.borderWidth = 1.0f;
     [self addSubview:self.avatarImageView];
     
@@ -91,6 +92,17 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.divideImageView.image = [UIImage imageNamed:@"section_divide"];
     self.divideImageView.clipsToBounds = YES;
     [self addSubview:self.divideImageView];
+    
+    self.usernameLabel = [[UILabel alloc]init];
+    self.usernameLabel.text = @"哈维";
+    self.usernameLabel.textAlignment = NSTextAlignmentLeft;
+    self.usernameLabel.textColor = [UIColor whiteColor];
+    [self addSubview:self.usernameLabel];
+    self.userPhoneLabel = [[UILabel alloc]init];
+    self.userPhoneLabel.textAlignment = NSTextAlignmentLeft;
+    self.userPhoneLabel.textColor = [UIColor whiteColor];
+    self.userPhoneLabel.text = @"13122785292";
+    [self addSubview:self.userPhoneLabel];
 
     // Handles
 }
@@ -134,8 +146,16 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.divideImageView.frame = (CGRect){80, kAvatarHeight + 50, 80, 0.5};
     self.divideImageView.frame = (CGRect){-self.width, kAvatarHeight + 50, self.width * 2, 0.5};
     self.tableView.frame = (CGRect){0, 0, self.width, self.height};
+    self.usernameLabel.frame = (CGRect){110,30,130,35};
+    self.userPhoneLabel.frame = (CGRect){110,65,130,35};
+    [self.avatarButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
 //
 //    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[V2SettingManager manager].selectedSectionIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
+- (void)showProfile:(UIButton *)button
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:kPostTapProfileImage object:nil];
 }
 
 #pragma mark - Setters

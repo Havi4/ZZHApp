@@ -16,7 +16,8 @@
 @property (nonatomic,strong) NSString *cellString;
 @property (nonatomic,strong) NSString *textFiledString;
 @property (nonatomic, strong) EditCellInfoDelegate *editDelegate;
-
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
 @end
 
 @implementation EditCellInfoViewController
@@ -25,25 +26,36 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addTableViewDataHandle];
-    [self createNavWithTitle:nil createMenuItem:^UIView *(int nIndex) {
-        if (nIndex == 1)
-        {
-            _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [_backButton dk_setImage:DKImageWithNames(@"btn_back_0", @"btn_back_1") forState:UIControlStateNormal];
-            [_backButton setFrame:CGRectMake(-5, 0, 44, 44)];
-            [_backButton addTarget:self action:@selector(backToView:) forControlEvents:UIControlEventTouchUpInside];
-            return _backButton;
-        }else if (nIndex==0){
-            UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            doneButton.frame = CGRectMake(self.view.frame.size.width-65, 0, 60, 44);
-            [doneButton setTitle:@"保存" forState:UIControlStateNormal];
-            doneButton.titleLabel.font = kTextNormalWordFont;
-            [doneButton dk_setTitleColorPicker:kTextColorPicker forState:UIControlStateNormal];
-            [doneButton addTarget:self action:@selector(saveDown:) forControlEvents:UIControlEventTouchUpInside];
-            return doneButton;
-        }
-        return nil;
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
     }];
+    self.sc_navigationItem.title = @"编辑资料";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_done"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self saveDown:nil];
+    }];
+    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+
+
+//    [self createNavWithTitle:nil createMenuItem:^UIView *(int nIndex) {
+//        if (nIndex == 1)
+//        {
+//            _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//            [_backButton dk_setImage:DKImageWithNames(@"btn_back_0", @"btn_back_1") forState:UIControlStateNormal];
+//            [_backButton setFrame:CGRectMake(-5, 0, 44, 44)];
+//            [_backButton addTarget:self action:@selector(backToView:) forControlEvents:UIControlEventTouchUpInside];
+//            return _backButton;
+//        }else if (nIndex==0){
+//            UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//            doneButton.frame = CGRectMake(self.view.frame.size.width-65, 0, 60, 44);
+//            [doneButton setTitle:@"保存" forState:UIControlStateNormal];
+//            doneButton.titleLabel.font = kTextNormalWordFont;
+//            [doneButton dk_setTitleColorPicker:kTextColorPicker forState:UIControlStateNormal];
+//            [doneButton addTarget:self action:@selector(saveDown:) forControlEvents:UIControlEventTouchUpInside];
+//            return doneButton;
+//        }
+//        return nil;
+//    }];
     [self.view addSubview:self.cellTableView];
 }
 

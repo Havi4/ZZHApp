@@ -49,7 +49,7 @@
         [_titleLabel setTextColor:[UIColor whiteColor]];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-//        [__sc_viewController.sc_navigationBar addSubview:_titleLabel];
+        [__sc_viewController.sc_navigationBar addSubview:_titleLabel];
     }
     
     _titleLabel.text = title;

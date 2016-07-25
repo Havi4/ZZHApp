@@ -91,16 +91,11 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveCancelInactiveDelegateNotifacation) name:kRootViewControllerCancelDelegateNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveResetInactiveDelegateNotification) name:kRootViewControllerResetDelegateNotification object:nil];
 //
-//    @weakify(self);
-//    [[NSNotificationCenter defaultCenter] addObserverForName:kShowLoginVCNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-//        @strongify(self);
-//        
-//        V2LoginViewController *loginViewController = [[V2LoginViewController alloc] init];
-//        [self presentViewController:loginViewController animated:YES completion:^{
-//            ;
-//        }];
-//        
-//    }];
+    @weakify(self);
+    [[NSNotificationCenter defaultCenter] addObserverForName:kPostTapProfileImage object:nil queue:nil usingBlock:^(NSNotification *note) {
+        @strongify(self);
+        [self showViewControllerAtIndex:-1 animated:YES];
+    }];
     
 }
 
@@ -290,6 +285,9 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
     UIViewController *viewController;
     
     switch (index) {
+        case -1:
+            viewController = self.personNavi;
+            break;
         case 0:
             viewController = self.homeNavi;
             break;

@@ -42,6 +42,11 @@
 		2C5872941C7BF0BE001C2F3A /* SLPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872911C7BF0BE001C2F3A /* SLPagingViewController.m */; };
 		2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872931C7BF0BE001C2F3A /* UIColor+SLAddition.m */; };
 		2C5872981C7BF173001C2F3A /* BaseViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872971C7BF173001C2F3A /* BaseViewContainerView.m */; };
+		2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */; };
+		2C8D87C71D45EF81008573EA /* navi_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C61D45EF81008573EA /* navi_back@3x.png */; };
+		2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C81D45EFD0008573EA /* navi_done@3x.png */; };
+		2C8D87CB1D45F173008573EA /* new_navi_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87CA1D45F173008573EA /* new_navi_back@3x.png */; };
+		2C8D87CE1D45FC5B008573EA /* EditAddressTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87CD1D45FC5B008573EA /* EditAddressTableViewController.m */; };
 		2C96A9FE1D40685400ACCA08 /* IntroduceView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */; };
 		2C96A9FF1D40685400ACCA08 /* IntroduceView2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */; };
 		2C96AA041D407B2400ACCA08 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA031D407B2400ACCA08 /* background.png */; };
@@ -566,6 +571,13 @@
 		2C5872931C7BF0BE001C2F3A /* UIColor+SLAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SLAddition.m"; sourceTree = "<group>"; };
 		2C5872961C7BF173001C2F3A /* BaseViewContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewContainerView.h; sourceTree = "<group>"; };
 		2C5872971C7BF173001C2F3A /* BaseViewContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewContainerView.m; sourceTree = "<group>"; };
+		2C8D87C31D45DC55008573EA /* ProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewCell.h; sourceTree = "<group>"; };
+		2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewCell.m; sourceTree = "<group>"; };
+		2C8D87C61D45EF81008573EA /* navi_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_back@3x.png"; sourceTree = "<group>"; };
+		2C8D87C81D45EFD0008573EA /* navi_done@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_done@3x.png"; sourceTree = "<group>"; };
+		2C8D87CA1D45F173008573EA /* new_navi_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_navi_back@3x.png"; sourceTree = "<group>"; };
+		2C8D87CC1D45FC5B008573EA /* EditAddressTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAddressTableViewController.h; sourceTree = "<group>"; };
+		2C8D87CD1D45FC5B008573EA /* EditAddressTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAddressTableViewController.m; sourceTree = "<group>"; };
 		2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView1.png; sourceTree = "<group>"; };
 		2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView2.png; sourceTree = "<group>"; };
 		2C96AA031D407B2400ACCA08 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -1394,6 +1406,9 @@
 				2C96AA701D41F15A00ACCA08 /* section_divide@3x.png */,
 				2C96AA721D41F31F00ACCA08 /* profile_back@3x.png */,
 				2C96AA741D41F65700ACCA08 /* fenxi@3x.png */,
+				2C8D87C61D45EF81008573EA /* navi_back@3x.png */,
+				2C8D87CA1D45F173008573EA /* new_navi_back@3x.png */,
+				2C8D87C81D45EFD0008573EA /* navi_done@3x.png */,
 				2C96AA751D41F65700ACCA08 /* sheb@3x.png */,
 				2C96AA761D41F65700ACCA08 /* shed@3x.png */,
 				2C96AA771D41F65700ACCA08 /* shuju@3x.png */,
@@ -1996,6 +2011,8 @@
 				2CD014B01C6355F1001F9514 /* PersonInfoNaviView.m */,
 				2CD014ED1C6E2024001F9514 /* EditAddressCellViewController.h */,
 				2CD014EE1C6E2024001F9514 /* EditAddressCellViewController.m */,
+				2C8D87CC1D45FC5B008573EA /* EditAddressTableViewController.h */,
+				2C8D87CD1D45FC5B008573EA /* EditAddressTableViewController.m */,
 				2CD014EF1C6E2024001F9514 /* EditCellInfoViewController.h */,
 				2CD014F01C6E2024001F9514 /* EditCellInfoViewController.m */,
 				2CD014B71C6355F1001F9514 /* PersonManagerViewController.h */,
@@ -2022,6 +2039,8 @@
 				2CD014D01C64BB0B001F9514 /* PersonInfoTableViewCell.m */,
 				2CD014FA1C6EABDF001F9514 /* EditInfoCellTableViewCell.h */,
 				2CD014FB1C6EABDF001F9514 /* EditInfoCellTableViewCell.m */,
+				2C8D87C31D45DC55008573EA /* ProfileTableViewCell.h */,
+				2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2926,6 +2945,7 @@
 				2C9EF44C1C80389F000704E2 /* ic_line_1.png in Resources */,
 				2CF2E19F1C7605270007A639 /* qr_code_1@2x.png in Resources */,
 				2C9EF3421C7D7A12000704E2 /* breath_apng_0.apng in Resources */,
+				2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */,
 				2CD014C71C6396D4001F9514 /* re_order_1@2x.png in Resources */,
 				2CF2E2361C7AB0110007A639 /* skinpeeler_dark_color_bg@2x.png in Resources */,
 				2CF2E1691C759F530007A639 /* havi1_6@2x.png in Resources */,
@@ -2986,6 +3006,7 @@
 				2C9EF4B91C83DDC6000704E2 /* PushConfig.plist in Resources */,
 				2CD014721C62F5C6001F9514 /* head_placeholder@2x.png in Resources */,
 				2C9EF4401C8037DB000704E2 /* ic_getup_0.png in Resources */,
+				2C8D87C71D45EF81008573EA /* navi_back@3x.png in Resources */,
 				2C9EF2E61C7C43A1000704E2 /* btn_point_1@2x.png in Resources */,
 				2C96AA7C1D41F65700ACCA08 /* shed@3x.png in Resources */,
 				2CD0149C1C634305001F9514 /* btn_right_0@2x.png in Resources */,
@@ -3029,6 +3050,7 @@
 				2CF2E2561C7ABBB50007A639 /* papasscode_background@2x.png in Resources */,
 				2C9EF42D1C801CE7000704E2 /* btn_fatal_exception_1@2x.png in Resources */,
 				2CD0148A1C633FF3001F9514 /* icon_data_analysis_0@2x.png in Resources */,
+				2C8D87CB1D45F173008573EA /* new_navi_back@3x.png in Resources */,
 				2CD0149A1C634001001F9514 /* icon_todays_data_1@2x.png in Resources */,
 				2C96AA6B1D41E4E400ACCA08 /* home_back@3x.png in Resources */,
 				2C9EF3C01C7EFB79000704E2 /* icon_turn_over_0@2x.png in Resources */,
@@ -3250,6 +3272,7 @@
 				2C9EF4821C816051000704E2 /* ReportTableViewCell.m in Sources */,
 				2C9EF4751C80B692000704E2 /* WeekCalenderView.m in Sources */,
 				2C9EF4001C7FE23E000704E2 /* MPGraphView.m in Sources */,
+				2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */,
 				2CF2E1811C75BA2D0007A639 /* SearchDeviceDelegate.m in Sources */,
 				2C58728D1C7B5177001C2F3A /* HaviAnimationView.m in Sources */,
 				2CF2E2301C7AAE420007A639 /* SelectThemeCollectionViewCell.m in Sources */,
@@ -3411,6 +3434,7 @@
 				2C96AA691D41C4A300ACCA08 /* ScrollViewFrameAccessor.m in Sources */,
 				2C9EF4E61C8523BD000704E2 /* CantainerDeviceListViewController.m in Sources */,
 				2CF2E1401C7579520007A639 /* ReactiveDoubleViewController.m in Sources */,
+				2C8D87CE1D45FC5B008573EA /* EditAddressTableViewController.m in Sources */,
 				2CD75B741C61C2D000E7E076 /* MyDeviceListModel.m in Sources */,
 				2CF2E1B51C76AFE40007A639 /* QBarScanViewController.m in Sources */,
 				2CD0152F1C70774A001F9514 /* JAActionButton.m in Sources */,

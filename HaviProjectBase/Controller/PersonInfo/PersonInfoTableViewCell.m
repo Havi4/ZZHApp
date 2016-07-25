@@ -118,6 +118,7 @@
                             indexPath:(NSIndexPath *)indexPath
                          withOtherObj:(id)otherObj
 {
+    
     NSDictionary *dic = obj;
     UserInfoDetailModel *userModel = (UserInfoDetailModel *)otherObj;
     NSString *cellDataString = [dic objectForKey:@"cellData"];
@@ -126,12 +127,12 @@
         NSDictionary *attrbute = @{NSFontAttributeName:[UIFont systemFontOfSize:17]};
         CGFloat width = 320-185;
         CGFloat height = [addString boundingRectWithSize:CGSizeMake(width, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attrbute context:nil].size.height+15;
-        if (height < 60) {
-            height = 60;
+        if (height < 54) {
+            height = 54;
         }
         return height;
     }else {
-        return 60;
+        return 54;
     }
 }
 

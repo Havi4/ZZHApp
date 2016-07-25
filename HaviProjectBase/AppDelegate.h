@@ -10,6 +10,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "CenterViewController.h"
+#import "SCNavigationController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,6 +19,8 @@
 @property (strong, nonatomic) CenterViewController *centerView;
 
 @property (strong, nonatomic) JASidePanelController *sideMenuController;
+@property (nonatomic, assign) SCNavigationController *currentNavigationController;
+
 
 - (void)setRootViewController;
 

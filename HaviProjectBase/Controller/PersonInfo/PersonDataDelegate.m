@@ -8,6 +8,7 @@
 
 #import "PersonDataDelegate.h"
 #import "PersonInfoTableViewCell.h"
+#import "ProfileTableViewCell.h"
 
 @implementation PersonDataDelegate
 
@@ -41,8 +42,10 @@
 {
     if (section == 0) {
         return [[self.items objectAtIndex:0] count];
-    }else{
+    }else if (section == 1){
         return [[self.items objectAtIndex:1] count];
+    }else {
+        return [[self.items objectAtIndex:2] count];
     }
 }
 
@@ -63,21 +66,34 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id item = [self itemAtIndexPath:indexPath];
-    PersonInfoTableViewCell *cell = (PersonInfoTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
-    if (!cell) {
-        cell = [[PersonInfoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+    if (indexPath.section == 0) {
+        ProfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellProfile"];
+        if (!cell) {
+            cell = [[ProfileTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellProfile"];
+        }
+        self.configureCellBlock(indexPath,nil,cell);
+        return cell;
+    }else{
+        id item = [self itemAtIndexPath:indexPath];
+        PersonInfoTableViewCell *cell = (PersonInfoTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+        if (!cell) {
+            cell = [[PersonInfoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+        }
+        self.configureCellBlock(indexPath,item,cell);
+        return cell;
     }
-    self.configureCellBlock(indexPath,item,cell);
-    return cell;
 }
 
 #pragma mark datasource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id item = [self itemAtIndexPath:indexPath];
-    return self.heightConfigureBlock(indexPath,item);
+    if (indexPath.section ==0) {
+        return 90;
+    }else{
+        id item = [self itemAtIndexPath:indexPath];
+        return self.heightConfigureBlock(indexPath,item);
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

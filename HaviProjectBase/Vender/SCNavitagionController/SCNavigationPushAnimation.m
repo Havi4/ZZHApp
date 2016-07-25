@@ -56,11 +56,11 @@
     } else {
 
         naviBarView = [[UIView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, 64}];
-        naviBarView.backgroundColor = [UIColor whiteColor];
+        naviBarView.backgroundColor = kNaviBackGroundColor;
         [containerView addSubview:naviBarView];
 
         UIView *lineView = [[UIView alloc] initWithFrame:(CGRect){0, 64, kScreenWidth, 0.5}];
-        lineView.backgroundColor = [UIColor whiteColor];
+        lineView.backgroundColor = kNaviBackGroundColor;
         [naviBarView addSubview:lineView];
 
         toNaviLeft = toViewController.sc_navigationItem.leftBarButtonItem.view;

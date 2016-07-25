@@ -39,7 +39,7 @@ static const CGFloat kToBackgroundInitAlpha = 0.08;
         self.maskImageView.image = [UIImage imageNamed:@"navi_mask"];
 
         self.naviContainView = [[UIView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, 64}];
-        self.naviContainView.backgroundColor = [UIColor colorWithRed:0.774 green:0.368 blue:1.000 alpha:0.810];
+        self.naviContainView.backgroundColor = [UIColor redColor];
 
     }
     return self;
@@ -84,11 +84,11 @@ static const CGFloat kToBackgroundInitAlpha = 0.08;
     } else {
         
         naviBarView = [[UIView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, 64}];
-        naviBarView.backgroundColor = [UIColor whiteColor];
+        naviBarView.backgroundColor = kNaviBackGroundColor;
         [containerView addSubview:naviBarView];
 
         UIView *lineView = [[UIView alloc] initWithFrame:(CGRect){0, 64, kScreenWidth, 0.5}];
-        lineView.backgroundColor = [UIColor whiteColor];
+        lineView.backgroundColor = kNaviBackGroundColor;
         [naviBarView addSubview:lineView];
 
         toNaviLeft = toViewController.sc_navigationItem.leftBarButtonItem.view;

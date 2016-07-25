@@ -85,7 +85,7 @@
 
 #define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
 [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]
-
+#define kNaviBackGroundColor [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_back"]]
 //chartValue
 #define kCharDataIntervalTime 2
 #define kChartDataCount (24*60/kCharDataIntervalTime)

@@ -145,7 +145,7 @@ static char const * const kNaviBarView = "kNaviBarView";
 - (SCBarButtonItem *)createBackItem {
     
     @weakify(self);
-    return [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:SCBarButtonItemStyleDone handler:^(id sender) {
+    return [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"header_back"] style:SCBarButtonItemStyleDone handler:^(id sender) {
         @strongify(self);
         
         [self.navigationController popViewControllerAnimated:YES];

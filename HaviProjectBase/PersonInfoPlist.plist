@@ -7,6 +7,16 @@
 			<key>cellData</key>
 			<string>userName</string>
 			<key>cellName</key>
+			<string>头像</string>
+			<key>cellIcon</key>
+			<string>name</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>cellData</key>
+			<string>userName</string>
+			<key>cellName</key>
 			<string>姓名:</string>
 			<key>cellIcon</key>
 			<string>name</string>

@@ -64,7 +64,7 @@
     
     self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanRecognizer:)];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    appDelegate.currentNavigationController = self;
+    appDelegate.currentNavigationController = self;
     
 }
 
@@ -103,7 +103,7 @@
                     animated:(BOOL)animate
 {
 
-//    [viewController.view bringSubviewToFront:viewController.sc_navigationBar];
+    [viewController.view bringSubviewToFront:viewController.sc_navigationBar];
     
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         if (navigationController.viewControllers.count == 1) {
@@ -136,7 +136,7 @@
     viewController.navigationController.delegate = self;
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    appDelegate.currentNavigationController = (SCNavigationController *)viewController.navigationController;
+    appDelegate.currentNavigationController = (SCNavigationController *)viewController.navigationController;
     
 }
 
