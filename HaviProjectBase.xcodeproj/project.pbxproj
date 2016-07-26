@@ -42,6 +42,8 @@
 		2C5872941C7BF0BE001C2F3A /* SLPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872911C7BF0BE001C2F3A /* SLPagingViewController.m */; };
 		2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872931C7BF0BE001C2F3A /* UIColor+SLAddition.m */; };
 		2C5872981C7BF173001C2F3A /* BaseViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872971C7BF173001C2F3A /* BaseViewContainerView.m */; };
+		2C5FE5B31D4709D900AFFEFE /* ChangeLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B21D4709D900AFFEFE /* ChangeLanguageViewController.m */; };
+		2C5FE5B61D470FB900AFFEFE /* LangageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */; };
 		2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */; };
 		2C8D87C71D45EF81008573EA /* navi_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C61D45EF81008573EA /* navi_back@3x.png */; };
 		2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C81D45EFD0008573EA /* navi_done@3x.png */; };
@@ -572,6 +574,10 @@
 		2C5872931C7BF0BE001C2F3A /* UIColor+SLAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SLAddition.m"; sourceTree = "<group>"; };
 		2C5872961C7BF173001C2F3A /* BaseViewContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewContainerView.h; sourceTree = "<group>"; };
 		2C5872971C7BF173001C2F3A /* BaseViewContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewContainerView.m; sourceTree = "<group>"; };
+		2C5FE5B11D4709D900AFFEFE /* ChangeLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeLanguageViewController.h; sourceTree = "<group>"; };
+		2C5FE5B21D4709D900AFFEFE /* ChangeLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeLanguageViewController.m; sourceTree = "<group>"; };
+		2C5FE5B41D470FB900AFFEFE /* LangageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LangageTableViewCell.h; sourceTree = "<group>"; };
+		2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LangageTableViewCell.m; sourceTree = "<group>"; };
 		2C8D87C31D45DC55008573EA /* ProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewCell.h; sourceTree = "<group>"; };
 		2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewCell.m; sourceTree = "<group>"; };
 		2C8D87C61D45EF81008573EA /* navi_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_back@3x.png"; sourceTree = "<group>"; };
@@ -2678,6 +2684,8 @@
 				2CF2E22F1C7AAE420007A639 /* SelectThemeViewController.m */,
 				2CF2E2521C7AB7F70007A639 /* PassCodeSettingViewController.h */,
 				2CF2E2531C7AB7F70007A639 /* PassCodeSettingViewController.m */,
+				2C5FE5B11D4709D900AFFEFE /* ChangeLanguageViewController.h */,
+				2C5FE5B21D4709D900AFFEFE /* ChangeLanguageViewController.m */,
 			);
 			path = UserSetting;
 			sourceTree = "<group>";
@@ -2700,6 +2708,8 @@
 				2CF2E22D1C7AAE420007A639 /* SelectThemeCollectionViewCell.m */,
 				2CF2E2111C79D1690007A639 /* AppSettingTableViewCell.h */,
 				2CF2E2121C79D1690007A639 /* AppSettingTableViewCell.m */,
+				2C5FE5B41D470FB900AFFEFE /* LangageTableViewCell.h */,
+				2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3327,6 +3337,7 @@
 				2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */,
 				2C96AA621D41101A00ACCA08 /* SCNavigationPushAnimation.m in Sources */,
 				2C9EF2D21C7C18C4000704E2 /* LXActivity.m in Sources */,
+				2C5FE5B61D470FB900AFFEFE /* LangageTableViewCell.m in Sources */,
 				2C9EF4DB1C844FA3000704E2 /* CalendarDayCell.m in Sources */,
 				2CD0147A1C62FDCB001F9514 /* LeftSideTableDataDelegate.m in Sources */,
 				2C58728A1C7B4DAF001C2F3A /* btRippleButtton.m in Sources */,
@@ -3438,6 +3449,7 @@
 				2C9EF4E61C8523BD000704E2 /* CantainerDeviceListViewController.m in Sources */,
 				2CF2E1401C7579520007A639 /* ReactiveDoubleViewController.m in Sources */,
 				2C8D87CE1D45FC5B008573EA /* EditAddressTableViewController.m in Sources */,
+				2C5FE5B31D4709D900AFFEFE /* ChangeLanguageViewController.m in Sources */,
 				2CD75B741C61C2D000E7E076 /* MyDeviceListModel.m in Sources */,
 				2CF2E1B51C76AFE40007A639 /* QBarScanViewController.m in Sources */,
 				2CD0152F1C70774A001F9514 /* JAActionButton.m in Sources */,

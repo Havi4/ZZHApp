@@ -15,7 +15,7 @@
         indexPath:(NSIndexPath *)indexPath
 {
     // Rewrite this func in SubClass !
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.backgroundColor = [UIColor whiteColor];
         cell.textLabel.text = obj;

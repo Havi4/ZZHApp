@@ -26,6 +26,7 @@ NSString *thirdLeftDeviceUUID = @"";
 NSString *thirdRightDeviceUUID = @"";
 NSString *thirdLeftDeviceName = @"";
 NSString *thirdRightDeviceName = @"";
+NSString *langaueChoice = @"";
 NSString *isMineDevice = @"NO";
 NSString *registeredID = @"";
 

@@ -16,8 +16,7 @@
 #import "PassCodeSettingViewController.h"
 //#import "LoginViewController.h"
 #import "AppDelegate.h"
-//#import "WeiBoLogoutAPI.h"
-
+#import "ChangeLanguageViewController.h"
 @interface APPSettingViewController ()
 
 @property (nonatomic, strong) UITableView *appSettingView;
@@ -52,6 +51,7 @@
         [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
     }
     [self addControllerToCellArrayWithClassName:@[@"UserProtocolViewController",@"AboutMeViewController"]];
+    [self addControllerToCellArrayWithClassName:@[@"ChangeLanguageViewController"]];
     [self addControllerToCellArrayWithClassName:@[@""]];
     
     

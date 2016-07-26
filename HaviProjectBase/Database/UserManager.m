@@ -24,6 +24,8 @@ static NSString* CUR_RightHardWareUUID = @"CUR_RightHardWareUUID";
 static NSString* CUR_LeftHardWareName = @"CUR_LeftHardWareName";
 static NSString* CUR_RightHardWareName = @"CUR_RightHardWareName";
 static NSString* CUR_MineDevice = @"CUR_MineDevice";
+static NSString* CUR_LanChoice = @"CUR_LangagueChoice";
+
 
 @implementation UserManager
 
@@ -49,6 +51,7 @@ static NSString* CUR_MineDevice = @"CUR_MineDevice";
     userinfo[CUR_RightHardWareName] = thirdRightDeviceName;
     userinfo[CUR_RightHardWareUUID] = thirdRightDeviceUUID;
     userinfo[CUR_MineDevice] = isMineDevice;
+    userinfo[CUR_LanChoice] = langaueChoice;
     [global setObject:userinfo forKey:CUR_USERINFO];
 }
 
@@ -71,6 +74,7 @@ static NSString* CUR_MineDevice = @"CUR_MineDevice";
     thirdRightDeviceName = @"";
     thirdLeftDeviceUUID = @"";
     thirdLeftDeviceName = @"";
+    langaueChoice = @"0";
     isMineDevice = @"NO";
     
 }
@@ -108,6 +112,7 @@ static NSString* CUR_MineDevice = @"CUR_MineDevice";
         thirdRightDeviceName = [userinfo objectForKey:CUR_RightHardWareName];
         thirdRightDeviceUUID = [userinfo objectForKey:CUR_RightHardWareUUID];
         isMineDevice = [userinfo objectForKey:CUR_MineDevice];
+        langaueChoice = [userinfo objectForKey:CUR_LanChoice];
         return TRUE;
         
     } else {
