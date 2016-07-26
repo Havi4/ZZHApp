@@ -46,11 +46,7 @@ static CGFloat const kAvatarHeight = 70.0f;
 
         [self configureTableView];
         [self configureProfileView];
-        [self configureSearchView];
         [self configureNotifications];
-        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeChangeNotification) name:kThemeDidChangeNotification object:nil];
-
     }
     return self;
 }
@@ -101,9 +97,19 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.userPhoneLabel = [[UILabel alloc]init];
     self.userPhoneLabel.textAlignment = NSTextAlignmentLeft;
     self.userPhoneLabel.textColor = [UIColor whiteColor];
-    self.userPhoneLabel.text = @"13122785292";
     [self addSubview:self.userPhoneLabel];
-
+    
+    NSMutableString *userId = [[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@",thirdPartyLoginNickName]];
+    NSString *name;
+    if (userId.length == 0) {
+        name = @"匿名用户";
+    }else if ([userId intValue]>0){
+        [userId replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        name = userId;
+    }else{
+        name = userId;
+    }
+    self.userPhoneLabel.text = name;
     // Handles
 }
 
@@ -116,22 +122,20 @@ static CGFloat const kAvatarHeight = 70.0f;
 
 - (void)configureNotifications {
     
-//    @weakify(self);
-//    [[NSNotificationCenter defaultCenter] addObserverForName:kLoginSuccessNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-//        @strongify(self);
-//        
-//        [self.avatarImageView setImageWithURL:[NSURL URLWithString:[V2DataManager manager].user.member.memberAvatarLarge] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
-//        self.avatarImageView.layer.borderColor = RGB(0x8a8a8a, 0.1).CGColor;
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
+    @weakify(self);
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"iconImageChanged" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        @strongify(self);
+        
+        [self.avatarImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"avatar_default"]];
+        self.avatarImageView.layer.borderColor = [UIColor grayColor].CGColor;
+
+    }];
 //
-//    }];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserverForName:kLogoutSuccessNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-//        @strongify(self);
-//        
-//        [self.avatarImageView setImageWithURL:[NSURL URLWithString:[V2DataManager manager].user.member.memberAvatarLarge] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
-//        self.avatarImageView.layer.borderColor = RGB(0x8a8a8a, 1.0).CGColor;
-//        
-//    }];
+    
+    [self.avatarImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+    }];
+
 
 }
 
@@ -150,7 +154,6 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.userPhoneLabel.frame = (CGRect){110,65,130,35};
     [self.avatarButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
 //
-//    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[V2SettingManager manager].selectedSectionIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)showProfile:(UIButton *)button

@@ -15,7 +15,6 @@
 #import "PersonInfoTableViewCell.h"
 #import "UserInfoDetailModel.h"
 #import "EditCellInfoViewController.h"
-#import "EditAddressCellViewController.h"
 #import "JDStatusBarNotification.h"
 #import "ImageUtil.h"
 #import "RMDateSelectionViewController.h"
@@ -23,6 +22,8 @@
 #import "ODRefreshControl.h"
 #import "ProfileTableViewCell.h"
 #import "EditAddressTableViewController.h"
+#import "AppDelegate.h"
+#import "APPSettingViewController.h"
 
 @interface PersonManagerViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -55,25 +56,21 @@
     [self.view addSubview:self.personInfoTableView];
     UIView *view = [[UIView alloc]initWithFrame:(CGRect){0,0,self.view.frame.size.width,0}];
     [self.view addSubview:view];
-    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
-    }];
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    NSArray *controllers = app.currentNavigationController.viewControllers;
+    UIViewController *con = [controllers objectAtIndex:0];
+    if ([con isKindOfClass:[APPSettingViewController class]]) {
+        self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }else{
+        self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
+        }];
+    }
+    
     self.sc_navigationItem.title = @"个人资料";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
-//    if ([self isEqual:[arr objectAtIndex:0]]) {
-//    }else{
-//        UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",1]];
-//        [_headerView.backButton setImage:i forState:UIControlStateNormal];
-//        _headerView.backBlock = ^(){
-//            @strongify(self);
-//            NSArray *arr = self.navigationController.viewControllers;
-//            if ([arr containsObject:self]) {
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }else{
-//                [self.sidePanelController setCenterPanelHidden:NO animated:YES duration:0.2f];
-//            }
-//        };
-//    }
 }
 
 - (void)addTableViewDataHandle
@@ -205,7 +202,6 @@
         
     }else if(indexPath.section == 2){
         if (indexPath.row == 2) {
-//            EditAddressCellViewController *cell = [[EditAddressCellViewController alloc]init];
             EditAddressTableViewController *cell = [[EditAddressTableViewController alloc] init];
             cell.cellInfoType = @"Address";
             if (self.userInfoModel.nUserInfo.address.length > 0) {

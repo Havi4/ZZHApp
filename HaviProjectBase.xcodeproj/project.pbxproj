@@ -47,6 +47,8 @@
 		2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C81D45EFD0008573EA /* navi_done@3x.png */; };
 		2C8D87CB1D45F173008573EA /* new_navi_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87CA1D45F173008573EA /* new_navi_back@3x.png */; };
 		2C8D87CE1D45FC5B008573EA /* EditAddressTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87CD1D45FC5B008573EA /* EditAddressTableViewController.m */; };
+		2C8D87D11D461DC5008573EA /* jia@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87CF1D461DC5008573EA /* jia@3x.png */; };
+		2C8D87D21D461DC5008573EA /* sousuo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87D01D461DC5008573EA /* sousuo@3x.png */; };
 		2C96A9FE1D40685400ACCA08 /* IntroduceView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */; };
 		2C96A9FF1D40685400ACCA08 /* IntroduceView2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */; };
 		2C96AA041D407B2400ACCA08 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA031D407B2400ACCA08 /* background.png */; };
@@ -324,7 +326,6 @@
 		2CD014EA1C64CD22001F9514 /* icon_phone1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014E21C64CD22001F9514 /* icon_phone1@2x.png */; };
 		2CD014EB1C64CD22001F9514 /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014E31C64CD22001F9514 /* name@2x.png */; };
 		2CD014EC1C64CD22001F9514 /* weight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014E41C64CD22001F9514 /* weight@2x.png */; };
-		2CD014F11C6E2024001F9514 /* EditAddressCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD014EE1C6E2024001F9514 /* EditAddressCellViewController.m */; };
 		2CD014F21C6E2024001F9514 /* EditCellInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD014F01C6E2024001F9514 /* EditCellInfoViewController.m */; };
 		2CD014F41C6E31DC001F9514 /* navigation_bar_bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014F31C6E31DC001F9514 /* navigation_bar_bg_1@2x.png */; };
 		2CD014F61C6E31E5001F9514 /* navigation_bar_bg_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD014F51C6E31E5001F9514 /* navigation_bar_bg_0@2x.png */; };
@@ -578,6 +579,8 @@
 		2C8D87CA1D45F173008573EA /* new_navi_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_navi_back@3x.png"; sourceTree = "<group>"; };
 		2C8D87CC1D45FC5B008573EA /* EditAddressTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAddressTableViewController.h; sourceTree = "<group>"; };
 		2C8D87CD1D45FC5B008573EA /* EditAddressTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAddressTableViewController.m; sourceTree = "<group>"; };
+		2C8D87CF1D461DC5008573EA /* jia@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jia@3x.png"; path = "../../../jia@3x.png"; sourceTree = "<group>"; };
+		2C8D87D01D461DC5008573EA /* sousuo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sousuo@3x.png"; path = "../../../sousuo@3x.png"; sourceTree = "<group>"; };
 		2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView1.png; sourceTree = "<group>"; };
 		2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView2.png; sourceTree = "<group>"; };
 		2C96AA031D407B2400ACCA08 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -1006,8 +1009,6 @@
 		2CD014E21C64CD22001F9514 /* icon_phone1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_phone1@2x.png"; sourceTree = "<group>"; };
 		2CD014E31C64CD22001F9514 /* name@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@2x.png"; sourceTree = "<group>"; };
 		2CD014E41C64CD22001F9514 /* weight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight@2x.png"; sourceTree = "<group>"; };
-		2CD014ED1C6E2024001F9514 /* EditAddressCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAddressCellViewController.h; sourceTree = "<group>"; };
-		2CD014EE1C6E2024001F9514 /* EditAddressCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAddressCellViewController.m; sourceTree = "<group>"; };
 		2CD014EF1C6E2024001F9514 /* EditCellInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCellInfoViewController.h; sourceTree = "<group>"; };
 		2CD014F01C6E2024001F9514 /* EditCellInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCellInfoViewController.m; sourceTree = "<group>"; };
 		2CD014F31C6E31DC001F9514 /* navigation_bar_bg_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation_bar_bg_1@2x.png"; sourceTree = "<group>"; };
@@ -1387,6 +1388,8 @@
 			isa = PBXGroup;
 			children = (
 				2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */,
+				2C8D87CF1D461DC5008573EA /* jia@3x.png */,
+				2C8D87D01D461DC5008573EA /* sousuo@3x.png */,
 				2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */,
 				2C96AA801D41FA4500ACCA08 /* IntroduceView3.png */,
 				2C96AA031D407B2400ACCA08 /* background.png */,
@@ -2009,8 +2012,6 @@
 				2CD014CA1C643610001F9514 /* viewModel */,
 				2CD014AF1C6355F1001F9514 /* PersonInfoNaviView.h */,
 				2CD014B01C6355F1001F9514 /* PersonInfoNaviView.m */,
-				2CD014ED1C6E2024001F9514 /* EditAddressCellViewController.h */,
-				2CD014EE1C6E2024001F9514 /* EditAddressCellViewController.m */,
 				2C8D87CC1D45FC5B008573EA /* EditAddressTableViewController.h */,
 				2C8D87CD1D45FC5B008573EA /* EditAddressTableViewController.m */,
 				2CD014EF1C6E2024001F9514 /* EditCellInfoViewController.h */,
@@ -2956,6 +2957,7 @@
 				2CD014761C62FB17001F9514 /* left_bg_night@2x.png in Resources */,
 				2C9EF50F1C854E8B000704E2 /* pic_bad_1@2x.png in Resources */,
 				2CF2E2071C7972410007A639 /* alarmSound.wav in Resources */,
+				2C8D87D21D461DC5008573EA /* sousuo@3x.png in Resources */,
 				2C96AA811D41FA4500ACCA08 /* IntroduceView3.png in Resources */,
 				2C9EF5131C854E8B000704E2 /* pic_bad_5@2x.png in Resources */,
 				2C9EF3971C7EAC69000704E2 /* btn_textbox_0.png in Resources */,
@@ -3068,6 +3070,7 @@
 				2CD014DA1C64C5A1001F9514 /* person_back_right@2x.png in Resources */,
 				2C9EF4481C80388E000704E2 /* ic_line_0.png in Resources */,
 				2C96AA7B1D41F65700ACCA08 /* sheb@3x.png in Resources */,
+				2C8D87D11D461DC5008573EA /* jia@3x.png in Resources */,
 				2CF2E29A1C7AE0660007A639 /* image_1.jpg in Resources */,
 				2CF2E2241C79DAFE0007A639 /* textbox_devicename_1@2x.png in Resources */,
 				2C9EF4FD1C852E89000704E2 /* btn_x_1@2x.png in Resources */,
@@ -3440,7 +3443,6 @@
 				2CD0152F1C70774A001F9514 /* JAActionButton.m in Sources */,
 				2C9EF40F1C7FE30B000704E2 /* BreathGraphView.m in Sources */,
 				2C9EF3711C7D996B000704E2 /* CLWeeklyCalendarView.m in Sources */,
-				2CD014F11C6E2024001F9514 /* EditAddressCellViewController.m in Sources */,
 				2CD75B7A1C61C2D000E7E076 /* UserInfoDetailModel.m in Sources */,
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,
 				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,

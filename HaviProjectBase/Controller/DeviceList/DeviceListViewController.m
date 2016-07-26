@@ -19,7 +19,8 @@
 @property (nonatomic, strong) MyDeviceListViewController *myNewDeviceList;
 @property (nonatomic, strong) UIButton *rightMenuButton;
 
-
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
 
 @end
 
@@ -35,20 +36,16 @@
 - (void)initNavigationBar
 {
     self.navigationController.navigationBarHidden = YES;
-    [self createNavWithTitle:@"" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             return self.menuButton;
-         }
-         else if (nIndex == 0){
-             [self.rightMenuButton dk_setImage:DKImageWithNames(@"plus_math_0", @"plus_math_1") forState:UIControlStateNormal];
-             [self.rightMenuButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
-             return self.rightMenuButton;
-         }
-         
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
+    }];
+    
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"jia"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self addProduct:nil];
+    }];
+    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+
 }
 
 - (UIButton *)rightMenuButton
@@ -88,8 +85,25 @@
     self.segmentTitle.dk_tintColorPicker = kTextColorPicker;
     self.segmentTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.segmentTitle.frame = CGRectMake(70, 30, self.view.frame.size.width-140, 25);
-    [self.segmentTitle addTarget:self action:@selector(switchView) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:self.segmentTitle];
+    UIView *backView = [[UIView alloc]init];
+    backView.frame = (CGRect){70,20,self.view.frame.size.width - 140,44};
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom ];
+    [leftButton setTitle:@"我的设备" forState:UIControlStateNormal];
+    [leftButton.titleLabel setFont:[UIFont systemFontOfSize:17]];
+    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.frame = (CGRect){0,0,(self.view.frame.size.width - 140)/2,44};
+    leftButton.tag = 9000;
+    [leftButton addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom ];
+    [rightButton setTitle:@"他人设备" forState:UIControlStateNormal];
+    [rightButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [rightButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    rightButton.frame = (CGRect){(self.view.frame.size.width - 140)/2,0,(self.view.frame.size.width - 140)/2,44};
+    rightButton.tag = 9001;
+    [rightButton addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:leftButton];
+    [backView addSubview:rightButton];
+    [self.sc_navigationBar addSubview:backView];
     
     [self addChildViewController:self.myNewDeviceList];
     
@@ -97,29 +111,43 @@
 }
 
 //选择控件的事件
-- (void)switchView
+- (void)switchView:(UIButton *)button
 {
     for (UIView *subview in [self.view subviews]) {
         if (subview.tag == 1001 || subview.tag == 1002) {
             [subview removeFromSuperview];
         }
     }
-    switch (_segmentTitle.selectedSegmentIndex) {
-        case 0: {
-            [self.rightMenuButton dk_setImage:DKImageWithNames(@"plus_math_0", @"plus_math_1") forState:UIControlStateNormal];
-            [self.rightMenuButton removeTarget:self action:@selector(searchDevice:) forControlEvents:UIControlEventTouchUpInside];
-            [self.rightMenuButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
+    switch (button.tag) {
+        case 9000: {
+            [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            UIButton *buttonRight = [self.view viewWithTag:9001];
+            [buttonRight.titleLabel setFont:[UIFont systemFontOfSize:16]];
+            [buttonRight setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"jia"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+                [self addProduct:nil];
+            }];
+            self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+
             [self.view addSubview:_myNewDeviceList.view];
             _myNewDeviceList.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
             break;
         }
-        case 1: {
+        case 9001: {
             if (![self.childViewControllers containsObject:self.friendDeviceList]) {
                 [self addChildViewController:self.friendDeviceList];
             }
-            [self.rightMenuButton dk_setImage:DKImageWithNames(@"search_0", @"search_1") forState:UIControlStateNormal];
-            [self.rightMenuButton removeTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
-            [self.rightMenuButton addTarget:self action:@selector(searchDevice:) forControlEvents:UIControlEventTouchUpInside];
+            [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            UIButton *buttonRight = [self.view viewWithTag:9000];
+            [buttonRight.titleLabel setFont:[UIFont systemFontOfSize:16]];
+            [buttonRight setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sousuo"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+                [self searchDevice:nil];
+            }];
+            self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+
             [self.view addSubview:_friendDeviceList.view];
             _friendDeviceList.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
             

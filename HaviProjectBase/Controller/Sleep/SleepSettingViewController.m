@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UITableView *sleepSettingView;
 @property (nonatomic, strong) SettingDataDelegate *settingDelegate;
 @property (nonatomic, strong) UserInfoDetailModel *userInfoModel;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
 
@@ -31,14 +32,11 @@
 - (void)initNavigationBar
 {
     self.navigationController.navigationBarHidden = YES;
-    [self createNavWithTitle:@"睡眠设置" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             return self.menuButton;
-         }
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
+    }];
+    self.sc_navigationItem.title = @"睡眠设置";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
 }
 
 - (void)addTableViewDataHandle

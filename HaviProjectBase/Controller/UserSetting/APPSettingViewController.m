@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UITableView *appSettingView;
 @property (nonatomic, strong) AppSettingDelegate *appDelegate;
 @property (nonatomic, strong) NSMutableArray *controllerClassArray;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
 
@@ -39,14 +40,12 @@
 {
     self.navigationController.navigationBarHidden = YES;
     self.controllerClassArray = @[].mutableCopy;
-    [self createNavWithTitle:@"设定" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             return self.menuButton;
-         }
-         return nil;
-     }];
+    self.navigationController.navigationBarHidden = YES;
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
+    }];
+    self.sc_navigationItem.title = @"设定";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     if ([thirdPartyLoginPlatform isEqualToString: kMeddoPlatform]) {
         [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"ModifyPassWordViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
     }else{
