@@ -15,6 +15,7 @@
 @property (nonatomic,strong) UILabel *openLabel;
 @property (nonatomic,strong) UILabel *settingLabel;
 @property (nonatomic,strong) UITableView *sideTableView;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
 
@@ -24,15 +25,11 @@
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
     // Do any additional setup after loading the view.
-    [self createNavWithTitle:@"密码锁设定" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             [self.leftButton addTarget:self action:@selector(backToHomeView:) forControlEvents:UIControlEventTouchUpInside];
-             return self.leftButton;
-         }
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.title = @"密码锁设定";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     self.backgroundImageView.image = [UIImage imageNamed:@""];
     [self setSubView];
 }

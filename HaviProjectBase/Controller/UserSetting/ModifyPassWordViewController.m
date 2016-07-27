@@ -13,7 +13,7 @@
 @property (nonatomic,strong) UITextField *oldTextFieldPass;
 @property (nonatomic,strong) UITextField *changeTextFieldPass;
 @property (nonatomic,strong) UITextField *confirmTextFieldPass;
-
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @end
 
 @implementation ModifyPassWordViewController
@@ -23,15 +23,11 @@
     self.backgroundImageView.image = [UIImage imageNamed:@""];
     self.view.backgroundColor = KTableViewBackGroundColor;
     self.navigationController.navigationBarHidden = YES;
-    [self createNavWithTitle:@"修改密码" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             [self.leftButton addTarget:self action:@selector(backToHomeView:) forControlEvents:UIControlEventTouchUpInside];
-             return self.leftButton;
-         }
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.title = @"密码修改";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     // Do any additional setup after loading the view.
     [self setSubView];
 }

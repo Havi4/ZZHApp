@@ -9,6 +9,7 @@
 #import "UserProtocolViewController.h"
 
 @interface UserProtocolViewController ()
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
 
@@ -19,15 +20,11 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
-    [self createNavWithTitle:@"用户协议" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             [self.leftButton addTarget:self action:@selector(backToHomeView:) forControlEvents:UIControlEventTouchUpInside];
-             return self.leftButton;
-         }
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.title = @"用户协议";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     
     UIWebView *view = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
     view.scrollView.scrollEnabled = YES;

@@ -11,10 +11,13 @@
 #import "ThemeSelectConfigureObj.h"
 
 @interface SelectThemeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+
 {
     UICollectionView *_collectionV;
     NSArray *_arData;
 }
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+
 @end
 
 @implementation SelectThemeViewController
@@ -24,15 +27,11 @@
     self.navigationController.navigationBarHidden = YES;
     
     // Do any additional setup after loading the view.
-    [self createNavWithTitle:@"换肤" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             [self.leftButton addTarget:self action:@selector(backToHomeView:) forControlEvents:UIControlEventTouchUpInside];
-             return self.leftButton;
-         }
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.title = @"皮肤设置";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     [self setSubView];
 }
 

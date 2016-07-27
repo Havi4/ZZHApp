@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) MessageDataDelegate *messageDelegate;
 @property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
 
@@ -33,14 +34,11 @@
 - (void)initNavigationBar
 {
     self.navigationController.navigationBarHidden = YES;
-    [self createNavWithTitle:@"我的消息" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             return self.menuButton;
-         }
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
+    }];
+    self.sc_navigationItem.title = @"我的消息";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
 }
 
 - (void)addTableViewDataHandle

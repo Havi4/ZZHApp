@@ -44,6 +44,8 @@
 		2C5872981C7BF173001C2F3A /* BaseViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872971C7BF173001C2F3A /* BaseViewContainerView.m */; };
 		2C5FE5B31D4709D900AFFEFE /* ChangeLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B21D4709D900AFFEFE /* ChangeLanguageViewController.m */; };
 		2C5FE5B61D470FB900AFFEFE /* LangageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */; };
+		2C5FE5B81D4719F400AFFEFE /* new_about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B71D4719F400AFFEFE /* new_about@3x.png */; };
+		2C5FE5BC1D4720B200AFFEFE /* about_top@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */; };
 		2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */; };
 		2C8D87C71D45EF81008573EA /* navi_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C61D45EF81008573EA /* navi_back@3x.png */; };
 		2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C81D45EFD0008573EA /* navi_done@3x.png */; };
@@ -578,6 +580,8 @@
 		2C5FE5B21D4709D900AFFEFE /* ChangeLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeLanguageViewController.m; sourceTree = "<group>"; };
 		2C5FE5B41D470FB900AFFEFE /* LangageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LangageTableViewCell.h; sourceTree = "<group>"; };
 		2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LangageTableViewCell.m; sourceTree = "<group>"; };
+		2C5FE5B71D4719F400AFFEFE /* new_about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_about@3x.png"; sourceTree = "<group>"; };
+		2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_top@3x.png"; sourceTree = "<group>"; };
 		2C8D87C31D45DC55008573EA /* ProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewCell.h; sourceTree = "<group>"; };
 		2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewCell.m; sourceTree = "<group>"; };
 		2C8D87C61D45EF81008573EA /* navi_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_back@3x.png"; sourceTree = "<group>"; };
@@ -1402,6 +1406,8 @@
 				2C96AA6A1D41E4E400ACCA08 /* home_back@3x.png */,
 				2C96AA051D40880900ACCA08 /* logo@3x.png */,
 				2C96AA0B1D4089E300ACCA08 /* textback@3x.png */,
+				2C5FE5B71D4719F400AFFEFE /* new_about@3x.png */,
+				2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */,
 				2C96AA4C1D410F2A00ACCA08 /* navi_menu@3x.png */,
 				2C96AA071D40882B00ACCA08 /* password@3x.png */,
 				2C96AA0D1D408F0E00ACCA08 /* button_background@3x.png */,
@@ -3102,6 +3108,7 @@
 				2C96AA0E1D408F0E00ACCA08 /* button_background@3x.png in Resources */,
 				2C9EF3931C7E973F000704E2 /* ic_compile_0.png in Resources */,
 				2CF2E2501C7AB7E80007A639 /* papasscode_marker@2x.png in Resources */,
+				2C5FE5BC1D4720B200AFFEFE /* about_top@3x.png in Resources */,
 				2CF2E16A1C759F530007A639 /* havi1_7@2x.png in Resources */,
 				2C9EF4631C80586B000704E2 /* menology_1@2x.png in Resources */,
 				2CF2E1521C7590930007A639 /* textbox_hollow_1@2x.png in Resources */,
@@ -3110,6 +3117,7 @@
 				2CF2E1EB1C78682B0007A639 /* SleepSetting.plist in Resources */,
 				2C9EF3BF1C7EFB79000704E2 /* icon_heart_rate_0@2x.png in Resources */,
 				2C9EF3C71C7EFBCA000704E2 /* icon_heart_rate_1@2x.png in Resources */,
+				2C5FE5B81D4719F400AFFEFE /* new_about@3x.png in Resources */,
 				2C9EF4BB1C83E3BA000704E2 /* leaveAlert.wav in Resources */,
 				2CF2E1C41C7701710007A639 /* edit_double_bed@2x.png in Resources */,
 				2C9EF5121C854E8B000704E2 /* pic_bad_4@2x.png in Resources */,

@@ -11,8 +11,7 @@
 
 @interface AboutMeViewController ()<UIScrollViewDelegate>
 @property (strong, nonatomic) NSCalendar *currentCalendar;
-
-@property (assign, nonatomic) BOOL  lunar;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
 
@@ -23,20 +22,16 @@
     
     // Do any additional setup after loading the view.
     // 使用方法
-    self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
-    [self createNavWithTitle:@"关于迈动" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             [self.leftButton addTarget:self action:@selector(backToHomeView:) forControlEvents:UIControlEventTouchUpInside];
-             return self.leftButton;
-         }
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"about_top"]];
+    self.sc_navigationItem.title = @"关于迈动";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
 //    [self setDateView];
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-    image.image = [UIImage imageNamed:@"pic_about"];
+    image.image = [UIImage imageNamed:@"new_about"];
     [self.view addSubview:image];
 }
 
