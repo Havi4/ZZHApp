@@ -9,12 +9,13 @@
 #import "ReportVewContainerController.h"
 #import "BaseViewContainerView.h"
 #import "ReportDataShowViewController.h"
+#import "UIImage+Tint.h"
 
 @interface ReportVewContainerController ()
 
 @property (nonatomic, strong) BaseViewContainerView *containerDataView;
-@property (nonatomic, strong) UIButton *leftMenuButton;
-@property (nonatomic, strong) UIButton *rightMenuButton;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
 
 @end
 
@@ -39,10 +40,16 @@
         NSLog(@"index %ld", (long)currentPageIndex);
     };
     [self.containerDataView.navigationBarView addSubview:self.leftButton];
-    [self.leftButton dk_setImage:DKImageWithNames(@"re_order_0", @"re_order_1") forState:UIControlStateNormal];
-    self.leftButton.frame = CGRectMake(0, 20, 44, 44);
-    [self.leftButton addTarget:self action:@selector(backToHome) forControlEvents:UIControlEventTouchUpInside];
-    [self.containerDataView.navigationBarView addSubview:self.rightMenuButton];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
+    }];
+    
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+    
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"btn_share_0"] imageWithTintColor:[UIColor whiteColor]] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self showMoreInfo];
+    }];
+    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
 }
 
 - (void)initCenterViewControllers
@@ -64,21 +71,6 @@
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
         }];
     }
-}
-
-
-#pragma mark setter
-
-- (UIButton *)rightMenuButton
-{
-    if (!_rightMenuButton) {
-        _rightMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightMenuButton.backgroundColor = [UIColor clearColor];
-        [_rightMenuButton dk_setImage:DKImageWithNames(@"btn_share_0", @"btn_share_1") forState:UIControlStateNormal];
-        [_rightMenuButton setFrame:CGRectMake(self.view.frame.size.width-50, 20, 44, 44)];
-        [_rightMenuButton addTarget:self action:@selector(showMoreInfo) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _rightMenuButton;
 }
 
 - (void)backToHome

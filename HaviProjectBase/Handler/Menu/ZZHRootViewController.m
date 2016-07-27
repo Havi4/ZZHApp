@@ -43,6 +43,12 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
 @property (nonatomic, strong) SCNavigationController *sleepNavi;
 @property (nonatomic, strong) APPSettingViewController *setting;
 @property (nonatomic ,strong) SCNavigationController *settingNavi;
+@property (nonatomic ,strong) SCNavigationController *reWeek;
+
+@property (nonatomic ,strong) SCNavigationController *reMonth;
+@property (nonatomic ,strong) SCNavigationController *reQuater;
+
+
 @end
 
 @implementation ZZHRootViewController
@@ -320,13 +326,34 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
         case 5:
             viewController = self.settingNavi;
             break;
-        case 1001:
+        case 1001:{
+            ReportVewContainerController *reportView = [[ReportVewContainerController alloc]init];
+            reportView.reportType = ReportViewWeek;
+            if (!self.reWeek) {
+                self.reWeek = [[SCNavigationController alloc]initWithRootViewController:reportView];
+            }
+            viewController = self.reWeek;
+        }
             
             break;
-        case 1002:
+        case 1002:{
+            ReportVewContainerController *reportView = [[ReportVewContainerController alloc]init];
+            reportView.reportType = ReportViewMonth;
+            if (!self.reMonth) {
+                self.reMonth = [[SCNavigationController alloc]initWithRootViewController:reportView];
+            }
+            viewController = self.reMonth;
+        }
             
             break;
-        case 1003:
+        case 1003:{
+            ReportVewContainerController *reportView = [[ReportVewContainerController alloc]init];
+            reportView.reportType = ReportViewQuater;
+            if (!self.reQuater) {
+                self.reQuater = [[SCNavigationController alloc]initWithRootViewController:reportView];
+            }
+            viewController = self.reQuater;
+        }
             
             break;
         default:
