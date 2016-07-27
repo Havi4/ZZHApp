@@ -96,6 +96,21 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
         @strongify(self);
         [self showViewControllerAtIndex:-1 animated:YES];
     }];
+    [[NSNotificationCenter defaultCenter]addObserverForName:kUserTapedDataReportButton object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary *dic = (NSDictionary *)note.userInfo;
+        NSInteger tag = [[dic objectForKey:@"key"] integerValue];
+        switch (tag) {
+            case 1001:
+                [self showViewControllerAtIndex:1001 animated:YES];
+                break;
+            case 1002:
+                [self showViewControllerAtIndex:1002 animated:YES];
+                break;
+            default:
+                [self showViewControllerAtIndex:1003 animated:YES];
+                break;
+        }
+    }];
     
 }
 
@@ -305,6 +320,15 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
             break;
         case 5:
             viewController = self.settingNavi;
+            break;
+        case 1001:
+            
+            break;
+        case 1002:
+            
+            break;
+        case 1003:
+            
             break;
         default:
             break;

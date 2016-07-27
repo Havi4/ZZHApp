@@ -46,6 +46,7 @@
 		2C5FE5B61D470FB900AFFEFE /* LangageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */; };
 		2C5FE5B81D4719F400AFFEFE /* new_about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B71D4719F400AFFEFE /* new_about@3x.png */; };
 		2C5FE5BC1D4720B200AFFEFE /* about_top@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */; };
+		2C5FE5BF1D4862F600AFFEFE /* DataAnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5BE1D4862F600AFFEFE /* DataAnTableViewCell.m */; };
 		2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */; };
 		2C8D87C71D45EF81008573EA /* navi_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C61D45EF81008573EA /* navi_back@3x.png */; };
 		2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C81D45EFD0008573EA /* navi_done@3x.png */; };
@@ -582,6 +583,8 @@
 		2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LangageTableViewCell.m; sourceTree = "<group>"; };
 		2C5FE5B71D4719F400AFFEFE /* new_about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_about@3x.png"; sourceTree = "<group>"; };
 		2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_top@3x.png"; sourceTree = "<group>"; };
+		2C5FE5BD1D4862F600AFFEFE /* DataAnTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnTableViewCell.h; sourceTree = "<group>"; };
+		2C5FE5BE1D4862F600AFFEFE /* DataAnTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnTableViewCell.m; sourceTree = "<group>"; };
 		2C8D87C31D45DC55008573EA /* ProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewCell.h; sourceTree = "<group>"; };
 		2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewCell.m; sourceTree = "<group>"; };
 		2C8D87C61D45EF81008573EA /* navi_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_back@3x.png"; sourceTree = "<group>"; };
@@ -1439,6 +1442,8 @@
 			children = (
 				2C96AA161D40C5E000ACCA08 /* V2MenuSectionCell.h */,
 				2C96AA171D40C5E000ACCA08 /* V2MenuSectionCell.m */,
+				2C5FE5BD1D4862F600AFFEFE /* DataAnTableViewCell.h */,
+				2C5FE5BE1D4862F600AFFEFE /* DataAnTableViewCell.m */,
 				2C96AA181D40C5E000ACCA08 /* V2MenuSectionView.h */,
 				2C96AA191D40C5E000ACCA08 /* V2MenuSectionView.m */,
 				2C96AA1A1D40C5E000ACCA08 /* V2MenuView.h */,
@@ -3350,6 +3355,7 @@
 				2CD0147A1C62FDCB001F9514 /* LeftSideTableDataDelegate.m in Sources */,
 				2C58728A1C7B4DAF001C2F3A /* btRippleButtton.m in Sources */,
 				2CD015091C7028DC001F9514 /* JDStatusBarNotification.m in Sources */,
+				2C5FE5BF1D4862F600AFFEFE /* DataAnTableViewCell.m in Sources */,
 				2CD0147D1C6307CF001F9514 /* LeftSideTableViewCell.m in Sources */,
 				2CF2E1AF1C760A340007A639 /* UIAlertView+Block.m in Sources */,
 				2C9EF3731C7D996B000704E2 /* DayTitleLabel.m in Sources */,

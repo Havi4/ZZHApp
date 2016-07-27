@@ -13,6 +13,7 @@
 #import "ScrollViewFrameAccessor.h"
 
 #import "V2MenuSectionCell.h"
+#import "DataAnTableViewCell.h"
 
 static CGFloat const kAvatarHeight = 70.0f;
 
@@ -135,6 +136,10 @@ static CGFloat const kAvatarHeight = 70.0f;
     
     [self.avatarImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
     }];
+    
+    [[NSNotificationCenter defaultCenter]addObserverForName:kUserTapedDataReportButton object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self setSelectedIndex:1];
+    }];
 
 
 }
@@ -159,6 +164,7 @@ static CGFloat const kAvatarHeight = 70.0f;
 - (void)showProfile:(UIButton *)button
 {
     [[NSNotificationCenter defaultCenter]postNotificationName:kPostTapProfileImage object:nil];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Setters
@@ -201,31 +207,56 @@ static CGFloat const kAvatarHeight = 70.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"CellIdentifier";
-    V2MenuSectionCell *cell = (V2MenuSectionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[V2MenuSectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (indexPath.row == 1) {
+        static NSString *cell = @"cellData";
+        DataAnTableViewCell *cell1 = (DataAnTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cell];
+        if (!cell1) {
+            cell1 = [[DataAnTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell];
+        }
+        cell1.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell1.imageName = self.sectionImageNameArray[indexPath.row];
+        cell1.title     = self.sectionTitleArray[indexPath.row];
+        cell1.badge = nil;
+        cell1.weekButton.selected = NO;
+        cell1.monthButton.selected = NO;
+        cell1.quaterButton.selected = NO;
+        return cell1;
+    }else{
+        static NSString *CellIdentifier = @"CellIdentifier";
+        V2MenuSectionCell *cell = (V2MenuSectionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[V2MenuSectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        return [self configureWithCell:cell IndexPath:indexPath];
     }
-    
-    return [self configureWithCell:cell IndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (self.didSelectedIndexBlock) {
-        self.didSelectedIndexBlock(indexPath.row);
+    if (indexPath.row != 1) {
+        if (self.didSelectedIndexBlock) {
+            self.didSelectedIndexBlock(indexPath.row);
+        }
+        [self.tableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+    }else{
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        DataAnTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell setSelected:NO];
+        [cell setHighlighted:NO animated:NO];
     }
-    
 }
 
 #pragma mark - Configure TableCell
 
 - (CGFloat)heightCellForIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 1) {
+        return [DataAnTableViewCell getCellHeight];
+    }else{
     
-    return [V2MenuSectionCell getCellHeight];
+        return [V2MenuSectionCell getCellHeight];
+    }
     
 }
 
