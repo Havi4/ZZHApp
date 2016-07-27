@@ -71,7 +71,6 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
     self.edgePanRecognizer.delegate                                    = self;
     self.navigationController.delegate                                 = self;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    
 }
 
 #pragma mark - Layouts

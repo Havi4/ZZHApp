@@ -131,7 +131,6 @@ static CGFloat const kFontSize   = 16;
 #pragma mark - Configure Views
 
 - (void)configureViews {
-    
     self.iconImageView              = [[UIImageView alloc] init];
     self.iconImageView.contentMode  = UIViewContentModeScaleAspectFill;
     [self addSubview:self.iconImageView];
@@ -142,7 +141,6 @@ static CGFloat const kFontSize   = 16;
     self.titleLabel.font            = [UIFont fontWithName:@"STHeitiSC-Light" size:kFontSize];
     self.titleLabel.font            = [UIFont systemFontOfSize:kFontSize];
     [self addSubview:self.titleLabel];
-    
     self.weekButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.weekButton setImage:[[UIImage imageNamed:@"week_1"] imageWithTintColor:[UIColor blackColor]] forState:UIControlStateNormal];
     [self.weekButton setImage:[[UIImage imageNamed:@"week_1"] imageWithTintColor:kColorBlueDefault] forState:UIControlStateSelected];
@@ -150,7 +148,7 @@ static CGFloat const kFontSize   = 16;
     self.weekButton.tag = 1001;
     self.weekButton.frame = (CGRect){64,51,44,44};
 
-    [self addSubview:self.weekButton];
+    [self.contentView addSubview:self.weekButton];
     
     self.monthButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.monthButton setImage:[[UIImage imageNamed:@"month_1"] imageWithTintColor:[UIColor blackColor]] forState:UIControlStateNormal];

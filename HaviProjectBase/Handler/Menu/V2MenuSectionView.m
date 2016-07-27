@@ -67,6 +67,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.tableView.contentInsetTop = 120;
     [self addSubview:self.tableView];
     
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)configureProfileView {
@@ -243,8 +244,8 @@ static CGFloat const kAvatarHeight = 70.0f;
             self.didSelectedIndexBlock(indexPath.row);
         }
         [self.tableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
-    }else{
-        [tableView reloadData];
+    }else {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indexPath.row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
 }
 
