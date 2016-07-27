@@ -34,7 +34,9 @@ static CGFloat const kFontSize   = 16;
     if (self) {
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.titleLabel.textColor = [UIColor blackColor];
         self.backgroundColor = [UIColor clearColor];
+
         
         [self configureViews];
         
@@ -43,48 +45,48 @@ static CGFloat const kFontSize   = 16;
 }
 
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-    
-    if (selected) {
-        
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.cellHighlighted = selected;
-        } completion:nil];
-        
-    } else {
-        
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.cellHighlighted = selected;
-        } completion:nil];
-        
-    }
-    
-}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    [super setSelected:selected animated:animated];
+//    
+//    if (selected) {
+//        
+//        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            self.cellHighlighted = selected;
+//        } completion:nil];
+//        
+//    } else {
+//        
+//        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            self.cellHighlighted = selected;
+//        } completion:nil];
+//        
+//    }
+//    
+//}
 
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    [super setHighlighted:highlighted animated:animated];
-    
-    if (self.isSelected) {
-        return;
-    }
-    
-    if (highlighted) {
-        
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.cellHighlighted = highlighted;
-        } completion:nil];
-        
-    } else {
-        
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.cellHighlighted = highlighted;
-        } completion:nil];
-        
-    }
-    
-}
+//- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+//    [super setHighlighted:highlighted animated:animated];
+//    
+//    if (self.isSelected) {
+//        return;
+//    }
+//    
+//    if (highlighted) {
+//        
+//        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            self.cellHighlighted = highlighted;
+//        } completion:nil];
+//        
+//    } else {
+//        
+//        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            self.cellHighlighted = highlighted;
+//        } completion:nil];
+//        
+//    }
+//    
+//}
 
 - (void)setCellHighlighted:(BOOL)cellHighlighted {
     _cellHighlighted = cellHighlighted;
@@ -100,14 +102,14 @@ static CGFloat const kFontSize   = 16;
         //            self.backgroundColor = kMenuCellHighlightedColor;
         //            self.iconImageView.image = self.highlightedImage;
         //        }
-        self.titleLabel.textColor = kColorBlueDefault;
-        self.iconImageView.image = self.highlightedImage;
+//        self.titleLabel.textColor = kColorBlueDefault;
+//        self.iconImageView.image = self.highlightedImage;
         
     } else {
         
-        self.titleLabel.textColor = [UIColor blackColor];
-        self.backgroundColor = [UIColor clearColor];
-        self.iconImageView.image = self.normalImage;
+//        self.titleLabel.textColor = [UIColor blackColor];
+//        self.backgroundColor = [UIColor clearColor];
+//        self.iconImageView.image = self.normalImage;
         
     }
     
@@ -136,7 +138,6 @@ static CGFloat const kFontSize   = 16;
     
     self.titleLabel                 = [[UILabel alloc] init];
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.textColor       = [UIColor redColor];
     self.titleLabel.textAlignment   = NSTextAlignmentLeft;
     self.titleLabel.font            = [UIFont fontWithName:@"STHeitiSC-Light" size:kFontSize];
     self.titleLabel.font            = [UIFont systemFontOfSize:kFontSize];
@@ -177,6 +178,8 @@ static CGFloat const kFontSize   = 16;
 
 - (void)buttonTaped:(UIButton *)button
 {
+    self.titleLabel.textColor = kColorBlueDefault;
+    self.iconImageView.image = self.highlightedImage;
     NSInteger tag = button.tag;
     UIButton *button1 = (UIButton *)[self viewWithTag:1001];
     UIButton *button2 = (UIButton *)[self viewWithTag:1002];
@@ -210,6 +213,8 @@ static CGFloat const kFontSize   = 16;
     
     self.normalImage  = [[UIImage imageNamed:_imageName]imageWithTintColor:[UIColor blackColor]];
     self.highlightedImage = [[UIImage imageNamed:_imageName] imageWithTintColor:RGBA(63, 183, 252, 1)];
+    self.iconImageView.image = self.normalImage;
+
     //
     //    self.iconImageView.alpha = kSetting.imageViewAlphaForCurrentTheme;
     
@@ -249,6 +254,14 @@ static CGFloat const kFontSize   = 16;
     
     return kCellHeight;
     
+}
+
+- (void)resetCell
+{
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor clearColor];
+    self.iconImageView.image = self.normalImage;
+
 }
 
 

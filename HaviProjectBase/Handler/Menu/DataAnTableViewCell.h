@@ -19,4 +19,6 @@
 
 
 + (CGFloat)getCellHeight;
+
+- (void)resetCell;
 @end

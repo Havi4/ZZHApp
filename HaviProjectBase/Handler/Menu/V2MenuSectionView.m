@@ -24,6 +24,7 @@ static CGFloat const kAvatarHeight = 70.0f;
 @property (nonatomic, strong) UIImageView *divideImageView;
 @property (nonatomic, strong) UILabel     *usernameLabel;
 @property (nonatomic, strong) UILabel     *userPhoneLabel;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 //@property (nonatomic, strong) SCActionSheet      *actionSheet;
 
@@ -220,6 +221,7 @@ static CGFloat const kAvatarHeight = 70.0f;
         cell1.weekButton.selected = NO;
         cell1.monthButton.selected = NO;
         cell1.quaterButton.selected = NO;
+        [cell1 resetCell];
         return cell1;
     }else{
         static NSString *CellIdentifier = @"CellIdentifier";
@@ -236,15 +238,13 @@ static CGFloat const kAvatarHeight = 70.0f;
     
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row != 1) {
+        self.indexPath = indexPath;
         if (self.didSelectedIndexBlock) {
             self.didSelectedIndexBlock(indexPath.row);
         }
         [self.tableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
     }else{
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-        DataAnTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        [cell setSelected:NO];
-        [cell setHighlighted:NO animated:NO];
+        [tableView reloadData];
     }
 }
 
