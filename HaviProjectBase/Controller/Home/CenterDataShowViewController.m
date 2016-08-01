@@ -52,9 +52,10 @@
 - (UITableView *)dataShowTableView
 {
     if (!_dataShowTableView) {
-        _dataShowTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-        _dataShowTableView.scrollEnabled = NO;
+        _dataShowTableView = [[UITableView alloc]initWithFrame:(CGRect){0,0,self.view.frame.size.width,self.view.size.height-64} style:UITableViewStyleGrouped];
+        _dataShowTableView.scrollEnabled = YES;
         _dataShowTableView.backgroundColor = [UIColor clearColor];
+        _dataShowTableView.showsVerticalScrollIndicator = NO;
         _dataShowTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _dataShowTableView;
@@ -65,31 +66,44 @@
 {
     [self.view addSubview:self.dataShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
-        if (indexPath.row < 4) {
+        if (indexPath.row == 0) {
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
-        }else if (indexPath.row == 5){
+
+        }else if (indexPath.row == 1 ||indexPath.row == 2){
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
-        }else if(indexPath.row == 4){
-            __block UILabel *label = item;
-            [SleepModelChange changeSleepDuration:self.sleepQualityModel callBack:^(id callBack) {
-                label.text = [NSString stringWithFormat:@"睡眠时长:%@",callBack];
-            }];
-        }else if(indexPath.row == 6){
-            if (item) {
-                UIButton *button = item;
-                [button addTarget:self action:@selector(sendSleepStart) forControlEvents:UIControlEventTouchUpInside];
-            }
+
         }
+//        if (indexPath.row < 4) {
+//        }else if (indexPath.row == 5){
+//        }else if(indexPath.row == 4){
+//            __block UILabel *label = item;
+//            [SleepModelChange changeSleepDuration:self.sleepQualityModel callBack:^(id callBack) {
+//                label.text = [NSString stringWithFormat:@"睡眠时长:%@",callBack];
+//            }];
+//        }else if(indexPath.row == 6){
+//            if (item) {
+//                UIButton *button = item;
+//                [button addTarget:self action:@selector(sendSleepStart) forControlEvents:UIControlEventTouchUpInside];
+//            }
+//        }
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
-        if (indexPath.row < 4) {
-            return [CenterDataTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
-        }else if (indexPath.row == 4 || indexPath.row == 6){
-            return 40;
-        }else{
-            return [CenterGaugeTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
+        if (indexPath.row ==0) {
+            return 300;
+        }else if (indexPath.row ==1 || indexPath.row ==2){
+            return 60;
+        }else if (indexPath.row == 3){
+            return 165;
         }
+        return 0;
+//        if (indexPath.row < 4) {
+//            return [CenterDataTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
+//        }else if (indexPath.row == 4 || indexPath.row == 6){
+//            return 40;
+//        }else{
+//            return [CenterGaugeTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
+//        }
     };
     
     @weakify(self);
@@ -198,6 +212,8 @@
 
 - (void)didSeletedCellIndexPath:(NSIndexPath *)indexPath withData:(id)obj
 {
+    [self.dataShowTableView reloadData];
+    /*
     if (self.deviceUUID.length == 0) {
         [self showNoDeviceBindingAlert];
         return;
@@ -223,6 +239,7 @@
             [self.navigationController pushViewController:controller animated:YES];
         }
     }
+     */
 }
 
 - (void)addControllersToWithControllerName:(NSString *)name

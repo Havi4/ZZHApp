@@ -27,8 +27,8 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @property (nonatomic, strong) CLWeeklyCalendarView* calendarView;
 @property (nonatomic, strong) CalendarHomeViewController *chvc;//日历包括农历
 
-@property (nonatomic, strong) UIButton *leftMenuButton;
-@property (nonatomic, strong) UIButton *rightMenuButton;
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
+@property (nonatomic, strong) UIButton *calendarButton;
 
 @end
 
@@ -40,7 +40,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     [self initNaviBarView];
     [self createBarItems];
     [self queryDeviceListForControllers];
-    [self initDatePicker];
+//    [self initDatePicker];
 }
 
 - (void)queryDeviceListForControllers
@@ -59,7 +59,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)initDatePicker
 {
-    [self.view addSubview:self.calendarView];
+//    [self.view addSubview:self.calendarView];
     if (selectedDateToUse) {
         [self.calendarView redrawToDate:selectedDateToUse];
     }
@@ -72,10 +72,24 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
     }];
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+    
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_share@3x"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self shareApp:nil];
+    }];
+    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+    
+    self.calendarButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.calendarButton.frame = (CGRect){self.view.frame.size.width -16-44-45,20,50,44};
+    [self.calendarButton setTitle:@"08/01" forState:UIControlStateNormal];
+    self.calendarButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    [self.calendarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.calendarButton addTarget:self action:@selector(showCalendarView:) forControlEvents:UIControlEventTouchUpInside];
+    [self.sc_navigationBar addSubview:self.calendarButton];
 }
 
 - (void)initNaviBarView
 {
+    selectedDateToUse = [NSDate date];
     self.navigationController.navigationBarHidden = YES;
     self.containerDataView = [[BaseViewContainerView alloc]initWithNavBarControllers:nil];
     self.containerDataView.view.backgroundColor = [UIColor clearColor];
@@ -86,9 +100,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         NSLog(@"index %ld", (long)currentPageIndex);
         selectPageIndex = currentPageIndex;
     };
-    [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height - CALENDER_VIEW_HEIGHT];
-    [self.containerDataView.navigationBarView addSubview:self.leftMenuButton];
-    [self.containerDataView.navigationBarView addSubview:self.rightMenuButton];
+    [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height];
 }
 
 - (void)checkUserDevice:(void (^)(DeviceList *device, NSError *error))block
@@ -150,31 +162,36 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     
 }
 
+- (void)showCalendarView:(UIButton *)button
+{
+    DeBugLog(@"sho");
+}
+
 #pragma mark setter
 
-- (UIButton *)leftMenuButton
-{
-    if (!_leftMenuButton) {
-        _leftMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _leftMenuButton.backgroundColor = [UIColor clearColor];
-        [_leftMenuButton dk_setImage:DKImageWithNames(@"re_order_0", @"re_order_1") forState:UIControlStateNormal];
-        [_leftMenuButton setFrame:CGRectMake(0, 20, 44, 44)];
-        [_leftMenuButton addTarget:self action:@selector(showLeftView) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _leftMenuButton;
-}
-
-- (UIButton *)rightMenuButton
-{
-    if (!_rightMenuButton) {
-        _rightMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightMenuButton.backgroundColor = [UIColor clearColor];
-        [_rightMenuButton dk_setImage:DKImageWithNames(@"btn_point_0", @"btn_point_1") forState:UIControlStateNormal];
-        [_rightMenuButton setFrame:CGRectMake(self.view.frame.size.width-50, 20, 44, 44)];
-        [_rightMenuButton addTarget:self action:@selector(showMoreInfo:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _rightMenuButton;
-}
+//- (UIButton *)leftMenuButton
+//{
+//    if (!_leftMenuButton) {
+//        _leftMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _leftMenuButton.backgroundColor = [UIColor clearColor];
+//        [_leftMenuButton dk_setImage:DKImageWithNames(@"re_order_0", @"re_order_1") forState:UIControlStateNormal];
+//        [_leftMenuButton setFrame:CGRectMake(0, 20, 44, 44)];
+//        [_leftMenuButton addTarget:self action:@selector(showLeftView) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _leftMenuButton;
+//}
+//
+//- (UIButton *)rightMenuButton
+//{
+//    if (!_rightMenuButton) {
+//        _rightMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _rightMenuButton.backgroundColor = [UIColor clearColor];
+//        [_rightMenuButton dk_setImage:DKImageWithNames(@"btn_point_0", @"btn_point_1") forState:UIControlStateNormal];
+//        [_rightMenuButton setFrame:CGRectMake(self.view.frame.size.width-50, 20, 44, 44)];
+//        [_rightMenuButton addTarget:self action:@selector(showMoreInfo:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _rightMenuButton;
+//}
 
 -(CLWeeklyCalendarView *)calendarView
 {

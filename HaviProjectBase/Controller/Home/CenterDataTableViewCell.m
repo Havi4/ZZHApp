@@ -13,6 +13,20 @@
     UILabel *cellNameLabel;
     YYAnimatedImageView *cellImage;
     UILabel *cellDataLabel;
+    
+    UIButton *leftBackView;
+    UIButton *rightBackView;
+    UILabel *leftTitleLabel;
+    UILabel *leftNumLabel;
+    UILabel *leftSubLabel;
+    YYAnimatedImageView *leftImage;
+    
+    UILabel *rightTitleLabel;
+    UILabel *rightNumLabel;
+    UILabel *rightSubLabel;
+    YYAnimatedImageView *rightImage;
+    UIImageView *triage1;
+    UIImageView *triage2;
 }
 @end
 
@@ -22,42 +36,147 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        cellNameLabel = [[UILabel alloc]init];
-        cellNameLabel.text = @"心率";
-        cellNameLabel.dk_textColorPicker = kTextColorPicker;
-        [self addSubview:cellNameLabel];
-        [cellNameLabel makeConstraints:^(MASConstraintMaker *make) {
+        leftBackView = [UIButton buttonWithType:UIButtonTypeCustom];
+        leftBackView.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.4];
+        [self addSubview:leftBackView];
+        rightBackView = [UIButton buttonWithType:UIButtonTypeCustom];
+        rightBackView.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.4];;
+        [self addSubview:rightBackView];
+        triage1 = [[UIImageView alloc]init];
+        triage2 = [[UIImageView alloc]init];
+        [leftBackView addSubview:triage1];
+        [rightBackView addSubview:triage2];
+        triage1.image = [UIImage imageNamed:@"triagle"];
+        triage2.image = [UIImage imageNamed:@"triagle"];
+        
+        leftTitleLabel = [[UILabel alloc]init];
+        leftTitleLabel.textColor = [UIColor whiteColor];
+        leftTitleLabel.font = [UIFont systemFontOfSize:16];
+        [leftBackView addSubview:leftTitleLabel];
+        
+        leftNumLabel = [[UILabel alloc]init];
+        leftNumLabel.textColor = [UIColor whiteColor];
+        leftNumLabel.font = [UIFont systemFontOfSize:30];
+        [leftBackView addSubview:leftNumLabel];
+        
+        leftSubLabel = [[UILabel alloc]init];
+        leftSubLabel.textColor = [UIColor whiteColor];
+        leftSubLabel.font = [UIFont systemFontOfSize:12];
+        [leftBackView addSubview:leftSubLabel];
+        
+        leftImage = [[YYAnimatedImageView alloc]init];
+        [leftBackView addSubview:leftImage];
+        
+        rightTitleLabel = [[UILabel alloc]init];
+        rightTitleLabel.textColor = [UIColor whiteColor];
+        rightTitleLabel.font = [UIFont systemFontOfSize:16];
+
+        [rightBackView addSubview:rightTitleLabel];
+        
+        rightNumLabel = [[UILabel alloc]init];
+        rightNumLabel.textColor = [UIColor whiteColor];
+        rightNumLabel.font = [UIFont systemFontOfSize:30];
+
+        [rightBackView addSubview:rightNumLabel];
+        
+        rightSubLabel = [[UILabel alloc]init];
+        rightSubLabel.textColor = [UIColor whiteColor];
+        rightSubLabel.font = [UIFont systemFontOfSize:12];
+
+        [rightBackView addSubview:rightSubLabel];
+        rightImage = [[YYAnimatedImageView alloc]init];
+        [rightBackView addSubview:rightImage];
+        [leftBackView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left).offset(0);
             make.height.equalTo(self.mas_height);
-            make.centerY.equalTo(self.mas_centerY);
-            make.left.equalTo(self.mas_left).offset(30);
+            make.width.equalTo(self.mas_width).multipliedBy(0.5);
         }];
         
-        cellImage = [[YYAnimatedImageView alloc]init];
-        [self addSubview:cellImage];
-        [cellImage makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cellNameLabel.mas_right).offset(30);
-            make.centerY.equalTo(self.mas_centerY);
-            make.height.equalTo(cellImage.mas_width);
+        [triage1 makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(leftBackView.mas_right);
+            make.top.equalTo(leftBackView.mas_top).offset(-0.1);
+            make.height.width.equalTo(@12);
+        }];
+        
+        [triage2 makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(rightBackView.mas_right);
+            make.top.equalTo(rightBackView.mas_top).offset(-0.1);
+            make.height.width.equalTo(@12);
+        }];
+        
+        [leftImage makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(leftBackView.mas_left).offset(16);
+            make.centerY.equalTo(leftBackView.mas_centerY);
+            make.height.equalTo(@35);
+            make.width.equalTo(@35);
+        }];
+        
+        [leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(leftImage.mas_right).offset(5);
+            make.top.equalTo(leftBackView.mas_top);
             make.height.equalTo(@30);
+            
+        
+        }];
+        [leftNumLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(leftImage.mas_right).offset(5);
+            make.top.equalTo(leftBackView.mas_top).offset(28);
+            make.height.equalTo(@30);
+            make.width.equalTo(@60);
+        }];
+        [leftSubLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(leftNumLabel.mas_right).offset(0);
+            make.bottom.equalTo(leftBackView.mas_bottom).offset(-5);
         }];
         
-        cellDataLabel = [[UILabel alloc]init];
-        cellDataLabel.dk_textColorPicker = kTextColorPicker;
-        cellDataLabel.text = @"5次/天";
-        [self addSubview:cellDataLabel];
-        [cellDataLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.mas_right).offset(-30);
-            make.centerY.equalTo(self.mas_centerY);
+        [rightBackView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(leftBackView.mas_right).offset(0);
             make.height.equalTo(self.mas_height);
+            make.width.equalTo(self.mas_width).multipliedBy(0.5);
+        }];
+        
+        [rightImage makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(rightBackView.mas_left).offset(16);
+            make.centerY.equalTo(rightBackView.mas_centerY);
+            make.height.equalTo(@35);
+            make.width.equalTo(@30);
+        }];
+        
+        [rightTitleLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(rightImage.mas_right).offset(5);
+            make.top.equalTo(rightBackView.mas_top);
+            make.height.equalTo(@30);
+            
+            
+        }];
+        [rightNumLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(rightImage.mas_right).offset(5);
+            make.top.equalTo(rightBackView.mas_top).offset(28);
+            make.height.equalTo(@30);
+            make.width.equalTo(@60);
+        }];
+        [rightSubLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(rightNumLabel.mas_right).offset(0);
+            make.bottom.equalTo(rightBackView.mas_bottom).offset(-5);
+        }];
+        UIImageView *imageLine1 = [[UIImageView alloc]init];
+        imageLine1.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
+        imageLine1.tag = 100;
+        [self addSubview:imageLine1];
+        [imageLine1 makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.mas_centerX).offset(0);
+            make.top.equalTo(self.mas_top).offset(0);
+            make.bottom.equalTo(self.mas_bottom).offset(0);
+            make.width.equalTo(@0.5);
         }];
         
         UIImageView *imageLine = [[UIImageView alloc]init];
-        imageLine.dk_imagePicker = DKImageWithNames(@"cell_seperator_0", @"cell_seperator_1");
-        imageLine.tag = 100;
+        imageLine.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
+        imageLine.tag = 101;
         [self addSubview:imageLine];
         [imageLine makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mas_left).offset(5);
-            make.right.equalTo(self.mas_right).offset(-5);
+            make.left.equalTo(self.mas_left).offset(0);
+            make.right.equalTo(self.mas_right).offset(0);
             make.bottom.equalTo(self.mas_bottom).offset(-0.5);
             make.height.equalTo(@0.5);
         }];
@@ -80,12 +199,20 @@
     withOtherInfo:(id)objInfo
 {
     // Rewrite this func in SubClass !
-    NSDictionary *dic = obj;
+    NSArray *dic = obj;
+    NSDictionary *leftDic = dic[0];
+    NSDictionary *rightDic = dic[1];
     SleepQualityModel *model = objInfo;
-    cellNameLabel.text = [dic objectForKey:@"cellTitle"];
-    YYImage *image = [YYImage imageNamed:[NSString stringWithFormat:@"%@%d",[dic objectForKey:@"cellIcon"],0]];
-    YYImage *image2 = [YYImage imageNamed:[NSString stringWithFormat:@"%@%d",[dic objectForKey:@"cellIcon"],1]];
-    cellImage.dk_imagePicker = DKImageWithImages(image,image2);
+    YYImage *image = [YYImage imageNamed:[NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellIcon"]]];
+    YYImage *image1 = [YYImage imageNamed:[NSString stringWithFormat:@"%@",[rightDic objectForKey:@"cellIcon"]]];
+    leftImage.image = image;
+    rightImage.image = image1;
+    leftTitleLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellTitle"]];
+    leftNumLabel.text = @"100";
+    leftSubLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellSub"]];
+    rightTitleLabel.text = [NSString stringWithFormat:@"%@",[rightDic objectForKey:@"cellTitle"]];
+    rightNumLabel.text = @"100";
+    rightSubLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellSub"]];
     switch (indexPath.row) {
         case 0:{
             cellDataLabel.text = [NSString stringWithFormat:@"%d次/分",[model.averageHeartRate intValue]];
@@ -95,15 +222,6 @@
             cellDataLabel.text = [NSString stringWithFormat:@"%d次/分",[model.averageRespiratoryRate intValue]];
             break;
         }
-        case 2:{
-            cellDataLabel.text = [NSString stringWithFormat:@"%d次/天",[model.outOfBedTimes intValue]];
-            break;
-        }
-        case 3:{
-            cellDataLabel.text = [NSString stringWithFormat:@"%d次/天",[model.bodyMovementTimes intValue]];
-            break;
-        }
-            
         default:
             break;
     }

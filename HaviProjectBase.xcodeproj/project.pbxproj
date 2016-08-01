@@ -12,6 +12,22 @@
 		2C15EB7A1CDB1D9E00A43086 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */; };
 		2C15EB7C1CDB1DA800A43086 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB7B1CDB1DA800A43086 /* OpenGLES.framework */; };
 		2C15EB7E1CDB1DB900A43086 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB7D1CDB1DB900A43086 /* CoreMotion.framework */; };
+		2C1D9FD01D4CC46100FA6678 /* JTNumberScrollAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D9FCD1D4CC46100FA6678 /* JTNumberScrollAnimatedView.m */; };
+		2C1D9FD11D4CC46100FA6678 /* ZZHCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D9FCF1D4CC46100FA6678 /* ZZHCircleView.m */; };
+		2C1D9FD31D4CD5B900FA6678 /* chang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FD21D4CD5B900FA6678 /* chang@3x.png */; };
+		2C1D9FD51D4D8FC300FA6678 /* triagle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FD41D4D8FC300FA6678 /* triagle.png */; };
+		2C1D9FD81D4F012000FA6678 /* CenterSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D9FD71D4F012000FA6678 /* CenterSubTableViewCell.m */; };
+		2C1D9FDA1D4F18C900FA6678 /* bed_no_people@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FD91D4F18C900FA6678 /* bed_no_people@3x.png */; };
+		2C1D9FDC1D4F18D800FA6678 /* moveon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FDB1D4F18D800FA6678 /* moveon@3x.png */; };
+		2C1D9FDE1D4F18EA00FA6678 /* breath@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FDD1D4F18EA00FA6678 /* breath@3x.png */; };
+		2C1D9FE01D4F18FA00FA6678 /* heart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FDF1D4F18FA00FA6678 /* heart@3x.png */; };
+		2C1D9FE21D4F190C00FA6678 /* long_sleep@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FE11D4F190C00FA6678 /* long_sleep@3x.png */; };
+		2C1D9FE41D4F191500FA6678 /* getup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FE31D4F191500FA6678 /* getup@3x.png */; };
+		2C1D9FE61D4F192700FA6678 /* deep_sleep@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FE51D4F192700FA6678 /* deep_sleep@3x.png */; };
+		2C1D9FE81D4F193000FA6678 /* light_sleep@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FE71D4F193000FA6678 /* light_sleep@3x.png */; };
+		2C1D9FEA1D4F193C00FA6678 /* bed_on_single@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FE91D4F193C00FA6678 /* bed_on_single@3x.png */; };
+		2C1D9FEC1D4F194700FA6678 /* bed_on_double@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FEB1D4F194700FA6678 /* bed_on_double@3x.png */; };
+		2C1D9FEE1D4F258900FA6678 /* icon_share@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D9FED1D4F258900FA6678 /* icon_share@3x.png */; };
 		2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */; };
 		2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */; };
 		2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */; };
@@ -534,6 +550,25 @@
 		2C15EB7D1CDB1DB900A43086 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		2C15EB7F1CDB1DCC00A43086 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PgyUpdate.framework; path = Pods/PgyUpdate/PgySDK/sdk/PgyUpdate.framework; sourceTree = "<group>"; };
 		2C15EB811CDB1DE400A43086 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PgySDK.framework; path = Pods/Pgyer/PgySDK/sdk/PgySDK.framework; sourceTree = "<group>"; };
+		2C1D9FCC1D4CC46100FA6678 /* JTNumberScrollAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTNumberScrollAnimatedView.h; sourceTree = "<group>"; };
+		2C1D9FCD1D4CC46100FA6678 /* JTNumberScrollAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTNumberScrollAnimatedView.m; sourceTree = "<group>"; };
+		2C1D9FCE1D4CC46100FA6678 /* ZZHCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZHCircleView.h; sourceTree = "<group>"; };
+		2C1D9FCF1D4CC46100FA6678 /* ZZHCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZHCircleView.m; sourceTree = "<group>"; };
+		2C1D9FD21D4CD5B900FA6678 /* chang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chang@3x.png"; sourceTree = "<group>"; };
+		2C1D9FD41D4D8FC300FA6678 /* triagle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triagle.png; sourceTree = "<group>"; };
+		2C1D9FD61D4F012000FA6678 /* CenterSubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterSubTableViewCell.h; sourceTree = "<group>"; };
+		2C1D9FD71D4F012000FA6678 /* CenterSubTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterSubTableViewCell.m; sourceTree = "<group>"; };
+		2C1D9FD91D4F18C900FA6678 /* bed_no_people@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bed_no_people@3x.png"; sourceTree = "<group>"; };
+		2C1D9FDB1D4F18D800FA6678 /* moveon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moveon@3x.png"; sourceTree = "<group>"; };
+		2C1D9FDD1D4F18EA00FA6678 /* breath@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "breath@3x.png"; sourceTree = "<group>"; };
+		2C1D9FDF1D4F18FA00FA6678 /* heart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@3x.png"; sourceTree = "<group>"; };
+		2C1D9FE11D4F190C00FA6678 /* long_sleep@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long_sleep@3x.png"; sourceTree = "<group>"; };
+		2C1D9FE31D4F191500FA6678 /* getup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getup@3x.png"; sourceTree = "<group>"; };
+		2C1D9FE51D4F192700FA6678 /* deep_sleep@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deep_sleep@3x.png"; sourceTree = "<group>"; };
+		2C1D9FE71D4F193000FA6678 /* light_sleep@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light_sleep@3x.png"; sourceTree = "<group>"; };
+		2C1D9FE91D4F193C00FA6678 /* bed_on_single@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bed_on_single@3x.png"; sourceTree = "<group>"; };
+		2C1D9FEB1D4F194700FA6678 /* bed_on_double@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bed_on_double@3x.png"; sourceTree = "<group>"; };
+		2C1D9FED1D4F258900FA6678 /* icon_share@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share@3x.png"; sourceTree = "<group>"; };
 		2C2DC9B11CC6170B008D28D1 /* HFSmtlkV30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFSmtlkV30.h; sourceTree = "<group>"; };
 		2C2DC9B41CC714CD008D28D1 /* LongpressShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongpressShowView.h; sourceTree = "<group>"; };
 		2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongpressShowView.m; sourceTree = "<group>"; };
@@ -1385,6 +1420,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C1D9FCB1D4CC46000FA6678 /* Gauge */ = {
+			isa = PBXGroup;
+			children = (
+				2C1D9FCC1D4CC46100FA6678 /* JTNumberScrollAnimatedView.h */,
+				2C1D9FCD1D4CC46100FA6678 /* JTNumberScrollAnimatedView.m */,
+				2C1D9FCE1D4CC46100FA6678 /* ZZHCircleView.h */,
+				2C1D9FCF1D4CC46100FA6678 /* ZZHCircleView.m */,
+			);
+			path = Gauge;
+			sourceTree = "<group>";
+		};
 		2C58728E1C7BF0BE001C2F3A /* SLPageController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1400,7 +1446,19 @@
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
+				2C1D9FD91D4F18C900FA6678 /* bed_no_people@3x.png */,
+				2C1D9FED1D4F258900FA6678 /* icon_share@3x.png */,
+				2C1D9FDB1D4F18D800FA6678 /* moveon@3x.png */,
+				2C1D9FDD1D4F18EA00FA6678 /* breath@3x.png */,
+				2C1D9FDF1D4F18FA00FA6678 /* heart@3x.png */,
+				2C1D9FE31D4F191500FA6678 /* getup@3x.png */,
+				2C1D9FE51D4F192700FA6678 /* deep_sleep@3x.png */,
+				2C1D9FE71D4F193000FA6678 /* light_sleep@3x.png */,
+				2C1D9FEB1D4F194700FA6678 /* bed_on_double@3x.png */,
+				2C1D9FE91D4F193C00FA6678 /* bed_on_single@3x.png */,
+				2C1D9FE11D4F190C00FA6678 /* long_sleep@3x.png */,
 				2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */,
+				2C1D9FD21D4CD5B900FA6678 /* chang@3x.png */,
 				2C8D87CF1D461DC5008573EA /* jia@3x.png */,
 				2C8D87D01D461DC5008573EA /* sousuo@3x.png */,
 				2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */,
@@ -1423,6 +1481,7 @@
 				2C96AA6E1D41F01B00ACCA08 /* Navi_Shadow@3x.png */,
 				2C96AA701D41F15A00ACCA08 /* section_divide@3x.png */,
 				2C96AA721D41F31F00ACCA08 /* profile_back@3x.png */,
+				2C1D9FD41D4D8FC300FA6678 /* triagle.png */,
 				2C96AA741D41F65700ACCA08 /* fenxi@3x.png */,
 				2C8D87C61D45EF81008573EA /* navi_back@3x.png */,
 				2C8D87CA1D45F173008573EA /* new_navi_back@3x.png */,
@@ -1518,6 +1577,8 @@
 				2C9EF31F1C7CA18A000704E2 /* CenterDataTableViewCell.m */,
 				2C9EF3831C7DA1AB000704E2 /* CenterGaugeTableViewCell.h */,
 				2C9EF3841C7DA1AB000704E2 /* CenterGaugeTableViewCell.m */,
+				2C1D9FD61D4F012000FA6678 /* CenterSubTableViewCell.h */,
+				2C1D9FD71D4F012000FA6678 /* CenterSubTableViewCell.m */,
 				2C9EF3B01C7EF4C9000704E2 /* SensorTitleTableViewCell.h */,
 				2C9EF3B11C7EF4C9000704E2 /* SensorTitleTableViewCell.m */,
 				2C9EF3B31C7EF5DE000704E2 /* SensorChartTableViewCell.h */,
@@ -2066,6 +2127,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C1D9FCB1D4CC46000FA6678 /* Gauge */,
 				2C96AA4E1D41101A00ACCA08 /* SCNavitagionController */,
 				2CDB2DC51CE471B300E931F0 /* Reachability */,
 				2C9EF5211C8597C9000704E2 /* THPinViewController */,
@@ -2983,7 +3045,9 @@
 				2C9EF5131C854E8B000704E2 /* pic_bad_5@2x.png in Resources */,
 				2C9EF3971C7EAC69000704E2 /* btn_textbox_0.png in Resources */,
 				2C9EF4441C8037EA000704E2 /* ic_getup_1.png in Resources */,
+				2C1D9FDA1D4F18C900FA6678 /* bed_no_people@3x.png in Resources */,
 				2C58725A1C7AEB97001C2F3A /* phone_0@2x.png in Resources */,
+				2C1D9FD31D4CD5B900FA6678 /* chang@3x.png in Resources */,
 				2C9EF2E81C7C43C6000704E2 /* btn_point_0@2x.png in Resources */,
 				2CF2E1D61C771F1A0007A639 /* refuse@2x.png in Resources */,
 				2CF2E1D51C771F1A0007A639 /* apply@2x.png in Resources */,
@@ -3003,6 +3067,7 @@
 				2C96AA141D40994B00ACCA08 /* weixin@3x.png in Resources */,
 				2C96AA6F1D41F01B00ACCA08 /* Navi_Shadow@3x.png in Resources */,
 				2C5872721C7AFC63001C2F3A /* LaunchScreen.storyboard in Resources */,
+				2C1D9FDE1D4F18EA00FA6678 /* breath@3x.png in Resources */,
 				2C9EF41F1C7FEF13000704E2 /* night_icon@2x.png in Resources */,
 				2C58725C1C7AED5C001C2F3A /* icon_logo_login_0@2x.png in Resources */,
 				2C96AA7E1D41F65700ACCA08 /* xinf@3x.png in Resources */,
@@ -3042,6 +3107,7 @@
 				2C96AA6D1D41E79100ACCA08 /* header_back@2x.png in Resources */,
 				2CD014E91C64CD22001F9514 /* home@2x.png in Resources */,
 				2C9EF4431C8037EA000704E2 /* ic_body_movement_1.png in Resources */,
+				2C1D9FEE1D4F258900FA6678 /* icon_share@3x.png in Resources */,
 				2C58725E1C7AED87001C2F3A /* icon_logo_login_1@2x.png in Resources */,
 				2C9EF34F1C7D7C04000704E2 /* leave_apng_1.apng in Resources */,
 				2CF2E1B21C76A94A0007A639 /* CodeScan.bundle in Resources */,
@@ -3052,6 +3118,7 @@
 				2CD0148E1C633FF3001F9514 /* icon_todays_data_0@2x.png in Resources */,
 				2CF2E1FC1C78A82C0007A639 /* DateTools.bundle in Resources */,
 				2CD014C91C639710001F9514 /* re_order_0@2x.png in Resources */,
+				2C1D9FD51D4D8FC300FA6678 /* triagle.png in Resources */,
 				2CD014971C634001001F9514 /* icon_equipment_management_1@2x.png in Resources */,
 				2C5872551C7AEB6F001C2F3A /* icon_password_1@2x.png in Resources */,
 				2C96AA091D40882B00ACCA08 /* password@3x.png in Resources */,
@@ -3059,6 +3126,7 @@
 				2C96AA4D1D410F2A00ACCA08 /* navi_menu@3x.png in Resources */,
 				2CD014AD1C634CF5001F9514 /* week_1@2x.png in Resources */,
 				2C34AE331CEAC45400B24B6E /* pic_about@2x.png in Resources */,
+				2C1D9FDC1D4F18D800FA6678 /* moveon@3x.png in Resources */,
 				2CD014951C634001001F9514 /* icon_alarm_clock_1@2x.png in Resources */,
 				2CD014E51C64CD22001F9514 /* birthday@2x.png in Resources */,
 				2C9EF2CE1C7C12CB000704E2 /* pic_bg_center_1@2x.png in Resources */,
@@ -3080,14 +3148,18 @@
 				2C9EF4291C801C52000704E2 /* icon_general_exception_0@2x.png in Resources */,
 				2C9EF3521C7D7DAC000704E2 /* heart_apng_1.apng in Resources */,
 				2C9EF4281C801C52000704E2 /* icon_fatal_exception_0@2x.png in Resources */,
+				2C1D9FE01D4F18FA00FA6678 /* heart@3x.png in Resources */,
 				2C9EF3501C7D7C04000704E2 /* breath_apng_1.apng in Resources */,
 				2C96AA131D40994B00ACCA08 /* sina@3x.png in Resources */,
 				2CF2E23C1C7AB25F0007A639 /* pic_bg_1@2x.png in Resources */,
 				2C96AA851D4203D300ACCA08 /* icon_message@2x.png in Resources */,
+				2C1D9FE41D4F191500FA6678 /* getup@3x.png in Resources */,
+				2C1D9FE81D4F193000FA6678 /* light_sleep@3x.png in Resources */,
 				2C96AA7F1D41F65700ACCA08 /* zhong@3x.png in Resources */,
 				2C9EF4221C7FEFC1000704E2 /* pic_moon@2x.png in Resources */,
 				2CD014AB1C634CF5001F9514 /* month_1@2x.png in Resources */,
 				2CD014C51C639688001F9514 /* btn_back_1@2x.png in Resources */,
+				2C1D9FE21D4F190C00FA6678 /* long_sleep@3x.png in Resources */,
 				2CD014DA1C64C5A1001F9514 /* person_back_right@2x.png in Resources */,
 				2C9EF4481C80388E000704E2 /* ic_line_0.png in Resources */,
 				2C96AA7B1D41F65700ACCA08 /* sheb@3x.png in Resources */,
@@ -3114,10 +3186,12 @@
 				2C9EF3931C7E973F000704E2 /* ic_compile_0.png in Resources */,
 				2CF2E2501C7AB7E80007A639 /* papasscode_marker@2x.png in Resources */,
 				2C5FE5BC1D4720B200AFFEFE /* about_top@3x.png in Resources */,
+				2C1D9FE61D4F192700FA6678 /* deep_sleep@3x.png in Resources */,
 				2CF2E16A1C759F530007A639 /* havi1_7@2x.png in Resources */,
 				2C9EF4631C80586B000704E2 /* menology_1@2x.png in Resources */,
 				2CF2E1521C7590930007A639 /* textbox_hollow_1@2x.png in Resources */,
 				2CF2E1C31C7701710007A639 /* double_bed@2x.png in Resources */,
+				2C1D9FEA1D4F193C00FA6678 /* bed_on_single@3x.png in Resources */,
 				2CF2E2A41C7AE2950007A639 /* textbox_password_1@2x.png in Resources */,
 				2CF2E1EB1C78682B0007A639 /* SleepSetting.plist in Resources */,
 				2C9EF3BF1C7EFB79000704E2 /* icon_heart_rate_0@2x.png in Resources */,
@@ -3158,6 +3232,7 @@
 				2CF2E19D1C7604E20007A639 /* qr_code_0@2x.png in Resources */,
 				2CD014821C6335F4001F9514 /* LeftSidePlist.plist in Resources */,
 				2C9EF4191C7FED92000704E2 /* floatView_0.png in Resources */,
+				2C1D9FEC1D4F194700FA6678 /* bed_on_double@3x.png in Resources */,
 				2C9EF3481C7D7B51000704E2 /* heart_apng_0.apng in Resources */,
 				2C9EF3461C7D7B51000704E2 /* leave_apng_0.apng in Resources */,
 				2CD014EC1C64CD22001F9514 /* weight@2x.png in Resources */,
@@ -3332,6 +3407,7 @@
 				2C5872981C7BF173001C2F3A /* BaseViewContainerView.m in Sources */,
 				2CD015291C7076D4001F9514 /* MyDeviceListViewController.m in Sources */,
 				2C9EF4551C804B9F000704E2 /* ReportDataDelegate.m in Sources */,
+				2C1D9FD01D4CC46100FA6678 /* JTNumberScrollAnimatedView.m in Sources */,
 				2CF2E2011C78A82C0007A639 /* DTTimePeriodGroup.m in Sources */,
 				2C9EF4E31C844FA3000704E2 /* NSDate+WQCalendarLogic.m in Sources */,
 				2CF2E21C1C79D6600007A639 /* ModifyPassWordViewController.m in Sources */,
@@ -3464,11 +3540,13 @@
 				2CF2E1401C7579520007A639 /* ReactiveDoubleViewController.m in Sources */,
 				2C8D87CE1D45FC5B008573EA /* EditAddressTableViewController.m in Sources */,
 				2C5FE5B31D4709D900AFFEFE /* ChangeLanguageViewController.m in Sources */,
+				2C1D9FD81D4F012000FA6678 /* CenterSubTableViewCell.m in Sources */,
 				2CD75B741C61C2D000E7E076 /* MyDeviceListModel.m in Sources */,
 				2CF2E1B51C76AFE40007A639 /* QBarScanViewController.m in Sources */,
 				2CD0152F1C70774A001F9514 /* JAActionButton.m in Sources */,
 				2C9EF40F1C7FE30B000704E2 /* BreathGraphView.m in Sources */,
 				2C9EF3711C7D996B000704E2 /* CLWeeklyCalendarView.m in Sources */,
+				2C1D9FD11D4CC46100FA6678 /* ZZHCircleView.m in Sources */,
 				2CD75B7A1C61C2D000E7E076 /* UserInfoDetailModel.m in Sources */,
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,
 				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,

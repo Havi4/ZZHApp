@@ -7,8 +7,10 @@
 //
 
 #import "HaviBaseTableViewCell.h"
+#import "ZZHCircleView.h"
 
 @interface CenterGaugeTableViewCell : HaviBaseTableViewCell
+@property (nonatomic, strong) ZZHCircleView *cellCircleView;
 
 @property (nonatomic, copy) void (^cellClockTaped)(id callBackResult);
 

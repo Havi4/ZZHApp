@@ -10,6 +10,7 @@
 #import "CenterDataTableViewCell.h"
 #import "CenterGaugeTableViewCell.h"
 #import "RMDateSelectionViewController.h"
+#import "CenterSubTableViewCell.h"
 
 @interface CenterDataShowDataDelegate ()
 
@@ -63,7 +64,11 @@
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.items objectAtIndex:indexPath.row];
+    if (indexPath.row>0 && indexPath.row < 3) {
+        NSInteger row = indexPath.row;
+        return [self.items objectAtIndex:row-1];
+    }
+    return nil;
 }
 
 - (void)handleTableViewDataSourceAndDelegate:(UITableView *)tableView
@@ -76,7 +81,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.items.count + 3;
+    return self.items.count + 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -86,30 +91,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 30;
+    return 0.01;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row<4) {
-        id item = [self itemAtIndexPath:indexPath];
-        CenterDataTableViewCell *cell = (CenterDataTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
-        if (!cell) {
-            cell = [[CenterDataTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
-        }
-        self.configureCellBlock(indexPath,item,cell);
-        return cell;
-    }else if(indexPath.row == 4){
-        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
-        }
-        [cell addSubview:self.leftSleepTimeLabel];
-        self.configureCellBlock(indexPath,self.leftSleepTimeLabel,cell);
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
-        return cell;
-    }else if(indexPath.row == 5){
+    if (indexPath.row == 0) {
         CenterGaugeTableViewCell *cell = (CenterGaugeTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cellGauge"];
         if (!cell) {
             cell = [[CenterGaugeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellGauge"];
@@ -120,22 +107,59 @@
             @strongify(self);
             [self cellIconSelected];
         };
-        return cell;
-    }else{
-        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
-        if (!cell) {
-            cell = [[CenterGaugeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
-        }
-        if ((selectedDateToUse.year == [NSDate date].year)&&(selectedDateToUse.month == [NSDate date].month)&&(selectedDateToUse.day == [NSDate date].day) ) {
-            [cell addSubview:self.iWantSleepLabel];
-            self.configureCellBlock(indexPath,self.iWantSleepLabel,cell);
-        }else{
-            self.configureCellBlock(indexPath,nil,cell);
-        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
+        return cell;
+
+    }else if (indexPath.row == 1 || indexPath.row ==2){
+        id item = [self itemAtIndexPath:indexPath];
+        CenterDataTableViewCell *cell = (CenterDataTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+        if (!cell) {
+            cell = [[CenterDataTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+        }
+        if (indexPath.row==2) {
+            UITableView *line = [cell viewWithTag:101];
+            line.hidden = YES;
+        }
+        self.configureCellBlock(indexPath,item,cell);
+        return cell;
+
+    }else{
+        id item = [self itemAtIndexPath:indexPath];
+        CenterSubTableViewCell*cell = (CenterSubTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+        if (!cell) {
+            cell = [[CenterSubTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+        }
+//        self.configureCellBlock(indexPath,item,cell);
         return cell;
     }
+    return nil;
+//    if (indexPath.row<4) {
+//    }else if(indexPath.row == 4){
+//        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
+//        if (cell == nil) {
+//            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
+//        }
+//        [cell addSubview:self.leftSleepTimeLabel];
+//        self.configureCellBlock(indexPath,self.leftSleepTimeLabel,cell);
+    
+//        cell.backgroundColor = [UIColor clearColor];
+//        return cell;
+//    }else if(indexPath.row == 5){
+//    }else{
+//        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
+//        if (!cell) {
+//            cell = [[CenterGaugeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
+//        }
+//        if ((selectedDateToUse.year == [NSDate date].year)&&(selectedDateToUse.month == [NSDate date].month)&&(selectedDateToUse.day == [NSDate date].day) ) {
+//            [cell addSubview:self.iWantSleepLabel];
+//            self.configureCellBlock(indexPath,self.iWantSleepLabel,cell);
+//        }else{
+//            self.configureCellBlock(indexPath,nil,cell);
+//        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.backgroundColor = [UIColor clearColor];
+//        return cell;
+//    }
 }
 
 #pragma mark datasource
@@ -152,17 +176,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row<4) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        id item = [self itemAtIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row ==0) {
         if (self.didSelectCellBlock) {
-            self.didSelectCellBlock(indexPath,item);
+            self.didSelectCellBlock(indexPath,nil);
         }
+
     }
+//    if (indexPath.row<4) {
+//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//        id item = [self itemAtIndexPath:indexPath];
+//        if (self.didSelectCellBlock) {
+//            self.didSelectCellBlock(indexPath,item);
+//        }
+//    }
 }
 
 - (void)cellIconSelected
 {
+    if (self.didSelectCellBlock) {
+        self.didSelectCellBlock([NSIndexPath indexPathForRow:0 inSection:0],nil);
+    }
+    /*
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite];
     @weakify(self);
     RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
@@ -182,6 +217,7 @@
     [dateSelectionController addAction:cancelAction];
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
     [[NSObject appNaviRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
+     */
 }
 
 @end
