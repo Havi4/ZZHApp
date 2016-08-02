@@ -69,6 +69,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)createBarItems
 {
+    selectedDateToUse = [[NSDate date]dateByAddingHours:8];
     self.backgroundImageView.image = [UIImage imageNamed:@"home_back@3x"];
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
@@ -82,7 +83,9 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     
     self.calendarButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.calendarButton.frame = (CGRect){self.view.frame.size.width -16-44-45,20,50,44};
-    [self.calendarButton setTitle:@"08/01" forState:UIControlStateNormal];
+    NSString *dateString = [NSString stringWithFormat:@"%@",selectedDateToUse];
+    NSString *dateTime = [NSString stringWithFormat:@"%@/%@",[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
+    [self.calendarButton setTitle:dateTime forState:UIControlStateNormal];
     self.calendarButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [self.calendarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.calendarButton addTarget:self action:@selector(showCalendarView:) forControlEvents:UIControlEventTouchUpInside];
@@ -91,7 +94,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)initNaviBarView
 {
-    selectedDateToUse = [NSDate date];
+    
     self.navigationController.navigationBarHidden = YES;
     self.containerDataView = [[BaseViewContainerView alloc]initWithNavBarControllers:nil];
     self.containerDataView.view.backgroundColor = [UIColor clearColor];
@@ -166,15 +169,24 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)showCalendarView:(UIButton *)button
 {
-    
-//    _modalAnimationController = [[ModalAnimation alloc] init];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshDate:) name:@"kSelectedNewDate" object:nil];
     NewCalendarViewController *modal = [[NewCalendarViewController alloc] init];
-    SCNavigationController *navi = [[SCNavigationController alloc]initWithRootViewController:modal];
-//    modal.transitioningDelegate = self;
-//    modal.modalPresentationStyle = UIModalPresentationCustom;
-//
+    SCNavigationController *navi = [[SCNavigationController alloc]initWithRootViewController:modal];//
     [self presentViewController:navi animated:YES completion:^{
-//        [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+    }];
+}
+
+- (void)refreshDate:(NSNotification *)noti
+{
+    NSDate *selectDate = (NSDate *)[noti.userInfo objectForKey:@"date"];
+    selectedDateToUse = [selectDate dateByAddingHours:8];
+    NSString *dateString = [NSString stringWithFormat:@"%@",selectedDateToUse];
+    NSString *dateTime = [NSString stringWithFormat:@"%@/%@",[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
+    [self.calendarButton setTitle:dateTime forState:UIControlStateNormal];
+    __block NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
+    __block NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:-1]];
+    [self.containerDataView.childViewControllers enumerateObjectsUsingBlock:^(__kindof CenterDataShowViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
     }];
 }
 

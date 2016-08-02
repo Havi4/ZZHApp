@@ -92,6 +92,8 @@
         [self.cellCircleView setPeoplePer:sleepLevel];
         
     }];
+    
+    
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }

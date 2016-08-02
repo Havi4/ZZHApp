@@ -86,7 +86,7 @@
         _lightSleepNum = [[UILabel alloc]init];
         _lightSleepNum.textColor = [UIColor whiteColor];
         _lightSleepNum.textAlignment = NSTextAlignmentCenter;
-        _lightSleepNum.text = @"12小时55分";
+        _lightSleepNum.text = @"0小时0分";
         _lightSleepNum.font = [UIFont systemFontOfSize:15];
         [self addSubview:_lightSleepNum];
         
@@ -169,7 +169,10 @@
     withOtherInfo:(id)objInfo
 {
     // Rewrite this func in SubClass !
-    
+    SleepQualityModel *model = (SleepQualityModel*)objInfo;
+    [SleepModelChange changeSleepDuration:model callBack:^(id callBack) {
+        _longSleepNum.text = [NSString stringWithFormat:@"%@",callBack];
+    }];
     cell.backgroundColor = [UIColor clearColor];
 }
 

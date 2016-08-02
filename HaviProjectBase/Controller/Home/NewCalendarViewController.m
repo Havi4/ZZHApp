@@ -208,7 +208,7 @@
         }
     }
     [self dismissViewControllerAnimated:YES completion:^{
-        [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"kSelectedNewDate" object:nil userInfo:@{@"date":_dateSelected}];
 
     }];
 }

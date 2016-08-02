@@ -27,6 +27,9 @@
                 *stop = YES;
             }
         }];
+        if (arr.count ==1) {
+            detail = [arr objectAtIndex:0];
+        }
         NSString *sleepDuration = detail.sleepDuration;
         int hour = [sleepDuration intValue];
         double second2 = 0.0;
