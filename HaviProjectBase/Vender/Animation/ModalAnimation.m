@@ -35,7 +35,7 @@
         [containerView addSubview:modalView];
         NSDictionary *views = NSDictionaryOfVariableBindings(containerView, modalView);
         _constraints = [[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[modalView]-15-|" options:0 metrics:nil views:views] arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[modalView]-20-|" options:0 metrics:nil views:views]];
-        [containerView addConstraints:_constraints];
+//        [containerView addConstraints:_constraints];
         
         //Move off of the screen so we can slide it up
         CGRect endFrame = modalView.frame;

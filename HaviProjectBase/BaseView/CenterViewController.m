@@ -14,6 +14,8 @@
 #import "CalendarDateCaculate.h"
 #import "CantainerDeviceListViewController.h"
 #import "ModalAnimation.h"
+#import "NewCalendarViewController.h"
+#import "SCNavigationController.h"
 
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @interface CenterViewController ()<CLWeeklyCalendarViewDelegate,UIViewControllerTransitioningDelegate>
@@ -164,7 +166,16 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)showCalendarView:(UIButton *)button
 {
-    DeBugLog(@"sho");
+    
+    _modalAnimationController = [[ModalAnimation alloc] init];
+    NewCalendarViewController *modal = [[NewCalendarViewController alloc] init];
+    SCNavigationController *navi = [[SCNavigationController alloc]initWithRootViewController:modal];
+    modal.transitioningDelegate = self;
+    modal.modalPresentationStyle = UIModalPresentationCustom;
+
+    [self presentViewController:navi animated:YES completion:^{
+//        [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+    }];
 }
 
 #pragma mark setter
