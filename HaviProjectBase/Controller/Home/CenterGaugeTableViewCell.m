@@ -36,11 +36,19 @@
         self.cellCircleView.backgroundColor = [UIColor clearColor];
         [self addSubview:self.cellCircleView];
         _cellCircleView.userInteractionEnabled = YES;
+        UIView *tapBack = [[UIView alloc]init];
+        tapBack.backgroundColor = [UIColor clearColor];
+        tapBack.layer.masksToBounds = YES;
+        tapBack.layer.cornerRadius = 100;
+        [_cellCircleView addSubview:tapBack];
+        [tapBack makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_cellCircleView.mas_centerY);
+            make.centerX.equalTo(_cellCircleView.mas_centerX);
+            make.width.height.equalTo(@200);
+        }];
         UITapGestureRecognizer *_tapLeftGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeValueAnimation:)];
-        [_cellCircleView addGestureRecognizer:_tapLeftGesture];
         [self addSubview:_cellCircleView];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showEndTimePicker)];
-        [self.cellCircleView addGestureRecognizer:tap];
+        [tapBack addGestureRecognizer:_tapLeftGesture];
         [self addSubview:self.cellRecommend];
     }
     return self;
@@ -109,10 +117,9 @@
 {
     //在这里请求最新的当日数据或者仅仅是更新数据。
     CGPoint point = [gesture locationInView:self.cellCircleView];
-    if (point.x>(self.cellCircleView.frame.size.width- self.cellCircleView.frame.size.height)/2 && point.x <self.cellCircleView.frame.size.height+(self.cellCircleView.frame.size.width- self.cellCircleView.frame.size.height)/2) {
-//        self.cellCircleView.value = 0;
-//        [self.cellCircleView changeSleepQualityValue:self.value*20];//睡眠指数
-//        [self.cellCircleView changeSleepTimeValue:self.value*20];
+    if (point.x>self.cellCircleView.frame.origin.x && point.x< (self.cellCircleView.frame.origin.x +self.cellCircleView.frame.size.width) && point.y>self.cellCircleView.frame.origin.y && point.y< (self.cellCircleView.frame.origin.y +self.cellCircleView.frame.size.height)) {
+//
+        [self showEndTimePicker];
     }
 }
 

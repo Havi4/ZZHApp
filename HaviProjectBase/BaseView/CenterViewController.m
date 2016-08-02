@@ -16,6 +16,7 @@
 #import "ModalAnimation.h"
 #import "NewCalendarViewController.h"
 #import "SCNavigationController.h"
+#import "NaviTitleScrollView.h"
 
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @interface CenterViewController ()<CLWeeklyCalendarViewDelegate,UIViewControllerTransitioningDelegate>
@@ -30,6 +31,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @property (nonatomic, strong) CalendarHomeViewController *chvc;//日历包括农历
 
 @property (nonatomic, strong) SCBarButtonItem *rightBarItem;
+@property (nonatomic, strong) NaviTitleScrollView *naviBarTitle;
 @property (nonatomic, strong) UIButton *calendarButton;
 
 @end
@@ -69,6 +71,9 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)createBarItems
 {
+    self.naviBarTitle = [[NaviTitleScrollView alloc]initWithFrame:(CGRect){(self.view.frame.size.width-100)/2.0+1,20,100,44}];
+    self.naviBarTitle.userInteractionEnabled = NO;
+    self.naviBarTitle.backgroundColor = [UIColor clearColor];
     selectedDateToUse = [[NSDate date]dateByAddingHours:8];
     self.backgroundImageView.image = [UIImage imageNamed:@"home_back@3x"];
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
@@ -90,6 +95,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     [self.calendarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.calendarButton addTarget:self action:@selector(showCalendarView:) forControlEvents:UIControlEventTouchUpInside];
     [self.sc_navigationBar addSubview:self.calendarButton];
+    [self.sc_navigationBar addSubview:self.naviBarTitle];
 }
 
 - (void)initNaviBarView
@@ -100,10 +106,13 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.containerDataView.view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.containerDataView.view];
     [self addChildViewController:self.containerDataView];
+    @weakify(self);
     self.containerDataView.didChangedPage = ^(NSInteger currentPageIndex){
         // Do something
+        @strongify(self);
         NSLog(@"index %ld", (long)currentPageIndex);
         selectPageIndex = currentPageIndex;
+        [self.naviBarTitle setCurrentIndex:currentPageIndex];
     };
     [self.containerDataView.view setHeight:[UIScreen mainScreen].bounds.size.height];
 }
@@ -155,6 +164,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     }else{
         isDoubleDevice = YES;
         @weakify(self);
+        NSMutableArray *arr = @[].mutableCopy;
         [self.activeDeviceInfo.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
             CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
@@ -162,7 +172,9 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
             dataShow.deviceUUID = obj.detailUUID;
             dataShow.view.frame = self.containerDataView.view.bounds;
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
+            [arr addObject:obj.detailDescription];
         }];
+        self.naviBarTitle.titles = arr;
     }
     
 }

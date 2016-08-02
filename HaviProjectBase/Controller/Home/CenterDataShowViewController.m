@@ -194,7 +194,24 @@
 
 - (void)didSeletedCellIndexPath:(NSIndexPath *)indexPath withData:(id)obj
 {
-    [self.dataShowTableView reloadData];
+    if (indexPath.row == 0) {
+        if (self.deviceUUID.length == 0) {
+            [self showNoDeviceBindingAlert];
+            return;
+        }
+        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+        NSDictionary *dic19 = @{
+                                @"UUID" : self.deviceUUID,
+                                @"FromDate": self.queryStartTime,
+                                @"EndDate": self.queryEndTime,
+                                };
+        @weakify(self);
+        [client requestGetSleepQualityParams:dic19 andBlock:^(SleepQualityModel *qualityModel, NSError *error) {
+            @strongify(self);
+            self.sleepQualityModel = qualityModel;
+            [self.dataShowTableView reloadData];
+        }];
+    }
     /*
     if (self.deviceUUID.length == 0) {
         [self showNoDeviceBindingAlert];

@@ -51,6 +51,7 @@
 		2C1DA0361D5044F000FA6678 /* qq1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DA0331D5044F000FA6678 /* qq1@2x.png */; };
 		2C1DA0371D5044F000FA6678 /* sina1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DA0341D5044F000FA6678 /* sina1@2x.png */; };
 		2C1DA0381D5044F000FA6678 /* weixin1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DA0351D5044F000FA6678 /* weixin1@2x.png */; };
+		2C1DA03B1D5088C800FA6678 /* NaviTitleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DA03A1D5088C800FA6678 /* NaviTitleScrollView.m */; };
 		2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */; };
 		2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */; };
 		2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */; };
@@ -639,6 +640,8 @@
 		2C1DA0331D5044F000FA6678 /* qq1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq1@2x.png"; sourceTree = "<group>"; };
 		2C1DA0341D5044F000FA6678 /* sina1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina1@2x.png"; sourceTree = "<group>"; };
 		2C1DA0351D5044F000FA6678 /* weixin1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weixin1@2x.png"; sourceTree = "<group>"; };
+		2C1DA0391D5088C800FA6678 /* NaviTitleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviTitleScrollView.h; sourceTree = "<group>"; };
+		2C1DA03A1D5088C800FA6678 /* NaviTitleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviTitleScrollView.m; sourceTree = "<group>"; };
 		2C2DC9B11CC6170B008D28D1 /* HFSmtlkV30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFSmtlkV30.h; sourceTree = "<group>"; };
 		2C2DC9B41CC714CD008D28D1 /* LongpressShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongpressShowView.h; sourceTree = "<group>"; };
 		2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongpressShowView.m; sourceTree = "<group>"; };
@@ -1748,6 +1751,8 @@
 				2C9EF4351C802EB3000704E2 /* ChartTableTitleView.m */,
 				2C2DC9B41CC714CD008D28D1 /* LongpressShowView.h */,
 				2C2DC9B51CC714CD008D28D1 /* LongpressShowView.m */,
+				2C1DA0391D5088C800FA6678 /* NaviTitleScrollView.h */,
+				2C1DA03A1D5088C800FA6678 /* NaviTitleScrollView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3548,6 +3553,7 @@
 				2C1DA0241D4F2BF300FA6678 /* ZZHCalendarCircleView.m in Sources */,
 				2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */,
 				2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */,
+				2C1DA03B1D5088C800FA6678 /* NaviTitleScrollView.m in Sources */,
 				2CD75B6F1C61C2D000E7E076 /* AddUserModel.m in Sources */,
 				2C9EF4331C802CB0000704E2 /* ChartTableDataDelegate.m in Sources */,
 				2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */,
