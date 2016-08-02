@@ -124,12 +124,12 @@
         return cell;
 
     }else{
-        id item = [self itemAtIndexPath:indexPath];
+//        id item = [self itemAtIndexPath:indexPath];
         CenterSubTableViewCell*cell = (CenterSubTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
         if (!cell) {
             cell = [[CenterSubTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
         }
-//        self.configureCellBlock(indexPath,item,cell);
+        self.configureCellBlock(indexPath,nil,cell);
         return cell;
     }
     return nil;

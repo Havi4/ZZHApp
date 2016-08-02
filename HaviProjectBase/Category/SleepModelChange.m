@@ -80,6 +80,9 @@
                 *stop = YES;
             }
         }];
+        if (arr.count == 1) {
+            detail = [arr objectAtIndex:0];
+        }
         dispatch_async_on_main_queue(^{
             block(detail);
         });

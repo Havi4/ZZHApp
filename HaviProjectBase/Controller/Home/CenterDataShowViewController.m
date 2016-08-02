@@ -72,20 +72,9 @@
         }else if (indexPath.row == 1 ||indexPath.row == 2){
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
 
+        }else{
+            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }
-//        if (indexPath.row < 4) {
-//        }else if (indexPath.row == 5){
-//        }else if(indexPath.row == 4){
-//            __block UILabel *label = item;
-//            [SleepModelChange changeSleepDuration:self.sleepQualityModel callBack:^(id callBack) {
-//                label.text = [NSString stringWithFormat:@"睡眠时长:%@",callBack];
-//            }];
-//        }else if(indexPath.row == 6){
-//            if (item) {
-//                UIButton *button = item;
-//                [button addTarget:self action:@selector(sendSleepStart) forControlEvents:UIControlEventTouchUpInside];
-//            }
-//        }
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
@@ -97,13 +86,6 @@
             return 165;
         }
         return 0;
-//        if (indexPath.row < 4) {
-//            return [CenterDataTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
-//        }else if (indexPath.row == 4 || indexPath.row == 6){
-//            return 40;
-//        }else{
-//            return [CenterGaugeTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
-//        }
     };
     
     @weakify(self);

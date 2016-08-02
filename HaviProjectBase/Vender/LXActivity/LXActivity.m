@@ -9,7 +9,7 @@
 #import "LXActivity.h"
 
 #define WINDOW_COLOR                            [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2]
-#define ACTIONSHEET_BACKGROUNDCOLOR             [UIColor colorWithRed:106/255.00f green:106/255.00f blue:106/255.00f alpha:0.8]
+#define ACTIONSHEET_BACKGROUNDCOLOR             [UIColor colorWithRed:0.863 green:0.851 blue:0.820 alpha:1.00]
 #define ANIMATE_DURATION                        0.25f
 
 #define CORNER_RADIUS                           5
@@ -275,7 +275,7 @@
     shareLabel.backgroundColor = [UIColor clearColor];
     shareLabel.textAlignment = NSTextAlignmentCenter;
     shareLabel.font = TITLE_FONT;
-    shareLabel.textColor = [UIColor whiteColor];
+    shareLabel.textColor = [UIColor grayColor];
     return shareLabel;
 }
 
@@ -284,11 +284,11 @@
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_INTERVAL_WIDTH, TITLE_INTERVAL_HEIGHT, TITLE_WIDTH, TITLE_HEIGHT)];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.shadowColor = [UIColor blackColor];
+    titlelabel.shadowColor = [UIColor whiteColor];
     titlelabel.shadowOffset = SHADOW_OFFSET;
     titlelabel.font = SHARETITLE_FONT;
     titlelabel.text = title;
-    titlelabel.textColor = [UIColor whiteColor];
+    titlelabel.textColor = [UIColor grayColor];
     titlelabel.numberOfLines = TITLE_NUMBER_LINES;
     return titlelabel;
 }

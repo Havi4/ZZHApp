@@ -88,25 +88,8 @@
         QualityDetailModel *detailModel = callBack;
         int sleepLevel = [detailModel.sleepQuality intValue];
         self.value = sleepLevel;
-        double p = arc4random_uniform(100);
-        double end = p/100;
-        [self.cellCircleView setPercentage:end];
-        [self.cellCircleView setPeoplePer:(int)p];
-//        if (!detailModel.sleepStartTime || !detailModel.sleepEndTime) {
-//            self.cellEndView.hidden = YES;
-//            self.cellStartView.hidden = YES;
-//        }else{
-//            self.cellEndView.hidden = NO;
-//            self.cellStartView.hidden = NO;
-//            NSString *sleepEndTime = detailModel.sleepEndTime;
-//            self.cellEndView.endTime = [sleepEndTime substringWithRange:NSMakeRange(11, 5)];
-//            NSString *sleepStartTime = detailModel.sleepStartTime;
-//            self.cellStartView.startTime = [sleepStartTime substringWithRange:NSMakeRange(11, 5)];
-//        }
-//        if (abs((int)[selectedDateToUse daysFrom:[NSDate date]]) > 7) {
-//            self.cellEndView.hidden = YES;
-//            self.cellStartView.hidden = YES;
-//        }
+        [self.cellCircleView setPercentage:sleepLevel];
+        [self.cellCircleView setPeoplePer:sleepLevel];
         
     }];
     cell.backgroundColor = [UIColor clearColor];

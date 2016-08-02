@@ -167,12 +167,12 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void)showCalendarView:(UIButton *)button
 {
     
-    _modalAnimationController = [[ModalAnimation alloc] init];
+//    _modalAnimationController = [[ModalAnimation alloc] init];
     NewCalendarViewController *modal = [[NewCalendarViewController alloc] init];
     SCNavigationController *navi = [[SCNavigationController alloc]initWithRootViewController:modal];
-    modal.transitioningDelegate = self;
-    modal.modalPresentationStyle = UIModalPresentationCustom;
-
+//    modal.transitioningDelegate = self;
+//    modal.modalPresentationStyle = UIModalPresentationCustom;
+//
     [self presentViewController:navi animated:YES completion:^{
 //        [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
     }];

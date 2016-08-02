@@ -122,7 +122,7 @@
             make.left.equalTo(leftImage.mas_right).offset(5);
             make.top.equalTo(leftBackView.mas_top).offset(28);
             make.height.equalTo(@30);
-            make.width.equalTo(@60);
+//            make.width.equalTo(@60);
         }];
         [leftSubLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftNumLabel.mas_right).offset(0);
@@ -153,7 +153,7 @@
             make.left.equalTo(rightImage.mas_right).offset(5);
             make.top.equalTo(rightBackView.mas_top).offset(28);
             make.height.equalTo(@30);
-            make.width.equalTo(@60);
+//            make.width.equalTo(@60);
         }];
         [rightSubLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(rightNumLabel.mas_right).offset(0);
@@ -208,18 +208,18 @@
     leftImage.image = image;
     rightImage.image = image1;
     leftTitleLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellTitle"]];
-    leftNumLabel.text = @"100";
     leftSubLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellSub"]];
     rightTitleLabel.text = [NSString stringWithFormat:@"%@",[rightDic objectForKey:@"cellTitle"]];
-    rightNumLabel.text = @"100";
     rightSubLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellSub"]];
     switch (indexPath.row) {
-        case 0:{
-            cellDataLabel.text = [NSString stringWithFormat:@"%d次/分",[model.averageHeartRate intValue]];
+        case 1:{
+            leftNumLabel.text = [NSString stringWithFormat:@"%d",[model.averageHeartRate intValue]];
+            rightNumLabel.text = [NSString stringWithFormat:@"%d",[model.bodyMovementTimes intValue]];
             break;
         }
-        case 1:{
-            cellDataLabel.text = [NSString stringWithFormat:@"%d次/分",[model.averageRespiratoryRate intValue]];
+        case 2:{
+            leftNumLabel.text = [NSString stringWithFormat:@"%d",[model.averageRespiratoryRate intValue]];
+            rightNumLabel.text = [NSString stringWithFormat:@"%d",[model.outOfBedTimes intValue]];
             break;
         }
         default:

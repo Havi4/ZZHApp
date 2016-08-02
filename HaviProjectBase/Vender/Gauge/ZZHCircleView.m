@@ -216,14 +216,14 @@
 
 -(void)setPercentage:(double)percentage{
     _progressLayer.strokeStart = 0.0;
-    [self.animationView setValue:[NSNumber numberWithInt:percentage*100]];
+    [self.animationView setValue:[NSNumber numberWithInt:percentage*20]];
     [self.animationView startAnimation];
-    _progressLayer.strokeEnd = percentage;
+    _progressLayer.strokeEnd = (percentage*20)/100;
     CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     drawAnimation.duration            = 1.0;
     drawAnimation.removedOnCompletion = YES;
     drawAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-    drawAnimation.toValue = [NSNumber numberWithFloat:percentage];
+    drawAnimation.toValue = [NSNumber numberWithFloat:(percentage*20)/100];
     drawAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [_progressLayer addAnimation:drawAnimation forKey:@"drawCircleAnimation"];
 
