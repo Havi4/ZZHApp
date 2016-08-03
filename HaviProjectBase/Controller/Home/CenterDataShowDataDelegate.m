@@ -117,9 +117,18 @@
             cell = [[CenterDataTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
         }
         if (indexPath.row==2) {
-            UITableView *line = [cell viewWithTag:101];
+            UITableView *line = [cell viewWithTag:1001];
             line.hidden = YES;
         }
+        @weakify(self);
+        cell.cellLeftClockTaped = ^(NSInteger index){
+            @strongify(self);
+            [self cellDataSelected:index withIndex:indexPath];
+        };
+        cell.cellRightClockTaped = ^(NSInteger index){
+            @strongify(self);
+            [self cellDataSelected:index withIndex:indexPath];
+        };
         self.configureCellBlock(indexPath,item,cell);
         return cell;
 
@@ -197,27 +206,13 @@
     if (self.didSelectCellBlock) {
         self.didSelectCellBlock([NSIndexPath indexPathForRow:0 inSection:0],nil);
     }
-    /*
-    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite];
-    @weakify(self);
-    RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
-        NSDate *date = ((UIDatePicker *)controller.contentView).date;
-        @strongify(self);
-        if (self.cellSelectedTaped) {
-            self.cellSelectedTaped(date,cellTapEndTime);
-        }
-    }];
-    
-    //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-        
-    }];
-    
-    [dateSelectionController addAction:selectAction];
-    [dateSelectionController addAction:cancelAction];
-    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
-    [[NSObject appNaviRootViewController] presentViewController:dateSelectionController animated:YES completion:nil];
-     */
+}
+
+- (void)cellDataSelected:(NSInteger)tag withIndex:(NSIndexPath*)index
+{
+    if (self.didSelectCellBlock) {
+        self.didSelectCellBlock(index,[NSNumber numberWithInteger:tag]);
+    }
 }
 
 @end

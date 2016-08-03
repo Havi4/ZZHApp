@@ -37,10 +37,16 @@
     if (self) {
         
         leftBackView = [UIButton buttonWithType:UIButtonTypeCustom];
-        leftBackView.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.4];
+        leftBackView.tag = 101;
+        [leftBackView setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0.7 alpha:0.4]] forState:UIControlStateNormal];
+        [leftBackView setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateHighlighted];
+        [leftBackView addTarget:self action:@selector(tapDetail:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:leftBackView];
         rightBackView = [UIButton buttonWithType:UIButtonTypeCustom];
-        rightBackView.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.4];;
+        rightBackView.tag = 102;
+        [rightBackView setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0.7 alpha:0.4]] forState:UIControlStateNormal];
+        [rightBackView setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateHighlighted];
+        [rightBackView addTarget:self action:@selector(tapDetail:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:rightBackView];
         triage1 = [[UIImageView alloc]init];
         triage2 = [[UIImageView alloc]init];
@@ -169,7 +175,7 @@
         
         UIImageView *imageLine = [[UIImageView alloc]init];
         imageLine.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
-        imageLine.tag = 101;
+        imageLine.tag = 1001;
         [self addSubview:imageLine];
         [imageLine makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(0);
@@ -229,6 +235,15 @@
                             indexPath:(NSIndexPath *)indexPath
 {
     return 44;
+}
+
+- (void)tapDetail:(UIButton *)button
+{
+    if (button.tag == 101) {
+        self.cellLeftClockTaped(0);
+    }else{
+        self.cellRightClockTaped(1);
+    }
 }
 
 @end

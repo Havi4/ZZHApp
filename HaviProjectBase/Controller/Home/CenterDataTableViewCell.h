@@ -11,4 +11,8 @@
 
 @interface CenterDataTableViewCell : HaviBaseTableViewCell
 
+@property (nonatomic, copy) void (^cellLeftClockTaped)(NSInteger callBackResult);
+
+@property (nonatomic, copy) void (^cellRightClockTaped)(NSInteger callBackResult);
+
 @end

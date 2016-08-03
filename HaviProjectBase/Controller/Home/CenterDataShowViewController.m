@@ -22,7 +22,7 @@
 @property (nonatomic, strong) SleepQualityModel *sleepQualityModel;
 @property (nonatomic, strong) NSString *queryStartTime;
 @property (nonatomic, strong) NSString *queryEndTime;
-@property (nonatomic, strong) NSMutableArray *controllersArr;
+@property (nonatomic, strong) NSArray *controllersArr;
 
 @end
 
@@ -41,11 +41,8 @@
 
 - (void)initPushController
 {
-    self.controllersArr = @[].mutableCopy;
-    [self addControllersToWithControllerName:@"ChartContainerViewController"];
-    [self addControllersToWithControllerName:@"ChartContainerViewController"];
-    [self addControllersToWithControllerName:@"ChartTableContainerViewController"];
-    [self addControllersToWithControllerName:@"ChartTableContainerViewController"];
+    self.controllersArr = @[@[@"ChartContainerViewController",@"ChartTableContainerViewController"],@[@"ChartContainerViewController",@"ChartTableContainerViewController"],];
+    
 }
 #pragma mark setter
 
@@ -210,11 +207,11 @@
 
 - (void)didSeletedCellIndexPath:(NSIndexPath *)indexPath withData:(id)obj
 {
+    if (self.deviceUUID.length == 0) {
+        [self showNoDeviceBindingAlert];
+        return;
+    }
     if (indexPath.row == 0) {
-        if (self.deviceUUID.length == 0) {
-            [self showNoDeviceBindingAlert];
-            return;
-        }
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         NSDictionary *dic19 = @{
                                 @"UUID" : self.deviceUUID,
@@ -227,39 +224,36 @@
             self.sleepQualityModel = qualityModel;
             [self.dataShowTableView reloadData];
         }];
-    }
-    /*
-    if (self.deviceUUID.length == 0) {
-        [self showNoDeviceBindingAlert];
-        return;
-    }
-    NSString *className = [self.controllersArr objectOrNilAtIndex:indexPath.row];
-    Class class = NSClassFromString(className);
-    if (class) {
-        if (indexPath.row <2) {
+    }else if (indexPath.row == 1){
+        
+        if ([obj integerValue]==0) {
+            NSString *className = [[self.controllersArr objectOrNilAtIndex:indexPath.row-1] objectOrNilAtIndex:0];
+            Class class = NSClassFromString(className);
             ChartContainerViewController *controller = (ChartContainerViewController*)class.new;
-            if (indexPath.row == 0) {
-                controller.sensorType = SensorDataHeart;
-            }else{
-                controller.sensorType = SensorDataBreath;
-            }
+            controller.sensorType = SensorDataHeart;
             [self.navigationController pushViewController:controller animated:YES];
-        }else {
+        }else if ([obj integerValue]==1){
+            NSString *className = [[self.controllersArr objectOrNilAtIndex:indexPath.row-1] objectOrNilAtIndex:1];
+            Class class = NSClassFromString(className);
             ChartTableContainerViewController *controller = (ChartTableContainerViewController*)class.new;
-            if (indexPath.row == 2) {
-                controller.sensorType = SensorDataLeave;
-            }else{
-                controller.sensorType = SensorDataTurn;
-            }
+            controller.sensorType = SensorDataBreath;
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    }else if (indexPath.row == 2){
+        if ([obj integerValue]==0) {
+            NSString *className = [[self.controllersArr objectOrNilAtIndex:indexPath.row-1] objectOrNilAtIndex:0];
+            Class class = NSClassFromString(className);
+            ChartContainerViewController *controller = (ChartContainerViewController*)class.new;
+            controller.sensorType = SensorDataLeave;
+            [self.navigationController pushViewController:controller animated:YES];
+        }else if ([obj integerValue]==1){
+            NSString *className = [[self.controllersArr objectOrNilAtIndex:indexPath.row-1] objectOrNilAtIndex:1];
+            Class class = NSClassFromString(className);
+            ChartTableContainerViewController *controller = (ChartTableContainerViewController*)class.new;
+            controller.sensorType = SensorDataTurn;
             [self.navigationController pushViewController:controller animated:YES];
         }
     }
-     */
-}
-
-- (void)addControllersToWithControllerName:(NSString *)name
-{
-    [self.controllersArr addObject:name];
 }
 
 - (void)didReceiveMemoryWarning {
