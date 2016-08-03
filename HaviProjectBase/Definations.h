@@ -61,7 +61,7 @@
 #define kScreen_Width [UIScreen mainScreen].bounds.size.width
 
 #define ISIPHON4 [UIScreen mainScreen].bounds.size.height==480 ? YES:NO
-#define ISIPHON6 [UIScreen mainScreen].bounds.size.height>568 ? YES:NO
+#define ISIPHON6S [UIScreen mainScreen].bounds.size.height>568 ? YES:NO
 
 //睡眠设置中
 

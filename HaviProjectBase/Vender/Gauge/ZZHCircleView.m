@@ -51,6 +51,12 @@
     [self addSubview:self.titleLabel];
     [self addSubview:self.subLabel];
     [self addSubview:self.animationView];
+    UILabel *fen = [[UILabel alloc]init];
+    fen.text = @"分";
+    fen.frame = (CGRect){self.frame.size.width/2+10,self.frame.size.height/2-10,40,40};
+    fen.textColor = [UIColor whiteColor];
+    fen.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:fen];
     [self.animationView setValue:[NSNumber numberWithInt:0]];
     int radius = MIN(SCREEN_WIDTH, SCREEN_HEIGHT)/2-30;
     
@@ -70,8 +76,8 @@
     if (!_animationView) {
         _animationView = [[JTNumberScrollAnimatedView alloc]init];
         _animationView.textColor = [UIColor whiteColor];
-        _animationView.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
-        _animationView.frame = (CGRect){self.frame.size.width/2-30,self.frame.size.height/2-25,60,50};
+        _animationView.font = [UIFont systemFontOfSize:50];
+        _animationView.frame = (CGRect){self.frame.size.width/2-30-10,self.frame.size.height/2-25,60,50};
         _animationView.minLength = 1;
     }
     return _animationView;
@@ -90,7 +96,8 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"睡眠评分";
-        _titleLabel.frame = (CGRect){self.frame.size.width/2-50,50,100,40};
+        _titleLabel.font = [UIFont systemFontOfSize:18];
+        _titleLabel.frame = (CGRect){self.frame.size.width/2-50,(self.frame.size.height-50)/2-30,100,40};
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -101,9 +108,10 @@
 {
     if (!_subLabel) {
         _subLabel = [[UILabel alloc]init];
-        _subLabel.text = @"超过80%的用户";
-        _subLabel.frame = (CGRect){self.frame.size.width/2-75,150,150,40};
+        _subLabel.text = @"超过--%的用户";
+        _subLabel.frame = (CGRect){self.frame.size.width/2-73,self.frame.size.height/2+15,150,40};
         _subLabel.textAlignment = NSTextAlignmentCenter;
+        _subLabel.font = [UIFont systemFontOfSize:18];
         _subLabel.textColor = [UIColor whiteColor];
     }
     return _subLabel;
@@ -115,9 +123,9 @@
         _sleepNumber = [[UILabel alloc]init];
         _sleepNumber.textAlignment = NSTextAlignmentCenter;
         _sleepNumber.textColor = [UIColor whiteColor];
-        _sleepNumber.text = @"90";
+        _sleepNumber.text = @"--";
         _sleepNumber.font = [UIFont systemFontOfSize:60];
-        _sleepNumber.frame = (CGRect){self.frame.size.width/2-50,self.frame.size.height/2-50,100,100};
+        _sleepNumber.frame = (CGRect){self.frame.size.width/2-50-30,self.frame.size.height/2-50,100,90};
     }
     return _sleepNumber;
 }
@@ -197,7 +205,7 @@
 {
     if (!_bigCircleBackground) {
         
-        int radius = MIN(SCREEN_WIDTH, SCREEN_HEIGHT)/2-5;
+        int radius = MIN(SCREEN_WIDTH, SCREEN_HEIGHT)/2-10;
         CAShapeLayer *arc = [CAShapeLayer layer];
         arc.path = [UIBezierPath bezierPathWithArcCenter:CENTER radius:radius startAngle:ConversionRadian(-80)  endAngle:ConversionRadian(260) clockwise:YES].CGPath;
         arc.fillColor = [UIColor clearColor].CGColor;

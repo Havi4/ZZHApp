@@ -57,6 +57,7 @@
         _dataShowTableView.backgroundColor = [UIColor clearColor];
         _dataShowTableView.showsVerticalScrollIndicator = NO;
         _dataShowTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _dataShowTableView.scrollEnabled = NO;
     }
     return _dataShowTableView;
 }
@@ -79,11 +80,26 @@
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
         if (indexPath.row ==0) {
-            return 300;
+            if (ISIPHON6S) {
+                return 315;
+            }else{
+            
+                return 315/1.174;
+            }
         }else if (indexPath.row ==1 || indexPath.row ==2){
-            return 60;
+            if (ISIPHON6S) {
+                return 63;
+            }else{
+                
+                return 63/1.174;
+            }
         }else if (indexPath.row == 3){
-            return 165;
+            if (ISIPHON6S) {
+                return 160;
+            }else{
+                
+                return 160/1.174;
+            }
         }
         return 0;
     };

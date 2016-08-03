@@ -97,7 +97,7 @@
         }];
         
         [_longSleepView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.mas_centerY).offset(-45);
+            make.centerY.equalTo(self.mas_centerY).offset(-35);
             make.left.equalTo(_bedImageView.mas_right).offset(16);
             make.width.height.equalTo(@17);
         }];
@@ -108,7 +108,7 @@
         }];
         
         [_lightSleepView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.mas_centerY).offset(45);
+            make.centerY.equalTo(self.mas_centerY).offset(35);
             make.left.equalTo(_bedImageView.mas_right).offset(16);
             make.width.height.equalTo(@15);
         }];

@@ -112,17 +112,16 @@
         }];
         
         [leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(leftImage.mas_right).offset(5);
+            make.left.equalTo(leftImage.mas_right).offset(20);
             make.top.equalTo(leftBackView.mas_top);
             make.height.equalTo(@30);
             
         
         }];
         [leftNumLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(leftImage.mas_right).offset(5);
-            make.top.equalTo(leftBackView.mas_top).offset(28);
-            make.height.equalTo(@30);
-//            make.width.equalTo(@60);
+            make.left.equalTo(leftImage.mas_right).offset(20);
+            make.top.equalTo(leftBackView.mas_top).offset(25);
+            make.bottom.equalTo(leftBackView.mas_bottom).offset(-5);
         }];
         [leftSubLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftNumLabel.mas_right).offset(0);
@@ -143,17 +142,15 @@
         }];
         
         [rightTitleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(rightImage.mas_right).offset(5);
+            make.left.equalTo(rightImage.mas_right).offset(20);
             make.top.equalTo(rightBackView.mas_top);
             make.height.equalTo(@30);
             
-            
         }];
         [rightNumLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(rightImage.mas_right).offset(5);
-            make.top.equalTo(rightBackView.mas_top).offset(28);
-            make.height.equalTo(@30);
-//            make.width.equalTo(@60);
+            make.left.equalTo(rightImage.mas_right).offset(20);
+            make.top.equalTo(rightBackView.mas_top).offset(25);
+            make.bottom.equalTo(rightBackView.mas_bottom).offset(-5);
         }];
         [rightSubLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(rightNumLabel.mas_right).offset(0);

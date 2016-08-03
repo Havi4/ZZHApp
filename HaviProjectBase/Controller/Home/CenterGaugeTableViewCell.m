@@ -26,13 +26,14 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        if (ISIPHON4) {
-            
-            
+        float height = 0;
+        if (ISIPHON6S) {
+            height = 315;
         }else{
             
+            height = 315/1.174;
         }
-        self.cellCircleView = [[ZZHCircleView alloc]initWithFrame:(CGRect){0,0,self.frame.size.width,250}];
+        self.cellCircleView = [[ZZHCircleView alloc]initWithFrame:(CGRect){0,0,self.frame.size.width,height-50}];
         self.cellCircleView.backgroundColor = [UIColor clearColor];
         [self addSubview:self.cellCircleView];
         _cellCircleView.userInteractionEnabled = YES;
@@ -50,6 +51,7 @@
         [self addSubview:_cellCircleView];
         [tapBack addGestureRecognizer:_tapLeftGesture];
         [self addSubview:self.cellRecommend];
+        _cellRecommend.frame = (CGRect){0,height-65,self.frame.size.width,50};
     }
     return self;
 }
@@ -68,7 +70,6 @@
 {
     if (_cellRecommend == nil) {
         _cellRecommend = [[UILabel alloc]init];
-        _cellRecommend.frame = (CGRect){0,240,self.frame.size.width,50};
         _cellRecommend.textAlignment = NSTextAlignmentCenter;
         _cellRecommend.text = @"优质的睡眠保证充足的精神";
         _cellRecommend.textColor = [UIColor whiteColor];
@@ -89,6 +90,9 @@
     withOtherInfo:(id)objInfo
 {
     // Rewrite this func in SubClass !
+    
+    
+    
     SleepQualityModel *model = objInfo;
     @weakify(self);
     [SleepModelChange changeSleepQualityModel:model callBack:^(id callBack) {
