@@ -74,7 +74,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.naviBarTitle = [[NaviTitleScrollView alloc]initWithFrame:(CGRect){(self.view.frame.size.width-100)/2.0+1,20,100,44}];
     self.naviBarTitle.userInteractionEnabled = NO;
     self.naviBarTitle.backgroundColor = [UIColor clearColor];
-    selectedDateToUse = [[NSDate date]dateByAddingHours:8];
+    selectedDateToUse = [NSDate date];
     self.backgroundImageView.image = [UIImage imageNamed:@"home_back@3x"];
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
@@ -96,13 +96,15 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     [self.calendarButton addTarget:self action:@selector(showCalendarView:) forControlEvents:UIControlEventTouchUpInside];
     [self.sc_navigationBar addSubview:self.calendarButton];
     [self.sc_navigationBar addSubview:self.naviBarTitle];
+    self.sc_navigationBar.backgroundColor = [UIColor clearColor];
+
 }
 
 - (void)initNaviBarView
 {
     
     self.navigationController.navigationBarHidden = YES;
-    self.containerDataView = [[BaseViewContainerView alloc]initWithNavBarControllers:nil];
+    self.containerDataView = [[BaseViewContainerView alloc]initWithNavBarControllers:nil navBarBackground:nil showPageControl:NO];
     self.containerDataView.view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.containerDataView.view];
     [self addChildViewController:self.containerDataView];
@@ -168,7 +170,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         [self.activeDeviceInfo.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
             CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
-            dataShow.title = obj.detailDescription;
+            dataShow.title = @"";
             dataShow.deviceUUID = obj.detailUUID;
             dataShow.view.frame = self.containerDataView.view.bounds;
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];

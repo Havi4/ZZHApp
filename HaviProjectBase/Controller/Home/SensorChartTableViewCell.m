@@ -21,6 +21,7 @@
 @property (nonatomic,strong) NSArray *changedArr;
 @property (nonatomic,assign) int type;
 @property (nonatomic,strong) LongpressShowView *pressView;
+@property (nonatomic,strong) UIImageView *iconImageView;
 
 @end
 
@@ -31,6 +32,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self addSubview:self.scrollContainerView];
+        [self addSubview:self.iconImageView];
     }
     return self;
 }
@@ -44,17 +46,25 @@
         _chartGraphView.heartViewLeft.maxValue = 100;
         _chartGraphView.heartViewLeft.minValue = 50;
         _chartGraphView.heartViewLeft.horizonValue = 140;
-        _chartGraphView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor colorWithRed:0.008f green:0.839f blue:0.573f alpha:.70f]:[UIColor colorWithRed:0.008f green:0.839f blue:0.573f alpha:.70f];
-        [_chartGraphView addSubview:self.layerFloatView];
+        _chartGraphView.heartViewLeft.graphColor = [UIColor whiteColor];
+//        [_chartGraphView addSubview:self.layerFloatView];
         
     }
     return _chartGraphView;
 }
 
+- (UIImageView *)iconImageView
+{
+    if (!_iconImageView) {
+        _iconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, 15, 15)];
+    }
+    return _iconImageView;
+}
+
 - (UIScrollView *)scrollContainerView
 {
     if (!_scrollContainerView) {
-        _scrollContainerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 180)];
+        _scrollContainerView = [[UIScrollView alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 180)];
         [_scrollContainerView addSubview:self.chartGraphView];
         _scrollContainerView.contentSize = CGSizeMake(self.frame.size.width*4, 180);
         _scrollContainerView.showsHorizontalScrollIndicator = NO;
@@ -70,16 +80,16 @@
 - (UIView*)yCoorBackView
 {
     if (!_yCoorBackView) {
-        _yCoorBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 160)];
-        _yCoorBackView.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.075f green:0.149f blue:0.290f alpha:1.00f], [UIColor colorWithRed:0.408f green:0.616f blue:0.757f alpha:1.00f]);
+        _yCoorBackView = [[UIView alloc]initWithFrame:CGRectMake(5, 0, 15, 160)];
+        _yCoorBackView.backgroundColor = [UIColor clearColor];
         UILabel *sixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 70, 20, 20)];
         sixLabel.text = self.type == 0? @"60" : @"15";
         sixLabel.textAlignment = NSTextAlignmentLeft;
-        sixLabel.dk_textColorPicker = kTextColorPicker;
+        sixLabel.textColor = [UIColor whiteColor];
         sixLabel.font = [UIFont systemFontOfSize:14];
         [_yCoorBackView addSubview:sixLabel];
-        UIView *sixLine = [[UIView alloc]initWithFrame:CGRectMake(17, 79.5, self.frame.size.width-17, 1)];
-        sixLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f], [UIColor colorWithWhite:1 alpha:0.3]);
+        UIView *sixLine = [[UIView alloc]initWithFrame:CGRectMake(19, 79.5, self.frame.size.width-32, 0.5)];
+        sixLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);
         [_yCoorBackView addSubview:sixLine];
         
         UILabel *fiveLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 104, 20, 20)];
@@ -88,8 +98,8 @@
         fiveLabel.dk_textColorPicker = kTextColorPicker;
         fiveLabel.font = [UIFont systemFontOfSize:14];
         [_yCoorBackView addSubview:fiveLabel];
-        UIView *fiveLine = [[UIView alloc]initWithFrame:CGRectMake(17, 114, self.frame.size.width-17, 1)];
-        fiveLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f], [UIColor colorWithWhite:1 alpha:0.3]);
+        UIView *fiveLine = [[UIView alloc]initWithFrame:CGRectMake(19, 114, self.frame.size.width-32, 0.5)];
+        fiveLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);
         [_yCoorBackView addSubview:fiveLine];
         
         UILabel *sevenLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 33, 20, 20)];
@@ -98,8 +108,8 @@
         sevenLabel.dk_textColorPicker = kTextColorPicker;
         sevenLabel.font = [UIFont systemFontOfSize:14];
         [_yCoorBackView addSubview:sevenLabel];
-        UIView *sevenLine = [[UIView alloc]initWithFrame:CGRectMake(17, 43, self.frame.size.width-17, 1)];
-        sevenLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.133f green:0.698f blue:0.914f alpha:.30f], [UIColor colorWithWhite:1 alpha:0.3]);
+        UIView *sevenLine = [[UIView alloc]initWithFrame:CGRectMake(19, 43, self.frame.size.width-32, 0.5)];
+        sevenLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);;
         [_yCoorBackView addSubview:sevenLine];
     }
     return _yCoorBackView;
@@ -132,14 +142,16 @@
         self.chartGraphView.heartViewLeft.minValue = kHeartMinAlarmValue;
         self.chartGraphView.heartViewLeft.horizonValue = kHeartHorizonbleAlarmValue;
         self.chartGraphView.heartViewLeft.type = SensorDataHeart;
+        self.iconImageView.image = [UIImage imageNamed:@"icon_heart@3x"];
     }else if (self.type == SensorDataBreath){
         self.chartGraphView.heartViewLeft.maxValue = kBreathMaxAlarmValue;
         self.chartGraphView.heartViewLeft.minValue = kBreathMinAlarmValue;
         self.chartGraphView.heartViewLeft.horizonValue = kBreathHorizonbleAlarmValue;
         self.chartGraphView.heartViewLeft.type = SensorDataBreath;
+        self.iconImageView.image = [UIImage imageNamed:@"icon_breath@3x"];
     }
     SensorDataModel *model = objInfo;
-    [self.scrollContainerView addSubview:self.yCoorBackView];
+    [self addSubview:self.yCoorBackView];
     @weakify(self);
     [SleepModelChange filterSensorDataWithTime:model withType:self.type callBack:^(id callBack) {
         @strongify(self);
@@ -162,9 +174,9 @@
         }
     }
     //纵坐标
-    CGRect yRect = self.yCoorBackView.frame;
-    yRect.origin.x = scrollView.contentOffset.x;
-    self.yCoorBackView.frame = yRect;
+//    CGRect yRect = self.yCoorBackView.frame;
+//    yRect.origin.x = scrollView.contentOffset.x;
+//    self.yCoorBackView.frame = yRect;
     CGFloat xLeft = self.frame.size.width*4/25/2;
     //浮标的位置
     CGFloat xScaleValue = scrollView.contentOffset.x+(scrollView.contentOffset.x)*(self.frame.size.width-2*xLeft)/(self.frame.size.width*3)+xLeft;
@@ -222,6 +234,7 @@
         self.pressView.xValues = @[time,time];
         self.pressView.heartViewLeft.values = @[@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",];
         [self.pressView.heartViewLeft animate];
+        self.pressView.heartViewLeft.curved = YES;
         self.pressView.heartViewLeft.minValue = 0;
         self.pressView.heartViewLeft.maxValue = 100;
         
@@ -241,7 +254,7 @@
     if (_pressView == nil) {
         CGRect rect = CGRectMake(0, 0, self.frame.size.width, 155);
         _pressView = [[LongpressShowView alloc]initWithFrame:rect];
-        _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor colorWithRed:0.008f green:0.839f blue:0.573f alpha:.70f]:[UIColor colorWithRed:0.008f green:0.839f blue:0.573f alpha:.70f];
+        _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor clearColor]:[UIColor clearColor];
     }
     return _pressView;
 }

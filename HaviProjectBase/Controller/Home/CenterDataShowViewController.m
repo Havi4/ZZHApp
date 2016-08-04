@@ -236,7 +236,7 @@
             NSString *className = [[self.controllersArr objectOrNilAtIndex:indexPath.row-1] objectOrNilAtIndex:1];
             Class class = NSClassFromString(className);
             ChartTableContainerViewController *controller = (ChartTableContainerViewController*)class.new;
-            controller.sensorType = SensorDataBreath;
+            controller.sensorType = SensorDataTurn;
             [self.navigationController pushViewController:controller animated:YES];
         }
     }else if (indexPath.row == 2){
@@ -244,13 +244,13 @@
             NSString *className = [[self.controllersArr objectOrNilAtIndex:indexPath.row-1] objectOrNilAtIndex:0];
             Class class = NSClassFromString(className);
             ChartContainerViewController *controller = (ChartContainerViewController*)class.new;
-            controller.sensorType = SensorDataLeave;
+            controller.sensorType = SensorDataBreath;
             [self.navigationController pushViewController:controller animated:YES];
         }else if ([obj integerValue]==1){
             NSString *className = [[self.controllersArr objectOrNilAtIndex:indexPath.row-1] objectOrNilAtIndex:1];
             Class class = NSClassFromString(className);
             ChartTableContainerViewController *controller = (ChartTableContainerViewController*)class.new;
-            controller.sensorType = SensorDataTurn;
+            controller.sensorType = SensorDataLeave;
             [self.navigationController pushViewController:controller animated:YES];
         }
     }

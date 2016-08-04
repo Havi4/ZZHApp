@@ -56,6 +56,10 @@
 		2C2DC9B91CC71728008D28D1 /* SmartLinkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */; };
 		2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */; };
 		2C34AE331CEAC45400B24B6E /* pic_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C34AE321CEAC45400B24B6E /* pic_about@2x.png */; };
+		2C3589C81D5330F800BEC198 /* icon_heart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3589C71D5330F800BEC198 /* icon_heart@3x.png */; };
+		2C3589CA1D53311100BEC198 /* icon_breath@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3589C91D53311100BEC198 /* icon_breath@3x.png */; };
+		2C3589CC1D533DD200BEC198 /* heart_cell_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3589CB1D533DD200BEC198 /* heart_cell_back@3x.png */; };
+		2C3589CE1D53519D00BEC198 /* new_about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3589CD1D53519D00BEC198 /* new_about@3x.png */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -84,7 +88,6 @@
 		2C5872981C7BF173001C2F3A /* BaseViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5872971C7BF173001C2F3A /* BaseViewContainerView.m */; };
 		2C5FE5B31D4709D900AFFEFE /* ChangeLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B21D4709D900AFFEFE /* ChangeLanguageViewController.m */; };
 		2C5FE5B61D470FB900AFFEFE /* LangageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */; };
-		2C5FE5B81D4719F400AFFEFE /* new_about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B71D4719F400AFFEFE /* new_about@3x.png */; };
 		2C5FE5BC1D4720B200AFFEFE /* about_top@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */; };
 		2C5FE5BF1D4862F600AFFEFE /* DataAnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5BE1D4862F600AFFEFE /* DataAnTableViewCell.m */; };
 		2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */; };
@@ -649,6 +652,10 @@
 		2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartLinkInstance.m; sourceTree = "<group>"; };
 		2C2DCA111CC891F7008D28D1 /* libSmartLinkV30Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartLinkV30Lib.a; sourceTree = "<group>"; };
 		2C34AE321CEAC45400B24B6E /* pic_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_about@2x.png"; sourceTree = "<group>"; };
+		2C3589C71D5330F800BEC198 /* icon_heart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_heart@3x.png"; sourceTree = "<group>"; };
+		2C3589C91D53311100BEC198 /* icon_breath@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_breath@3x.png"; sourceTree = "<group>"; };
+		2C3589CB1D533DD200BEC198 /* heart_cell_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_cell_back@3x.png"; sourceTree = "<group>"; };
+		2C3589CD1D53519D00BEC198 /* new_about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_about@3x.png"; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -689,7 +696,6 @@
 		2C5FE5B21D4709D900AFFEFE /* ChangeLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeLanguageViewController.m; sourceTree = "<group>"; };
 		2C5FE5B41D470FB900AFFEFE /* LangageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LangageTableViewCell.h; sourceTree = "<group>"; };
 		2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LangageTableViewCell.m; sourceTree = "<group>"; };
-		2C5FE5B71D4719F400AFFEFE /* new_about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_about@3x.png"; sourceTree = "<group>"; };
 		2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_top@3x.png"; sourceTree = "<group>"; };
 		2C5FE5BD1D4862F600AFFEFE /* DataAnTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnTableViewCell.h; sourceTree = "<group>"; };
 		2C5FE5BE1D4862F600AFFEFE /* DataAnTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnTableViewCell.m; sourceTree = "<group>"; };
@@ -1586,9 +1592,13 @@
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
+				2C3589CB1D533DD200BEC198 /* heart_cell_back@3x.png */,
+				2C3589C71D5330F800BEC198 /* icon_heart@3x.png */,
+				2C3589C91D53311100BEC198 /* icon_breath@3x.png */,
 				2C1D9FD91D4F18C900FA6678 /* bed_no_people@3x.png */,
 				2C1D9FED1D4F258900FA6678 /* icon_share@3x.png */,
 				2C1D9FDB1D4F18D800FA6678 /* moveon@3x.png */,
+				2C3589CD1D53519D00BEC198 /* new_about@3x.png */,
 				2C1D9FDD1D4F18EA00FA6678 /* breath@3x.png */,
 				2C1D9FDF1D4F18FA00FA6678 /* heart@3x.png */,
 				2C1D9FE31D4F191500FA6678 /* getup@3x.png */,
@@ -1607,7 +1617,6 @@
 				2C96AA6A1D41E4E400ACCA08 /* home_back@3x.png */,
 				2C96AA051D40880900ACCA08 /* logo@3x.png */,
 				2C96AA0B1D4089E300ACCA08 /* textback@3x.png */,
-				2C5FE5B71D4719F400AFFEFE /* new_about@3x.png */,
 				2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */,
 				2C96AA4C1D410F2A00ACCA08 /* navi_menu@3x.png */,
 				2C96AA071D40882B00ACCA08 /* password@3x.png */,
@@ -3236,6 +3245,7 @@
 				2C96AA121D40994B00ACCA08 /* qq@3x.png in Resources */,
 				2C96A9FF1D40685400ACCA08 /* IntroduceView2.png in Resources */,
 				2CD014C31C63963C001F9514 /* btn_back_0@2x.png in Resources */,
+				2C3589CC1D533DD200BEC198 /* heart_cell_back@3x.png in Resources */,
 				2C9EF42C1C801CE7000704E2 /* btn_abnormal_1@2x.png in Resources */,
 				2C96AA711D41F15A00ACCA08 /* section_divide@3x.png in Resources */,
 				2CF2E14B1C7590550007A639 /* textbox_save_settings_0@2x.png in Resources */,
@@ -3289,6 +3299,7 @@
 				2CD014E51C64CD22001F9514 /* birthday@2x.png in Resources */,
 				2C9EF2CE1C7C12CB000704E2 /* pic_bg_center_1@2x.png in Resources */,
 				2CD014C01C6393AF001F9514 /* person_background@2x.png in Resources */,
+				2C3589CA1D53311100BEC198 /* icon_breath@3x.png in Resources */,
 				2CF2E2711C7AD1E30007A639 /* pic_introduce_3@2x.png in Resources */,
 				2CD014A71C634CE7001F9514 /* week_0@2x.png in Resources */,
 				2C9EF3561C7D8B89000704E2 /* cell_seperator_0@2x.png in Resources */,
@@ -3305,6 +3316,7 @@
 				2C9EF3C01C7EFB79000704E2 /* icon_turn_over_0@2x.png in Resources */,
 				2C9EF4291C801C52000704E2 /* icon_general_exception_0@2x.png in Resources */,
 				2C9EF3521C7D7DAC000704E2 /* heart_apng_1.apng in Resources */,
+				2C3589C81D5330F800BEC198 /* icon_heart@3x.png in Resources */,
 				2C9EF4281C801C52000704E2 /* icon_fatal_exception_0@2x.png in Resources */,
 				2C1D9FE01D4F18FA00FA6678 /* heart@3x.png in Resources */,
 				2C9EF3501C7D7C04000704E2 /* breath_apng_1.apng in Resources */,
@@ -3356,7 +3368,6 @@
 				2CF2E1EB1C78682B0007A639 /* SleepSetting.plist in Resources */,
 				2C9EF3BF1C7EFB79000704E2 /* icon_heart_rate_0@2x.png in Resources */,
 				2C9EF3C71C7EFBCA000704E2 /* icon_heart_rate_1@2x.png in Resources */,
-				2C5FE5B81D4719F400AFFEFE /* new_about@3x.png in Resources */,
 				2C9EF4BB1C83E3BA000704E2 /* leaveAlert.wav in Resources */,
 				2CF2E1C41C7701710007A639 /* edit_double_bed@2x.png in Resources */,
 				2C9EF5121C854E8B000704E2 /* pic_bad_4@2x.png in Resources */,
@@ -3377,6 +3388,7 @@
 				2C9EF5111C854E8B000704E2 /* pic_bad_3@2x.png in Resources */,
 				2C9EF3541C7D8B42000704E2 /* cell_seperator_1@2x.png in Resources */,
 				2CD014751C62FB17001F9514 /* left_bg_day@2x.png in Resources */,
+				2C3589CE1D53519D00BEC198 /* new_about@3x.png in Resources */,
 				2C9EF41E1C7FEF13000704E2 /* day_icon@2x.png in Resources */,
 				2C96AA661D41C35F00ACCA08 /* avatar_default@3x.png in Resources */,
 				2C9EF3A71C7ECA89000704E2 /* btn_share_0@2x.png in Resources */,

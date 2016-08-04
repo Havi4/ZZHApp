@@ -54,7 +54,6 @@
     
     UIBezierPath *path=[UIBezierPath bezierPath];
     
-    
     for (UIButton* button in buttons) {
         [button removeFromSuperview];
     }
@@ -158,7 +157,7 @@
     
     
     path.lineWidth=self.lineWidth ? self.lineWidth : 1;
-    
+
     
     return path;
 }

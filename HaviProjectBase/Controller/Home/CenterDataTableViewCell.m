@@ -144,7 +144,7 @@
             make.left.equalTo(rightBackView.mas_left).offset(16);
             make.centerY.equalTo(rightBackView.mas_centerY);
             make.height.equalTo(@35);
-            make.width.equalTo(@30);
+            make.width.equalTo(@35);
         }];
         
         [rightTitleLabel makeConstraints:^(MASConstraintMaker *make) {

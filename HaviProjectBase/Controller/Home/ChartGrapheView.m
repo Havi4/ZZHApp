@@ -24,9 +24,9 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f]:[UIColor colorWithRed:0.475f green:0.686f blue:0.820f alpha:1.00f];
+        self.backgroundColor = [UIColor clearColor];
         [self setUpCoordinateSystem];
-        [self setBackImage];
+//        [self setBackImage];
         
         [self addSubview:self.heartViewLeft];
         self.heartViewLeft.userInteractionEnabled = YES;
@@ -76,7 +76,7 @@
 -(UIView *)getLineCoor
 {
     UIView *lineView = [[UIView alloc] init];
-    lineView.dk_backgroundColorPicker = kTextColorPicker;
+    lineView.backgroundColor = [UIColor whiteColor];
     lineView.alpha = 0.3;
     lineView.frame = CGRectMake(0, self.frame.size.height - bottomLineMargin, self.frame.size.width, 1);
     return lineView;
@@ -120,13 +120,16 @@
             label.backgroundColor = [UIColor clearColor];
             label.text = xValue;
             label.tag = 1001;
-            label.dk_textColorPicker = kTextColorPicker;
+            label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:13];
             label.textAlignment = NSTextAlignmentCenter;
             [self addSubview:label];
             //
-            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-2, 1, 2)];
-            labelLine.dk_backgroundColorPicker = kTextColorPicker;
+            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 0, 0.5, cY)];
+            if (i==0) {
+                labelLine.frame = CGRectMake(cX+10, 0, 0.5, cY);
+            }
+            labelLine.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
             labelLine.tag = 1002;
             //
             [self.xPoints addObject:[NSValue valueWithCGPoint:CGPointMake(labelLine.frame.origin.x, cY)]];
@@ -175,6 +178,7 @@
         _heartViewLeft=[[MPGraphView alloc] initWithFrame:CGRectMake(0, 5, xCoordinateWidth, yCoordinateHeight)];
         _heartViewLeft.waitToUpdate=NO;
         _heartViewLeft.lineWidth = 0.5;
+        _heartViewLeft.curved = YES;
         _heartViewLeft.backgroundColor = [UIColor clearColor];
     }
     return _heartViewLeft;

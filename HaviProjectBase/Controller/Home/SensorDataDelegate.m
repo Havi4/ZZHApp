@@ -52,7 +52,7 @@
     if (section==0) {
         return 2;
     }else if (section==1) {
-        return 5;
+        return 4;
     }
     return 0;
 }
@@ -67,7 +67,7 @@
     if (section==0) {
         return 0.001;
     }else{
-        return 30;
+        return 0;
     }
 }
 
@@ -103,26 +103,20 @@
                 
             }
             cell.textLabel.font = [UIFont systemFontOfSize:18];
-            cell.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f], [UIColor colorWithRed:0.475f green:0.686f blue:0.820f alpha:1.00f]);
+            cell.dk_backgroundColorPicker = DKColorWithColors([UIColor clearColor], [UIColor clearColor]);
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.dk_textColorPicker = kTextColorPicker;
             UIView *lineViewBottom = [[UIView alloc]init];
-            lineViewBottom.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.161f green:0.251f blue:0.365f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
+            lineViewBottom.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.627 green:0.847 blue:0.890 alpha:1.00], [UIColor colorWithRed:0.627 green:0.847 blue:0.890 alpha:1.00]);
             [cell addSubview:lineViewBottom];
             [lineViewBottom makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(cell.mas_bottom).offset(-0.5);
+                make.top.equalTo(cell.textLabel.mas_baseline).offset(-15);
                 make.height.equalTo(@0.5);
-                make.width.equalTo(cell.mas_width);
+                make.centerX.equalTo(cell.mas_centerX);
+                make.width.equalTo(@70);
             }];
             self.configureCellBlock(indexPath,nil,cell);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }else if(indexPath.row == 1){
-            SensorSleepDurationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellDuration"];
-            if (cell == nil) {
-                cell = [[SensorSleepDurationCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellDuration"];
-            }
-            self.configureCellBlock(indexPath,nil,cell);
             return cell;
         }else{
             SensorReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellReport"];
@@ -156,28 +150,41 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        if (indexPath.row==0) {
-            return 60;
-        }else{
-            return 180;
+    if (ISIPHON6S) {
+        if (indexPath.section == 0) {
+            if (indexPath.row==0) {
+                return 49;
+            }else{
+                return 224;
+            }
+        }else {
+            return 75;
         }
-    }else {
-        return 60;
+    }else{
+        if (indexPath.section == 0) {
+            if (indexPath.row==0) {
+                return 49/1.174;
+            }else{
+                return 224/1.174;
+            }
+        }else {
+            return 75/1.174;
+        }
     }
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.contentSize.height>scrollView.frame.size.height&&scrollView.contentOffset.y>0) {
+    if (scrollView.contentSize.height>scrollView.contentOffset.y && scrollView.contentOffset.y>0) {
         if (scrollView.contentSize.height-scrollView.contentOffset.y < scrollView.frame.size.height) {
-            scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.frame.size.height);
+            scrollView.contentOffset = CGPointMake(0, 0);
             return;
         }
     }
-    if (scrollView.contentSize.height<scrollView.frame.size.height) {
-        scrollView.contentOffset = CGPointMake(0, 0);
-        return;
-    }
+//    if (scrollView.contentSize.height<scrollView.frame.size.height) {
+//        scrollView.contentOffset = CGPointMake(0, 0);
+//        return;
+//    }
     
 }
 

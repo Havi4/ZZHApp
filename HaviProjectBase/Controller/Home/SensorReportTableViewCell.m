@@ -12,8 +12,10 @@
 {
     UILabel *titleLabel;
     UILabel *dataLabel;
-    UIView *lineViewBottom;
-    UIView *lineView;
+//    UIView *lineViewBottom;
+//    UIView *lineView;
+    UIImageView *backImageView;
+    UILabel *dataSub;
 }
 @end
 
@@ -27,45 +29,69 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        backImageView = [[UIImageView alloc]init];
+        backImageView.image = [UIImage imageNamed:@"heart_cell_back@3x"];
+        [self addSubview:backImageView];
+        [backImageView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.mas_centerX);
+            make.centerY.equalTo(self.mas_centerY);
+            make.height.equalTo(self.mas_height).multipliedBy(0.75);
+            make.width.equalTo(self.mas_width).multipliedBy(0.8);
+        }];
+        
         titleLabel = [[UILabel alloc]init];
-        [self addSubview:titleLabel];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
+        [backImageView addSubview:titleLabel];
+        titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.dk_textColorPicker = kTextColorPicker;
-        titleLabel.font = [UIFont systemFontOfSize:14];
+        titleLabel.font = [UIFont systemFontOfSize:16];
         [titleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self);
-            make.left.equalTo(self).offset(10);
+            make.centerY.equalTo(backImageView.mas_centerY);
+            make.left.equalTo(backImageView.mas_left).offset(10);
             make.height.equalTo(self);
         }];
-        lineView = [[UIView alloc]init];
-        lineView.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.161f green:0.251f blue:0.365f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
-        [self addSubview:lineView];
-        [lineView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.height.equalTo(@60);
-            make.width.equalTo(@0.5);
-        }];
+        
+        
+//        lineView = [[UIView alloc]init];
+//        lineView.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.161f green:0.251f blue:0.365f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
+//        [self addSubview:lineView];
+//        [lineView makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.equalTo(self);
+//            make.height.equalTo(@60);
+//            make.width.equalTo(@0.5);
+//        }];
         //
         dataLabel = [[UILabel alloc]init];
-        dataLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:dataLabel];
-        dataLabel.font = [UIFont systemFontOfSize:14];
+        dataLabel.textAlignment = NSTextAlignmentRight;
+        [backImageView addSubview:dataLabel];
+        dataLabel.font = [UIFont systemFontOfSize:30];
+        
+        dataSub = [[UILabel alloc]init];
+        dataSub.textColor = [UIColor whiteColor];
+        dataSub.font = [UIFont systemFontOfSize:15];
+        dataSub.textAlignment = NSTextAlignmentLeft;
+        [backImageView addSubview:dataSub];
         dataLabel.dk_textColorPicker = DKColorWithColors([UIColor colorWithRed:0.000f green:0.851f blue:0.573f alpha:1.00f], [UIColor whiteColor]);
         [dataLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self);
-            make.left.equalTo(titleLabel.mas_right).offset(20);
-            make.height.equalTo(self);
-            make.right.equalTo(self).offset(-10);
-            make.width.equalTo(titleLabel.mas_width);
+            make.centerY.equalTo(backImageView);
+            make.left.equalTo(titleLabel.mas_right).offset(10);
+            make.right.equalTo(dataSub.mas_left).offset(0);
+            make.width.equalTo(titleLabel.mas_width).multipliedBy(0.5);
         }];
-        lineViewBottom = [[UIView alloc]init];
-        lineViewBottom.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.161f green:0.251f blue:0.365f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
-        [self addSubview:lineViewBottom];
-        [lineViewBottom makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_bottom).offset(-0.5);
-            make.height.equalTo(@0.5);
-            make.width.equalTo(self.mas_width);
+        
+        
+        [dataSub makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(backImageView.mas_right).offset(-10);
+            make.width.equalTo(dataLabel.mas_width);
+            make.baseline.equalTo(dataLabel.mas_baseline);
         }];
+//        lineViewBottom = [[UIView alloc]init];
+//        lineViewBottom.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.161f green:0.251f blue:0.365f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
+//        [self addSubview:lineViewBottom];
+//        [lineViewBottom makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.mas_bottom).offset(-0.5);
+//            make.height.equalTo(@0.5);
+//            make.width.equalTo(self.mas_width);
+//        }];
     }
     return self;
 }
@@ -78,12 +104,13 @@
     // Rewrite this func in SubClass !
     NSNumber *type = obj;
     NSArray *arr = [type intValue] == SensorDataHeart ? @[@"心率平均值",@"心率异常数",@"心率异常数高于"]:@[@"呼吸平均值",@"呼吸异常数",@"呼吸异常数高于"];
+    NSArray *title = @[@"次/分",@"次",@"%用户"];
     SleepQualityModel *model = objInfo;
-    titleLabel.text = [arr objectAtIndex:indexPath.row-2];
-    
-    NSArray *dataArr = [type intValue] == SensorDataHeart ? @[[NSString stringWithFormat:@"%d次/分",[model.averageHeartRate intValue]],[NSString stringWithFormat:@"%d次",[model.fastHeartRateTimes intValue]+[model.slowHeartRateTimes intValue]],[NSString stringWithFormat:@"%d%@",[model.abnormalHeartRatePercent intValue],@"%用户"]]:@[[NSString stringWithFormat:@"%d次/分",[model.averageRespiratoryRate intValue]],[NSString stringWithFormat:@"%d次",[model.slowRespiratoryRateTimes intValue]+[model.fastRespiratoryRateTimes intValue]],[NSString stringWithFormat:@"%d%@",[model.abnormalRespiratoryRatePercent intValue],@"%用户"]];
-    dataLabel.text = [dataArr objectAtIndex:indexPath.row-2];
-    cell.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f], [UIColor colorWithRed:0.475f green:0.686f blue:0.820f alpha:1.00f]);
+    titleLabel.text = [arr objectAtIndex:indexPath.row-1];
+    dataSub.text = [title objectAtIndex:indexPath.row-1];
+    NSArray *dataArr = [type intValue] == SensorDataHeart ? @[[NSString stringWithFormat:@"%d",[model.averageHeartRate intValue]],[NSString stringWithFormat:@"%d",[model.fastHeartRateTimes intValue]+[model.slowHeartRateTimes intValue]],[NSString stringWithFormat:@"%d",[model.abnormalHeartRatePercent intValue]]]:@[[NSString stringWithFormat:@"%d",[model.averageRespiratoryRate intValue]],[NSString stringWithFormat:@"%d",[model.slowRespiratoryRateTimes intValue]+[model.fastRespiratoryRateTimes intValue]],[NSString stringWithFormat:@"%d",[model.abnormalRespiratoryRatePercent intValue]]];
+    dataLabel.text = [dataArr objectAtIndex:indexPath.row-1];
+    cell.dk_backgroundColorPicker = DKColorWithColors([UIColor clearColor], [UIColor clearColor]);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
 }

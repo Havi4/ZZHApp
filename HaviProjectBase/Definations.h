@@ -32,7 +32,7 @@
 
 #define StatusbarSize 20
 #define kDefaultWordFont      [UIFont systemFontOfSize:17]
-#define kDefaultColor [UIColor colorWithRed:0.145f green:0.733f blue:0.957f alpha:1.00f]
+#define kDefaultColor [UIColor whiteColor]
 #define kLightColor [UIColor whiteColor]
 
 #define kTextColorPicker DKColorWithColors(kDefaultColor, kLightColor)
@@ -88,7 +88,7 @@
 [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]
 #define kNaviBackGroundColor [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_back"]]
 //chartValue
-#define kCharDataIntervalTime 2
+#define kCharDataIntervalTime 5
 #define kChartDataCount (24*60/kCharDataIntervalTime)
 #define kHeartMinAlarmValue 50
 #define kHeartMaxAlarmValue 100

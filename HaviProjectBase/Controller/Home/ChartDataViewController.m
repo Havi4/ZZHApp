@@ -52,25 +52,24 @@
             }
             
         }else{
-            if (indexPath.row == 1) {
-                [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
-            }else if (indexPath.row ==0){
+            if (indexPath.row ==0){
                 cell.textLabel.text = self.sensorType == SensorDataHeart? @"心率分析":@"呼吸分析";
-            }else if(indexPath.row > 1){
+            }else if(indexPath.row > 0){
                 [cell configure:cell customObj:@(self.sensorType) indexPath:indexPath withOtherInfo:self.sleepQualityModel];
             }
         }
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                return [SensorTitleTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
-            }else{
-                return 180;
-            }
-        }else{
-            return 49;
-        }
+//        if (indexPath.section == 0) {
+//            if (indexPath.row == 0) {
+//                return [SensorTitleTableViewCell getCellHeightWithCustomObj:item indexPath:indexPath];
+//            }else{
+//                return 180;
+//            }
+//        }else{
+//            return 49;
+//        }
+        return 0;
     };
     
     DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){

@@ -10,8 +10,8 @@
 
 @interface SensorTitleTableViewCell ()
 {
-    UIImageView *cellImage;
     UILabel *cellDataLabel;
+    UILabel *cellDataSub;
 }
 @end
 
@@ -25,25 +25,27 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        cellImage = [[UIImageView alloc]init];
-        [self addSubview:cellImage];
-        [cellImage makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mas_left).offset(25);
-            make.centerY.equalTo(self.mas_centerY);
-            make.width.equalTo(@40);
-            make.height.equalTo(@40);
-        }];
-        cellImage.layer.cornerRadius = 10;
         //
         cellDataLabel = [[UILabel alloc]init];
+        cellDataLabel.font = [UIFont systemFontOfSize:30];
         [self addSubview:cellDataLabel];
         [cellDataLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cellImage.mas_right).offset(20);
-            make.centerY.equalTo(cellImage.mas_centerY);
+            make.left.equalTo(self.mas_left).offset(30);
+            make.centerY.equalTo(self.mas_centerY);
+            make.height.equalTo(self.mas_height);
+
         }];
-        cellDataLabel.dk_textColorPicker = kTextColorPicker;
-        cellDataLabel.text = @"0次/分";
-        cellDataLabel.font = [UIFont systemFontOfSize:15];
+        cellDataSub = [[UILabel alloc]init];
+        [self addSubview:cellDataSub];
+        cellDataSub.text = @"次/分";
+        cellDataSub.textColor = [UIColor whiteColor];
+        [cellDataSub makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(cellDataLabel.mas_right).offset(0);
+            make.bottom.equalTo(cellDataLabel.mas_baseline).offset(0);
+        }];
+        cellDataSub.font = [UIFont systemFontOfSize:15];
+        cellDataLabel.textColor = [UIColor whiteColor];
+        cellDataLabel.text = @"--";
                 
     }
     return self;
@@ -60,13 +62,16 @@
     switch ([type intValue]) {
         case 0:
         {
-            cellImage.dk_imagePicker = DKImageWithNames(@"icon_heart_rate_0", @"icon_heart_rate_1");
-            cellDataLabel.text = [NSString stringWithFormat:@"%d次/分",[model.averageHeartRate intValue]];
+            if ([model.averageHeartRate intValue]==0) {
+                cellDataLabel.text = @"--";
+            }else{
+            
+                cellDataLabel.text = [NSString stringWithFormat:@"%d",[model.averageHeartRate intValue]];
+            }
             break;
         }
         case 1:{
-            cellDataLabel.text = [NSString stringWithFormat:@"%d次/分",[model.averageRespiratoryRate intValue]];
-            cellImage.dk_imagePicker = DKImageWithNames(@"icon_breathe_0", @"icon_breathe_1");
+            cellDataLabel.text = [NSString stringWithFormat:@"%d",[model.averageRespiratoryRate intValue]];
             break;
         }
             
