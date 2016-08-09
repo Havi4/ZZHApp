@@ -146,6 +146,36 @@
     }
 }
 
++ (void)filterTurnAroundWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType callBack:(void(^)(id callBack))block
+{
+    
+    @synchronized(self) {
+        if (sensorData) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
+                NSArray *sensorInfo = sensorArr.propertyDataList;
+                NSMutableArray *arr = [[NSMutableArray alloc]init];
+                for (int i = 0; i<sensorInfo.count; i++) {
+                    PropertyData *dic = [sensorInfo objectAtIndex:i];
+                    NSString *date = dic.propertyDate;
+                    NSString *hourDate1 = [date substringWithRange:NSMakeRange(11, 2)];
+                    NSString *minuteDate2 = [date substringWithRange:NSMakeRange(14, 2)];
+                    int indexIn = 0;
+                    if ([hourDate1 intValue]<18) {
+                        indexIn = (int)((24 -18)*60 + [hourDate1 intValue]*60 + [minuteDate2 intValue])/1;
+                    }else {
+                        indexIn = (int)(([hourDate1 intValue]-18)*60 + [minuteDate2 intValue])/1;
+                    }
+                    [arr addObject:[NSNumber numberWithInt:indexIn]];
+                }
+                dispatch_async_on_main_queue(^{
+                    block(arr);
+                });
+            });
+        }
+    }
+}
+
 + (void)filterSensorLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block
 {
     @synchronized(self) {
@@ -188,12 +218,22 @@
                     }else{
                         [dic setObject:[UIColor colorWithRed:0.694 green:0.835 blue:0.800 alpha:1.00] forKey:@"color"];
                     }
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    //设定时间格式,这里可以设置成自己需要的格式
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    NSDate *datei = [dateFormatter dateFromString:datai.propertyDate];
+                    NSDate *datej = [dateFormatter dateFromString:dataj.propertyDate];
+                    double timeSub = [datej minutesLaterThan:datei];
+                    if (timeSub<2) {
+                        timeSub += 5;
+                    }
+                    
                     NSString *timei = [NSString stringWithFormat:@"%@",datai.propertyDate];
                     NSString *timej = [NSString stringWithFormat:@"%@",dataj.propertyDate];
-                    NSString *time = [NSString stringWithFormat:@"%@-%@",[timei substringWithRange:NSMakeRange(11, 5)],[timej substringWithRange:NSMakeRange(11, 5)]];
+                    NSString *time = [NSString stringWithFormat:@"%@",[timei substringWithRange:NSMakeRange(11, 5)]];
                     [dic setObject:time forKey:@"name"];
                     [dic setObject:[UIColor clearColor] forKey:@"strokeColor"];
-                    [dic setObject:@10 forKey:@"value"];
+                    [dic setObject:[NSNumber numberWithDouble:timeSub] forKey:@"value"];
                     [arr1 addObject:dic];
                 }
 //                [sensorInfo enumerateObjectsUsingBlock:^(PropertyData *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

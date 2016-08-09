@@ -45,6 +45,8 @@
         }else{
             if (indexPath.row ==0) {
                 cell.textLabel.text = @"体动分析";
+            }else{
+                [cell configure:cell customObj:self.sleepQualityModel indexPath:indexPath withOtherInfo:@(self.sensorType)];
             }
         }
         
@@ -89,8 +91,14 @@
         @strongify(self);
         [self.refreshControl endRefreshing];
         self.sleepQualityModel = qualityModel;
-        [self.sensorDelegate reloadTableViewHeaderWith:qualityModel withType:self.sensorType];
-        [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+        if (self.sensorType == SensorDataLeave) {
+            [self.sensorDelegate reloadTableViewHeaderWith:qualityModel withType:self.sensorType];
+            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+        }else{
+            [self.sensorDelegate reloadTableViewHeaderWith:qualityModel withType:self.sensorType];
+            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+        }
+       
     }];
 }
 
@@ -107,11 +115,20 @@
                             };
     [client requestGetSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
         @weakify(self);
-        [SleepModelChange filterSensorNewLeaveDataWithTime:sensorModel callBack:^(id callBack) {
-            @strongify(self);
-            NSArray *arr = callBack;
-            [self.sensorDelegate reloadTableViewWith:arr withType:self.sensorType];
-        }];
+        if (self.sensorType == SensorDataLeave) {
+            [SleepModelChange filterSensorNewLeaveDataWithTime:sensorModel callBack:^(id callBack) {
+                @strongify(self);
+                NSArray *arr = callBack;
+                [self.sensorDelegate reloadTableViewWith:arr withType:self.sensorType];
+            }];
+        }else{
+            [SleepModelChange filterTurnAroundWithTime:sensorModel withType:self.sensorType callBack:^(id callBack) {
+                @strongify(self);
+                NSArray *arr = callBack;
+                [self.sensorDelegate reloadTableViewWith:arr withType:self.sensorType];
+            }];
+        }
+        
 //        [SleepModelChange filterSensorLeaveDataWithTime:sensorModel callBack:^(id callBack) {
 //            @strongify(self);
 //            self.sensorDelegate.items = callBack;

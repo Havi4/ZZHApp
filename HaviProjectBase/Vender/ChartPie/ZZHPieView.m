@@ -72,6 +72,48 @@
         make.left.equalTo(_sleepNum.mas_right).offset(0);
         make.baseline.equalTo(_sleepNum.mas_baseline);
     }];
+    
+    UIView *leftView = [[UIView alloc]init];
+    leftView.backgroundColor = [UIColor colorWithRed:0.635 green:0.851 blue:0.867 alpha:1.00];
+    [self addSubview:leftView];
+    
+    UILabel *leftLabel = [[UILabel alloc]init];
+    leftLabel.text = @"入睡";
+    leftLabel.textColor = [UIColor whiteColor];
+    leftLabel.font = [UIFont systemFontOfSize:14];
+    [self addSubview:leftLabel];
+    
+    UIView *rightView = [[UIView alloc]init];
+    rightView.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
+    [self addSubview:rightView];
+    
+    UILabel *rightLabel = [[UILabel alloc]init];
+    rightLabel.text = @"离床";
+    rightLabel.textColor = [UIColor whiteColor];
+    rightLabel.font = [UIFont systemFontOfSize:14];
+    [self addSubview:rightLabel];
+    
+    [rightLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottom).offset(-8);
+        make.right.equalTo(self.mas_right).offset(-16);
+    }];
+    
+    [rightView makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(rightLabel.mas_centerY);
+        make.right.equalTo(rightLabel.mas_left).offset(-8);
+        make.height.width.equalTo(@15);
+    }];
+    
+    [leftLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(rightLabel.mas_centerY);
+        make.right.equalTo(rightView.mas_left).offset(-16);
+    }];
+    
+    [leftView makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(leftLabel.mas_centerY);
+        make.right.equalTo(leftLabel.mas_left).offset(-8);
+        make.height.width.equalTo(@15);
+    }];
 //
 }
 
@@ -92,25 +134,7 @@
 
 - (void)reloadTableViewWith:(id)data withType:(SensorDataType)type
 {
-    
-     NSArray *chartValues = @[
-                         // Data can be passed after JSON Deserialization
-                         @{@"name":@"first", @"value":@50, @"color":@"#dd191daa", @"strokeColor":@"#fff"},
-                         
-                         // Chart can use patterns
-                         @{@"name":@"sec", @"value":@20, @"color":[UIColor redColor], @"strokeColor":@"#fff"},
-                         @{@"name":@"third", @"value":@40, @"color":[UIColor blueColor], @"strokeColor":[UIColor whiteColor]},
-                         
-                         // chart can be with or without titles
-                         @{@"name":@"fourth", @"value":@70, @"color":[UIColor colorWithHex:0x3f51b5aa], @"strokeColor":[UIColor whiteColor]},
-                         @{@"value":@65, @"color":[UIColor colorWithHex:0x5677fcaa], @"strokeColor":[UIColor whiteColor]},
-                         @{@"value":@23, @"color":[UIColor colorWithHex:0x2baf2baa], @"strokeColor":[UIColor whiteColor]},
-                         @{@"value":@34, @"color":[UIColor colorWithHex:0xb0bec5aa], @"strokeColor":[UIColor whiteColor]},
-                         @{@"name":@"stroke", @"value":@54, @"color":[UIColor colorWithHex:0xf57c00aa], @"strokeColor":[UIColor whiteColor]}
-                         ];
     [_chart setChartValues:data animation:YES];
-
-
 }
 
 @end

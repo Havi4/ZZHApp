@@ -455,7 +455,6 @@
 
 - (void) setPath:(CGPathRef)path {
     [super setPath:path];
-    
     if (_labelsPosition != VBLabelsPositionNone) {
         CGSize size = self.frame.size;
         CGSize superSize = self.superlayer.frame.size;
@@ -504,6 +503,9 @@
         self.backLayer.strokeColor = [UIColor colorWithWhite:0.8 alpha:0.7].CGColor;
         self.backLayer.fillColor = [UIColor clearColor].CGColor;
         [self addSublayer:self.backLayer];
+        
+       
+
         if (!_label.superlayer) {
             [self.superlayer addSublayer:_label];
         }
