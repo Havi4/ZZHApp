@@ -167,6 +167,48 @@
     }
 }
 
++ (void)filterSensorNewLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block
+{
+    @synchronized(self) {
+        if (sensorData) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
+                NSArray *sensorInfo = sensorArr.propertyDataList;
+        
+                NSMutableArray *arr1 = [[NSMutableArray alloc]init];
+                int i,j;
+//                @{@"name":@"third", @"value":@40, @"color":[UIColor blueColor], @"strokeColor":[UIColor whiteColor]},
+                for (i = 0,j = 1; j < sensorInfo.count ; i++,j++) {
+                    NSMutableDictionary *dic = @{}.mutableCopy;
+                    PropertyData *datai = [sensorInfo objectAtIndex:i];
+                    PropertyData *dataj = [sensorInfo objectAtIndex:j];
+                    if ([dataj.propertyValue integerValue]==0) {
+                        //离床
+                        [dic setObject:[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1.00] forKey:@"color"];
+                    }else{
+                        [dic setObject:[UIColor colorWithRed:0.694 green:0.835 blue:0.800 alpha:1.00] forKey:@"color"];
+                    }
+                    NSString *timei = [NSString stringWithFormat:@"%@",datai.propertyDate];
+                    NSString *timej = [NSString stringWithFormat:@"%@",dataj.propertyDate];
+                    NSString *time = [NSString stringWithFormat:@"%@-%@",[timei substringWithRange:NSMakeRange(11, 5)],[timej substringWithRange:NSMakeRange(11, 5)]];
+                    [dic setObject:time forKey:@"name"];
+                    [dic setObject:[UIColor clearColor] forKey:@"strokeColor"];
+                    [dic setObject:@10 forKey:@"value"];
+                    [arr1 addObject:dic];
+                }
+//                [sensorInfo enumerateObjectsUsingBlock:^(PropertyData *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                    if ([obj.propertyValue intValue]==1 || [obj.propertyValue intValue]==3) {
+//                        [arr addObject:obj];
+//                    }
+//                }];
+                dispatch_async_on_main_queue(^{
+                    block(arr1);
+                });
+            });
+        }
+    }
+}
+
 + (void)getSleepLongOrShortDurationWith:(id)obj type:(int)type callBack:(void(^)(id longSleep))block
 {
     @synchronized(self) {//1最长，-1最短

@@ -9,10 +9,14 @@
 #import "ChartTableDataDelegate.h"
 #import "ChartTableDataViewCell.h"
 #import "ChartTableTitleView.h"
+#import "ZZHPieView.h"
 
 @interface ChartTableDataDelegate ()
 
 @property (nonatomic, strong) ChartTableTitleView *titleView;
+
+
+@property (nonatomic, strong) ZZHPieView *pieView;
 
 @end
 
@@ -22,7 +26,6 @@
 {
     self = [super init];
     if (self) {
-        self.items = cellItems;
         self.cellIdentifier = cellIdentifier;
         self.configureCellBlock = configureCellBlock;
         self.heightConfigureBlock = cellHeightBlock;
@@ -35,12 +38,26 @@
 {
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.tableHeaderView = self.titleView;
+    if (self.type == SensorDataLeave) {
+        tableView.tableHeaderView = self.pieView;
+    }else if (self.type == SensorDataTurn){
+        tableView.tableHeaderView = self.titleView;
+    }
+    
 }
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.items objectAtIndex:indexPath.row];
+}
+
+- (ZZHPieView *)pieView
+{
+    if (!_pieView) {
+        _pieView = [[ZZHPieView alloc]initWithFrame:CGRectMake(0, 0, kScreenSize.width, kScreenSize.width)];
+//        _pieView.backgroundColor = [UIColor redColor];
+    }
+    return _pieView;
 }
 
 - (ChartTableTitleView*)titleView
@@ -55,6 +72,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.type == SensorDataLeave) {
+        return 2;
+    }else if (self.type == SensorDataTurn){
+        return 2;
+    }
     return self.items.count;
 }
 
@@ -75,13 +97,50 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id item = [self itemAtIndexPath:indexPath];
-    ChartTableDataViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
-    if (!cell) {
-        cell = [[ChartTableDataViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+    if (self.type == SensorDataLeave) {
+        if (indexPath.row == 0) {
+            static NSString *cellIndentifier = @"cell2";
+            UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+            if (!cell) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+                
+            }
+            cell.textLabel.font = [UIFont systemFontOfSize:18];
+            cell.dk_backgroundColorPicker = DKColorWithColors([UIColor clearColor], [UIColor clearColor]);
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.dk_textColorPicker = kTextColorPicker;
+            UIView *lineViewBottom = [[UIView alloc]init];
+            lineViewBottom.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.627 green:0.847 blue:0.890 alpha:1.00], [UIColor colorWithRed:0.627 green:0.847 blue:0.890 alpha:1.00]);
+            [cell addSubview:lineViewBottom];
+            [lineViewBottom makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(cell.textLabel.mas_baseline).offset(-15);
+                make.height.equalTo(@0.5);
+                make.centerX.equalTo(cell.mas_centerX);
+                make.width.equalTo(@70);
+            }];
+            self.configureCellBlock(indexPath,nil,cell);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }else{
+            ChartTableDataViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+            if (!cell) {
+                cell = [[ChartTableDataViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+            }
+            self.configureCellBlock(indexPath,nil,cell);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+        
+    }else{
+        id item = [self itemAtIndexPath:indexPath];
+        ChartTableDataViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+        if (!cell) {
+            cell = [[ChartTableDataViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+        }
+        self.configureCellBlock(indexPath,item,cell);
+        return cell;
     }
-    self.configureCellBlock(indexPath,item,cell);
-    return cell;
+    
 }
 
 #pragma mark datasource
@@ -92,7 +151,12 @@
 }
 
 - (void)reloadTableViewHeaderWith:(id)data withType:(SensorDataType)type{
-    [self.titleView reloadTableViewHeaderWith:data withType:type];
+    [self.pieView reloadTableViewHeaderWith:data withType:type];
+}
+
+- (void)reloadTableViewWith:(id)data withType:(SensorDataType)type
+{
+    [self.pieView reloadTableViewWith:data withType:type];
 }
 
 @end

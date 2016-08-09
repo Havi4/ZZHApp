@@ -10,12 +10,12 @@
 
 @interface ChartTableDataViewCell ()
 {
-    UIImageView *cellImage;
-    UIImageView *cellImage1;
-    UILabel *leftTitleLabel;
-    UILabel *rightTitleLabel;
-    UILabel *leftSubTitleLabel;
-    UILabel *righSubtTitleLabel;
+    UILabel *titleLabel;
+    UILabel *dataLabel;
+    //    UIView *lineViewBottom;
+    //    UIView *lineView;
+    UIImageView *backImageView;
+    UILabel *dataSub;
 }
 @end
 
@@ -24,80 +24,60 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        cellImage = [[UIImageView alloc]init];
-        [self addSubview:cellImage];
-        [cellImage makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.mas_centerX);
-            make.width.equalTo(@2);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-        }];
-        cellImage.image = [UIImage imageNamed:[NSString stringWithFormat: @"ic_line_%d",selectedThemeIndex]];
-        cellImage1 = [[UIImageView alloc]init];
-        [self addSubview:cellImage1];
-        [cellImage1 makeConstraints:^(MASConstraintMaker *make) {
+        backImageView = [[UIImageView alloc]init];
+        backImageView.image = [UIImage imageNamed:@"heart_cell_back@3x"];
+        [self addSubview:backImageView];
+        [backImageView makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.mas_centerX);
             make.centerY.equalTo(self.mas_centerY);
-            make.width.equalTo(@14);
-            make.height.equalTo(@14);
-        }];
-        cellImage1.image = [UIImage imageNamed:[NSString stringWithFormat: @"ic_dot_%d",selectedThemeIndex]];
-        //
-        leftTitleLabel = [[UILabel alloc]init];
-        [self addSubview:leftTitleLabel];
-        leftTitleLabel.textAlignment = NSTextAlignmentRight;
-        leftTitleLabel.text = @"9月1日";
-        leftTitleLabel.font = [UIFont systemFontOfSize:15];
-        leftTitleLabel.textColor = selectedThemeIndex == 0?[UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f]:[UIColor whiteColor];
-        [leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self);
-            make.right.equalTo(cellImage1.mas_left).offset(-10);
-            make.top.equalTo(self).offset(5);
-            
-            make.height.equalTo(@20);
-            
-        }];
-        leftSubTitleLabel = [[UILabel alloc]init];
-        [self addSubview:leftSubTitleLabel];
-        leftSubTitleLabel.textColor = selectedThemeIndex == 0?[UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f]:[UIColor whiteColor];
-        leftSubTitleLabel.font = [UIFont systemFontOfSize:17];
-        leftSubTitleLabel.textAlignment = NSTextAlignmentRight;
-        leftSubTitleLabel.text = @"22:12";
-        [leftSubTitleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self);
-            make.right.equalTo(cellImage1.mas_left).offset(-10);
-            make.top.equalTo(leftTitleLabel.mas_bottom);
-            make.height.equalTo(@30);
-            
+            make.height.equalTo(self.mas_height).multipliedBy(0.75);
+            make.width.equalTo(self.mas_width).multipliedBy(0.8);
         }];
         
-        //
-        rightTitleLabel = [[UILabel alloc]init];
-        [self addSubview:rightTitleLabel];
-        rightTitleLabel.dk_textColorPicker = DKColorWithColors([UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f], [UIColor whiteColor]);
-        rightTitleLabel.textAlignment = NSTextAlignmentLeft;
-        rightTitleLabel.text = @"9月1日";
-        rightTitleLabel.font = [UIFont systemFontOfSize:15];
-        [rightTitleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cellImage1.mas_right).offset(10);
-            make.right.equalTo(self.mas_right).offset(-10);
-            make.top.equalTo(self).offset(5);
-            
-            make.height.equalTo(@20);
-            
+        titleLabel = [[UILabel alloc]init];
+        [backImageView addSubview:titleLabel];
+        titleLabel.textAlignment = NSTextAlignmentLeft;
+        titleLabel.dk_textColorPicker = kTextColorPicker;
+        titleLabel.font = [UIFont systemFontOfSize:16];
+        [titleLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(backImageView.mas_centerY);
+            make.left.equalTo(backImageView.mas_left).offset(10);
+            make.height.equalTo(self);
         }];
-        righSubtTitleLabel = [[UILabel alloc]init];
-        [self addSubview:righSubtTitleLabel];
-        righSubtTitleLabel.dk_textColorPicker = DKColorWithColors([UIColor colorWithRed:0.000f green:0.859f blue:0.573f alpha:1.00f], [UIColor whiteColor]);
-        righSubtTitleLabel.font = [UIFont systemFontOfSize:17];
-        righSubtTitleLabel.textAlignment = NSTextAlignmentLeft;
-        righSubtTitleLabel.text = @"22:12";
-        [righSubtTitleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cellImage1.mas_right).offset(10);
-            make.right.equalTo(self.mas_right).offset(-10);
-            make.top.equalTo(leftTitleLabel.mas_bottom);
-            make.height.equalTo(@30);
-            
+        
+        
+        //        lineView = [[UIView alloc]init];
+        //        lineView.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.161f green:0.251f blue:0.365f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
+        //        [self addSubview:lineView];
+        //        [lineView makeConstraints:^(MASConstraintMaker *make) {
+        //            make.centerX.equalTo(self);
+        //            make.height.equalTo(@60);
+        //            make.width.equalTo(@0.5);
+        //        }];
+        //
+        dataLabel = [[UILabel alloc]init];
+        dataLabel.textAlignment = NSTextAlignmentRight;
+        [backImageView addSubview:dataLabel];
+        dataLabel.font = [UIFont systemFontOfSize:30];
+        
+        dataSub = [[UILabel alloc]init];
+        dataSub.textColor = [UIColor whiteColor];
+        dataSub.font = [UIFont systemFontOfSize:15];
+        dataSub.textAlignment = NSTextAlignmentLeft;
+        [backImageView addSubview:dataSub];
+        dataLabel.dk_textColorPicker = DKColorWithColors([UIColor colorWithRed:0.000f green:0.851f blue:0.573f alpha:1.00f], [UIColor whiteColor]);
+        [dataLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(backImageView);
+            make.left.equalTo(titleLabel.mas_right).offset(10);
+            make.right.equalTo(dataSub.mas_left).offset(0);
+            make.width.equalTo(titleLabel.mas_width).multipliedBy(0.5);
+        }];
+        
+        
+        [dataSub makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(backImageView.mas_right).offset(-10);
+            make.width.equalTo(dataLabel.mas_width);
+            make.baseline.equalTo(dataLabel.mas_baseline);
         }];
     }
     return self;
@@ -109,22 +89,18 @@
     withOtherInfo:(id)objInfo
 {
     // Rewrite this func in SubClass !
-    PropertyData *dataModel = obj;
-    NSString *cellString = dataModel.propertyDate;
-    
-    NSString *month = [NSString stringWithFormat:@"%@月%@日",[cellString substringWithRange:NSMakeRange(5, 2)],[cellString substringWithRange:NSMakeRange(8, 2)]];
-    NSString *time = [NSString stringWithFormat:@"%@",[cellString substringWithRange:NSMakeRange(11, 8)]];
-
-    if (indexPath.row%2==0) {
-        leftTitleLabel.text = month;
-        leftSubTitleLabel.text = time;
-        rightTitleLabel.text = @"";
-        righSubtTitleLabel.text = @"";
+    SleepQualityModel *dataModel = obj;
+    SensorDataType type = [objInfo intValue];
+    if (type == SensorDataLeave) {
+        titleLabel.text = @"离床次数";
+        if ([dataModel.outOfBedTimes intValue]==0) {
+            dataLabel.text = @"--";
+        }else{
+            dataLabel.text = [NSString stringWithFormat:@"%d",[dataModel.outOfBedTimes intValue]];
+        }
+        dataSub.text = @"次/天";
     }else{
-        leftTitleLabel.text = @"";
-        leftSubTitleLabel.text = @"";
-        rightTitleLabel.text = month;
-        righSubtTitleLabel.text = time;
+    
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }

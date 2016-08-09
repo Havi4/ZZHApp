@@ -30,4 +30,6 @@
 
 + (void)filterQuaterReportData:(NSArray *)reportData queryDate:(id)query callBack:(void (^)(id qualityBack,id sleepDurationBack))block;
 
++ (void)filterSensorNewLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block;
+
 @end

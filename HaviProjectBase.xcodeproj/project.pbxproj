@@ -60,6 +60,11 @@
 		2C3589CA1D53311100BEC198 /* icon_breath@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3589C91D53311100BEC198 /* icon_breath@3x.png */; };
 		2C3589CC1D533DD200BEC198 /* heart_cell_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3589CB1D533DD200BEC198 /* heart_cell_back@3x.png */; };
 		2C3589CE1D53519D00BEC198 /* new_about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3589CD1D53519D00BEC198 /* new_about@3x.png */; };
+		2C358A441D586D8E00BEC198 /* leave@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C358A3A1D586D8E00BEC198 /* leave@3x.png */; };
+		2C358A451D586D8E00BEC198 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C358A3C1D586D8E00BEC198 /* UIColor+HexColor.m */; };
+		2C358A461D586D8E00BEC198 /* VBPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C358A3E1D586D8E00BEC198 /* VBPieChart.m */; };
+		2C358A471D586D8E00BEC198 /* VBPiePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C358A401D586D8E00BEC198 /* VBPiePiece.m */; };
+		2C358A481D586D8E00BEC198 /* ZZHPieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C358A431D586D8E00BEC198 /* ZZHPieView.m */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -90,6 +95,7 @@
 		2C5FE5B61D470FB900AFFEFE /* LangageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5B51D470FB900AFFEFE /* LangageTableViewCell.m */; };
 		2C5FE5BC1D4720B200AFFEFE /* about_top@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */; };
 		2C5FE5BF1D4862F600AFFEFE /* DataAnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5BE1D4862F600AFFEFE /* DataAnTableViewCell.m */; };
+		2C72A1F41D59647F00D85966 /* jt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C72A1F31D59647F00D85966 /* jt@3x.png */; };
 		2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */; };
 		2C8D87C71D45EF81008573EA /* navi_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C61D45EF81008573EA /* navi_back@3x.png */; };
 		2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C81D45EFD0008573EA /* navi_done@3x.png */; };
@@ -656,6 +662,16 @@
 		2C3589C91D53311100BEC198 /* icon_breath@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_breath@3x.png"; sourceTree = "<group>"; };
 		2C3589CB1D533DD200BEC198 /* heart_cell_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_cell_back@3x.png"; sourceTree = "<group>"; };
 		2C3589CD1D53519D00BEC198 /* new_about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_about@3x.png"; sourceTree = "<group>"; };
+		2C358A3A1D586D8E00BEC198 /* leave@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leave@3x.png"; sourceTree = "<group>"; };
+		2C358A3B1D586D8E00BEC198 /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
+		2C358A3C1D586D8E00BEC198 /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
+		2C358A3D1D586D8E00BEC198 /* VBPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBPieChart.h; sourceTree = "<group>"; };
+		2C358A3E1D586D8E00BEC198 /* VBPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBPieChart.m; sourceTree = "<group>"; };
+		2C358A3F1D586D8E00BEC198 /* VBPiePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBPiePiece.h; sourceTree = "<group>"; };
+		2C358A401D586D8E00BEC198 /* VBPiePiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBPiePiece.m; sourceTree = "<group>"; };
+		2C358A411D586D8E00BEC198 /* VBPiePiece_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBPiePiece_private.h; sourceTree = "<group>"; };
+		2C358A421D586D8E00BEC198 /* ZZHPieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZHPieView.h; sourceTree = "<group>"; };
+		2C358A431D586D8E00BEC198 /* ZZHPieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZHPieView.m; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -699,6 +715,7 @@
 		2C5FE5BB1D4720B200AFFEFE /* about_top@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_top@3x.png"; sourceTree = "<group>"; };
 		2C5FE5BD1D4862F600AFFEFE /* DataAnTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnTableViewCell.h; sourceTree = "<group>"; };
 		2C5FE5BE1D4862F600AFFEFE /* DataAnTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnTableViewCell.m; sourceTree = "<group>"; };
+		2C72A1F31D59647F00D85966 /* jt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jt@3x.png"; sourceTree = "<group>"; };
 		2C8D87C31D45DC55008573EA /* ProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewCell.h; sourceTree = "<group>"; };
 		2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewCell.m; sourceTree = "<group>"; };
 		2C8D87C61D45EF81008573EA /* navi_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_back@3x.png"; sourceTree = "<group>"; };
@@ -1577,6 +1594,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2C358A391D586D8E00BEC198 /* ChartPie */ = {
+			isa = PBXGroup;
+			children = (
+				2C358A3A1D586D8E00BEC198 /* leave@3x.png */,
+				2C72A1F31D59647F00D85966 /* jt@3x.png */,
+				2C358A3B1D586D8E00BEC198 /* UIColor+HexColor.h */,
+				2C358A3C1D586D8E00BEC198 /* UIColor+HexColor.m */,
+				2C358A3D1D586D8E00BEC198 /* VBPieChart.h */,
+				2C358A3E1D586D8E00BEC198 /* VBPieChart.m */,
+				2C358A3F1D586D8E00BEC198 /* VBPiePiece.h */,
+				2C358A401D586D8E00BEC198 /* VBPiePiece.m */,
+				2C358A411D586D8E00BEC198 /* VBPiePiece_private.h */,
+				2C358A421D586D8E00BEC198 /* ZZHPieView.h */,
+				2C358A431D586D8E00BEC198 /* ZZHPieView.m */,
+			);
+			path = ChartPie;
+			sourceTree = "<group>";
+		};
 		2C58728E1C7BF0BE001C2F3A /* SLPageController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2287,6 +2322,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C358A391D586D8E00BEC198 /* ChartPie */,
 				2C1D9FEF1D4F2BF200FA6678 /* JTCalendar */,
 				2C1D9FCB1D4CC46000FA6678 /* Gauge */,
 				2C96AA4E1D41101A00ACCA08 /* SCNavitagionController */,
@@ -3196,6 +3232,7 @@
 				2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */,
 				2CD014C71C6396D4001F9514 /* re_order_1@2x.png in Resources */,
 				2CF2E2361C7AB0110007A639 /* skinpeeler_dark_color_bg@2x.png in Resources */,
+				2C72A1F41D59647F00D85966 /* jt@3x.png in Resources */,
 				2CF2E1691C759F530007A639 /* havi1_6@2x.png in Resources */,
 				2CF2E23E1C7AB2710007A639 /* pic_bg_0@2x.png in Resources */,
 				2CF2E1B71C76D9FE0007A639 /* ReturnCode.plist in Resources */,
@@ -3331,6 +3368,7 @@
 				2CD014C51C639688001F9514 /* btn_back_1@2x.png in Resources */,
 				2C1D9FE21D4F190C00FA6678 /* long_sleep@3x.png in Resources */,
 				2CD014DA1C64C5A1001F9514 /* person_back_right@2x.png in Resources */,
+				2C358A441D586D8E00BEC198 /* leave@3x.png in Resources */,
 				2C9EF4481C80388E000704E2 /* ic_line_0.png in Resources */,
 				2C96AA7B1D41F65700ACCA08 /* sheb@3x.png in Resources */,
 				2C8D87D11D461DC5008573EA /* jia@3x.png in Resources */,
@@ -3522,6 +3560,7 @@
 				2C1DA01B1D4F2BF300FA6678 /* JTCalendarScrollManager.m in Sources */,
 				2CF2E1921C75C6D30007A639 /* MMPopupitem.m in Sources */,
 				2CD014BD1C6355F1001F9514 /* PersonManagerViewController.m in Sources */,
+				2C358A461D586D8E00BEC198 /* VBPieChart.m in Sources */,
 				2CF2E2341C7AAEB00007A639 /* ThemeSelectConfigureObj.m in Sources */,
 				2CD014F91C6E3B7F001F9514 /* EditCellInfoDelegate.m in Sources */,
 				2C9EF3821C7DA15A000704E2 /* UILabel+FlickerNumber.m in Sources */,
@@ -3542,11 +3581,13 @@
 				2CF2E1911C75C6D30007A639 /* MMPopupCategory.m in Sources */,
 				2C9EF4391C803146000704E2 /* UIColor+expanded.m in Sources */,
 				2CD75B771C61C2D000E7E076 /* ServerTimeModel.m in Sources */,
+				2C358A451D586D8E00BEC198 /* UIColor+HexColor.m in Sources */,
 				2C9EF4901C81E831000704E2 /* SleepTimeLongBar.m in Sources */,
 				2C9EF48A1C81E7E4000704E2 /* NewWeekReport.m in Sources */,
 				2C9EF4111C7FE30B000704E2 /* MPBarsGraphView.m in Sources */,
 				2CD75B6D1C61C2D000E7E076 /* GlobalModel.m in Sources */,
 				2CD75B891C61C68900E7E076 /* HaviNetWorkAPIClient.m in Sources */,
+				2C358A471D586D8E00BEC198 /* VBPiePiece.m in Sources */,
 				2C9EF3D11C7F0ACE000704E2 /* SleepTimeTagView.m in Sources */,
 				2CD75BA31C61F8D300E7E076 /* LeftSideViewController.m in Sources */,
 				2C9EF4821C816051000704E2 /* ReportTableViewCell.m in Sources */,
@@ -3592,6 +3633,7 @@
 				2C1D9FD01D4CC46100FA6678 /* JTNumberScrollAnimatedView.m in Sources */,
 				2CF2E2011C78A82C0007A639 /* DTTimePeriodGroup.m in Sources */,
 				2C9EF4E31C844FA3000704E2 /* NSDate+WQCalendarLogic.m in Sources */,
+				2C358A481D586D8E00BEC198 /* ZZHPieView.m in Sources */,
 				2CF2E21C1C79D6600007A639 /* ModifyPassWordViewController.m in Sources */,
 				2C9EF5161C8550D8000704E2 /* AssessmentListModel.m in Sources */,
 				2CF2E1721C75B3FB0007A639 /* XHRealTimeBlur.m in Sources */,

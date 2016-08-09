@@ -10,6 +10,10 @@
 
 @interface ChartTableDataDelegate : BaseTableViewDataDelegate
 
+@property (nonatomic, assign) SensorDataType type;
+
 - (void)reloadTableViewHeaderWith:(id)data withType:(SensorDataType)type;
+
+- (void)reloadTableViewWith:(id)data withType:(SensorDataType)type;
 
 @end
