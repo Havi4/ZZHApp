@@ -97,6 +97,9 @@
 		2C5FE5BF1D4862F600AFFEFE /* DataAnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FE5BE1D4862F600AFFEFE /* DataAnTableViewCell.m */; };
 		2C72A1F41D59647F00D85966 /* jt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C72A1F31D59647F00D85966 /* jt@3x.png */; };
 		2C72A1F71D59C37C00D85966 /* TurnAroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C72A1F61D59C37C00D85966 /* TurnAroundView.m */; };
+		2C72A1F91D5AC57B00D85966 /* new_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C72A1F81D5AC57B00D85966 /* new_star.png */; };
+		2C72A1FF1D5B304E00D85966 /* ZESegmentedsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C72A1FC1D5B304E00D85966 /* ZESegmentedsView.m */; };
+		2C72A2001D5B304E00D85966 /* ZESegmentedsViewSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C72A1FE1D5B304E00D85966 /* ZESegmentedsViewSingleton.m */; };
 		2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */; };
 		2C8D87C71D45EF81008573EA /* navi_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C61D45EF81008573EA /* navi_back@3x.png */; };
 		2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D87C81D45EFD0008573EA /* navi_done@3x.png */; };
@@ -719,6 +722,11 @@
 		2C72A1F31D59647F00D85966 /* jt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jt@3x.png"; sourceTree = "<group>"; };
 		2C72A1F51D59C37C00D85966 /* TurnAroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnAroundView.h; sourceTree = "<group>"; };
 		2C72A1F61D59C37C00D85966 /* TurnAroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnAroundView.m; sourceTree = "<group>"; };
+		2C72A1F81D5AC57B00D85966 /* new_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_star.png; sourceTree = "<group>"; };
+		2C72A1FB1D5B304E00D85966 /* ZESegmentedsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZESegmentedsView.h; sourceTree = "<group>"; };
+		2C72A1FC1D5B304E00D85966 /* ZESegmentedsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZESegmentedsView.m; sourceTree = "<group>"; };
+		2C72A1FD1D5B304E00D85966 /* ZESegmentedsViewSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZESegmentedsViewSingleton.h; sourceTree = "<group>"; };
+		2C72A1FE1D5B304E00D85966 /* ZESegmentedsViewSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZESegmentedsViewSingleton.m; sourceTree = "<group>"; };
 		2C8D87C31D45DC55008573EA /* ProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewCell.h; sourceTree = "<group>"; };
 		2C8D87C41D45DC55008573EA /* ProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewCell.m; sourceTree = "<group>"; };
 		2C8D87C61D45EF81008573EA /* navi_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_back@3x.png"; sourceTree = "<group>"; };
@@ -1629,6 +1637,17 @@
 			path = SLPageController;
 			sourceTree = "<group>";
 		};
+		2C72A1FA1D5B304E00D85966 /* ZESementeds */ = {
+			isa = PBXGroup;
+			children = (
+				2C72A1FB1D5B304E00D85966 /* ZESegmentedsView.h */,
+				2C72A1FC1D5B304E00D85966 /* ZESegmentedsView.m */,
+				2C72A1FD1D5B304E00D85966 /* ZESegmentedsViewSingleton.h */,
+				2C72A1FE1D5B304E00D85966 /* ZESegmentedsViewSingleton.m */,
+			);
+			path = ZESementeds;
+			sourceTree = "<group>";
+		};
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1649,6 +1668,7 @@
 				2C1D9FE11D4F190C00FA6678 /* long_sleep@3x.png */,
 				2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */,
 				2C1D9FD21D4CD5B900FA6678 /* chang@3x.png */,
+				2C72A1F81D5AC57B00D85966 /* new_star.png */,
 				2C8D87CF1D461DC5008573EA /* jia@3x.png */,
 				2C8D87D01D461DC5008573EA /* sousuo@3x.png */,
 				2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */,
@@ -2327,6 +2347,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C72A1FA1D5B304E00D85966 /* ZESementeds */,
 				2C358A391D586D8E00BEC198 /* ChartPie */,
 				2C1D9FEF1D4F2BF200FA6678 /* JTCalendar */,
 				2C1D9FCB1D4CC46000FA6678 /* Gauge */,
@@ -3318,6 +3339,7 @@
 				2C9EF4431C8037EA000704E2 /* ic_body_movement_1.png in Resources */,
 				2C1D9FEE1D4F258900FA6678 /* icon_share@3x.png in Resources */,
 				2C58725E1C7AED87001C2F3A /* icon_logo_login_1@2x.png in Resources */,
+				2C72A1F91D5AC57B00D85966 /* new_star.png in Resources */,
 				2C9EF34F1C7D7C04000704E2 /* leave_apng_1.apng in Resources */,
 				2CF2E1B21C76A94A0007A639 /* CodeScan.bundle in Resources */,
 				2C9EF4231C7FEFC1000704E2 /* pic_sun@2x.png in Resources */,
@@ -3596,6 +3618,7 @@
 				2C9EF3D11C7F0ACE000704E2 /* SleepTimeTagView.m in Sources */,
 				2CD75BA31C61F8D300E7E076 /* LeftSideViewController.m in Sources */,
 				2C9EF4821C816051000704E2 /* ReportTableViewCell.m in Sources */,
+				2C72A2001D5B304E00D85966 /* ZESegmentedsViewSingleton.m in Sources */,
 				2C9EF4751C80B692000704E2 /* WeekCalenderView.m in Sources */,
 				2C9EF4001C7FE23E000704E2 /* MPGraphView.m in Sources */,
 				2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */,
@@ -3604,6 +3627,7 @@
 				2CF2E2301C7AAE420007A639 /* SelectThemeCollectionViewCell.m in Sources */,
 				2C2DC9B61CC714CD008D28D1 /* LongpressShowView.m in Sources */,
 				2C1DA0191D4F2BF300FA6678 /* JTDateHelper.m in Sources */,
+				2C72A1FF1D5B304E00D85966 /* ZESegmentedsView.m in Sources */,
 				2CF2E2311C7AAE420007A639 /* SelectThemeViewController.m in Sources */,
 				2CD75B781C61C2D000E7E076 /* ServerTimeModelTwo.m in Sources */,
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,

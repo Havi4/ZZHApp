@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) CalendarShowView *calendarBackView;
 @property (nonatomic, assign) ReportViewType type;
+@property (nonatomic, assign) float headerHeight;
 
 @end
 
@@ -32,6 +33,7 @@
         self.configureCellBlock = configureCellBlock;
         self.heightConfigureBlock = cellHeightBlock;
         self.didSelectCellBlock = didSelectBlock;
+        self.headerHeight = 105;
     }
     return self;
 }
@@ -51,7 +53,8 @@
 - (CalendarShowView*)calendarBackView
 {
     if (!_calendarBackView) {
-        _calendarBackView = [[CalendarShowView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 69) withReportType:self.type];
+        
+        _calendarBackView = [[CalendarShowView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, self.headerHeight) withReportType:self.type];
         @weakify(self);
         _calendarBackView.selectDateBlock = ^(NSString *fromDate,NSString *endDate){
             @strongify(self);
@@ -68,9 +71,9 @@
     if (section==0) {
         return 1;
     }else if (section==1) {
-        return 4;
+        return 1;
     }else{
-        return 3;
+        return 1;
     }
 
 }
@@ -83,9 +86,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
-        return 69;
+        return self.headerHeight;
+    
     }else{
-        return 30;
+        return 0.01;
     }
 }
 
@@ -103,16 +107,16 @@
     if (section==0) {
         return self.calendarBackView;
     }else{
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
-        view.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f]:[UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 0.1)];
+        view.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:1.00];
         return view;
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
-    view.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f]:[UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 0.1)];
+    view.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:1.00];
     return view;
 }
 
@@ -121,9 +125,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 216;
+        return 205;
     }else {
-        return 60;
+        return 135;
     }
 }
 
@@ -137,7 +141,7 @@
         self.configureCellBlock(indexPath,nil,cell);
         return cell;
     }else if (indexPath.section == 1){
-        id item = [self.items objectAtIndex:indexPath.row];
+        id item = [self.items objectAtIndex:indexPath.section-1];
         if (indexPath.row == 0) {
             static NSString *cellIndentifier = @"cellOne";
             ReportTableViewCell *cell = (ReportTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
@@ -160,13 +164,14 @@
         
     }else{
         if (indexPath.row == 0) {
+            id item = [self.items objectAtIndex:indexPath.section-1];
             static NSString *cellIndentifier = @"cellOne";
             ReportTableViewCell *cell = (ReportTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
             if (!cell) {
                 cell = [[ReportTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
                 
             }
-            self.configureCellBlock(indexPath,nil,cell);
+            self.configureCellBlock(indexPath,item,cell);
             return cell;
         }else{
             static NSString *cellIndentifier = @"cellSleep";
@@ -198,6 +203,11 @@
         return;
     }
     
+}
+
+- (void)reloadHeader:(id)data
+{
+    [self.calendarBackView reloadSleepDuration:data];
 }
 
 @end

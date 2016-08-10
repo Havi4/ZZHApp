@@ -20,6 +20,7 @@
 @property (nonatomic,assign) NSInteger dayNums;
 @property (nonatomic,assign) ReportViewType reportType;
 @property (nonatomic,strong) UIView *noDataImageView;
+@property (nonatomic,strong) UIView *subView;
 
 @end
 
@@ -44,14 +45,41 @@
                 break;
         }
         self.reportType = type;
+        [self subView];
     }
     return self;
+}
+
+- (UIView*)subView
+{
+    if (!_subView) {
+        _subView = [[UIView alloc]initWithFrame:(CGRect){0,0,24,200}];
+        _subView.backgroundColor = [UIColor clearColor];
+        CGFloat cY = (200 - bottomLineMargin-16)/5;
+        for (int i = 0; i<3; i++) {
+            UILabel *lineView = [[UILabel alloc] init];
+            lineView.frame = CGRectMake(2, 16 + cY*i*2-10, 24, 20);
+            lineView.textColor = kReportCellColor;
+            lineView.font = [UIFont systemFontOfSize:14];
+            lineView.textAlignment = NSTextAlignmentCenter;
+            if (i==0) {
+                lineView.text = @"12";
+            }else if (i==1){
+                lineView.text = @"8";
+            }else if (i==2){
+                lineView.text = @"6";
+            }
+            
+            [self addSubview:lineView];
+        }
+    }
+    return _subView;
 }
 
 - (NewWeekReport*)weekReport
 {
     if (!_weekReport) {
-        _weekReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 216)];
+        _weekReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 200)];
         _weekReport.xValues = @[@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"];
         _weekReport.sleepQulityDataValues = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
         _weekReport.sleepTimeDataValues = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
@@ -62,8 +90,8 @@
 - (UIScrollView *)dataScrollView
 {
     if (!_dataScrollView) {
-        _dataScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 216)];
-        _dataScrollView.contentSize = CGSizeMake(4*self.frame.size.width+self.frame.size.width/7*3, 216);
+        _dataScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 200)];
+        _dataScrollView.contentSize = CGSizeMake(4*self.frame.size.width+self.frame.size.width/7*3, 00);
         _dataScrollView.backgroundColor = [UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f];
         _dataScrollView.delegate = self;
         [_dataScrollView addSubview:self.monthReport];
@@ -76,7 +104,7 @@
 - (NewWeekReport*)monthReport
 {
     if (!_monthReport) {
-        _monthReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(0, 0, 4*self.frame.size.width+self.frame.size.width/7*3, 216)];
+        _monthReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(0, 0, 4*self.frame.size.width+self.frame.size.width/7*3, 200)];
         self.dayNums = [[NSDate date] getdayNumsInOneMonth];
         [self changeXvaluel:self.dayNums];
         
@@ -127,7 +155,7 @@
 - (NewWeekReport*)quaterReport
 {
     if (!_quaterReport) {
-        _quaterReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 216)];
+        _quaterReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 200)];
         NSString *currentDate = [[NSString stringWithFormat:@"%@",[NSDate date]]substringToIndex:7];
         NSString *month = [currentDate substringWithRange:NSMakeRange(5, 2)];
         NSString *quater = [[CalendarDateCaculate sharedInstance] changeMonthToQuater:month];
@@ -158,18 +186,18 @@
         switch (self.reportType) {
             case ReportViewWeek:
             {
-                [self.weekReport addSubview:self.noDataImageView];
-                self.noDataImageView.center = self.weekReport.center;
+//                [self.weekReport addSubview:self.noDataImageView];
+//                self.noDataImageView.center = self.weekReport.center;
                 break;
             }
             case ReportViewMonth:{
-                [self.dataScrollView addSubview:self.noDataImageView];
-                self.noDataImageView.center = self.dataScrollView.center;
+//                [self.dataScrollView addSubview:self.noDataImageView];
+//                self.noDataImageView.center = self.dataScrollView.center;
                 break;
             }
             case ReportViewQuater:{
-                [self.quaterReport addSubview:self.noDataImageView];
-                self.noDataImageView.center = self.quaterReport.center;
+//                [self.quaterReport addSubview:self.noDataImageView];
+//                self.noDataImageView.center = self.quaterReport.center;
                 break;
             }
                 
@@ -177,7 +205,7 @@
                 break;
         }
     }else{
-        [self.noDataImageView removeFromSuperview];
+//        [self.noDataImageView removeFromSuperview];
         self.noDataImageView = nil;
     }
     if (self.reportType == ReportViewWeek) {
@@ -233,7 +261,7 @@
         }];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f], [UIColor colorWithRed:0.475f green:0.686f blue:0.820f alpha:1.00f]);
+    cell.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

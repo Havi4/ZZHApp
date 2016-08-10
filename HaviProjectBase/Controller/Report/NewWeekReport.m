@@ -24,8 +24,9 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f]:[UIColor colorWithRed:0.475f green:0.686f blue:0.820f alpha:1.00f];
+        self.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
         [self setUpCoordinateSystem];
+        [self setDashLine];
         [self drawFuncLine];
     }
     return self;
@@ -39,6 +40,21 @@
         _xPoints = [[NSMutableArray alloc]init];
     }
     return _xPoints;
+}
+
+- (void)setDashLine
+{
+    CGFloat cY = (self.frame.size.height - bottomLineMargin-16-5)/5;
+    for (int i = 0; i<6; i++) {
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = [UIColor colorWithRed:0.784 green:0.788 blue:0.792 alpha:1.00];
+        lineView.alpha = 0.5;
+        lineView.frame = CGRectMake(2, 16 + cY*i, self.frame.size.width-2, 1);
+        if (i==0 || i==5) {
+            lineView.backgroundColor = [UIColor colorWithRed:0.820 green:0.592 blue:0.714 alpha:1.00];
+        }
+        [self addSubview:lineView];
+    }
 }
 
 //- (void )setSleepQulityDataValues:(NSMutableArray *)sleepQulityDataValues
@@ -55,7 +71,10 @@
 {
     UIView *xCoordinate = [self getLineCoor];
     [self addSubview:xCoordinate];
-
+    
+    UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 1, self.frame.size.height - bottomLineMargin)];
+    labelLine.backgroundColor = [UIColor colorWithRed:0.027 green:0.322 blue:0.400 alpha:.70];
+    [self addSubview:labelLine];
 }
 /**
  *  创建x轴
@@ -65,8 +84,8 @@
 -(UIView *)getLineCoor
 {
     UIView *lineView = [[UIView alloc] init];
-    lineView.backgroundColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
-    lineView.alpha = 0.3;
+    lineView.backgroundColor = [UIColor colorWithRed:0.027 green:0.322 blue:0.400 alpha:.70];
+    lineView.alpha = 0.5;
     lineView.frame = CGRectMake(0, self.frame.size.height - bottomLineMargin, self.frame.size.width, 1);
     return lineView;
 }
@@ -96,13 +115,13 @@
             label.backgroundColor = [UIColor clearColor];
             label.text = xValue;
             label.tag = 1001;
-            label.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+            label.textColor = kReportCellColor;
             label.font = [UIFont systemFontOfSize:12];
             label.textAlignment = NSTextAlignmentCenter;
             [self addSubview:label];
             //
-            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-2, 1, 2)];
-            labelLine.backgroundColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 0, 0.5, cY-5)];
+            labelLine.backgroundColor = [UIColor colorWithRed:0.784 green:0.788 blue:0.792 alpha:1.00];
             labelLine.tag = 1002;
             //
             [self.xPoints addObject:[NSValue valueWithCGPoint:CGPointMake(labelLine.frame.origin.x, cY)]];
@@ -140,6 +159,7 @@
     }
     
     //睡眠质量
+    /*
     for (int i=0; i<_sleepQulityDataValues.count; i++) {
         float gradePercent = [[_sleepQulityDataValues objectAtIndex:i] floatValue];
         CGPoint xPoint = [[self.xPoints objectAtIndex:i]CGPointValue];
@@ -160,18 +180,20 @@
         }];
         [self addSubview:bar];
     }
+     */
     //睡眠时长
     for (int i=0; i<_sleepTimeDataValues.count; i++) {
         float gradePercent = [[_sleepTimeDataValues objectAtIndex:i] floatValue];
         CGPoint xPoint = [[self.xPoints objectAtIndex:i]CGPointValue];
         CGFloat height = (yCoordinateHeight-15-20)/24*gradePercent;
-        __block SleepTimeLongBar *bar = [[SleepTimeLongBar alloc] initWithFrame:CGRectMake(xPoint.x-9, 15+(yCoordinateHeight-15)-height, 5,height)];
+        __block SleepTimeLongBar *bar = [[SleepTimeLongBar alloc] initWithFrame:CGRectMake(xPoint.x-2.5, 15+(yCoordinateHeight-15)-height-5, 5,height)];
         bar.alpha = 0;
         [UIView animateWithDuration:0.3 animations:^{
             bar.alpha = 1;
         } completion:^(BOOL finished) {
+            /*
             if (gradePercent!=0) {
-                UILabel *label = [self getTopLabelWithTime:gradePercent andColor:[self returnColorWithSleepLevel:gradePercent] andFrame:CGRectMake(xPoint.x-21, 15+(yCoordinateHeight-15)-height- 20-8, 36, 12)];
+                UILabel *label = [self getTopLabelWithTime:gradePercent andColor:[self returnColorWithSleepLevel:gradePercent] andFrame:CGRectMake(xPoint.x, 15+(yCoordinateHeight-15)-height- 20-8, 36, 12)];
                 label.tag = 999;
                 label.textAlignment = NSTextAlignmentLeft;
                 label.backgroundColor = [UIColor clearColor];
@@ -180,6 +202,7 @@
                 transform = CGAffineTransformRotate(transform, -1.2);
                 label.transform = transform;
             }
+             */
         }];
         [self addSubview:bar];
     }

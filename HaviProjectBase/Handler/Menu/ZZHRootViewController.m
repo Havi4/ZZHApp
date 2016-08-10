@@ -117,6 +117,22 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
         }
     }];
     
+    [[NSNotificationCenter defaultCenter]addObserverForName:kReportTagSelected object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary *dic = (NSDictionary *)note.userInfo;
+        NSInteger tag = [[dic objectForKey:@"tag"] integerValue];
+        switch (tag+1001) {
+            case 1001:
+                [self showViewControllerAtIndex:1001 animated:YES];
+                break;
+            case 1002:
+                [self showViewControllerAtIndex:1002 animated:YES];
+                break;
+            default:
+                [self showViewControllerAtIndex:1003 animated:YES];
+                break;
+        }
+    }];
+    
 }
 
 - (void)configureGestures {

@@ -15,4 +15,5 @@
 
 - (instancetype)initWithFrame:(CGRect)frame withReportType:(ReportViewType)type;
 
+- (void)reloadSleepDuration:(id)sleepData;
 @end

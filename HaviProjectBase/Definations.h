@@ -45,6 +45,8 @@
 #endif
 
 //cell 滑动效果
+
+#define kReportCellColor        [UIColor colorWithRed:0.027 green:0.322 blue:0.400 alpha:1.00]
 #define kFlagButtonColor        [UIColor colorWithRed:255.0/255.0 green:150.0/255.0 blue:0/255.0 alpha:1]
 #define kMoreButtonColor        [UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1]
 #define kArchiveButtonColor     [UIColor colorWithRed:60.0/255.0 green:112.0/255.0 blue:168/255.0 alpha:1]
@@ -83,6 +85,7 @@
 
 #define kUserChangeUUIDInCenterView @"kUserChangeUUIDInCenterView"
 #define kUserTapedDataReportButton @"kUserTapedDataReportButton"
+#define kReportTagSelected         @"kReportTagSelected"
 
 #define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
 [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]

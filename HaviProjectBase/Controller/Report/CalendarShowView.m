@@ -11,8 +11,9 @@
 #import "WeekCalenderView.h"
 #import "MonthCalenderView.h"
 #import "QuaterCalenderView.h"
+#import "ZESegmentedsView.h"
 
-@interface CalendarShowView ()<SelectedWeek,SelectedMonth,SelectedQuater>
+@interface CalendarShowView ()<SelectedWeek,SelectedMonth,SelectedQuater,ZESegmentedsViewDelegate>
 
 @property (nonatomic, strong) UIView *calenderBackView;
 @property (nonatomic,strong) UIButton *leftCalButton;
@@ -21,6 +22,14 @@
 @property (nonatomic,strong) UIImageView *calenderImage;
 @property (nonatomic,strong) UILabel *monthLabel;
 @property (nonatomic,assign) ReportViewType reportType;
+@property (nonatomic,strong) ZESegmentedsView *segmentView;
+
+
+@property (nonatomic,strong) UIImageView *headerImageView;
+@property (nonatomic,strong) UILabel *headerLongLabel;
+@property (nonatomic,strong) UILabel *headerShortLabel;
+@property (nonatomic,strong) UILabel *headerLongData;
+@property (nonatomic,strong) UILabel *headerShortData;
 
 @end
 
@@ -36,26 +45,130 @@
     return self;
 }
 
+- (ZESegmentedsView*)segmentView
+{
+    if (!_segmentView) {
+        _segmentView = [[ZESegmentedsView alloc]initWithFrame:(CGRect){200,10,120,30} segmentedCount:3 segmentedTitles:@[@"周",@"月",@"季"]];
+        _segmentView.delegate = self;
+        [_segmentView setSelectIndex:self.reportType];
+    }
+    return _segmentView;
+}
+
+- (UIImageView *)headerImageView
+{
+    if (!_headerImageView) {
+        _headerImageView = [[UIImageView alloc]init];
+        _headerImageView.image = [UIImage imageNamed:@"chang@3x"];
+    }
+    return _headerImageView;
+}
+
+- (UILabel *)headerLongLabel
+{
+    if (!_headerLongLabel) {
+        _headerLongLabel = [[UILabel alloc]init];
+        _headerLongLabel.text = @"最长夜晚";
+        _headerLongLabel.textColor = kReportCellColor;
+        _headerLongLabel.font = [UIFont systemFontOfSize:13];
+    }
+    return _headerLongLabel;
+}
+
+- (UILabel *)headerShortLabel
+{
+    if (!_headerShortLabel) {
+        _headerShortLabel = [[UILabel alloc]init];
+        _headerShortLabel.text = @"最短夜晚";
+        _headerShortLabel.textColor = kReportCellColor;
+        _headerShortLabel.font = [UIFont systemFontOfSize:13];
+    }
+    return _headerShortLabel;
+}
+
+- (UILabel *)headerLongData
+{
+    if (!_headerLongData) {
+        _headerLongData = [[UILabel alloc]init];
+        _headerLongData.text = @"--小时--分钟";
+        _headerLongData.textColor = kReportCellColor;
+        _headerLongData.textAlignment = NSTextAlignmentCenter;
+        _headerLongData.font = [UIFont systemFontOfSize:13];
+    }
+    return _headerLongData;
+}
+
+- (UILabel *)headerShortData
+{
+    if (!_headerShortData) {
+        _headerShortData = [[UILabel alloc]init];
+        _headerShortData.text = @"--小时--分钟";
+        _headerShortData.textColor = kReportCellColor;
+        _headerShortData.textAlignment = NSTextAlignmentCenter;
+        _headerShortData.font = [UIFont systemFontOfSize:13];
+    }
+    return _headerShortData;
+}
+
+
 - (UIView *)calenderBackView
 {
     if (!_calenderBackView) {
-        _calenderBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 69)];
-        _calenderBackView.backgroundColor = selectedThemeIndex==0?[UIColor colorWithRed:0.012f green:0.082f blue:0.184f alpha:1.00f]:[UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f];
+        _calenderBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        _calenderBackView.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
+        
+        [_calenderBackView addSubview:self.headerImageView];
+        [_headerImageView makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_calenderBackView.mas_top).offset(20);
+            make.width.height.equalTo(@15);
+            make.left.equalTo(_calenderBackView.mas_left).offset(8);
+        }];
+        
+        [_calenderBackView addSubview:self.headerLongLabel];
+        [_headerLongLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_headerImageView.mas_centerY).offset(-10);
+            make.height.equalTo(@25);
+            make.left.equalTo(_headerImageView.mas_right).offset(8);
+            
+        }];
+        
+        [_calenderBackView addSubview:self.headerShortLabel];
+        [_headerShortLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_headerImageView.mas_centerY).offset(10);
+            make.height.equalTo(@25);
+            make.left.equalTo(_headerImageView.mas_right).offset(8);
+
+        }];
+        
+        [_calenderBackView addSubview:self.headerLongData];
+        [_headerLongData makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_headerLongLabel.mas_centerY);
+            make.left.equalTo(_headerLongLabel.mas_right).offset(8);
+        }];
+        
+        [_calenderBackView addSubview:self.headerShortData];
+        [_headerShortData makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_headerShortLabel.mas_centerY);
+            make.left.equalTo(_headerShortLabel.mas_right).offset(8);
+        }];
+    
         //
         [_calenderBackView addSubview:self.monthTitleLabel];
         [self.monthTitleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(_calenderBackView.mas_centerX).offset(-10);
+            make.centerX.equalTo(_calenderBackView.mas_centerX).offset(0);
             make.height.equalTo(@34.5);
-            make.top.equalTo(_calenderBackView.mas_top);
+            make.bottom.equalTo(_calenderBackView.mas_bottom).offset(-5);
             
         }];
+        
+        
         //
-        [_calenderBackView addSubview:self.calenderImage];
-        [self.calenderImage makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.monthTitleLabel.mas_right).offset(10);
-            make.width.height.equalTo(@20);
-            make.centerY.equalTo(self.monthTitleLabel.mas_centerY);
-        }];
+////        [_calenderBackView addSubview:self.calenderImage];
+//        [self.calenderImage makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(self.monthTitleLabel.mas_right).offset(10);
+//            make.width.height.equalTo(@20);
+//            make.centerY.equalTo(self.monthTitleLabel.mas_centerY);
+//        }];
         //
         [_calenderBackView addSubview:self.leftCalButton];
         [self.leftCalButton makeConstraints:^(MASConstraintMaker *make) {
@@ -67,17 +180,24 @@
         //
         [_calenderBackView addSubview:self.rightCalButton];
         [self.rightCalButton makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.calenderImage.mas_right).offset(15);
+            make.left.equalTo(self.monthTitleLabel.mas_right).offset(15);
             make.centerY.equalTo(self.monthTitleLabel.mas_centerY);
             make.height.equalTo(@20);
             make.width.equalTo(@15);
         }];
         //
-        [_calenderBackView addSubview:self.monthLabel];
-        [self.monthLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(_calenderBackView);
-            make.top.equalTo(self.monthTitleLabel.mas_bottom);
-            make.height.equalTo(@34.5);
+//        [_calenderBackView addSubview:self.monthLabel];
+//        [self.monthLabel makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.equalTo(_calenderBackView);
+//            make.top.equalTo(self.monthTitleLabel.mas_bottom);
+//            make.height.equalTo(@34.5);
+//        }];
+        [_calenderBackView addSubview:self.segmentView];
+        [_segmentView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_headerImageView.mas_centerY);
+            make.right.equalTo(_calenderBackView.mas_right).offset(-8);
+            make.width.equalTo(@120);
+            make.height.equalTo(@30);
         }];
     }
     return _calenderBackView;
@@ -88,7 +208,7 @@
     if (!_monthTitleLabel) {
         _monthTitleLabel = [[UILabel alloc]init];
         _monthTitleLabel.font = [UIFont systemFontOfSize:18];
-        _monthTitleLabel.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+        _monthTitleLabel.textColor = kReportCellColor;
         _monthTitleLabel.textAlignment = NSTextAlignmentCenter;
         if (self.reportType == ReportViewWeek) {
             _monthTitleLabel.text = [[CalendarDateCaculate sharedInstance] getCurrentWeekInOneYear:[NSDate date]];
@@ -117,7 +237,7 @@
 {
     if (!_leftCalButton) {
         _leftCalButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_leftCalButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+        [_leftCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",0]] imageByTintColor:kReportCellColor] forState:UIControlStateNormal];
         [_leftCalButton addTarget:self action:@selector(lastStep:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftCalButton;
@@ -127,7 +247,7 @@
 {
     if (!_rightCalButton) {
         _rightCalButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rightCalButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+        [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:kReportCellColor] forState:UIControlStateNormal];
         [_rightCalButton addTarget:self action:@selector(nextStep:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightCalButton;
@@ -415,6 +535,61 @@
         default:
             break;
     }
+}
+
+- (void)reloadSleepDuration:(id)sleepData
+{
+    SleepQualityModel *model = sleepData;
+    __block QualityDetailModel *detailModel;
+    @weakify(self);
+    [SleepModelChange getSleepLongOrShortDurationWith:model type:1 callBack:^(id longSleep) {
+        detailModel = longSleep;
+        @strongify(self);
+        NSString *sleepDuration = detailModel.sleepDuration;
+        int hour = [sleepDuration intValue];
+        if (hour == 0) {
+            self.headerLongData.text = @"--小时--分钟";
+            return ;
+        }
+        double second2 = 0.0;
+        double subsecond2 = modf([sleepDuration floatValue], &second2);
+        NSString *sleepTimeDuration= @"";
+        if((int)round(subsecond2*60)<10){
+            sleepTimeDuration = [NSString stringWithFormat:@"%@时0%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+        }else{
+            sleepTimeDuration = [NSString stringWithFormat:@"%@时%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+        }
+        self.headerLongData.text = sleepTimeDuration;
+    }];
+    __block QualityDetailModel *detailModel1;
+    [SleepModelChange getSleepLongOrShortDurationWith:model type:-1 callBack:^(id longSleep) {
+        detailModel1 = longSleep;
+        @strongify(self);
+        NSString *sleepDuration = detailModel1.sleepDuration;
+        int hour = [sleepDuration intValue];
+        if (hour == 0) {
+            self.headerShortData.text = @"--小时--分钟";
+            return ;
+        }
+        double second2 = 0.0;
+        double subsecond2 = modf([sleepDuration floatValue], &second2);
+        NSString *sleepTimeDuration= @"";
+        if((int)round(subsecond2*60)<10){
+            sleepTimeDuration = [NSString stringWithFormat:@"%@时0%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+        }else{
+            sleepTimeDuration = [NSString stringWithFormat:@"%@时%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+        }
+        self.headerShortData.text = sleepTimeDuration;
+    }];
+}
+
+- (void)selectedZESegmentedsViewItemAtIndex:(NSInteger )selectedItemIndex{
+    
+    DeBugLog(@"select is %d and type is %d",selectedItemIndex,self.reportType);
+    if (selectedItemIndex != self.reportType) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kReportTagSelected object:nil userInfo:@{@"tag":[NSNumber numberWithInteger:selectedItemIndex]}];
+    }
+    
 }
 
 @end

@@ -2,21 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<array>
-		<string>心率分析</string>
-		<string>呼吸分析</string>
-	</array>
-	<array>
+	<dict>
+		<key>left</key>
 		<string>心率平均值</string>
-		<string>呼吸平均值</string>
-	</array>
-	<array>
+		<key>middle</key>
 		<string>心率异常值</string>
-		<string>呼吸异常值</string>
-	</array>
-	<array>
+		<key>right</key>
 		<string>心率异常高于</string>
+		<key>title</key>
+		<string>心率分析:</string>
+	</dict>
+	<dict>
+		<key>left</key>
+		<string>呼吸平均值</string>
+		<key>middle</key>
+		<string>呼吸异常值</string>
+		<key>right</key>
 		<string>呼吸异常高于</string>
-	</array>
+		<key>title</key>
+		<string>呼吸分析:</string>
+	</dict>
 </array>
 </plist>

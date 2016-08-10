@@ -24,11 +24,12 @@
         self.gradientLayer.endPoint = CGPointMake(0, 1);
         
         //设定颜色组
-        self.gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:0.000f green:0.855f blue:0.573f alpha:1.00f].CGColor,(__bridge id)[UIColor colorWithRed:0.200f green:0.443f blue:0.545f alpha:1.00f].CGColor];
+//        self.gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:0.000f green:0.855f blue:0.573f alpha:1.00f].CGColor,(__bridge id)[UIColor colorWithRed:0.200f green:0.443f blue:0.545f alpha:1.00f].CGColor];
+        self.gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:0.027 green:0.322 blue:0.400 alpha:1.00].CGColor,(__bridge id)[UIColor colorWithRed:0.027 green:0.322 blue:0.400 alpha:1.00].CGColor];
         
         //设定颜色分割点
         self.gradientLayer.locations = @[@(0.2f) ,@(1.0f)];
-        self.gradientLayer.cornerRadius = 3;
+        self.gradientLayer.cornerRadius = 0;
         [self.layer addSublayer:self.gradientLayer];
     }
     return self;

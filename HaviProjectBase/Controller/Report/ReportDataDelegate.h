@@ -14,4 +14,6 @@
 
 @property (nonatomic, copy) void (^selectDateFromCalendar)(NSString *fromDate,NSString *endDate);
 
+- (void)reloadHeader:(id)data;
+
 @end

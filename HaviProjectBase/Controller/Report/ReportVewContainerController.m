@@ -10,8 +10,10 @@
 #import "BaseViewContainerView.h"
 #import "ReportDataShowViewController.h"
 #import "UIImage+Tint.h"
+#import "NaviTitleScrollView.h"
 
 @interface ReportVewContainerController ()
+@property (nonatomic, strong) NaviTitleScrollView *naviBarTitle;
 
 @property (nonatomic, strong) BaseViewContainerView *containerDataView;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
@@ -30,14 +32,19 @@
 
 - (void)initNaviBarView
 {
+    self.naviBarTitle = [[NaviTitleScrollView alloc]initWithFrame:(CGRect){(self.view.frame.size.width-100)/2.0+1,20,100,44}];
+    self.naviBarTitle.userInteractionEnabled = NO;
+    self.naviBarTitle.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBarHidden = YES;
-    self.containerDataView = [[BaseViewContainerView alloc]initWithNavBarControllers:nil];
+    self.containerDataView = [[BaseViewContainerView alloc]initWithNavBarControllers:nil navBarBackground:nil showPageControl:NO];
     self.containerDataView.view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.containerDataView.view];
     [self addChildViewController:self.containerDataView];
+    @weakify(self);
     self.containerDataView.didChangedPage = ^(NSInteger currentPageIndex){
         // Do something
-        NSLog(@"index %ld", (long)currentPageIndex);
+        @strongify(self);
+        [self.naviBarTitle setCurrentIndex:currentPageIndex];
     };
     [self.containerDataView.navigationBarView addSubview:self.leftButton];
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
@@ -50,6 +57,8 @@
         [self showMoreInfo];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+    [self.sc_navigationBar addSubview:self.naviBarTitle];
+
 }
 
 - (void)initCenterViewControllers
@@ -62,14 +71,18 @@
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
     }else{
         @weakify(self);
+        NSMutableArray *arr = @[].mutableCopy;
         [gloableActiveDevice.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
             ReportDataShowViewController *dataShow = [[ReportDataShowViewController alloc]init];
             dataShow.deviceUUID = obj.detailUUID;
-            dataShow.title = obj.detailDescription;
+            dataShow.title = @"";
             dataShow.reportType = self.reportType;
+            [arr addObject:obj.detailDescription];
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
         }];
+        self.naviBarTitle.titles = arr;
+
     }
 }
 

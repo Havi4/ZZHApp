@@ -33,7 +33,7 @@
 - (void)addTableViewDataHandle
 {
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.dk_tintColorPicker = kTextColorPicker;
+    self.refreshControl.tintColor = kReportCellColor;
     [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
     [self.reportShowTableView addSubview:self.refreshControl];
     [self.view addSubview:self.reportShowTableView];
@@ -43,7 +43,7 @@
         }else if (indexPath.section == 1){
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }else if (indexPath.section == 2){
-            [cell configure:cell customObj:@(self.reportType) indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }
         
     };
@@ -69,7 +69,7 @@
     if (!_reportShowTableView) {
         _reportShowTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height -64) style:UITableViewStylePlain];
         _reportShowTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _reportShowTableView.backgroundColor = [UIColor clearColor];
+        _reportShowTableView.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:1.00];
         _reportShowTableView.showsVerticalScrollIndicator = NO;
     }
     return _reportShowTableView;
@@ -102,6 +102,7 @@
         [self.reportShowTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
         [self.reportShowTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationNone];
         [self.reportShowTableView reloadSection:2 withRowAnimation:UITableViewRowAnimationNone];
+        [self.reportDelegate reloadHeader:qualityModel];
     }];
 }
 
