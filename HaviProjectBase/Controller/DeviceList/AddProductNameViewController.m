@@ -8,9 +8,11 @@
 
 #import "AddProductNameViewController.h"
 #import "QBarScanViewController.h"
+#import "BetaNaoTextField.h"
 
 @interface AddProductNameViewController ()<UITextFieldDelegate>
-@property (nonatomic,strong) UITextField *productNameTextField;
+@property (nonatomic,strong)  BetaNaoTextField *productNameTextField;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
 
@@ -26,7 +28,13 @@
 - (void)setSubView
 {
     self.backgroundImageView.image = [UIImage imageNamed:@""];
-    self.view.backgroundColor = [UIColor colorWithRed:0.188f green:0.184f blue:0.239f alpha:1.00f];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.title = @"添加设备名称";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+//    self.view.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
+    self.view.backgroundColor = [UIColor redColor];
     UILabel *titleLabel = [[UILabel alloc]init];
     [self.view addSubview:titleLabel];
     [titleLabel makeConstraints:^(MASConstraintMaker *make) {
@@ -60,7 +68,7 @@
         make.height.equalTo(@40);
     }];
     UILabel *label1 = [[UILabel alloc]init];
-    label1.textColor = [UIColor whiteColor];
+    label1.textColor = [UIColor colorWithRed:0.467 green:0.467 blue:0.467 alpha:1.00];
     label1.numberOfLines = 0;
     label1.text = @"1、给设备命名，用来标识您关联的设备。请根据说明书正确摆放设备。";
     [backView addSubview:label1];
@@ -72,7 +80,7 @@
     }];
     //
     UILabel *label2 = [[UILabel alloc]init];
-    label2.textColor = [UIColor whiteColor];
+    label2.textColor = [UIColor colorWithRed:0.467 green:0.467 blue:0.467 alpha:1.00];
     label2.numberOfLines = 0;
     label2.text = @"2、请扫描设备码添加设备。";
     [backView addSubview:label2];
@@ -85,13 +93,13 @@
     //
     UIImageView *imageLeft = [[UIImageView alloc]init];
     imageLeft.backgroundColor = [UIColor whiteColor];
-    [backView addSubview:imageLeft];
-    [imageLeft makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(backView).offset(10);
-        make.right.equalTo(labelCenter.mas_left).offset(-10);
-        make.centerY.equalTo(labelCenter);
-        make.height.equalTo(@1);
-    }];
+//    [backView addSubview:imageLeft];
+//    [imageLeft makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(backView).offset(10);
+//        make.right.equalTo(labelCenter.mas_left).offset(-10);
+//        make.centerY.equalTo(labelCenter);
+//        make.height.equalTo(@1);
+//    }];
     //
     UIImageView *imageRight = [[UIImageView alloc]init];
     imageRight.backgroundColor = [UIColor whiteColor];
@@ -103,14 +111,14 @@
         make.height.equalTo(@1);
     }];
     //
-    UIImageView *barImage = [[UIImageView alloc]init];
-    [backView addSubview:barImage];
-    barImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"qr_code_%d",selectedThemeIndex]];
-    [barImage makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(labelCenter.mas_bottom).offset(0);
-        make.left.equalTo(label2.mas_right).offset(15);
-        make.height.width.equalTo(@60);
-    }];
+//    UIImageView *barImage = [[UIImageView alloc]init];
+//    [backView addSubview:barImage];
+//    barImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"qr_code_%d",selectedThemeIndex]];
+//    [barImage makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(labelCenter.mas_bottom).offset(0);
+//        make.left.equalTo(label2.mas_right).offset(15);
+//        make.height.width.equalTo(@60);
+//    }];
     //
     [self.view addSubview:self.productNameTextField];
     [_productNameTextField makeConstraints:^(MASConstraintMaker *make) {
@@ -164,20 +172,22 @@
     }];
 }
 
-- (UITextField *)productNameTextField
+- (BetaNaoTextField *)productNameTextField
 {
     if (!_productNameTextField) {
-        _productNameTextField = [[UITextField alloc]init];
-        _productNameTextField.borderStyle = UITextBorderStyleNone;
-        _productNameTextField.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_hollow_%d",selectedThemeIndex]];
-        _productNameTextField.backgroundColor = [UIColor clearColor];
-        _productNameTextField.layer.cornerRadius = 0;
-        NSDictionary *boldFont = @{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:kDefaultWordFont};
-        NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入设备名称" attributes:boldFont];
-        _productNameTextField.attributedPlaceholder = attrValue;
-        _productNameTextField.textColor = [UIColor whiteColor];
-        _productNameTextField.textAlignment = NSTextAlignmentCenter;
-        _productNameTextField.returnKeyType = UIReturnKeyDone;
+        _productNameTextField = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,80,200,60}];
+//        _productNameTextField.frame = (CGRect){10,80,200,40};
+//        _productNameTextField.backgroundColor = [UIColor redColor];
+//        _productNameTextField.borderStyle = UITextBorderStyleNone;
+//        _productNameTextField.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_hollow_%d",selectedThemeIndex]];
+//        _productNameTextField.backgroundColor = [UIColor clearColor];
+//        _productNameTextField.layer.cornerRadius = 0;
+//        NSDictionary *boldFont = @{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:kDefaultWordFont};
+//        NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入设备名称" attributes:boldFont];
+//        _productNameTextField.attributedPlaceholder = attrValue;
+//        _productNameTextField.textColor = [UIColor whiteColor];
+//        _productNameTextField.textAlignment = NSTextAlignmentCenter;
+//        _productNameTextField.returnKeyType = UIReturnKeyDone;
         _productNameTextField.delegate = self;
     }
     return _productNameTextField;
@@ -240,6 +250,37 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+//-(void)textFieldDidBeginEditing:(UITextField *)textField{
+//    
+//    [UIView animateWithDuration:0.1 animations:^{
+//        self.productNameTextField.placeHolderLabel.frame=CGRectMake(6, 1, self.productNameTextField.bounds.size.width, 25);
+//        self.productNameTextField.borderTextField.frame = CGRectMake(0, 25, self.productNameTextField.bounds.size.width, 3);
+//        self.productNameTextField.contentTextfield.frame = CGRectMake(0, 25+3, self.productNameTextField.bounds.size.width, self.productNameTextField.bounds.size.height-20);
+//        self.productNameTextField.contentTextfield.backgroundColor=[UIColor clearColor].CGColor;
+//        
+//    }];
+//    
+//}
+//
+//-(void)textFieldDidEndEditing:(UITextField *)textField{
+//    
+//    if([textField.text isEqual:@""]){
+//        
+//        
+//        [UIView transitionWithView:self.productNameTextField.placeHolderLabel duration:0.3 options:0 animations:^{
+//            
+//            self.productNameTextField.borderTextField.frame = CGRectMake(0, self.productNameTextField.bounds.size.height-3, self.productNameTextField.bounds.size.width, 3);
+//            self.productNameTextField.placeHolderLabel.frame=CGRectMake(6, self.productNameTextField.bounds.size.height-28, self.productNameTextField.bounds.size.width, 20);
+//            self.productNameTextField.contentTextfield.frame = CGRectMake(0, self.productNameTextField.bounds.size.height, self.productNameTextField.bounds.size.width, 0);
+//            self.productNameTextField.contentTextfield.backgroundColor=[UIColor whiteColor].CGColor;
+//            
+//        } completion:nil];
+//        
+//        
+//    }
+//    
+//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

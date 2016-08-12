@@ -17,6 +17,7 @@
 #import "SleepSettingViewController.h"
 #import "APPSettingViewController.h"
 #import "ReportVewContainerController.h"
+#import "UIView+BlocksKit.h"
 
 CGFloat const kMenuWidth = 240.0;//侧栏的宽度
 

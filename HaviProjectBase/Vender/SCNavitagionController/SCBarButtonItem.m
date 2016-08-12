@@ -7,6 +7,8 @@
 //
 
 #import "SCBarButtonItem.h"
+#import "UIControl+BlocksKit.h"
+
 
 #import "UIImage+Tint.h"
 
