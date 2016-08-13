@@ -9,10 +9,12 @@
 #import "AddProductNameViewController.h"
 #import "QBarScanViewController.h"
 #import "BetaNaoTextField.h"
+#import "ProgressView.h"
 
 @interface AddProductNameViewController ()<UITextFieldDelegate>
 @property (nonatomic,strong)  BetaNaoTextField *productNameTextField;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (assign,nonatomic) float yCordinate;
 
 @end
 
@@ -25,16 +27,27 @@
     [self setSubView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
 - (void)setSubView
 {
+    ProgressView *p = [[ProgressView alloc]init];
+    p.frame = (CGRect){0,64,self.view.frame.size.width,3};
+    [self.view addSubview:p];
+    p.selectIndex = 1;
     self.backgroundImageView.image = [UIImage imageNamed:@""];
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
     self.sc_navigationItem.title = @"添加设备名称";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
-//    self.view.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
     UILabel *titleLabel = [[UILabel alloc]init];
     [self.view addSubview:titleLabel];
     [titleLabel makeConstraints:^(MASConstraintMaker *make) {
@@ -48,24 +61,13 @@
     titleLabel.textColor = [UIColor whiteColor];
     //
     UIView *backView = [[UIView alloc]init];
-    backView.layer.borderWidth = 1;
-    backView.layer.borderColor = [UIColor whiteColor].CGColor;
+    backView.tag = 2001;
     [self.view addSubview:backView];
     [backView makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(titleLabel.mas_bottom).offset(104);
+        make.centerY.equalTo(self.view.mas_centerY);
         make.width.equalTo(@(self.view.frame.size.width-40));
         make.height.equalTo(@200);
-    }];
-    UILabel *labelCenter = [[UILabel alloc]init];
-    labelCenter.text = @"下一步";
-    labelCenter.font = [UIFont systemFontOfSize:18];
-    labelCenter.textColor = [UIColor whiteColor];
-    [backView addSubview:labelCenter];
-    [labelCenter makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(backView);
-        make.centerY.equalTo(backView);
-        make.height.equalTo(@40);
     }];
     UILabel *label1 = [[UILabel alloc]init];
     label1.textColor = [UIColor colorWithRed:0.467 green:0.467 blue:0.467 alpha:1.00];
@@ -73,10 +75,9 @@
     label1.text = @"1、给设备命名，用来标识您关联的设备。请根据说明书正确摆放设备。";
     [backView addSubview:label1];
     [label1 makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(backView.mas_top);
-        make.bottom.equalTo(labelCenter.mas_top);
-        make.left.equalTo(backView).offset(10);
-        make.right.equalTo(backView).offset(-10);
+        make.left.equalTo(backView).offset(0);
+        make.right.equalTo(backView).offset(0);
+        make.centerY.equalTo(backView.mas_centerY).offset(-40);
     }];
     //
     UILabel *label2 = [[UILabel alloc]init];
@@ -85,9 +86,9 @@
     label2.text = @"2、请扫描设备码添加设备。";
     [backView addSubview:label2];
     [label2 makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(labelCenter.mas_bottom);
-        make.left.equalTo(backView).offset(10);
+        make.left.equalTo(backView).offset(0);
         make.right.equalTo(backView).offset(-100);
+        make.centerY.equalTo(backView.mas_centerY).offset(24);
     }];
 
     //
@@ -101,15 +102,6 @@
 //        make.height.equalTo(@1);
 //    }];
     //
-    UIImageView *imageRight = [[UIImageView alloc]init];
-    imageRight.backgroundColor = [UIColor whiteColor];
-    [backView addSubview:imageRight];
-    [imageRight makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(labelCenter.mas_right).offset(10);
-        make.right.equalTo(backView.mas_right).offset(-10);
-        make.centerY.equalTo(labelCenter);
-        make.height.equalTo(@1);
-    }];
     //
 //    UIImageView *barImage = [[UIImageView alloc]init];
 //    [backView addSubview:barImage];
@@ -123,43 +115,40 @@
     [self.view addSubview:self.productNameTextField];
     [_productNameTextField makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        if (ISIPHON4) {
-            make.bottom.equalTo(backView.mas_top).offset(-10);
-        }else{
-            make.bottom.equalTo(backView.mas_top).offset(-20);
-        }
+        make.top.equalTo(self.view.mas_top).offset(64);
         make.width.equalTo(backView.mas_width);
-        make.height.equalTo(@49);
+        make.height.equalTo(@80);
     }];
     
     //
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:nextButton];
+    nextButton.tag = 2000;
     [nextButton setTitle:@"扫描设备码" forState:UIControlStateNormal];
     [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(showBarCode:) forControlEvents:UIControlEventTouchUpInside];
 
-    [nextButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_save_settings_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+    [nextButton setBackgroundImage:[UIImage imageNamed:@"button_down_image@3x"] forState:UIControlStateNormal];
     nextButton.layer.cornerRadius = 0;
     nextButton.layer.masksToBounds = YES;
     [nextButton.titleLabel setFont:kDefaultWordFont];
     [nextButton makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         if (ISIPHON4) {
-            make.top.equalTo(backView.mas_bottom).offset(20);
+            make.top.lessThanOrEqualTo(backView.mas_bottom).offset(20);
         }else{
-            make.top.equalTo(backView.mas_bottom).offset(20);
+            make.top.lessThanOrEqualTo(backView.mas_bottom).offset(20);
         }
-        make.height.equalTo(@49);
+        make.height.equalTo(@44);
         make.width.equalTo(backView.mas_width);
     }];
     //返回
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:backButton];
-    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor colorWithRed:0.718 green:0.718 blue:0.718 alpha:1.00] forState:UIControlStateNormal];
     [backButton setTitle:@"暂时不添加" forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backSuperView:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_hollow_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"button_back_image@3x"] forState:UIControlStateNormal];
     [backButton.titleLabel setFont:kDefaultWordFont];
     [backButton makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
@@ -167,7 +156,7 @@
             make.top.equalTo(nextButton.mas_bottom).offset(10);
         }else{
             make.top.equalTo(nextButton.mas_bottom).offset(20);
-        }        make.height.equalTo(@49);
+        }        make.height.equalTo(@44);
         make.width.equalTo(backView.mas_width);
     }];
 }
@@ -176,21 +165,18 @@
 {
     if (!_productNameTextField) {
         _productNameTextField = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,80,200,60}];
-//        _productNameTextField.frame = (CGRect){10,80,200,40};
-//        _productNameTextField.backgroundColor = [UIColor redColor];
-//        _productNameTextField.borderStyle = UITextBorderStyleNone;
-//        _productNameTextField.background = [UIImage imageNamed:[NSString stringWithFormat:@"textbox_hollow_%d",selectedThemeIndex]];
-//        _productNameTextField.backgroundColor = [UIColor clearColor];
-//        _productNameTextField.layer.cornerRadius = 0;
-//        NSDictionary *boldFont = @{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:kDefaultWordFont};
-//        NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入设备名称" attributes:boldFont];
-//        _productNameTextField.attributedPlaceholder = attrValue;
-//        _productNameTextField.textColor = [UIColor whiteColor];
-//        _productNameTextField.textAlignment = NSTextAlignmentCenter;
-//        _productNameTextField.returnKeyType = UIReturnKeyDone;
-        _productNameTextField.delegate = self;
+        _productNameTextField.textPlaceHolder = @"输入设备名称";
+        _productNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _productNameTextField.keyboardType = UIKeyboardTypeNamePhonePad;
     }
     return _productNameTextField;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.productNameTextField.text = @"";
+    [self.productNameTextField resignFirstResponder];
 }
 
 #pragma mark 用户自定义事件
@@ -202,13 +188,13 @@
         return;
     }
     LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
-    style.centerUpOffset = 40;
+    style.centerUpOffset = 20;
     style.xScanRetangleOffset = 30;
     
     if ([UIScreen mainScreen].bounds.size.height <= 480 )
     {
         //3.5inch 显示的扫码缩小
-        style.centerUpOffset = 40;
+        style.centerUpOffset = 20;
         style.xScanRetangleOffset = 20;
     }
     
@@ -251,36 +237,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//-(void)textFieldDidBeginEditing:(UITextField *)textField{
-//    
-//    [UIView animateWithDuration:0.1 animations:^{
-//        self.productNameTextField.placeHolderLabel.frame=CGRectMake(6, 1, self.productNameTextField.bounds.size.width, 25);
-//        self.productNameTextField.borderTextField.frame = CGRectMake(0, 25, self.productNameTextField.bounds.size.width, 3);
-//        self.productNameTextField.contentTextfield.frame = CGRectMake(0, 25+3, self.productNameTextField.bounds.size.width, self.productNameTextField.bounds.size.height-20);
-//        self.productNameTextField.contentTextfield.backgroundColor=[UIColor clearColor].CGColor;
-//        
-//    }];
-//    
-//}
-//
-//-(void)textFieldDidEndEditing:(UITextField *)textField{
-//    
-//    if([textField.text isEqual:@""]){
-//        
-//        
-//        [UIView transitionWithView:self.productNameTextField.placeHolderLabel duration:0.3 options:0 animations:^{
-//            
-//            self.productNameTextField.borderTextField.frame = CGRectMake(0, self.productNameTextField.bounds.size.height-3, self.productNameTextField.bounds.size.width, 3);
-//            self.productNameTextField.placeHolderLabel.frame=CGRectMake(6, self.productNameTextField.bounds.size.height-28, self.productNameTextField.bounds.size.width, 20);
-//            self.productNameTextField.contentTextfield.frame = CGRectMake(0, self.productNameTextField.bounds.size.height, self.productNameTextField.bounds.size.width, 0);
-//            self.productNameTextField.contentTextfield.backgroundColor=[UIColor whiteColor].CGColor;
-//            
-//        } completion:nil];
-//        
-//        
-//    }
-//    
-//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -294,5 +250,31 @@
 {
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
+
+//- (void)keyboardWillShow:(NSNotification *)info
+//{
+//    CGRect keyboardBounds = [[[info userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    float f =  keyboardBounds.size.height;
+//    UIButton *login = (UIButton *)[self.view viewWithTag:2000];
+//    float y = login.frame.origin.y;
+//    self.yCordinate = y-(f-kScreenHeight + y)-49;
+//    [login updateConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo([NSNumber numberWithFloat:_yCordinate]).offset(0);
+//    }];
+//    
+//}
+//- (void)keyboardWillHide:(NSNotification *)info
+//{
+//    UIButton *login = (UIButton *)[self.view viewWithTag:2000];
+//    UIView *backView = (UIView *)[self.view viewWithTag:2001];
+//    login.frame = (CGRect){100,100,49,90};
+//    [login updateConstraints:^(MASConstraintMaker *make) {
+//        if (ISIPHON4) {
+//            make.top.equalTo(backView.mas_bottom).offset(20);
+//        }else{
+//            make.top.equalTo(backView.mas_bottom).offset(20);
+//        }
+//    }];
+//}
 
 @end

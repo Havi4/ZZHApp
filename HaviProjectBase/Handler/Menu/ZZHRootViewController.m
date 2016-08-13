@@ -17,7 +17,6 @@
 #import "SleepSettingViewController.h"
 #import "APPSettingViewController.h"
 #import "ReportVewContainerController.h"
-#import "UIView+BlocksKit.h"
 
 CGFloat const kMenuWidth = 240.0;//侧栏的宽度
 
@@ -164,14 +163,8 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
     [self.view addSubview:self.menuView];
 //
 //    // Handles
+    [self.rootBackgroundButton addTarget:self action:@selector(showLeftView:) forControlEvents:UIControlEventTouchUpInside];
     @weakify(self);
-    [self.rootBackgroundButton bk_whenTapped:^{
-        @strongify(self);
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            [self setMenuOffset:0.0f];
-        }];
-    }];
 //
     [self.menuView setDidSelectedIndexBlock:^(NSInteger index) {
         @strongify(self);
@@ -180,6 +173,13 @@ CGFloat const kMenuWidth = 240.0;//侧栏的宽度
         
     }];
     
+}
+
+- (void)showLeftView:(UIButton *)button
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        [self setMenuOffset:0.0f];
+    }];
 }
 - (void)configureViewControllers {
     

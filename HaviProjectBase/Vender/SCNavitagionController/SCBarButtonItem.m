@@ -7,15 +7,17 @@
 //
 
 #import "SCBarButtonItem.h"
-#import "UIControl+BlocksKit.h"
 
 
 #import "UIImage+Tint.h"
 
 @interface SCBarButtonItem ()
 
+
+
 @property (nonatomic, strong) UIImage *buttonImage;
 @property (nonatomic, strong) UILabel *badgeLabel;
+@property (nonatomic, copy) void (^tapAction)(id sender);
 
 @end
 
@@ -50,27 +52,32 @@
         button.centerY = 20 + 22;
         button.x = 0;
         self.view = button;
-        
-        [button bk_addEventHandler:^(id sender) {
-            action(sender);
-            [UIView animateWithDuration:0.2 animations:^{
-                button.alpha = 1.0;
-            }];
-            
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-        [button bk_addEventHandler:^(id sender) {
-            button.alpha = 0.3;
-        } forControlEvents:UIControlEventTouchDown];
-        [button bk_addEventHandler:^(id sender) {
-            [UIView animateWithDuration:0.3 animations:^{
-                button.alpha = 1.0;
-            }];
-        } forControlEvents:UIControlEventTouchCancel|UIControlEventTouchUpOutside|UIControlEventTouchDragOutside];
-        
+        self.tapAction = action;
+        [button addTarget:self action:@selector(touchupinside:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(touchupdown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(other:) forControlEvents:UIControlEventTouchCancel|UIControlEventTouchUpOutside|UIControlEventTouchDragOutside ];
     }
     
     return self;
+}
+
+- (void)touchupinside:(UIButton *)button {
+    self.tapAction(button);
+    [UIView animateWithDuration:0.2 animations:^{
+        button.alpha = 1.0;
+    }];
+}
+
+- (void)touchupdown:(UIButton *)button
+{
+    button.alpha = 0.3;
+}
+
+- (void)other:(UIButton *)button
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        button.alpha = 1.0;
+    }];
 }
 
 - (instancetype)initWithImage:(UIImage *)image style:(SCBarButtonItemStyle)style handler:(void (^)(id sender))action {
@@ -90,23 +97,10 @@
         button.centerY = 20 + 22;
         button.x = 0;
         self.view = button;
-        
-        [button bk_addEventHandler:^(id sender) {
-            action(sender);
-            [UIView animateWithDuration:0.2 animations:^{
-                button.alpha = 1.0;
-            }];
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-        [button bk_addEventHandler:^(id sender) {
-            button.alpha = 0.3;
-        } forControlEvents:UIControlEventTouchDown];
-        
-        [button bk_addEventHandler:^(id sender) {
-            [UIView animateWithDuration:0.3 animations:^{
-                button.alpha = 1.0;
-            }];
-        } forControlEvents:UIControlEventTouchCancel|UIControlEventTouchUpOutside|UIControlEventTouchDragOutside];
+        self.tapAction = action;
+        [button addTarget:self action:@selector(touchupinside:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(touchupdown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(other:) forControlEvents:UIControlEventTouchCancel|UIControlEventTouchUpOutside|UIControlEventTouchDragOutside ];
         
     }
     

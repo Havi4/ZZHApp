@@ -12,8 +12,10 @@
 #import "EditUUIDView.h"
 #import "NameDoubleViewController.h"
 #import "ReactiveSingleViewController.h"
+#import "ProgressView.h"
 
 @interface QBarScanViewController ()
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @property (nonatomic, strong) UIView *currentView;
 @property (nonatomic, strong) EditUUIDView *editView;
@@ -63,25 +65,34 @@
     }
     else
         _topTitle.hidden = YES;
-    [self.view addSubview:self.currentView];
    
 }
 
 - (void)drawNavi
 {
-    if (_naviItemsView) {
-        return;
-    }
-    self.naviItemsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,
-                                                                   CGRectGetWidth(self.view.frame), 64)];
-    _naviItemsView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
-    [self.view addSubview:_naviItemsView];
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(15, 25, 30, 30);
-    [backButton setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_titlebar_back_nor"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_titlebar_back_pressed"] forState:UIControlStateSelected];
-    [backButton addTarget:self action:@selector(backToHome:) forControlEvents:UIControlEventTouchUpInside];
-    [_naviItemsView addSubview:backButton];
+    ProgressView *p = [[ProgressView alloc]init];
+    p.frame = (CGRect){0,64,self.view.frame.size.width,3};
+    [self.view addSubview:p];
+    p.backColor= [UIColor blackColor];
+    p.selectIndex = 2;
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.title = @"扫描设备码";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+//    if (_naviItemsView) {
+//        return;
+//    }
+//    self.naviItemsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,
+//                                                                   CGRectGetWidth(self.view.frame), 64)];
+//    _naviItemsView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+//    [self.view addSubview:_naviItemsView];
+//    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    backButton.frame = CGRectMake(15, 25, 30, 30);
+//    [backButton setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_titlebar_back_nor"] forState:UIControlStateNormal];
+//    [backButton setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_titlebar_back_pressed"] forState:UIControlStateSelected];
+//    [backButton addTarget:self action:@selector(backToHome:) forControlEvents:UIControlEventTouchUpInside];
+//    [_naviItemsView addSubview:backButton];
 }
 
 //绘制扫描区域
@@ -92,15 +103,15 @@
         
         
         self.topTitle = [[UILabel alloc]init];
-        _topTitle.bounds = CGRectMake(0, 64, 145, 60);
+        _topTitle.frame = CGRectMake(0, 64, self.view.frame.size.width-64, 60);
         _topTitle.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, 94);
         
         //3.5inch iphone
-        if ([UIScreen mainScreen].bounds.size.height <= 568 )
-        {
-            _topTitle.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, 38);
-            _topTitle.font = [UIFont systemFontOfSize:14];
-        }
+//        if ([UIScreen mainScreen].bounds.size.height <= 568 )
+//        {
+//            _topTitle.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, 38);
+//            _topTitle.font = [UIFont systemFontOfSize:14];
+//        }
         
         
         _topTitle.textAlignment = NSTextAlignmentCenter;
@@ -128,7 +139,7 @@
     CGSize size = CGSizeMake(65, 87);
     self.btnFlash = [[UIButton alloc]init];
     _btnFlash.bounds = CGRectMake(0, 0, size.width, size.height);
-    _btnFlash.center = CGPointMake(CGRectGetWidth(_bottomItemsView.frame)/4, CGRectGetHeight(_bottomItemsView.frame)/2);
+    _btnFlash.center = CGPointMake(CGRectGetWidth(_bottomItemsView.frame)/2, CGRectGetHeight(_bottomItemsView.frame)/2);
      [_btnFlash setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_flash_nor"] forState:UIControlStateNormal];
     [_btnFlash addTarget:self action:@selector(openOrCloseFlash) forControlEvents:UIControlEventTouchUpInside];
     self.btnMyQR = [[UIButton alloc]init];
@@ -139,7 +150,7 @@
     [_btnMyQR addTarget:self action:@selector(editUUID) forControlEvents:UIControlEventTouchUpInside];
     
     [_bottomItemsView addSubview:_btnFlash];
-    [_bottomItemsView addSubview:_btnMyQR];
+//    [_bottomItemsView addSubview:_btnMyQR];
     
 }
 
@@ -207,6 +218,7 @@
 
 - (void)checkIsDoubleBed:(NSString *)deviceUUID
 {
+
     NSDictionary *para = @{
                             @"UUID": deviceUUID,
                             };
@@ -232,12 +244,18 @@
             });
         }
     }];
+     
 }
 
 #pragma mark 绑定
 
 - (void)bindingDeviceWithUUID:(NSString *)uuid
 {
+    ReactiveSingleViewController *doubleUDP = [[ReactiveSingleViewController alloc]init];
+    [self.navigationController pushViewController:doubleUDP animated:YES];
+    
+    /*
+    
     NSDictionary *dic13 = @{
                             @"UserID": thirdPartyLoginUserId,
                             @"UUID": uuid,
@@ -255,6 +273,7 @@
             });
         }
     }];
+     */
 }
 
 #pragma mark 切换默认设备

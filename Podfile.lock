@@ -14,21 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
-  - BlocksKit (2.2.5):
-    - BlocksKit/All (= 2.2.5)
-  - BlocksKit/All (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
-    - BlocksKit/MessageUI
-    - BlocksKit/UIKit
-  - BlocksKit/Core (2.2.5)
-  - BlocksKit/DynamicDelegate (2.2.5)
-  - BlocksKit/MessageUI (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
-  - BlocksKit/UIKit (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
   - DKNightVersion (1.2):
     - DKNightVersion/Core (= 1.2)
     - DKNightVersion/CoreAnimation (= 1.2)
@@ -55,7 +40,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
-  - BlocksKit (~> 2.2.0)
   - DKNightVersion (~> 1.2)
   - DXPopover (~> 0.1.1)
   - HKRLocalNotificationManager (~> 0.6)
@@ -68,7 +52,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   DKNightVersion: 7c8cf41002c6dfa8db3ca71274bf1a9aaeaa4ff7
   DXPopover: 13e6bbd1a0da4e62b2190de51f43a94850769e0f
   HKRLocalNotificationManager: c5410563312df4dfde052f99dcfc913b8a26c474
@@ -80,6 +63,6 @@ SPEC CHECKSUMS:
   YYKit: 76c3f2cee1a72d3c5b1d7fd8d170ee507fe5df68
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-PODFILE CHECKSUM: 0bdcdf7c8cd224b78d01a61faf82b9321cc923a2
+PODFILE CHECKSUM: d7b5c9541040ef4e73591d1684a2093c66dfbe71
 
 COCOAPODS: 1.0.0.beta.3

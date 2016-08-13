@@ -14,6 +14,8 @@
 @property (nonatomic,strong) UITextField *txRightNameView;
 @property (nonatomic,strong) UITableView *tbDeviceNameShowView;
 @property (nonatomic, strong) UITableView *sideTableView;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
 
 @end
 
@@ -30,22 +32,17 @@
 {
     self.navigationController.navigationBarHidden = YES;
     self.backgroundImageView.image = [UIImage imageNamed:@""];
-    self.view.backgroundColor = KTableViewBackGroundColor;
-    [self createNavWithTitle:@"重命名设备" createMenuItem:^UIView *(int nIndex)
-     {
-         if (nIndex == 1)
-         {
-             [self.leftButton addTarget:self action:@selector(backToHomeView:) forControlEvents:UIControlEventTouchUpInside];
-             return self.leftButton;
-         }else if (nIndex == 0){
-             self.rightButton.frame = CGRectMake(self.view.frame.size.width-60, 0, 60, 44);
-             [self.rightButton setTitle:@"保存" forState:UIControlStateNormal];
-             [self.rightButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
-             [self.rightButton addTarget:self action:@selector(bindingDeviceWithUUID:) forControlEvents:UIControlEventTouchUpInside];
-             return self.rightButton;
-         }
-         return nil;
-     }];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.title = @"添加设备名称";
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+    self.view.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
+    
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_done"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self bindingDeviceWithUUID:nil];
+    }];
+    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     //
     self.sideTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.sideTableView];

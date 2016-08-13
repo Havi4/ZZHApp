@@ -44,6 +44,7 @@
 #define DeBugLog(tmt, ...)
 #endif
 
+#define kWhiteBackTextColor   [UIColor colorWithRed:0.467 green:0.467 blue:0.467 alpha:1.00]
 //cell 滑动效果
 
 #define kReportCellColor        [UIColor colorWithRed:0.027 green:0.322 blue:0.400 alpha:1.00]
@@ -89,7 +90,7 @@
 
 #define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
 [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]
-#define kNaviBackGroundColor [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_back"]]
+#define kNaviBackGroundColor [UIColor colorWithRed:0.176 green:0.173 blue:0.196 alpha:1.00]
 //chartValue
 #define kCharDataIntervalTime 5
 #define kChartDataCount (24*60/kCharDataIntervalTime)

@@ -10,5 +10,5 @@ target "HaviProjectBase" do
     pod 'DKNightVersion', '~> 1.2'
     pod 'WeiboSDK', '~> 3.1.3'
     pod 'DXPopover', '~> 0.1.1'
-    pod 'BlocksKit', '~> 2.2.0'
+#    pod 'BlocksKit', '~> 2.2.0'
 end

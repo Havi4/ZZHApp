@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>BlocksKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>DKNightVersion.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -97,11 +92,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6E686DE069FB474F5A7D4DB7D3C745FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>888ADB9892A32929610FA5D6BDA6372D</key>
 		<dict>
 			<key>primary</key>
@@ -128,16 +118,6 @@
 			<true/>
 		</dict>
 		<key>D9A82626691B7E55750652AC9FFC525E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DA1A7295DF2A99609DA0EEBF5E83233D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F81E60136418B1145FE959680C3113B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
