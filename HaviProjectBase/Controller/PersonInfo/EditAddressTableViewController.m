@@ -7,11 +7,12 @@
 //
 
 #import "EditAddressTableViewController.h"
+#import "BetaNaoTextField.h"
 
 @interface EditAddressTableViewController ()<UITextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UIButton *backButton;
 @property (nonatomic,strong) UITableView *cellTableView;
-@property (nonatomic,strong) UITextView *cellTextField;
+@property (nonatomic,strong) BetaNaoTextField *cellTextField;
 @property (nonatomic,strong) UILabel *cellFooterView;
 @property (nonatomic,strong) NSString *cellString;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
@@ -22,7 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.backgroundImageView.image = [UIImage imageNamed:@""];
+    self.view.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
     // Uncomment the following line to preserve selection between presentations.
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -83,21 +85,26 @@
         _cellTableView.delegate = self;
         _cellTableView.dataSource = self;
         _cellTableView.scrollEnabled = NO;
+        _cellTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _cellTableView.backgroundColor = [UIColor clearColor];
     }
     return _cellTableView;
 }
 
-- (UITextView *)cellTextField
+- (BetaNaoTextField *)cellTextField
 {
     if (!_cellTextField) {
-        _cellTextField = [[UITextView alloc]init];
-        _cellTextField.font = [UIFont systemFontOfSize:15];
-        _cellTextField.frame = CGRectMake(10, 0, self.view.frame.size.width-20, 80);
-        [_cellTextField becomeFirstResponder];
-        _cellTextField.scrollEnabled = NO;
-        _cellTextField.delegate = self;
-        _cellTextField.alpha = 0.9;
-        _cellTextField.returnKeyType = UIReturnKeyDone;
+        _cellTextField = [[BetaNaoTextField alloc]init];
+//        _cellTextField.font = [UIFont systemFontOfSize:15];
+        _cellTextField.frame = CGRectMake(16, -10, self.view.frame.size.width-32, 80);
+        _cellTextField.textPlaceHolder = @"地址";
+        _cellTextField.textPlaceHolderColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _cellTextField.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+//        [_cellTextField becomeFirstResponder];
+//        _cellTextField.scrollEnabled = NO;
+//        _cellTextField.delegate = self;
+//        _cellTextField.alpha = 0.9;
+//        _cellTextField.returnKeyType = UIReturnKeyDone;
         
     }
     return _cellTextField;
@@ -136,6 +143,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell addSubview:self.cellTextField];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
@@ -177,10 +185,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.cellFooterView.text = @"地址只能由40个以内中文字符组成";
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [_cellTextField becomeFirstResponder];
     if (self.cellInfoString) {
         self.cellTextField.text = self.cellInfoString;
     }
-    self.cellFooterView.text = @"地址只能由40个以内中文字符组成";
+
 }
 
 #pragma mark uitextfield

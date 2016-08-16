@@ -46,9 +46,11 @@
     self.sc_navigationItem.title = @"设定";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     if ([thirdPartyLoginPlatform isEqualToString: kMeddoPlatform]) {
-        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"ModifyPassWordViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
+        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"ModifyPassWordViewController"]];
+//        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"ModifyPassWordViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
     }else{
-        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
+        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController"]];
+//        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
     }
     [self addControllerToCellArrayWithClassName:@[@"UserProtocolViewController",@"AboutMeViewController"]];
     [self addControllerToCellArrayWithClassName:@[@"ChangeLanguageViewController"]];

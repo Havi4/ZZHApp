@@ -249,6 +249,7 @@
     if (hasSet) {
         return;
     }
+    
     NSArray *coverImageNames = @[@"IntroduceView1", @"IntroduceView2", @"IntroduceView3"];
     NSArray *backgroundImageNames = @[@"back.png", @"back.png", @"back.png"];
     
