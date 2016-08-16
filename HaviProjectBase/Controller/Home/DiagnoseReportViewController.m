@@ -44,7 +44,7 @@
 {
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:cancelButton];
-    [cancelButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"btn_x_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+    [cancelButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_x_%d",0]] imageByTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelView:) forControlEvents:UIControlEventTouchUpInside];
     [cancelButton makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(10);
@@ -256,12 +256,12 @@
     DiagnoseReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
     if (!cell) {
         cell = [[DiagnoseReportTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-        UIImageView *imageLine = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"cell_seperator_%d",selectedThemeIndex]]];
+        UIImageView *imageLine = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:[NSString stringWithFormat:@"cell_seperator_%d",0]] imageByTintColor:[UIColor whiteColor]]];
         [cell addSubview:imageLine];
         [imageLine makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(cell).offset(10);
             make.right.equalTo(cell).offset(-10);
-            make.top.equalTo(cell).offset(1);
+            make.top.equalTo(cell).offset(0.5);
             make.height.equalTo(@1);
         }];
     }
