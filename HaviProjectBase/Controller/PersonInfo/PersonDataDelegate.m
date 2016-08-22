@@ -80,6 +80,9 @@
             cell = [[PersonInfoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
         }
         self.configureCellBlock(indexPath,item,cell);
+        if ((indexPath.section == 1 && indexPath.row ==2)) {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
         return cell;
     }
 }
@@ -100,8 +103,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     id item = [self itemAtIndexPath:indexPath];
-    if (self.didSelectCellBlock) {
-        self.didSelectCellBlock(indexPath,item);
+    if (!(indexPath.section == 1 && indexPath.row ==2)) {
+        if (self.didSelectCellBlock) {
+            self.didSelectCellBlock(indexPath,item);
+        }
     }
 }
 

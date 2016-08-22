@@ -101,7 +101,8 @@
     }else if ([cellDataString isEqualToString:@"birthday"]) {
         _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.birthday];
     }else if ([cellDataString isEqualToString:@"gender"]) {
-        _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.gender];
+        _cellInfoData.text = @"";
+        _cellInfoArrow.hidden = YES;
     }else if ([cellDataString isEqualToString:@"emergencyContact"]) {
         _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.emergencyContact];
     }else if ([cellDataString isEqualToString:@"telephone"]) {
@@ -112,6 +113,9 @@
         _cellInfoData.text = [NSString stringWithFormat:@"%@ KG",userModel.nUserInfo.weight];
     }else if ([cellDataString isEqualToString:@"address"]) {
         _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.address];
+    }
+    if ((indexPath.section == 1 && indexPath.row ==2)) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.backgroundColor = [UIColor whiteColor];
 }

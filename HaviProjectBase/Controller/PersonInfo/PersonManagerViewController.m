@@ -26,7 +26,8 @@
 #import "APPSettingViewController.h"
 
 @interface PersonManagerViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
-
+@property (nonatomic, strong) UIButton *left;
+@property (nonatomic, strong) UIButton *right;
 @property (nonatomic, strong) UITableView *personInfoTableView;
 @property (nonatomic, strong) PersonInfoNaviView *headerView;
 @property (nonatomic, strong) PersonDataDelegate *personDataDelegate;
@@ -88,6 +89,9 @@
             }else{
                 [cell configure:cell customObj:item indexPath:indexPath];
             }
+            if (indexPath.section == 1&& indexPath.row ==2) {
+                [self setGenderButtonWith:cell];
+            }
         }
         
     };
@@ -103,6 +107,41 @@
     NSArray *dataArr = [NSArray arrayWithContentsOfFile:dataPath];
     self.personDataDelegate = [[PersonDataDelegate alloc]initWithItems:dataArr cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:didSelectBlock];
     [self.personDataDelegate handleTableViewDataSourceAndDelegate:self.personInfoTableView];
+}
+
+- (void)setGenderButtonWith:(UITableViewCell *)cell
+{
+    _left = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_left setImage:[UIImage imageNamed:@"b1@3x"] forState:UIControlStateNormal];
+    _left.tag = 700;
+    [_left addTarget:self action:@selector(changeGender:) forControlEvents:UIControlEventTouchUpInside];
+    [cell addSubview:_left];
+    
+    _right = [UIButton buttonWithType:UIButtonTypeCustom];
+    _right.tag = 701;
+    [_right addTarget:self action:@selector(changeGender:) forControlEvents:UIControlEventTouchUpInside];
+    [_right setImage:[UIImage imageNamed:@"g1@3x"] forState:UIControlStateNormal];
+    [cell addSubview:_right];
+    [_left makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(cell.mas_centerY);
+        make.height.equalTo(@40);
+        make.width.equalTo(@60);
+        make.right.equalTo(_right.mas_left).offset(-2);
+    }];
+    [_right makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(cell.mas_centerY);
+        make.height.equalTo(@40);
+        make.width.equalTo(@60);
+        make.right.equalTo(cell.mas_right).offset(-8);
+    }];
+    if ([self.userInfoModel.nUserInfo.gender isEqualToString:@"男"]) {
+        [_left setImage:[UIImage imageNamed:@"b0@3x"] forState:UIControlStateNormal];
+        [_right setImage:[UIImage imageNamed:@"g1@3x"] forState:UIControlStateNormal];
+    }else{
+        [_left setImage:[UIImage imageNamed:@"b1@3x"] forState:UIControlStateNormal];
+        [_right setImage:[UIImage imageNamed:@"g0@3x"] forState:UIControlStateNormal];
+    }
+
 }
 
 - (void)configProfileWithCell:(UITableViewCell *)cell
@@ -128,6 +167,19 @@
     [self getUserDetailInfo];
 }
 
+- (void)changeGender:(UIButton *)button
+{
+    if (button.tag == 700) {
+        [self saveUserInfoWithKey:@"Gender" andData:@"男"];
+        [_left setImage:[UIImage imageNamed:@"b0@3x"] forState:UIControlStateNormal];
+        [_right setImage:[UIImage imageNamed:@"g1@3x"] forState:UIControlStateNormal];
+    }else{
+        [self saveUserInfoWithKey:@"Gender" andData:@"女"];
+        [_left setImage:[UIImage imageNamed:@"b1@3x"] forState:UIControlStateNormal];
+        [_right setImage:[UIImage imageNamed:@"g0@3x"] forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark get user info
 
 - (void)getUserDetailInfo
@@ -140,6 +192,7 @@
         [self.refreshControl endRefreshing];
         self.userInfoModel = userInfo;
         [self.personInfoTableView reloadData];
+        
     }];
 }
 
