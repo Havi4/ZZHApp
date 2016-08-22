@@ -18,7 +18,7 @@
 #import "APPSettingViewController.h"
 #import "ReportVewContainerController.h"
 
-CGFloat const kMenuWidth = 240.0;//侧栏的宽度
+CGFloat const kMenuWidth = 280.0;//侧栏的宽度
 
 @interface ZZHRootViewController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 

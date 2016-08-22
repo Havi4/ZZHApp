@@ -18,6 +18,7 @@
 @property (nonatomic, strong) EditCellInfoDelegate *editDelegate;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) SCBarButtonItem *rightBarItem;
+
 @end
 
 @implementation EditCellInfoViewController
@@ -31,7 +32,7 @@
     }];
     self.sc_navigationItem.title = @"编辑资料";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
-    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_done"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithTitle:@"完成" style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self saveDown:nil];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
@@ -59,14 +60,16 @@
     [self.view addSubview:self.cellTableView];
 }
 
+
+
 - (void)addTableViewDataHandle
 {
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
-        [cell configure:cell customObj:self.cellString indexPath:indexPath];
+        [cell configure:cell customObj:self.cellString indexPath:indexPath withOtherInfo:self.cellTextString];
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
-        return 49;
+        return 80;
     };
     @weakify(self);
     DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){
@@ -132,6 +135,7 @@
     if (!_cellTableView) {
         _cellTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,64, self.view.frame.size.width, self.view.frame.size.height-64) style:UITableViewStyleGrouped];
         _cellTableView.backgroundColor = KTableViewBackGroundColor;
+        _cellTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _cellTableView;
 }
@@ -172,5 +176,9 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"cellEdit" object:nil];
+}
 
 @end

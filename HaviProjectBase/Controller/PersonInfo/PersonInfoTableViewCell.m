@@ -34,13 +34,15 @@
         _cellInfoData = [[UILabel alloc]init];
         [self addSubview:_cellInfoData];
         _cellInfoData.numberOfLines = 0;
+        _cellInfoData.textAlignment = NSTextAlignmentRight;
+        _cellInfoData.textColor = [UIColor lightGrayColor];
         _cellInfoData.font = kTextNormalWordFont;
         _cellInfoTitle.font = kTextNormalWordFont;
         //add contranints
         [_cellInfoIcon makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(15);
             make.centerY.equalTo(self.mas_centerY);
-            make.height.equalTo(@25);
+            make.height.equalTo(@15);
             make.width.equalTo(_cellInfoIcon.mas_height);
         }];
         

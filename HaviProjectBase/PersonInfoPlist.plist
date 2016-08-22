@@ -19,7 +19,7 @@
 			<key>cellName</key>
 			<string>姓名:</string>
 			<key>cellIcon</key>
-			<string>name</string>
+			<string>toux</string>
 		</dict>
 		<dict>
 			<key>cellData</key>
@@ -27,7 +27,7 @@
 			<key>cellName</key>
 			<string>生日:</string>
 			<key>cellIcon</key>
-			<string>birthday</string>
+			<string>sr</string>
 		</dict>
 		<dict>
 			<key>cellData</key>
@@ -35,7 +35,7 @@
 			<key>cellName</key>
 			<string>性别:</string>
 			<key>cellIcon</key>
-			<string>gender</string>
+			<string>xb</string>
 		</dict>
 		<dict>
 			<key>cellData</key>
@@ -43,7 +43,7 @@
 			<key>cellName</key>
 			<string>紧急联系人:</string>
 			<key>cellIcon</key>
-			<string>emergency_Contact</string>
+			<string>lxr</string>
 		</dict>
 		<dict>
 			<key>cellData</key>
@@ -51,7 +51,7 @@
 			<key>cellName</key>
 			<string>紧急联系人电话:</string>
 			<key>cellIcon</key>
-			<string>icon_phone1</string>
+			<string>phone1</string>
 		</dict>
 	</array>
 	<array>
@@ -61,7 +61,7 @@
 			<key>cellName</key>
 			<string>身高:</string>
 			<key>cellIcon</key>
-			<string>height</string>
+			<string>sheng</string>
 		</dict>
 		<dict>
 			<key>cellData</key>
@@ -69,7 +69,7 @@
 			<key>cellName</key>
 			<string>体重:</string>
 			<key>cellIcon</key>
-			<string>weight</string>
+			<string>tz</string>
 		</dict>
 		<dict>
 			<key>cellData</key>
@@ -77,7 +77,7 @@
 			<key>cellName</key>
 			<string>家庭住址:</string>
 			<key>cellIcon</key>
-			<string>home</string>
+			<string>home12</string>
 		</dict>
 	</array>
 </array>

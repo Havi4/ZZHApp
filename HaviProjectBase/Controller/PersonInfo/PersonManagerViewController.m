@@ -190,12 +190,15 @@
             
             if(indexPath.row==0){
                 cellInfo.cellInfoType = @"UserName";
+                cellInfo.cellTextString = self.userInfoModel.nUserInfo.userName;
                 [self.navigationController pushViewController:cellInfo animated:YES];
             }else if (indexPath.row==3){
                 cellInfo.cellInfoType = @"EmergencyContact";
+                cellInfo.cellTextString = self.userInfoModel.nUserInfo.emergencyContact;
                 [self.navigationController pushViewController:cellInfo animated:YES];
             }else if (indexPath.row==4){
                 cellInfo.cellInfoType = @"Telephone";
+                cellInfo.cellTextString = self.userInfoModel.nUserInfo.telephone;
                 [self.navigationController pushViewController:cellInfo animated:YES];
             }
         }

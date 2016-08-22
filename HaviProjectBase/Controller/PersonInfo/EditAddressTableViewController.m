@@ -31,7 +31,8 @@
     }];
     self.sc_navigationItem.title = @"编辑地址";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
-    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_done"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithTitle:@"完成" style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self saveInfo:nil];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     [self.view addSubview:self.cellTableView];
@@ -97,9 +98,11 @@
         _cellTextField = [[BetaNaoTextField alloc]init];
 //        _cellTextField.font = [UIFont systemFontOfSize:15];
         _cellTextField.frame = CGRectMake(16, -10, self.view.frame.size.width-32, 80);
-        _cellTextField.textPlaceHolder = @"地址";
+        _cellTextField.textPlaceHolder = @"请输入您的家庭地址";
         _cellTextField.textPlaceHolderColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
         _cellTextField.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        [_cellTextField becomeFirstResponder];
+        _cellTextField.returnKeyType = UIReturnKeyDone;
 //        [_cellTextField becomeFirstResponder];
 //        _cellTextField.scrollEnabled = NO;
 //        _cellTextField.delegate = self;
@@ -186,7 +189,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.cellFooterView.text = @"地址只能由40个以内中文字符组成";
+    self.cellFooterView.text = @"2-40个字符,可由中文、英文、数字组成";
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -194,7 +197,7 @@
     [super viewDidAppear:animated];
     [_cellTextField becomeFirstResponder];
     if (self.cellInfoString) {
-        self.cellTextField.text = self.cellInfoString;
+        [self.cellTextField reloadTextFieldWithTextString:self.cellInfoString];
     }
 
 }

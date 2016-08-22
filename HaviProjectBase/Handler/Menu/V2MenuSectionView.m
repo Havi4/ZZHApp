@@ -65,7 +65,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
-    self.tableView.contentInsetTop = 120;
+    self.tableView.contentInsetTop = 170;
     [self addSubview:self.tableView];
     
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -95,11 +95,11 @@ static CGFloat const kAvatarHeight = 70.0f;
     
     self.usernameLabel = [[UILabel alloc]init];
     self.usernameLabel.text = @"哈维";
-    self.usernameLabel.textAlignment = NSTextAlignmentLeft;
+    self.usernameLabel.textAlignment = NSTextAlignmentCenter;
     self.usernameLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.usernameLabel];
     self.userPhoneLabel = [[UILabel alloc]init];
-    self.userPhoneLabel.textAlignment = NSTextAlignmentLeft;
+    self.userPhoneLabel.textAlignment = NSTextAlignmentCenter;
     self.userPhoneLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.userPhoneLabel];
     
@@ -152,14 +152,15 @@ static CGFloat const kAvatarHeight = 70.0f;
 - (void)layoutSubviews {
     
 //    CGFloat spaceHeight = (self.tableView.contentInsetTop - kAvatarHeight) / 3.0;
-    self.avatarImageView.frame = (CGRect){30, 30, kAvatarHeight, kAvatarHeight};
-    self.profileBackView.frame = (CGRect){0,0,self.width,120};
+    self.avatarImageView.frame = (CGRect){(280-70)/2, 30, kAvatarHeight, kAvatarHeight};
+    self.profileBackView.frame = (CGRect){0,0,self.width,170};
     self.avatarButton.frame = self.avatarImageView.frame;
-    self.divideImageView.frame = (CGRect){80, kAvatarHeight + 50, 80, 0.5};
-    self.divideImageView.frame = (CGRect){-self.width, kAvatarHeight + 50, self.width * 2, 0.5};
+//    self.divideImageView.frame = (CGRect){80, kAvatarHeight + 50, 80, 0.5};
+//    self.divideImageView.frame = (CGRect){-self.width, kAvatarHeight + 50, self.width * 2, 0.5};
     self.tableView.frame = (CGRect){0, 0, self.width, self.height};
-    self.usernameLabel.frame = (CGRect){110,30,130,35};
-    self.userPhoneLabel.frame = (CGRect){110,65,130,35};
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.usernameLabel.frame = (CGRect){0,100,self.width,35};
+    self.userPhoneLabel.frame = (CGRect){0,130,self.width,35};
     [self.avatarButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
 //
 }

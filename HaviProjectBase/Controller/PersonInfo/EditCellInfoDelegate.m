@@ -31,12 +31,13 @@
     return self;
 }
 
+
 - (UILabel *)cellFooterView
 {
     if (!_cellFooterView) {
         _cellFooterView = [[UILabel alloc]init];
         _cellFooterView.text = @"nin";
-        _cellFooterView.frame = CGRectMake(15, 0, [[UIApplication sharedApplication] keyWindow].size.width - 30, 30);
+        _cellFooterView.frame = CGRectMake(16, -15, [[UIApplication sharedApplication] keyWindow].size.width - 30, 30);
         _cellFooterView.font = [UIFont systemFontOfSize:11];
         _cellFooterView.alpha = 0.4;
     }
@@ -120,7 +121,7 @@
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, -10, tableView.frame.size.width, 30)];
     [backView addSubview:self.cellFooterView];
     return backView;
 }
