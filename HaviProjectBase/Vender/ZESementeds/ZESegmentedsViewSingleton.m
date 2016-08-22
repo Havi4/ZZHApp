@@ -44,7 +44,7 @@
     
     self.semtsView.backgroundColor = [UIColor whiteColor];
    
-      [target.view addSubview:self.semtsView];
+    [target.view addSubview:self.semtsView];
     
     
 }

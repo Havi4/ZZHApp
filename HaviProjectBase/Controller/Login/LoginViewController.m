@@ -17,6 +17,7 @@
 #import "GetCodeViewController.h"
 #import "ThirdLoginCallBackManager.h"
 #import "APService.h"
+#import "ForgetPassViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,WXApiDelegate>
 @property (nonatomic,strong) CKTextField *nameText;
@@ -126,7 +127,7 @@
     [loginButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background"]] forState:UIControlStateNormal];
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
     [loginButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
-    loginButton.titleLabel.font = kDefaultWordFont;
+    loginButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     loginButton.layer.cornerRadius = 0;
     loginButton.layer.masksToBounds = YES;
@@ -135,7 +136,7 @@
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     registerButton.tag = 10001;
     [registerButton setTitle:@"注册" forState:UIControlStateNormal];
-    registerButton.titleLabel.font = kDefaultWordFont;
+    registerButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [registerButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     [registerButton addTarget:self action:@selector(registerButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registerButton];
@@ -156,7 +157,7 @@
     forgetButton.userInteractionEnabled = YES;
     [forgetButton addGestureRecognizer:tap];
     forgetButton.backgroundColor = [UIColor clearColor];
-    forgetButton.font = kDefaultWordFont;
+    forgetButton.font = [UIFont systemFontOfSize:15];
     forgetButton.textColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
     [self.view addSubview:forgetButton];
     [forgetButton makeConstraints:^(MASConstraintMaker *make) {
@@ -443,12 +444,16 @@
 
 - (void)forgetPassWord:(UITapGestureRecognizer *)gesture
 {
+    ForgetPassViewController *forget = [[ForgetPassViewController alloc]init];
+    [self.navigationController pushViewController:forget animated:YES];
+    /*
     MMPopupBlock completeBlock = ^(MMPopupView *popupView){
     };
     [[[MMAlertView alloc] initWithInputTitle:@"提示" detail:@"请输入手机号码,我们会将密码以短信的方式发到您的手机上。" placeholder:@"请输入手机号" handler:^(NSString *text) {
         self.cellPhone = text;
         [self getPassWordSelf:text];
     }] showWithBlock:completeBlock];
+     */
 }
 #pragma mark 获取验证码
 - (void)getPassWordSelf:(NSString *)cellPhone

@@ -52,6 +52,8 @@
 		2C1DA0371D5044F000FA6678 /* sina1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DA0341D5044F000FA6678 /* sina1@2x.png */; };
 		2C1DA0381D5044F000FA6678 /* weixin1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DA0351D5044F000FA6678 /* weixin1@2x.png */; };
 		2C1DA03B1D5088C800FA6678 /* NaviTitleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DA03A1D5088C800FA6678 /* NaviTitleScrollView.m */; };
+		2C2297FC1D6AE2A50086ACF5 /* ForgetPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2297FB1D6AE2A50086ACF5 /* ForgetPassViewController.m */; };
+		2C2297FF1D6AE9E50086ACF5 /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2297FE1D6AE9E50086ACF5 /* ForgetViewController.m */; };
 		2C2C772F1D5DB0AF00FE5279 /* button_back_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2C772D1D5DB0AF00FE5279 /* button_back_image@3x.png */; };
 		2C2C77301D5DB0AF00FE5279 /* button_down_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2C772E1D5DB0AF00FE5279 /* button_down_image@3x.png */; };
 		2C2C77321D5DC53200FE5279 /* clear@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2C77311D5DC53200FE5279 /* clear@3x.png */; };
@@ -665,6 +667,10 @@
 		2C1DA0351D5044F000FA6678 /* weixin1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weixin1@2x.png"; sourceTree = "<group>"; };
 		2C1DA0391D5088C800FA6678 /* NaviTitleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviTitleScrollView.h; sourceTree = "<group>"; };
 		2C1DA03A1D5088C800FA6678 /* NaviTitleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviTitleScrollView.m; sourceTree = "<group>"; };
+		2C2297FA1D6AE2A50086ACF5 /* ForgetPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPassViewController.h; sourceTree = "<group>"; };
+		2C2297FB1D6AE2A50086ACF5 /* ForgetPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPassViewController.m; sourceTree = "<group>"; };
+		2C2297FD1D6AE9E50086ACF5 /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
+		2C2297FE1D6AE9E50086ACF5 /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
 		2C2C772D1D5DB0AF00FE5279 /* button_back_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_back_image@3x.png"; sourceTree = "<group>"; };
 		2C2C772E1D5DB0AF00FE5279 /* button_down_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_down_image@3x.png"; sourceTree = "<group>"; };
 		2C2C77311D5DC53200FE5279 /* clear@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear@3x.png"; sourceTree = "<group>"; };
@@ -3084,6 +3090,10 @@
 				2C5872861C7B4D5D001C2F3A /* RegisterViewController.m */,
 				2C9EF4AE1C832EC8000704E2 /* RegisterPhoneViewController.h */,
 				2C9EF4AF1C832EC8000704E2 /* RegisterPhoneViewController.m */,
+				2C2297FA1D6AE2A50086ACF5 /* ForgetPassViewController.h */,
+				2C2297FB1D6AE2A50086ACF5 /* ForgetPassViewController.m */,
+				2C2297FD1D6AE9E50086ACF5 /* ForgetViewController.h */,
+				2C2297FE1D6AE9E50086ACF5 /* ForgetViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3782,6 +3792,7 @@
 				2CD0150A1C7028DC001F9514 /* JDStatusBarStyle.m in Sources */,
 				2CF2E1E61C7860A90007A639 /* SettingDataDelegate.m in Sources */,
 				2C9EF4F61C852CE6000704E2 /* ModalAnimation.m in Sources */,
+				2C2297FF1D6AE9E50086ACF5 /* ForgetViewController.m in Sources */,
 				2C1DA0231D4F2BF300FA6678 /* UIColor+Extensions.m in Sources */,
 				2CF2E1E11C785C330007A639 /* SleepSettingViewController.m in Sources */,
 				2CF2E1E91C7862B50007A639 /* SleepSettingCell.m in Sources */,
@@ -3863,6 +3874,7 @@
 				2CDB2DC81CE471B300E931F0 /* Reachability.m in Sources */,
 				2C5872871C7B4D5D001C2F3A /* RegisterViewController.m in Sources */,
 				2C9EF43C1C8033CA000704E2 /* ChartTableDataViewCell.m in Sources */,
+				2C2297FC1D6AE2A50086ACF5 /* ForgetPassViewController.m in Sources */,
 				2C9EF45B1C804C45000704E2 /* ReportDataShowViewController.m in Sources */,
 				2CF2E1C01C76FDCB0007A639 /* NameDoubleViewController.m in Sources */,
 				2C9EF5331C8597C9000704E2 /* THPinInputCircleView.m in Sources */,
@@ -4037,6 +4049,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = A4R9NHT83H/ZZH_ihotkeys_dev;
 			};
 			name = Debug;
 		};

@@ -67,7 +67,7 @@
     if (!_leftButton) {
         _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _leftButton.frame = CGRectMake(0, 0, 44, 44);
-        [_leftButton dk_setImage:DKImageWithNames(@"btn_back_0", @"btn_back_1") forState:UIControlStateNormal];
+        [_leftButton setImage:[UIImage imageNamed:@"btn_back_1"] forState:UIControlStateNormal];
     }
     return _leftButton;
 }
