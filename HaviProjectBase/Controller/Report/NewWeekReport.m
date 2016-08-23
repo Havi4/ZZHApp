@@ -160,28 +160,26 @@
     }
     
     //睡眠质量
-    /*
     for (int i=0; i<_sleepQulityDataValues.count; i++) {
         float gradePercent = [[_sleepQulityDataValues objectAtIndex:i] floatValue];
         CGPoint xPoint = [[self.xPoints objectAtIndex:i]CGPointValue];
         CGFloat height = (yCoordinateHeight-15-20)/100*gradePercent*20;
-        __block SleepQualityBar *bar = [[SleepQualityBar alloc] initWithFrame:CGRectMake(xPoint.x+6, 15+(yCoordinateHeight-15)-height, 5,height) andGrade:(int)gradePercent];
+        __block SleepQualityBar *bar = [[SleepQualityBar alloc] initWithFrame:CGRectMake(xPoint.x, 15+(yCoordinateHeight-15)-height-5, 5,height) andGrade:(int)gradePercent];
         bar.alpha = 0;
         [UIView animateWithDuration:0.3 animations:^{
             bar.alpha = 1;
         } completion:^(BOOL finished) {
             if (gradePercent!=0) {
-                UILabel *label = [self getTopLabelWithLevel:gradePercent andColor:[self returnColorWithSleepLevel:gradePercent] andFrame:CGRectMake(xPoint.x-7, 15+(yCoordinateHeight-15)-height- 20-12, 40, 20)];
-                label.tag = 999;
-                [self addSubview:label];
-                CGAffineTransform transform = label.transform;
-                transform = CGAffineTransformRotate(transform, -1.2);
-                label.transform = transform;
+//                UILabel *label = [self getTopLabelWithLevel:gradePercent andColor:[self returnColorWithSleepLevel:gradePercent] andFrame:CGRectMake(xPoint.x-7, 15+(yCoordinateHeight-15)-height- 20-12, 40, 20)];
+//                label.tag = 999;
+//                [self addSubview:label];
+//                CGAffineTransform transform = label.transform;
+//                transform = CGAffineTransformRotate(transform, -1.2);
+//                label.transform = transform;
             }
         }];
         [self addSubview:bar];
     }
-     */
     //睡眠时长
     for (int i=0; i<_sleepTimeDataValues.count; i++) {
         float gradePercent = [[_sleepTimeDataValues objectAtIndex:i] floatValue];
