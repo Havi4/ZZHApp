@@ -59,7 +59,7 @@
 {
     if (!_headerImageView) {
         _headerImageView = [[UIImageView alloc]init];
-        _headerImageView.image = [UIImage imageNamed:@"chang@3x"];
+        _headerImageView.image = [[UIImage imageNamed:@"chang1@3x"]imageByTintColor:[UIColor whiteColor]];
     }
     return _headerImageView;
 }
@@ -69,7 +69,7 @@
     if (!_headerLongLabel) {
         _headerLongLabel = [[UILabel alloc]init];
         _headerLongLabel.text = @"最长夜晚";
-        _headerLongLabel.textColor = kReportCellColor;
+        _headerLongLabel.textColor = [UIColor whiteColor];
         _headerLongLabel.font = [UIFont systemFontOfSize:13];
     }
     return _headerLongLabel;
@@ -80,7 +80,7 @@
     if (!_headerShortLabel) {
         _headerShortLabel = [[UILabel alloc]init];
         _headerShortLabel.text = @"最短夜晚";
-        _headerShortLabel.textColor = kReportCellColor;
+        _headerShortLabel.textColor = [UIColor whiteColor];
         _headerShortLabel.font = [UIFont systemFontOfSize:13];
     }
     return _headerShortLabel;
@@ -91,7 +91,7 @@
     if (!_headerLongData) {
         _headerLongData = [[UILabel alloc]init];
         _headerLongData.text = @"--小时--分钟";
-        _headerLongData.textColor = kReportCellColor;
+        _headerLongData.textColor = [UIColor whiteColor];
         _headerLongData.textAlignment = NSTextAlignmentCenter;
         _headerLongData.font = [UIFont systemFontOfSize:13];
     }
@@ -103,7 +103,7 @@
     if (!_headerShortData) {
         _headerShortData = [[UILabel alloc]init];
         _headerShortData.text = @"--小时--分钟";
-        _headerShortData.textColor = kReportCellColor;
+        _headerShortData.textColor = [UIColor whiteColor];
         _headerShortData.textAlignment = NSTextAlignmentCenter;
         _headerShortData.font = [UIFont systemFontOfSize:13];
     }
@@ -115,7 +115,7 @@
 {
     if (!_calenderBackView) {
         _calenderBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        _calenderBackView.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
+        _calenderBackView.backgroundColor = [UIColor clearColor];
         
         [_calenderBackView addSubview:self.headerImageView];
         [_headerImageView makeConstraints:^(MASConstraintMaker *make) {
@@ -208,7 +208,7 @@
     if (!_monthTitleLabel) {
         _monthTitleLabel = [[UILabel alloc]init];
         _monthTitleLabel.font = [UIFont systemFontOfSize:18];
-        _monthTitleLabel.textColor = kReportCellColor;
+        _monthTitleLabel.textColor = [UIColor whiteColor];
         _monthTitleLabel.textAlignment = NSTextAlignmentCenter;
         if (self.reportType == ReportViewWeek) {
             _monthTitleLabel.text = [[CalendarDateCaculate sharedInstance] getCurrentWeekInOneYear:[NSDate date]];
@@ -237,7 +237,7 @@
 {
     if (!_leftCalButton) {
         _leftCalButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_leftCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",0]] imageByTintColor:kReportCellColor] forState:UIControlStateNormal];
+        [_leftCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_back_%d",0]] imageByTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
         [_leftCalButton addTarget:self action:@selector(lastStep:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftCalButton;
@@ -247,7 +247,7 @@
 {
     if (!_rightCalButton) {
         _rightCalButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:kReportCellColor] forState:UIControlStateNormal];
+        [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
         [_rightCalButton addTarget:self action:@selector(nextStep:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightCalButton;
@@ -258,7 +258,7 @@
     if (!_monthLabel) {
         _monthLabel = [[UILabel alloc]init];
         _monthLabel.font = [UIFont systemFontOfSize:16];
-        _monthLabel.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+        _monthLabel.textColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
         _monthLabel.textAlignment = NSTextAlignmentCenter;
         if (self.reportType == ReportViewWeek) {
             _monthLabel.text = [[CalendarDateCaculate sharedInstance]getWeekTimeDuration:[NSDate date]];

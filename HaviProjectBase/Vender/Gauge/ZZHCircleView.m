@@ -134,7 +134,7 @@
 {
     if (!_nightImageView) {
         _nightImageView = [[UIImageView alloc]init];
-        _nightImageView.image = [[UIImage imageNamed:@"chang@3x"]imageWithTintColor:[UIColor whiteColor]];
+        _nightImageView.image = [[UIImage imageNamed:@"chang1@3x"]imageWithTintColor:[UIColor whiteColor]];
         _nightImageView.frame = (CGRect){self.frame.size.width/2-7.5,0,15,15};
     }
     return _nightImageView;
@@ -190,7 +190,7 @@
         arc.fillColor = [UIColor clearColor].CGColor;
         arc.strokeColor = [UIColor blackColor].CGColor;
         arc.lineWidth = 15;
-        [arc setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:2.8],nil]];
+        [arc setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:3.8],nil]];
         _gradientLayerCircle = [CAGradientLayer layer];
         _gradientLayerCircle.frame = self.bounds;
         _gradientLayerCircle.colors = self.colors;

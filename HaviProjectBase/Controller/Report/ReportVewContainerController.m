@@ -46,8 +46,8 @@
         @strongify(self);
         [self.naviBarTitle setCurrentIndex:currentPageIndex];
     };
-    [self.containerDataView.navigationBarView addSubview:self.leftButton];
-    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+//    [self.containerDataView.navigationBarView addSubview:self.leftButton];
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gn"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
     }];
     
@@ -58,6 +58,7 @@
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     [self.sc_navigationBar addSubview:self.naviBarTitle];
+    self.sc_navigationBar.backgroundColor = [UIColor clearColor];
 
 }
 

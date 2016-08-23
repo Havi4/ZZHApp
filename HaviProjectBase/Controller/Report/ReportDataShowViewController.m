@@ -32,17 +32,18 @@
 
 - (void)addTableViewDataHandle
 {
+    self.backgroundImageView.image = [UIImage imageNamed:@"background@3x"];
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.tintColor = kReportCellColor;
+    self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventValueChanged];
     [self.reportShowTableView addSubview:self.refreshControl];
     [self.view addSubview:self.reportShowTableView];
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
-        if (indexPath.section == 0) {
+        if (indexPath.section == 1) {
             [cell configure:cell customObj:@{@"queryStartTime":self.queryStartTime==nil ? @"20151221" : self.queryStartTime,@"queryEndTime":self.queryEndTime==nil ? @"20151221":self.queryEndTime} indexPath:indexPath withOtherInfo:self.sleepQualityModel];
-        }else if (indexPath.section == 1){
-            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }else if (indexPath.section == 2){
+            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+        }else if (indexPath.section == 3){
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }
         
@@ -69,7 +70,7 @@
     if (!_reportShowTableView) {
         _reportShowTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height -64) style:UITableViewStylePlain];
         _reportShowTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _reportShowTableView.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:1.00];
+        _reportShowTableView.backgroundColor = [UIColor clearColor];
         _reportShowTableView.showsVerticalScrollIndicator = NO;
     }
     return _reportShowTableView;

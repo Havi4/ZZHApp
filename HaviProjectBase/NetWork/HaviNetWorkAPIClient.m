@@ -67,7 +67,7 @@ static HaviNetWorkAPIClient *_netWorkClient;
     switch (method) {
         case Get:{
             //所有的get请求添加缓存机制
-            
+            [NSObject showHud];
             NSMutableString *localPath = [aPath mutableCopy];
             if (params) {
                 [localPath appendString:params.description];
@@ -76,6 +76,7 @@ static HaviNetWorkAPIClient *_netWorkClient;
                 
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [NSObject hideHud];
                 [[UIApplication sharedApplication]decrementNetworkActivityCount];
                 DeBugLog(@"\n=====response=======\n\n%@:\n%@", aPath, responseObject);
                 id error = [self handleResponse:responseObject autoShowError:autoShowError];
@@ -91,6 +92,7 @@ static HaviNetWorkAPIClient *_netWorkClient;
                 }
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [NSObject hideHud];
                 [[UIApplication sharedApplication]decrementNetworkActivityCount];
                 [NSObject showError:error];
                 id responseObject = [NSObject loadResponseWithPath:localPath];
@@ -120,9 +122,9 @@ static HaviNetWorkAPIClient *_netWorkClient;
             break;
         }
         case 2:{
-            [NSObject showHUBAnimation];
+            [NSObject showHud];
             [self PUT:aPath parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                [NSObject hideHUBAnimation];
+                [NSObject hideHud];
                 [[UIApplication sharedApplication]decrementNetworkActivityCount];
                 DeBugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
                 id error = [self handleResponse:responseObject autoShowError:autoShowError];

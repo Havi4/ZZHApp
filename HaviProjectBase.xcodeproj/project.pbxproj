@@ -66,6 +66,13 @@
 		2C2298151D6AF6280086ACF5 /* toux@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2298091D6AF6280086ACF5 /* toux@3x.png */; };
 		2C2298161D6AF6280086ACF5 /* tz@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C22980A1D6AF6280086ACF5 /* tz@3x.png */; };
 		2C2298171D6AF6280086ACF5 /* xb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C22980B1D6AF6280086ACF5 /* xb@3x.png */; };
+		2C2298211D6C1DA80086ACF5 /* JHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C22981A1D6C1DA80086ACF5 /* JHUD.m */; };
+		2C2298221D6C1DA80086ACF5 /* JHUDAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C22981C1D6C1DA80086ACF5 /* JHUDAnimationView.m */; };
+		2C2298231D6C1DA80086ACF5 /* UIImage+JHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C22981E1D6C1DA80086ACF5 /* UIImage+JHUD.m */; };
+		2C2298241D6C1DA80086ACF5 /* UIView+JHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2298201D6C1DA80086ACF5 /* UIView+JHUD.m */; };
+		2C2298271D6C1FF00086ACF5 /* ZZHHUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2298261D6C1FF00086ACF5 /* ZZHHUDManager.m */; };
+		2C2298291D6C346C0086ACF5 /* gn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2298281D6C346C0086ACF5 /* gn@3x.png */; };
+		2C22982B1D6C481A0086ACF5 /* chang1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C22982A1D6C481A0086ACF5 /* chang1@3x.png */; };
 		2C2C772F1D5DB0AF00FE5279 /* button_back_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2C772D1D5DB0AF00FE5279 /* button_back_image@3x.png */; };
 		2C2C77301D5DB0AF00FE5279 /* button_down_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2C772E1D5DB0AF00FE5279 /* button_down_image@3x.png */; };
 		2C2C77321D5DC53200FE5279 /* clear@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C2C77311D5DC53200FE5279 /* clear@3x.png */; };
@@ -695,6 +702,18 @@
 		2C2298091D6AF6280086ACF5 /* toux@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toux@3x.png"; sourceTree = "<group>"; };
 		2C22980A1D6AF6280086ACF5 /* tz@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tz@3x.png"; sourceTree = "<group>"; };
 		2C22980B1D6AF6280086ACF5 /* xb@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xb@3x.png"; sourceTree = "<group>"; };
+		2C2298191D6C1DA80086ACF5 /* JHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUD.h; sourceTree = "<group>"; };
+		2C22981A1D6C1DA80086ACF5 /* JHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUD.m; sourceTree = "<group>"; };
+		2C22981B1D6C1DA80086ACF5 /* JHUDAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUDAnimationView.h; sourceTree = "<group>"; };
+		2C22981C1D6C1DA80086ACF5 /* JHUDAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUDAnimationView.m; sourceTree = "<group>"; };
+		2C22981D1D6C1DA80086ACF5 /* UIImage+JHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JHUD.h"; sourceTree = "<group>"; };
+		2C22981E1D6C1DA80086ACF5 /* UIImage+JHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JHUD.m"; sourceTree = "<group>"; };
+		2C22981F1D6C1DA80086ACF5 /* UIView+JHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHUD.h"; sourceTree = "<group>"; };
+		2C2298201D6C1DA80086ACF5 /* UIView+JHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHUD.m"; sourceTree = "<group>"; };
+		2C2298251D6C1FF00086ACF5 /* ZZHHUDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZHHUDManager.h; sourceTree = "<group>"; };
+		2C2298261D6C1FF00086ACF5 /* ZZHHUDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZHHUDManager.m; sourceTree = "<group>"; };
+		2C2298281D6C346C0086ACF5 /* gn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gn@3x.png"; sourceTree = "<group>"; };
+		2C22982A1D6C481A0086ACF5 /* chang1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chang1@3x.png"; sourceTree = "<group>"; };
 		2C2C772D1D5DB0AF00FE5279 /* button_back_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_back_image@3x.png"; sourceTree = "<group>"; };
 		2C2C772E1D5DB0AF00FE5279 /* button_down_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_down_image@3x.png"; sourceTree = "<group>"; };
 		2C2C77311D5DC53200FE5279 /* clear@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear@3x.png"; sourceTree = "<group>"; };
@@ -1658,6 +1677,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2C2298181D6C1DA80086ACF5 /* JHUD */ = {
+			isa = PBXGroup;
+			children = (
+				2C2298191D6C1DA80086ACF5 /* JHUD.h */,
+				2C22981A1D6C1DA80086ACF5 /* JHUD.m */,
+				2C22981B1D6C1DA80086ACF5 /* JHUDAnimationView.h */,
+				2C22981C1D6C1DA80086ACF5 /* JHUDAnimationView.m */,
+				2C22981D1D6C1DA80086ACF5 /* UIImage+JHUD.h */,
+				2C22981E1D6C1DA80086ACF5 /* UIImage+JHUD.m */,
+				2C22981F1D6C1DA80086ACF5 /* UIView+JHUD.h */,
+				2C2298201D6C1DA80086ACF5 /* UIView+JHUD.m */,
+				2C2298251D6C1FF00086ACF5 /* ZZHHUDManager.h */,
+				2C2298261D6C1FF00086ACF5 /* ZZHHUDManager.m */,
+			);
+			path = JHUD;
+			sourceTree = "<group>";
+		};
 		2C358A391D586D8E00BEC198 /* ChartPie */ = {
 			isa = PBXGroup;
 			children = (
@@ -1708,6 +1744,7 @@
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
+				2C2298281D6C346C0086ACF5 /* gn@3x.png */,
 				2C6AA3271D5F29EC00CC5831 /* right_text_line.png */,
 				2C2298001D6AF6280086ACF5 /* b0@3x.png */,
 				2C2298011D6AF6280086ACF5 /* g1@3x.png */,
@@ -1742,6 +1779,7 @@
 				2C1D9FE11D4F190C00FA6678 /* long_sleep@3x.png */,
 				2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */,
 				2C1D9FD21D4CD5B900FA6678 /* chang@3x.png */,
+				2C22982A1D6C481A0086ACF5 /* chang1@3x.png */,
 				2C72A1F81D5AC57B00D85966 /* new_star.png */,
 				2C8D87CF1D461DC5008573EA /* jia@3x.png */,
 				2C8D87D01D461DC5008573EA /* sousuo@3x.png */,
@@ -2423,6 +2461,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C2298181D6C1DA80086ACF5 /* JHUD */,
 				2C72A1FA1D5B304E00D85966 /* ZESementeds */,
 				2C358A391D586D8E00BEC198 /* ChartPie */,
 				2C1D9FEF1D4F2BF200FA6678 /* JTCalendar */,
@@ -3270,7 +3309,9 @@
 				TargetAttributes = {
 					2CD75B141C61B57000E7E076 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = CF99UB3L46;
+						DevelopmentTeam = A4R9NHT83H;
+						DevelopmentTeamName = "Shanghai Meddo Medical Device Co., Ltd.";
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3388,6 +3429,7 @@
 				2C5872821C7B4AA1001C2F3A /* btn_gain_0@2x.png in Resources */,
 				2CD014A61C634CE7001F9514 /* quarter_0@2x.png in Resources */,
 				2C58726F1C7AF583001C2F3A /* launch_image_0@2x.png in Resources */,
+				2C2298291D6C346C0086ACF5 /* gn@3x.png in Resources */,
 				2CD014891C633FF3001F9514 /* icon_alarm_clock_0@2x.png in Resources */,
 				2C96AA121D40994B00ACCA08 /* qq@3x.png in Resources */,
 				2C96A9FF1D40685400ACCA08 /* IntroduceView2.png in Resources */,
@@ -3516,6 +3558,7 @@
 				2C1D9FE61D4F192700FA6678 /* deep_sleep@3x.png in Resources */,
 				2CF2E16A1C759F530007A639 /* havi1_7@2x.png in Resources */,
 				2C9EF4631C80586B000704E2 /* menology_1@2x.png in Resources */,
+				2C22982B1D6C481A0086ACF5 /* chang1@3x.png in Resources */,
 				2CF2E1521C7590930007A639 /* textbox_hollow_1@2x.png in Resources */,
 				2C22980E1D6AF6280086ACF5 /* b1@3x.png in Resources */,
 				2CF2E1C31C7701710007A639 /* double_bed@2x.png in Resources */,
@@ -3721,6 +3764,7 @@
 				2CD75BA31C61F8D300E7E076 /* LeftSideViewController.m in Sources */,
 				2C9EF4821C816051000704E2 /* ReportTableViewCell.m in Sources */,
 				2C72A2001D5B304E00D85966 /* ZESegmentedsViewSingleton.m in Sources */,
+				2C2298221D6C1DA80086ACF5 /* JHUDAnimationView.m in Sources */,
 				2C9EF4751C80B692000704E2 /* WeekCalenderView.m in Sources */,
 				2C9EF4001C7FE23E000704E2 /* MPGraphView.m in Sources */,
 				2C8D87C51D45DC55008573EA /* ProfileTableViewCell.m in Sources */,
@@ -3771,6 +3815,7 @@
 				2C9EF3F01C7F0B99000704E2 /* PNBar.m in Sources */,
 				2C72A2031D5D690F00D85966 /* NarikoTextField.m in Sources */,
 				2CD015351C7080FE001F9514 /* MyDeviceDelegate.m in Sources */,
+				2C2298241D6C1DA80086ACF5 /* UIView+JHUD.m in Sources */,
 				2C9EF4DC1C844FA3000704E2 /* CalendarDayModel.m in Sources */,
 				2C96AA641D41101A00ACCA08 /* V2NavigationBar.m in Sources */,
 				2C72A1F71D59C37C00D85966 /* TurnAroundView.m in Sources */,
@@ -3806,6 +3851,7 @@
 				2CF2E1FF1C78A82C0007A639 /* DTTimePeriodChain.m in Sources */,
 				2C9EF3761C7D996B000704E2 /* UIColor+CL.m in Sources */,
 				2C9EF5391C8597C9000704E2 /* UIImage+ImageEffects.m in Sources */,
+				2C2298211D6C1DA80086ACF5 /* JHUD.m in Sources */,
 				2CD015301C70774A001F9514 /* JASwipeCell.m in Sources */,
 				2C5872801C7B44E6001C2F3A /* GetCodeViewController.m in Sources */,
 				2CD015141C704485001F9514 /* RMDateSelectionViewController.m in Sources */,
@@ -3831,6 +3877,7 @@
 				2C9EF4F81C852CE6000704E2 /* ShuffleAnimation.m in Sources */,
 				2C9EF4101C7FE30B000704E2 /* HeartGraphView.m in Sources */,
 				2C9EF4131C7FE30B000704E2 /* UIBezierPath+curved.m in Sources */,
+				2C2298271D6C1FF00086ACF5 /* ZZHHUDManager.m in Sources */,
 				2C9EF3721C7D996B000704E2 /* DailyCalendarView.m in Sources */,
 				2C9EF31D1C7C9CE8000704E2 /* CenterDataShowDataDelegate.m in Sources */,
 				2C9EF2E41C7C3AF8000704E2 /* HAVIPageControl.m in Sources */,
@@ -3925,6 +3972,7 @@
 				2C2297FC1D6AE2A50086ACF5 /* ForgetPassViewController.m in Sources */,
 				2C9EF45B1C804C45000704E2 /* ReportDataShowViewController.m in Sources */,
 				2CF2E1C01C76FDCB0007A639 /* NameDoubleViewController.m in Sources */,
+				2C2298231D6C1DA80086ACF5 /* UIImage+JHUD.m in Sources */,
 				2C9EF5331C8597C9000704E2 /* THPinInputCircleView.m in Sources */,
 				2CF2E2801C7ADFE50007A639 /* LoginViewController.m in Sources */,
 				2C9EF4AD1C82FBC3000704E2 /* WTURLSessionManager.m in Sources */,
@@ -4094,10 +4142,10 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = A4R9NHT83H/ZZH_ihotkeys_dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4128,7 +4176,7 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -40,15 +40,15 @@
             btn.layer.masksToBounds = YES;
         
             [btn setTitle:titleArr[i] forState:UIControlStateNormal];
-            [btn setTitleColor:kReportCellColor forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor colorWithRed:0.502 green:0.827 blue:1.000 alpha:1.00] forState:UIControlStateNormal];
             [btn.titleLabel setFont:[UIFont systemFontOfSize:15]];
             
             [self addSubview:btn];
             
             j = i;
             
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake( x+ itemsWidth, y, 1, itemsHeight)];
-            lineView.backgroundColor = kReportCellColor;
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake( x+ itemsWidth, y, 0.5, itemsHeight)];
+            lineView.backgroundColor = [UIColor colorWithRed:0.502 green:0.827 blue:1.000 alpha:1.00];
                 
             [self addSubview:lineView];
     
@@ -65,12 +65,12 @@
     }
     
     self.layer.borderColor = kReportCellColor.CGColor;
-    self.layer.borderWidth = 1.0f;
+    self.layer.borderWidth = 0.0f;
     self.layer.cornerRadius = self.frame.size.height/2;
     self.layer.masksToBounds = YES;
     
 
-    
+    self.backgroundColor = [UIColor whiteColor];
     return self;
 }
 
@@ -138,7 +138,7 @@
 - (void)setSelectIndex:(int)index
 {
     UIButton *btn = [self viewWithTag:1000+index];
-    btn.backgroundColor = kReportCellColor;
+    btn.backgroundColor = [UIColor colorWithRed:0.502 green:0.827 blue:1.000 alpha:1.00];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 

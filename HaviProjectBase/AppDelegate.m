@@ -272,17 +272,8 @@
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestAssessmentListWithBlock:^(AssessmentListModel *assessList, NSError *error) {        
     }];
-    //因为在主界面进行切换设备，没有办法进行更新
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadUserDevice) name:kUserChangeUUIDInCenterView object:nil];//主界面切换设备
+    
 
-}
-
-- (void)reloadUserDevice
-{
-    self.sideMenuController.centerPanel = nil;
-    self.centerView = nil;
-    self.centerView = [[CenterViewController alloc]init];
-    self.sideMenuController.centerPanel = [[UINavigationController alloc]initWithRootViewController:self.centerView];
 }
 
 - (void)uploadRegisterID

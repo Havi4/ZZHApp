@@ -59,7 +59,7 @@
         for (int i = 0; i<3; i++) {
             UILabel *lineView = [[UILabel alloc] init];
             lineView.frame = CGRectMake(2, 16 + cY*i*2-10, 24, 20);
-            lineView.textColor = kReportCellColor;
+            lineView.textColor = [UIColor whiteColor];
             lineView.font = [UIFont systemFontOfSize:14];
             lineView.textAlignment = NSTextAlignmentCenter;
             if (i==0) {
@@ -72,6 +72,69 @@
             
             [self addSubview:lineView];
         }
+        
+        UIView *leftView1 = [[UIView alloc]init];
+        leftView1.backgroundColor = [UIColor colorWithRed:0.784 green:0.753 blue:0.235 alpha:1.00];
+        [self addSubview:leftView1];
+        
+        UILabel *leftLabel1 = [[UILabel alloc]init];
+        leftLabel1.text = @"体动";
+        leftLabel1.textColor = [UIColor whiteColor];
+        leftLabel1.font = [UIFont systemFontOfSize:12];
+        [self addSubview:leftLabel1];
+        
+        UIView *leftView = [[UIView alloc]init];
+        leftView.backgroundColor = [UIColor colorWithRed:0.635 green:0.851 blue:0.867 alpha:1.00];
+        [self addSubview:leftView];
+        
+        UILabel *leftLabel = [[UILabel alloc]init];
+        leftLabel.text = @"入睡";
+        leftLabel.textColor = [UIColor whiteColor];
+        leftLabel.font = [UIFont systemFontOfSize:12];
+        [self addSubview:leftLabel];
+        
+        UIView *rightView = [[UIView alloc]init];
+        rightView.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
+        [self addSubview:rightView];
+        
+        UILabel *rightLabel = [[UILabel alloc]init];
+        rightLabel.text = @"离床";
+        rightLabel.textColor = [UIColor whiteColor];
+        rightLabel.font = [UIFont systemFontOfSize:12];
+        [self addSubview:rightLabel];
+        
+        [leftLabel1 makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(2);
+            make.right.equalTo(self.mas_right).offset(-16);
+        }];
+        
+        [leftView1 makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(leftLabel1.mas_centerY);
+            make.right.equalTo(leftLabel1.mas_left).offset(-8);
+            make.height.width.equalTo(@10);
+        }];
+        
+        [rightLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(leftView1.mas_centerY);
+            make.right.equalTo(leftView1.mas_left).offset(-16);
+        }];
+        
+        [rightView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(rightLabel.mas_centerY);
+            make.right.equalTo(rightLabel.mas_left).offset(-8);
+            make.height.width.equalTo(@10);
+        }];
+        
+        [leftLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(rightLabel.mas_centerY);
+            make.right.equalTo(rightView.mas_left).offset(-16);
+        }];
+        
+        [leftView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(leftLabel.mas_centerY);
+            make.right.equalTo(leftLabel.mas_left).offset(-8);
+            make.height.width.equalTo(@10);
+        }];
     }
     return _subView;
 }
@@ -79,10 +142,12 @@
 - (NewWeekReport*)weekReport
 {
     if (!_weekReport) {
-        _weekReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 200)];
+        _weekReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 180)];
         _weekReport.xValues = @[@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"];
         _weekReport.sleepQulityDataValues = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
         _weekReport.sleepTimeDataValues = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+        _weekReport.backgroundColor = [UIColor clearColor];
+        
     }
     return _weekReport;
 }
@@ -90,9 +155,9 @@
 - (UIScrollView *)dataScrollView
 {
     if (!_dataScrollView) {
-        _dataScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 200)];
+        _dataScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 180)];
         _dataScrollView.contentSize = CGSizeMake(4*self.frame.size.width+self.frame.size.width/7*3, 00);
-        _dataScrollView.backgroundColor = [UIColor colorWithRed:0.059f green:0.141f blue:0.231f alpha:1.00f];
+        _dataScrollView.backgroundColor = [UIColor clearColor];
         _dataScrollView.delegate = self;
         [_dataScrollView addSubview:self.monthReport];
         _dataScrollView.showsHorizontalScrollIndicator = NO;
@@ -104,7 +169,7 @@
 - (NewWeekReport*)monthReport
 {
     if (!_monthReport) {
-        _monthReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(0, 0, 4*self.frame.size.width+self.frame.size.width/7*3, 200)];
+        _monthReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(0, 0, 4*self.frame.size.width+self.frame.size.width/7*3, 180)];
         self.dayNums = [[NSDate date] getdayNumsInOneMonth];
         [self changeXvaluel:self.dayNums];
         
@@ -155,7 +220,7 @@
 - (NewWeekReport*)quaterReport
 {
     if (!_quaterReport) {
-        _quaterReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 200)];
+        _quaterReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 180)];
         NSString *currentDate = [[NSString stringWithFormat:@"%@",[NSDate date]]substringToIndex:7];
         NSString *month = [currentDate substringWithRange:NSMakeRange(5, 2)];
         NSString *quater = [[CalendarDateCaculate sharedInstance] changeMonthToQuater:month];
@@ -261,7 +326,7 @@
         }];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

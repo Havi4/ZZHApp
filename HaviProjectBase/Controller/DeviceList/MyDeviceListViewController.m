@@ -152,6 +152,7 @@
             if ([resultModel.returnCode intValue]==200) {
                 [self getUserDeviceList];
                 gloableActiveDevice = model;
+                [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
             }
         }];
     }
@@ -206,6 +207,7 @@
                 [self deleteMySureUUID:self.selectDevice.deviceUUID];
                 if ([self.selectDevice.isActivated isEqualToString:@"True"]) {
                     gloableActiveDevice = nil;
+                    [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
                 }
                 break;
             }

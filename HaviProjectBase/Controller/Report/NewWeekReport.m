@@ -24,7 +24,7 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
+        self.backgroundColor = [UIColor clearColor];
         [self setUpCoordinateSystem];
         [self setDashLine];
         [self drawFuncLine];
@@ -73,7 +73,8 @@
     [self addSubview:xCoordinate];
     
     UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 1, self.frame.size.height - bottomLineMargin)];
-    labelLine.backgroundColor = [UIColor colorWithRed:0.027 green:0.322 blue:0.400 alpha:.70];
+    labelLine.alpha = 0.5;
+    labelLine.backgroundColor = [UIColor whiteColor];
     [self addSubview:labelLine];
 }
 /**
@@ -84,7 +85,7 @@
 -(UIView *)getLineCoor
 {
     UIView *lineView = [[UIView alloc] init];
-    lineView.backgroundColor = [UIColor colorWithRed:0.027 green:0.322 blue:0.400 alpha:.70];
+    lineView.backgroundColor = [UIColor whiteColor];
     lineView.alpha = 0.5;
     lineView.frame = CGRectMake(0, self.frame.size.height - bottomLineMargin, self.frame.size.width, 1);
     return lineView;
@@ -115,7 +116,7 @@
             label.backgroundColor = [UIColor clearColor];
             label.text = xValue;
             label.tag = 1001;
-            label.textColor = kReportCellColor;
+            label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:12];
             label.textAlignment = NSTextAlignmentCenter;
             [self addSubview:label];

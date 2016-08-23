@@ -77,9 +77,19 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
     self.edgePanRecognizer.delegate                                    = self;
     self.navigationController.delegate                                 = self;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeUUID:) name:kUserChangeUUIDInCenterView object:nil];
 }
 
 #pragma mark - Layouts
+
+- (void)changeUUID:(NSNotification *)noti
+{
+    self.reWeek = nil;
+    self.reMonth = nil;
+    self.reQuater = nil;
+    self.homeNavi = nil;
+    self.home = nil;
+}
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
@@ -187,8 +197,6 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
     [self.view addSubview:self.viewControllerContainView];
 //
 //    
-    self.home = [[CenterViewController alloc]init];
-    self.homeNavi = [[SCNavigationController alloc]initWithRootViewController:self.home];
     self.person = [[PersonManagerViewController alloc]init];
     self.personNavi = [[SCNavigationController alloc]initWithRootViewController:self.person];
     self.device = [[DeviceListViewController alloc]init];
@@ -326,6 +334,12 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
             viewController = self.personNavi;
             break;
         case 0:
+            if (!self.home) {
+                self.home = [[CenterViewController alloc]init];
+            }
+            if (!self.homeNavi) {
+                self.homeNavi = [[SCNavigationController alloc]initWithRootViewController:self.home];
+            }
             viewController = self.homeNavi;
             break;
         case 1:

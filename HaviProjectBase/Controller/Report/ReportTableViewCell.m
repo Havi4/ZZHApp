@@ -39,7 +39,7 @@
     if (self) {
         titleLabel = [[UILabel alloc]init];
         titleLabel.text = @"心率分析:";
-        titleLabel.textColor = kReportCellColor;
+        titleLabel.textColor = [UIColor whiteColor];
         titleLabel.font = [UIFont systemFontOfSize:20];
         [self addSubview:titleLabel];
         [titleLabel makeConstraints:^(MASConstraintMaker *make) {
@@ -48,7 +48,9 @@
         }];
         
         backView = [[UIView alloc]init];
-        backView.backgroundColor = [UIColor colorWithRed:0.910 green:0.914 blue:0.918 alpha:1.00];
+        backView.backgroundColor = [UIColor colorWithRed:0.910 green:0.914 blue:0.918 alpha:.20];
+        backView.layer.cornerRadius = 5;
+        backView.layer.masksToBounds = YES;
         [self addSubview:backView];
         [backView makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(titleLabel.mas_bottom).offset(8);
@@ -58,20 +60,20 @@
         }];
         
         UIView *leftLine = [[UIView alloc]init];
-        leftLine.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:1.00];
+        leftLine.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:.50];
         [self addSubview:leftLine];
         [leftLine makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@1);
+            make.width.equalTo(@0.5);
             make.top.equalTo(backView.mas_top).offset(8);
             make.bottom.equalTo(backView.mas_bottom).offset(-8);
             make.centerX.equalTo(backView.mas_centerX).multipliedBy(0.66667);
         }];
         
         UIView *rightLine = [[UIView alloc]init];
-        rightLine.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:1.00];
+        rightLine.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:.50];
         [self addSubview:rightLine];
         [rightLine makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@1);
+            make.width.equalTo(@0.5);
             make.top.equalTo(backView.mas_top).offset(8);
             make.bottom.equalTo(backView.mas_bottom).offset(-8);
             make.centerX.equalTo(backView.mas_centerX).multipliedBy(1.333333);
@@ -80,17 +82,17 @@
         leftTitleLabel = [[UILabel alloc]init];
         leftTitleLabel.text = @"";
         leftTitleLabel.font = [UIFont systemFontOfSize:13];
-        leftTitleLabel.textColor = kReportCellColor;
+        leftTitleLabel.textColor = [UIColor whiteColor];
         [backView addSubview:leftTitleLabel];
         
         leftTitleSubLabel = [[UILabel alloc]init];
-        leftTitleSubLabel.text = @"正常";
-        leftTitleSubLabel.layer.borderColor = kReportCellColor.CGColor;
+        leftTitleSubLabel.text = @"--";
+        leftTitleSubLabel.layer.borderColor = [UIColor whiteColor].CGColor;
         leftTitleSubLabel.layer.borderWidth = 0.5;
         leftTitleSubLabel.layer.cornerRadius = 7.5;
         leftTitleSubLabel.textAlignment = NSTextAlignmentCenter;
         leftTitleSubLabel.font = [UIFont systemFontOfSize:10];
-        leftTitleSubLabel.textColor = kReportCellColor;
+        leftTitleSubLabel.textColor = [UIColor whiteColor];
         [backView addSubview:leftTitleSubLabel];
         
         [leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +110,7 @@
         
         leftDataLabel = [[UILabel alloc]init];
         leftDataLabel.textAlignment = NSTextAlignmentLeft;
-        leftDataLabel.textColor = kReportCellColor;
+        leftDataLabel.textColor = [UIColor whiteColor];
         leftDataLabel.text = @"--次/分钟";
         leftDataLabel.font = [UIFont systemFontOfSize:17];
         [backView addSubview:leftDataLabel];
@@ -120,23 +122,23 @@
         middleTitleLabel = [[UILabel alloc]init];
         middleTitleLabel.text = @"";
         middleTitleLabel.font = [UIFont systemFontOfSize:13];
-        middleTitleLabel.textColor = kReportCellColor;
+        middleTitleLabel.textColor = [UIColor whiteColor];
         [backView addSubview:middleTitleLabel];
         
         middleTitleSubLabel = [[UILabel alloc]init];
-        middleTitleSubLabel.text = @"偏高";
-        middleTitleSubLabel.layer.borderColor = kReportCellColor.CGColor;
+        middleTitleSubLabel.text = @"--";
+        middleTitleSubLabel.layer.borderColor = [UIColor whiteColor].CGColor;
         middleTitleSubLabel.layer.borderWidth = 0.5;
         middleTitleSubLabel.layer.cornerRadius = 7.5;
         middleTitleSubLabel.textAlignment = NSTextAlignmentCenter;
         middleTitleSubLabel.font = [UIFont systemFontOfSize:10];
-        middleTitleSubLabel.textColor = kReportCellColor;
+        middleTitleSubLabel.textColor = [UIColor whiteColor];
         [backView addSubview:middleTitleSubLabel];
         
         middleDataLabel = [[UILabel alloc]init];
         middleDataLabel.textAlignment = NSTextAlignmentLeft;
-        middleDataLabel.textColor = kReportCellColor;
-        middleDataLabel.text = @"--次/分钟";
+        middleDataLabel.textColor = [UIColor whiteColor];
+        middleDataLabel.text = @"--次";
         middleDataLabel.font = [UIFont systemFontOfSize:17];
         [backView addSubview:middleDataLabel];
         [middleTitleLabel makeConstraints:^(MASConstraintMaker *make) {
@@ -159,24 +161,24 @@
         rightTitleLabel = [[UILabel alloc]init];
         rightTitleLabel.text = @"";
         rightTitleLabel.font = [UIFont systemFontOfSize:13];
-        rightTitleLabel.textColor = kReportCellColor;
+        rightTitleLabel.textColor = [UIColor whiteColor];
         rightTitleLabel.textAlignment = NSTextAlignmentCenter;
         [backView addSubview:rightTitleLabel];
         
         rightTitleSubLabel = [[UILabel alloc]init];
         rightTitleSubLabel.text = @"";
-        rightTitleSubLabel.layer.borderColor = kReportCellColor.CGColor;
+        rightTitleSubLabel.layer.borderColor = [UIColor whiteColor].CGColor;
         rightTitleSubLabel.layer.borderWidth = 0.5;
         rightTitleSubLabel.layer.cornerRadius = 7.5;
         rightTitleSubLabel.textAlignment = NSTextAlignmentCenter;
         rightTitleSubLabel.font = [UIFont systemFontOfSize:10];
-        rightTitleSubLabel.textColor = kReportCellColor;
+        rightTitleSubLabel.textColor = [UIColor whiteColor];
 //        [backView addSubview:rightTitleSubLabel];
         
         rightDataLabel = [[UILabel alloc]init];
         rightDataLabel.textAlignment = NSTextAlignmentLeft;
-        rightDataLabel.textColor = kReportCellColor;
-        rightDataLabel.text = @"--次/分钟";
+        rightDataLabel.textColor = [UIColor whiteColor];
+        rightDataLabel.text = @"";
         
         rightDataLabel.font = [UIFont systemFontOfSize:17];
         [backView addSubview:rightDataLabel];
@@ -207,7 +209,7 @@
     middleTitleLabel.text = [NSString stringWithFormat:@"%@",[titleDic objectForKey:@"middle"]];
     rightTitleLabel.text = [NSString stringWithFormat:@"%@",[titleDic objectForKey:@"right"]];
     SleepQualityModel *model = objInfo;
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         if ([model.averageHeartRate intValue]==0) {
             leftDataLabel.text = [NSString stringWithFormat:@"--次/分钟"];
         }else{
@@ -224,7 +226,7 @@
             rightDataLabel.text = [NSString stringWithFormat:@"%d%@用户",[model.abnormalHeartRatePercent intValue],@"%"];
         }
         
-    }else if (indexPath.section == 2){
+    }else if (indexPath.section == 3){
         if ([model.averageRespiratoryRate intValue]==0) {
             leftDataLabel.text = [NSString stringWithFormat:@"--次/分钟"];
         }else{

@@ -32,7 +32,7 @@
         leftTitleLabel = [[UILabel alloc]init];
         [self addSubview:leftTitleLabel];
         leftTitleLabel.textAlignment = NSTextAlignmentCenter;
-        leftTitleLabel.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+        leftTitleLabel.textColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
         leftTitleLabel.font = _cellFont?_cellFont:[UIFont systemFontOfSize:14];
         [leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(10);
@@ -54,7 +54,7 @@
         rightTitleLabel = [[UILabel alloc]init];
         [self addSubview:rightTitleLabel];
         rightTitleLabel.textAlignment = NSTextAlignmentCenter;
-        rightTitleLabel.textColor = selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor];
+        rightTitleLabel.textColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
         rightTitleLabel.font = _cellFont?_cellFont:[UIFont systemFontOfSize:14];
         [rightTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftTitleLabel.mas_right).offset(10);
@@ -79,7 +79,7 @@
         }];
         //
         lineView = [[UIView alloc]init];
-        lineView.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.161f green:0.251f blue:0.365f alpha:1.00f], [UIColor colorWithRed:0.349f green:0.608f blue:0.780f alpha:1.00f]);
+        lineView.dk_backgroundColorPicker = DKColorWithColors([UIColor whiteColor], [UIColor whiteColor]);
         [self addSubview:lineView];
         [lineView makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);

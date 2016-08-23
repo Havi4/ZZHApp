@@ -34,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //接受消息，弹出输入电话号码
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -389,6 +388,7 @@
         [NSObject showHudTipStr:@"请输入密码"];
         return;
     }
+
 
     NSDictionary *dic1 = @{
                            @"UserIDOrigianal":self.nameText.text,

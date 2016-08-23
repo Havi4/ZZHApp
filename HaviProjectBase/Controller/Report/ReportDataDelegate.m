@@ -80,13 +80,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
-        return self.headerHeight;
+        return 0.01;
     
     }else{
         return 0.01;
@@ -104,19 +104,15 @@
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section==0) {
-        return self.calendarBackView;
-    }else{
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 0.1)];
-        view.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:1.00];
-        return view;
-    }
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 0.1)];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 0.1)];
-    view.backgroundColor = [UIColor colorWithRed:0.980 green:0.984 blue:0.988 alpha:1.00];
+    view.backgroundColor = [UIColor clearColor];
     return view;
 }
 
@@ -125,7 +121,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 205;
+        return self.headerHeight;
+    }else if (indexPath.section == 1) {
+        return 200;
     }else {
         return 135;
     }
@@ -133,15 +131,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section ==0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        cell.backgroundColor = [UIColor clearColor];
+        [cell addSubview:self.calendarBackView];
+        return cell;
+    }else if (indexPath.section == 1) {
         ReportChartTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellChart"];
         if (!cell) {
             cell = [[ReportChartTableCell alloc]initWithStyle:UITableViewCellStyleDefault withReportType:self.type reuseIdentifier:@"cellChart"];
         }
         self.configureCellBlock(indexPath,nil,cell);
         return cell;
-    }else if (indexPath.section == 1){
-        id item = [self.items objectAtIndex:indexPath.section-1];
+    }else if (indexPath.section == 2){
+        id item = [self.items objectAtIndex:indexPath.section-2];
         if (indexPath.row == 0) {
             static NSString *cellIndentifier = @"cellOne";
             ReportTableViewCell *cell = (ReportTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
@@ -164,7 +170,7 @@
         
     }else{
         if (indexPath.row == 0) {
-            id item = [self.items objectAtIndex:indexPath.section-1];
+            id item = [self.items objectAtIndex:indexPath.section-2];
             static NSString *cellIndentifier = @"cellOne";
             ReportTableViewCell *cell = (ReportTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIndentifier];
             if (!cell) {

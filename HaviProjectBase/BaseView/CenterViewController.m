@@ -76,7 +76,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.naviBarTitle.backgroundColor = [UIColor clearColor];
     selectedDateToUse = [NSDate date];
     self.backgroundImageView.image = [UIImage imageNamed:@"home_back@3x"];
-    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gn"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
     }];
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;

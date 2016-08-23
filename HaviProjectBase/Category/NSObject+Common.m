@@ -97,20 +97,25 @@
 
 + (void)showHud
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:kKeyWindow animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.removeFromSuperViewOnHide = YES;
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    [hud showHUDWithView:kKeyWindow];
+
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:kKeyWindow animated:YES];
+//    hud.mode = MBProgressHUDModeIndeterminate;
+//    hud.removeFromSuperViewOnHide = YES;
 }
 
 + (void)hideHud
 {
-    NSArray *arr = kKeyWindow.subviews;
-    for (UIView *view in arr) {
-        if ([view isKindOfClass:[MBProgressHUD class]]) {
-            MBProgressHUD *hub = (MBProgressHUD *)view;
-            [hub hide:YES];
-        }
-    }
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    [hud hideHUD];
+    
+//    for (UIView *view in arr) {
+//        if ([view isKindOfClass:[MBProgressHUD class]]) {
+//            MBProgressHUD *hub = (MBProgressHUD *)view;
+//            [hub hide:YES];
+//        }
+//    }
 }
 
 + (void)showHUBAnimation

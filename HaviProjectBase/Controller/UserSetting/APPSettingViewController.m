@@ -40,7 +40,7 @@
     self.navigationController.navigationBarHidden = YES;
     self.controllerClassArray = @[].mutableCopy;
     self.navigationController.navigationBarHidden = YES;
-    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_menu"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gn"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
     }];
     self.sc_navigationItem.title = @"设定";

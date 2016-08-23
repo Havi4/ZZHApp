@@ -186,7 +186,7 @@
     [client requestActiveMyDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
         if ([resultModel.returnCode intValue]==200) {
             [self cancelView:nil];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
+//            [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
         }
     }];
 }
