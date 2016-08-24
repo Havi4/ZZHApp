@@ -119,6 +119,10 @@
 //查看传感器数据
 
 - (void)requestGetSensorDataParams:(NSDictionary *)params andBlock:(void (^)(SensorDataModel *sensorModel,NSError *error))block;
+
+//查看传感器数据
+
+- (void)requestRealSensorDataParams:(NSDictionary *)params andBlock:(void (^)(SensorDataModel *sensorModel,NSError *error))block;
 //推送id
 - (void)requestRegisterUserIdForPush:(NSDictionary *)params andBlock:(void (^)(BaseModel *baseModel,NSError *error))block;
 

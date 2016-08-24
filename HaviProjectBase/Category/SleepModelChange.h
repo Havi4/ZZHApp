@@ -20,6 +20,8 @@
 
 + (void)filterSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)type callBack:(void(^)(id callBack))block;
 
++ (void)filterRealSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)type callBack:(void(^)(id callBack))block;
+
 + (void)filterSensorLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block;
 
 + (void)getSleepLongOrShortDurationWith:(id)obj type:(int)type callBack:(void(^)(id longSleep))block;

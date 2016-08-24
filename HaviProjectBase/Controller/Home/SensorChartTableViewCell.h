@@ -10,4 +10,7 @@
 
 @interface SensorChartTableViewCell : HaviBaseTableViewCell
 
+@property (strong, nonatomic) NSString *UUID;
+@property (strong, nonatomic) SleepQualityModel *sleepModel;
+
 @end

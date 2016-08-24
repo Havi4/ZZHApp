@@ -17,11 +17,14 @@
 @property (nonatomic,strong) ChartGrapheView *chartGraphView;
 @property (nonatomic,strong) UIScrollView *scrollContainerView;
 @property (nonatomic,strong) UIView *yCoorBackView;
+@property (nonatomic,strong) UIView *yCoorBackView1;
 @property (nonatomic,strong) FloatLayerView *layerFloatView;
 @property (nonatomic,strong) NSArray *changedArr;
 @property (nonatomic,assign) int type;
 @property (nonatomic,strong) LongpressShowView *pressView;
 @property (nonatomic,strong) UIImageView *iconImageView;
+@property (nonatomic,strong) UIImageView *iconImageView1;
+
 
 @end
 
@@ -60,6 +63,14 @@
     }
     return _iconImageView;
 }
+- (UIImageView *)iconImageView1
+{
+    if (!_iconImageView1) {
+        _iconImageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(5, 10, 15, 15)];
+    }
+    return _iconImageView1;
+}
+
 
 - (UIScrollView *)scrollContainerView
 {
@@ -113,6 +124,44 @@
         [_yCoorBackView addSubview:sevenLine];
     }
     return _yCoorBackView;
+}
+
+- (UIView*)yCoorBackView1
+{
+    if (!_yCoorBackView1) {
+        _yCoorBackView1 = [[UIView alloc]initWithFrame:CGRectMake(5, 0, 15, 140)];
+        _yCoorBackView1.backgroundColor = [UIColor clearColor];
+        UILabel *sixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 70, 20, 20)];
+        sixLabel.text = self.type == 0? @"60" : @"15";
+        sixLabel.textAlignment = NSTextAlignmentLeft;
+        sixLabel.textColor = [UIColor whiteColor];
+        sixLabel.font = [UIFont systemFontOfSize:13];
+        [_yCoorBackView1 addSubview:sixLabel];
+        UIView *sixLine = [[UIView alloc]initWithFrame:CGRectMake(19, 79.5, self.frame.size.width-19, 0.5)];
+        sixLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);
+        [_yCoorBackView1 addSubview:sixLine];
+        
+        UILabel *fiveLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 104, 20, 20)];
+        fiveLabel.text = self.type == 0? @"50" : @"10";
+        fiveLabel.textAlignment = NSTextAlignmentLeft;
+        fiveLabel.dk_textColorPicker = kTextColorPicker;
+        fiveLabel.font = [UIFont systemFontOfSize:13];
+        [_yCoorBackView1 addSubview:fiveLabel];
+        UIView *fiveLine = [[UIView alloc]initWithFrame:CGRectMake(19, 114, self.frame.size.width-19, 0.5)];
+        fiveLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);
+        [_yCoorBackView1 addSubview:fiveLine];
+        
+        UILabel *sevenLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 33, 20, 20)];
+        sevenLabel.text = self.type == 0? @"70" : @"20";
+        sevenLabel.textAlignment = NSTextAlignmentLeft;
+        sevenLabel.dk_textColorPicker = kTextColorPicker;
+        sevenLabel.font = [UIFont systemFontOfSize:13];
+        [_yCoorBackView1 addSubview:sevenLabel];
+        UIView *sevenLine = [[UIView alloc]initWithFrame:CGRectMake(19, 43, self.frame.size.width-19, 0.5)];
+        sevenLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);;
+        [_yCoorBackView1 addSubview:sevenLine];
+    }
+    return _yCoorBackView1;
 }
 
 - (FloatLayerView *)layerFloatView
@@ -231,19 +280,126 @@
         NSString *mi = (int)minute>9?[NSString stringWithFormat:@"%d",(int)minute]:[NSString stringWithFormat:@"0%d",(int)minute];
         NSString *time = [NSString stringWithFormat:@"%@:%@",hr,mi];
         NSString *tapTime = [NSString stringWithFormat:@"%@ %@",[[NSString stringWithFormat:@"%@",selectedDateToUse] substringToIndex:10],time];
-        self.pressView.xValues = @[time,time];
-        self.pressView.heartViewLeft.values = @[@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",@"30",@"60",@"65",@"70",@"50",];
-        [self.pressView.heartViewLeft animate];
+        NSMutableArray *arr = @[].mutableCopy;
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            for (int i =0; i<7; i++) {
+                NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
+                dateF.dateFormat = @"yyyy-MM-dd HH:mm";
+                NSDate *date = [[dateF dateFromString:tapTime]dateByAddingHours:8];
+                NSDate *new = [date dateByAddingMinutes:4*(i-7)];
+                NSString *newD = [NSString stringWithFormat:@"%@",new];
+                DeBugLog(@"%@",newD);
+                NSString *sub = [newD substringWithRange:NSMakeRange(11, 5)];
+                [arr addObject:sub];
+            }
+            [arr addObject:time];
+            for (int i =0; i<8; i++) {
+                NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
+                dateF.dateFormat = @"yyyy-MM-dd HH:mm";
+                NSDate *date = [[dateF dateFromString:tapTime]dateByAddingHours:8];
+                NSDate *new = [date dateByAddingMinutes:4*(i+1)];
+                NSString *newD = [NSString stringWithFormat:@"%@",new];
+                DeBugLog(@"%@",newD);
+                NSString *sub = [newD substringWithRange:NSMakeRange(11, 5)];
+                [arr addObject:sub];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.pressView.xValues = arr;
+            });
+        });
+        NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
+        dateF.dateFormat = @"yyyy-MM-dd HH:mm";
+        NSDate *date ;
+        if ([hr intValue]>18) {
+            date = [[[dateF dateFromString:tapTime]dateByAddingHours:8] dateByAddingDays:-1];
+        }else{
+            date = [[[dateF dateFromString:tapTime]dateByAddingHours:8] dateByAddingDays:0];
+        }
+        
+        NSDate *new = [date dateByAddingMinutes:0];
+        NSString *newD = [NSString stringWithFormat:@"%@",new];
+        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+        NSDictionary *dic18 = @{
+                                @"UUID" : self.UUID,
+                                @"DataProperty":@(self.type+3),
+                                @"FromDate": [NSString stringWithFormat:@"%@%@%@",[newD substringWithRange:NSMakeRange(0, 4)],[newD substringWithRange:NSMakeRange(5, 2)],[newD substringWithRange:NSMakeRange(8, 2)]],
+                                @"FromTime": [NSString stringWithFormat:@"%@:00",[newD substringWithRange:NSMakeRange(11, 5)]],
+                                };
+        [client requestRealSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
+            [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type callBack:^(id callBack) {
+                self.pressView.heartViewLeft.values = (NSArray *)callBack;
+                [self.pressView.heartViewLeft animate];
+                
+            }];
+        }];
+
         self.pressView.heartViewLeft.curved = YES;
         self.pressView.heartViewLeft.minValue = 0;
         self.pressView.heartViewLeft.maxValue = 100;
+       self.pressView.heartViewLeft.type = self.type;
         
+        UIView *chaBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 195)];
+        
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(17, 20, self.frame.size.width-17, 165)];
+        scrollView.contentSize = CGSizeMake(2*self.frame.size.width, 165);
+        scrollView.showsHorizontalScrollIndicator = NO;
+        scrollView.delegate = self;
+        [scrollView addSubview:self.pressView];
+        [chaBackView addSubview:scrollView];
+        [chaBackView addSubview:self.yCoorBackView1];
+        [chaBackView addSubview:self.iconImageView1];
+        self.iconImageView1.image = self.type == 0? [UIImage imageNamed:@"icon_heart@3x"]: [UIImage imageNamed:@"icon_breath@3x"];
+
+        UILabel *cellDataLabel = [[UILabel alloc]init];
+        cellDataLabel.font = [UIFont systemFontOfSize:25];
+        cellDataLabel.text = @"--";
+        cellDataLabel.textColor = [UIColor whiteColor];
+        [chaBackView addSubview:cellDataLabel];
+        [cellDataLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(chaBackView.mas_left).offset(30);
+            make.top.equalTo(chaBackView.mas_top);
+            
+        }];
+        UILabel *cellDataSub = [[UILabel alloc]init];
+        [chaBackView addSubview:cellDataSub];
+        cellDataSub.text = @"次/分";
+        cellDataSub.font = [UIFont systemFontOfSize:15];
+
+        cellDataSub.textColor = [UIColor whiteColor];
+        [cellDataSub makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(cellDataLabel.mas_right).offset(0);
+            make.baseline.equalTo(cellDataLabel.mas_baseline).offset(0);
+        }];
+        
+        SleepQualityModel *model = self.sleepModel;
+        switch (self.type) {
+            case 0:
+            {
+                if ([model.averageHeartRate intValue]==0) {
+                    cellDataLabel.text = @"--";
+                }else{
+                    
+                    cellDataLabel.text = [NSString stringWithFormat:@"%d",[model.averageHeartRate intValue]];
+                }
+                break;
+            }
+            case 1:{
+                cellDataLabel.text = [NSString stringWithFormat:@"%d",[model.averageRespiratoryRate intValue]];
+                break;
+            }
+                
+            default:
+                break;
+        }
 
         DXPopover *popover = [DXPopover popover];
-        popover.backgroundColor = kDefaultColor;
+        popover.backgroundColor = [UIColor colorWithRed:0.161 green:0.718 blue:0.816 alpha:1.00];
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:(CGRect){0,0,self.bounds.size.width,self.bounds.size.height-5}];
+        imageView.image = [UIImage imageNamed:@"background"];
+        [popover addSubview:imageView];
         popover.cornerRadius = .5;
         popover.arrowSize = CGSizeMake(10, 5);
-        [popover showAtPoint:CGPointMake(location.x, 284) popoverPostion:DXPopoverPositionUp withContentView:self.pressView inView:[UIApplication sharedApplication].keyWindow];
+        [popover showAtPoint:CGPointMake(location.x, 264) popoverPostion:DXPopoverPositionUp withContentView:chaBackView inView:[UIApplication sharedApplication].keyWindow];
         //add your code here
     }
     
@@ -252,9 +408,9 @@
 - (LongpressShowView *)pressView
 {
     if (_pressView == nil) {
-        CGRect rect = CGRectMake(0, 0, self.frame.size.width, 155);
+        CGRect rect = CGRectMake(0, 0, self.frame.size.width*2, 165);
         _pressView = [[LongpressShowView alloc]initWithFrame:rect];
-        _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor clearColor]:[UIColor clearColor];
+        _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
     }
     return _pressView;
 }

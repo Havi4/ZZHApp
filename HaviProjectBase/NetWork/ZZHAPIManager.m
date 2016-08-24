@@ -306,6 +306,16 @@ static ZZHAPIManager *_apiManager = nil;
     }];
 }
 
+- (void)requestRealSensorDataParams:(NSDictionary *)params andBlock:(void (^)(SensorDataModel *sensorModel,NSError *error))block
+{
+    NSString *aPath = [NSString stringWithFormat:@"v1/app/SensorDataRealtime?UUID=%@&DataProperty=%@&FromDate=%@&FromTime=%@",[params objectForKey:@"UUID"],[params objectForKey:@"DataProperty"],[params objectForKey:@"FromDate"],[params objectForKey:@"FromTime"]];
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:nil withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+        NSDictionary *dic = (NSDictionary *)data;
+        SensorDataModel *sensorModel = [SensorDataModel modelWithDictionary:dic];
+        block(sensorModel,error);
+    }];
+}
+
 - (void)requestGetSleepQualityParams:(NSDictionary *)params andBlock:(void (^)(SleepQualityModel *qualityModel,NSError *error))block
 {
     

@@ -23,7 +23,10 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.bounds];
+        imageView.image = [UIImage imageNamed:@"background"];
+//        [self addSubview:imageView];
+        self.backgroundColor = [UIColor clearColor];
         [self setUpCoordinateSystem];
 //        [self setBackImage];
         
@@ -110,28 +113,40 @@
             CGFloat cY = self.frame.size.height - bottomLineMargin;
             //
             UILabel *labelLine;
-            if (i%10==0) {
-                labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-2.5, 0.5, 2.5)];
+            if (i%4==0) {
+                labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 10, 0.5, cY-10)];
+                CGFloat cY = self.frame.size.height - bottomLineMargin;
+                UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2-20, cY+3, 40, 10)];
+                if (i==0) {
+                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-10, cY+3, 40, 10);
+                }else if (i/4==15){
+                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-30, cY+3, 40, 10);
+                }
+                label.backgroundColor = [UIColor clearColor];
+                
+                label.text = [NSString stringWithFormat:@"%@",[values objectAtIndex:(i/4)]];
+                label.tag = 1001;
+                label.dk_textColorPicker = kTextColorPicker;
+                label.font = [UIFont systemFontOfSize:10];
+                label.textAlignment = NSTextAlignmentCenter;
+                [self addSubview:label];
+                labelLine.backgroundColor = [UIColor whiteColor];
+                labelLine.alpha = 0.3;
+                labelLine.tag = 1002;
             }else{
-                labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-1, 0.5, 1)];
+                labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, cY-1.5, 0.5, 1.5)];
+                labelLine.backgroundColor = [UIColor whiteColor];
+                labelLine.alpha = 0.7;
+                labelLine.tag = 1002;
             }
-            labelLine.dk_backgroundColorPicker = kTextColorPicker;
-            labelLine.tag = 1002;
+            
             //
             [self.xPoints addObject:[NSValue valueWithCGPoint:CGPointMake(labelLine.frame.origin.x, cY)]];
             [self addSubview:labelLine];
         }
         //设置分割线
     }
-    CGFloat cY = self.frame.size.height - bottomLineMargin;
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((self.frame.size.width-40)/2, cY+3, 40, 10)];
-    label.backgroundColor = [UIColor clearColor];
-    label.text = [values objectAtIndex:0];
-    label.tag = 1001;
-    label.dk_textColorPicker = kTextColorPicker;
-    label.font = [UIFont systemFontOfSize:11];
-    label.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:label];
+    
     /*
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, cY+3, 40, 10)];
     label.backgroundColor = [UIColor clearColor];

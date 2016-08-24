@@ -12,6 +12,7 @@
 #import "DiagnoseReportViewController.h"
 #import "ModalAnimation.h"
 #import "UIView+UIDisplayedInScreen.h"
+#import "SensorChartTableViewCell.h"
 
 @interface ChartDataViewController ()<UIViewControllerTransitioningDelegate>
 {
@@ -49,6 +50,9 @@
                 [cell configure:cell customObj:@(self.sensorType) indexPath:indexPath withOtherInfo:self.sleepQualityModel];
             }else if(indexPath.row == 1){
                 [cell configure:cell customObj:@(self.sensorType) indexPath:indexPath withOtherInfo:self.sensorDataModel];
+                SensorChartTableViewCell *sensorCell = (SensorChartTableViewCell*)cell;
+                sensorCell.UUID = self.deviceUUID;
+                sensorCell.sleepModel = self.sleepQualityModel;
             }
             
         }else{

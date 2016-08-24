@@ -146,6 +146,43 @@
     }
 }
 
++ (void)filterRealSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType callBack:(void(^)(id callBack))block
+{
+    @synchronized(self) {
+        if (sensorData) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
+                NSArray *sensorInfo = sensorArr.propertyDataList;
+                NSMutableArray *arr = [[NSMutableArray alloc]init];
+//                for (int i=0; i<sensorInfo.count; i++) {
+//                    if (SensorDataHeart == sensorType) {
+//                        [arr addObject:[NSNumber numberWithFloat:60]];
+//                    }else{
+//                        [arr addObject:[NSNumber numberWithFloat:15]];
+//                    }
+//                }
+                for (int i = 0; i<sensorInfo.count-1; i++) {
+                    PropertyData *dic = [sensorInfo objectAtIndex:i];
+                    NSString *date = dic.propertyDate;
+                    
+                    PropertyData *dic1 = [sensorInfo objectAtIndex:i+1];
+                    NSString *date1 = dic1.propertyDate;
+                    NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
+                    dateF.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+                    NSDate *dateS1 = [dateF dateFromString:date];
+                    NSDate *dateS2 = [dateF dateFromString:date1];
+                    if ([dateS1 minutesEarlierThan:dateS2]>=1) {
+                        [arr addObject:[NSNumber numberWithFloat:[dic.propertyValue floatValue]]];
+                    }
+                }
+                dispatch_async_on_main_queue(^{
+                    block(arr);
+                });
+            });
+        }
+    }
+}
+
 + (void)filterTurnAroundWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType callBack:(void(^)(id callBack))block
 {
     
