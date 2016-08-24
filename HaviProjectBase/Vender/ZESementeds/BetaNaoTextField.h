@@ -13,6 +13,8 @@
 
 @property (nonatomic,strong) NSString *textPlaceHolder;
 
+@property (nonatomic, copy) void (^returnBlock)(BetaNaoTextField *textField);
+
 @property (nonatomic, strong) UIColor *textPlaceHolderColor;
 @property (nonatomic, strong) UIColor *textLineColor;
 

@@ -42,9 +42,9 @@
     _circleRatio = .9;
     _dotRatio = 1. / 9.;
     {
-        _bgCircleView = [[ZZHCalendarCircleView alloc]initWithFrame:(CGRect){0,0,self.frame.size.width,self.frame.size.height}];
-        self.bgCircleView.backgroundColor = [UIColor clearColor];
-        [self addSubview:self.bgCircleView];
+//        _bgCircleView = [[ZZHCalendarCircleView alloc]initWithFrame:(CGRect){0,0,self.frame.size.width,self.frame.size.height}];
+//        self.bgCircleView.backgroundColor = [UIColor clearColor];
+//        [self addSubview:self.bgCircleView];
     }
     
     

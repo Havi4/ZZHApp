@@ -74,31 +74,31 @@
         }
         
         UIView *leftView1 = [[UIView alloc]init];
-        leftView1.backgroundColor = [UIColor colorWithRed:0.784 green:0.753 blue:0.235 alpha:1.00];
+        leftView1.backgroundColor = [UIColor redColor];
         [self addSubview:leftView1];
         
         UILabel *leftLabel1 = [[UILabel alloc]init];
-        leftLabel1.text = @"体动";
+        leftLabel1.text = @"加油哦";
         leftLabel1.textColor = [UIColor whiteColor];
         leftLabel1.font = [UIFont systemFontOfSize:12];
         [self addSubview:leftLabel1];
         
         UIView *leftView = [[UIView alloc]init];
-        leftView.backgroundColor = [UIColor colorWithRed:0.635 green:0.851 blue:0.867 alpha:1.00];
+        leftView.backgroundColor = [UIColor whiteColor];
         [self addSubview:leftView];
         
         UILabel *leftLabel = [[UILabel alloc]init];
-        leftLabel.text = @"入睡";
+        leftLabel.text = @"时长";
         leftLabel.textColor = [UIColor whiteColor];
         leftLabel.font = [UIFont systemFontOfSize:12];
         [self addSubview:leftLabel];
         
         UIView *rightView = [[UIView alloc]init];
-        rightView.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
+        rightView.backgroundColor = [UIColor greenColor];
         [self addSubview:rightView];
         
         UILabel *rightLabel = [[UILabel alloc]init];
-        rightLabel.text = @"离床";
+        rightLabel.text = @"棒棒哒";
         rightLabel.textColor = [UIColor whiteColor];
         rightLabel.font = [UIFont systemFontOfSize:12];
         [self addSubview:rightLabel];

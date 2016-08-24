@@ -163,7 +163,7 @@
     [UIView animateWithDuration:0.5 delay:0.2 options:0 animations:^{
          self.placeHolderLabel.frame=CGRectMake(0, 24, self.bounds.size.width, 24);
     } completion:^(BOOL finished) {
-        
+        self.placeHolderLabel.textColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
     }];
     
 }
@@ -171,6 +171,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self resignFirstResponder];
+    self.returnBlock(textField);
     return YES;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
@@ -179,7 +180,7 @@
           [UIView animateWithDuration:0.5 animations:^{
             
             self.placeHolderLabel.frame=CGRectMake(0, self.bounds.size.height-24, self.bounds.size.width, 24);
-
+            self.placeHolderLabel.textColor = [UIColor lightGrayColor];
         }];
     }
     
@@ -208,7 +209,16 @@
         self.placeHolderLabel.frame=CGRectMake(0, 24, self.bounds.size.width, 24);
     } completion:^(BOOL finished) {
         self.text = string;
+        self.placeHolderLabel.textColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
     }];
+}
+
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+    if (menuController) {
+        [UIMenuController sharedMenuController].menuVisible = NO;
+    }
+    return NO;
 }
 
 //

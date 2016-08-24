@@ -241,7 +241,7 @@
 
         DXPopover *popover = [DXPopover popover];
         popover.backgroundColor = kDefaultColor;
-        popover.cornerRadius = 2;
+        popover.cornerRadius = .5;
         popover.arrowSize = CGSizeMake(10, 5);
         [popover showAtPoint:CGPointMake(location.x, 284) popoverPostion:DXPopoverPositionUp withContentView:self.pressView inView:[UIApplication sharedApplication].keyWindow];
         //add your code here

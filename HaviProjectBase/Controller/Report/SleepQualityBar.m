@@ -22,7 +22,8 @@
         self.gradientLayer.endPoint = CGPointMake(0, 1);
         
         //设定颜色组
-        self.gradientLayer.colors = [self getColorsWithGrade:grade];
+        self.gradientLayer.colors = @[(__bridge id)[UIColor greenColor].CGColor,(__bridge id)[UIColor greenColor].CGColor];
+//        [self getColorsWithGrade:grade];
         
         //设定颜色分割点
 //        self.gradientLayer.locations = @[@(0.2f) ,@(1.0f)];

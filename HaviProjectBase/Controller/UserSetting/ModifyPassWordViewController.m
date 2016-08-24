@@ -7,12 +7,12 @@
 //
 
 #import "ModifyPassWordViewController.h"
-
+#import "BetaNaoTextField.h"
 @interface ModifyPassWordViewController ()<UITextFieldDelegate>
 
-@property (nonatomic,strong) UITextField *oldTextFieldPass;
-@property (nonatomic,strong) UITextField *changeTextFieldPass;
-@property (nonatomic,strong) UITextField *confirmTextFieldPass;
+@property (nonatomic,strong) BetaNaoTextField *oldTextFieldPass;
+@property (nonatomic,strong) BetaNaoTextField *changeTextFieldPass;
+@property (nonatomic,strong) BetaNaoTextField *confirmTextFieldPass;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @end
 
@@ -34,74 +34,76 @@
 
 - (void)setSubView
 {
-    self.oldTextFieldPass = [[UITextField alloc]init];
-    _oldTextFieldPass.borderStyle = UITextBorderStyleNone;
-    _oldTextFieldPass.placeholder = @"请输入旧密码";
-    _oldTextFieldPass.secureTextEntry = YES;
-    _oldTextFieldPass.delegate = self;
-    UIView *leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 44)];
-    self.oldTextFieldPass.leftView = leftView;
-    self.oldTextFieldPass.leftViewMode = UITextFieldViewModeAlways;
-    _oldTextFieldPass.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.oldTextFieldPass = [[BetaNaoTextField alloc]init];
+    _oldTextFieldPass = [[BetaNaoTextField alloc]init];
+    _oldTextFieldPass.frame = CGRectMake(16, -20, kScreenSize.width-32, 80);
+    _oldTextFieldPass.textPlaceHolder = @"旧密码";
+    _oldTextFieldPass.textPlaceHolderColor = [UIColor lightGrayColor];
+    @weakify(self);
+    _oldTextFieldPass.returnBlock = ^(BetaNaoTextField *text){
+        @strongify(self);
+        [self changeReturn:text];
+    };
+    _oldTextFieldPass.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+    _oldTextFieldPass.returnKeyType = UIReturnKeyNext;
     [self.view addSubview:_oldTextFieldPass];
     
-    self.changeTextFieldPass = [[UITextField alloc]init];
-    _changeTextFieldPass.borderStyle = UITextBorderStyleNone;
-    _changeTextFieldPass.placeholder = @"请输入新密码";
+    self.changeTextFieldPass = [[BetaNaoTextField alloc]init];
+    _changeTextFieldPass = [[BetaNaoTextField alloc]init];
+    _changeTextFieldPass.frame = CGRectMake(16, -20, kScreenSize.width-32, 80);
+    _changeTextFieldPass.textPlaceHolder = @"新密码";
+    _changeTextFieldPass.textPlaceHolderColor = [UIColor lightGrayColor];
+    _changeTextFieldPass.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+    _changeTextFieldPass.returnKeyType = UIReturnKeyNext;
     _changeTextFieldPass.secureTextEntry = YES;
-    _changeTextFieldPass.delegate = self;
-    UIView *leftView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 44)];
-    self.changeTextFieldPass.leftView = leftView1;
-    self.changeTextFieldPass.leftViewMode = UITextFieldViewModeAlways;
+    _changeTextFieldPass.returnBlock = ^(BetaNaoTextField *text){
+        @strongify(self);
+        [self changeReturn:text];
+    };
     [self.view addSubview:_changeTextFieldPass];
     
-    self.confirmTextFieldPass = [[UITextField alloc]init];
-    _confirmTextFieldPass.borderStyle = UITextBorderStyleNone;
-    _confirmTextFieldPass.placeholder = @"请确认新密码";
+    self.confirmTextFieldPass = [[BetaNaoTextField alloc]init];
+    _confirmTextFieldPass = [[BetaNaoTextField alloc]init];
+    _confirmTextFieldPass.frame = CGRectMake(16, -20, kScreenSize.width-32, 80);
+    _confirmTextFieldPass.textPlaceHolder = @"重复新密码";
+    _confirmTextFieldPass.textPlaceHolderColor = [UIColor lightGrayColor];
+    _confirmTextFieldPass.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+    _confirmTextFieldPass.returnKeyType = UIReturnKeyDone;
+    _confirmTextFieldPass.returnBlock = ^(BetaNaoTextField *text){
+        @strongify(self);
+        [self changeReturn:text];
+    };
     _confirmTextFieldPass.secureTextEntry = YES;
-    _confirmTextFieldPass.delegate = self;
-    UIView *leftView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 44)];
-    self.confirmTextFieldPass.leftView = leftView2;
-    self.confirmTextFieldPass.leftViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:_confirmTextFieldPass];
     
     
     [_oldTextFieldPass makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
-        make.top.equalTo(self.view.mas_top).offset(84);
-        make.height.height.equalTo(@44);
+        make.top.equalTo(self.view.mas_top).offset(44);
+        make.height.height.equalTo(@80);
     }];
     
-    _oldTextFieldPass.layer.borderColor = selectedThemeIndex == 1?kDefaultColor.CGColor:[UIColor lightGrayColor].CGColor;
-    _oldTextFieldPass.layer.borderWidth = 1;
-    _oldTextFieldPass.layer.cornerRadius = 0;
     
     [_changeTextFieldPass makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
-        make.top.equalTo(_oldTextFieldPass.mas_bottom).offset(20);
-        make.height.height.equalTo(@44);
+        make.top.equalTo(_oldTextFieldPass.mas_bottom).offset(0);
+        make.height.height.equalTo(@80);
     }];
-    _changeTextFieldPass.layer.borderColor = selectedThemeIndex == 0?kDefaultColor.CGColor:[UIColor colorWithRed:0.447f green:0.765f blue:0.910f alpha:1.00f].CGColor;
-    _changeTextFieldPass.layer.borderWidth = 1;
-    _changeTextFieldPass.layer.cornerRadius = 0;
     
     [_confirmTextFieldPass makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
-        make.top.equalTo(_changeTextFieldPass.mas_bottom).offset(10);
-        make.height.height.equalTo(@44);
+        make.top.equalTo(_changeTextFieldPass.mas_bottom).offset(0);
+        make.height.height.equalTo(@80);
     }];
-    _confirmTextFieldPass.layer.borderColor = selectedThemeIndex == 0?kDefaultColor.CGColor:[UIColor colorWithRed:0.447f green:0.765f blue:0.910f alpha:1.00f].CGColor;
-    _confirmTextFieldPass.layer.borderWidth = 1;
-    _confirmTextFieldPass.layer.cornerRadius = 0;
 //
     UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    saveButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    saveButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [saveButton setTitle:@"保存" forState:UIControlStateNormal];
     [saveButton setTitleColor:selectedThemeIndex==0?kDefaultColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [saveButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"textbox_devicename_%d",selectedThemeIndex]] forState:UIControlStateNormal];
+    [saveButton setBackgroundImage:[UIImage imageNamed:@"button_down_image@3x"] forState:UIControlStateNormal];
     [saveButton addTarget:self action:@selector(savePassWord:) forControlEvents:UIControlEventTouchUpInside];
     saveButton.layer.cornerRadius = 0;
     saveButton.layer.masksToBounds = YES;
@@ -113,6 +115,17 @@
         make.top.equalTo(_confirmTextFieldPass.mas_bottom).offset(20);
         make.height.height.equalTo(@44);
     }];
+}
+
+- (void)changeReturn:(BetaNaoTextField *)text
+{
+    if ([text isEqual:self.oldTextFieldPass]) {
+        [self.changeTextFieldPass becomeFirstResponder];
+    }else if ([text isEqual:self.changeTextFieldPass]){
+        [self.confirmTextFieldPass becomeFirstResponder];
+    }else{
+        [text resignFirstResponder];
+    }
 }
 
 - (void)savePassWord:(UIButton *)button

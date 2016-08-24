@@ -53,7 +53,7 @@
     
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     
-    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"btn_share_0"] imageWithTintColor:[UIColor whiteColor]] style:SCBarButtonItemStylePlain handler:^(id sender) {
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icon_share@3x"] imageWithTintColor:[UIColor whiteColor]] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self showMoreInfo];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;

@@ -35,7 +35,6 @@
 {
     if (!_cellTextField) {
         _cellTextField = [[BetaNaoTextField alloc]init];
-        //        _cellTextField.font = [UIFont systemFontOfSize:15];
         _cellTextField.frame = CGRectMake(16, -20, kScreenSize.width-32, 80);
         _cellTextField.textPlaceHolder = @"地址";
         _cellTextField.textPlaceHolderColor = [UIColor lightGrayColor];

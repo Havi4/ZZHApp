@@ -171,7 +171,7 @@
         arc.fillColor = [UIColor clearColor].CGColor;
         arc.strokeColor = [UIColor blackColor].CGColor;
         arc.lineWidth = 15;
-        [arc setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:2.8],nil]];
+        [arc setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:3.8],nil]];
         _gradientLayer = [CAGradientLayer layer];
         _gradientLayer.frame = self.bounds;
         _gradientLayer.colors = self.colors1;
