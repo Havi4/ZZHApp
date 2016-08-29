@@ -79,6 +79,9 @@
     //
     self.phoneText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textback"]];
     self.codeText.background = [UIImage imageNamed:[NSString stringWithFormat:@"textback"]];
+    UIImageView *backImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"textback@3x"]];
+    backImage.userInteractionEnabled = YES;
+    [self.view addSubview:backImage];
     
     UIImageView *nameImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"phone"]]];
     nameImage.frame = CGRectMake(0, 0,30, 20);
@@ -89,12 +92,18 @@
     //
     [self.codeText makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(20);
-        make.width.equalTo(@(kButtonViewWidth));
+        make.width.equalTo(@(kButtonViewWidth-75));
         make.height.equalTo(@49);
         make.centerY.equalTo(self.view.mas_centerY).offset(22);
         
     }];
     
+    [backImage makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.codeText.mas_right).offset(-10);
+        make.width.equalTo(@(85));
+        make.height.equalTo(@49);
+        make.centerY.equalTo(self.codeText.mas_centerY).offset(0);
+    }];
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:lineView];
@@ -112,7 +121,7 @@
     self.codeText.leftView = codeImage;
     //
     self.getCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.codeText addSubview:self.getCodeButton];
+    [backImage addSubview:self.getCodeButton];
     [self.getCodeButton setTitle:@"验证码" forState:UIControlStateNormal];
     [self.getCodeButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     self.getCodeButton.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -124,7 +133,7 @@
     [self.getCodeButton makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@30);
         make.centerY.equalTo(self.codeText.mas_centerY).offset(1);
-        make.right.equalTo(self.codeText.mas_right).offset(-10);
+        make.right.equalTo(backImage.mas_right).offset(-10);
         make.width.equalTo(@65);
     }];
     //
