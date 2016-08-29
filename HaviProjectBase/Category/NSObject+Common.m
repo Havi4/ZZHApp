@@ -60,7 +60,7 @@
         hud.detailsLabelText = tipStr;
         hud.margin = 10.f;
         hud.removeFromSuperViewOnHide = YES;
-        [hud hide:YES afterDelay:3];
+        [hud hide:YES afterDelay:2];
     }
 }
 + (void)showStatusBarQueryStr:(NSString *)tipStr{

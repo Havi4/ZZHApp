@@ -51,9 +51,9 @@
     self.phoneText.delegate = self;
     self.phoneText.textColor = selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor];
     self.phoneText.borderStyle = UITextBorderStyleNone;
-    self.phoneText.font = kDefaultWordFont;
+    self.phoneText.font = kTextFieldWordFont;
     self.phoneText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor],NSFontAttributeName:kDefaultWordFont};
+    NSDictionary *boldFont = @{NSForegroundColorAttributeName:kTextPlaceHolderColor,NSFontAttributeName:kTextPlaceHolderFont};
     NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入手机号" attributes:boldFont];
     self.phoneText.attributedPlaceholder = attrValue;
     self.phoneText.keyboardType = UIKeyboardTypePhonePad;
@@ -63,7 +63,7 @@
     self.codeText.delegate = self;
     self.codeText.textColor = selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor];
     self.codeText.borderStyle = UITextBorderStyleNone;
-    self.codeText.font = kDefaultWordFont;
+    self.codeText.font = kTextFieldWordFont;
     NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"请输入验证码" attributes:boldFont];
     self.codeText.attributedPlaceholder = attrValue1;
     self.codeText.clearButtonMode = UITextFieldViewModeNever;
@@ -170,8 +170,14 @@
         [NSObject showHudTipStr:@"请输入正确的手机号"];
         return;
     }
-    
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    [hud showHUDWithView:kKeyWindow];
+
     self.randomCode = [self getRandomNumber:1000 to:10000];
+    phoneGetCode = [NSString stringWithFormat:@"%d",self.randomCode];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kCodeValideTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        phoneGetCode = @"";
+    });
     NSString *codeMessage = [NSString stringWithFormat:@"您的验证码是%d",self.randomCode];
     NSLog(@"验证码是%@",codeMessage);
     NSDictionary *dicPara = @{
@@ -180,6 +186,7 @@
                               };
     GetInavlideCodeApi *client = [GetInavlideCodeApi shareInstance];
     [client getInvalideCode:dicPara witchBlock:^(NSData *receiveData) {
+        [hud hideHUD];
         NSString *string = [[NSString alloc]initWithData:receiveData encoding:NSUTF8StringEncoding];
         NSRange range = [string rangeOfString:@"<error>"];
         if ([[string substringFromIndex:range.location +range.length]intValue]==0) {
@@ -260,7 +267,7 @@
         [NSObject showHudTipStr:@"请输入手机号"];
         return;
     }
-    if ([self.codeText.text intValue]!=self.randomCode || [self.codeText.text intValue]<999) {
+    if ([self.codeText.text intValue]!= [phoneGetCode intValue] || [self.codeText.text intValue]<999) {
         [NSObject showHudTipStr:@"验证码错误"];
         return;
     }

@@ -45,10 +45,10 @@
     self.nameText = [[UITextField alloc]init];
     [self.view addSubview:self.nameText];
     self.nameText.delegate = self;
-    [self.nameText setTextColor:selectedThemeIndex==0?[UIColor grayColor]:[UIColor lightGrayColor]];
+    [self.nameText setTextColor:kTextFieldWordColor];
     self.nameText.borderStyle = UITextBorderStyleNone;
-    self.nameText.font = kDefaultWordFont;
-    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor],NSFontAttributeName:kDefaultWordFont};
+    self.nameText.font = kTextFieldWordFont;
+    NSDictionary *boldFont = @{NSForegroundColorAttributeName:kTextPlaceHolderColor,NSFontAttributeName:kTextPlaceHolderFont};
     NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:boldFont];
     self.nameText.attributedPlaceholder = attrValue;
     self.nameText.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -60,9 +60,9 @@
     [self.view addSubview:self.passWordText];
     self.passWordText.delegate = self;
     [self.passWordText setReturnKeyType:UIReturnKeyDone];
-    self.passWordText.textColor = selectedThemeIndex==0?[UIColor grayColor]:[UIColor lightGrayColor];
+    self.passWordText.textColor = kTextFieldWordColor;
     self.passWordText.borderStyle = UITextBorderStyleNone;
-    self.passWordText.font = kDefaultWordFont;
+    self.passWordText.font = kTextFieldWordFont;
     NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"请确认密码" attributes:boldFont];
     self.passWordText.attributedPlaceholder = attrValue1;
     self.passWordText.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -156,13 +156,19 @@
         [NSObject showHudTipStr:@"请输入密码"];
         return;
     }
+
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic = @{
                           @"UserID": [NSString stringWithFormat:@"%@$%@",kMeddoPlatform,self.phone], //关键字，必须传递
                           @"Password": [NSString stringWithFormat:@"%@",self.nameText.text], //密码
                           };
     [client requestChangeUserInfoParam:dic andBlock:^(BaseModel *resultModel, NSError *error) {
+        if (error) {
+            [NSObject showHudTipStr:@"出错了"];
+            return;
+        }
         if ([resultModel.returnCode intValue] == 200) {
+            
             [NSObject showHudTipStr:@"密码修改成功"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }

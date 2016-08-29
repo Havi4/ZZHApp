@@ -29,9 +29,21 @@
 
 #define kBadgeKey [NSString stringWithFormat:@"badge%@",thirdPartyLoginUserId]
 
-
+//new-start
+//font
 #define StatusbarSize 20
 #define kDefaultWordFont      [UIFont systemFontOfSize:17]
+#define kTextPlaceHolderFont [UIFont systemFontOfSize:15]
+#define kTextFieldWordFont [UIFont systemFontOfSize:15]
+#define kTextNormalWordFont [UIFont systemFontOfSize:17]
+#define kTextTitleWordFont [UIFont systemFontOfSize:19]
+//color
+#define kTextPlaceHolderColor [UIColor lightGrayColor]
+#define kTextFieldWordColor [UIColor lightGrayColor]
+//time
+#define kCodeValideTime 10*60
+//new-end
+
 #define kDefaultColor [UIColor whiteColor]
 #define kLightColor [UIColor whiteColor]
 
@@ -55,8 +67,6 @@
 #define KTableViewBackGroundColor [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.00]
 #define kTableViewCellBackGroundColor [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00]
 
-#define kTextNormalWordFont [UIFont systemFontOfSize:17]
-#define kTextTitleWordFont [UIFont systemFontOfSize:19]
 
 #define kButtonViewWidth [UIScreen mainScreen].bounds.size.width - 40
 #define kScreen_Bounds [UIScreen mainScreen].bounds

@@ -36,4 +36,5 @@ BOOL isDoubleDevice = NO;
 DeviceList *gloableActiveDevice = nil;
 
 YYReachability *netReachability = nil;
+NSString *phoneGetCode = @"";
 

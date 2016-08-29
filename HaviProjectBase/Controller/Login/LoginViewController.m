@@ -48,14 +48,14 @@
     [self.view addSubview:self.passWordText];
     self.nameText.delegate = self;
     self.passWordText.delegate = self;
-    [self.nameText setTextColor:selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor]];
-    self.passWordText.textColor = selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor];
+    [self.nameText setTextColor:kTextFieldWordColor];
+    self.passWordText.textColor = kTextFieldWordColor;
     self.nameText.borderStyle = UITextBorderStyleNone;
     self.passWordText.borderStyle = UITextBorderStyleNone;
-    self.nameText.font = kDefaultWordFont;
-    self.passWordText.font = kDefaultWordFont;
+    self.nameText.font = kTextFieldWordFont;
+    self.passWordText.font = kTextFieldWordFont;
     
-    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?[UIColor lightGrayColor]:[UIColor lightGrayColor],NSFontAttributeName:kDefaultWordFont};
+    NSDictionary *boldFont = @{NSForegroundColorAttributeName:kTextPlaceHolderColor,NSFontAttributeName:kTextPlaceHolderFont};
     NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入手机号" attributes:boldFont];
     NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:boldFont];
     self.nameText.attributedPlaceholder = attrValue;
@@ -81,15 +81,15 @@
     [logoImage makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.bottom.equalTo(self.view.mas_top).offset(143);
-        make.width.equalTo(@93);
-        make.width.equalTo(@183);
+        make.height.equalTo(@63);
+        make.width.equalTo(@122);
     }];
 //
     [self.nameText makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
         make.height.equalTo(@49);
-        make.centerY.equalTo(self.view.mas_centerY).offset(-22);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-23);
         
     }];
 //    
@@ -97,7 +97,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
         make.height.equalTo(@49);
-        make.centerY.equalTo(self.view.mas_centerY).offset(22);
+        make.centerY.equalTo(self.view.mas_centerY).offset(23);
     }];
     [lineView makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
@@ -108,13 +108,13 @@
 //
 //    添加小图标
     UIImageView *phoneImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"phone"]]];
-    phoneImage.frame = CGRectMake(0, 0,30, 20);
+    phoneImage.frame = CGRectMake(0, -2,40, 20);
     phoneImage.contentMode = UIViewContentModeScaleAspectFit;
     self.nameText.leftViewMode = UITextFieldViewModeAlways;
     self.nameText.leftView = phoneImage;
 //
     UIImageView *passImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"password"]]];
-    passImage.frame = CGRectMake(0, 0,30, 20);
+    passImage.frame = CGRectMake(0, -2,40, 20);
     passImage.contentMode = UIViewContentModeScaleAspectFit;
     self.passWordText.leftViewMode = UITextFieldViewModeAlways;
     self.passWordText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
