@@ -25,7 +25,7 @@
     }
     
     UILabel *label = [UILabel new];
-    label.textColor = [UIColor colorWithRed:152./256. green:147./256. blue:160./256. alpha:1.];
+    label.textColor = [UIColor colorWithRed:0.043 green:0.322 blue:0.396 alpha:1.00];
     label.textAlignment = NSTextAlignmentCenter;
     
     return label;
@@ -44,6 +44,7 @@
         NSCalendar *calendar = _manager.dateHelper.calendar;
         NSDateComponents *comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
         NSInteger currentMonthIndex = comps.month;
+        NSInteger currentYearIndex = comps.year;
         
         static NSDateFormatter *dateFormatter = nil;
         if(!dateFormatter){
@@ -58,8 +59,13 @@
         }
         
         text = [[dateFormatter standaloneMonthSymbols][currentMonthIndex - 1] capitalizedString];
-    }
+        if (currentMonthIndex<10) {
+            text = [NSString stringWithFormat:@"%ld-0%ld",(long)currentYearIndex,(long)currentMonthIndex];
+        }else{
         
+            text = [NSString stringWithFormat:@"%ld-%ld",(long)currentYearIndex,(long)currentMonthIndex];
+        }
+    }
     [(UILabel *)menuItemView setText:text];
 }
 

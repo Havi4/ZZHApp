@@ -49,7 +49,7 @@
     [self.bgLayer addSublayer:self.gradientLayer];
     [self addSubview:self.nightImageView];
     [self addSubview:self.titleLabel];
-    [self addSubview:self.subLabel];
+//    [self addSubview:self.subLabel];
     [self addSubview:self.animationView];
     UILabel *fen = [[UILabel alloc]init];
     fen.text = @"分";

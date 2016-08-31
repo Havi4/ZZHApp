@@ -57,12 +57,12 @@
         
         leftTitleLabel = [[UILabel alloc]init];
         leftTitleLabel.textColor = [UIColor whiteColor];
-        leftTitleLabel.font = [UIFont systemFontOfSize:16];
+        leftTitleLabel.font = [UIFont systemFontOfSize:15];
         [leftBackView addSubview:leftTitleLabel];
         
         leftNumLabel = [[UILabel alloc]init];
         leftNumLabel.textColor = [UIColor whiteColor];
-        leftNumLabel.font = [UIFont systemFontOfSize:30];
+        leftNumLabel.font = [UIFont systemFontOfSize:28];
         [leftBackView addSubview:leftNumLabel];
         
         leftSubLabel = [[UILabel alloc]init];
@@ -75,13 +75,13 @@
         
         rightTitleLabel = [[UILabel alloc]init];
         rightTitleLabel.textColor = [UIColor whiteColor];
-        rightTitleLabel.font = [UIFont systemFontOfSize:16];
+        rightTitleLabel.font = [UIFont systemFontOfSize:15];
 
         [rightBackView addSubview:rightTitleLabel];
         
         rightNumLabel = [[UILabel alloc]init];
         rightNumLabel.textColor = [UIColor whiteColor];
-        rightNumLabel.font = [UIFont systemFontOfSize:30];
+        rightNumLabel.font = [UIFont systemFontOfSize:28];
 
         [rightBackView addSubview:rightNumLabel];
         
@@ -113,13 +113,13 @@
         [leftImage makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftBackView.mas_left).offset(16);
             make.centerY.equalTo(leftBackView.mas_centerY);
-            make.height.equalTo(@35);
-            make.width.equalTo(@35);
+            make.height.equalTo(@25);
+            make.width.equalTo(@25);
         }];
         
         [leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(leftImage.mas_right).offset(20);
-            make.top.equalTo(leftBackView.mas_top);
+            make.top.equalTo(leftBackView.mas_top).offset(-2);
             make.height.equalTo(@30);
             
         
@@ -143,13 +143,13 @@
         [rightImage makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(rightBackView.mas_left).offset(16);
             make.centerY.equalTo(rightBackView.mas_centerY);
-            make.height.equalTo(@35);
-            make.width.equalTo(@35);
+            make.height.equalTo(@25);
+            make.width.equalTo(@25);
         }];
         
         [rightTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(rightImage.mas_right).offset(20);
-            make.top.equalTo(rightBackView.mas_top);
+            make.top.equalTo(rightBackView.mas_top).offset(-2);
             make.height.equalTo(@30);
             
         }];
@@ -213,7 +213,7 @@
     leftTitleLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellTitle"]];
     leftSubLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellSub"]];
     rightTitleLabel.text = [NSString stringWithFormat:@"%@",[rightDic objectForKey:@"cellTitle"]];
-    rightSubLabel.text = [NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellSub"]];
+    rightSubLabel.text = [NSString stringWithFormat:@"%@",[rightDic objectForKey:@"cellSub"]];
     switch (indexPath.row) {
         case 1:{
             leftNumLabel.text = [NSString stringWithFormat:@"%d",[model.averageHeartRate intValue]];

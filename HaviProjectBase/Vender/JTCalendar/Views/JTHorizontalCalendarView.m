@@ -60,6 +60,17 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
     self.showsVerticalScrollIndicator = NO;
     self.pagingEnabled = YES;
     self.clipsToBounds = YES;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changePageView:) name:@"selectCalendar" object:nil];
+}
+
+- (void)changePageView:(NSNotification *)noti
+{
+    NSDictionary *dic = noti.userInfo;
+    if ([[dic objectForKey:@"code"] intValue]==0) {
+        [self loadPreviousPageWithAnimation];
+    }else if ([[dic objectForKey:@"code"] intValue]==1){
+        [self loadNextPageWithAnimation];
+    }
 }
 
 - (void)layoutSubviews

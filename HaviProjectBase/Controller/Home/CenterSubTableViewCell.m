@@ -71,7 +71,7 @@
         
         _longSleepNum = [[UILabel alloc]init];
         _longSleepNum.textColor = [UIColor whiteColor];
-        _longSleepNum.text = @"12小时55分";
+        _longSleepNum.text = @"--小时--分";
         _longSleepNum.textAlignment = NSTextAlignmentCenter;
         _longSleepNum.font = [UIFont systemFontOfSize:15];
         [self addSubview:_longSleepNum];
@@ -79,14 +79,14 @@
         _deepSleepNum = [[UILabel alloc]init];
         _deepSleepNum.textAlignment = NSTextAlignmentCenter;
         _deepSleepNum.textColor = [UIColor whiteColor];
-        _deepSleepNum.text = @"5小时5分";
+        _deepSleepNum.text = @"--小时--分";
         _deepSleepNum.font = [UIFont systemFontOfSize:15];
         [self addSubview:_deepSleepNum];
         
         _lightSleepNum = [[UILabel alloc]init];
         _lightSleepNum.textColor = [UIColor whiteColor];
         _lightSleepNum.textAlignment = NSTextAlignmentCenter;
-        _lightSleepNum.text = @"0小时0分";
+        _lightSleepNum.text = @"--小时--分";
         _lightSleepNum.font = [UIFont systemFontOfSize:15];
         [self addSubview:_lightSleepNum];
         
@@ -173,6 +173,13 @@
     [SleepModelChange changeSleepDuration:model callBack:^(id callBack) {
         _longSleepNum.text = [NSString stringWithFormat:@"%@",callBack];
     }];
+    if (gloableActiveDevice.detailDeviceList.count == 0) {
+        _bedImageView.image = [UIImage imageNamed:@"single@3x"];
+    }else if (gloableActiveDevice.detailDeviceList.count == 1){
+        _bedImageView.image = [UIImage imageNamed:@"single@3x"];
+    }else if (gloableActiveDevice.detailDeviceList.count == 2){
+        _bedImageView.image = [UIImage imageNamed:@"two@3x"];
+    }
     cell.backgroundColor = [UIColor clearColor];
 }
 

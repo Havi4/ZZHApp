@@ -35,14 +35,14 @@
     titleArr = @[@"平均睡眠时长",@"最长夜晚",@"最短夜晚",@"最高睡眠得分",@"最低睡眠得分"];
     
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
-    self.sc_navigationItem.title = @"2016年";
+    self.sc_navigationItem.title = @"选择日期";
     
     XHRealTimeBlur *blur = [[XHRealTimeBlur alloc]initWithFrame:self.view.bounds];
-    blur.blurStyle = XHBlurStyleTranslucentWhite;
+    blur.blurStyle = XHBlurStyleWhite;
     calTableview = [[UITableView alloc]initWithFrame:(CGRect){0,64,self.view.frame.size.width,self.view.frame.size.height -64} style:UITableViewStylePlain];
     calTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     calTableview.showsVerticalScrollIndicator = NO;
-    calTableview.backgroundColor = [UIColor clearColor];
+    calTableview.backgroundColor = [UIColor whiteColor];
     calTableview.dataSource = self;
     calTableview.delegate = self;
     [self.view addSubview:blur];
@@ -75,7 +75,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -89,6 +89,19 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.row==0) {
             [cell addSubview:_calendarMenuView];
+            UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            leftButton.tag = 800;
+            leftButton.frame = CGRectMake(56, 0, 44, 44);
+            [leftButton setImage:[UIImage imageNamed:@"jtz@3x"] forState:UIControlStateNormal];
+            [cell addSubview:leftButton];
+            [leftButton addTarget:self action:@selector(changeMonth:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            rightButton.tag = 801;
+            rightButton.frame = CGRectMake(self.view.frame.size.width-101, 0, 44, 44);
+            [rightButton addTarget:self action:@selector(changeMonth:) forControlEvents:UIControlEventTouchUpInside];
+            [rightButton setImage:[UIImage imageNamed:@"jiant@3x"] forState:UIControlStateNormal];
+            [cell addSubview:rightButton];
         }else if (indexPath.row ==1){
             [cell addSubview:_weekDayView];
         }else if (indexPath.row == 2){
@@ -126,6 +139,15 @@
     return 0;
 }
 
+- (void)changeMonth:(UIButton *)button
+{
+    if (button.tag == 800) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"selectCalendar" object:nil userInfo:@{@"code":@0}];
+    }else if (button.tag == 801){
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"selectCalendar" object:nil userInfo:@{@"code":@1}];
+    }
+}
+
 #pragma mark - CalendarManager delegate
 
 // Exemple of implementation of prepareDayView method
@@ -145,7 +167,7 @@
     // Today
     else if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
-        dayView.circleView.backgroundColor = [UIColor blueColor];
+        dayView.circleView.backgroundColor = [UIColor colorWithRed:0.043 green:0.322 blue:0.396 alpha:1.00];
         dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
@@ -166,7 +188,7 @@
     else{
         dayView.circleView.hidden = YES;
         dayView.dotView.backgroundColor = [UIColor redColor];
-        dayView.textLabel.textColor = [UIColor blackColor];
+        dayView.textLabel.textColor = [UIColor colorWithRed:0.043 green:0.322 blue:0.396 alpha:1.00];
     }
     
     if([self haveEventForDay:dayView.date]){

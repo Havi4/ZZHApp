@@ -89,7 +89,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.equalTo(@(kButtonViewWidth));
         make.height.equalTo(@49);
-        make.centerY.equalTo(self.view.mas_centerY).offset(-23);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-21);
         
     }];
 //    

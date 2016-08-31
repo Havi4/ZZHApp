@@ -54,10 +54,10 @@
     self.nameText = [[UITextField alloc]init];
     [self.view addSubview:self.nameText];
     self.nameText.delegate = self;
-    [self.nameText setTextColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor lightGrayColor]];
+    [self.nameText setTextColor:kTextFieldWordColor];
     self.nameText.borderStyle = UITextBorderStyleNone;
-    self.nameText.font = kDefaultWordFont;
-    NSDictionary *boldFont = @{NSForegroundColorAttributeName:selectedThemeIndex==0?[UIColor grayColor]:[UIColor grayColor],NSFontAttributeName:kDefaultWordFont};
+    self.nameText.font = kTextFieldWordFont;
+    NSDictionary *boldFont = @{NSForegroundColorAttributeName:kTextPlaceHolderColor,NSFontAttributeName:kTextPlaceHolderFont};
     NSAttributedString *attrValue = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:boldFont];
     self.nameText.attributedPlaceholder = attrValue;
     self.nameText.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -69,9 +69,9 @@
     [self.view addSubview:self.passWordText];
     self.passWordText.delegate = self;
     [self.passWordText setReturnKeyType:UIReturnKeyDone];
-    self.passWordText.textColor = selectedThemeIndex==0?[UIColor grayColor]:[UIColor lightGrayColor];
+    self.passWordText.textColor = kTextFieldWordColor;
     self.passWordText.borderStyle = UITextBorderStyleNone;
-    self.passWordText.font = kDefaultWordFont;
+    self.passWordText.font = kTextFieldWordFont;
     NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"请确认密码" attributes:boldFont];
     self.passWordText.attributedPlaceholder = attrValue1;
     self.passWordText.clearButtonMode = UITextFieldViewModeWhileEditing;

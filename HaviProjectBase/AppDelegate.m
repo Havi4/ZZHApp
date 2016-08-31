@@ -85,7 +85,7 @@
      */
     self.rootView = [[ZZHRootViewController alloc] init];
     self.window.rootViewController = self.rootView;
-    [self setWifiNotification];
+//    [self setWifiNotification];
 
 }
 
