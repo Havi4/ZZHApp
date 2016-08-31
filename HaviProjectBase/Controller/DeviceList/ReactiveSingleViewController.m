@@ -243,7 +243,6 @@
         return;
     }
     ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-    hud.messageLabel.text = @"激活中,请稍等...";
     [hud showHUDWithView:kKeyWindow];
     self.noReceiveData = YES;
     NSError *error =[sniffer startSniffer:[self fetchSSIDInfo] password:self.textFiledPassWord.text];

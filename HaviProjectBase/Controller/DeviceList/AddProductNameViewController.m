@@ -351,7 +351,7 @@
             }else{
                 NameDoubleViewController *doubleBed = [[NameDoubleViewController alloc]init];
                 doubleBed.barUUIDString = deviceUUID;
-//                doubleBed.doubleDeviceName = self.deviceDescription;
+                doubleBed.doubleDeviceName = self.productNameTextField.text;
                 doubleBed.dicDetailDevice = sensorModel.sensorDetail.detailSensorInfoList;
                 [self.navigationController pushViewController:doubleBed animated:YES];
             }

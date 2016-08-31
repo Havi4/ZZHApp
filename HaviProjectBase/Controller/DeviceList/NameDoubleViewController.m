@@ -38,7 +38,7 @@
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
-    self.sc_navigationItem.title = @"命名左右床垫名称";
+    self.sc_navigationItem.title = @"床垫命名";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     self.view.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
     //
@@ -61,9 +61,10 @@
     bgView.layer.borderWidth = 1;
     [bgView makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(deviceLabel.mas_bottom).offset(10);
-        make.height.equalTo(@218);
-        make.width.equalTo(@218);
         make.centerX.equalTo(self.view.mas_centerX);
+        make.height.equalTo(bgView.mas_width);
+        make.left.equalTo(self.view.mas_left).offset(16);
+        make.right.equalTo(self.view.mas_right).offset(-16);
     }];
     //
     UIView *lineView = [[UIView alloc]init];
@@ -104,6 +105,7 @@
     [_leftText makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(bgView.mas_centerY).offset(5);
         make.height.equalTo(@25);
+        make.width.equalTo(@60);
         make.left.equalTo(bgView.mas_left).offset(10);
     }];
     
@@ -118,6 +120,7 @@
     [_rightText makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(bgView.mas_centerY).offset(-15);
         make.height.equalTo(@25);
+        make.width.equalTo(@60);
         make.right.equalTo(bgView.mas_right).offset(-5);
     }];
     UIImageView *left_line1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"right_text_line"]];
@@ -148,7 +151,7 @@
     //
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:nextButton];
-    [nextButton setTitle:@"保存" forState:UIControlStateNormal];
+    [nextButton setTitle:@"下一步" forState:UIControlStateNormal];
     [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(addProduct:) forControlEvents:UIControlEventTouchUpInside];
     [nextButton setBackgroundImage:[UIImage imageNamed:@"button_down_image@3x"] forState:UIControlStateNormal];
@@ -245,7 +248,7 @@
         if (resultModel) {
             
             @weakify(self);
-            [LBXAlertAction showAlertWithTitle:@"扫描设备成功" msg:@"您已经成功绑定该设备，是否现在激活？" chooseBlock:^(NSInteger buttonIdx) {
+            [LBXAlertAction showAlertWithTitle:@"绑定成功" msg:@"您已经成功绑定该设备，是否现在激活？" chooseBlock:^(NSInteger buttonIdx) {
                 @strongify(self);
                 //点击完，继续扫码
                 switch (buttonIdx) {

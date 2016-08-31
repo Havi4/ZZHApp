@@ -76,9 +76,17 @@
     //
     self.textFiledName = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
     self.textFiledName.textPlaceHolder = @"WiFi名称";
+    self.textFiledName.textPlaceHolderColor = [UIColor lightGrayColor];
+    self.textFiledName.returnKeyType = UIReturnKeyGo;
+    self.textFiledName.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+
     [self.view addSubview:self.textFiledName];
     self.textFiledPassWord = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
     self.textFiledPassWord.textPlaceHolder = @"密码";
+    self.textFiledPassWord.textPlaceHolderColor = [UIColor lightGrayColor];
+    self.textFiledPassWord.returnKeyType = UIReturnKeyGo;
+    self.textFiledPassWord.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+
     [self.view addSubview:self.textFiledPassWord];
     //    self.textFiledName.backgroundColor = [UIColor colorWithRed:0.400f green:0.400f blue:0.400f alpha:1.00f];
     //    self.textFiledPassWord.backgroundColor = [UIColor colorWithRed:0.400f green:0.400f blue:0.400f alpha:1.00f];
@@ -244,14 +252,8 @@
         [NSObject showHudTipStr:@"请输入网络名或者密码"];
         return;
     }
-    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                        [UIImage imageNamed:@"havi1_1"],
-                        [UIImage imageNamed:@"havi1_2"],
-                        [UIImage imageNamed:@"havi1_3"],
-                        [UIImage imageNamed:@"havi1_4"],
-                        [UIImage imageNamed:@"havi1_5"]];
-    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-    [MMProgressHUD showWithTitle:nil status:nil images:images];
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    [hud showHUDWithView:kKeyWindow];
     times= 0;
     smtlkState= 0;
     isfinding = YES;
@@ -284,7 +286,8 @@
 - (void)stopSmartLink
 {
     [smtlk SmtlkV30Stop];
-    [MMProgressHUD dismiss];
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    [hud hideHUD];
 }
 
 - (void)SmtlkTimeOut
@@ -328,14 +331,13 @@
     smtlkState = 0;
     times = 0;
     // 让模块停止发送信息。
-    [MMProgressHUD dismiss];
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    [hud hideHUD];
     [NSObject showHudTipStr:@"激活成功"];
-    [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-        DeviceListViewController *controller = [[DeviceListViewController alloc]init];
-        delegate.sideMenuController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];
-        [self cancelButtonDone:nil];
-    }];
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    DeviceListViewController *controller = [[DeviceListViewController alloc]init];
+    delegate.sideMenuController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self cancelButtonDone:nil];
     
 }
 
