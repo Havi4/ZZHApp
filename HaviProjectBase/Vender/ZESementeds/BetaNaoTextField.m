@@ -131,9 +131,6 @@
 }
 
 -(CGFloat)placeholderHeight{
-    
-    
-    
     UIFont *fontOfText=[UIFont fontWithName:@"HelveticaNeue" size:self.font.pointSize*0.7];
     return placeholderInset.y+fontOfText.lineHeight;
 }
@@ -171,7 +168,10 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self resignFirstResponder];
-    self.returnBlock(textField);
+    if (self.returnBlock) {
+        BetaNaoTextField *field = (BetaNaoTextField *)textField;
+        self.returnBlock(field);
+    }
     return YES;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{

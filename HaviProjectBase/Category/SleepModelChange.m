@@ -414,7 +414,7 @@
             NSString *dateString = dic.date;
             NSString *month = [dateString substringWithRange:NSMakeRange(5, 2)];
             int path = [month intValue]-[monthFrom intValue];
-            if (path>0 && path<3) {
+            if (path>=0 && path<3) {
                 [mutableArr replaceObjectAtIndex:path withObject:[NSString stringWithFormat:@"%@",dic.sleepQuality]];
                 [mutableTimeArr replaceObjectAtIndex:path withObject:[NSString stringWithFormat:@"%@",dic.sleepDuration]];
             }

@@ -85,28 +85,28 @@
         leftTitleLabel.textColor = [UIColor whiteColor];
         [backView addSubview:leftTitleLabel];
         
-        leftTitleSubLabel = [[UILabel alloc]init];
-        leftTitleSubLabel.text = @"--";
-        leftTitleSubLabel.layer.borderColor = [UIColor whiteColor].CGColor;
-        leftTitleSubLabel.layer.borderWidth = 0.5;
-        leftTitleSubLabel.layer.cornerRadius = 7.5;
-        leftTitleSubLabel.textAlignment = NSTextAlignmentCenter;
-        leftTitleSubLabel.font = [UIFont systemFontOfSize:10];
-        leftTitleSubLabel.textColor = [UIColor whiteColor];
-        [backView addSubview:leftTitleSubLabel];
+//        leftTitleSubLabel = [[UILabel alloc]init];
+//        leftTitleSubLabel.text = @"--";
+//        leftTitleSubLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+//        leftTitleSubLabel.layer.borderWidth = 0.5;
+//        leftTitleSubLabel.layer.cornerRadius = 7.5;
+//        leftTitleSubLabel.textAlignment = NSTextAlignmentCenter;
+//        leftTitleSubLabel.font = [UIFont systemFontOfSize:10];
+//        leftTitleSubLabel.textColor = [UIColor whiteColor];
+//        [backView addSubview:leftTitleSubLabel];
         
         [leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(backView.mas_top).offset(8);
             make.height.equalTo(@30);
-            make.left.mas_greaterThanOrEqualTo(backView.mas_left).offset(0).priorityHigh();
-            make.right.equalTo(leftTitleSubLabel.mas_left).offset(0);
+            make.left.mas_greaterThanOrEqualTo(backView.mas_left).offset(5).priorityHigh();
+//            make.right.equalTo(leftTitleSubLabel.mas_left).offset(0);
         }];
-        [leftTitleSubLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(leftTitleLabel.mas_centerY);
-            make.right.mas_greaterThanOrEqualTo(leftLine.mas_left).offset(-3).priorityHigh();
-            make.width.equalTo(@25);
-            make.height.equalTo(@15);
-        }];
+//        [leftTitleSubLabel makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerY.equalTo(leftTitleLabel.mas_centerY);
+//            make.right.mas_greaterThanOrEqualTo(leftLine.mas_left).offset(-3).priorityHigh();
+//            make.width.equalTo(@25);
+//            make.height.equalTo(@15);
+//        }];
         
         leftDataLabel = [[UILabel alloc]init];
         leftDataLabel.textAlignment = NSTextAlignmentLeft;

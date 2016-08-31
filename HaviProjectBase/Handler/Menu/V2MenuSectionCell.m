@@ -11,7 +11,7 @@
 #define kColorBlueDefault             RGBA(63, 183, 252, 1)
 
 
-static CGFloat const kCellHeight = 60;
+static CGFloat const kCellHeight = 50;
 static CGFloat const kFontSize   = 16;
 
 @interface V2MenuSectionCell ()
@@ -119,7 +119,7 @@ static CGFloat const kFontSize   = 16;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.iconImageView.frame = (CGRect){30, 21, 18, 18};
+    self.iconImageView.frame = (CGRect){30, 16, 18, 18};
     self.titleLabel.frame    = (CGRect){64, 0, 110, self.height};
     
 }

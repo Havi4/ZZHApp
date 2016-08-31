@@ -103,6 +103,7 @@
         [self.reportShowTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
         [self.reportShowTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationNone];
         [self.reportShowTableView reloadSection:2 withRowAnimation:UITableViewRowAnimationNone];
+        [self.reportShowTableView reloadSection:3 withRowAnimation:UITableViewRowAnimationNone];
         [self.reportDelegate reloadHeader:qualityModel];
     }];
 }

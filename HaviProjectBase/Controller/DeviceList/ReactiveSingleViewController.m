@@ -70,8 +70,15 @@
     //
     self.textFiledName = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
     self.textFiledName.textPlaceHolder = @"WiFi名称";
+    self.textFiledName.textPlaceHolderColor = [UIColor lightGrayColor];
+    self.textFiledName.returnKeyType = UIReturnKeyGo;
+    self.textFiledName.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
     [self.view addSubview:self.textFiledName];
     self.textFiledPassWord = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
+    self.textFiledPassWord.textPlaceHolderColor = [UIColor lightGrayColor];
+    self.textFiledPassWord.returnKeyType = UIReturnKeyGo;
+    self.textFiledPassWord.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+
     self.textFiledPassWord.textPlaceHolder = @"密码";
     [self.view addSubview:self.textFiledPassWord];
 //    self.textFiledName.backgroundColor = [UIColor colorWithRed:0.400f green:0.400f blue:0.400f alpha:1.00f];
@@ -212,6 +219,9 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    if ([textField isEqual:self.textFiledPassWord]) {
+        [self searchHardware:nil];
+    }
     return YES;
 }
 //获取ssid
@@ -232,18 +242,14 @@
         [NSObject showHudTipStr:@"请输入网络名或者密码"];
         return;
     }
-    NSArray *images = @[[UIImage imageNamed:@"havi1_0"],
-                        [UIImage imageNamed:@"havi1_1"],
-                        [UIImage imageNamed:@"havi1_2"],
-                        [UIImage imageNamed:@"havi1_3"],
-                        [UIImage imageNamed:@"havi1_4"],
-                        [UIImage imageNamed:@"havi1_5"]];
-    [[MMProgressHUD sharedHUD] setPresentationStyle:MMProgressHUDPresentationStyleShrink];
-    [MMProgressHUD showWithTitle:nil status:nil images:images];
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    hud.messageLabel.text = @"激活中,请稍等...";
+    [hud showHUDWithView:kKeyWindow];
     self.noReceiveData = YES;
     NSError *error =[sniffer startSniffer:[self fetchSSIDInfo] password:self.textFiledPassWord.text];
     if (error) {
-        [MMProgressHUD dismiss];
+        ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+        [hud hideHUD];
         [NSObject showStatusBarErrorStr:[NSString stringWithFormat:@"硬件出错了%@",error.localizedDescription]];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(120 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -259,7 +265,9 @@
 {
     [self stopSniffer];
     self.noReceiveData = NO;
-    [MMProgressHUD dismissWithError:@"激活超时,请重试" afterDelay:2];
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    [hud hideHUD];
+    [NSObject showHudTipStr:@"激活超时,请重试"];
 }
 //江波龙硬件配置
 - (void)getInfo:(NSString*)ip
@@ -386,17 +394,16 @@
 -(void)udpReceiveDataString:(NSString *)string{
     //接收到udp包后，将标识位改为no
     self.noReceiveData = NO;
-    [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-        [NSObject showHudTipStr:@"激活成功"];
-        for (UIViewController *controller in self.navigationController.viewControllers) {
-            if ([controller isKindOfClass:[DeviceListViewController class]]) {
-                
-                [self.navigationController popToViewController:controller animated:YES];
-                break;
-            }
+    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    [hud hideHUD];
+    [NSObject showHudTipStr:@"激活成功"];
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[DeviceListViewController class]]) {
+            
+            [self.navigationController popToViewController:controller animated:YES];
+            break;
         }
-    }];
-    [MMProgressHUD dismiss];
+    }
 }
 
 - (void)cancelButtonDone:(UIButton *)button

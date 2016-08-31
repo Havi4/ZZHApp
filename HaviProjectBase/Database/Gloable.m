@@ -18,6 +18,7 @@ NSString *thirdPartyLoginOriginalId = @"";
 NSString *thirdPartyLoginIcon = @"";
 NSString *thirdPartyLoginPlatform = @"";
 NSString *thirdPartyLoginNickName = @"";
+NSString *thirdPartyLoginUserName = @"";
 NSString *thirdHardDeviceUUID = @"";
 NSString *thirdHardDeviceName = @"";
 NSString *thirdMeddoPhone = @"";

@@ -555,9 +555,9 @@
         double subsecond2 = modf([sleepDuration floatValue], &second2);
         NSString *sleepTimeDuration= @"";
         if((int)round(subsecond2*60)<10){
-            sleepTimeDuration = [NSString stringWithFormat:@"%@时0%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+            sleepTimeDuration = [NSString stringWithFormat:@"%@小时0%d分钟",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
         }else{
-            sleepTimeDuration = [NSString stringWithFormat:@"%@时%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+            sleepTimeDuration = [NSString stringWithFormat:@"%@小时%d分钟",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
         }
         self.headerLongData.text = sleepTimeDuration;
     }];
@@ -575,9 +575,9 @@
         double subsecond2 = modf([sleepDuration floatValue], &second2);
         NSString *sleepTimeDuration= @"";
         if((int)round(subsecond2*60)<10){
-            sleepTimeDuration = [NSString stringWithFormat:@"%@时0%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+            sleepTimeDuration = [NSString stringWithFormat:@"%@小时0%d分钟",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
         }else{
-            sleepTimeDuration = [NSString stringWithFormat:@"%@时%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+            sleepTimeDuration = [NSString stringWithFormat:@"%@小时%d分钟",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
         }
         self.headerShortData.text = sleepTimeDuration;
     }];
@@ -585,7 +585,6 @@
 
 - (void)selectedZESegmentedsViewItemAtIndex:(NSInteger )selectedItemIndex{
     
-    DeBugLog(@"select is %d and type is %d",selectedItemIndex,self.reportType);
     if (selectedItemIndex != self.reportType) {
         [[NSNotificationCenter defaultCenter]postNotificationName:kReportTagSelected object:nil userInfo:@{@"tag":[NSNumber numberWithInteger:selectedItemIndex]}];
     }

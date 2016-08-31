@@ -18,6 +18,7 @@ extern NSString *thirdPartyLoginIcon;
 extern NSString *thirdPartyLoginOriginalId;
 extern NSString *thirdPartyLoginPlatform;
 extern NSString *thirdPartyLoginNickName;
+extern NSString *thirdPartyLoginUserName;
 extern NSString *thirdHardDeviceUUID;
 extern NSString *thirdHardDeviceName;
 extern NSString *thirdMeddoPhone;

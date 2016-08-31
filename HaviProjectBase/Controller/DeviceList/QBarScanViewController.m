@@ -70,11 +70,11 @@
 
 - (void)drawNavi
 {
-    ProgressView *p = [[ProgressView alloc]init];
-    p.frame = (CGRect){0,64,self.view.frame.size.width,3};
-    [self.view addSubview:p];
-    p.backColor= [UIColor blackColor];
-    p.selectIndex = 2;
+//    ProgressView *p = [[ProgressView alloc]init];
+//    p.frame = (CGRect){0,64,self.view.frame.size.width,3};
+//    [self.view addSubview:p];
+//    p.backColor= [UIColor blackColor];
+//    p.selectIndex = 2;
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -210,7 +210,11 @@
         [NSObject showHudTipStr:strResult];
         return;
     }
-    [self checkIsDoubleBed:strResult];
+    if (self.barcodeDetected) {
+        self.barcodeDetected(strResult);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+//    [self checkIsDoubleBed:strResult];
     
 }
 
@@ -218,7 +222,6 @@
 
 - (void)checkIsDoubleBed:(NSString *)deviceUUID
 {
-
     NSDictionary *para = @{
                             @"UUID": deviceUUID,
                             };

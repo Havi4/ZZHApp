@@ -39,7 +39,7 @@
 @property (nonatomic, strong) UIButton *btnMyQR;
 
 
-
+@property (nonatomic, copy)  void (^barcodeDetected)(NSString *barcode);
 
 
 

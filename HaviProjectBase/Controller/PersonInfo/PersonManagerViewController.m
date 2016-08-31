@@ -59,8 +59,7 @@
     [self.view addSubview:view];
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     NSArray *controllers = app.currentNavigationController.viewControllers;
-    UIViewController *con = [controllers objectAtIndex:0];
-    if ([con isKindOfClass:[APPSettingViewController class]]) {
+    if (controllers.count ==1) {
         self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
@@ -192,7 +191,7 @@
         [self.refreshControl endRefreshing];
         self.userInfoModel = userInfo;
         [self.personInfoTableView reloadData];
-        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"userName" object:nil userInfo:@{@"userName":userInfo.nUserInfo.userName}];
     }];
 }
 

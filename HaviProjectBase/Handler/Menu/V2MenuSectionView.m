@@ -94,7 +94,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     [self addSubview:self.divideImageView];
     
     self.usernameLabel = [[UILabel alloc]init];
-    self.usernameLabel.text = @"哈维";
+    self.usernameLabel.text = @"";
     self.usernameLabel.textAlignment = NSTextAlignmentCenter;
     self.usernameLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.usernameLabel];
@@ -134,6 +134,12 @@ static CGFloat const kAvatarHeight = 70.0f;
         [self.avatarImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"avatar_default"]];
         self.avatarImageView.layer.borderColor = [UIColor grayColor].CGColor;
 
+    }];
+    
+    [[NSNotificationCenter defaultCenter]addObserverForName:@"userName" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        @strongify(self);
+        NSDictionary *dic = note.userInfo;
+        self.usernameLabel.text = [dic objectForKey:@"userName"];
     }];
 //
     

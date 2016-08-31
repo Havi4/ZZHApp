@@ -11,6 +11,8 @@
 		2C11C9831D766F960032CA95 /* two@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9811D766F960032CA95 /* two@3x.png */; };
 		2C11C9861D767BBC0032CA95 /* jiant@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9841D767BBC0032CA95 /* jiant@3x.png */; };
 		2C11C9871D767BBC0032CA95 /* jtz@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9851D767BBC0032CA95 /* jtz@3x.png */; };
+		2C11C98A1D76A6D70032CA95 /* cp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9881D76A6D70032CA95 /* cp@3x.png */; };
+		2C11C98B1D76A6D70032CA95 /* erweim@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9891D76A6D70032CA95 /* erweim@3x.png */; };
 		2C15EB761CDB1D7B00A43086 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB751CDB1D7B00A43086 /* CoreTelephony.framework */; };
 		2C15EB781CDB1D9400A43086 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB771CDB1D9400A43086 /* AudioToolbox.framework */; };
 		2C15EB7A1CDB1D9E00A43086 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */; };
@@ -618,6 +620,8 @@
 		2C11C9811D766F960032CA95 /* two@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "two@3x.png"; sourceTree = "<group>"; };
 		2C11C9841D767BBC0032CA95 /* jiant@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jiant@3x.png"; sourceTree = "<group>"; };
 		2C11C9851D767BBC0032CA95 /* jtz@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jtz@3x.png"; sourceTree = "<group>"; };
+		2C11C9881D76A6D70032CA95 /* cp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp@3x.png"; sourceTree = "<group>"; };
+		2C11C9891D76A6D70032CA95 /* erweim@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "erweim@3x.png"; sourceTree = "<group>"; };
 		2C15EB751CDB1D7B00A43086 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2C15EB771CDB1D9400A43086 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1747,6 +1751,8 @@
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
+				2C11C9881D76A6D70032CA95 /* cp@3x.png */,
+				2C11C9891D76A6D70032CA95 /* erweim@3x.png */,
 				2C11C9841D767BBC0032CA95 /* jiant@3x.png */,
 				2C11C9851D767BBC0032CA95 /* jtz@3x.png */,
 				2C2298281D6C346C0086ACF5 /* gn@3x.png */,
@@ -3450,6 +3456,7 @@
 				2C9EF3C81C7EFBCA000704E2 /* icon_turn_over_1@2x.png in Resources */,
 				2CF2E29C1C7AE0660007A639 /* read_me.txt in Resources */,
 				2CF2E2171C79D2EC0007A639 /* AppSetting1.plist in Resources */,
+				2C11C98B1D76A6D70032CA95 /* erweim@3x.png in Resources */,
 				2C9EF3471C7D7B51000704E2 /* getup_apng_0.apng in Resources */,
 				2CF2E24A1C7AB7E80007A639 /* digitCell.psd in Resources */,
 				2C9EF4C51C844379000704E2 /* sad-75_0.png in Resources */,
@@ -3594,6 +3601,7 @@
 				2CF2E2221C79DAD70007A639 /* textbox_devicename_0@2x.png in Resources */,
 				2C9EF5371C8597C9000704E2 /* THPinViewController.bundle in Resources */,
 				2CD0148D1C633FF3001F9514 /* icon_setting_0@2x.png in Resources */,
+				2C11C98A1D76A6D70032CA95 /* cp@3x.png in Resources */,
 				2CF2E1511C7590930007A639 /* search_1@2x.png in Resources */,
 				2CF2E1661C759F530007A639 /* havi1_3@2x.png in Resources */,
 				2CF2E2701C7AD1E30007A639 /* pic_introduce_2@2x.png in Resources */,
