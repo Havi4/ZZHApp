@@ -7,11 +7,12 @@
 //
 
 #import "ReNameDoubleDeviceViewController.h"
+#import "BetaNaoTextField.h"
 
 @interface ReNameDoubleDeviceViewController ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic,strong) UITextField *nameTextField;
-@property (nonatomic,strong) UITextField *txLeftNameView;
-@property (nonatomic,strong) UITextField *txRightNameView;
+@property (nonatomic,strong) BetaNaoTextField *nameTextField;
+@property (nonatomic,strong) BetaNaoTextField *txLeftNameView;
+@property (nonatomic,strong) BetaNaoTextField *txRightNameView;
 @property (nonatomic,strong) UITableView *tbDeviceNameShowView;
 @property (nonatomic, strong) UITableView *sideTableView;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
@@ -39,7 +40,7 @@
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     self.view.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
     
-    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_done"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithTitle:@"完成" style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self bindingDeviceWithUUID:nil];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
@@ -60,6 +61,21 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    NSArray *_arrDeatilListDescription = self.deviceInfo.detailDeviceList;
+    NSArray *_sortedDetailDevice = [_arrDeatilListDescription sortedArrayUsingComparator:^NSComparisonResult(DetailDeviceList* _Nonnull obj1, DetailDeviceList* _Nonnull obj2) {
+        return [obj1.detailUUID compare:obj2.detailUUID options:NSCaseInsensitiveSearch];
+    }];
+    if (self.nameTextField) {
+        [self.nameTextField reloadTextFieldWithTextString:self.deviceInfo.nDescription];
+    }
+    if (self.txLeftNameView) {
+        DetailDeviceList *model = (DetailDeviceList*)[_sortedDetailDevice  objectAtIndex:0];
+        [self.txLeftNameView reloadTextFieldWithTextString:model.detailDescription];
+    }
+    if (self.txRightNameView) {
+        DetailDeviceList *model = (DetailDeviceList*)[_sortedDetailDevice  objectAtIndex:1];
+        [self.txRightNameView reloadTextFieldWithTextString:model.detailDescription];
+    }
     [_nameTextField becomeFirstResponder];
 }
 
@@ -69,12 +85,13 @@
 - (UITextField *)nameTextField
 {
     if (!_nameTextField) {
-        _nameTextField = [[UITextField alloc]init];
-        _nameTextField.frame = CGRectMake(15, 0, self.view.frame.size.width-30, 49);
-        _nameTextField.borderStyle = UITextBorderStyleNone;
-        _nameTextField.placeholder = @"设备名称";
-        _nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _nameTextField.delegate = self;
+        _nameTextField = [[BetaNaoTextField alloc]init];
+        _nameTextField.frame = CGRectMake(16, -10, self.view.frame.size.width-32, 80);
+        _nameTextField.textPlaceHolder = @"请输入设备名称";
+        _nameTextField.textPlaceHolderColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _nameTextField.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        [_nameTextField becomeFirstResponder];
+        _nameTextField.returnKeyType = UIReturnKeyNext;
         
     }
     return _nameTextField;
@@ -83,7 +100,10 @@
 - (UITableView *)sideTableView
 {
     if (_sideTableView == nil) {
-        _sideTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _sideTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _sideTableView.scrollEnabled = NO;
+        _sideTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _sideTableView.backgroundColor = [UIColor clearColor];
     }
     return _sideTableView;
 }
@@ -92,12 +112,12 @@
 - (UITextField *)txRightNameView
 {
     if (!_txRightNameView) {
-        _txRightNameView = [[UITextField alloc]init];
-        _txRightNameView.frame = CGRectMake(15, 0, self.view.frame.size.width-30, 49);
-        _txRightNameView.borderStyle = UITextBorderStyleNone;
-        _txRightNameView.placeholder = @"Right";
-        _txRightNameView.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _txRightNameView.delegate = self;
+        _txRightNameView = [[BetaNaoTextField alloc]init];
+        _txRightNameView.frame = CGRectMake(16, -10, self.view.frame.size.width-32, 80);
+        _txRightNameView.textPlaceHolder = @"请输入右侧设备名称";
+        _txRightNameView.textPlaceHolderColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _txRightNameView.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _txRightNameView.returnKeyType = UIReturnKeyDone;
         
     }
     return _txRightNameView;
@@ -106,12 +126,13 @@
 - (UITextField *)txLeftNameView
 {
     if (!_txLeftNameView) {
-        _txLeftNameView = [[UITextField alloc]init];
-        _txLeftNameView.frame = CGRectMake(15, 0, self.view.frame.size.width-30, 49);
-        _txLeftNameView.borderStyle = UITextBorderStyleNone;
-        _txLeftNameView.placeholder = @"Left";
-        _txLeftNameView.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _txLeftNameView.delegate = self;
+        
+        _txLeftNameView = [[BetaNaoTextField alloc]init];
+        _txLeftNameView.frame = CGRectMake(16, -10, self.view.frame.size.width-32, 80);
+        _txLeftNameView.textPlaceHolder = @"请输入左侧设备名称";
+        _txLeftNameView.textPlaceHolderColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _txLeftNameView.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _txLeftNameView.returnKeyType = UIReturnKeyNext;
         
     }
     return _txLeftNameView;
@@ -132,7 +153,7 @@
 //使得tableview顶格
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 0.01;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -149,61 +170,55 @@
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *_arrDeatilListDescription = self.deviceInfo.detailDeviceList;
-    NSArray *_sortedDetailDevice = [_arrDeatilListDescription sortedArrayUsingComparator:^NSComparisonResult(DetailDeviceList* _Nonnull obj1, DetailDeviceList* _Nonnull obj2) {
-        return [obj1.detailUUID compare:obj2.detailUUID options:NSCaseInsensitiveSearch];
-    }];
+    
     if (indexPath.section==0) {
         [cell addSubview:self.nameTextField];
-        self.nameTextField.text = [NSString stringWithFormat:@"%@",self.deviceInfo.nDescription];
 
     }else if (indexPath.section==1){
         [cell addSubview:self.txLeftNameView];
-        DetailDeviceList *model = (DetailDeviceList*)[_sortedDetailDevice  objectAtIndex:0];
-        self.txLeftNameView.text = [NSString stringWithFormat:@"%@",model.detailDescription];
+        
     }else if (indexPath.section==2){
         [cell addSubview:self.txRightNameView];
-        DetailDeviceList *model = (DetailDeviceList*)[_sortedDetailDevice  objectAtIndex:1];
-        self.txRightNameView.text = [NSString stringWithFormat:@"%@",model.detailDescription];
+        
     }
     
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 49;
+    return 80;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section==0) {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-        UILabel *lMainNameView = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 20)];
-        lMainNameView.font = [UIFont systemFontOfSize:12];
-        lMainNameView.text = @"设备名称";
-        lMainNameView.textColor = [UIColor lightGrayColor];
-        [view addSubview:lMainNameView];
-        return view;
-    }else if (section==1){
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-        UILabel *lMainNameView = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 20)];
-        lMainNameView.text = @"左侧床垫名称";
-        lMainNameView.textColor = [UIColor lightGrayColor];
-        lMainNameView.font = [UIFont systemFontOfSize:12];
-        [view addSubview:lMainNameView];
-        return view;
-    }else{
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-        UILabel *lMainNameView = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 20)];
-        lMainNameView.textColor = [UIColor lightGrayColor];
-        lMainNameView.font = [UIFont systemFontOfSize:12];
-        lMainNameView.text = @"右侧床垫名称";
-        [view addSubview:lMainNameView];
-        return view;
-    }
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if (section==0) {
+//        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+//        UILabel *lMainNameView = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 20)];
+//        lMainNameView.font = [UIFont systemFontOfSize:12];
+//        lMainNameView.text = @"设备名称";
+//        lMainNameView.textColor = [UIColor lightGrayColor];
+//        [view addSubview:lMainNameView];
+//        return view;
+//    }else if (section==1){
+//        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+//        UILabel *lMainNameView = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 20)];
+//        lMainNameView.text = @"左侧床垫名称";
+//        lMainNameView.textColor = [UIColor lightGrayColor];
+//        lMainNameView.font = [UIFont systemFontOfSize:12];
+//        [view addSubview:lMainNameView];
+//        return view;
+//    }else{
+//        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+//        UILabel *lMainNameView = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 20)];
+//        lMainNameView.textColor = [UIColor lightGrayColor];
+//        lMainNameView.font = [UIFont systemFontOfSize:12];
+//        lMainNameView.text = @"右侧床垫名称";
+//        [view addSubview:lMainNameView];
+//        return view;
+//    }
+//}
 
 - (void)backToHomeView:(UIButton *)sender
 {
@@ -222,6 +237,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -271,6 +287,7 @@
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestRenameFriendDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
             [self backToHomeView:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
         }];        
     }else{
         NSDictionary *para = @{
@@ -293,6 +310,7 @@
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestRenameMyDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
             [self backToHomeView:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
         }];
     }
 }

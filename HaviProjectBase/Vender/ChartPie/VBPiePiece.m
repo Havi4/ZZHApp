@@ -496,21 +496,22 @@
         }
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
-        
-        
-        [self.label setFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
-        self.backLayer.path = [self backPathWithEnd:CGPointMake(center.x, center.y+labelSize.height/2)].CGPath;
-        self.backLayer.strokeColor = [UIColor colorWithWhite:0.8 alpha:0.7].CGColor;
-        self.backLayer.fillColor = [UIColor clearColor].CGColor;
-        [self addSublayer:self.backLayer];
+        DeBugLog(@"角度是%f",self.angle);
+        if (self.angle>0.1) {
+            [self.label setFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
+            self.backLayer.path = [self backPathWithEnd:CGPointMake(center.x, center.y+labelSize.height/2)].CGPath;
+            self.backLayer.strokeColor = [UIColor colorWithWhite:0.8 alpha:0.7].CGColor;
+            self.backLayer.fillColor = [UIColor clearColor].CGColor;
+            [self addSublayer:self.backLayer];
+            if (!_label.superlayer) {
+                [self.superlayer addSublayer:_label];
+            }
+            [self.label setPosition:center];
+            [self.label setHidden:NO];
+        }
         
        
 
-        if (!_label.superlayer) {
-            [self.superlayer addSublayer:_label];
-        }
-        [self.label setPosition:center];
-        [self.label setHidden:NO];
         [CATransaction commit];
     }
 }

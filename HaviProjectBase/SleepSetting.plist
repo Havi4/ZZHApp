@@ -4,8 +4,7 @@
 <array>
 	<string>习惯睡觉时间</string>
 	<string>习惯起床时间</string>
-	<string>睡眠提醒</string>
-	<string>久睡超时警告</string>
-	<string>离床时间警告</string>
+	<string>褥疮防护提醒</string>
+	<string>离床超时提醒</string>
 </array>
 </plist>

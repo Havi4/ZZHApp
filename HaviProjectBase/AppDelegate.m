@@ -20,8 +20,13 @@
 #import "JPushNotiManager.h"
 #import "PinLockSetting.h"
 #import "ZZHRootViewController.h"
+#import "CCLocationManager.h"
+#import <CoreLocation/CoreLocation.h>
+#import "GetWeatherAPI.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<CLLocationManagerDelegate>
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 @property (nonatomic, strong) ZZHRootViewController *rootView;
@@ -34,7 +39,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self setAppSetting];
-//    [self registerLocalNotification];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{kAppIntroduceViewKey:@NO}];
     [[NSUserDefaults standardUserDefaults]synchronize];
@@ -43,12 +47,15 @@
     
     if ([UserManager GetUserObj]) {
         [self setRootViewController];
+        [self getUserLocationWith:launchOptions];
     }else{
         LoginViewController *login = [[LoginViewController alloc]init];
+        
         @weakify(self);
         login.loginButtonClicked = ^(NSUInteger index){
             @strongify(self);
             [self setRootViewController];
+            [self getUserLocationWith:launchOptions];
         };
         self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:login];
     }
@@ -69,6 +76,61 @@
 }
 
 #pragma mark settings
+- (void)getUserLocationWith:(NSDictionary *)launchOptions
+{
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+    if ([[UIDevice currentDevice] systemVersion].doubleValue > 8.0) {//如果iOS是8.0以上版本
+        if ([_locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {//位置管理对象中有requestAlwaysAuthorization这个方法
+            [_locationManager requestWhenInUseAuthorization];
+        }
+    }
+    _locationManager.delegate = self;
+    [_locationManager startUpdatingLocation];
+
+}
+//获取城市
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    //根据经纬度反向地理编译出地址信息
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
+        if (array.count > 0){
+            CLPlacemark *placemark = [array objectAtIndex:0];
+            //将获得的所有信息显示到label上
+//            self.location.text = placemark.name;
+            //获取城市
+            NSString *city = placemark.locality;
+            NSString *province = placemark.administrativeArea;
+            if (!city) {
+                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
+                city = placemark.administrativeArea;
+            }
+            NSDictionary *dic19 = @{
+                                    @"city" : [city substringToIndex:city.length-1],
+                                    @"province": [province substringToIndex:city.length-1]
+                                    };
+            [GetWeatherAPI getWeatherInfoWith:dic19 finished:^(NSURLResponse *response, NSData *data) {
+                DeBugLog(@"天气是%@",data);
+                [[NSNotificationCenter defaultCenter]postNotificationName:kGetWeatherData object:nil userInfo:@{@"data":data}];
+            } failed:^(NSURLResponse *response, NSError *error) {
+                
+            }];
+            DeBugLog(@"province = %@ - city = %@",province, city);
+        }
+        else if (error == nil && [array count] == 0)
+        {
+            DeBugLog(@"No results were returned.");
+        }
+        else if (error != nil)
+        {
+            DeBugLog(@"An error occurred = %@", error);
+        }
+    }];
+    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
+    [manager stopUpdatingLocation];
+}
 
 - (void)setRootViewController
 {
@@ -117,6 +179,7 @@
                                        categories:nil];
     [APService setupWithOption:launchOptions];
     [APService crashLogON];
+
 }
 
 #pragma mark 网络监听

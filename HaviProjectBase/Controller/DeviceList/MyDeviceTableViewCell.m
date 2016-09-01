@@ -41,8 +41,6 @@
         //
         _cellIconImageView = [[UIImageView alloc]init];
         [self.topContentView addSubview:_cellIconImageView];
-        _cellIconImageView.layer.cornerRadius = 22.5;
-        _cellIconImageView.layer.masksToBounds = YES;
         [_cellIconImageView makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.topContentView);
             make.height.equalTo(@45);
@@ -76,7 +74,7 @@
     // Rewrite this func in SubClass !
     if (obj) {
         DeviceList *deviceModel = (DeviceList *)obj;
-        NSString *cellIcon = deviceModel.detailDeviceList.count > 0 ? @"icon_double" : @"icon_solo";
+        NSString *cellIcon = deviceModel.detailDeviceList.count > 0 ? @"bed-s" : @"bed-d";
         _cellIconImageView.image = [UIImage imageNamed:cellIcon];
         if ([deviceModel.isActivated isEqualToString:@"False"]) {
             _selectImageView.hidden = YES;

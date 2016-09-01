@@ -96,7 +96,6 @@
 {
     if (!_cellTextField) {
         _cellTextField = [[BetaNaoTextField alloc]init];
-//        _cellTextField.font = [UIFont systemFontOfSize:15];
         _cellTextField.frame = CGRectMake(16, -10, self.view.frame.size.width-32, 80);
         _cellTextField.textPlaceHolder = @"请输入您的家庭地址";
         _cellTextField.textPlaceHolderColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];

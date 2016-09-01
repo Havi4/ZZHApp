@@ -62,18 +62,36 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 35;
+    return 0.01;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 10;
+    return 20;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    NSString *title = [self.items objectAtIndex:section];
+//    return title;
+//}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    NSString *title = [self.items objectAtIndex:section];
-    return title;
+    UIView *footerView = [[UIView alloc]init];
+    footerView.frame = (CGRect){0,0,kScreenSize.width,20};
+    UILabel *title = [[UILabel alloc]init];
+    title.font = [UIFont systemFontOfSize:13];
+    title.textColor = [UIColor grayColor];
+    title.frame = (CGRect){16,0,200,20};
+    
+    title.text = [self.items objectAtIndex:section];
+    [footerView addSubview:title];
+    UIView *line = [[UIView alloc]init];
+    line.frame = (CGRect){0,19.5,kScreenSize.width,0.5};
+    line.backgroundColor = [UIColor grayColor];
+    [footerView addSubview:line];
+    return footerView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,17 +134,17 @@
     NSIndexPath *index = [self.myTableView indexPathForCell:cell];
     SleepSettingButtonType type;
     switch (index.section) {
-        case 2:{
+        case 4:{
             type = SleepSettingSwitchAlertTime;
             [self controlLocalNotiOpen:(cellSwitch.on ? @"True" : @"False") type:type];
             break;
         }
-        case 3:{
+        case 2:{
             type = SleepSettingSwitchLongTime;
             [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
             break;
         }
-        case 4:{
+        case 3:{
             type = SleepSettingSwitchLeaveBedTime;
             [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
             break;
@@ -156,17 +174,17 @@
             [self openDateSelectionController:type];
             break;
         }
-        case 2:{
+        case 4:{
             type = SleepSettingAlertTime;
             [self openDateSelectionController:type];
             break;
         }
-        case 3:{
+        case 2:{
             type = SleepSettingLongTime;
             [self openDateSelectionController:type];
             break;
         }
-        case 4:{
+        case 3:{
             type = SleepSettingLeaveBedTime;
             [self openPickerController:SleepSettingLeaveBedTime];
             break;
@@ -375,30 +393,30 @@
         }
         case SleepSettingLongTime:{
             key = @"AlarmTimeSleepTooLong";
-            notiString = @"久睡超时时间修改成功";
+            notiString = @"褥疮防护提醒修改成功";
             break;
         }
         case SleepSettingLeaveBedTime:{
             key = @"AlarmTimeOutOfBed";
-            notiString = @"离床时间修改成功";
+            notiString = @"离床超时提醒修改成功";
             break;
         }
         case SleepSettingSwitchLeaveBedTime:
         {
             key = @"IsTimeoutAlarmOutOfBed";
             if ([info isEqualToString:@"True"]) {
-                notiString = @"离床警报开启";
+                notiString = @"离床超时提醒开启";
             }else{
-                notiString = @"离床警报关闭";
+                notiString = @"离床超时提醒关闭";
             }
             break;
         }
         case SleepSettingSwitchLongTime:{
             key = @"IsTimeoutAlarmSleepTooLong";
             if ([info isEqualToString:@"True"]) {
-                notiString = @"久睡超时警报开启";
+                notiString = @"褥疮防护提醒开启";
             }else{
-                notiString = @"久睡超时警报关闭";
+                notiString = @"褥疮防护提醒关闭";
             }
             break;
         }

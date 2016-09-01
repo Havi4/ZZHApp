@@ -32,6 +32,7 @@
 - (void)initNaviBarView
 {
     self.naviBarTitle = [[NaviTitleScrollView alloc]initWithFrame:(CGRect){(self.view.frame.size.width-100)/2.0+1,20,100,44}];
+    
     self.naviBarTitle.userInteractionEnabled = NO;
     self.naviBarTitle.backgroundColor = [UIColor clearColor];
 
@@ -84,6 +85,7 @@
         }];
         [self.containerDataView setCurrentIndex:selectPageIndex animated:NO];
         self.naviBarTitle.titles = arr;
+        [self.naviBarTitle setCurrentIndex:selectPageIndex];
     }
 }
 

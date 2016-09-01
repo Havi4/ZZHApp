@@ -21,6 +21,7 @@
 #import "SleepQualityModel.h"
 #import "AllDeviceModel.h"
 #import "AssessmentListModel.h"
+#import "WeatherModel.h"
 
 @interface ZZHAPIManager : NSObject
 
@@ -126,6 +127,7 @@
 //推送id
 - (void)requestRegisterUserIdForPush:(NSDictionary *)params andBlock:(void (^)(BaseModel *baseModel,NSError *error))block;
 
+- (void)requestWeather:(NSDictionary *)params andBlock:(void (^)(WeatherModel *weatherModel,NSError *error))block;
 //睡眠质量
 
 - (void)requestGetSleepQualityParams:(NSDictionary *)params andBlock:(void (^)(SleepQualityModel *qualityModel,NSError *error))block;

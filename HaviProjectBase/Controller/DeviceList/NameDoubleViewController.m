@@ -246,7 +246,7 @@
     
     [client requestActiveMyDeviceParams:dic14 andBlock:^(BaseModel *resultModel, NSError *error) {
         if (resultModel) {
-            
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
             @weakify(self);
             [LBXAlertAction showAlertWithTitle:@"绑定成功" msg:@"您已经成功绑定该设备，是否现在激活？" chooseBlock:^(NSInteger buttonIdx) {
                 @strongify(self);

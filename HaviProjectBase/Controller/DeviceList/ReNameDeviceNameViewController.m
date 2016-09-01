@@ -7,10 +7,11 @@
 //
 
 #import "ReNameDeviceNameViewController.h"
+#import "BetaNaoTextField.h"
 
 @interface ReNameDeviceNameViewController ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) UITextField *nameTextField;
+@property (nonatomic, strong) BetaNaoTextField *nameTextField;
 @property (nonatomic, strong) UITableView *sideTableView;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) SCBarButtonItem *rightBarItem;
@@ -30,18 +31,16 @@
     }];
     self.sc_navigationItem.title = @"添加设备名称";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
-    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_done"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithTitle:@"完成" style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self bindingDeviceWithUUID];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     self.view.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
-    
-    self.sideTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.sideTableView];
     [self.sideTableView makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
         make.top.equalTo(self.view).offset(64);
-        make.height.equalTo(@49);
+        make.height.equalTo(@80);
         make.right.equalTo(self.view.mas_right).offset(0);
     }];
     self.sideTableView.backgroundColor = KTableViewBackGroundColor;
@@ -53,6 +52,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (self.nameTextField) {
+        [self.nameTextField reloadTextFieldWithTextString:self.deviceInfo.nDescription];
+    }
     [_nameTextField becomeFirstResponder];
 }
 
@@ -60,13 +62,13 @@
 - (UITextField *)nameTextField
 {
     if (!_nameTextField) {
-        _nameTextField = [[UITextField alloc]init];
-        _nameTextField.frame = CGRectMake(15, 0, self.view.frame.size.width-30, 49);
-        _nameTextField.borderStyle = UITextBorderStyleNone;
-        _nameTextField.placeholder = @"设备名称";
-        _nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _nameTextField.delegate = self;
-        
+        _nameTextField = [[BetaNaoTextField alloc]init];
+        _nameTextField.frame = CGRectMake(16, -10, self.view.frame.size.width-32, 80);
+        _nameTextField.textPlaceHolder = @"请输入设备名称";
+        _nameTextField.textPlaceHolderColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _nameTextField.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        [_nameTextField becomeFirstResponder];
+        _nameTextField.returnKeyType = UIReturnKeyDone;
     }
     return _nameTextField;
 }
@@ -74,7 +76,11 @@
 - (UITableView *)sideTableView
 {
     if (_sideTableView == nil) {
-        _sideTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _sideTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _sideTableView.scrollEnabled = NO;
+        _sideTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _sideTableView.backgroundColor = [UIColor clearColor];
+
     }
     return _sideTableView;
 }
@@ -101,14 +107,13 @@
      cell.accessoryType = UITableViewCellAccessoryNone;
      cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell addSubview:self.nameTextField];
-    self.nameTextField.text = self.deviceInfo.nDescription;
      cell.backgroundColor = [UIColor whiteColor];
      return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 49;
+    return 80;
 }
 
 - (void)backToHomeView:(UIButton *)sender
@@ -161,7 +166,7 @@
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestRenameFriendDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
             [self backToHomeView:nil];
-
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
         }];
     }else{
         NSDictionary *para = @{
@@ -177,6 +182,7 @@
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestRenameMyDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
             [self backToHomeView:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
         }];
     }
 }

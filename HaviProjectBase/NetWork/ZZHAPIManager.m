@@ -296,6 +296,16 @@ static ZZHAPIManager *_apiManager = nil;
     }];
 }
 
+- (void)requestWeather:(NSDictionary *)params andBlock:(void (^)(WeatherModel *weatherModel,NSError *error))block
+{
+    NSString *aPath = [NSString stringWithFormat:@"v1/app/GetWeather?City=%@&Province=%@",[params objectForKey:@"city"],[params objectForKey:@"province"]];
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:nil withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+        NSDictionary *dic = (NSDictionary *)data;
+        WeatherModel *sensorModel = [WeatherModel modelWithDictionary:dic];
+        block(sensorModel,error);
+    }];
+}
+
 - (void)requestGetSensorDataParams:(NSDictionary *)params andBlock:(void (^)(SensorDataModel *sensorModel,NSError *error))block
 {
     NSString *aPath = [NSString stringWithFormat:@"v1/app/SensorDataHistory?UUID=%@&DataProperty=%@&FromDate=%@&EndDate=%@&FromTime=18:00&EndTime=18:00",[params objectForKey:@"UUID"],[params objectForKey:@"DataProperty"],[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"]];

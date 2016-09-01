@@ -127,6 +127,11 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
         }
     }];
     
+    [[NSNotificationCenter defaultCenter]addObserverForName:@"changeToDeveceList" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        @strongify(self);
+        [self showViewControllerAtIndex:2 animated:YES];
+    }];
+    
     [[NSNotificationCenter defaultCenter]addObserverForName:kReportTagSelected object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         NSDictionary *dic = (NSDictionary *)note.userInfo;
         NSInteger tag = [[dic objectForKey:@"tag"] integerValue];

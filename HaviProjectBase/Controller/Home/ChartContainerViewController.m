@@ -86,6 +86,7 @@
         }];
          [self.containerDataView setCurrentIndex:selectPageIndex animated:NO];
         self.naviBarTitle.titles = arr;
+        [self.naviBarTitle setCurrentIndex:selectPageIndex];
     }
 }
 

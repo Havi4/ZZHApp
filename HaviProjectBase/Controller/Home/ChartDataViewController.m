@@ -109,7 +109,7 @@
         [self.refreshControl endRefreshing];
         self.sleepQualityModel = qualityModel;
         [self.sensorShowTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationNone];
-        [self.sensorShowTableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] withRowAnimation:UITableViewRowAnimationNone];
+        [self.sensorShowTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 

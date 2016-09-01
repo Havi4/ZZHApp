@@ -47,7 +47,7 @@
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
-        return 49;
+        return 52;
     };
     @weakify(self);
     DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){
@@ -72,7 +72,7 @@
 {
     if (!_sleepSettingView) {
         _sleepSettingView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _sleepSettingView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _sleepSettingView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _sleepSettingView.backgroundColor = KTableViewBackGroundColor;
     }
     return _sleepSettingView;

@@ -13,6 +13,17 @@
 		2C11C9871D767BBC0032CA95 /* jtz@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9851D767BBC0032CA95 /* jtz@3x.png */; };
 		2C11C98A1D76A6D70032CA95 /* cp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9881D76A6D70032CA95 /* cp@3x.png */; };
 		2C11C98B1D76A6D70032CA95 /* erweim@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9891D76A6D70032CA95 /* erweim@3x.png */; };
+		2C11C98D1D76DBB00032CA95 /* 自定义.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C98C1D76DB800032CA95 /* 自定义.ttf */; };
+		2C11C9901D77D7A00032CA95 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C11C98F1D77D7A00032CA95 /* WeatherModel.m */; };
+		2C11C9961D77DAA60032CA95 /* CCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C11C9931D77DAA60032CA95 /* CCLocationManager.m */; };
+		2C11C9971D77DAA60032CA95 /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C11C9951D77DAA60032CA95 /* CLLocation+YCLocation.m */; };
+		2C11C9991D77DD620032CA95 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C11C9981D77DD620032CA95 /* CoreLocation.framework */; };
+		2C11C99E1D7800820032CA95 /* GetWeatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C11C99D1D7800820032CA95 /* GetWeatherAPI.m */; };
+		2C11C9A71D780F710032CA95 /* bed-d@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9A51D780F710032CA95 /* bed-d@3x.png */; };
+		2C11C9A81D780F710032CA95 /* bed-s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9A61D780F710032CA95 /* bed-s@3x.png */; };
+		2C11C9B21D780FC10032CA95 /* ji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9AF1D780FC10032CA95 /* ji@3x.png */; };
+		2C11C9B31D780FC10032CA95 /* month@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9B01D780FC10032CA95 /* month@3x.png */; };
+		2C11C9B41D780FC10032CA95 /* week@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C11C9B11D780FC10032CA95 /* week@3x.png */; };
 		2C15EB761CDB1D7B00A43086 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB751CDB1D7B00A43086 /* CoreTelephony.framework */; };
 		2C15EB781CDB1D9400A43086 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB771CDB1D9400A43086 /* AudioToolbox.framework */; };
 		2C15EB7A1CDB1D9E00A43086 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */; };
@@ -622,6 +633,21 @@
 		2C11C9851D767BBC0032CA95 /* jtz@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jtz@3x.png"; sourceTree = "<group>"; };
 		2C11C9881D76A6D70032CA95 /* cp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp@3x.png"; sourceTree = "<group>"; };
 		2C11C9891D76A6D70032CA95 /* erweim@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "erweim@3x.png"; sourceTree = "<group>"; };
+		2C11C98C1D76DB800032CA95 /* 自定义.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "自定义.ttf"; sourceTree = "<group>"; };
+		2C11C98E1D77D7A00032CA95 /* WeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherModel.h; sourceTree = "<group>"; };
+		2C11C98F1D77D7A00032CA95 /* WeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherModel.m; sourceTree = "<group>"; };
+		2C11C9921D77DAA60032CA95 /* CCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLocationManager.h; sourceTree = "<group>"; };
+		2C11C9931D77DAA60032CA95 /* CCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLocationManager.m; sourceTree = "<group>"; };
+		2C11C9941D77DAA60032CA95 /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
+		2C11C9951D77DAA60032CA95 /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
+		2C11C9981D77DD620032CA95 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2C11C99C1D7800820032CA95 /* GetWeatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetWeatherAPI.h; sourceTree = "<group>"; };
+		2C11C99D1D7800820032CA95 /* GetWeatherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetWeatherAPI.m; sourceTree = "<group>"; };
+		2C11C9A51D780F710032CA95 /* bed-d@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bed-d@3x.png"; sourceTree = "<group>"; };
+		2C11C9A61D780F710032CA95 /* bed-s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bed-s@3x.png"; sourceTree = "<group>"; };
+		2C11C9AF1D780FC10032CA95 /* ji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ji@3x.png"; sourceTree = "<group>"; };
+		2C11C9B01D780FC10032CA95 /* month@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "month@3x.png"; sourceTree = "<group>"; };
+		2C11C9B11D780FC10032CA95 /* week@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "week@3x.png"; sourceTree = "<group>"; };
 		2C15EB751CDB1D7B00A43086 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2C15EB771CDB1D9400A43086 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2C15EB791CDB1D9E00A43086 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1544,6 +1570,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C11C9991D77DD620032CA95 /* CoreLocation.framework in Frameworks */,
 				2C15EB7E1CDB1DB900A43086 /* CoreMotion.framework in Frameworks */,
 				2C15EB7C1CDB1DA800A43086 /* OpenGLES.framework in Frameworks */,
 				2C15EB7A1CDB1D9E00A43086 /* AVFoundation.framework in Frameworks */,
@@ -1587,6 +1614,7 @@
 		1B9E74FF866522760DA0D025 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C11C9981D77DD620032CA95 /* CoreLocation.framework */,
 				2C15EB811CDB1DE400A43086 /* PgySDK.framework */,
 				2C15EB7F1CDB1DCC00A43086 /* PgyUpdate.framework */,
 				2C15EB7D1CDB1DB900A43086 /* CoreMotion.framework */,
@@ -1606,6 +1634,17 @@
 				4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C11C9911D77DAA60032CA95 /* CCLocation */ = {
+			isa = PBXGroup;
+			children = (
+				2C11C9921D77DAA60032CA95 /* CCLocationManager.h */,
+				2C11C9931D77DAA60032CA95 /* CCLocationManager.m */,
+				2C11C9941D77DAA60032CA95 /* CLLocation+YCLocation.h */,
+				2C11C9951D77DAA60032CA95 /* CLLocation+YCLocation.m */,
+			);
+			path = CCLocation;
 			sourceTree = "<group>";
 		};
 		2C1D9FCB1D4CC46000FA6678 /* Gauge */ = {
@@ -1751,6 +1790,11 @@
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
+				2C11C9A51D780F710032CA95 /* bed-d@3x.png */,
+				2C11C9A61D780F710032CA95 /* bed-s@3x.png */,
+				2C11C9AF1D780FC10032CA95 /* ji@3x.png */,
+				2C11C9B01D780FC10032CA95 /* month@3x.png */,
+				2C11C9B11D780FC10032CA95 /* week@3x.png */,
 				2C11C9881D76A6D70032CA95 /* cp@3x.png */,
 				2C11C9891D76A6D70032CA95 /* erweim@3x.png */,
 				2C11C9841D767BBC0032CA95 /* jiant@3x.png */,
@@ -2474,6 +2518,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C11C9911D77DAA60032CA95 /* CCLocation */,
 				2C2298181D6C1DA80086ACF5 /* JHUD */,
 				2C72A1FA1D5B304E00D85966 /* ZESementeds */,
 				2C358A391D586D8E00BEC198 /* ChartPie */,
@@ -2686,6 +2731,7 @@
 		2CD75B181C61B57000E7E076 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C11C98C1D76DB800032CA95 /* 自定义.ttf */,
 				2CD75B191C61B57000E7E076 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -2806,6 +2852,8 @@
 				2CD75B601C61C2D000E7E076 /* MyDeviceListModel.m */,
 				2CD75B611C61C2D000E7E076 /* SensorDataModel.h */,
 				2CD75B621C61C2D000E7E076 /* SensorDataModel.m */,
+				2C11C98E1D77D7A00032CA95 /* WeatherModel.h */,
+				2C11C98F1D77D7A00032CA95 /* WeatherModel.m */,
 				2CD75B631C61C2D000E7E076 /* SensorInfoModel.h */,
 				2CD75B641C61C2D000E7E076 /* SensorInfoModel.m */,
 				2CD75B651C61C2D000E7E076 /* ServerTimeModel.h */,
@@ -2835,6 +2883,8 @@
 				2CD75B881C61C68900E7E076 /* HaviNetWorkAPIClient.m */,
 				2C58727B1C7B17BC001C2F3A /* GetInavlideCodeApi.h */,
 				2C58727C1C7B17BC001C2F3A /* GetInavlideCodeApi.m */,
+				2C11C99C1D7800820032CA95 /* GetWeatherAPI.h */,
+				2C11C99D1D7800820032CA95 /* GetWeatherAPI.m */,
 			);
 			name = NetWork;
 			path = HaviProjectBase/NetWork;
@@ -3329,6 +3379,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
 						};
 					};
 					2CD75B2D1C61B57000E7E076 = {
@@ -3366,6 +3419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C11C98D1D76DBB00032CA95 /* 自定义.ttf in Resources */,
 				2C9EF34D1C7D7C04000704E2 /* getup_apng_1.apng in Resources */,
 				2C9EF3A91C7ECA94000704E2 /* btn_share_1@2x.png in Resources */,
 				2C9EF3991C7EAC74000704E2 /* btn_textbox_1.png in Resources */,
@@ -3376,6 +3430,7 @@
 				2C9EF3C51C7EFBCA000704E2 /* icon_breathe_1@2x.png in Resources */,
 				2CD014EA1C64CD22001F9514 /* icon_phone1@2x.png in Resources */,
 				2CD014E71C64CD22001F9514 /* gender@2x.png in Resources */,
+				2C11C9B41D780FC10032CA95 /* week@3x.png in Resources */,
 				2C11C9821D766F960032CA95 /* single@3x.png in Resources */,
 				2C9EF4E21C844FA3000704E2 /* chack.png in Resources */,
 				2CF2E24F1C7AB7E80007A639 /* papasscode_marker.png in Resources */,
@@ -3407,6 +3462,7 @@
 				2C8D87D21D461DC5008573EA /* sousuo@3x.png in Resources */,
 				2C96AA811D41FA4500ACCA08 /* IntroduceView3.png in Resources */,
 				2C9EF5131C854E8B000704E2 /* pic_bad_5@2x.png in Resources */,
+				2C11C9A81D780F710032CA95 /* bed-s@3x.png in Resources */,
 				2C9EF3971C7EAC69000704E2 /* btn_textbox_0.png in Resources */,
 				2C9EF4441C8037EA000704E2 /* ic_getup_1.png in Resources */,
 				2C1D9FDA1D4F18C900FA6678 /* bed_no_people@3x.png in Resources */,
@@ -3435,6 +3491,7 @@
 				2C22982D1D6C51DA0086ACF5 /* jt@3x.png in Resources */,
 				2C5872721C7AFC63001C2F3A /* LaunchScreen.storyboard in Resources */,
 				2C1D9FDE1D4F18EA00FA6678 /* breath@3x.png in Resources */,
+				2C11C9A71D780F710032CA95 /* bed-d@3x.png in Resources */,
 				2C9EF41F1C7FEF13000704E2 /* night_icon@2x.png in Resources */,
 				2C58725C1C7AED5C001C2F3A /* icon_logo_login_0@2x.png in Resources */,
 				2C96AA7E1D41F65700ACCA08 /* xinf@3x.png in Resources */,
@@ -3452,6 +3509,7 @@
 				2C3589CC1D533DD200BEC198 /* heart_cell_back@3x.png in Resources */,
 				2C9EF42C1C801CE7000704E2 /* btn_abnormal_1@2x.png in Resources */,
 				2C96AA711D41F15A00ACCA08 /* section_divide@3x.png in Resources */,
+				2C11C9B31D780FC10032CA95 /* month@3x.png in Resources */,
 				2CF2E14B1C7590550007A639 /* textbox_save_settings_0@2x.png in Resources */,
 				2C9EF3C81C7EFBCA000704E2 /* icon_turn_over_1@2x.png in Resources */,
 				2CF2E29C1C7AE0660007A639 /* read_me.txt in Resources */,
@@ -3499,6 +3557,7 @@
 				2CD014971C634001001F9514 /* icon_equipment_management_1@2x.png in Resources */,
 				2C5872551C7AEB6F001C2F3A /* icon_password_1@2x.png in Resources */,
 				2C2298161D6AF6280086ACF5 /* tz@3x.png in Resources */,
+				2C11C9B21D780FC10032CA95 /* ji@3x.png in Resources */,
 				2C1DA0301D503A2300FA6678 /* duan@3x.png in Resources */,
 				2C96AA091D40882B00ACCA08 /* password@3x.png in Resources */,
 				2C9EF5101C854E8B000704E2 /* pic_bad_2@2x.png in Resources */,
@@ -3767,6 +3826,7 @@
 				2C1DA0211D4F2BF300FA6678 /* JTHorizontalCalendarView.m in Sources */,
 				2CD75B701C61C2D000E7E076 /* BaseModel.m in Sources */,
 				2CD014D81C64BF1C001F9514 /* BaseTableViewDataDelegate.m in Sources */,
+				2C11C9901D77D7A00032CA95 /* WeatherModel.m in Sources */,
 				2CF2E2001C78A82C0007A639 /* DTTimePeriodCollection.m in Sources */,
 				2C9EF5381C8597C9000704E2 /* THPinViewController.m in Sources */,
 				2CF2E1911C75C6D30007A639 /* MMPopupCategory.m in Sources */,
@@ -3801,6 +3861,7 @@
 				2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */,
 				2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */,
 				2C1DA03B1D5088C800FA6678 /* NaviTitleScrollView.m in Sources */,
+				2C11C9971D77DAA60032CA95 /* CLLocation+YCLocation.m in Sources */,
 				2CD75B6F1C61C2D000E7E076 /* AddUserModel.m in Sources */,
 				2C9EF4331C802CB0000704E2 /* ChartTableDataDelegate.m in Sources */,
 				2C5872951C7BF0BE001C2F3A /* UIColor+SLAddition.m in Sources */,
@@ -3901,6 +3962,7 @@
 				2C9EF2E41C7C3AF8000704E2 /* HAVIPageControl.m in Sources */,
 				2C9EF4F71C852CE6000704E2 /* ScaleAnimation.m in Sources */,
 				2CD75B1A1C61B57000E7E076 /* main.m in Sources */,
+				2C11C99E1D7800820032CA95 /* GetWeatherAPI.m in Sources */,
 				2C96AA611D41101A00ACCA08 /* SCNavigationPopAnimation.m in Sources */,
 				2CD0150A1C7028DC001F9514 /* JDStatusBarStyle.m in Sources */,
 				2CF2E1E61C7860A90007A639 /* SettingDataDelegate.m in Sources */,
@@ -3982,6 +4044,7 @@
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,
 				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,
 				2C9EF4C31C83EA80000704E2 /* NSString+Common.m in Sources */,
+				2C11C9961D77DAA60032CA95 /* CCLocationManager.m in Sources */,
 				2C96AA201D40C5E000ACCA08 /* V2MenuSectionCell.m in Sources */,
 				2C96AA2A1D40D65800ACCA08 /* ViewFrameAccessor.m in Sources */,
 				2CDB2DC81CE471B300E931F0 /* Reachability.m in Sources */,

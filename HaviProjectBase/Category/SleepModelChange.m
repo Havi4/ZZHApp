@@ -267,7 +267,7 @@
                     
                     NSString *timei = [NSString stringWithFormat:@"%@",datai.propertyDate];
                     NSString *timej = [NSString stringWithFormat:@"%@",dataj.propertyDate];
-                    NSString *time = [NSString stringWithFormat:@"%@",[timei substringWithRange:NSMakeRange(11, 5)]];
+                    NSString *time = [NSString stringWithFormat:@"%@-%@",[timei substringWithRange:NSMakeRange(11, 5)],[timej substringWithRange:NSMakeRange(11, 5)]];
                     [dic setObject:time forKey:@"name"];
                     [dic setObject:[UIColor clearColor] forKey:@"strokeColor"];
                     [dic setObject:[NSNumber numberWithDouble:timeSub] forKey:@"value"];

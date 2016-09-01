@@ -42,6 +42,7 @@
 #define kTextFieldWordColor [UIColor lightGrayColor]
 //time
 #define kCodeValideTime 10*60
+#define kNumberFont(_font) [UIFont fontWithName:@"Roboto-Light" size:_font]
 //new-end
 
 #define kDefaultColor [UIColor whiteColor]
@@ -76,6 +77,9 @@
 #define ISIPHON4 [UIScreen mainScreen].bounds.size.height==480 ? YES:NO
 #define ISIPHON6S [UIScreen mainScreen].bounds.size.height>568 ? YES:NO
 
+#define IS_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
+
+
 //睡眠设置中
 
 
@@ -97,6 +101,7 @@
 #define kUserChangeUUIDInCenterView @"kUserChangeUUIDInCenterView"
 #define kUserTapedDataReportButton @"kUserTapedDataReportButton"
 #define kReportTagSelected         @"kReportTagSelected"
+#define kGetWeatherData         @"kGetWeatherData"
 
 #define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
 [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]

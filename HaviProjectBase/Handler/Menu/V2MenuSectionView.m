@@ -25,6 +25,10 @@ static CGFloat const kAvatarHeight = 70.0f;
 @property (nonatomic, strong) UILabel     *usernameLabel;
 @property (nonatomic, strong) UILabel     *userPhoneLabel;
 @property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) UIView *weatherBackView;
+@property (nonatomic, strong) UILabel *tem;
+@property (nonatomic, strong) UILabel *city;
+@property (nonatomic, strong) UIImageView *weatherImage;
 
 //@property (nonatomic, strong) SCActionSheet      *actionSheet;
 
@@ -69,6 +73,20 @@ static CGFloat const kAvatarHeight = 70.0f;
     [self addSubview:self.tableView];
     
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    self.weatherBackView = [[UIView alloc]initWithFrame:CGRectZero];
+    self.weatherBackView.backgroundColor = [UIColor clearColor];
+    [self addSubview:self.weatherBackView];
+    
+    _tem = [[UILabel alloc]init];
+    self.weatherBackView.frame = CGRectZero;
+    [self.weatherBackView addSubview:_tem];
+    
+    _city = [[UILabel alloc]init];
+    self.weatherBackView.frame = CGRectZero;
+    [self.weatherBackView addSubview:_city];
+    
+    _weatherImage = [[UIImageView alloc]initWithFrame:CGRectZero];
+    [self.weatherBackView addSubview:_weatherImage];
 }
 
 - (void)configureProfileView {
@@ -149,6 +167,15 @@ static CGFloat const kAvatarHeight = 70.0f;
     [[NSNotificationCenter defaultCenter]addObserverForName:kUserTapedDataReportButton object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self setSelectedIndex:1];
     }];
+    
+    [[NSNotificationCenter defaultCenter]addObserverForName:kGetWeatherData object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary *dic = [note userInfo];
+        NSData *weather = [dic objectForKey:@"data"];
+        NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:weather options:NSJSONReadingMutableContainers error:nil];
+        DeBugLog(@"天起字典是%@",weatherDic);
+        self.tem.text = [[weatherDic objectForKey:@"Weather"] objectForKey:@"Temp"];
+        self.city.text = [[weatherDic objectForKey:@"Weather"] objectForKey:@"City"];
+    }];
 
 
 }
@@ -164,10 +191,17 @@ static CGFloat const kAvatarHeight = 70.0f;
 //    self.divideImageView.frame = (CGRect){80, kAvatarHeight + 50, 80, 0.5};
 //    self.divideImageView.frame = (CGRect){-self.width, kAvatarHeight + 50, self.width * 2, 0.5};
     self.tableView.frame = (CGRect){0, 0, self.width, self.height};
+    self.weatherBackView.frame = (CGRect){160, self.height-60, self.width-160, 60};
     self.tableView.showsVerticalScrollIndicator = NO;
     self.usernameLabel.frame = (CGRect){0,100,self.width,35};
     self.userPhoneLabel.frame = (CGRect){0,130,self.width,35};
     [self.avatarButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
+    self.tem.frame = (CGRect){50,-16,100,40};
+    self.tem.font = kNumberFont(25);
+    self.city.frame = (CGRect){50,24,100,20};
+    self.city.font = kNumberFont(17);
+    self.weatherImage.frame = (CGRect){0,-16,20,20};
+    
 //
 }
 

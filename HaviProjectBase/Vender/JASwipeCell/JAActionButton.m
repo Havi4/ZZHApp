@@ -44,7 +44,7 @@
         [self setTitle:title forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.titleLabel setNumberOfLines:2];
+        [self.titleLabel setNumberOfLines:0];
         self.backgroundColor = color;
     }
     return self;

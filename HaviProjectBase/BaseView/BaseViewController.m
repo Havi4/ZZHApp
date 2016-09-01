@@ -83,8 +83,8 @@
 - (LXActivity*)shareNewMenuView
 {
     
-    NSArray *shareButtonTitleArray = @[@"朋友圈",@"微信好友",@"新浪微博",@"QQ好友",@"QQ空间"];
-    NSArray *shareButtonImageNameArray = @[@"icon_wechat",@"weixin1",@"sina1",@"qq1",@"qqzone"];
+    NSArray *shareButtonTitleArray = @[@"朋友圈",@"微信好友",@"新浪微博",@"QQ好友"];
+    NSArray *shareButtonImageNameArray = @[@"icon_wechat",@"weixin1",@"sina1",@"qq1"];
     
     _shareNewMenuView = [[LXActivity alloc] initWithTitle:@"分享到社交平台" delegate:self cancelButtonTitle:nil ShareButtonTitles:shareButtonTitleArray withShareButtonImagesName:shareButtonImageNameArray];
     return _shareNewMenuView;
@@ -420,8 +420,7 @@
     MMPopupItemHandler block = ^(NSInteger index){
         DeBugLog(@"clickd %@ button",@(index));
         if (index == 1) {
-            DeviceListViewController *controller = [[DeviceListViewController alloc]init];
-            self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"changeToDeveceList" object:nil];
         }
     };
     NSArray *items =

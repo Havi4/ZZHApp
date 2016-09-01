@@ -76,7 +76,7 @@
     if (!_animationView) {
         _animationView = [[JTNumberScrollAnimatedView alloc]init];
         _animationView.textColor = [UIColor whiteColor];
-        _animationView.font = [UIFont systemFontOfSize:50];
+        _animationView.font = kNumberFont(50);
         _animationView.frame = (CGRect){self.frame.size.width/2-30-10,self.frame.size.height/2-25,60,50};
         _animationView.minLength = 1;
     }

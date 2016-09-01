@@ -347,10 +347,6 @@
     [smtlk SendSmartlinkEnd:@"" moduelIp:@""];
     smtlk = nil;
 }
-- (void)dealloc
-{
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

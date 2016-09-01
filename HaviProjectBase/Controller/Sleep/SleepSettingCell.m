@@ -68,14 +68,32 @@
             {
                 NSString *cellString = userInfo.nUserInfo.sleepStartTime.length == 0 ? @"18:00":userInfo.nUserInfo.sleepStartTime;
                 [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
+                _cellInfoButton.titleLabel.font = kNumberFont(30);
+                UIImageView *triage2 = [[UIImageView alloc]init];
+                [self addSubview:triage2];
+                triage2.image = [UIImage imageNamed:@"triagle"];
+                [triage2 makeConstraints:^(MASConstraintMaker *make) {
+                    make.right.equalTo(_cellInfoButton.mas_right).offset(10);
+                    make.top.equalTo(self.mas_top).offset(10);
+                    make.height.width.equalTo(@12);
+                }];
                 break;
             }
             case 1:{
                 NSString *cellString = userInfo.nUserInfo.sleepEndTime.length == 0?@"06:00":userInfo.nUserInfo.sleepEndTime;
                 [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
+                _cellInfoButton.titleLabel.font = kNumberFont(30);
+                UIImageView *triage2 = [[UIImageView alloc]init];
+                [self addSubview:triage2];
+                triage2.image = [UIImage imageNamed:@"triagle"];
+                [triage2 makeConstraints:^(MASConstraintMaker *make) {
+                    make.right.equalTo(_cellInfoButton.mas_right).offset(10);
+                    make.top.equalTo(self.mas_top).offset(10);
+                    make.height.width.equalTo(@12);
+                }];
                 break;
             }
-            case 2:{
+            case 4:{
                 [[NSUserDefaults standardUserDefaults]registerDefaults:@{kAlarmStatusValue:@"False"}];
                 [[NSUserDefaults standardUserDefaults]synchronize];
                 [[NSUserDefaults standardUserDefaults]registerDefaults:@{kAlarmTimeValue:@"08:00"}];
@@ -99,7 +117,7 @@
                 [_cellInfoButton setTitle:time forState:UIControlStateNormal];
                 break;
             }
-            case 3:{
+            case 2:{
                 if ([userInfo.nUserInfo.isTimeoutAlarmSleepTooLong isEqualToString:@"True"]) {
                     [_cellInfoSwitch setOn:YES];
                     _cellInfoButton.userInteractionEnabled = YES;
@@ -109,16 +127,19 @@
                 }
                 int time = [userInfo.nUserInfo.alarmTimeSleepTooLong intValue];
                 if (time > 60) {
-                    NSString *cellString = [NSString stringWithFormat:@"久睡%d小时%d分钟警告",time/60,time%60];
+                    NSString *cellString = [NSString stringWithFormat:@"%d小时%d分钟",time/60,time%60];
                     [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
                     
+                    
                 }else{
-                    NSString *cellString = [NSString stringWithFormat:@"久睡%d分钟警告",time];
+                    NSString *cellString = [NSString stringWithFormat:@"%d分钟",time];
                     [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
                 }
+                _cellInfoButton.titleLabel.font = kNumberFont(25);
+
                 break;
             }
-            case 4:{
+            case 3:{
                 if ([userInfo.nUserInfo.isTimeoutAlarmOutOfBed isEqualToString:@"True"]) {
                     [_cellInfoSwitch setOn:YES];
                     _cellInfoButton.userInteractionEnabled = YES;
@@ -128,13 +149,15 @@
                 }
                 int time = [userInfo.nUserInfo.alarmTimeOutOfBed intValue];
                 if (time > 60) {
-                    NSString *cellString = [NSString stringWithFormat:@"离床%d分钟警告",time/60];
+                    NSString *cellString = [NSString stringWithFormat:@"%d分钟",time/60];
                     [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
 
                 }else{
-                    NSString *cellString = [NSString stringWithFormat:@"离床%d秒警告",time];
+                    NSString *cellString = [NSString stringWithFormat:@"%d秒",time];
                     [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
                 }
+                _cellInfoButton.titleLabel.font = kNumberFont(25);
+
                 break;
             }
                 
@@ -143,7 +166,7 @@
         }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (void)cellButtonTaped:(UIButton *)button

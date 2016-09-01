@@ -101,7 +101,7 @@
         self.cellRightButtonTaped(DeleteCell,indexPath,[self itemAtIndexPath:indexPath],cell);
     }];
     
-    JAActionButton *button2 = [JAActionButton actionButtonWithTitle:@"重命名" color:kFlagButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
+    JAActionButton *button2 = [JAActionButton actionButtonWithTitle:@"命名" color:kFlagButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
         @strongify(self);
         [cell resetContainerView];
         NSIndexPath *indexPath = [table indexPathForCell:cell];

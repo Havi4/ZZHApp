@@ -53,7 +53,7 @@
 //        [self addControllerToCellArrayWithClassName:@[@"PersonManagerViewController",@"SelectThemeViewController",@"PassCodeSettingViewController"]];
     }
     [self addControllerToCellArrayWithClassName:@[@"UserProtocolViewController",@"AboutMeViewController"]];
-    [self addControllerToCellArrayWithClassName:@[@"ChangeLanguageViewController"]];
+//    [self addControllerToCellArrayWithClassName:@[@"ChangeLanguageViewController"]];
     [self addControllerToCellArrayWithClassName:@[@""]];
     
     
