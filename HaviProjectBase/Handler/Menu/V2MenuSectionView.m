@@ -29,6 +29,7 @@ static CGFloat const kAvatarHeight = 70.0f;
 @property (nonatomic, strong) UILabel *tem;
 @property (nonatomic, strong) UILabel *city;
 @property (nonatomic, strong) UIImageView *weatherImage;
+@property (nonatomic, strong) UIImageView *locationImage;
 
 //@property (nonatomic, strong) SCActionSheet      *actionSheet;
 
@@ -87,6 +88,8 @@ static CGFloat const kAvatarHeight = 70.0f;
     
     _weatherImage = [[UIImageView alloc]initWithFrame:CGRectZero];
     [self.weatherBackView addSubview:_weatherImage];
+    _locationImage = [[UIImageView alloc]initWithFrame:CGRectZero];
+    [self.weatherBackView addSubview:_locationImage];
 }
 
 - (void)configureProfileView {
@@ -175,6 +178,10 @@ static CGFloat const kAvatarHeight = 70.0f;
         DeBugLog(@"天起字典是%@",weatherDic);
         self.tem.text = [[weatherDic objectForKey:@"Weather"] objectForKey:@"Temp"];
         self.city.text = [[weatherDic objectForKey:@"Weather"] objectForKey:@"City"];
+        int weatherCode = [[[weatherDic objectForKey:@"Weather"] objectForKey:@"WeatherCode"] intValue];
+        self.weatherImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"weather_%d",weatherCode]];
+        self.locationImage.image = [UIImage imageNamed:@"location"];
+
     }];
 
 
@@ -196,11 +203,13 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.usernameLabel.frame = (CGRect){0,100,self.width,35};
     self.userPhoneLabel.frame = (CGRect){0,130,self.width,35};
     [self.avatarButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
-    self.tem.frame = (CGRect){50,-16,100,40};
-    self.tem.font = kNumberFont(25);
-    self.city.frame = (CGRect){50,24,100,20};
+    self.tem.frame = (CGRect){50,24,100,20};
+    self.tem.font = kNumberFont(17);
+    self.city.frame = (CGRect){50,-16,100,40};
     self.city.font = kNumberFont(17);
-    self.weatherImage.frame = (CGRect){0,-16,20,20};
+    self.locationImage.frame = (CGRect){35,-1,10,10};
+    self.weatherImage.frame = (CGRect){20,20,20,20};
+    self.weatherImage.contentMode = UIViewContentModeScaleAspectFill;
     
 //
 }
