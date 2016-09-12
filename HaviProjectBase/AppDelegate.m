@@ -107,12 +107,14 @@
                 //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
                 city = placemark.administrativeArea;
             }
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":city}];
             NSDictionary *dic19 = @{
                                     @"city" : [city substringToIndex:city.length-1],
                                     @"province": [province substringToIndex:city.length-1]
                                     };
             [GetWeatherAPI getWeatherInfoWith:dic19 finished:^(NSURLResponse *response, NSData *data) {
-                DeBugLog(@"天气是%@",data);
+                NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                DeBugLog(@"天气是%@",weatherDic);
                 [[NSNotificationCenter defaultCenter]postNotificationName:kGetWeatherData object:nil userInfo:@{@"data":data}];
             } failed:^(NSURLResponse *response, NSError *error) {
                 

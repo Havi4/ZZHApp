@@ -22,6 +22,7 @@
 #import "AllDeviceModel.h"
 #import "AssessmentListModel.h"
 #import "WeatherModel.h"
+#import "ArticleModel.h"
 
 @interface ZZHAPIManager : NSObject
 
@@ -126,6 +127,8 @@
 - (void)requestRealSensorDataParams:(NSDictionary *)params andBlock:(void (^)(SensorDataModel *sensorModel,NSError *error))block;
 //推送id
 - (void)requestRegisterUserIdForPush:(NSDictionary *)params andBlock:(void (^)(BaseModel *baseModel,NSError *error))block;
+
+- (void)requestArticle:(NSDictionary *)params andBlock:(void (^)(ArticleModel *baseModel,NSError *error))block;
 
 - (void)requestWeather:(NSDictionary *)params andBlock:(void (^)(WeatherModel *weatherModel,NSError *error))block;
 //睡眠质量

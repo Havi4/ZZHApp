@@ -91,8 +91,6 @@
 {
     // Rewrite this func in SubClass !
     
-    
-    
     SleepQualityModel *model = objInfo;
     @weakify(self);
     [SleepModelChange changeSleepQualityModel:model callBack:^(id callBack) {

@@ -223,6 +223,7 @@
 }
 
 -(void)setPercentage:(double)percentage{
+    [_progressLayer removeAllAnimations];
     _progressLayer.strokeStart = 0.0;
     [self.animationView setValue:[NSNumber numberWithInt:percentage*20]];
     [self.animationView startAnimation];

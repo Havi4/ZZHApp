@@ -18,6 +18,7 @@
 #import "SCNavigationController.h"
 #import "NaviTitleScrollView.h"
 #import "ConsultVViewController.h"
+#import "ConversationListViewController.h"
 
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @interface CenterViewController ()<CLWeeklyCalendarViewDelegate,UIViewControllerTransitioningDelegate>
@@ -72,8 +73,13 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)createBarItems
 {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshDate:) name:@"kSelectedNewDate" object:nil];
     self.naviBarTitle = [[NaviTitleScrollView alloc]initWithFrame:(CGRect){(self.view.frame.size.width-100)/2.0+1,20,100,44}];
     self.naviBarTitle.userInteractionEnabled = NO;
+    UITapGestureRecognizer *geture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapchangeNet:)];
+    geture.numberOfTapsRequired = 5;
+    self.naviBarTitle.userInteractionEnabled = YES;
+    [self.naviBarTitle addGestureRecognizer:geture];
     self.naviBarTitle.backgroundColor = [UIColor clearColor];
     selectedDateToUse = [NSDate date];
     self.backgroundImageView.image = [UIImage imageNamed:@"home_back@3x"];
@@ -99,6 +105,18 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     [self.sc_navigationBar addSubview:self.naviBarTitle];
     self.sc_navigationBar.backgroundColor = [UIColor clearColor];
 
+}
+
+- (void)tapchangeNet:(UIGestureRecognizer *)geture
+{
+    if ([NSObject baseURLStrIsTest]) {
+        DeBugLog(@"正式网络切换ok");
+        [NSObject changeBaseURLStrToTest:NO];
+    }else{
+        DeBugLog(@"测试网络切换ok");
+        [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":@"上海"}];
+        [NSObject changeBaseURLStrToTest:YES];
+    }
 }
 
 - (void)initNaviBarView
@@ -184,7 +202,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)showCalendarView:(UIButton *)button
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshDate:) name:@"kSelectedNewDate" object:nil];
+    
     NewCalendarViewController *modal = [[NewCalendarViewController alloc] init];
     SCNavigationController *navi = [[SCNavigationController alloc]initWithRootViewController:modal];//
     [self presentViewController:navi animated:YES completion:^{
@@ -200,9 +218,12 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     [self.calendarButton setTitle:dateTime forState:UIControlStateNormal];
     __block NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:selectedDateToUse];
     __block NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[selectedDateToUse dateByAddingDays:-1]];
-    [self.containerDataView.childViewControllers enumerateObjectsUsingBlock:^(__kindof CenterDataShowViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
-    }];
+    for (CenterDataShowViewController *center in self.containerDataView.childViewControllers) {
+        [center getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
+    }
+//    [self.containerDataView.childViewControllers enumerateObjectsUsingBlock:^(__kindof CenterDataShowViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//    }];
 }
 
 #pragma mark setter
@@ -335,8 +356,10 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     KxMenuItem *item = (KxMenuItem *)sender;
     if ([item.title isEqualToString:@"快速提问"]) {
-        ConsultVViewController *consult = [[ConsultVViewController alloc]init];
-        [self.navigationController pushViewController:consult animated:YES];
+//        ConsultVViewController *consult = [[ConsultVViewController alloc]init];
+//        [self.navigationController pushViewController:consult animated:YES];
+        ConversationListViewController *c = [[ConversationListViewController alloc]init];
+        [self.navigationController pushViewController:c animated:YES];
     }else if ([item.title isEqualToString:@"分享应用"]){
         [self shareApp:nil];
     }

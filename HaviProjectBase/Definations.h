@@ -13,7 +13,7 @@
 #endif /* Definations_h */
 
 #define kAppBaseURL @"http://webservice.meddo99.com:9000/"
-#define kAppTestBaseURL @"http://webservice.meddo99.com:9001/"
+#define kAppTestBaseURL @"http://testzzhapi.meddo99.com:8088/"
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 
 #define kWXPlatform @"wx.com"
@@ -102,6 +102,7 @@
 #define kUserTapedDataReportButton @"kUserTapedDataReportButton"
 #define kReportTagSelected         @"kReportTagSelected"
 #define kGetWeatherData         @"kGetWeatherData"
+#define kGetCurrentCity         @"kGetCurrentCity"
 
 #define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
 [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]

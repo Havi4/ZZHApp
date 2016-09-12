@@ -229,9 +229,9 @@
             [_calendarContentView loadPreviousPageWithAnimation];
         }
     }
+//    DeBugLog(@"测试价值");
     [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"kSelectedNewDate" object:nil userInfo:@{@"date":_dateSelected}];
-
+        
     }];
 }
 
@@ -277,6 +277,14 @@
         }
         
         [_eventsByDate[key] addObject:randomDate];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    if (_dateSelected) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"kSelectedNewDate" object:nil userInfo:@{@"date":_dateSelected}];
     }
 }
 @end

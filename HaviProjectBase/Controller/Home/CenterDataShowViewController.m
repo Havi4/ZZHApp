@@ -37,6 +37,32 @@
     NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[NSDate date]];
     NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[[NSDate date] dateByAddingDays:-1]];
     [self getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
+    [self configNoti];
+}
+
+- (void)configNoti
+{
+    [[NSNotificationCenter defaultCenter]addObserverForName:kGetCurrentCity object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary *dic = note.userInfo;
+        [self getAriticleList:dic];
+    }];
+}
+
+- (void)getAriticleList:(NSDictionary *)dic
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    NSDictionary *dic19 = @{
+                            @"UUID" : self.deviceUUID,
+                            @"FromDate": self.queryStartTime,
+                            @"EndDate": self.queryEndTime,
+                            @"City":[dic objectForKey:@"city"],
+                            @"UserId":thirdPartyLoginUserId
+                            };
+    @weakify(self);
+    [client requestArticle:dic19 andBlock:^(ArticleModel *baseModel, NSError *error) {
+        @strongify(self);
+        DeBugLog(@"文章列表%@",baseModel);
+    }];
 }
 
 - (void)initPushController
@@ -131,6 +157,7 @@
                             @"EndDate": self.queryEndTime,
                             };
     @weakify(self);
+    
     [client requestGetSleepQualityParams:dic19 andBlock:^(SleepQualityModel *qualityModel, NSError *error) {
         @strongify(self);
         self.sleepQualityModel = qualityModel;

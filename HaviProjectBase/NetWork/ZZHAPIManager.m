@@ -316,6 +316,16 @@ static ZZHAPIManager *_apiManager = nil;
     }];
 }
 
+- (void)requestArticle:(NSDictionary *)params andBlock:(void (^)(ArticleModel *baseModel,NSError *error))block
+{
+    NSString *aPath = [NSString stringWithFormat:@"v1/news/CustomArticle?UUID=%@&UserId=%@&FromDate=%@&EndDate=%@&City=%@",[params objectForKey:@"UUID"],[params objectForKey:@"UserId"],[params objectForKey:@"FromDate"],[params objectForKey:@"EndDate"],[params objectForKey:@"City"]];
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:nil withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+        NSDictionary *dic = (NSDictionary *)data;
+        ArticleModel *sensorModel = [ArticleModel modelWithDictionary:dic];
+        block(sensorModel,error);
+    }];
+}
+
 - (void)requestRealSensorDataParams:(NSDictionary *)params andBlock:(void (^)(SensorDataModel *sensorModel,NSError *error))block
 {
     NSString *aPath = [NSString stringWithFormat:@"v1/app/SensorDataRealtime?UUID=%@&DataProperty=%@&FromDate=%@&FromTime=%@",[params objectForKey:@"UUID"],[params objectForKey:@"DataProperty"],[params objectForKey:@"FromDate"],[params objectForKey:@"FromTime"]];

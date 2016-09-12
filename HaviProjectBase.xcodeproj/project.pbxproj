@@ -116,6 +116,12 @@
 		2C457B521D86303900FFAB95 /* tuoy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C457B4E1D86303900FFAB95 /* tuoy.png */; };
 		2C457B531D86303900FFAB95 /* xuanze.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C457B4F1D86303900FFAB95 /* xuanze.png */; };
 		2C457B551D86328D00FFAB95 /* wenzhen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C457B541D86328D00FFAB95 /* wenzhen.png */; };
+		2C457B5A1D86453900FFAB95 /* ConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B591D86453900FFAB95 /* ConversationListViewController.m */; };
+		2C457B5D1D86461A00FFAB95 /* ConversationListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B5C1D86461A00FFAB95 /* ConversationListTableViewCell.m */; };
+		2C457B601D8674FE00FFAB95 /* ArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B5F1D8674FE00FFAB95 /* ArticleModel.m */; };
+		2C457B661D86961F00FFAB95 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B631D86961F00FFAB95 /* NJKWebViewProgress.m */; };
+		2C457B671D86961F00FFAB95 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B651D86961F00FFAB95 /* NJKWebViewProgressView.m */; };
+		2C457B6B1D86965C00FFAB95 /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B6A1D86965C00FFAB95 /* ArticleViewController.m */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -806,6 +812,18 @@
 		2C457B4E1D86303900FFAB95 /* tuoy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuoy.png; sourceTree = "<group>"; };
 		2C457B4F1D86303900FFAB95 /* xuanze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuanze.png; sourceTree = "<group>"; };
 		2C457B541D86328D00FFAB95 /* wenzhen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wenzhen.png; sourceTree = "<group>"; };
+		2C457B581D86453900FFAB95 /* ConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConversationListViewController.h; path = NewUI/ConversationListViewController.h; sourceTree = "<group>"; };
+		2C457B591D86453900FFAB95 /* ConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConversationListViewController.m; path = NewUI/ConversationListViewController.m; sourceTree = "<group>"; };
+		2C457B5B1D86461A00FFAB95 /* ConversationListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConversationListTableViewCell.h; path = NewUI/ConversationListTableViewCell.h; sourceTree = "<group>"; };
+		2C457B5C1D86461A00FFAB95 /* ConversationListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConversationListTableViewCell.m; path = NewUI/ConversationListTableViewCell.m; sourceTree = "<group>"; };
+		2C457B5E1D8674FE00FFAB95 /* ArticleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleModel.h; sourceTree = "<group>"; };
+		2C457B5F1D8674FE00FFAB95 /* ArticleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleModel.m; sourceTree = "<group>"; };
+		2C457B621D86961F00FFAB95 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		2C457B631D86961F00FFAB95 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		2C457B641D86961F00FFAB95 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
+		2C457B651D86961F00FFAB95 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
+		2C457B691D86965C00FFAB95 /* ArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleViewController.h; path = NewUI/ArticleViewController.h; sourceTree = "<group>"; };
+		2C457B6A1D86965C00FFAB95 /* ArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleViewController.m; path = NewUI/ArticleViewController.m; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1803,6 +1821,16 @@
 		2C457B3F1D85985900FFAB95 /* Doctor */ = {
 			isa = PBXGroup;
 			children = (
+				2C457B681D86963F00FFAB95 /* Article */,
+				2C457B571D8644B300FFAB95 /* Conversation */,
+				2C457B561D8644AA00FFAB95 /* Consult */,
+			);
+			name = Doctor;
+			sourceTree = "<group>";
+		};
+		2C457B561D8644AA00FFAB95 /* Consult */ = {
+			isa = PBXGroup;
+			children = (
 				2C457B401D8598A200FFAB95 /* ConsultVViewController.h */,
 				2C457B411D8598A200FFAB95 /* ConsultVViewController.m */,
 				2C457B431D85A0B700FFAB95 /* ConsultTableViewCell.h */,
@@ -1817,7 +1845,38 @@
 				2C457B4E1D86303900FFAB95 /* tuoy.png */,
 				2C457B4F1D86303900FFAB95 /* xuanze.png */,
 			);
-			name = Doctor;
+			name = Consult;
+			sourceTree = "<group>";
+		};
+		2C457B571D8644B300FFAB95 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				2C457B581D86453900FFAB95 /* ConversationListViewController.h */,
+				2C457B591D86453900FFAB95 /* ConversationListViewController.m */,
+				2C457B5B1D86461A00FFAB95 /* ConversationListTableViewCell.h */,
+				2C457B5C1D86461A00FFAB95 /* ConversationListTableViewCell.m */,
+			);
+			name = Conversation;
+			sourceTree = "<group>";
+		};
+		2C457B611D86961F00FFAB95 /* NJKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				2C457B621D86961F00FFAB95 /* NJKWebViewProgress.h */,
+				2C457B631D86961F00FFAB95 /* NJKWebViewProgress.m */,
+				2C457B641D86961F00FFAB95 /* NJKWebViewProgressView.h */,
+				2C457B651D86961F00FFAB95 /* NJKWebViewProgressView.m */,
+			);
+			path = NJKWebViewProgress;
+			sourceTree = "<group>";
+		};
+		2C457B681D86963F00FFAB95 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				2C457B691D86965C00FFAB95 /* ArticleViewController.h */,
+				2C457B6A1D86965C00FFAB95 /* ArticleViewController.m */,
+			);
+			name = Article;
 			sourceTree = "<group>";
 		};
 		2C58728E1C7BF0BE001C2F3A /* SLPageController */ = {
@@ -2584,6 +2643,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C457B611D86961F00FFAB95 /* NJKWebViewProgress */,
 				2C11C9911D77DAA60032CA95 /* CCLocation */,
 				2C2298181D6C1DA80086ACF5 /* JHUD */,
 				2C72A1FA1D5B304E00D85966 /* ZESementeds */,
@@ -2934,6 +2994,8 @@
 				2C9EF2E01C7C2AFC000704E2 /* AllDeviceModel.m */,
 				2C9EF5141C8550D8000704E2 /* AssessmentListModel.h */,
 				2C9EF5151C8550D8000704E2 /* AssessmentListModel.m */,
+				2C457B5E1D8674FE00FFAB95 /* ArticleModel.h */,
+				2C457B5F1D8674FE00FFAB95 /* ArticleModel.m */,
 			);
 			name = Model;
 			path = HaviProjectBase/Model;
@@ -3938,6 +4000,7 @@
 				2CD75B781C61C2D000E7E076 /* ServerTimeModelTwo.m in Sources */,
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
 				2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */,
+				2C457B661D86961F00FFAB95 /* NJKWebViewProgress.m in Sources */,
 				2C1DA0241D4F2BF300FA6678 /* ZZHCalendarCircleView.m in Sources */,
 				2C457B451D85A0B700FFAB95 /* ConsultTableViewCell.m in Sources */,
 				2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */,
@@ -3980,6 +4043,7 @@
 				2C9EF4DC1C844FA3000704E2 /* CalendarDayModel.m in Sources */,
 				2C96AA641D41101A00ACCA08 /* V2NavigationBar.m in Sources */,
 				2C72A1F71D59C37C00D85966 /* TurnAroundView.m in Sources */,
+				2C457B671D86961F00FFAB95 /* NJKWebViewProgressView.m in Sources */,
 				2C9EF3F31C7F0B99000704E2 /* QuaterReportView.m in Sources */,
 				2C9EF5001C85358A000704E2 /* DiagnoseReportViewController.m in Sources */,
 				2C9EF4681C805CCB000704E2 /* CalendarDateCaculate.m in Sources */,
@@ -4005,6 +4069,7 @@
 				2C9EF3B81C7EF616000704E2 /* SensorReportTableViewCell.m in Sources */,
 				2C9EF4301C802A3D000704E2 /* ChartTableViewController.m in Sources */,
 				2C9EF3F21C7F0B99000704E2 /* PNLineView.m in Sources */,
+				2C457B6B1D86965C00FFAB95 /* ArticleViewController.m in Sources */,
 				2CD014D11C64BB0B001F9514 /* PersonInfoTableViewCell.m in Sources */,
 				2C9EF3B21C7EF4C9000704E2 /* SensorTitleTableViewCell.m in Sources */,
 				2CD75B1D1C61B57000E7E076 /* AppDelegate.m in Sources */,
@@ -4018,6 +4083,7 @@
 				2CD015141C704485001F9514 /* RMDateSelectionViewController.m in Sources */,
 				2C9EF3F71C7F0B99000704E2 /* WeekReportView.m in Sources */,
 				2C9EF4AB1C82FBC3000704E2 /* WTURLRequestOperation.m in Sources */,
+				2C457B5A1D86453900FFAB95 /* ConversationListViewController.m in Sources */,
 				2C1DA0171D4F2BF300FA6678 /* JTCalendarManager.m in Sources */,
 				2C9EF5031C8535A9000704E2 /* DiagnoseReportTableViewCell.m in Sources */,
 				2C9EF4741C80B692000704E2 /* QuaterCalenderView.m in Sources */,
@@ -4077,6 +4143,7 @@
 				2CF2E13D1C7579440007A639 /* ReactiveSingleViewController.m in Sources */,
 				2C9EF4F91C852CE6000704E2 /* SlideAnimation.m in Sources */,
 				2CD75B9A1C61F62B00E7E076 /* UIViewController+JASidePanel.m in Sources */,
+				2C457B5D1D86461A00FFAB95 /* ConversationListTableViewCell.m in Sources */,
 				2CD015381C70BD92001F9514 /* MyDeviceTableViewCell.m in Sources */,
 				2C9EF3EC1C7F0B99000704E2 /* CBChartView.m in Sources */,
 				2CD014B91C6355F1001F9514 /* PersonInfoNaviView.m in Sources */,
@@ -4104,6 +4171,7 @@
 				2C9EF3201C7CA18A000704E2 /* CenterDataTableViewCell.m in Sources */,
 				2CF2E2101C79D0510007A639 /* AppSettingDelegate.m in Sources */,
 				2C1DA01C1D4F2BF300FA6678 /* JTCalendarDayView.m in Sources */,
+				2C457B601D8674FE00FFAB95 /* ArticleModel.m in Sources */,
 				2CD75BAB1C6203BB00E7E076 /* HaviBaseTableViewCell.m in Sources */,
 				2CF2E27D1C7ADDF40007A639 /* Gloable.m in Sources */,
 				2CF2E21D1C79D6600007A639 /* UserProtocolViewController.m in Sources */,
