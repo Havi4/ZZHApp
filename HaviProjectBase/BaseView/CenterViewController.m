@@ -17,6 +17,7 @@
 #import "NewCalendarViewController.h"
 #import "SCNavigationController.h"
 #import "NaviTitleScrollView.h"
+#import "ConsultVViewController.h"
 
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @interface CenterViewController ()<CLWeeklyCalendarViewDelegate,UIViewControllerTransitioningDelegate>
@@ -82,7 +83,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     
     self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_share@3x"] style:SCBarButtonItemStylePlain handler:^(id sender) {
-        [self shareApp:nil];
+        [self showMoreInfo:nil];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     
@@ -314,7 +315,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     NSArray *menuItems =
     @[
       
-      [KxMenuItem menuItem:@"我的设备"
+      [KxMenuItem menuItem:@"快速提问"
                      image:[UIImage imageNamed:@""]
                     target:self
                     action:@selector(pushMenuItem:)],
@@ -324,8 +325,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
                     target:self
                     action:@selector(pushMenuItem:)],
       ];
-    CGRect popUpPos = sender.frame;
-    popUpPos.origin.y -= 10;
+    CGRect popUpPos = (CGRect){kScreenSize.width-44,10,44,44};
     [KxMenu showMenuInView:self.view
                   fromRect:popUpPos
                  menuItems:menuItems];
@@ -334,8 +334,9 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void) pushMenuItem:(id)sender
 {
     KxMenuItem *item = (KxMenuItem *)sender;
-    if ([item.title isEqualToString:@"我的设备"]) {
-        [self showDropDownView];
+    if ([item.title isEqualToString:@"快速提问"]) {
+        ConsultVViewController *consult = [[ConsultVViewController alloc]init];
+        [self.navigationController pushViewController:consult animated:YES];
     }else if ([item.title isEqualToString:@"分享应用"]){
         [self shareApp:nil];
     }

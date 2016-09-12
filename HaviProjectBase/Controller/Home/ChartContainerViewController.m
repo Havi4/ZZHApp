@@ -10,6 +10,8 @@
 #import "BaseViewContainerView.h"
 #import "ChartDataViewController.h"
 #import "NaviTitleScrollView.h"
+//new
+#import "ConsultVViewController.h"
 
 @interface ChartContainerViewController ()
 @property (nonatomic, strong) NaviTitleScrollView *naviBarTitle;
@@ -56,7 +58,7 @@
     
     self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_share@3x"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         @strongify(self);
-        [self showMoreInfo];
+        [self showMoreInfo:nil];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     [self.sc_navigationBar addSubview:self.naviBarTitle];
@@ -98,10 +100,46 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)showMoreInfo
+- (void)shareInfo
 {
      [self.shareNewMenuView showInView:self.view];
 }
+
+#pragma mark showMoreInfo
+
+- (void)showMoreInfo:(UIButton *)sender
+{
+    NSArray *menuItems =
+    @[
+      
+      [KxMenuItem menuItem:@"快速提问"
+                     image:[UIImage imageNamed:@""]
+                    target:self
+                    action:@selector(pushMenuItem:)],
+      
+      [KxMenuItem menuItem:@"分享应用"
+                     image:[UIImage imageNamed:@""]
+                    target:self
+                    action:@selector(pushMenuItem:)],
+      ];
+    CGRect popUpPos = sender.frame;
+    popUpPos.origin.y -= 10;
+    [KxMenu showMenuInView:self.view
+                  fromRect:popUpPos
+                 menuItems:menuItems];
+}
+
+- (void) pushMenuItem:(id)sender
+{
+    KxMenuItem *item = (KxMenuItem *)sender;
+    if ([item.title isEqualToString:@"快速提问"]) {
+        ConsultVViewController *consult = [[ConsultVViewController alloc]init];
+        [self.navigationController pushViewController:consult animated:YES];
+    }else if ([item.title isEqualToString:@"分享应用"]){
+        [self shareInfo];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

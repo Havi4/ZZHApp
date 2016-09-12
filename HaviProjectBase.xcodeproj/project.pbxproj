@@ -107,6 +107,15 @@
 		2C358A461D586D8E00BEC198 /* VBPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C358A3E1D586D8E00BEC198 /* VBPieChart.m */; };
 		2C358A471D586D8E00BEC198 /* VBPiePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C358A401D586D8E00BEC198 /* VBPiePiece.m */; };
 		2C358A481D586D8E00BEC198 /* ZZHPieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C358A431D586D8E00BEC198 /* ZZHPieView.m */; };
+		2C457B421D8598A200FFAB95 /* ConsultVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B411D8598A200FFAB95 /* ConsultVViewController.m */; };
+		2C457B451D85A0B700FFAB95 /* ConsultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B441D85A0B700FFAB95 /* ConsultTableViewCell.m */; };
+		2C457B481D85A0CC00FFAB95 /* ConsultGenderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B471D85A0CC00FFAB95 /* ConsultGenderTableViewCell.m */; };
+		2C457B4B1D85A0E200FFAB95 /* ConsultBirthTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C457B4A1D85A0E200FFAB95 /* ConsultBirthTableViewCell.m */; };
+		2C457B501D86303900FFAB95 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C457B4C1D86303900FFAB95 /* photo.png */; };
+		2C457B511D86303900FFAB95 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C457B4D1D86303900FFAB95 /* right.png */; };
+		2C457B521D86303900FFAB95 /* tuoy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C457B4E1D86303900FFAB95 /* tuoy.png */; };
+		2C457B531D86303900FFAB95 /* xuanze.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C457B4F1D86303900FFAB95 /* xuanze.png */; };
+		2C457B551D86328D00FFAB95 /* wenzhen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C457B541D86328D00FFAB95 /* wenzhen.png */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -784,6 +793,19 @@
 		2C358A411D586D8E00BEC198 /* VBPiePiece_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBPiePiece_private.h; sourceTree = "<group>"; };
 		2C358A421D586D8E00BEC198 /* ZZHPieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZHPieView.h; sourceTree = "<group>"; };
 		2C358A431D586D8E00BEC198 /* ZZHPieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZHPieView.m; sourceTree = "<group>"; };
+		2C457B401D8598A200FFAB95 /* ConsultVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsultVViewController.h; path = NewUI/ConsultVViewController.h; sourceTree = "<group>"; };
+		2C457B411D8598A200FFAB95 /* ConsultVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsultVViewController.m; path = NewUI/ConsultVViewController.m; sourceTree = "<group>"; };
+		2C457B431D85A0B700FFAB95 /* ConsultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsultTableViewCell.h; path = HaviProjectBase/Controller/NewUI/ConsultTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		2C457B441D85A0B700FFAB95 /* ConsultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsultTableViewCell.m; path = HaviProjectBase/Controller/NewUI/ConsultTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		2C457B461D85A0CC00FFAB95 /* ConsultGenderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsultGenderTableViewCell.h; path = HaviProjectBase/Controller/NewUI/ConsultGenderTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		2C457B471D85A0CC00FFAB95 /* ConsultGenderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsultGenderTableViewCell.m; path = HaviProjectBase/Controller/NewUI/ConsultGenderTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		2C457B491D85A0E200FFAB95 /* ConsultBirthTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsultBirthTableViewCell.h; path = HaviProjectBase/Controller/NewUI/ConsultBirthTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		2C457B4A1D85A0E200FFAB95 /* ConsultBirthTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsultBirthTableViewCell.m; path = HaviProjectBase/Controller/NewUI/ConsultBirthTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		2C457B4C1D86303900FFAB95 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
+		2C457B4D1D86303900FFAB95 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		2C457B4E1D86303900FFAB95 /* tuoy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuoy.png; sourceTree = "<group>"; };
+		2C457B4F1D86303900FFAB95 /* xuanze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuanze.png; sourceTree = "<group>"; };
+		2C457B541D86328D00FFAB95 /* wenzhen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wenzhen.png; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1776,6 +1798,26 @@
 				2C72A1F61D59C37C00D85966 /* TurnAroundView.m */,
 			);
 			path = ChartPie;
+			sourceTree = "<group>";
+		};
+		2C457B3F1D85985900FFAB95 /* Doctor */ = {
+			isa = PBXGroup;
+			children = (
+				2C457B401D8598A200FFAB95 /* ConsultVViewController.h */,
+				2C457B411D8598A200FFAB95 /* ConsultVViewController.m */,
+				2C457B431D85A0B700FFAB95 /* ConsultTableViewCell.h */,
+				2C457B441D85A0B700FFAB95 /* ConsultTableViewCell.m */,
+				2C457B461D85A0CC00FFAB95 /* ConsultGenderTableViewCell.h */,
+				2C457B471D85A0CC00FFAB95 /* ConsultGenderTableViewCell.m */,
+				2C457B491D85A0E200FFAB95 /* ConsultBirthTableViewCell.h */,
+				2C457B4A1D85A0E200FFAB95 /* ConsultBirthTableViewCell.m */,
+				2C457B4C1D86303900FFAB95 /* photo.png */,
+				2C457B4D1D86303900FFAB95 /* right.png */,
+				2C457B541D86328D00FFAB95 /* wenzhen.png */,
+				2C457B4E1D86303900FFAB95 /* tuoy.png */,
+				2C457B4F1D86303900FFAB95 /* xuanze.png */,
+			);
+			name = Doctor;
 			sourceTree = "<group>";
 		};
 		2C58728E1C7BF0BE001C2F3A /* SLPageController */ = {
@@ -2930,6 +2972,7 @@
 		2CD75B7B1C61C3D700E7E076 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2C457B3F1D85985900FFAB95 /* Doctor */,
 				2C9EF44D1C804849000704E2 /* Report */,
 				2CF2E2571C7ABC740007A639 /* Login */,
 				2CF2E2081C79A22E0007A639 /* UserSetting */,
@@ -3627,6 +3670,7 @@
 				2C1D9FE41D4F191500FA6678 /* getup@3x.png in Resources */,
 				2C1D9FE81D4F193000FA6678 /* light_sleep@3x.png in Resources */,
 				2C96AA7F1D41F65700ACCA08 /* zhong@3x.png in Resources */,
+				2C457B511D86303900FFAB95 /* right.png in Resources */,
 				2C9EF4221C7FEFC1000704E2 /* pic_moon@2x.png in Resources */,
 				2CD014AB1C634CF5001F9514 /* month_1@2x.png in Resources */,
 				2CD014C51C639688001F9514 /* btn_back_1@2x.png in Resources */,
@@ -3643,6 +3687,7 @@
 				2C9EF4FD1C852E89000704E2 /* btn_x_1@2x.png in Resources */,
 				2CD014A51C634CE7001F9514 /* month_0@2x.png in Resources */,
 				2C2298101D6AF6280086ACF5 /* home12@3x.png in Resources */,
+				2C457B551D86328D00FFAB95 /* wenzhen.png in Resources */,
 				2C22980D1D6AF6280086ACF5 /* g1@3x.png in Resources */,
 				2C5872591C7AEB97001C2F3A /* icon_password_0@2x.png in Resources */,
 				2CD75B251C61B57000E7E076 /* Assets.xcassets in Resources */,
@@ -3673,6 +3718,7 @@
 				2C2298131D6AF6280086ACF5 /* sheng@3x.png in Resources */,
 				2C1D9FEA1D4F193C00FA6678 /* bed_on_single@3x.png in Resources */,
 				2CF2E2A41C7AE2950007A639 /* textbox_password_1@2x.png in Resources */,
+				2C457B501D86303900FFAB95 /* photo.png in Resources */,
 				2C1DA02F1D503A2300FA6678 /* dao@3x.png in Resources */,
 				2CF2E1EB1C78682B0007A639 /* SleepSetting.plist in Resources */,
 				2C9EF3BF1C7EFB79000704E2 /* icon_heart_rate_0@2x.png in Resources */,
@@ -3710,6 +3756,7 @@
 				2CF2E1671C759F530007A639 /* havi1_4@2x.png in Resources */,
 				2C2298121D6AF6280086ACF5 /* phone1@3x.png in Resources */,
 				2CF2E2281C79DB5D0007A639 /* protocol.html in Resources */,
+				2C457B531D86303900FFAB95 /* xuanze.png in Resources */,
 				2C9EF44B1C80389F000704E2 /* ic_dot_1.png in Resources */,
 				2C2C772F1D5DB0AF00FE5279 /* button_back_image@3x.png in Resources */,
 				2C2C77321D5DC53200FE5279 /* clear@3x.png in Resources */,
@@ -3727,6 +3774,7 @@
 				2C9EF3461C7D7B51000704E2 /* leave_apng_0.apng in Resources */,
 				2CD014EC1C64CD22001F9514 /* weight@2x.png in Resources */,
 				2C96AA731D41F31F00ACCA08 /* profile_back@3x.png in Resources */,
+				2C457B521D86303900FFAB95 /* tuoy.png in Resources */,
 				2C1DA0361D5044F000FA6678 /* qq1@2x.png in Resources */,
 				2C22980F1D6AF6280086ACF5 /* g0@3x.png in Resources */,
 				2CD014EB1C64CD22001F9514 /* name@2x.png in Resources */,
@@ -3867,6 +3915,7 @@
 				2C358A451D586D8E00BEC198 /* UIColor+HexColor.m in Sources */,
 				2C9EF4901C81E831000704E2 /* SleepTimeLongBar.m in Sources */,
 				2C9EF48A1C81E7E4000704E2 /* NewWeekReport.m in Sources */,
+				2C457B481D85A0CC00FFAB95 /* ConsultGenderTableViewCell.m in Sources */,
 				2C9EF4111C7FE30B000704E2 /* MPBarsGraphView.m in Sources */,
 				2CD75B6D1C61C2D000E7E076 /* GlobalModel.m in Sources */,
 				2CD75B891C61C68900E7E076 /* HaviNetWorkAPIClient.m in Sources */,
@@ -3890,6 +3939,7 @@
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
 				2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */,
 				2C1DA0241D4F2BF300FA6678 /* ZZHCalendarCircleView.m in Sources */,
+				2C457B451D85A0B700FFAB95 /* ConsultTableViewCell.m in Sources */,
 				2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */,
 				2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */,
 				2C1DA03B1D5088C800FA6678 /* NaviTitleScrollView.m in Sources */,
@@ -4058,6 +4108,7 @@
 				2CF2E27D1C7ADDF40007A639 /* Gloable.m in Sources */,
 				2CF2E21D1C79D6600007A639 /* UserProtocolViewController.m in Sources */,
 				2CF2E1341C747CF90007A639 /* ODRefreshControl.m in Sources */,
+				2C457B4B1D85A0E200FFAB95 /* ConsultBirthTableViewCell.m in Sources */,
 				2C9EF3A21C7EC62B000704E2 /* ChartTableContainerViewController.m in Sources */,
 				2C96AA691D41C4A300ACCA08 /* ScrollViewFrameAccessor.m in Sources */,
 				2C9EF4E61C8523BD000704E2 /* CantainerDeviceListViewController.m in Sources */,
@@ -4090,6 +4141,7 @@
 				2CF2E2801C7ADFE50007A639 /* LoginViewController.m in Sources */,
 				2C9EF4AD1C82FBC3000704E2 /* WTURLSessionManager.m in Sources */,
 				2C9EF4611C80565B000704E2 /* ReportChartTableCell.m in Sources */,
+				2C457B421D8598A200FFAB95 /* ConsultVViewController.m in Sources */,
 				2CF2E2601C7ABDFD0007A639 /* CKTextField.m in Sources */,
 				2C5872651C7AF491001C2F3A /* LaunchStartView.m in Sources */,
 				2C9EF4AA1C82FBC3000704E2 /* WTRequestCenter.m in Sources */,
