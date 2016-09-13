@@ -114,7 +114,6 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         [NSObject changeBaseURLStrToTest:NO];
     }else{
         DeBugLog(@"测试网络切换ok");
-        [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":@"上海"}];
         [NSObject changeBaseURLStrToTest:YES];
     }
 }

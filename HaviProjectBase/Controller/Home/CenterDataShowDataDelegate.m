@@ -61,7 +61,6 @@
     return _iWantSleepLabel;
 }
 
-
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row>0 && indexPath.row < 3) {

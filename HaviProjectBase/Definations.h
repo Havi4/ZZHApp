@@ -40,6 +40,7 @@
 //color
 #define kTextPlaceHolderColor [UIColor lightGrayColor]
 #define kTextFieldWordColor [UIColor lightGrayColor]
+#define kTextDefaultWordColor [UIColor grayColor]
 //time
 #define kCodeValideTime 10*60
 #define kNumberFont(_font) [UIFont fontWithName:@"Roboto-Light" size:_font]

@@ -10,7 +10,11 @@
 
 @interface ConversationListTableViewCell ()
 @property (nonatomic, strong) UIImageView *titleImageView;
+@property (nonatomic, strong) UILabel *titleDoctorLabel;
 @property (nonatomic, strong) UILabel *lineLabel;
+
+@property (nonatomic, strong) UILabel *titleStateLabel;
+@property (nonatomic, strong) UIImageView *titleStateImage;
 
 @property (nonatomic, strong) UILabel *pictureLabel;
 @property (nonatomic, strong) UIButton *takePictureIcon;
@@ -45,8 +49,38 @@
         [self addSubview:_titleImageView];
         [_titleImageView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(16);
+            make.height.width.equalTo(@32);
+            make.top.equalTo(self.mas_top).offset(6);
         }];
         
+        _titleDoctorLabel = [[UILabel alloc]init];
+        _titleDoctorLabel.text = @"医生咨询";
+        _titleDoctorLabel.font = [UIFont systemFontOfSize:13];
+        _titleDoctorLabel.textColor = kTextDefaultWordColor;
+        [self addSubview:_titleDoctorLabel];
+        [_titleDoctorLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.titleImageView.mas_right).offset(8);
+            make.centerY.equalTo(self.titleImageView.mas_centerY);
+        }];
+        
+        _titleStateLabel = [[UILabel alloc]init];
+        _titleStateLabel.text = @"已回复";
+        _titleStateLabel.textColor = kTextDefaultWordColor;
+        _titleStateLabel.font = [UIFont systemFontOfSize:13];
+        [self addSubview:_titleStateLabel];
+        
+        [_titleStateLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.mas_right).offset(-16);
+            make.centerY.equalTo(self.titleImageView.mas_centerY);
+        }];
+        
+        _titleStateImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ic_dot_0"]];
+        [self addSubview:_titleStateImage];
+        [_titleStateImage makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.titleStateLabel.mas_left).offset(-8);
+            make.centerY.equalTo(self.titleImageView.mas_centerY);
+            make.height.width.equalTo(@20);
+        }];
     }
     return self;
 }

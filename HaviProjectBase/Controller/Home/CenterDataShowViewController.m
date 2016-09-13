@@ -14,15 +14,19 @@
 #import "ChartContainerViewController.h"
 #import "ChartTableContainerViewController.h"
 #import "MMPopupItem.h"
+#import "ArticleViewController.h"
+#import "RxWebViewController.h"
 
 @interface CenterDataShowViewController ()
 
 @property (nonatomic, strong) UITableView *dataShowTableView;
 @property (nonatomic, strong) CenterDataShowDataDelegate *dataDelegate;
 @property (nonatomic, strong) SleepQualityModel *sleepQualityModel;
+@property (nonatomic, strong) ArticleNewModel *articleModel;
 @property (nonatomic, strong) NSString *queryStartTime;
 @property (nonatomic, strong) NSString *queryEndTime;
 @property (nonatomic, strong) NSArray *controllersArr;
+@property (nonatomic, strong) UILabel *cellRecommend;
 
 @end
 
@@ -61,7 +65,9 @@
     @weakify(self);
     [client requestArticle:dic19 andBlock:^(ArticleModel *baseModel, NSError *error) {
         @strongify(self);
-        DeBugLog(@"文章列表%@",baseModel);
+        ArticleNewModel *article = [baseModel.articleNewsList objectAtIndex:0];
+        self.articleModel = article;
+        self.cellRecommend.text = article.title;
     }];
 }
 
@@ -85,6 +91,32 @@
     return _dataShowTableView;
 }
 
+- (UILabel *)cellRecommend
+{
+    if (_cellRecommend == nil) {
+        _cellRecommend = [[UILabel alloc]init];
+        _cellRecommend.textAlignment = NSTextAlignmentCenter;
+        _cellRecommend.numberOfLines = 0;
+        _cellRecommend.text = @"";
+        _cellRecommend.userInteractionEnabled = YES;
+        _cellRecommend.textColor = [UIColor whiteColor];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapArticle:)];
+        [_cellRecommend addGestureRecognizer:tap];
+    }
+    return _cellRecommend;
+}
+
+- (void)tapArticle:(UIGestureRecognizer *)gesture
+{
+    
+    RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:@"https://www.baidu.com"]];
+    webViewController.articleTitle = self.articleModel.title;
+    [self.navigationController pushViewController:webViewController animated:YES];
+//    ArticleViewController *articleView = [[ArticleViewController alloc]init];
+//    articleView.articleURL = self.articleModel.url;
+//    articleView.articleTitle = self.articleModel.title;
+//    [self.navigationController pushViewController:articleView animated:YES];
+}
 
 - (void)addTableViewDataHandle
 {
@@ -92,6 +124,15 @@
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
         if (indexPath.row == 0) {
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+            [cell addSubview:self.cellRecommend];
+            float height = 0;
+            if (ISIPHON6S) {
+                height = 315;
+            }else{
+                height = 315/1.174;
+            }
+            _cellRecommend.frame = (CGRect){0,height-62,self.view.frame.size.width,50};
+
 
         }else if (indexPath.row == 1 ||indexPath.row == 2){
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];

@@ -44,7 +44,7 @@
         _consultView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _consultView.delegate = self;
         _consultView.dataSource = self;
-        _consultView.backgroundColor = [UIColor colorWithRed:0.933 green:0.937 blue:0.941 alpha:1.00];
+        _consultView.backgroundColor = [UIColor colorWithRed:0.957 green:0.961 blue:0.965 alpha:1.00];
     }
     return _consultView;
 }
@@ -65,7 +65,7 @@
     if (!cell) {
         cell = [[ConversationListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell0"];
     }
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -77,8 +77,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return 100;
+    return 115;
 }
 
 - (void)didReceiveMemoryWarning {

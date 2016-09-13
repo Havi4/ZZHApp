@@ -474,6 +474,10 @@
 		2CD015301C70774A001F9514 /* JASwipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0152E1C70774A001F9514 /* JASwipeCell.m */; };
 		2CD015351C7080FE001F9514 /* MyDeviceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD015341C7080FE001F9514 /* MyDeviceDelegate.m */; };
 		2CD015381C70BD92001F9514 /* MyDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD015371C70BD92001F9514 /* MyDeviceTableViewCell.m */; };
+		2CD4C32D1D87EECB00ECB1FF /* RxWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4C32A1D87EECB00ECB1FF /* RxWebViewController.m */; };
+		2CD4C32E1D87EECB00ECB1FF /* RxWebViewNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4C32C1D87EECB00ECB1FF /* RxWebViewNavigationViewController.m */; };
+		2CD4C3311D87F17200ECB1FF /* backItemImage_hl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD4C32F1D87F17200ECB1FF /* backItemImage_hl@2x.png */; };
+		2CD4C3321D87F17200ECB1FF /* backItemImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD4C3301D87F17200ECB1FF /* backItemImage@2x.png */; };
 		2CD75B1A1C61B57000E7E076 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD75B191C61B57000E7E076 /* main.m */; };
 		2CD75B1D1C61B57000E7E076 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD75B1C1C61B57000E7E076 /* AppDelegate.m */; };
 		2CD75B251C61B57000E7E076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD75B241C61B57000E7E076 /* Assets.xcassets */; };
@@ -1365,6 +1369,12 @@
 		2CD015341C7080FE001F9514 /* MyDeviceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDeviceDelegate.m; sourceTree = "<group>"; };
 		2CD015361C70BD92001F9514 /* MyDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDeviceTableViewCell.h; sourceTree = "<group>"; };
 		2CD015371C70BD92001F9514 /* MyDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDeviceTableViewCell.m; sourceTree = "<group>"; };
+		2CD4C3291D87EECB00ECB1FF /* RxWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RxWebViewController.h; sourceTree = "<group>"; };
+		2CD4C32A1D87EECB00ECB1FF /* RxWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RxWebViewController.m; sourceTree = "<group>"; };
+		2CD4C32B1D87EECB00ECB1FF /* RxWebViewNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RxWebViewNavigationViewController.h; sourceTree = "<group>"; };
+		2CD4C32C1D87EECB00ECB1FF /* RxWebViewNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RxWebViewNavigationViewController.m; sourceTree = "<group>"; };
+		2CD4C32F1D87F17200ECB1FF /* backItemImage_hl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backItemImage_hl@2x.png"; sourceTree = "<group>"; };
+		2CD4C3301D87F17200ECB1FF /* backItemImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backItemImage@2x.png"; sourceTree = "<group>"; };
 		2CD75B151C61B57000E7E076 /* HaviProjectBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HaviProjectBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD75B191C61B57000E7E076 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2CD75B1B1C61B57000E7E076 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1866,6 +1876,12 @@
 				2C457B631D86961F00FFAB95 /* NJKWebViewProgress.m */,
 				2C457B641D86961F00FFAB95 /* NJKWebViewProgressView.h */,
 				2C457B651D86961F00FFAB95 /* NJKWebViewProgressView.m */,
+				2CD4C32F1D87F17200ECB1FF /* backItemImage_hl@2x.png */,
+				2CD4C3301D87F17200ECB1FF /* backItemImage@2x.png */,
+				2CD4C3291D87EECB00ECB1FF /* RxWebViewController.h */,
+				2CD4C32A1D87EECB00ECB1FF /* RxWebViewController.m */,
+				2CD4C32B1D87EECB00ECB1FF /* RxWebViewNavigationViewController.h */,
+				2CD4C32C1D87EECB00ECB1FF /* RxWebViewNavigationViewController.m */,
 			);
 			path = NJKWebViewProgress;
 			sourceTree = "<group>";
@@ -3580,6 +3596,7 @@
 				2CF2E19F1C7605270007A639 /* qr_code_1@2x.png in Resources */,
 				2C9EF3421C7D7A12000704E2 /* breath_apng_0.apng in Resources */,
 				2C8D87C91D45EFD0008573EA /* navi_done@3x.png in Resources */,
+				2CD4C3321D87F17200ECB1FF /* backItemImage@2x.png in Resources */,
 				2CD014C71C6396D4001F9514 /* re_order_1@2x.png in Resources */,
 				2CF2E2361C7AB0110007A639 /* skinpeeler_dark_color_bg@2x.png in Resources */,
 				2CF2E1691C759F530007A639 /* havi1_6@2x.png in Resources */,
@@ -3702,6 +3719,7 @@
 				2C34AE331CEAC45400B24B6E /* pic_about@2x.png in Resources */,
 				2C1D9FDC1D4F18D800FA6678 /* moveon@3x.png in Resources */,
 				2CD014951C634001001F9514 /* icon_alarm_clock_1@2x.png in Resources */,
+				2CD4C3311D87F17200ECB1FF /* backItemImage_hl@2x.png in Resources */,
 				2CD014E51C64CD22001F9514 /* birthday@2x.png in Resources */,
 				2C9EF2CE1C7C12CB000704E2 /* pic_bg_center_1@2x.png in Resources */,
 				2CD014C01C6393AF001F9514 /* person_background@2x.png in Resources */,
@@ -3922,6 +3940,7 @@
 				2C96AA5F1D41101A00ACCA08 /* SCNavigationController.m in Sources */,
 				2CF2E1931C75C6D30007A639 /* MMPopupView.m in Sources */,
 				2CD0151B1C70497A001F9514 /* RMActionController.m in Sources */,
+				2CD4C32D1D87EECB00ECB1FF /* RxWebViewController.m in Sources */,
 				2CF2E19B1C76025D0007A639 /* AddProductNameViewController.m in Sources */,
 				2C1DA02A1D4F5B6600FA6678 /* MonthTableViewCell.m in Sources */,
 				2C9EF4361C802EB3000704E2 /* ChartTableTitleView.m in Sources */,
@@ -4195,6 +4214,7 @@
 				2C9EF2D61C7C1B58000704E2 /* KxMenu.m in Sources */,
 				2C9EF38B1C7DE662000704E2 /* CAShapeLayer+Night.m in Sources */,
 				2C9EF4C31C83EA80000704E2 /* NSString+Common.m in Sources */,
+				2CD4C32E1D87EECB00ECB1FF /* RxWebViewNavigationViewController.m in Sources */,
 				2C11C9961D77DAA60032CA95 /* CCLocationManager.m in Sources */,
 				2C96AA201D40C5E000ACCA08 /* V2MenuSectionCell.m in Sources */,
 				2C96AA2A1D40D65800ACCA08 /* ViewFrameAccessor.m in Sources */,

@@ -15,7 +15,6 @@
 @interface CenterGaugeTableViewCell ()
 
 @property (nonatomic, strong) StartTimeView *cellStartView;
-@property (nonatomic, strong) UILabel *cellRecommend;
 @property (nonatomic, assign) int value;
 
 @end
@@ -50,8 +49,6 @@
         UITapGestureRecognizer *_tapLeftGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeValueAnimation:)];
         [self addSubview:_cellCircleView];
         [tapBack addGestureRecognizer:_tapLeftGesture];
-        [self addSubview:self.cellRecommend];
-        _cellRecommend.frame = (CGRect){0,height-65,self.frame.size.width,50};
     }
     return self;
 }
@@ -66,16 +63,6 @@
     return _cellStartView;
 }
 
-- (UILabel *)cellRecommend
-{
-    if (_cellRecommend == nil) {
-        _cellRecommend = [[UILabel alloc]init];
-        _cellRecommend.textAlignment = NSTextAlignmentCenter;
-        _cellRecommend.text = @"优质的睡眠保证充足的精神";
-        _cellRecommend.textColor = [UIColor whiteColor];
-    }
-    return _cellRecommend;
-}
 
 - (void)configure:(UITableViewCell *)cell
         customObj:(id)obj

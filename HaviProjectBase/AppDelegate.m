@@ -95,6 +95,9 @@
 {
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     //根据经纬度反向地理编译出地址信息
+    if (newLocation) {
+        [manager stopUpdatingLocation];
+    }
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
         if (array.count > 0){
             CLPlacemark *placemark = [array objectAtIndex:0];
@@ -107,7 +110,7 @@
                 //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
                 city = placemark.administrativeArea;
             }
-            [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":city}];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":[city substringToIndex:city.length-1]}];
             NSDictionary *dic19 = @{
                                     @"city" : [city substringToIndex:city.length-1],
                                     @"province": [province substringToIndex:city.length-1]
