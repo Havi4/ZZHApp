@@ -116,19 +116,19 @@
         [_longSleepTitle makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(_longSleepView.mas_centerY);
             make.left.equalTo(_longSleepView.mas_right).offset(16);
-            make.width.equalTo(@60);
+            make.width.equalTo(@65);
         }];
         
         [_deepSleepTitle makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(_deepSleepView.mas_centerY);
             make.left.equalTo(_deepSleepView.mas_right).offset(16);
-            make.width.equalTo(@60);
+            make.width.equalTo(@65);
         }];
         
         [_lightSleepTitle makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(_lightSleepView.mas_centerY);
             make.left.equalTo(_lightSleepView.mas_right).offset(16);
-            make.width.equalTo(@60);
+            make.width.equalTo(@65);
         }];
         
         [_longSleepNum makeConstraints:^(MASConstraintMaker *make) {

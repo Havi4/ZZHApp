@@ -355,10 +355,10 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     KxMenuItem *item = (KxMenuItem *)sender;
     if ([item.title isEqualToString:@"快速提问"]) {
-//        ConsultVViewController *consult = [[ConsultVViewController alloc]init];
-//        [self.navigationController pushViewController:consult animated:YES];
-        ConversationListViewController *c = [[ConversationListViewController alloc]init];
-        [self.navigationController pushViewController:c animated:YES];
+        ConsultVViewController *consult = [[ConsultVViewController alloc]init];
+        [self.navigationController pushViewController:consult animated:YES];
+//        ConversationListViewController *c = [[ConversationListViewController alloc]init];
+//        [self.navigationController pushViewController:c animated:YES];
     }else if ([item.title isEqualToString:@"分享应用"]){
         [self shareApp:nil];
     }
