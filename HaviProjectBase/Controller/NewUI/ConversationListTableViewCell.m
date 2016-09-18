@@ -47,7 +47,7 @@
             make.top.equalTo(self.mas_top).offset(44);
         }];
         _titleImageView = [[UIImageView alloc]init];
-        _titleImageView.image = [UIImage imageNamed:@"icon_wechat"];
+        _titleImageView.image = [UIImage imageNamed:@"docTitle"];
         [self addSubview:_titleImageView];
         [_titleImageView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(16);
@@ -76,7 +76,7 @@
             make.centerY.equalTo(self.titleImageView.mas_centerY);
         }];
         
-        _titleStateImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ic_dot_0"]];
+        _titleStateImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"diage"]];
         [self addSubview:_titleStateImage];
         [_titleStateImage makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.titleStateLabel.mas_left).offset(-8);
@@ -108,7 +108,7 @@
         }];
         
         _assementImage = [[UIImageView alloc]init];
-        _assementImage.image = [UIImage imageNamed:@"btn_abnormal_1"];
+        _assementImage.image = [UIImage imageNamed:@"time"];
         [self addSubview:_assementImage];
         [_assementImage makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(16);
@@ -145,6 +145,34 @@
     return self;
 }
 
+- (void)configCellWithDic:(id)para
+{
+    NSDictionary *paraDic = (NSDictionary *)para;
+    NSString *ask = [[paraDic objectForKey:@"problem"]objectForKey:@"title"];
+    NSString *time = [[paraDic objectForKey:@"problem"] objectForKey:@"last_modified"];
+    NSString *isAnswer = [[paraDic objectForKey:@"problem"]objectForKey:@"status"];
+    _textResponseLabel.text = ask;
+    _assementTime.text = [time substringWithRange:NSMakeRange(5, 11)];
+    if ([isAnswer isEqualToString:@"n"]) {//新问题
+        _titleStateLabel.text = @"待认领";
+        _titleStateLabel.textColor = [UIColor colorWithRed:0.153 green:0.659 blue:0.902 alpha:1.00];
+    }else if ([isAnswer isEqualToString:@"a"]){//已认领
+        _titleStateLabel.text = @"已认领";
+        _titleStateLabel.textColor = [UIColor colorWithRed:0.153 green:0.659 blue:0.902 alpha:1.00];
+    }else if ([isAnswer isEqualToString:@"s"]){//已回复
+        _titleStateLabel.text = @"已回复";
+        _titleStateLabel.textColor = [UIColor colorWithRed:0.153 green:0.659 blue:0.902 alpha:1.00];
+    }else if ([isAnswer isEqualToString:@"c"]){//已关闭
+        _titleStateLabel.text = @"已关闭";
+        _titleStateLabel.textColor = kTextDefaultWordColor;
+    }else if ([isAnswer isEqualToString:@"d"]){//已评价
+        _titleStateLabel.text = @"已评价";
+        _titleStateLabel.textColor = kTextDefaultWordColor;
+    }else if ([isAnswer isEqualToString:@"v"]){//用户以查看
+        _titleStateLabel.text = @"待查看";
+        _titleStateLabel.textColor = kTextDefaultWordColor;
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

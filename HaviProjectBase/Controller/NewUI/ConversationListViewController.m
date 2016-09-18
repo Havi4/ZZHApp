@@ -8,12 +8,17 @@
 
 #import "ConversationListViewController.h"
 #import "ConversationListTableViewCell.h"
+#import "XHDemoWeChatMessageTableViewController.h"
+#import "ConsultVViewController.h"
+#import "WTRequestCenter.h"
 
 @interface ConversationListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *consultView;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
-
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
+@property (nonatomic, strong) UIView *noProblemBack;
+@property (nonatomic, strong) NSArray *problemArr;
 
 @end
 
@@ -21,9 +26,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.backgroundImageView.image = [UIImage imageNamed:@""];
     // Do any additional setup after loading the view.
     [self initNavigationBar];
+    [self getProblemList];
     [self.view addSubview:self.consultView];
+    [self.view addSubview:self.noProblemBack];
+}
+
+- (void)getProblemList
+{
+    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/List/My";
+    NSDictionary *dicPara = @{
+                              @"UserId": @"meddo99.com$13122785292",
+                              @"pagenum":@"1",
+                              @"count":@"100",
+                              };
+    [NSObject showHud];
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        [NSObject hideHud];
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSArray *probleList = [obj objectForKey:@"Result"];
+        if (probleList.count>0) {
+            [self.noProblemBack removeFromSuperview];
+            self.noProblemBack = nil;
+            self.problemArr = probleList;
+            [self.consultView reloadData];
+            DeBugLog(@"咨询列表是%@",obj);
+        }else{
+            [self.view addSubview:self.noProblemBack];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject hideHud];
+        [self.view addSubview:self.noProblemBack];
+    }];
+    
 }
 
 - (void)initNavigationBar
@@ -34,7 +71,42 @@
     }];
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     
-    self.sc_navigationItem.title = @"对话列表";
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"jia"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self addNewProblem:nil];
+    }];
+    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+    self.sc_navigationItem.title = @"我的提问";
+    self.view.backgroundColor = [UIColor colorWithRed:0.957 green:0.961 blue:0.965 alpha:1.00];
+}
+
+- (UIView *)noProblemBack
+{
+    if (!_noProblemBack) {
+        
+        _noProblemBack = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 232, 232)];
+        _noProblemBack.center = self.view.center;
+        _noProblemBack.backgroundColor = [UIColor clearColor];
+        UIImageView *doc = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"doc"]];
+        doc.frame = (CGRect){(232-100)/2,0,100,125};
+        UILabel *subLabel = [[UILabel alloc]init];
+        subLabel.text = @"您还没有向医生咨询过问题";
+        subLabel.frame = (CGRect){0,125,232,30};
+        subLabel.textColor = [UIColor grayColor];
+        subLabel.textAlignment = NSTextAlignmentCenter;
+        subLabel.font = [UIFont systemFontOfSize:13];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = (CGRect){8,160,232-16,44};
+        [button setBackgroundImage:[UIImage imageNamed:@"button_down_image"] forState:UIControlStateNormal];
+        [button setTitle:@"免费问诊" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
+        [button addTarget:self action:@selector(addNewProblem:) forControlEvents:UIControlEventTouchUpInside];
+        _noProblemBack.userInteractionEnabled = YES;
+        [_noProblemBack addSubview:button];
+        [_noProblemBack addSubview:subLabel];
+        [_noProblemBack addSubview:doc];
+    }
+    return _noProblemBack;
 }
 
 - (UITableView *)consultView
@@ -51,7 +123,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return self.problemArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -66,6 +138,7 @@
         cell = [[ConversationListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell0"];
     }
     cell.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
+    [cell configCellWithDic:[self.problemArr objectAtIndex:indexPath.section]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -78,6 +151,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 115;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    XHDemoWeChatMessageTableViewController *demoWeChatMessageTableViewController = [[XHDemoWeChatMessageTableViewController alloc] init];
+    [self.navigationController pushViewController:demoWeChatMessageTableViewController animated:YES];
+}
+
+- (void)addNewProblem:(UIButton *)button
+{
+    ConsultVViewController *consult = [[ConsultVViewController alloc]init];
+    [self.navigationController pushViewController:consult animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning {

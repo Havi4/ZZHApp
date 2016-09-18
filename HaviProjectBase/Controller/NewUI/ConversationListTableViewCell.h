@@ -10,4 +10,6 @@
 
 @interface ConversationListTableViewCell : UITableViewCell
 
+- (void)configCellWithDic:(id)para;
+
 @end

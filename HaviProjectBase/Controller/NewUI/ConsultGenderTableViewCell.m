@@ -47,11 +47,15 @@
         [self addSubview:_girlLabel];
         
         _boyIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_boyIcon setBackgroundImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
+        _boyIcon.tag = 101;
+        [_boyIcon addTarget:self action:@selector(changeIcon:) forControlEvents:UIControlEventTouchUpInside];
+        [_boyIcon setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
         [self addSubview:_boyIcon];
         
         _girlIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_girlIcon setBackgroundImage:[UIImage imageNamed:@"tuoy"] forState:UIControlStateNormal];
+        [_girlIcon setImage:[UIImage imageNamed:@"tuoy"] forState:UIControlStateNormal];
+        _girlIcon.tag = 102;
+        [_girlIcon addTarget:self action:@selector(changeIcon:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_girlIcon];
         
         
@@ -86,6 +90,16 @@
     
 }
 
+- (void)changeIcon:(UIButton *)button
+{
+    if (button.tag == 101) {
+        [_boyIcon setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
+        [_girlIcon setImage:[UIImage imageNamed:@"tuoy"] forState:UIControlStateNormal];
+    }else{
+        [_girlIcon setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
+        [_boyIcon setImage:[UIImage imageNamed:@"tuoy"] forState:UIControlStateNormal];
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
