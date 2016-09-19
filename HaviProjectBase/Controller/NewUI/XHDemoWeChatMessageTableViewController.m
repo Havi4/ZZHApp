@@ -13,6 +13,7 @@
 #import "XHDisplayLocationViewController.h"
 
 #import "XHAudioPlayerHelper.h"
+#import "WTRequestCenter.h"
 
 //#import "XHContactDetailTableViewController.h"
 
@@ -22,10 +23,40 @@
 @property (nonatomic, strong) NSArray *emotionManagers;
 
 @property (nonatomic, strong) XHMessageTableViewCell *currentSelectedCell;
+@property (nonatomic, strong) NSString *docThumUrl;
+@property (nonatomic, strong) NSString *myThumUrl;
 
 @end
 
 @implementation XHDemoWeChatMessageTableViewController
+
+- (XHMessage *)getTextMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl{
+    XHMessage *textMessage = [[XHMessage alloc] initWithText:[messdic objectForKey:@"text"] sender:@"华仔" timestamp:[NSDate distantPast]];
+    textMessage.avatar = [UIImage imageNamed:@"doc"];
+    textMessage.avatarUrl = iconUrl;
+    textMessage.bubbleMessageType = bubbleMessageType;
+    
+    return textMessage;
+}
+
+- (XHMessage *)getPhotoMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl {
+    XHMessage *photoMessage = [[XHMessage alloc] initWithPhoto:nil thumbnailUrl:[messdic objectForKey:@"file"] originPhotoUrl:nil sender:@"Jack" timestamp:[NSDate date]];
+    photoMessage.avatar = [UIImage imageNamed:@"doc"];
+    photoMessage.avatarUrl = iconUrl;
+    photoMessage.bubbleMessageType = bubbleMessageType;
+    
+    return photoMessage;
+}
+
+- (XHMessage *)getVoiceMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl {
+    XHMessage *voiceMessage = [[XHMessage alloc] initWithVoicePath:nil voiceUrl:[messdic objectForKey:@"file"] voiceDuration:@"1" sender:@"Jayson" timestamp:[NSDate date] isRead:NO];
+    voiceMessage.avatar = [UIImage imageNamed:@"doc"];
+    voiceMessage.avatarUrl = iconUrl;
+    voiceMessage.bubbleMessageType = bubbleMessageType;
+    
+    return voiceMessage;
+}
+//######
 
 - (XHMessage *)getTextMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType {
     XHMessage *textMessage = [[XHMessage alloc] initWithText:@"这是华捷微信，希望大家喜欢这个开源库，请大家帮帮忙支持这个开源库吧！我是Jack，叫华仔也行，曾宪华就是我啦！" sender:@"华仔" timestamp:[NSDate distantPast]];
@@ -84,20 +115,47 @@
 }
 
 - (NSMutableArray *)getTestMessages {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/",docDir,@"messageList"];
+    NSString *txtPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.problemID]];
+    NSFileManager *verfileManager = [[NSFileManager alloc]init];
+    if (![verfileManager fileExistsAtPath:txtPath]) {
+        return nil;
+    }
+    NSData *data = [NSData dataWithContentsOfFile:txtPath];
+    NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    DeBugLog(@"问题列表是%@",arr);
     NSMutableArray *messages = [[NSMutableArray alloc] init];
     
-    for (NSInteger i = 0; i < 2; i ++) {
-        [messages addObject:[self getPhotoMessageWithBubbleMessageType:(i % 5) ? XHBubbleMessageTypeSending : XHBubbleMessageTypeReceiving]];
-        
-        [messages addObject:[self getVideoMessageWithBubbleMessageType:(i % 6) ? XHBubbleMessageTypeSending : XHBubbleMessageTypeReceiving]];
-        
-        [messages addObject:[self getVoiceMessageWithBubbleMessageType:(i % 4) ? XHBubbleMessageTypeSending : XHBubbleMessageTypeReceiving]];
-        
-        [messages addObject:[self getEmotionMessageWithBubbleMessageType:(i % 2) ? XHBubbleMessageTypeSending : XHBubbleMessageTypeReceiving]];
-        
-        [messages addObject:[self getGeolocationsMessageWithBubbleMessageType:(i % 7) ? XHBubbleMessageTypeSending : XHBubbleMessageTypeReceiving]];
-        
-        [messages addObject:[self getTextMessageWithBubbleMessageType:(i % 2) ? XHBubbleMessageTypeSending : XHBubbleMessageTypeReceiving]];
+    for (NSInteger i = 0; i < arr.count; i ++) {
+        if ([[[arr objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"d"]) {
+            NSString *contentString = [[arr objectAtIndex:i] objectForKey:@"content"];
+            NSData *data = [contentString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            for (NSDictionary *contentDic in dic) {
+                if ([[contentDic objectForKey:@"type"]isEqualToString:@"text"]) {
+                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"image"]) {
+                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"audio"]) {
+                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                }
+            }
+        }else if ([[[arr objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"p"]){
+            NSString *contentString = [[arr objectAtIndex:i] objectForKey:@"content"];
+            NSData *data = [contentString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            for (NSDictionary *contentDic in dic) {
+                if ([[contentDic objectForKey:@"type"]isEqualToString:@"text"]) {
+                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"image"]) {
+                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"audio"]) {
+                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                }
+            }
+        }
     }
     return messages;
 }
@@ -147,11 +205,12 @@
     
     // 设置自身用户名
     self.messageSender = @"Jack";
+    self.myThumUrl = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
     
     // 添加第三方接入数据
     NSMutableArray *shareMenuItems = [NSMutableArray array];
-    NSArray *plugIcons = @[@"sharemore_pic", @"sharemore_video", @"sharemore_location", @"sharemore_friendcard", @"sharemore_myfav", @"sharemore_wxtalk", @"sharemore_videovoip", @"sharemore_voiceinput", @"sharemore_openapi", @"sharemore_openapi", @"avatar"];
-    NSArray *plugTitle = @[@"照片", @"拍摄", @"位置", @"名片", @"我的收藏", @"实时对讲机", @"视频聊天", @"语音输入", @"大众点评", @"应用", @"曾宪华"];
+    NSArray *plugIcons = @[@"sharemore_pic", @"sharemore_video"];
+    NSArray *plugTitle = @[@"照片", @"拍摄"];
     for (NSString *plugIcon in plugIcons) {
         XHShareMenuItem *shareMenuItem = [[XHShareMenuItem alloc] initWithNormalIconImage:[UIImage imageNamed:plugIcon] title:[plugTitle objectAtIndex:[plugIcons indexOfObject:plugIcon]]];
         [shareMenuItems addObject:shareMenuItem];
@@ -181,6 +240,48 @@
     [self.shareMenuView reloadData];
     
     [self loadDemoDataSource];
+    [self getContentMessage];
+}
+
+- (void)getContentMessage
+{
+    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/Detail";
+    NSDictionary *dicPara = @{
+                              @"UserId": @"meddo99.com$13122785292",
+                              @"ProblemId":self.problemID,
+                              };
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+            NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSArray *probleList = [[obj objectForKey:@"Result"] objectForKey:@"content"];
+            self.docThumUrl =  [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"image"];
+            [self createMessageFile:probleList];
+            }
+    failed:^(NSURLResponse *response, NSError *error) {
+    }];
+}
+
+- (void)createMessageFile:(NSArray *)messageData
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/",docDir,@"messageList"];
+    NSString *txtPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.problemID]];
+    NSFileManager *verfileManager = [[NSFileManager alloc]init];
+    if (![verfileManager fileExistsAtPath:txtPath]) {
+        //路径存在与否
+        if (![verfileManager fileExistsAtPath:path]) {
+            //文件夹路径存在与否
+            [verfileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:messageData];
+        BOOL isTureWrite = [imageData writeToFile:txtPath atomically:YES];
+        if (isTureWrite) {
+            [self loadDemoDataSource];
+            DeBugLog(@"文件写入成功");
+        }else{
+            DeBugLog(@"文件写入失败");
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -301,7 +402,7 @@
 #pragma mark - XHMessageTableViewController Delegate
 
 - (BOOL)shouldLoadMoreMessagesScrollToTop {
-    return YES;
+    return NO;
 }
 
 - (void)loadMoreMessagesScrollTotop {

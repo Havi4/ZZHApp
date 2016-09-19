@@ -16,7 +16,8 @@
 #import "TZImageManager.h"
 #import "TZVideoPlayerController.h"
 #import "UIView+Layout.h"
-
+#import "RMDateSelectionViewController.h"
+#import "WTRequestCenter.h"
 
 @interface ConsultVViewController ()<TZImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -30,6 +31,10 @@
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
 @property (nonatomic, assign) NSInteger presentImageNumber;
 @property (nonatomic, assign) NSInteger presentColumnNumber;
+@property (nonatomic, strong) NSString *selectDate;
+@property (nonatomic, assign) NSInteger selectGenderIndex;
+@property (nonatomic, strong) NSString *textString;
+@property (nonatomic, strong) NSMutableArray *imageUrlArr;
 
 @end
 
@@ -45,10 +50,13 @@
 
 - (void)initImagePickerPara
 {
-    self.presentImageNumber = 9;
+    self.textString = @"请输入50-200个字";
+    self.selectGenderIndex = 0;
+    self.presentImageNumber = 3;
     self.presentColumnNumber = 4;//每行的照片
     _selectedPhotos = [NSMutableArray array];
     _selectedAssets = [NSMutableArray array];
+    _imageUrlArr = [NSMutableArray array];
 }
 
 
@@ -134,6 +142,9 @@
             cell.tapPresentCollectionViewImage = ^(NSMutableArray *selectedPhotos, NSMutableArray *selectedAssets,NSIndexPath *index){
                 [self pushPresentImage:index];
             };
+            cell.textViewData = ^(NSString *textData){
+                self.textString = textData;
+            };
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell reloadCollectionViewWithImageArr:_selectedPhotos selectedAssetsArr:_selectedAssets];
             return cell;
@@ -144,6 +155,9 @@
             if (!cell) {
                 cell = [[ConsultGenderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell1"];
             }
+            cell.selectGenderBlock = ^(NSInteger index){
+                self.selectGenderIndex = index;
+            };
             cell.backgroundColor = [UIColor whiteColor];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -155,6 +169,11 @@
             ConsultBirthTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
             if (!cell) {
                 cell = [[ConsultBirthTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2"];
+            }
+            if (self.selectDate.length == 0) {
+                [cell configCellWithDic:@"请选择"];
+            }else{
+                [cell configCellWithDic:self.selectDate];
             }
             cell.backgroundColor = [UIColor whiteColor];
             return cell;
@@ -173,6 +192,7 @@
             [button setTitle:@"提交" forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [cell addSubview:button];
+            [button addTarget:self action:@selector(uploadProblem) forControlEvents:UIControlEventTouchUpInside];
             return cell;
             break;
         }
@@ -256,6 +276,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 2) {
+        [self openDateSelectionController:nil];
+    }
 }
 #pragma mark 弹出imagepicker
 
@@ -360,7 +383,7 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
-        TZImagePickerController *tzImagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+        TZImagePickerController *tzImagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:3 delegate:self];
         tzImagePickerVc.sortAscendingByModificationDate = YES;
         [tzImagePickerVc showProgressHUD];
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -445,6 +468,193 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)openDateSelectionController:(id)sender {
+    //Create select action
+    RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        NSString *date = [[NSString stringWithFormat:@"%@",((UIDatePicker *)controller.contentView).date]substringToIndex:10];
+        if ([((UIDatePicker *)controller.contentView).date isLaterThan:[NSDate date]]) {
+            [NSObject showHudTipStr:@"请选择正确的生日"];
+            return;
+        }
+        [[NSUserDefaults standardUserDefaults]setObject:((UIDatePicker *)controller.contentView).date forKey:@"docuserBirthday"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        DeBugLog(@"选择的生日是%@",date);
+        self.selectDate = date;
+        [self.consultView reloadSection:2 withRowAnimation:UITableViewRowAnimationNone];
+    }];
+    
+    //Create cancel action
+    RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+        
+    }];
+    
+    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite];
+    [dateSelectionController addAction:selectAction];
+    [dateSelectionController addAction:cancelAction];
+    //Create date selection view controller
+    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"docuserBirthday"]) {
+        dateSelectionController.datePicker.date = [[NSUserDefaults standardUserDefaults]objectForKey:@"docuserBirthday"];
+    }
+    //Now just present the date selection controller using the standard iOS presentation method
+    [self presentViewController:dateSelectionController animated:YES completion:nil];
+}
+
+- (void)uploadProblem
+{
+    if ([self.textString isEqualToString:@"请输入50-200个字"] || self.textString.length == 0) {
+        [NSObject showHudTipStr:@"请输入病情描述"];
+        return;
+    }
+    if (self.selectDate.length==0) {
+        [NSObject showHudTipStr:@"请选择出生年月"];
+        return;
+    }
+    [_imageUrlArr removeAllObjects];
+    [NSObject showHud];
+    if (_selectedPhotos.count>0) {
+        [self uploadImageArr];
+    }
+    [NSObject hideHud];
+    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/FreeProblem/Create";
+    NSDateFormatter *_dateFormmatter = [[NSDateFormatter alloc]init];
+    [_dateFormmatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [_dateFormmatter dateFromString:self.selectDate];
+    NSDate *now = [NSDate date];
+    NSInteger age = now.year - date.year;
+    NSDictionary *patient_meta = @{
+                                   @"age":[NSNumber numberWithInteger:age],
+                                   @"sex":self.selectGenderIndex == 0?@"男":@"女",
+                                   @"type":@"patient_meta"
+                                   };
+    NSDictionary *textPloblem = @{
+                                  @"type": @"text",
+                                  @"text": self.textString,
+                                  };
+
+    NSMutableArray *contentArr = @[].mutableCopy;
+    [contentArr addObject:textPloblem];
+    if (_imageUrlArr.count > 0) {
+        for (NSString *url in _imageUrlArr) {
+            NSDictionary *textPloblem = @{
+                                          @"type": @"image",
+                                          @"file": url,
+                                          };
+            [contentArr addObject:textPloblem];
+        }
+    }
+    [contentArr addObject:patient_meta];
+    NSDictionary *dicPara = @{
+                              @"UserId": @"meddo99.com$13122785292",
+                              @"Content": contentArr,
+                              };
+
+    [NSObject showHud];
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        [NSObject hideHud];
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
+            [self.navigationController popViewControllerAnimated:YES];
+            [NSObject showHudTipStr:@"提交成功"];
+        }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0){
+            [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject hideHud];
+    }];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
+- (void)uploadImageArr
+{
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    for (UIImage *image in _selectedPhotos) {
+        NSInvocationOperation *opA = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(upDateIcon:) object:@{@"image":image}];
+        [queue addOperation:opA];
+    }
+    queue.maxConcurrentOperationCount = 1; //设置最大并发执行数，如果为1则同时只有一个并发任务在运行，可控制顺序执行关系
+    [queue waitUntilAllOperationsAreFinished];
+    
+}
+
+- (void)upDateIcon:(id)op
+{
+    NSDictionary *dic = (NSDictionary*)op;
+    NSData *imageData = [self calculateIconImage:[dic objectForKey:@"image"]];
+    if (imageData) {
+        [self uploadWithImageData:imageData withUserId:thirdPartyLoginUserId];
+    }
+}
+
+#define UploadImageSize          100000
+- (NSData *)calculateIconImage:(UIImage *)image
+{
+    if(image){
+        
+        [image fixOrientation];
+        CGFloat height = image.size.height;
+        CGFloat width = image.size.width;
+        NSData *data = UIImageJPEGRepresentation(image,1);
+        
+        float n;
+        n = (float)UploadImageSize/data.length;
+        data = UIImageJPEGRepresentation(image, n);
+        while (data.length > UploadImageSize) {
+            image = [UIImage imageWithData:data];
+            height /= 2;
+            width /= 2;
+            image = [image scaleToSize:CGSizeMake(width, height)];
+            data = UIImageJPEGRepresentation(image,1);
+        }
+        return data;
+        
+    }
+    return nil;
+}
+
+
+- (void)uploadWithImageData:(NSData*)imageData withUserId:(NSString *)userId
+{
+    NSDictionary *dicHeader = @{
+                                @"AccessToken": @"123456789",
+                                };
+    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",kAppTestBaseURL,thirdPartyLoginUserId];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
+    [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
+    [self setRequest:request withImageData:imageData];
+    NSError *error;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
+    if ([[dic objectForKey:@"ReturnCode"] intValue]==200) {
+        [_imageUrlArr addObject:[dic objectForKey:@"FileUrl"]];
+    }
+}
+
+- (void)setRequest:(NSMutableURLRequest *)request withImageData:(NSData*)imageData
+{
+    NSMutableData *body = [NSMutableData data];
+    // 表单数据
+    
+    /// 图片数据部分
+    NSMutableString *topStr = [NSMutableString string];
+    [body appendData:[topStr dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:imageData];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    // 设置请求类型为post请求
+    request.HTTPMethod = @"post";
+    // 设置request的请求体
+    request.HTTPBody = body;
+    // 设置头部数据，标明上传数据总大小，用于服务器接收校验
+    [request setValue:[NSString stringWithFormat:@"%ld", body.length] forHTTPHeaderField:@"Content-Length"];
+    // 设置头部数据，指定了http post请求的编码方式为multipart/form-data（上传文件必须用这个）。
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; image/png"] forHTTPHeaderField:@"Content-Type"];
+}
+
 
 /*
 #pragma mark - Navigation

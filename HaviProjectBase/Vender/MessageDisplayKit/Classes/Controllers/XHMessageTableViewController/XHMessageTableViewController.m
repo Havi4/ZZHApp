@@ -530,7 +530,7 @@ static CGPoint  delayOffset = {0.0};
     _isUserScrolling = NO;
     
     // 初始化message tableView
-    XHMessageTableView *messageTableView = [[XHMessageTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    XHMessageTableView *messageTableView = [[XHMessageTableView alloc] initWithFrame:(CGRect){0,64,self.view.bounds.size.width,self.view.bounds.size.height-64} style:UITableViewStylePlain];
     messageTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     messageTableView.dataSource = self;
     messageTableView.delegate = self;

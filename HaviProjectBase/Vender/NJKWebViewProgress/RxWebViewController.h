@@ -16,6 +16,8 @@
  */
 @property (nonatomic)NSURL* url;
 
+@property (nonatomic, strong) NSString* urlString;
+
 /**
  *  embed webView
  */

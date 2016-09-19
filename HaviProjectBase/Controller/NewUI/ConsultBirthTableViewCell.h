@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ConsultBirthTableViewCell : UITableViewCell
+- (void)configCellWithDic:(NSString*)para;
 
 @end

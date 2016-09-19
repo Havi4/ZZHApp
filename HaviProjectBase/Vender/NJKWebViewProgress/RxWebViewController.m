@@ -85,8 +85,10 @@
     [self.view addSubview:self.webView];
     [self.webView insertSubview:self.hostInfoLabel belowSubview:self.webView.scrollView];
     [self.view addSubview:self.progressView];
-    
-    [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
+    NSString * htmlstr = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:self.urlString] encoding:NSUTF8StringEncoding error:nil];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlstr]]];
+    [self.webView loadHTMLString:htmlstr baseURL:[NSURL URLWithString:self.urlString]];
+//    [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
 }
 
 - (void)initNavigationBar
@@ -379,7 +381,7 @@
     if (!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:(CGRect){0,64,self.view.frame.size.width,self.view.frame.size.height-64}];
         _webView.delegate = (id)self;
-        _webView.scalesPageToFit = YES;
+        _webView.scalesPageToFit = NO;
         _webView.contentMode = UIViewContentModeScaleAspectFit;
         _webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight |UIViewAutoresizingFlexibleWidth);
         [_webView addGestureRecognizer:self.swipePanGesture];

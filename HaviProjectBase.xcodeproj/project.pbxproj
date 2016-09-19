@@ -126,6 +126,7 @@
 		2C5529001D8E8637001B3CDF /* diage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5528FD1D8E8637001B3CDF /* diage.png */; };
 		2C5529011D8E8637001B3CDF /* docTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5528FE1D8E8637001B3CDF /* docTitle.png */; };
 		2C5529021D8E8637001B3CDF /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5528FF1D8E8637001B3CDF /* time.png */; };
+		2C5529041D8FEAE3001B3CDF /* AppIcon29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C5529031D8FEAE3001B3CDF /* AppIcon29@2x.png */; };
 		2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */; };
 		2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C58724F1C7AEAA1001C2F3A /* libc++.tbd */; };
 		2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5872511C7AEAAE001C2F3A /* libz.tbd */; };
@@ -961,6 +962,7 @@
 		2C5528FD1D8E8637001B3CDF /* diage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diage.png; sourceTree = "<group>"; };
 		2C5528FE1D8E8637001B3CDF /* docTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docTitle.png; sourceTree = "<group>"; };
 		2C5528FF1D8E8637001B3CDF /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
+		2C5529031D8FEAE3001B3CDF /* AppIcon29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29@2x.png"; sourceTree = "<group>"; };
 		2C58724D1C7AEA30001C2F3A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2C58724F1C7AEAA1001C2F3A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		2C5872511C7AEAAE001C2F3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -2213,6 +2215,7 @@
 				2C5528FD1D8E8637001B3CDF /* diage.png */,
 				2C5528FE1D8E8637001B3CDF /* docTitle.png */,
 				2C5528FF1D8E8637001B3CDF /* time.png */,
+				2C5529031D8FEAE3001B3CDF /* AppIcon29@2x.png */,
 			);
 			name = Conversation;
 			sourceTree = "<group>";
@@ -4667,6 +4670,7 @@
 				2CD0148D1C633FF3001F9514 /* icon_setting_0@2x.png in Resources */,
 				2C11C98A1D76A6D70032CA95 /* cp@3x.png in Resources */,
 				2CF2E1511C7590930007A639 /* search_1@2x.png in Resources */,
+				2C5529041D8FEAE3001B3CDF /* AppIcon29@2x.png in Resources */,
 				2CF2E1661C759F530007A639 /* havi1_3@2x.png in Resources */,
 				2CF2E2701C7AD1E30007A639 /* pic_introduce_2@2x.png in Resources */,
 				2C9EF4471C80388E000704E2 /* ic_dot_0.png in Resources */,

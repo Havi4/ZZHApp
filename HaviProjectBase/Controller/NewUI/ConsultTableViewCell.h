@@ -14,6 +14,8 @@
 
 @property (nonatomic, copy) void (^deleteRelodCollectionView)(NSMutableArray *selectedPhotos,NSMutableArray *selectedAssets);
 
+@property (nonatomic, copy) void (^textViewData)(NSString *textString);
+
 @property (nonatomic, copy) void (^tapPresentCollectionViewImage)(NSMutableArray *selectedPhotos,NSMutableArray *selectedAssets,NSIndexPath *index);
 
 - (void)reloadCollectionViewWithImageArr:(NSMutableArray *)selectedPhotos selectedAssetsArr:(NSMutableArray *)selectedAssets;

@@ -10,4 +10,6 @@
 
 @interface ConsultGenderTableViewCell : UITableViewCell
 
+@property (nonatomic, copy) void (^selectGenderBlock)(NSInteger genderIndex);
+
 @end

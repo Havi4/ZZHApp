@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSString *queryEndTime;
 @property (nonatomic, strong) NSArray *controllersArr;
 @property (nonatomic, strong) UILabel *cellRecommend;
+@property (nonatomic, strong) NSString *city;
 
 @end
 
@@ -48,6 +49,7 @@
 {
     [[NSNotificationCenter defaultCenter]addObserverForName:kGetCurrentCity object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         NSDictionary *dic = note.userInfo;
+        self.city = [dic objectForKey:@"city"];
         [self getAriticleList:dic];
     }];
 }
@@ -59,7 +61,7 @@
                             @"UUID" : self.deviceUUID,
                             @"FromDate": self.queryStartTime,
                             @"EndDate": self.queryEndTime,
-                            @"City":[dic objectForKey:@"city"],
+                            @"City":self.city,
                             @"UserId":thirdPartyLoginUserId
                             };
     @weakify(self);
@@ -109,7 +111,8 @@
 - (void)tapArticle:(UIGestureRecognizer *)gesture
 {
     
-    RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:@"https://www.baidu.com"]];
+    RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:self.articleModel.url]];
+    webViewController.urlString = self.articleModel.url;
     webViewController.articleTitle = self.articleModel.title;
     [self.navigationController pushViewController:webViewController animated:YES];
 //    ArticleViewController *articleView = [[ArticleViewController alloc]init];
@@ -204,6 +207,9 @@
         self.sleepQualityModel = qualityModel;
         [self.dataShowTableView reloadData];
     }];
+    if (self.city.length > 0) {
+        [self getAriticleList:nil];
+    }
 }
 
 - (void)sendCellTapResult:(id)result type:(cellTapType)type

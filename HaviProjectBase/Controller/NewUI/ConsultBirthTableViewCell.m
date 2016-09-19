@@ -58,6 +58,11 @@
     return self;
 }
 
+- (void)configCellWithDic:(NSString*)para
+{
+    _rigthLabel.text = para;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

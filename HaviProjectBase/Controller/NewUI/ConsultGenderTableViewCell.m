@@ -95,10 +95,13 @@
     if (button.tag == 101) {
         [_boyIcon setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
         [_girlIcon setImage:[UIImage imageNamed:@"tuoy"] forState:UIControlStateNormal];
+        self.selectGenderBlock(0);
     }else{
         [_girlIcon setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
         [_boyIcon setImage:[UIImage imageNamed:@"tuoy"] forState:UIControlStateNormal];
+        self.selectGenderBlock(1);
     }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -111,10 +111,12 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 - (void)tapchangeNet:(UIGestureRecognizer *)geture
 {
     if ([NSObject baseURLStrIsTest]) {
+        [NSObject showHudTipStr:@"切换正式网络"];
         DeBugLog(@"正式网络切换ok");
         [NSObject changeBaseURLStrToTest:NO];
     }else{
         DeBugLog(@"测试网络切换ok");
+        [NSObject showHudTipStr:@"切换测试网络"];
         [NSObject changeBaseURLStrToTest:YES];
     }
 }

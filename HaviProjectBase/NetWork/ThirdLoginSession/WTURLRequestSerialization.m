@@ -310,6 +310,7 @@ static NSString *defaultUserAgentString = nil;
     }
     if (parameters) {
         NSData *data1 = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+        DeBugLog(@"转换json 是%@",[[NSString alloc]initWithData:data1 encoding:NSUTF8StringEncoding]);
         [request setHTTPBody:data1];
         
     }

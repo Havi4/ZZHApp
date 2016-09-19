@@ -139,7 +139,7 @@
     }
     cell.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
     [cell configCellWithDic:[self.problemArr objectAtIndex:indexPath.section]];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     return cell;
 }
 
@@ -155,7 +155,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XHDemoWeChatMessageTableViewController *demoWeChatMessageTableViewController = [[XHDemoWeChatMessageTableViewController alloc] init];
+    NSString *problemId = [[[self.problemArr objectAtIndex:indexPath.section] objectForKey:@"problem"]objectForKey:@"id"];
+    demoWeChatMessageTableViewController.problemID = problemId;
     [self.navigationController pushViewController:demoWeChatMessageTableViewController animated:YES];
 }
 
@@ -165,6 +168,8 @@
     [self.navigationController pushViewController:consult animated:YES];
 
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

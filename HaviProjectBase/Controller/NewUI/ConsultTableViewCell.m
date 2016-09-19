@@ -11,7 +11,7 @@
 #import "TZTestCell.h"
 #import "UIView+Layout.h"
 
-@interface ConsultTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface ConsultTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate>
 {
     CGFloat _itemWH;
     CGFloat _margin;
@@ -103,6 +103,8 @@
         }];
         
         _textView = [[UITextView alloc]init];
+        _textView.returnKeyType = UIReturnKeyDone;
+        _textView.delegate = self;
         [_backImageView addSubview:_textView];
         [_textView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_backImageView.mas_left).offset(8);
@@ -162,10 +164,37 @@
     [_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        //在这里做你响应return键的代码
+        [self.textView resignFirstResponder];
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"请输入50-200个字"]) {
+        textView.text = @"";
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    
+    NSInteger number = [textView.text length];
+    if (number > 200) {
+        [NSObject showHudTipStr:@"字数超过200个"];
+        textView.text = [textView.text substringToIndex:199];
+    }
+    self.textViewData(textView.text);
+}
+
 #pragma mark UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (_selectedPhotos.count < 9) {
+    if (_selectedPhotos.count < 3) {
         return _selectedPhotos.count + 1;
     }else{
         return _selectedPhotos.count;

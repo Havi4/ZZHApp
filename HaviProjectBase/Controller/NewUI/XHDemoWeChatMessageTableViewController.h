@@ -11,5 +11,6 @@
 @interface XHDemoWeChatMessageTableViewController : XHMessageTableViewController
 
 - (void)loadDemoDataSource;
+@property (nonatomic, strong) NSString *problemID;
 
 @end
