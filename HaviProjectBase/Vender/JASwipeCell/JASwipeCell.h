@@ -39,10 +39,10 @@ typedef NS_OPTIONS(NSUInteger, JAButtonLocation) {
 
 @protocol JASwipeCellDelegate <NSObject>
 // Called when the left most button has swiped all the way to the right.
+@optional
 - (void)leftMostButtonSwipeCompleted:(JASwipeCell *)cell;
 // Called when the right most button has swiped all the way to the left.
 - (void)rightMostButtonSwipeCompleted:(JASwipeCell *)cell;
-@optional
 // Called when the user begins swiping right on the cell.
 - (void)swipingRightForCell:(JASwipeCell *)cell;
 // Called when the user begins swiping left on the cell.

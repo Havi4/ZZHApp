@@ -351,9 +351,9 @@ typedef NS_ENUM(NSUInteger, JASwipeDirection) {
                 self.swipingLeft = currentX < self.startingPoint.x;
                 self.swipingRight = currentX > self.startingPoint.x;
             } else {
-                // Starting on an open state.
-                self.swipingLeft = currentX > self.startingPoint.x;
-                self.swipingRight = currentX < self.startingPoint.x;
+//                // Starting on an open state.
+//                self.swipingLeft = currentX > self.startingPoint.x;
+//                self.swipingRight = currentX < self.startingPoint.x;
             }
             
             if (self.swipingLeft) {
@@ -376,10 +376,10 @@ typedef NS_ENUM(NSUInteger, JASwipeDirection) {
                 // Top view is open revealing the right buttons
                 else {
                     // Starting open with right buttons revealed
-                    if (fabs(self.startingPoint.x) == [self rightButtonsTotalWidth]) {
-                        // Handle panning and revealing the right buttons
-                        [self handlePanningButtons:newXOffset swipeDirection:JASwipeDirectionLeft];
-                    }
+//                    if (fabs(self.startingPoint.x) == [self rightButtonsTotalWidth]) {
+//                        // Handle panning and revealing the right buttons
+//                        [self handlePanningButtons:newXOffset swipeDirection:JASwipeDirectionLeft];
+//                    }
                 }
 		// Calculate the top view width adjustment because of accessory buttons
 		if( self.contentView.frame.size.width < self.frame.size.width ) {
@@ -408,10 +408,10 @@ typedef NS_ENUM(NSUInteger, JASwipeDirection) {
                 // Top view is open revealing the left buttons
                 else {
                     // Started open with right buttons revealed
-                    if (self.startingPoint.x == [self leftButtonsTotalWidth]) {
-                        // Handle panning and revealing the left buttons
-                        [self handlePanningButtons:newXOffset swipeDirection:JASwipeDirectionRight];
-                    }
+//                    if (self.startingPoint.x == [self leftButtonsTotalWidth]) {
+//                        // Handle panning and revealing the left buttons
+//                        [self handlePanningButtons:newXOffset swipeDirection:JASwipeDirectionRight];
+//                    }
                 }
             }
             
@@ -430,17 +430,20 @@ typedef NS_ENUM(NSUInteger, JASwipeDirection) {
                     return;
                 }
                 // Complete the swipe to the left
-                if (fabs(currentX) > [self rightButtonsTotalWidth]) {
-                    newXOffset = -self.frame.size.width;
-                    [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                        [self pinButtonToTopViewWithOffset:newXOffset swipeDirection:JASwipeDirectionLeft];
-                    } completion:^(BOOL finished) {
-                        [self.delegate rightMostButtonSwipeCompleted:self];
-                    }];
-                    self.rightButtonsRevealed = NO;
-                }
-                // Open to reveal right buttons
-                else if (fabs(currentX) == [self rightButtonsTotalWidth] || fabs(currentX) > [self rightButtonsTotalWidth]/2) {
+//                if (fabs(currentX) > [self rightButtonsTotalWidth]) {
+//                    newXOffset = -[self rightButtonsTotalWidth];
+//                    // Set the top view width adjustment because of accessory buttons
+//                    if( self.contentView.frame.size.width < self.frame.size.width ) {
+//                        deltaWidth = self.frame.size.width - self.contentView.frame.size.width;
+//                    }
+//                    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//                        [self revealButtonsWithTopViewWithOffset:newXOffset swipeDirection:JASwipeDirectionLeft];
+//                    } completion:nil];
+//                    self.rightButtonsRevealed = YES;
+//                }
+//                // Open to reveal right buttons
+//                else
+                    if (fabs(currentX) == [self rightButtonsTotalWidth] || fabs(currentX) > [self rightButtonsTotalWidth]/2) {
                     newXOffset = -[self rightButtonsTotalWidth];
 		    // Set the top view width adjustment because of accessory buttons
 		    if( self.contentView.frame.size.width < self.frame.size.width ) {

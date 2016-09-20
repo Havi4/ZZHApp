@@ -14,6 +14,7 @@
 
 #import "XHAudioPlayerHelper.h"
 #import "WTRequestCenter.h"
+#import "DoctorInfomationViewController.h"
 
 //#import "XHContactDetailTableViewController.h"
 
@@ -24,7 +25,9 @@
 
 @property (nonatomic, strong) XHMessageTableViewCell *currentSelectedCell;
 @property (nonatomic, strong) NSString *docThumUrl;
+@property (nonatomic, strong) NSString *docID;
 @property (nonatomic, strong) NSString *myThumUrl;
+@property (nonatomic, strong) NSString *eduIntro;
 
 @end
 
@@ -254,8 +257,12 @@
             NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSArray *probleList = [[obj objectForKey:@"Result"] objectForKey:@"content"];
             self.docThumUrl =  [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"image"];
-            [self createMessageFile:probleList];
-            }
+            self.docID = [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"id"];
+            self.eduIntro = [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"education_background"];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self createMessageFile:probleList];
+            });
+                }
     failed:^(NSURLResponse *response, NSError *error) {
     }];
 }
@@ -266,21 +273,13 @@
     NSString *docDir = [paths objectAtIndex:0];
     NSString *path = [NSString stringWithFormat:@"%@/%@/",docDir,@"messageList"];
     NSString *txtPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.problemID]];
-    NSFileManager *verfileManager = [[NSFileManager alloc]init];
-    if (![verfileManager fileExistsAtPath:txtPath]) {
-        //路径存在与否
-        if (![verfileManager fileExistsAtPath:path]) {
-            //文件夹路径存在与否
-            [verfileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-        }
-        NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:messageData];
-        BOOL isTureWrite = [imageData writeToFile:txtPath atomically:YES];
-        if (isTureWrite) {
-            [self loadDemoDataSource];
-            DeBugLog(@"文件写入成功");
-        }else{
-            DeBugLog(@"文件写入失败");
-        }
+    NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:messageData];
+    BOOL isTureWrite = [imageData writeToFile:txtPath atomically:YES];
+    if (isTureWrite) {
+        [self loadDemoDataSource];
+        DeBugLog(@"文件写入成功");
+    }else{
+        DeBugLog(@"文件写入失败");
     }
 }
 
@@ -364,6 +363,10 @@
 
 - (void)didSelectedAvatarOnMessage:(id<XHMessageModel>)message atIndexPath:(NSIndexPath *)indexPath {
     DLog(@"indexPath : %@", indexPath);
+    DoctorInfomationViewController *doc = [[DoctorInfomationViewController alloc]init];
+    doc.docID = self.docID;
+    doc.eduIntroduction = self.eduIntro;
+    [self.navigationController pushViewController:doc animated:YES];
 //    XHContact *contact = [[XHContact alloc] init];
 //    contact.contactName = [message sender];
 //    contact.contactIntroduction = @"自定义描述，这个需要和业务逻辑挂钩";

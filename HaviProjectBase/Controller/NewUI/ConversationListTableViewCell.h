@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JASwipeCell.h"
 
-@interface ConversationListTableViewCell : UITableViewCell
+@interface ConversationListTableViewCell : JASwipeCell
 
 - (void)configCellWithDic:(id)para;
+@property (nonatomic, copy) void (^didSelectedAssessmentButton)(NSString *problemID);
 
 @end

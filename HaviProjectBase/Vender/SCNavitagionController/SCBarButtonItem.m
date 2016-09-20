@@ -61,6 +61,29 @@
     return self;
 }
 
+- (instancetype)initWithTitle:(NSString *)title style:(SCBarButtonItemStyle)style withColor:(UIColor *)color handler:(void (^)(id sender))action {
+    
+    if ([self init]) {
+        
+        UIButton *button = [[UIButton alloc] init];
+        [button setTitle:title forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [button setTitleColor:color forState:UIControlStateNormal];
+        [button sizeToFit];
+        button.height = 44;
+        button.width += 30;
+        button.centerY = 20 + 22;
+        button.x = 0;
+        self.view = button;
+        self.tapAction = action;
+        [button addTarget:self action:@selector(touchupinside:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(touchupdown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(other:) forControlEvents:UIControlEventTouchCancel|UIControlEventTouchUpOutside|UIControlEventTouchDragOutside ];
+    }
+    
+    return self;
+}
+
 - (void)touchupinside:(UIButton *)button {
     self.tapAction(button);
     [UIView animateWithDuration:0.2 animations:^{
@@ -106,6 +129,34 @@
     
     return self;
 }
+
+- (instancetype)initWithImage:(UIImage *)image style:(SCBarButtonItemStyle)style withTitileColor:(UIColor*)color handler:(void (^)(id sender))action {
+    
+    if ([self init]) {
+        
+        self.buttonImage = image;
+        
+        //        image = image.imageForCurrentTheme;
+        
+        UIButton *button = [[UIButton alloc] init];
+        [button setImage:image forState:UIControlStateNormal];
+        [button setImage:image forState:UIControlStateHighlighted];
+        [button sizeToFit];
+        button.height = 44;
+        button.width += 30;
+        button.centerY = 20 + 22;
+        button.x = 0;
+        self.view = button;
+        self.tapAction = action;
+        [button addTarget:self action:@selector(touchupinside:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(touchupdown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(other:) forControlEvents:UIControlEventTouchCancel|UIControlEventTouchUpOutside|UIControlEventTouchDragOutside ];
+        
+    }
+    
+    return self;
+}
+
 
 - (void)setEnabled:(BOOL)enabled {
     _enabled = enabled;

@@ -557,7 +557,8 @@
         if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
             [self.navigationController popViewControllerAnimated:YES];
             [NSObject showHudTipStr:@"提交成功"];
-        }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0){
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"deletProblem" object:nil];
+        }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==1){
             [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
         }
     } failed:^(NSURLResponse *response, NSError *error) {

@@ -11,14 +11,18 @@
 #import "XHDemoWeChatMessageTableViewController.h"
 #import "ConsultVViewController.h"
 #import "WTRequestCenter.h"
+#import "EvaluationViewController.h"
+#import "JAActionButton.h"
 
-@interface ConversationListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ConversationListViewController ()<UITableViewDelegate,UITableViewDataSource,JASwipeCellDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *consultView;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) SCBarButtonItem *rightBarItem;
 @property (nonatomic, strong) UIView *noProblemBack;
 @property (nonatomic, strong) NSArray *problemArr;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSIndexPath *deleteIndexPath;
 
 @end
 
@@ -29,9 +33,21 @@
     self.backgroundImageView.image = [UIImage imageNamed:@""];
     // Do any additional setup after loading the view.
     [self initNavigationBar];
-    [self getProblemList];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor grayColor];
+    [self.refreshControl addTarget:self action:@selector(getProblemList) forControlEvents:UIControlEventValueChanged];
+    [self.consultView addSubview:self.refreshControl];
     [self.view addSubview:self.consultView];
     [self.view addSubview:self.noProblemBack];
+    [self getProblemList];
+    [self configNoti];
+}
+
+- (void)configNoti
+{
+    [[NSNotificationCenter defaultCenter]addObserverForName:@"deletProblem" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self getProblemList];
+    }];
 }
 
 - (void)getProblemList
@@ -44,6 +60,7 @@
                               };
     [NSObject showHud];
     [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        [self.refreshControl endRefreshing];
         [NSObject hideHud];
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         NSArray *probleList = [obj objectForKey:@"Result"];
@@ -58,6 +75,9 @@
         }
     } failed:^(NSURLResponse *response, NSError *error) {
         [NSObject hideHud];
+        [self.refreshControl endRefreshing];
+        self.problemArr = nil;
+        [self.consultView reloadData];
         [self.view addSubview:self.noProblemBack];
     }];
     
@@ -137,10 +157,80 @@
     if (!cell) {
         cell = [[ConversationListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell0"];
     }
+    cell.didSelectedAssessmentButton = ^(NSString *problemID){
+        [self goAssementView:problemID];
+    };
     cell.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.00];
     [cell configCellWithDic:[self.problemArr objectAtIndex:indexPath.section]];
+    [cell addActionButtons:[self rightButtonsWithTable:tableView] withButtonWidth:kJAButtonWidth withButtonPosition:JAButtonLocationRight];
+    cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     return cell;
+}
+
+- (NSArray *)rightButtonsWithTable:(UITableView *)table
+{
+    
+    @weakify(self);
+    JAActionButton *button1 = [JAActionButton actionButtonWithTitle:@"删除" color:[UIColor redColor] handler:^(UIButton *actionButton, JASwipeCell*cell) {
+        @strongify(self);
+        [cell resetContainerView];
+        NSIndexPath *indexPath = [table indexPathForCell:cell];
+        self.deleteIndexPath = indexPath;
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确定要删除本条信息?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+//        self.cellRightButtonTaped(DeleteCell,indexPath,[self itemAtIndexPath:indexPath],cell);
+    }];
+    
+    return @[button1];
+}
+
+- (void)rightMostButtonSwipeCompleted:(JASwipeCell *)cell
+{
+    NSIndexPath *indexPath = [self.consultView indexPathForCell:cell];
+    self.deleteIndexPath = indexPath;
+    [cell resetContainerView];
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确定要删除本条信息?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
+
+- (void)leftMostButtonSwipeCompleted:(JASwipeCell *)cell
+{
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSDictionary *para = [self.problemArr objectAtIndex:self.deleteIndexPath.section];
+        NSString *problemID = [[para objectForKey:@"problem"]objectForKey:@"id"];
+        [self deleteProblemWith:problemID];
+
+    }
+}
+
+#pragma mark - JASwipeCellDelegate methods
+
+- (void)swipingRightForCell:(JASwipeCell *)cell
+{
+    NSArray *indexPaths = [self.consultView indexPathsForVisibleRows];
+    for (NSIndexPath *indexPath in indexPaths) {
+        JASwipeCell *visibleCell = (JASwipeCell *)[self.consultView cellForRowAtIndexPath:indexPath];
+        if (visibleCell != cell) {
+            [visibleCell resetContainerView];
+        }
+    }
+}
+
+- (void)swipingLeftForCell:(JASwipeCell *)cell
+{
+    NSArray *indexPaths = [self.consultView indexPathsForVisibleRows];
+    for (NSIndexPath *indexPath in indexPaths) {
+        JASwipeCell *visibleCell = (JASwipeCell *)[self.consultView cellForRowAtIndexPath:indexPath];
+        if (visibleCell != cell) {
+            [visibleCell resetContainerView];
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -162,6 +252,13 @@
     [self.navigationController pushViewController:demoWeChatMessageTableViewController animated:YES];
 }
 
+- (void)goAssementView:(NSString *)problemID
+{
+    EvaluationViewController *evaluation = [[EvaluationViewController alloc]init];
+    evaluation.problemID = problemID;
+    [self.navigationController pushViewController:evaluation animated:YES];
+}
+
 - (void)addNewProblem:(UIButton *)button
 {
     ConsultVViewController *consult = [[ConsultVViewController alloc]init];
@@ -169,7 +266,35 @@
 
 }
 
+- (void)deleteProblemWith:(NSString *)problemID
+{
+    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/Delete";
+    NSDictionary *dicPara = @{
+                              @"UserId": @"meddo99.com$13122785292",
+                              @"ProblemId": problemID,
+                              };
+    
+    [NSObject showHud];
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        [NSObject hideHud];
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
+            [NSObject showHudTipStr:@"删除提问成功"];
+            [self getProblemList];
+        }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==1){
+            [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject hideHud];
+    }];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    [self refreshAction];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

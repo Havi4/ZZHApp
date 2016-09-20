@@ -25,4 +25,5 @@ typedef NS_ENUM(NSInteger, SCBarButtonItemStyle) {  // for future use
 
 - (instancetype)initWithImage:(UIImage *)image style:(SCBarButtonItemStyle)style handler:(void (^)(id sender))action;
 
+- (instancetype)initWithTitle:(NSString *)title style:(SCBarButtonItemStyle)style withColor:(UIColor *)color handler:(void (^)(id sender))action;
 @end
