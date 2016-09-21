@@ -76,7 +76,6 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
     _detailDoc.attributedText = attributedString;
     [_detailDoc sizeToFit];
-//    _detailDoc.text = [NSString stringWithFormat:@"%@",[para objectForKey:@"detail"]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

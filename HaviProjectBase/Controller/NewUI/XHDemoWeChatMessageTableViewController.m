@@ -15,6 +15,8 @@
 #import "XHAudioPlayerHelper.h"
 #import "WTRequestCenter.h"
 #import "DoctorInfomationViewController.h"
+#import "JTSImageViewController.h"
+#import "JTSImageInfo.h"
 
 //#import "XHContactDetailTableViewController.h"
 
@@ -28,6 +30,8 @@
 @property (nonatomic, strong) NSString *docID;
 @property (nonatomic, strong) NSString *myThumUrl;
 @property (nonatomic, strong) NSString *eduIntro;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
 
 @end
 
@@ -43,7 +47,7 @@
 }
 
 - (XHMessage *)getPhotoMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl {
-    XHMessage *photoMessage = [[XHMessage alloc] initWithPhoto:nil thumbnailUrl:[messdic objectForKey:@"file"] originPhotoUrl:nil sender:@"Jack" timestamp:[NSDate date]];
+    XHMessage *photoMessage = [[XHMessage alloc] initWithPhoto:nil thumbnailUrl:[messdic objectForKey:@"file"] originPhotoUrl:[messdic objectForKey:@"file"] sender:@"Jack" timestamp:[NSDate date]];
     photoMessage.avatar = [UIImage imageNamed:@"doc"];
     photoMessage.avatarUrl = iconUrl;
     photoMessage.bubbleMessageType = bubbleMessageType;
@@ -244,7 +248,25 @@
     
     [self loadDemoDataSource];
     [self getContentMessage];
+    [self initNavigationBar];
 }
+
+- (void)initNavigationBar
+{
+    self.navigationController.navigationBarHidden = YES;
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+    
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithTitle:@"评价" style:SCBarButtonItemStylePlain withColor:[UIColor colorWithRed:0.157 green:0.659 blue:0.902 alpha:1.00] handler:^(id sender) {
+    }];
+
+    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+    self.sc_navigationItem.title = @"问题详情";
+    self.view.backgroundColor = [UIColor colorWithRed:0.957 green:0.961 blue:0.965 alpha:1.00];
+}
+
 
 - (void)getContentMessage
 {
@@ -308,9 +330,21 @@
         case XHBubbleMessageMediaTypePhoto: {
             DLog(@"message : %@", message.photo);
             DLog(@"message : %@", message.videoConverPhoto);
-            XHDisplayMediaViewController *messageDisplayTextView = [[XHDisplayMediaViewController alloc] init];
-            messageDisplayTextView.message = message;
-            disPlayViewController = messageDisplayTextView;
+            JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+            imageInfo.imageURL = [NSURL URLWithString:message.originPhotoUrl];
+            imageInfo.referenceRect = self.view.frame;
+            imageInfo.referenceView = self.view;
+//            imageInfo.referenceContentMode = self.bigImageButton.contentMode;
+//            imageInfo.referenceCornerRadius = self.bigImageButton.layer.cornerRadius;
+            
+            // Setup view controller
+            JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                                   initWithImageInfo:imageInfo
+                                                   mode:JTSImageViewControllerMode_Image
+                                                   backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
+            
+            // Present the view controller.
+            [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
             break;
         }
             break;
@@ -356,9 +390,9 @@
 
 - (void)didDoubleSelectedOnTextMessage:(id<XHMessageModel>)message atIndexPath:(NSIndexPath *)indexPath {
     DLog(@"text : %@", message.text);
-    XHDisplayTextViewController *displayTextViewController = [[XHDisplayTextViewController alloc] init];
-    displayTextViewController.message = message;
-    [self.navigationController pushViewController:displayTextViewController animated:YES];
+//    XHDisplayTextViewController *displayTextViewController = [[XHDisplayTextViewController alloc] init];
+//    displayTextViewController.message = message;
+//    [self.navigationController pushViewController:displayTextViewController animated:YES];
 }
 
 - (void)didSelectedAvatarOnMessage:(id<XHMessageModel>)message atIndexPath:(NSIndexPath *)indexPath {
@@ -367,11 +401,7 @@
     doc.docID = self.docID;
     doc.eduIntroduction = self.eduIntro;
     [self.navigationController pushViewController:doc animated:YES];
-//    XHContact *contact = [[XHContact alloc] init];
-//    contact.contactName = [message sender];
-//    contact.contactIntroduction = @"自定义描述，这个需要和业务逻辑挂钩";
-//    XHContactDetailTableViewController *contactDetailTableViewController = [[XHContactDetailTableViewController alloc] initWithContact:contact];
-//    [self.navigationController pushViewController:contactDetailTableViewController animated:YES];
+//
 }
 
 - (void)menuDidSelectedAtBubbleMessageMenuSelecteType:(XHBubbleMessageMenuSelecteType)bubbleMessageMenuSelecteType {

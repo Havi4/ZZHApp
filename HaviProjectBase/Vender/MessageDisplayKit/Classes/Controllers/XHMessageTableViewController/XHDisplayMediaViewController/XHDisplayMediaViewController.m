@@ -15,6 +15,7 @@
 @interface XHDisplayMediaViewController ()
 
 @property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
+@property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @property (nonatomic, weak) UIImageView *photoImageView;
 
@@ -51,7 +52,8 @@
         self.moviePlayerController.contentURL = [NSURL fileURLWithPath:[message videoPath]];
         [self.moviePlayerController play];
     } else if ([message messageMediaType] ==XHBubbleMessageMediaTypePhoto) {
-        self.title = NSLocalizedStringFromTable(@"Photo", @"MessageDisplayKitString", @"详细照片");
+//        self.title = NSLocalizedStringFromTable(@"Photo", @"MessageDisplayKitString", @"详细照片");
+        
         self.photoImageView.image = message.photo;
         if (message.thumbnailUrl) {
             NSString *placeholderImageName = [[XHConfigurationHelper appearance].messageInputViewStyle objectForKey:kXHMessageTablePlaceholderImageNameKey];
@@ -76,7 +78,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self initNavigationBar];
 }
+
+- (void)initNavigationBar
+{
+    self.navigationController.navigationBarHidden = YES;
+    self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
+    
+    self.sc_navigationItem.title = @"预览图片";
+    self.view.backgroundColor = [UIColor colorWithRed:0.957 green:0.961 blue:0.965 alpha:1.00];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

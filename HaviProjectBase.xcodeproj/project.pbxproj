@@ -194,6 +194,12 @@
 		2C94E55E1D9147720062A33C /* DoctorInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E55D1D9147720062A33C /* DoctorInfomationViewController.m */; };
 		2C94E5611D91687B0062A33C /* DocInfoTitileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E5601D91687B0062A33C /* DocInfoTitileTableViewCell.m */; };
 		2C94E5641D9168920062A33C /* DocInfoDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E5631D9168920062A33C /* DocInfoDetailTableViewCell.m */; };
+		2C94E5851D9209B70062A33C /* JTSAnimatedGIFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E57A1D9209B70062A33C /* JTSAnimatedGIFUtility.m */; };
+		2C94E5861D9209B70062A33C /* JTSImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E57C1D9209B70062A33C /* JTSImageInfo.m */; };
+		2C94E5871D9209B70062A33C /* JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E57E1D9209B70062A33C /* JTSImageViewController.m */; };
+		2C94E5881D9209B70062A33C /* JTSSimpleImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E5801D9209B70062A33C /* JTSSimpleImageDownloader.m */; };
+		2C94E5891D9209B70062A33C /* UIApplication+JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E5821D9209B70062A33C /* UIApplication+JTSImageViewController.m */; };
+		2C94E58A1D9209B70062A33C /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94E5841D9209B70062A33C /* UIImage+JTSImageEffects.m */; };
 		2C96A9FE1D40685400ACCA08 /* IntroduceView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */; };
 		2C96A9FF1D40685400ACCA08 /* IntroduceView2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */; };
 		2C96AA041D407B2400ACCA08 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA031D407B2400ACCA08 /* background.png */; };
@@ -1069,6 +1075,18 @@
 		2C94E5601D91687B0062A33C /* DocInfoTitileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocInfoTitileTableViewCell.m; path = NewUI/DocInfoTitileTableViewCell.m; sourceTree = "<group>"; };
 		2C94E5621D9168920062A33C /* DocInfoDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocInfoDetailTableViewCell.h; path = NewUI/DocInfoDetailTableViewCell.h; sourceTree = "<group>"; };
 		2C94E5631D9168920062A33C /* DocInfoDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocInfoDetailTableViewCell.m; path = NewUI/DocInfoDetailTableViewCell.m; sourceTree = "<group>"; };
+		2C94E5791D9209B70062A33C /* JTSAnimatedGIFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSAnimatedGIFUtility.h; sourceTree = "<group>"; };
+		2C94E57A1D9209B70062A33C /* JTSAnimatedGIFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSAnimatedGIFUtility.m; sourceTree = "<group>"; };
+		2C94E57B1D9209B70062A33C /* JTSImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageInfo.h; sourceTree = "<group>"; };
+		2C94E57C1D9209B70062A33C /* JTSImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageInfo.m; sourceTree = "<group>"; };
+		2C94E57D1D9209B70062A33C /* JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageViewController.h; sourceTree = "<group>"; };
+		2C94E57E1D9209B70062A33C /* JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageViewController.m; sourceTree = "<group>"; };
+		2C94E57F1D9209B70062A33C /* JTSSimpleImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSSimpleImageDownloader.h; sourceTree = "<group>"; };
+		2C94E5801D9209B70062A33C /* JTSSimpleImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSSimpleImageDownloader.m; sourceTree = "<group>"; };
+		2C94E5811D9209B70062A33C /* UIApplication+JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+JTSImageViewController.h"; sourceTree = "<group>"; };
+		2C94E5821D9209B70062A33C /* UIApplication+JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+JTSImageViewController.m"; sourceTree = "<group>"; };
+		2C94E5831D9209B70062A33C /* UIImage+JTSImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTSImageEffects.h"; sourceTree = "<group>"; };
+		2C94E5841D9209B70062A33C /* UIImage+JTSImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTSImageEffects.m"; sourceTree = "<group>"; };
 		2C96A9FB1D40685400ACCA08 /* IntroduceView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView1.png; sourceTree = "<group>"; };
 		2C96A9FC1D40685400ACCA08 /* IntroduceView2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView2.png; sourceTree = "<group>"; };
 		2C96AA031D407B2400ACCA08 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -2328,6 +2346,25 @@
 			path = HCSStarRatingView;
 			sourceTree = "<group>";
 		};
+		2C94E5781D9209B70062A33C /* ImagePre */ = {
+			isa = PBXGroup;
+			children = (
+				2C94E5791D9209B70062A33C /* JTSAnimatedGIFUtility.h */,
+				2C94E57A1D9209B70062A33C /* JTSAnimatedGIFUtility.m */,
+				2C94E57B1D9209B70062A33C /* JTSImageInfo.h */,
+				2C94E57C1D9209B70062A33C /* JTSImageInfo.m */,
+				2C94E57D1D9209B70062A33C /* JTSImageViewController.h */,
+				2C94E57E1D9209B70062A33C /* JTSImageViewController.m */,
+				2C94E57F1D9209B70062A33C /* JTSSimpleImageDownloader.h */,
+				2C94E5801D9209B70062A33C /* JTSSimpleImageDownloader.m */,
+				2C94E5811D9209B70062A33C /* UIApplication+JTSImageViewController.h */,
+				2C94E5821D9209B70062A33C /* UIApplication+JTSImageViewController.m */,
+				2C94E5831D9209B70062A33C /* UIImage+JTSImageEffects.h */,
+				2C94E5841D9209B70062A33C /* UIImage+JTSImageEffects.m */,
+			);
+			path = ImagePre;
+			sourceTree = "<group>";
+		};
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -3068,6 +3105,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C94E5781D9209B70062A33C /* ImagePre */,
 				2C94E5451D910FFC0062A33C /* HCSStarRatingView */,
 				2CE3CCB61D8E426B001DDD1C /* MessageDisplayKit */,
 				2CFB35641D891781003CB6B2 /* TZImagePickerController */,
@@ -4894,6 +4932,7 @@
 				2CF2E1AE1C760A340007A639 /* UIActionSheet+Block.m in Sources */,
 				2CD75B731C61C2D000E7E076 /* FriendListModel.m in Sources */,
 				2C9EF4B71C83D9BD000704E2 /* JPushNotiManager.m in Sources */,
+				2C94E5891D9209B70062A33C /* UIApplication+JTSImageViewController.m in Sources */,
 				2CE3CDBC1D8E426B001DDD1C /* SETextMagnifierRanged.m in Sources */,
 				2CD0150B1C7028DC001F9514 /* JDStatusBarView.m in Sources */,
 				2C9EF3F61C7F0B99000704E2 /* TurnChartView.m in Sources */,
@@ -4969,6 +5008,7 @@
 				2C457B661D86961F00FFAB95 /* NJKWebViewProgress.m in Sources */,
 				2C1DA0241D4F2BF300FA6678 /* ZZHCalendarCircleView.m in Sources */,
 				2C457B451D85A0B700FFAB95 /* ConsultTableViewCell.m in Sources */,
+				2C94E5871D9209B70062A33C /* JTSImageViewController.m in Sources */,
 				2C9EF47B1C80B791000704E2 /* AMBlurView.m in Sources */,
 				2CE3CDBF1D8E426B001DDD1C /* SETextView.m in Sources */,
 				2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */,
@@ -4982,6 +5022,7 @@
 				2CF2E2051C796C360007A639 /* LocalNotificationManager.m in Sources */,
 				2C96AA211D40C5E000ACCA08 /* V2MenuSectionView.m in Sources */,
 				2C96AA601D41101A00ACCA08 /* SCNavigationItem.m in Sources */,
+				2C94E5881D9209B70062A33C /* JTSSimpleImageDownloader.m in Sources */,
 				2C9EF4E91C8523E6000704E2 /* ContainerTableViewCell.m in Sources */,
 				2C96AA631D41101A00ACCA08 /* SCViewController+NaviBar.m in Sources */,
 				2CFB357D1D891781003CB6B2 /* TZImageManager.m in Sources */,
@@ -5073,6 +5114,7 @@
 				2C94E5521D9114110062A33C /* SatisfactionTableViewCell.m in Sources */,
 				2CD014FC1C6EABDF001F9514 /* EditInfoCellTableViewCell.m in Sources */,
 				2CD014F21C6E2024001F9514 /* EditCellInfoViewController.m in Sources */,
+				2C94E58A1D9209B70062A33C /* UIImage+JTSImageEffects.m in Sources */,
 				2CD015231C707651001F9514 /* DeviceListViewController.m in Sources */,
 				2CD75B761C61C2D000E7E076 /* SensorInfoModel.m in Sources */,
 				2CD0151E1C705197001F9514 /* RMPickerViewController.m in Sources */,
@@ -5179,6 +5221,7 @@
 				2C1DA01C1D4F2BF300FA6678 /* JTCalendarDayView.m in Sources */,
 				2C457B601D8674FE00FFAB95 /* ArticleModel.m in Sources */,
 				2CD75BAB1C6203BB00E7E076 /* HaviBaseTableViewCell.m in Sources */,
+				2C94E5851D9209B70062A33C /* JTSAnimatedGIFUtility.m in Sources */,
 				2CF2E27D1C7ADDF40007A639 /* Gloable.m in Sources */,
 				2CFB35841D891781003CB6B2 /* UIView+Layout.m in Sources */,
 				2CF2E21D1C79D6600007A639 /* UserProtocolViewController.m in Sources */,
@@ -5188,6 +5231,7 @@
 				2C9EF3A21C7EC62B000704E2 /* ChartTableContainerViewController.m in Sources */,
 				2C96AA691D41C4A300ACCA08 /* ScrollViewFrameAccessor.m in Sources */,
 				2CE3CDC51D8E426B001DDD1C /* XHMessageInputView.m in Sources */,
+				2C94E5861D9209B70062A33C /* JTSImageInfo.m in Sources */,
 				2C9EF4E61C8523BD000704E2 /* CantainerDeviceListViewController.m in Sources */,
 				2CE3CD9A1D8E426B001DDD1C /* XHVoiceRecordHelper.m in Sources */,
 				2CF2E1401C7579520007A639 /* ReactiveDoubleViewController.m in Sources */,
