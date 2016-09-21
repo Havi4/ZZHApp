@@ -48,8 +48,8 @@
     [self.view addSubview:self.passWordText];
     self.nameText.delegate = self;
     self.passWordText.delegate = self;
-    [self.nameText setTextColor:kTextFieldWordColor];
-    self.passWordText.textColor = kTextFieldWordColor;
+    [self.nameText setTextColor:[UIColor blackColor]];
+    self.passWordText.textColor = [UIColor blackColor];
     self.nameText.borderStyle = UITextBorderStyleNone;
     self.passWordText.borderStyle = UITextBorderStyleNone;
     self.nameText.font = kTextFieldWordFont;

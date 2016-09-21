@@ -18,6 +18,7 @@
 #import "JTSImageViewController.h"
 #import "JTSImageInfo.h"
 #import "EvaluationViewController.h"
+#import "IMTitleView.h"
 //#import "XHContactDetailTableViewController.h"
 
 
@@ -32,6 +33,9 @@
 @property (nonatomic, strong) NSString *eduIntro;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) SCBarButtonItem *rightBarItem;
+@property (nonatomic, strong) IMTitleView *titleView;
+@property (nonatomic, strong) NSDictionary *docInfo;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -222,7 +226,10 @@
         XHShareMenuItem *shareMenuItem = [[XHShareMenuItem alloc] initWithNormalIconImage:[UIImage imageNamed:plugIcon] title:[plugTitle objectAtIndex:[plugIcons indexOfObject:plugIcon]]];
         [shareMenuItems addObject:shareMenuItem];
     }
-    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor grayColor];
+    [self.refreshControl addTarget:self action:@selector(getContentMessage) forControlEvents:UIControlEventValueChanged];
+    [self.messageTableView addSubview:self.refreshControl];
     NSMutableArray *emotionManagers = [NSMutableArray array];
     for (NSInteger i = 0; i < 10; i ++) {
         XHEmotionManager *emotionManager = [[XHEmotionManager alloc] init];
@@ -272,19 +279,22 @@
                               @"ProblemId":self.problemID,
                               };
     [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+            [self.refreshControl endRefreshing];
             NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSArray *probleList = [[obj objectForKey:@"Result"] objectForKey:@"content"];
             self.docThumUrl =  [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"image"];
             self.docID = [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"id"];
             self.eduIntro = [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"education_background"];
-        if ([[[obj objectForKey:@"Result"] objectForKey:@"need_assess"] intValue]==1) {
-            [self addAssementButtonWith:[[[obj objectForKey:@"Result"] objectForKey:@"problem"] objectForKey:@"id"]];
-        }
+            if ([[[obj objectForKey:@"Result"] objectForKey:@"need_assess"] intValue]==1) {
+                [self addAssementButtonWith:[[[obj objectForKey:@"Result"] objectForKey:@"problem"] objectForKey:@"id"]];
+            }
+        self.docInfo = [[obj objectForKey:@"Result"] objectForKey:@"doctor"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self createMessageFile:probleList];
             });
                 }
     failed:^(NSURLResponse *response, NSError *error) {
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -408,10 +418,12 @@
 
 - (void)didSelectedAvatarOnMessage:(id<XHMessageModel>)message atIndexPath:(NSIndexPath *)indexPath {
     DLog(@"indexPath : %@", indexPath);
-    DoctorInfomationViewController *doc = [[DoctorInfomationViewController alloc]init];
-    doc.docID = self.docID;
-    doc.eduIntroduction = self.eduIntro;
-    [self.navigationController pushViewController:doc animated:YES];
+    if ([message bubbleMessageType] == XHBubbleMessageTypeReceiving) {
+        DoctorInfomationViewController *doc = [[DoctorInfomationViewController alloc]init];
+        doc.docID = self.docID;
+        doc.eduIntroduction = self.eduIntro;
+        [self.navigationController pushViewController:doc animated:YES];
+    }
 //
 }
 
@@ -587,7 +599,43 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100;
+    if (self.docInfo) {
+        return 60;
+    }else{
+        return 0.001;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (self.docInfo) {
+        return self.titleView;
+    }else{
+        return nil;
+    }
+
+}
+
+- (IMTitleView *)titleView
+{
+    if (!_titleView) {
+        _titleView = [[IMTitleView alloc]init];
+        _titleView.frame = (CGRect){0,0,self.view.frame.size.width,60};
+        [_titleView configTitleView:self.docInfo];
+        _titleView.backgroundColor = [UIColor whiteColor];
+        _titleView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showDocInfo)];
+        [_titleView addGestureRecognizer:tap];
+    }
+    return _titleView;
+}
+
+- (void)showDocInfo
+{
+    DoctorInfomationViewController *doc = [[DoctorInfomationViewController alloc]init];
+    doc.docID = self.docID;
+    doc.eduIntroduction = self.eduIntro;
+    [self.navigationController pushViewController:doc animated:YES];
 }
 
 @end

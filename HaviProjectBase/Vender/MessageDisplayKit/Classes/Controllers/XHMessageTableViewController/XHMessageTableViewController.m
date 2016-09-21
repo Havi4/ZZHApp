@@ -553,7 +553,7 @@ static CGPoint  delayOffset = {0.0};
     [self setTableViewInsetsWithBottomValue:inputViewHeight];
     
     // 设置整体背景颜色
-    [self setBackgroundColor:[UIColor whiteColor]];
+    [self setBackgroundColor:[UIColor colorWithRed:0.933 green:0.937 blue:0.941 alpha:1.00]];
     
     // 输入工具条的frame
     CGRect inputFrame = CGRectMake(0.0f,
