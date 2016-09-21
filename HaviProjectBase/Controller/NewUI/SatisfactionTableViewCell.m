@@ -30,12 +30,12 @@
     if (!_starRatingView) {
         _starRatingView = [HCSStarRatingView new];
         _starRatingView.maximumValue = 5;
-        _starRatingView.minimumValue = 0;
+        _starRatingView.minimumValue = 1;
         _starRatingView.value = 5;
-        _starRatingView.tintColor = [UIColor redColor];
+        _starRatingView.tintColor = [UIColor colorWithRed:0.157 green:0.659 blue:0.902 alpha:1.00];
         _starRatingView.allowsHalfStars = NO;
-        _starRatingView.emptyStarImage = [[UIImage imageNamed:@"heart-empty"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        _starRatingView.filledStarImage = [[UIImage imageNamed:@"heart-full"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        _starRatingView.emptyStarImage = [[UIImage imageNamed:@"star_nofill"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+        _starRatingView.filledStarImage = [[UIImage imageNamed:@"star_fill"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
         [_starRatingView addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
         
         

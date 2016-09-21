@@ -17,7 +17,7 @@
 #import "DoctorInfomationViewController.h"
 #import "JTSImageViewController.h"
 #import "JTSImageInfo.h"
-
+#import "EvaluationViewController.h"
 //#import "XHContactDetailTableViewController.h"
 
 
@@ -259,10 +259,6 @@
     }];
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     
-    self.rightBarItem = [[SCBarButtonItem alloc] initWithTitle:@"评价" style:SCBarButtonItemStylePlain withColor:[UIColor colorWithRed:0.157 green:0.659 blue:0.902 alpha:1.00] handler:^(id sender) {
-    }];
-
-    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     self.sc_navigationItem.title = @"问题详情";
     self.view.backgroundColor = [UIColor colorWithRed:0.957 green:0.961 blue:0.965 alpha:1.00];
 }
@@ -281,12 +277,27 @@
             self.docThumUrl =  [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"image"];
             self.docID = [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"id"];
             self.eduIntro = [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"education_background"];
+        if ([[[obj objectForKey:@"Result"] objectForKey:@"need_assess"] intValue]==1) {
+            [self addAssementButtonWith:[[[obj objectForKey:@"Result"] objectForKey:@"problem"] objectForKey:@"id"]];
+        }
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self createMessageFile:probleList];
             });
                 }
     failed:^(NSURLResponse *response, NSError *error) {
     }];
+}
+
+- (void)addAssementButtonWith:(NSString *)problemID
+{
+    self.rightBarItem = [[SCBarButtonItem alloc] initWithTitle:@"评价" style:SCBarButtonItemStylePlain withColor:[UIColor colorWithRed:0.157 green:0.659 blue:0.902 alpha:1.00] handler:^(id sender) {
+        EvaluationViewController *evaluation = [[EvaluationViewController alloc]init];
+        evaluation.problemID = problemID;
+        [self.navigationController pushViewController:evaluation animated:YES];
+
+    }];
+    
+    self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
 }
 
 - (void)createMessageFile:(NSArray *)messageData
@@ -572,6 +583,11 @@
  */
 - (BOOL)shouldPreventScrollToBottomWhileUserScrolling {
     return YES;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 100;
 }
 
 @end

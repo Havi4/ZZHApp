@@ -19,6 +19,7 @@
     NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
     
     NSString * CT = @"^1((33|53|8[09])[0-9]|349)\\d{7}$";
+    NSString * nre = @"^[1][358][0-9]{9}$";
     
     // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
     
@@ -26,12 +27,14 @@
     NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];
     NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU];
     NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
+    NSPredicate *regextestner = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nre];
     BOOL res1 = [regextestmobile evaluateWithObject:telNumber];
     BOOL res2 = [regextestcm evaluateWithObject:telNumber];
     BOOL res3 = [regextestcu evaluateWithObject:telNumber];
     BOOL res4 = [regextestct evaluateWithObject:telNumber];
+    BOOL res5 = [regextestner evaluateWithObject:telNumber];
     
-    if (res1 || res2 || res3 || res4 )
+    if (res1 || res2 || res3 || res4 || res5)
     {
         return YES;
     }

@@ -38,6 +38,7 @@
     _oldTextFieldPass = [[BetaNaoTextField alloc]init];
     _oldTextFieldPass.frame = CGRectMake(16, -20, kScreenSize.width-32, 80);
     _oldTextFieldPass.textPlaceHolder = @"旧密码";
+    _oldTextFieldPass.secureTextEntry = YES;
     _oldTextFieldPass.textPlaceHolderColor = [UIColor lightGrayColor];
     @weakify(self);
     _oldTextFieldPass.returnBlock = ^(BetaNaoTextField *text){
