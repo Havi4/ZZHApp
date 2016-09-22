@@ -202,7 +202,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/Coding/%E7%BB%83%E4%B9%A0%E5%BA%93/HaviTest/HaviProjectBase/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "496221889.840935"
+                  timestampString = "496245848.425243"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "117"
@@ -217,7 +217,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/Coding/%E7%BB%83%E4%B9%A0%E5%BA%93/HaviTest/HaviProjectBase/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "496221889.842566"
+                  timestampString = "496245848.426755"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "117"
@@ -282,7 +282,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/Coding/%E7%BB%83%E4%B9%A0%E5%BA%93/HaviTest/HaviProjectBase/HaviProjectBase/Category/PinLockSetting.m"
-                  timestampString = "496221889.851291"
+                  timestampString = "496245848.434691"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "123"
@@ -297,7 +297,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/Coding/%E7%BB%83%E4%B9%A0%E5%BA%93/HaviTest/HaviProjectBase/HaviProjectBase/Category/PinLockSetting.m"
-                  timestampString = "496221889.852828"
+                  timestampString = "496245848.436079"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -410,7 +410,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/Coding/%E7%BB%83%E4%B9%A0%E5%BA%93/HaviTest/HaviProjectBase/HaviProjectBase/NetWork/ZZHAPIManager.m"
-                  timestampString = "496221889.868946"
+                  timestampString = "496245848.453786"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "157"
@@ -425,7 +425,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/Coding/%E7%BB%83%E4%B9%A0%E5%BA%93/HaviTest/HaviProjectBase/HaviProjectBase/NetWork/ZZHAPIManager.m"
-                  timestampString = "496221889.870404"
+                  timestampString = "496245848.45518"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "157"
@@ -1002,54 +1002,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Vender/MessageDisplayKit/Classes/Controllers/XHMessageTableViewController/XHMessageTableViewController.m"
-            timestampString = "496218456.588567"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "636"
-            endingLineNumber = "636"
-            landmarkName = "-initilzer"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HaviProjectBase/Vender/MessageDisplayKit/Classes/Controllers/XHMessageTableViewController/XHMessageTableViewController.m"
-            timestampString = "496218627.9667"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
-            landmarkName = "-initilzer"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HaviProjectBase/Vender/MessageDisplayKit/Classes/Controllers/XHMessageTableViewController/XHMessageTableViewController.m"
-            timestampString = "496218673.990268"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "624"
-            endingLineNumber = "624"
-            landmarkName = "-initilzer"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HaviProjectBase/Vender/MessageDisplayKit/Classes/Controllers/XHMessageTableViewController/XHMessageTableViewController.m"
             timestampString = "496218806.514795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -1066,7 +1018,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/Coding/%E7%BB%83%E4%B9%A0%E5%BA%93/HaviTest/HaviProjectBase/HaviProjectBase/Vender/MessageDisplayKit/Classes/Controllers/XHMessageTableViewController/XHMessageTableViewController.m"
-                  timestampString = "496221889.967345"
+                  timestampString = "496245848.545253"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "567"
@@ -1081,7 +1033,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Havi_Home1/Desktop/Coding/%E7%BB%83%E4%B9%A0%E5%BA%93/HaviTest/HaviProjectBase/HaviProjectBase/Vender/MessageDisplayKit/Classes/Controllers/XHMessageTableViewController/XHMessageTableViewController.m"
-                  timestampString = "496221889.968894"
+                  timestampString = "496245848.546602"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "568"
@@ -1089,6 +1041,38 @@
                   offsetFromSymbolStart = "28">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/Vender/MessageDisplayKit/Classes/Controllers/XHMessageTableViewController/XHMessageTableViewController.m"
+            timestampString = "496229953.540068"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "788"
+            endingLineNumber = "788"
+            landmarkName = "-layoutAndAnimateMessageInputTextView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/Vender/MessageDisplayKit/Classes/Views/MessageInputView/XHMessageInputView.m"
+            timestampString = "496245057.70448"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-textMessageStyleButtonClicked:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

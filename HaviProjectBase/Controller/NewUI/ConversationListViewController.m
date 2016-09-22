@@ -247,6 +247,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XHDemoWeChatMessageTableViewController *demoWeChatMessageTableViewController = [[XHDemoWeChatMessageTableViewController alloc] init];
+    demoWeChatMessageTableViewController.allowsSendFace = NO;
+    demoWeChatMessageTableViewController.allowsSendVoice = NO;
+    demoWeChatMessageTableViewController.allowsSendMultiMedia = YES;
     NSString *problemId = [[[self.problemArr objectAtIndex:indexPath.section] objectForKey:@"problem"]objectForKey:@"id"];
     demoWeChatMessageTableViewController.problemID = problemId;
     [self.navigationController pushViewController:demoWeChatMessageTableViewController animated:YES];

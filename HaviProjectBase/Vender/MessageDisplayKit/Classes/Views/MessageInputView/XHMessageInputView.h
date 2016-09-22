@@ -122,6 +122,11 @@ typedef NS_ENUM(NSInteger, XHMessageInputViewStyle) {
  */
 @property (nonatomic, weak, readonly) UIButton *voiceChangeButton;
 
+@property (nonatomic, weak, readonly) UIButton *textChangeButton;//havi
+@property (nonatomic, weak, readonly) UIButton *voiceSendButton;//havi
+
+
+
 /**
  *  +号按钮
  */

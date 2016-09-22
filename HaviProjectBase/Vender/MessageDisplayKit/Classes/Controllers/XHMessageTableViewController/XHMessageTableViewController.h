@@ -15,6 +15,7 @@
 #import "XHMessageTableView.h"
 #import "XHMessageTableViewCell.h"
 #import "XHMessageInputView.h"
+
 #import "XHShareMenuView.h"
 #import "XHEmotionManagerView.h"
 #import "XHVoiceRecordHUD.h"

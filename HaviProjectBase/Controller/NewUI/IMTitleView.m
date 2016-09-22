@@ -35,7 +35,7 @@
         _iconImage.image = [UIImage imageNamed:@"docTitle"];
         [self addSubview:_iconImage];
         [_iconImage makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mas_left).offset(16);
+            make.left.equalTo(self.mas_left).offset(8);
             make.centerY.equalTo(self.mas_centerY);
             make.height.width.equalTo(@50);
         }];

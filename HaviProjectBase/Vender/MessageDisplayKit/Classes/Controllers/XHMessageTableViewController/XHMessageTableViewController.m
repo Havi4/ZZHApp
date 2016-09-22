@@ -549,7 +549,7 @@ static CGPoint  delayOffset = {0.0};
     _messageTableView = messageTableView;
     
     // 设置Message TableView 的bottom edg
-    CGFloat inputViewHeight = (self.inputViewStyle == XHMessageInputViewStyleFlat) ? 45.0f : 40.0f;
+    CGFloat inputViewHeight = (self.inputViewStyle == XHMessageInputViewStyleFlat) ? 85.0f : 40.0f;
     [self setTableViewInsetsWithBottomValue:inputViewHeight];
     
     // 设置整体背景颜色
@@ -1036,8 +1036,9 @@ static CGPoint  delayOffset = {0.0};
 
 - (void)didSelectedMultipleMediaAction {
     DLog(@"didSelectedMultipleMediaAction");
-    self.textViewInputViewType = XHInputViewTypeShareMenu;
-    [self layoutOtherMenuViewHiden:NO];
+    [self didSelecteShareMenuItem:nil atIndex:0];
+//    self.textViewInputViewType = XHInputViewTypeShareMenu;
+//    [self layoutOtherMenuViewHiden:NO];
 }
 
 - (void)didSendFaceAction:(BOOL)sendFace {

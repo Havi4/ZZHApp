@@ -19,11 +19,15 @@
 
 @property (nonatomic, weak, readwrite) UIButton *voiceChangeButton;
 
+@property (nonatomic, weak, readwrite) UIButton *textChangeButton;//havi
+@property (nonatomic, weak, readwrite) UIButton *voiceSendButton;//havi
 @property (nonatomic, weak, readwrite) UIButton *multiMediaSendButton;
 
 @property (nonatomic, weak, readwrite) UIButton *faceSendButton;
 
 @property (nonatomic, weak, readwrite) UIButton *holdDownButton;
+
+@property (nonatomic, strong) UIView *line;
 
 /**
  *  是否取消錄音
@@ -108,6 +112,50 @@
 @implementation XHMessageInputView
 
 #pragma mark - Action
+
+- (void)textMessageStyleButtonClicked:(UIButton *)sender
+{
+    self.voiceSendButton.selected = NO;
+    self.multiMediaSendButton.selected = NO;
+    if (sender.selected) {
+        self.inputedText = self.inputTextView.text;
+        self.inputTextView.text = @"";
+        [self.inputTextView resignFirstResponder];
+    } else {
+        self.inputTextView.text = self.inputedText;
+        self.inputTextView.text = @"";
+        self.inputedText = nil;
+        [self.inputTextView becomeFirstResponder];
+    }
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        if (self.holdDownButton.alpha == 1) {
+            self.holdDownButton.alpha = 0;
+            self.inputTextView.alpha = 1;
+        }
+    } completion:^(BOOL finished) {
+        
+    }];
+    sender.selected = !sender.selected;
+}
+
+- (void)voiceButtonTaped:(UIButton *)sender
+{
+    self.textChangeButton.selected = NO;
+    self.multiMediaSendButton.selected = NO;
+    sender.selected = !sender.selected;
+    [self.inputTextView resignFirstResponder];
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.holdDownButton.alpha = sender.selected;
+        self.inputTextView.alpha = !sender.selected;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    if ([self.delegate respondsToSelector:@selector(didChangeSendVoiceAction:)]) {
+        [self.delegate didChangeSendVoiceAction:sender.selected];
+    }
+
+}
 
 - (void)messageStyleButtonClicked:(UIButton *)sender {
     NSInteger index = sender.tag;
@@ -249,9 +297,9 @@
 - (UIButton *)createButtonWithImage:(UIImage *)image HLImage:(UIImage *)hlImage {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, [XHMessageInputView textViewLineHeight], [XHMessageInputView textViewLineHeight])];
     if (image)
-        [button setBackgroundImage:image forState:UIControlStateNormal];
+        [button setImage:image forState:UIControlStateNormal];
     if (hlImage)
-        [button setBackgroundImage:hlImage forState:UIControlStateHighlighted];
+        [button setImage:hlImage forState:UIControlStateHighlighted];
     
     return button;
 }
@@ -277,6 +325,55 @@
     // 按钮对象消息
     UIButton *button;
     
+    //发送文本
+    
+    button = [self createButtonWithImage:[UIImage imageNamed:@"keyboard"] HLImage:[UIImage imageNamed:@"keyboard_select"]];
+    [button addTarget:self action:@selector(textMessageStyleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = 0;
+    [button setImage:[UIImage imageNamed:@"keyboard_select"] forState:UIControlStateSelected];
+    buttonFrame = button.frame;
+    buttonFrame.origin = CGPointMake(16, 44.5);
+    button.frame = buttonFrame;
+    [self addSubview:button];
+    allButtonWidth += CGRectGetMaxX(buttonFrame);
+    textViewLeftMargin += CGRectGetMaxX(buttonFrame);
+    self.textChangeButton = button;
+    //发送语音havi
+    button = [self createButtonWithImage:[UIImage imageNamed:@"voice"] HLImage:[UIImage imageNamed:@"voice_select"]];
+    [button addTarget:self action:@selector(voiceButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = 0;
+    [button setImage:[UIImage imageNamed:@"voice_select"] forState:UIControlStateSelected];
+    buttonFrame = button.frame;
+    buttonFrame.origin = CGPointMake((kScreenSize.width - 36)/2, 44.5);
+    button.frame = buttonFrame;
+    [self addSubview:button];
+    allButtonWidth += CGRectGetMaxX(buttonFrame);
+    textViewLeftMargin += CGRectGetMaxX(buttonFrame);
+    self.voiceSendButton = button;
+
+    NSString *voiceHolderImageName = [[XHConfigurationHelper appearance].messageInputViewStyle objectForKey:kXHMessageInputViewVoiceHolderImageNameKey];
+    if (!voiceHolderImageName) {
+        voiceHolderImageName = @"VoiceBtn_Black";
+    }
+    NSString *voiceHolderHLImageName = [[XHConfigurationHelper appearance].messageInputViewStyle objectForKey:kXHMessageInputViewVoiceHolderHLImageNameKey];
+    if (!voiceHolderHLImageName) {
+        voiceHolderHLImageName = @"VoiceBtn_BlackHL";
+    }
+    
+    button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, [XHMessageInputView textViewLineHeight], [XHMessageInputView textViewLineHeight])];
+    [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedStringFromTable(@"HoldToTalk", @"MessageDisplayKitString", nil) forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedStringFromTable(@"ReleaseToSend", @"MessageDisplayKitString", nil)  forState:UIControlStateHighlighted];
+    buttonFrame = CGRectMake(16, 4.5f, kScreenSize.width-32, 36);
+    button.frame = buttonFrame;
+    button.alpha = self.voiceChangeButton.selected;
+    [button addTarget:self action:@selector(holdDownButtonTouchDown) forControlEvents:UIControlEventTouchDown];
+    [button addTarget:self action:@selector(holdDownButtonTouchUpOutside) forControlEvents:UIControlEventTouchUpOutside];
+    [button addTarget:self action:@selector(holdDownButtonTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(holdDownDragOutside) forControlEvents:UIControlEventTouchDragExit];
+    [button addTarget:self action:@selector(holdDownDragInside) forControlEvents:UIControlEventTouchDragEnter];
+    [self addSubview:button];
+    self.holdDownButton = button;
     // 允许发送语音
     if (self.allowsSendVoice) {
         NSString *voiceNormalImageName = [[XHConfigurationHelper appearance].messageInputViewStyle objectForKey:kXHMessageInputViewVoiceNormalImageNameKey];
@@ -301,7 +398,7 @@
         button.tag = 0;
         [button setBackgroundImage:[UIImage imageNamed:keyboardNormalImageName] forState:UIControlStateSelected];
         buttonFrame = button.frame;
-        buttonFrame.origin = CGPointMake(horizontalPadding, verticalPadding);
+        buttonFrame.origin = CGPointMake(16, 44.5);
         button.frame = buttonFrame;
         [self addSubview:button];
         allButtonWidth += CGRectGetMaxX(buttonFrame);
@@ -314,11 +411,11 @@
     if (self.allowsSendMultiMedia) {
         NSString *extensionNormalImageName = [[XHConfigurationHelper appearance].messageInputViewStyle objectForKey:kXHMessageInputViewExtensionNormalImageNameKey];
         if (!extensionNormalImageName) {
-            extensionNormalImageName = @"multiMedia";
+            extensionNormalImageName = @"picture";
         }
         NSString *extensionHLImageName = [[XHConfigurationHelper appearance].messageInputViewStyle objectForKey:kXHMessageInputViewExtensionHLImageNameKey];
         if (!extensionHLImageName) {
-            extensionHLImageName = @"multiMedia_HL";
+            extensionHLImageName = @"picture_select";
         }
         
         button = [self createButtonWithImage:[UIImage imageNamed:extensionNormalImageName] HLImage:[UIImage imageNamed:extensionHLImageName]];
@@ -326,7 +423,7 @@
         [button addTarget:self action:@selector(messageStyleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = 2;
         buttonFrame = button.frame;
-        buttonFrame.origin = CGPointMake(CGRectGetWidth(self.bounds) - horizontalPadding - CGRectGetWidth(buttonFrame), verticalPadding);
+        buttonFrame.origin = CGPointMake(CGRectGetWidth(self.bounds) - 16 - CGRectGetWidth(buttonFrame), 44.5);
         button.frame = buttonFrame;
         [self addSubview:button];
         allButtonWidth += CGRectGetWidth(buttonFrame) + horizontalPadding * 2.5;
@@ -430,11 +527,15 @@
                 cornerRadius = 6.0f;
             }
             
-            _inputTextView.frame = CGRectMake(textViewLeftMargin, 4.5f, width, height);
+            _inputTextView.frame = CGRectMake(16, 4.5f, kScreenSize.width-32, height);
             _inputTextView.backgroundColor = [UIColor clearColor];
-            _inputTextView.layer.borderColor = borderColor.CGColor;
-            _inputTextView.layer.borderWidth = borderWidth;
-            _inputTextView.layer.cornerRadius = cornerRadius;
+//            _inputTextView.layer.borderColor = borderColor.CGColor;
+//            _inputTextView.layer.borderWidth = borderWidth;
+//            _inputTextView.layer.cornerRadius = cornerRadius;
+            _line = [[UIView alloc]init];
+            _line.frame = (CGRect){16,40,kScreenSize.width-32,0.5};
+            _line.backgroundColor = [UIColor lightGrayColor];
+            [self addSubview:_line];
             if (inputBackgroundColor) {
                 self.backgroundColor = inputBackgroundColor;
             } else {
@@ -552,6 +653,26 @@
         [self.inputTextView setContentOffset:bottomOffset animated:YES];
         [self.inputTextView scrollRangeToVisible:NSMakeRange(self.inputTextView.text.length - 2, 1)];
     }
+    CGRect prevFrameLine = self.line.frame;
+    self.line.frame = CGRectMake(prevFrameLine.origin.x,
+                                 prevFrameLine.origin.y + changeInHeight,
+                                 prevFrameLine.size.width,
+                                 prevFrameLine.size.height);
+    CGRect buttonFrame = self.textChangeButton.frame;
+    self.textChangeButton.frame = CGRectMake(buttonFrame.origin.x,
+                                              buttonFrame.origin.y + changeInHeight,
+                                              buttonFrame.size.width,
+                                              buttonFrame.size.height);
+    CGRect buttonFrame1 = self.voiceSendButton.frame;
+    self.voiceSendButton.frame = CGRectMake(buttonFrame1.origin.x,
+                                             buttonFrame1.origin.y + changeInHeight,
+                                             buttonFrame1.size.width,
+                                             buttonFrame1.size.height);
+    CGRect buttonFrame2 = self.multiMediaSendButton.frame;
+    self.multiMediaSendButton.frame = CGRectMake(buttonFrame2.origin.x,
+                                            buttonFrame2.origin.y + changeInHeight,
+                                            buttonFrame2.size.width,
+                                            buttonFrame2.size.height);
 }
 
 + (CGFloat)textViewLineHeight {

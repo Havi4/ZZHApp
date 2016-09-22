@@ -8,6 +8,7 @@
 
 #import "XHPhotographyHelper.h"
 #import "XHMacro.h"
+#import "SubImagePickerViewController.h"
 
 @interface XHPhotographyHelper () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -34,10 +35,11 @@
         return;
     }
     self.didFinishTakeMediaCompled = [compled copy];
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    UIImagePickerController *imagePickerController = [[SubImagePickerViewController alloc] init];
     imagePickerController.editing = YES;
     imagePickerController.delegate = self;
     imagePickerController.sourceType = sourceType;
+    [imagePickerController.navigationBar setBackgroundImage:[UIImage imageNamed:@"header_back"] forBarMetrics:UIBarMetricsDefault];
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
         imagePickerController.mediaTypes =  [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
     }
