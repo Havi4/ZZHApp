@@ -9,13 +9,31 @@
 #import "XHAudioPlayerHelper.h"
 #import "XHVoiceCommonHelper.h"
 
+@interface XHAudioPlayerHelper ()
+@property (nonatomic, strong) NSString *mp3Url;
+@property (nonatomic, strong) HysteriaPlayer *hysteriaPlayer;
+@end
 @implementation XHAudioPlayerHelper
 
 #pragma mark - Public Methed
 
 - (void)managerAudioWithFileName:(NSString*)amrName toPlay:(BOOL)toPlay {
     if (toPlay) {
-        [self playAudioWithFileName:amrName];
+        self.mp3Url = amrName;
+        if (self.hysteriaPlayer) {
+            [self.hysteriaPlayer deprecatePlayer];
+            self.hysteriaPlayer = nil;
+        }
+        self.hysteriaPlayer = [[HysteriaPlayer alloc]init];
+        _hysteriaPlayer.delegate = self;
+        _hysteriaPlayer.datasource = self;
+        [_hysteriaPlayer removeAllItems];
+        [_hysteriaPlayer fetchAndPlayPlayerItem:0];
+        [_hysteriaPlayer setPlayerRepeatMode:HysteriaPlayerRepeatModeOff];
+        [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+
+//        [self playAudioWithFileName:amrName];
+        
     } else {
         [self pausePlayingAudio];
     }
@@ -32,14 +50,16 @@
 }
 
 - (void)stopAudio {
-    [self setPlayingFileName:@""];
-    [self setPlayingIndexPathInFeedList:nil];
-    if (_player && _player.isPlaying) {
-        [_player stop];
-    }
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     if ([self.delegate respondsToSelector:@selector(didAudioPlayerStopPlay:)]) {
         [self.delegate didAudioPlayerStopPlay:_player];
+    }
+    if (self.hysteriaPlayer && _hysteriaPlayer.isPlaying) {
+        [_hysteriaPlayer pause];
+        if (self.hysteriaPlayer) {
+            [self.hysteriaPlayer deprecatePlayer];
+            self.hysteriaPlayer = nil;
+        }
     }
 }
 
@@ -118,6 +138,8 @@
         
         if (_delegate == nil) {
             [self stopAudio];
+            HysteriaPlayer *hysteriaPlayer = [HysteriaPlayer sharedInstance];
+            [hysteriaPlayer pause];
         }
     }
 }
@@ -136,8 +158,9 @@
 - (id)init {
     self = [super init];
     if (self) {
+        
         [self changeProximityMonitorEnableState:YES];
-        [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+        [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     }
     return self;
 }
@@ -185,11 +208,109 @@
         //没黑屏幕
         DLog(@"Device is not close to user");
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-        if (!_player || !_player.isPlaying) {
+        if (!_hysteriaPlayer || !_hysteriaPlayer.isPlaying) {
             //没有播放了，也没有在黑屏状态下，就可以把距离传感器关了
             [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
         }
     }
 }
+
+#pragma mark new
+
+
+#pragma mark - HysteriaPlayerDelegate
+
+- (void)hysteriaPlayerDidFailed:(HysteriaPlayerFailed)identifier error:(NSError *)error
+{
+    switch (identifier) {
+        case HysteriaPlayerFailedPlayer:
+            break;
+            
+        case HysteriaPlayerFailedCurrentItem:
+            // Current Item failed, advanced to next.
+            [[HysteriaPlayer sharedInstance] playNext];
+            break;
+        default:
+            break;
+    }
+    NSLog(@"%@", [error localizedDescription]);
+}
+
+- (void)hysteriaPlayerReadyToPlay:(HysteriaPlayerReadyToPlay)identifier
+{
+    switch (identifier) {
+        case HysteriaPlayerReadyToPlayPlayer:
+            // It will be called when Player is ready to play at the first time.
+            
+            // If you have any UI changes related to Player, should update here.
+            
+           
+            break;
+            
+        case HysteriaPlayerReadyToPlayCurrentItem:
+            // It will be called when current PlayerItem is ready to play.
+            
+            // HysteriaPlayer will automatic play it, if you don't like this behavior,
+            // You can pausePlayerForcibly:YES to stop it.
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)hysteriaPlayerCurrentItemChanged:(AVPlayerItem *)item
+{
+    NSLog(@"current item changed");
+}
+
+- (void)hysteriaPlayerCurrentItemPreloaded:(CMTime)time
+{
+    NSLog(@"current item pre-loaded time: %f", CMTimeGetSeconds(time));
+}
+
+- (void)hysteriaPlayerDidReachEnd
+{
+    HysteriaPlayer *hysteriaPlayer = [HysteriaPlayer sharedInstance];
+    [hysteriaPlayer pause];
+    if ([self.delegate respondsToSelector:@selector(didAudioPlayerStopPlay:)]) {
+        [self.delegate didAudioPlayerStopPlay:_player];
+    }
+}
+
+- (void)hysteriaPlayerRateChanged:(BOOL)isPlaying
+{
+    NSLog(@"player rate changed");
+}
+
+- (void)hysteriaPlayerWillChangedAtIndex:(NSInteger)index
+{
+    NSLog(@"index: %li is about to play", index);
+}
+
+#pragma mark - HysteriaPlayerDataSource
+
+- (NSInteger)hysteriaPlayerNumberOfItems
+{
+    return 1;
+}
+
+// Adopt one of
+// hysteriaPlayerURLForItemAtIndex:(NSInteger)index
+// or
+// hysteriaPlayerAsyncSetUrlForItemAtIndex:(NSInteger)index
+// which meets your requirements.
+- (NSURL *)hysteriaPlayerURLForItemAtIndex:(NSInteger)index preBuffer:(BOOL)preBuffer
+{
+    
+    return [[NSURL alloc] initFileURLWithPath:self.mp3Url];
+//    return [NSURL URLWithString:self.mp3Url];
+}
+
+- (void)hysteriaPlayerAsyncSetUrlForItemAtIndex:(NSInteger)index preBuffer:(BOOL)preBuffer
+{
+    
+    [[HysteriaPlayer sharedInstance] setupPlayerItemWithUrl:[NSURL URLWithString:self.mp3Url]index:index];
+}
+
 
 @end

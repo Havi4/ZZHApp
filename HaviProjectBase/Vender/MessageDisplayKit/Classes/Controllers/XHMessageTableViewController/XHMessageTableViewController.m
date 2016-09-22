@@ -684,6 +684,7 @@ static CGPoint  delayOffset = {0.0};
     // Do any additional setup after loading the view.
     // 初始化消息页面布局
     [self initilzer];
+    
     [[XHMessageBubbleView appearance] setFont:[UIFont systemFontOfSize:16.0f]];
 }
 
@@ -825,7 +826,7 @@ static CGPoint  delayOffset = {0.0};
     if ([self respondsToSelector:@selector(topLayoutGuide)]) {
         insets.top = self.topLayoutGuide.length;
     }
-    
+    insets.top = 0;
     insets.bottom = bottom;
     
     return insets;

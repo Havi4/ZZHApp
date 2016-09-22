@@ -60,7 +60,7 @@
 }
 
 - (XHMessage *)getVoiceMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl {
-    XHMessage *voiceMessage = [[XHMessage alloc] initWithVoicePath:nil voiceUrl:[messdic objectForKey:@"file"] voiceDuration:@"1" sender:@"Jayson" timestamp:[NSDate date] isRead:NO];
+    XHMessage *voiceMessage = [[XHMessage alloc] initWithVoicePath:[[NSBundle mainBundle] pathForResource:@"new_noise" ofType:@"mp3"] voiceUrl:[messdic objectForKey:@"file"] voiceDuration:@"1" sender:@"Jayson" timestamp:[NSDate date] isRead:NO];
     voiceMessage.avatar = [UIImage imageNamed:@"doc"];
     voiceMessage.avatarUrl = iconUrl;
     voiceMessage.bubbleMessageType = bubbleMessageType;
@@ -355,8 +355,6 @@
             imageInfo.imageURL = [NSURL URLWithString:message.originPhotoUrl];
             imageInfo.referenceRect = self.view.frame;
             imageInfo.referenceView = self.view;
-//            imageInfo.referenceContentMode = self.bigImageButton.contentMode;
-//            imageInfo.referenceCornerRadius = self.bigImageButton.layer.cornerRadius;
             
             // Setup view controller
             JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
@@ -387,8 +385,10 @@
             } else {
                 self.currentSelectedCell = messageTableViewCell;
                 [messageTableViewCell.messageBubbleView.animationVoiceImageView startAnimating];
-                [[XHAudioPlayerHelper shareInstance] managerAudioWithFileName:message.voicePath toPlay:YES];
+                [[XHAudioPlayerHelper shareInstance] managerAudioWithFileName:[[NSBundle mainBundle] pathForResource:@"new_noise" ofType:@"mp3"] toPlay:YES];
+//                [[XHAudioPlayerHelper shareInstance] managerAudioWithFileName:message.voiceUrl toPlay:YES];
             }
+            
             break;
         }
         case XHBubbleMessageMediaTypeEmotion:
@@ -408,6 +408,7 @@
         [self.navigationController pushViewController:disPlayViewController animated:YES];
     }
 }
+
 
 - (void)didDoubleSelectedOnTextMessage:(id<XHMessageModel>)message atIndexPath:(NSIndexPath *)indexPath {
     DLog(@"text : %@", message.text);
@@ -486,7 +487,7 @@
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
     XHMessage *textMessage = [[XHMessage alloc] initWithText:text sender:sender timestamp:date];
     textMessage.avatar = [UIImage imageNamed:@"Avatar"];
-    textMessage.avatarUrl = @"http://childapp.pailixiu.com/jack/meIcon@2x.png";
+    textMessage.avatarUrl = self.myThumUrl;
     [self addMessage:textMessage];
     [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
 }
@@ -501,7 +502,7 @@
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
     XHMessage *photoMessage = [[XHMessage alloc] initWithPhoto:photo thumbnailUrl:nil originPhotoUrl:nil sender:sender timestamp:date];
     photoMessage.avatar = [UIImage imageNamed:@"avatar"];
-    photoMessage.avatarUrl = @"http://childapp.pailixiu.com/jack/meIcon@2x.png";
+    photoMessage.avatarUrl = self.myThumUrl;
     [self addMessage:photoMessage];
     [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
 }
@@ -532,7 +533,7 @@
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSString *)voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
     XHMessage *voiceMessage = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:nil voiceDuration:voiceDuration sender:sender timestamp:date];
     voiceMessage.avatar = [UIImage imageNamed:@"avatar"];
-    voiceMessage.avatarUrl = @"http://childapp.pailixiu.com/jack/meIcon@2x.png";
+    voiceMessage.avatarUrl = self.myThumUrl;
     [self addMessage:voiceMessage];
     [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeVoice];
 }

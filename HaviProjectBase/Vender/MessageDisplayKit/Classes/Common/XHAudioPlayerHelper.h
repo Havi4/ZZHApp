@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVAudioPlayer.h>
+#import "HysteriaPlayer.h"
 
 #import "XHMacro.h"
 
@@ -20,7 +21,7 @@
 
 @end
 
-@interface XHAudioPlayerHelper : NSObject <AVAudioPlayerDelegate>
+@interface XHAudioPlayerHelper : NSObject <AVAudioSessionDelegate, HysteriaPlayerDelegate, HysteriaPlayerDataSource>
 
 @property (nonatomic, strong) AVAudioPlayer *player;
 
