@@ -281,6 +281,8 @@
     [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
             [self.refreshControl endRefreshing];
             NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([obj objectForKey:@"Result"]) {
+            
             NSArray *probleList = [[obj objectForKey:@"Result"] objectForKey:@"content"];
             self.docThumUrl =  [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"image"];
             self.docID = [[[obj objectForKey:@"Result"] objectForKey:@"doctor"] objectForKey:@"id"];
@@ -288,10 +290,11 @@
             if ([[[obj objectForKey:@"Result"] objectForKey:@"need_assess"] intValue]==1) {
                 [self addAssementButtonWith:[[[obj objectForKey:@"Result"] objectForKey:@"problem"] objectForKey:@"id"]];
             }
-        self.docInfo = [[obj objectForKey:@"Result"] objectForKey:@"doctor"];
+            self.docInfo = [[obj objectForKey:@"Result"] objectForKey:@"doctor"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self createMessageFile:probleList];
             });
+        }
                 }
     failed:^(NSURLResponse *response, NSError *error) {
         [self.refreshControl endRefreshing];
@@ -352,7 +355,12 @@
             DLog(@"message : %@", message.photo);
             DLog(@"message : %@", message.videoConverPhoto);
             JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-            imageInfo.imageURL = [NSURL URLWithString:message.originPhotoUrl];
+            if (message.originPhotoUrl) {
+                
+                imageInfo.imageURL = [NSURL URLWithString:message.originPhotoUrl];
+            }else if (message.photo){
+                imageInfo.image = message.photo;
+            }
             imageInfo.referenceRect = self.view.frame;
             imageInfo.referenceView = self.view;
             
@@ -490,6 +498,7 @@
     textMessage.avatarUrl = self.myThumUrl;
     [self addMessage:textMessage];
     [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeText];
+    [self sendImessageWith:text];
 }
 
 /**
@@ -505,6 +514,7 @@
     photoMessage.avatarUrl = self.myThumUrl;
     [self addMessage:photoMessage];
     [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypePhoto];
+    [self upDateIcon:@{@"image":photo}];
 }
 
 /**
@@ -638,5 +648,130 @@
     doc.eduIntroduction = self.eduIntro;
     [self.navigationController pushViewController:doc animated:YES];
 }
+
+- (void)sendImessageWith:(NSString *)text
+{
+    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/ProblemContent/Create";
+    NSDictionary *textPloblem = @{
+                                  @"type": @"text",
+                                  @"text": text,
+                                  };
+    NSDictionary *dicPara = @{
+                              @"UserId": @"meddo99.com$13122785292",
+                              @"Content": @[textPloblem],
+                              @"ProblemId":self.problemID
+                              };
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
+            [NSObject showHudTipStr:@"提交成功"];
+        }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==1){
+            [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject showHudTipStr:@"提交失败"];
+    }];
+}
+
+- (void)upDateIcon:(id)op
+{
+    NSDictionary *dic = (NSDictionary*)op;
+    NSData *imageData = [self calculateIconImage:[dic objectForKey:@"image"]];
+    if (imageData) {
+        [self uploadWithImageData:imageData withUserId:thirdPartyLoginUserId];
+    }
+}
+
+#define UploadImageSize          100000
+- (NSData *)calculateIconImage:(UIImage *)image
+{
+    if(image){
+        
+        [image fixOrientation];
+        CGFloat height = image.size.height;
+        CGFloat width = image.size.width;
+        NSData *data = UIImageJPEGRepresentation(image,1);
+        
+        float n;
+        n = (float)UploadImageSize/data.length;
+        data = UIImageJPEGRepresentation(image, n);
+        while (data.length > UploadImageSize) {
+            image = [UIImage imageWithData:data];
+            height /= 2;
+            width /= 2;
+            image = [image scaleToSize:CGSizeMake(width, height)];
+            data = UIImageJPEGRepresentation(image,1);
+        }
+        return data;
+        
+    }
+    return nil;
+}
+
+
+- (void)uploadWithImageData:(NSData*)imageData withUserId:(NSString *)userId
+{
+    NSDictionary *dicHeader = @{
+                                @"AccessToken": @"123456789",
+                                };
+    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",kAppTestBaseURL,thirdPartyLoginUserId];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
+    [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
+    [self setRequest:request withImageData:imageData];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([[dic objectForKey:@"ReturnCode"] intValue]==200) {
+            [self sendImageWith:[dic objectForKey:@"FileUrl"]];
+            DeBugLog(@"问题追问的url,%@",[dic objectForKey:@"FileUrl"]);
+        }
+    }];
+}
+
+- (void)setRequest:(NSMutableURLRequest *)request withImageData:(NSData*)imageData
+{
+    NSMutableData *body = [NSMutableData data];
+    // 表单数据
+    
+    /// 图片数据部分
+    NSMutableString *topStr = [NSMutableString string];
+    [body appendData:[topStr dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:imageData];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    // 设置请求类型为post请求
+    request.HTTPMethod = @"post";
+    // 设置request的请求体
+    request.HTTPBody = body;
+    // 设置头部数据，标明上传数据总大小，用于服务器接收校验
+    [request setValue:[NSString stringWithFormat:@"%ld", body.length] forHTTPHeaderField:@"Content-Length"];
+    // 设置头部数据，指定了http post请求的编码方式为multipart/form-data（上传文件必须用这个）。
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; image/png"] forHTTPHeaderField:@"Content-Type"];
+}
+
+- (void)sendImageWith:(NSString *)text
+{
+    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/ProblemContent/Create";
+    NSDictionary *textPloblem = @{
+                                  @"type": @"image",
+                                  @"file": text,
+                                  };
+    NSDictionary *dicPara = @{
+                              @"UserId": @"meddo99.com$13122785292",
+                              @"Content": @[textPloblem],
+                              @"ProblemId":self.problemID
+                              };
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
+            [NSObject showHudTipStr:@"提交成功"];
+            
+        }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==1){
+            [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject showHudTipStr:@"提交失败"];
+    }];
+}
+
+
 
 @end
