@@ -7,6 +7,8 @@
 //
 
 #import "RxWebViewController.h"
+#import "WTRequestCenter.h"
+#import "ConversationListViewController.h"
 
 #define boundsWidth self.view.bounds.size.width
 #define boundsHeight (self.view.bounds.size.height-64)
@@ -20,6 +22,7 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) BOOL loading;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (nonatomic, strong) UIImageView *docImageView;
 
 
 /**
@@ -89,6 +92,36 @@
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlstr]]];
     [self.webView loadHTMLString:htmlstr baseURL:[NSURL URLWithString:self.urlString]];
 //    [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
+    _docImageView = [[UIImageView alloc]init];
+    _docImageView.image = [UIImage imageNamed:@"xiumeimei"];
+    _docImageView.frame = (CGRect){self.view.frame.size.width - 50,self.view.frame.size.height - 70,40,60};
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showDoc)];
+    _docImageView.userInteractionEnabled = YES;
+    [_docImageView addGestureRecognizer:tap];
+    [self.view addSubview:_docImageView];
+}
+
+- (void)showDoc{
+
+    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Login";
+    NSDictionary *dicPara = @{
+                              @"UserId": @"meddo99.com$13122785292"
+                              };
+    [NSObject showHud];
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        [NSObject hideHud];
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        DeBugLog(@"登录结果%@",obj);
+        if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
+            ConversationListViewController *c = [[ConversationListViewController alloc]init];
+            [self.navigationController pushViewController:c animated:YES];
+        }else{
+            [NSObject showHudTipStr:@"登录问诊失败"];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject hideHud];
+        [NSObject showHudTipStr:@"服务器出错了"];
+    }];
 }
 
 - (void)initNavigationBar

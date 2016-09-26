@@ -428,6 +428,7 @@
 		2C9EF5381C8597C9000704E2 /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF52E1C8597C9000704E2 /* THPinViewController.m */; };
 		2C9EF5391C8597C9000704E2 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5311C8597C9000704E2 /* UIImage+ImageEffects.m */; };
 		2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF53B1C859986000704E2 /* PinLockSetting.m */; };
+		2CADAB6F1D98E6D00056CC12 /* xiumeimei@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CADAB6E1D98E6D00056CC12 /* xiumeimei@2x.png */; };
 		2CCBB5A41D92545E009FD1F8 /* star_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CCBB5A21D92545E009FD1F8 /* star_fill.png */; };
 		2CCBB5A51D92545E009FD1F8 /* star_nofill.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CCBB5A31D92545E009FD1F8 /* star_nofill.png */; };
 		2CCBB5A81D925FC1009FD1F8 /* IMTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCBB5A71D925FC1009FD1F8 /* IMTitleView.m */; };
@@ -1469,6 +1470,7 @@
 		2C9EF5311C8597C9000704E2 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		2C9EF53A1C859986000704E2 /* PinLockSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinLockSetting.h; sourceTree = "<group>"; };
 		2C9EF53B1C859986000704E2 /* PinLockSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinLockSetting.m; sourceTree = "<group>"; };
+		2CADAB6E1D98E6D00056CC12 /* xiumeimei@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiumeimei@2x.png"; sourceTree = "<group>"; };
 		2CCBB5A21D92545E009FD1F8 /* star_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_fill.png; sourceTree = "<group>"; };
 		2CCBB5A31D92545E009FD1F8 /* star_nofill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_nofill.png; sourceTree = "<group>"; };
 		2CCBB5A61D925FC1009FD1F8 /* IMTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMTitleView.h; path = NewUI/IMTitleView.h; sourceTree = "<group>"; };
@@ -2339,6 +2341,7 @@
 				2CD4C3301D87F17200ECB1FF /* backItemImage@2x.png */,
 				2CD4C3291D87EECB00ECB1FF /* RxWebViewController.h */,
 				2CD4C32A1D87EECB00ECB1FF /* RxWebViewController.m */,
+				2CADAB6E1D98E6D00056CC12 /* xiumeimei@2x.png */,
 				2CD4C32B1D87EECB00ECB1FF /* RxWebViewNavigationViewController.h */,
 				2CD4C32C1D87EECB00ECB1FF /* RxWebViewNavigationViewController.m */,
 			);
@@ -4473,7 +4476,7 @@
 				TargetAttributes = {
 					2CD75B141C61B57000E7E076 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = CF99UB3L46;
+						DevelopmentTeam = A4R9NHT83H;
 						DevelopmentTeamName = "Shanghai Meddo Medical Device Co., Ltd.";
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -4597,6 +4600,7 @@
 				2CF2E1D61C771F1A0007A639 /* refuse@2x.png in Resources */,
 				2CF2E1D51C771F1A0007A639 /* apply@2x.png in Resources */,
 				2CF2E1251C74749B0007A639 /* choose@2x.png in Resources */,
+				2CADAB6F1D98E6D00056CC12 /* xiumeimei@2x.png in Resources */,
 				2CF2E2381C7AB01F0007A639 /* skinpeeler_tint_bg@2x.png in Resources */,
 				2C58726B1C7AF552001C2F3A /* qqzone@2x.png in Resources */,
 				2C9EF41B1C7FED9F000704E2 /* floatView_1.png in Resources */,
@@ -5502,8 +5506,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CF99UB3L46;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Pan (EJXFR28D5Q)";
+				DEVELOPMENT_TEAM = A4R9NHT83H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5523,10 +5527,10 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ce1461ff-3e8e-4801-ae9c-07a0d9967cb5";
-				PROVISIONING_PROFILE_SPECIFIER = ihotkeys_develop_profile;
+				PROVISIONING_PROFILE = "195a396b-6c43-41f2-9f3e-538b6b71aaca";
+				PROVISIONING_PROFILE_SPECIFIER = ZZH_P_Development_0815;
 			};
 			name = Debug;
 		};
@@ -5537,7 +5541,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Meddo Medical Technology Co., Ltd. (A4R9NHT83H)";
+				DEVELOPMENT_TEAM = A4R9NHT83H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5557,9 +5562,10 @@
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/JPushlib",
 					"$(PROJECT_DIR)/HaviProjectBase/Vender/SDK/libSmartLinkStaticLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ihotkeys.ihotkeys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6160d8cc-6b4d-42bc-b5e4-901ecd081a15";
+				PROVISIONING_PROFILE_SPECIFIER = ZZH_APDIR_Profile;
 			};
 			name = Release;
 		};

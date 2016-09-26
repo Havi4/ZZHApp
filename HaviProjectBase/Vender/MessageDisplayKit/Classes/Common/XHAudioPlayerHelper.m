@@ -301,9 +301,12 @@
 // which meets your requirements.
 - (NSURL *)hysteriaPlayerURLForItemAtIndex:(NSInteger)index preBuffer:(BOOL)preBuffer
 {
-    
-    return [[NSURL alloc] initFileURLWithPath:self.mp3Url];
-//    return [NSURL URLWithString:self.mp3Url];
+    if ([self.mp3Url containsString:@"http"]) {
+        
+        return [NSURL URLWithString:self.mp3Url];
+    }else{
+        return [[NSURL alloc] initFileURLWithPath:self.mp3Url];
+    }
 }
 
 - (void)hysteriaPlayerAsyncSetUrlForItemAtIndex:(NSInteger)index preBuffer:(BOOL)preBuffer

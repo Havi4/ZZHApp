@@ -129,7 +129,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *path = [NSString stringWithFormat:@"%@/%@/",docDir,@"messageList"];
-    NSString *txtPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.problemID]];
+    NSString *txtPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt",self.problemID]];
     NSFileManager *verfileManager = [[NSFileManager alloc]init];
     if (![verfileManager fileExistsAtPath:txtPath]) {
         return nil;
@@ -315,18 +315,69 @@
 
 - (void)createMessageFile:(NSArray *)messageData
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);;
     NSString *docDir = [paths objectAtIndex:0];
     NSString *path = [NSString stringWithFormat:@"%@/%@/",docDir,@"messageList"];
-    NSString *txtPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.problemID]];
-    NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:messageData];
-    BOOL isTureWrite = [imageData writeToFile:txtPath atomically:YES];
-    if (isTureWrite) {
+    NSString *txtPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt",self.problemID]];
+    NSData * Data =[NSKeyedArchiver archivedDataWithRootObject:messageData];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:txtPath]) {
+        [fileManager createFileAtPath:txtPath contents:nil attributes:nil];
+    }
+    
+    NSError *error;
+    BOOL isDone = [Data writeToFile:txtPath options:NSDataWritingAtomic error:&error];
+    if (isDone) {
         [self loadDemoDataSource];
         DeBugLog(@"文件写入成功");
     }else{
-        DeBugLog(@"文件写入失败");
+        WEAKSELF
+        NSMutableArray *messages = [weakSelf getTestMessagesWithArr:messageData];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.messages = [NSMutableArray arrayWithArray:messages];
+                [weakSelf.messageTableView reloadData];
+                
+                [weakSelf scrollToBottomAnimated:NO];
+            });
+        });
+        DeBugLog(@"错误是%@",error);
     }
+}
+
+- (NSMutableArray *)getTestMessagesWithArr:(NSArray *)message {
+    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    
+    for (NSInteger i = 0; i < message.count; i ++) {
+        if ([[[message objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"d"]) {
+            NSString *contentString = [[message objectAtIndex:i] objectForKey:@"content"];
+            NSData *data = [contentString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            for (NSDictionary *contentDic in dic) {
+                if ([[contentDic objectForKey:@"type"]isEqualToString:@"text"]) {
+                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"image"]) {
+                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"audio"]) {
+                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                }
+            }
+        }else if ([[[message objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"p"]){
+            NSString *contentString = [[message objectAtIndex:i] objectForKey:@"content"];
+            NSData *data = [contentString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            for (NSDictionary *contentDic in dic) {
+                if ([[contentDic objectForKey:@"type"]isEqualToString:@"text"]) {
+                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"image"]) {
+                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"audio"]) {
+                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                }
+            }
+        }
+    }
+    return messages;
 }
 
 - (void)didReceiveMemoryWarning
@@ -393,8 +444,11 @@
             } else {
                 self.currentSelectedCell = messageTableViewCell;
                 [messageTableViewCell.messageBubbleView.animationVoiceImageView startAnimating];
-                [[XHAudioPlayerHelper shareInstance] managerAudioWithFileName:[[NSBundle mainBundle] pathForResource:@"new_noise" ofType:@"mp3"] toPlay:YES];
-//                [[XHAudioPlayerHelper shareInstance] managerAudioWithFileName:message.voiceUrl toPlay:YES];
+                if (message.voiceUrl) {
+                    [[XHAudioPlayerHelper shareInstance] managerAudioWithFileName:message.voiceUrl toPlay:YES];
+                }else{
+                    [[XHAudioPlayerHelper shareInstance] managerAudioWithFileName:message.voicePath toPlay:YES];
+                }
             }
             
             break;
@@ -546,6 +600,9 @@
     voiceMessage.avatarUrl = self.myThumUrl;
     [self addMessage:voiceMessage];
     [self finishSendMessageWithBubbleMessageType:XHBubbleMessageMediaTypeVoice];
+    NSData *voiceData = [NSData dataWithContentsOfFile:voicePath];
+    DeBugLog(@"音频路径是%@",voiceData);
+    [self uploadWithImageData:voiceData withType:@"audio"];
 }
 
 /**
@@ -678,7 +735,7 @@
     NSDictionary *dic = (NSDictionary*)op;
     NSData *imageData = [self calculateIconImage:[dic objectForKey:@"image"]];
     if (imageData) {
-        [self uploadWithImageData:imageData withUserId:thirdPartyLoginUserId];
+        [self uploadWithImageData:imageData withType:@"image"];
     }
 }
 
@@ -709,7 +766,7 @@
 }
 
 
-- (void)uploadWithImageData:(NSData*)imageData withUserId:(NSString *)userId
+- (void)uploadWithImageData:(NSData*)imageData withType:(NSString *)type
 {
     NSDictionary *dicHeader = @{
                                 @"AccessToken": @"123456789",
@@ -721,7 +778,11 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[dic objectForKey:@"ReturnCode"] intValue]==200) {
-            [self sendImageWith:[dic objectForKey:@"FileUrl"]];
+            if ([type isEqualToString:@"image"]) {
+                [self sendImageWith:[dic objectForKey:@"FileUrl"]];
+            }else{
+                [self sendAudioWith:[dic objectForKey:@"FileUrl"]];
+            }
             DeBugLog(@"问题追问的url,%@",[dic objectForKey:@"FileUrl"]);
         }
     }];
@@ -745,6 +806,7 @@
     [request setValue:[NSString stringWithFormat:@"%ld", body.length] forHTTPHeaderField:@"Content-Length"];
     // 设置头部数据，指定了http post请求的编码方式为multipart/form-data（上传文件必须用这个）。
     [request setValue:[NSString stringWithFormat:@"multipart/form-data; image/png"] forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; audio/amr"] forHTTPHeaderField:@"Content-Type"];
 }
 
 - (void)sendImageWith:(NSString *)text
@@ -752,6 +814,31 @@
     NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/ProblemContent/Create";
     NSDictionary *textPloblem = @{
                                   @"type": @"image",
+                                  @"file": text,
+                                  };
+    NSDictionary *dicPara = @{
+                              @"UserId": @"meddo99.com$13122785292",
+                              @"Content": @[textPloblem],
+                              @"ProblemId":self.problemID
+                              };
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
+            [NSObject showHudTipStr:@"提交成功"];
+            
+        }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==1){
+            [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject showHudTipStr:@"提交失败"];
+    }];
+}
+
+- (void)sendAudioWith:(NSString *)text
+{
+    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/ProblemContent/Create";
+    NSDictionary *textPloblem = @{
+                                  @"type": @"audio",
                                   @"file": text,
                                   };
     NSDictionary *dicPara = @{

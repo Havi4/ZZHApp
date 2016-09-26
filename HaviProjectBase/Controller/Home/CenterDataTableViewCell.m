@@ -38,13 +38,13 @@
         
         leftBackView = [UIButton buttonWithType:UIButtonTypeCustom];
         leftBackView.tag = 101;
-        [leftBackView setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0.7 alpha:0.4]] forState:UIControlStateNormal];
+        [leftBackView setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0.7 alpha:0.2]] forState:UIControlStateNormal];
         [leftBackView setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateHighlighted];
         [leftBackView addTarget:self action:@selector(tapDetail:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:leftBackView];
         rightBackView = [UIButton buttonWithType:UIButtonTypeCustom];
         rightBackView.tag = 102;
-        [rightBackView setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0.7 alpha:0.4]] forState:UIControlStateNormal];
+        [rightBackView setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0.7 alpha:0.2]] forState:UIControlStateNormal];
         [rightBackView setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateHighlighted];
         [rightBackView addTarget:self action:@selector(tapDetail:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:rightBackView];
@@ -91,6 +91,8 @@
 
         [rightBackView addSubview:rightSubLabel];
         rightImage = [[YYAnimatedImageView alloc]init];
+        rightImage.contentMode = UIViewContentModeScaleAspectFit;
+        leftImage.contentMode = UIViewContentModeScaleAspectFit;
         [rightBackView addSubview:rightImage];
         [leftBackView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(0);

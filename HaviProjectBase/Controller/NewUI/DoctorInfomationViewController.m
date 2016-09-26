@@ -71,7 +71,7 @@
             
             NSDictionary *docInfo = [obj objectForKey:@"Result"];
             self.docDic = docInfo;
-            [self.assementView reloadData];
+            [self.assementView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationRight];
         }else{
             [NSObject showHudTipStr:@"获取医生信息失败"];
         }

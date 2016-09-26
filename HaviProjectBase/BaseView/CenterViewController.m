@@ -90,7 +90,8 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     
     self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_share@3x"] style:SCBarButtonItemStylePlain handler:^(id sender) {
-        [self showMoreInfo:nil];
+//        [self showMoreInfo:nil];
+        [self shareApp:nil];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     
