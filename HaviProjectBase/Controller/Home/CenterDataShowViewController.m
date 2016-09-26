@@ -48,20 +48,21 @@
 - (void)configNoti
 {
     [[NSNotificationCenter defaultCenter]addObserverForName:kGetCurrentCity object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        NSDictionary *dic = note.userInfo;
-        self.city = [dic objectForKey:@"city"];
-        [self getAriticleList:dic];
+        self.city = [[NSUserDefaults standardUserDefaults] objectForKey:@"city"];
+        if (self.city) {
+            [self getAriticleList:[[NSUserDefaults standardUserDefaults] objectForKey:@"city"]];
+        }
     }];
 }
 
-- (void)getAriticleList:(NSDictionary *)dic
+- (void)getAriticleList:(NSString *)dic
 {
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic19 = @{
                             @"UUID" : self.deviceUUID,
                             @"FromDate": self.queryStartTime,
                             @"EndDate": self.queryEndTime,
-                            @"City":self.city,
+                            @"City":dic,
                             @"UserId":thirdPartyLoginUserId
                             };
     @weakify(self);
@@ -208,7 +209,7 @@
         [self.dataShowTableView reloadData];
     }];
     if (self.city.length > 0) {
-        [self getAriticleList:nil];
+        [self getAriticleList:[[NSUserDefaults standardUserDefaults] objectForKey:@"city"]];
     }
 }
 
