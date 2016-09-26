@@ -43,8 +43,8 @@
         [self.topContentView addSubview:_cellIconImageView];
         [_cellIconImageView makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.topContentView);
-            make.height.equalTo(@45);
-            make.width.equalTo(@45);
+            make.height.equalTo(@25);
+            make.width.equalTo(@25);
             make.left.equalTo(self.topContentView.mas_left).offset(10);
         }];
         

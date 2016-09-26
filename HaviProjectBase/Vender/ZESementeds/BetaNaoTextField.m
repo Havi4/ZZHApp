@@ -178,10 +178,12 @@
     
     if([textField.text isEqual:@""]){
           [UIView animateWithDuration:0.5 animations:^{
-            
-            self.placeHolderLabel.frame=CGRectMake(0, self.bounds.size.height-24, self.bounds.size.width, 24);
-            self.placeHolderLabel.textColor = [UIColor lightGrayColor];
-        }];
+              
+              self.placeHolderLabel.frame=CGRectMake(0, self.bounds.size.height-24, self.bounds.size.width, 24);
+          } completion:^(BOOL finished) {
+              
+              self.placeHolderLabel.textColor = [UIColor lightGrayColor];
+          }];
     }
     
 }

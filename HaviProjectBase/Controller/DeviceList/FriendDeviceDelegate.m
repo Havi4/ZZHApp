@@ -9,6 +9,7 @@
 #import "FriendDeviceDelegate.h"
 #import "FriendDeviceTableViewCell.h"
 #import "JAActionButton.h"
+#import "MyDeviceTableViewCell.h"
 
 @interface FriendDeviceDelegate ()<JASwipeCellDelegate>
 
@@ -63,13 +64,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id item = [self itemAtIndexPath:indexPath];
-    FriendDeviceTableViewCell *cell = (FriendDeviceTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+    MyDeviceTableViewCell *cell = (MyDeviceTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     if (!cell) {
-        cell = [[FriendDeviceTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+        cell = [[MyDeviceTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
     }
     [cell addActionButtons:[self rightButtonsWithTable:tableView] withButtonWidth:kJAButtonWidth withButtonPosition:JAButtonLocationRight];
     cell.delegate = self;
     self.configureCellBlock(indexPath,item,cell);
+//    id item = [self itemAtIndexPath:indexPath];
+//    FriendDeviceTableViewCell *cell = (FriendDeviceTableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+//    if (!cell) {
+//        cell = [[FriendDeviceTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+//    }
+//    [cell addActionButtons:[self rightButtonsWithTable:tableView] withButtonWidth:kJAButtonWidth withButtonPosition:JAButtonLocationRight];
+//    cell.delegate = self;
+//    self.configureCellBlock(indexPath,item,cell);
     return cell;
 }
 
