@@ -10,10 +10,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
 #import "LeftSideViewController.h"
-#import "ConversationListViewController.h"
+#import "XHDemoWeChatMessageTableViewController.h"
 #import "RxWebViewController.h"
+#import "ConversationListViewController.h"
 #import "TSMessage.h"
 #import "CWStatusBarNotification.h"
+#import "NotiView.h"
 
 static JPushNotiManager *shareInstance = nil;
 
@@ -114,10 +116,27 @@ static JPushNotiManager *shareInstance = nil;
         case 111:{
             DeBugLog(@"文章推送");
             AppDelegate *app = [UIApplication sharedApplication].delegate;
+            NSString *articleUrl = [userInfo objectForKey:@"ArticleUrl"];
             if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-                [self.notification displayNotificationWithMessage:@"你好" forDuration:2];
+                NotiView *no = [[NotiView alloc]init];
+                no.frame = (CGRect){0,0,100,64};
+                [no configNotiView:userInfo];
+                no.buttonClockTaped = ^(NSInteger index){
+                    DeBugLog(@"查看文章");
+                    DeBugLog(@"当前controller%@",[self getCurrentVC]);
+                    [self.notification dismissNotification];
+                    if (![[self getCurrentVC] isKindOfClass:[RxWebViewController class]]) {
+                        
+                        RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:articleUrl]];
+                        webViewController.urlString = articleUrl;
+                        webViewController.articleTitle = alertString;
+                        [app.currentNavigationController pushViewController:webViewController animated:YES];
+                    }else{
+                        DeBugLog(@"当前已在RXWebView");
+                    }
+                };
+                [self.notification displayNotificationWithView:no forDuration:4];
             }else  {
-                NSString *articleUrl = [userInfo objectForKey:@"ArticleUrl"];
                 RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:articleUrl]];
                 webViewController.urlString = articleUrl;
                 webViewController.articleTitle = alertString;
@@ -127,12 +146,36 @@ static JPushNotiManager *shareInstance = nil;
         }
         case 112:{
             DeBugLog(@"医生回复");
+            NSString *problemId = [userInfo objectForKey:@"ProblemId"];
             AppDelegate *app = [UIApplication sharedApplication].delegate;
             if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-                [[NSNotificationCenter defaultCenter]postNotificationName:kJPushNotification object:nil userInfo:userInfo];
+                [self.notification dismissNotification];
+                NotiView *no = [[NotiView alloc]init];
+                no.frame = (CGRect){0,0,100,64};
+                [no configNotiView:userInfo];
+                no.buttonClockTaped = ^(NSInteger index){
+                    DeBugLog(@"查看回复");
+                    [self.notification dismissNotification];
+                    if (![[self getCurrentVC] isKindOfClass:[XHDemoWeChatMessageTableViewController class]]) {
+                        XHDemoWeChatMessageTableViewController *demoWeChatMessageTableViewController = [[XHDemoWeChatMessageTableViewController alloc] init];
+                        demoWeChatMessageTableViewController.allowsSendFace = NO;
+                        demoWeChatMessageTableViewController.allowsSendVoice = NO;
+                        demoWeChatMessageTableViewController.allowsSendMultiMedia = YES;
+                        demoWeChatMessageTableViewController.problemID = problemId;
+                        [app.currentNavigationController pushViewController:demoWeChatMessageTableViewController animated:YES];
+                    }else{
+                        [[NSNotificationCenter defaultCenter]postNotificationName:kJPushNotification object:nil userInfo:userInfo];
+                    }
+                };
+                [self.notification displayNotificationWithView:no forDuration:4];
+                
             }else  {
-                ConversationListViewController *con = [[ConversationListViewController alloc]init];
-                [app.currentNavigationController pushViewController:con animated:YES];
+                XHDemoWeChatMessageTableViewController *demoWeChatMessageTableViewController = [[XHDemoWeChatMessageTableViewController alloc] init];
+                demoWeChatMessageTableViewController.allowsSendFace = NO;
+                demoWeChatMessageTableViewController.allowsSendVoice = NO;
+                demoWeChatMessageTableViewController.allowsSendMultiMedia = YES;
+                demoWeChatMessageTableViewController.problemID = problemId;
+                [app.currentNavigationController pushViewController:demoWeChatMessageTableViewController animated:YES];
             }
             break;
         }
@@ -173,5 +216,12 @@ static SystemSoundID soundId;
     }
 }
 
+//获取当前屏幕显示的viewcontroller
+- (UIViewController *)getCurrentVC
+{
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    UIViewController *controllers = app.currentNavigationController.topViewController;
+    return controllers;
+}
 
 @end

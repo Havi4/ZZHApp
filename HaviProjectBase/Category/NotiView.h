@@ -10,5 +10,9 @@
 
 @interface NotiView : UIView
 
+- (void)configNotiView:(NSDictionary *)dic;
+
+@property (nonatomic, copy) void (^buttonClockTaped)(NSInteger callBackResult);
+
 
 @end

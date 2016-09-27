@@ -21,8 +21,6 @@
 #import "ConversationListViewController.h"
 #import "WTRequestCenter.h"
 
-
-
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @interface CenterViewController ()<CLWeeklyCalendarViewDelegate,UIViewControllerTransitioningDelegate>
 {

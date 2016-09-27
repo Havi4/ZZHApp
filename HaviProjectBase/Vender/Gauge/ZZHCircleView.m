@@ -170,7 +170,7 @@
         arc.path = [UIBezierPath bezierPathWithArcCenter:CENTER radius:radius startAngle:ConversionRadian(0)  endAngle:ConversionRadian(360) clockwise:YES].CGPath;
         arc.fillColor = [UIColor clearColor].CGColor;
         arc.strokeColor = [UIColor blackColor].CGColor;
-        arc.lineWidth = 15;
+        arc.lineWidth = 10;
         [arc setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:3.8],nil]];
         _gradientLayer = [CAGradientLayer layer];
         _gradientLayer.frame = self.bounds;
@@ -189,7 +189,7 @@
         arc.path = [UIBezierPath bezierPathWithArcCenter:CENTER radius:radius startAngle:ConversionRadian(0)  endAngle:ConversionRadian(360) clockwise:YES].CGPath;
         arc.fillColor = [UIColor clearColor].CGColor;
         arc.strokeColor = [UIColor blackColor].CGColor;
-        arc.lineWidth = 15;
+        arc.lineWidth = 10;
         [arc setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:3.8],nil]];
         _gradientLayerCircle = [CAGradientLayer layer];
         _gradientLayerCircle.frame = self.bounds;
