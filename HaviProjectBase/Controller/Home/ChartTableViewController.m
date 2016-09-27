@@ -38,13 +38,13 @@
     TableViewCellConfigureBlock configureCellBlock = ^(NSIndexPath *indexPath, id item, UITableViewCell *cell){
         if (self.sensorType == SensorDataLeave) {
             if (indexPath.row ==0) {
-                cell.textLabel.text = @"离床分析";
+                cell.textLabel.text = @"";
             }else{
                 [cell configure:cell customObj:self.sleepQualityModel indexPath:indexPath withOtherInfo:@(self.sensorType)];
             }
         }else{
             if (indexPath.row ==0) {
-                cell.textLabel.text = @"体动分析";
+                cell.textLabel.text = @"";
             }else{
                 [cell configure:cell customObj:self.sleepQualityModel indexPath:indexPath withOtherInfo:@(self.sensorType)];
             }
@@ -93,10 +93,10 @@
         self.sleepQualityModel = qualityModel;
         if (self.sensorType == SensorDataLeave) {
             [self.sensorDelegate reloadTableViewHeaderWith:qualityModel withType:self.sensorType];
-            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+//            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
         }else{
             [self.sensorDelegate reloadTableViewHeaderWith:qualityModel withType:self.sensorType];
-            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+//            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
         }
        
     }];

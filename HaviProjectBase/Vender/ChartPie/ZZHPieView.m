@@ -48,7 +48,7 @@
     [_chart addSubview:_imageView];
     [_imageView makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(_chart.mas_centerX);
-        make.centerY.equalTo(_chart.mas_centerY).offset(-25);
+        make.centerY.equalTo(_chart.mas_centerY).offset(-20);
         make.height.width.equalTo(@30);
     }];
     
