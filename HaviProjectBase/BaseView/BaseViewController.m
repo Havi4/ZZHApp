@@ -15,6 +15,7 @@
 #import "MMPopupItem.h"
 #import "THPinViewController.h"
 #import "DeviceListViewController.h"
+#import "TSMessage.h"
 
 @interface BaseViewController ()<LXActivityDelegate>
 
@@ -36,7 +37,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.backgroundImageView];
-    
+    [self configNotification];
+}
+
+- (void)configNotification
+{
+
+    [[NSNotificationCenter defaultCenter]addObserverForName:kJPushNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [TSMessage showNotificationWithTitle:NSLocalizedString(@"Tell the user something", nil)
+                                    subtitle:NSLocalizedString(@"This is some neutral notification!", nil)
+                                        type:TSMessageNotificationTypeMessage];
+    }];
 }
 
 #pragma mark setters

@@ -246,6 +246,13 @@
 		2C9D1F8E1D9A051500CBF4D6 /* lixian.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F8C1D9A051500CBF4D6 /* lixian.png */; };
 		2C9D1F8F1D9A051500CBF4D6 /* tuoji.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F8D1D9A051500CBF4D6 /* tuoji.png */; };
 		2C9D1F911D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F901D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png */; };
+		2C9D1F941D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9D1F921D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a */; };
+		2C9D1F9E1D9A377300CBF4D6 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1F981D9A377300CBF4D6 /* TSBlurView.m */; };
+		2C9D1F9F1D9A377300CBF4D6 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1F9A1D9A377300CBF4D6 /* TSMessage.m */; };
+		2C9D1FA01D9A377300CBF4D6 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1F9C1D9A377300CBF4D6 /* TSMessageView.m */; };
+		2C9D1FA31D9A381B00CBF4D6 /* HexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1FA21D9A381B00CBF4D6 /* HexColors.m */; };
+		2C9D1FA71D9A3FC300CBF4D6 /* CWStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1FA61D9A3FC300CBF4D6 /* CWStatusBarNotification.m */; };
+		2C9D1FAA1D9A42A000CBF4D6 /* NotiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1FA91D9A42A000CBF4D6 /* NotiView.m */; };
 		2C9EF2C31C7C0FFA000704E2 /* btn_ellipse_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C11C7C0FFA000704E2 /* btn_ellipse_0@2x.png */; };
 		2C9EF2C61C7C1026000704E2 /* navi_bg_night_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C51C7C1026000704E2 /* navi_bg_night_0@2x.png */; };
 		2C9EF2CA1C7C1031000704E2 /* navi_bg_night_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C81C7C1031000704E2 /* navi_bg_night_1@2x.png */; };
@@ -386,7 +393,6 @@
 		2C9EF4AC1C82FBC3000704E2 /* WTURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4A41C82FBC3000704E2 /* WTURLRequestSerialization.m */; };
 		2C9EF4AD1C82FBC3000704E2 /* WTURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4A61C82FBC3000704E2 /* WTURLSessionManager.m */; };
 		2C9EF4B01C832EC8000704E2 /* RegisterPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4AF1C832EC8000704E2 /* RegisterPhoneViewController.m */; };
-		2C9EF4B41C83D97B000704E2 /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9EF4B31C83D97B000704E2 /* libPushSDK-1.8.8.a */; };
 		2C9EF4B71C83D9BD000704E2 /* JPushNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF4B61C83D9BD000704E2 /* JPushNotiManager.m */; };
 		2C9EF4B91C83DDC6000704E2 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4B81C83DDC6000704E2 /* PushConfig.plist */; };
 		2C9EF4BB1C83E3BA000704E2 /* leaveAlert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF4BA1C83E3BA000704E2 /* leaveAlert.wav */; };
@@ -1168,6 +1174,20 @@
 		2C9D1F8C1D9A051500CBF4D6 /* lixian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lixian.png; sourceTree = "<group>"; };
 		2C9D1F8D1D9A051500CBF4D6 /* tuoji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuoji.png; sourceTree = "<group>"; };
 		2C9D1F901D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bed_no_sigle@3x.png"; sourceTree = "<group>"; };
+		2C9D1F921D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
+		2C9D1F931D9A1F8E00CBF4D6 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		2C9D1F971D9A377300CBF4D6 /* TSBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBlurView.h; sourceTree = "<group>"; };
+		2C9D1F981D9A377300CBF4D6 /* TSBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBlurView.m; sourceTree = "<group>"; };
+		2C9D1F991D9A377300CBF4D6 /* TSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessage.h; sourceTree = "<group>"; };
+		2C9D1F9A1D9A377300CBF4D6 /* TSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessage.m; sourceTree = "<group>"; };
+		2C9D1F9B1D9A377300CBF4D6 /* TSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessageView.h; sourceTree = "<group>"; };
+		2C9D1F9C1D9A377300CBF4D6 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
+		2C9D1FA11D9A381B00CBF4D6 /* HexColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColors.h; sourceTree = "<group>"; };
+		2C9D1FA21D9A381B00CBF4D6 /* HexColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColors.m; sourceTree = "<group>"; };
+		2C9D1FA51D9A3FC300CBF4D6 /* CWStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWStatusBarNotification.h; sourceTree = "<group>"; };
+		2C9D1FA61D9A3FC300CBF4D6 /* CWStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWStatusBarNotification.m; sourceTree = "<group>"; };
+		2C9D1FA81D9A42A000CBF4D6 /* NotiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotiView.h; sourceTree = "<group>"; };
+		2C9D1FA91D9A42A000CBF4D6 /* NotiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotiView.m; sourceTree = "<group>"; };
 		2C9EF2C11C7C0FFA000704E2 /* btn_ellipse_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ellipse_0@2x.png"; sourceTree = "<group>"; };
 		2C9EF2C51C7C1026000704E2 /* navi_bg_night_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg_night_0@2x.png"; sourceTree = "<group>"; };
 		2C9EF2C81C7C1031000704E2 /* navi_bg_night_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg_night_1@2x.png"; sourceTree = "<group>"; };
@@ -1397,8 +1417,6 @@
 		2C9EF4A61C82FBC3000704E2 /* WTURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTURLSessionManager.m; sourceTree = "<group>"; };
 		2C9EF4AE1C832EC8000704E2 /* RegisterPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPhoneViewController.h; sourceTree = "<group>"; };
 		2C9EF4AF1C832EC8000704E2 /* RegisterPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPhoneViewController.m; sourceTree = "<group>"; };
-		2C9EF4B21C83D97B000704E2 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		2C9EF4B31C83D97B000704E2 /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
 		2C9EF4B51C83D9BD000704E2 /* JPushNotiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotiManager.h; sourceTree = "<group>"; };
 		2C9EF4B61C83D9BD000704E2 /* JPushNotiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPushNotiManager.m; sourceTree = "<group>"; };
 		2C9EF4B81C83DDC6000704E2 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -2080,6 +2098,7 @@
 				2C9EF51D1C858B4E000704E2 /* libSniffer.a in Frameworks */,
 				2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */,
 				2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */,
+				2C9D1F941D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a in Frameworks */,
 				2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */,
 				2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */,
 				2CF2E2AC1C7AE9AE0007A639 /* Security.framework in Frameworks */,
@@ -2088,7 +2107,6 @@
 				5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */,
 				2CF2E2A21C7AE0E80007A639 /* TencentOpenAPI.framework in Frameworks */,
 				2CF2E29B1C7AE0660007A639 /* libWeChatSDK.a in Frameworks */,
-				2C9EF4B41C83D97B000704E2 /* libPushSDK-1.8.8.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2565,6 +2583,30 @@
 			path = SCNavitagionController;
 			sourceTree = "<group>";
 		};
+		2C9D1F951D9A377300CBF4D6 /* TSmessage */ = {
+			isa = PBXGroup;
+			children = (
+				2C9D1FA11D9A381B00CBF4D6 /* HexColors.h */,
+				2C9D1FA21D9A381B00CBF4D6 /* HexColors.m */,
+				2C9D1F971D9A377300CBF4D6 /* TSBlurView.h */,
+				2C9D1F981D9A377300CBF4D6 /* TSBlurView.m */,
+				2C9D1F991D9A377300CBF4D6 /* TSMessage.h */,
+				2C9D1F9A1D9A377300CBF4D6 /* TSMessage.m */,
+				2C9D1F9B1D9A377300CBF4D6 /* TSMessageView.h */,
+				2C9D1F9C1D9A377300CBF4D6 /* TSMessageView.m */,
+			);
+			path = TSmessage;
+			sourceTree = "<group>";
+		};
+		2C9D1FA41D9A3FC300CBF4D6 /* CWStatusBarNotification */ = {
+			isa = PBXGroup;
+			children = (
+				2C9D1FA51D9A3FC300CBF4D6 /* CWStatusBarNotification.h */,
+				2C9D1FA61D9A3FC300CBF4D6 /* CWStatusBarNotification.m */,
+			);
+			path = CWStatusBarNotification;
+			sourceTree = "<group>";
+		};
 		2C9EF2CF1C7C18C4000704E2 /* LXActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -2840,8 +2882,8 @@
 		2C9EF4B11C83D97B000704E2 /* JPushlib */ = {
 			isa = PBXGroup;
 			children = (
-				2C9EF4B21C83D97B000704E2 /* APService.h */,
-				2C9EF4B31C83D97B000704E2 /* libPushSDK-1.8.8.a */,
+				2C9D1F921D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a */,
+				2C9D1F931D9A1F8E00CBF4D6 /* JPUSHService.h */,
 			);
 			path = JPushlib;
 			sourceTree = "<group>";
@@ -3170,6 +3212,8 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2C9D1FA41D9A3FC300CBF4D6 /* CWStatusBarNotification */,
+				2C9D1F951D9A377300CBF4D6 /* TSmessage */,
 				2CCBB5AE1D928995009FD1F8 /* HysteriaPlayer */,
 				2C94E5781D9209B70062A33C /* ImagePre */,
 				2C94E5451D910FFC0062A33C /* HCSStarRatingView */,
@@ -3467,6 +3511,8 @@
 				2C9EF4951C82F8CA000704E2 /* ThirdLoginCallBackManager.m */,
 				2C9EF4B51C83D9BD000704E2 /* JPushNotiManager.h */,
 				2C9EF4B61C83D9BD000704E2 /* JPushNotiManager.m */,
+				2C9D1FA81D9A42A000CBF4D6 /* NotiView.h */,
+				2C9D1FA91D9A42A000CBF4D6 /* NotiView.m */,
 				2C2DC9B71CC71728008D28D1 /* SmartLinkInstance.h */,
 				2C2DC9B81CC71728008D28D1 /* SmartLinkInstance.m */,
 				2C96AA281D40D65800ACCA08 /* ViewFrameAccessor.h */,
@@ -4489,7 +4535,7 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = A4R9NHT83H;
 						DevelopmentTeamName = "Shanghai Meddo Medical Device Co., Ltd.";
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4991,6 +5037,7 @@
 				2C1DA02A1D4F5B6600FA6678 /* MonthTableViewCell.m in Sources */,
 				2C9EF4361C802EB3000704E2 /* ChartTableTitleView.m in Sources */,
 				2C96AA241D40C5E000ACCA08 /* V2SubMenuSectionView.m in Sources */,
+				2C9D1F9F1D9A377300CBF4D6 /* TSMessage.m in Sources */,
 				2C9EF3CB1C7EFF46000704E2 /* SensorSleepDurationCell.m in Sources */,
 				2CF2E1781C75B5A40007A639 /* RexpUntil.m in Sources */,
 				2CE3CDF91D8E484B001DDD1C /* XHDemoWeChatMessageTableViewController.m in Sources */,
@@ -5014,6 +5061,7 @@
 				2C9EF3FA1C7FE1C5000704E2 /* ChartGrapheView.m in Sources */,
 				2CF2E1581C7593FC0007A639 /* ReNameDeviceNameViewController.m in Sources */,
 				2CFB357A1D891781003CB6B2 /* NSBundle+TZImagePicker.m in Sources */,
+				2C9D1FAA1D9A42A000CBF4D6 /* NotiView.m in Sources */,
 				2CF2E1AE1C760A340007A639 /* UIActionSheet+Block.m in Sources */,
 				2CD75B731C61C2D000E7E076 /* FriendListModel.m in Sources */,
 				2C9EF4B71C83D9BD000704E2 /* JPushNotiManager.m in Sources */,
@@ -5193,8 +5241,10 @@
 				2C9EF4AB1C82FBC3000704E2 /* WTURLRequestOperation.m in Sources */,
 				2C94E55B1D911F0C0062A33C /* AssementTableViewCell.m in Sources */,
 				2C457B5A1D86453900FFAB95 /* ConversationListViewController.m in Sources */,
+				2C9D1FA71D9A3FC300CBF4D6 /* CWStatusBarNotification.m in Sources */,
 				2C1DA0171D4F2BF300FA6678 /* JTCalendarManager.m in Sources */,
 				2C9EF5031C8535A9000704E2 /* DiagnoseReportTableViewCell.m in Sources */,
+				2C9D1FA01D9A377300CBF4D6 /* TSMessageView.m in Sources */,
 				2C9EF4741C80B692000704E2 /* QuaterCalenderView.m in Sources */,
 				2C9EF5351C8597C9000704E2 /* THPinNumPadView.m in Sources */,
 				2C94E5521D9114110062A33C /* SatisfactionTableViewCell.m in Sources */,
@@ -5325,6 +5375,7 @@
 				2C94E5611D91687B0062A33C /* DocInfoTitileTableViewCell.m in Sources */,
 				2C8D87CE1D45FC5B008573EA /* EditAddressTableViewController.m in Sources */,
 				2C5FE5B31D4709D900AFFEFE /* ChangeLanguageViewController.m in Sources */,
+				2C9D1F9E1D9A377300CBF4D6 /* TSBlurView.m in Sources */,
 				2C1D9FD81D4F012000FA6678 /* CenterSubTableViewCell.m in Sources */,
 				2CE3CDB91D8E426B001DDD1C /* SETextInput.m in Sources */,
 				2CD75B741C61C2D000E7E076 /* MyDeviceListModel.m in Sources */,
@@ -5369,6 +5420,7 @@
 				2CF2E2601C7ABDFD0007A639 /* CKTextField.m in Sources */,
 				2CE3CDA01D8E426B001DDD1C /* XHCacheManager.m in Sources */,
 				2C5872651C7AF491001C2F3A /* LaunchStartView.m in Sources */,
+				2C9D1FA31D9A381B00CBF4D6 /* HexColors.m in Sources */,
 				2CE3CDBD1D8E426B001DDD1C /* SETextSelection.m in Sources */,
 				2C9EF4AA1C82FBC3000704E2 /* WTRequestCenter.m in Sources */,
 				2C6AA32D1D5F5F9B00CC5831 /* ProgressView.m in Sources */,
@@ -5547,8 +5599,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "195a396b-6c43-41f2-9f3e-538b6b71aaca";
+				PROVISIONING_PROFILE_SPECIFIER = ZZH_P_Development_0815;
 			};
 			name = Debug;
 		};
@@ -5560,7 +5612,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = HaviProjectBase/HaviProjectBase.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = A4R9NHT83H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5583,8 +5635,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "6160d8cc-6b4d-42bc-b5e4-901ecd081a15";
+				PROVISIONING_PROFILE_SPECIFIER = ZZH_APDIR_Profile;
 			};
 			name = Release;
 		};

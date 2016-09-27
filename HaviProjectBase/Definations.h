@@ -104,6 +104,7 @@
 #define kReportTagSelected         @"kReportTagSelected"
 #define kGetWeatherData         @"kGetWeatherData"
 #define kGetCurrentCity         @"kGetCurrentCity"
+#define kJPushNotification         @"kJPushNotification"
 
 #define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
 [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]

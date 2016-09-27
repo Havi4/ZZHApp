@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "APService.h"
+#import "JPUSHService.h"
 
 @interface JPushNotiManager : NSObject
 

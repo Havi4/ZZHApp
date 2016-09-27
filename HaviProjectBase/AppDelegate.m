@@ -192,12 +192,12 @@
     //向微信注册
     [WXApi registerApp:kWXAPPKey];
     //因为有闹钟的印象，清楚闹钟。
-    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+    [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                    UIRemoteNotificationTypeSound |
                                                    UIRemoteNotificationTypeAlert)
                                        categories:nil];
-    [APService setupWithOption:launchOptions];
-    [APService crashLogON];
+    [JPUSHService setupWithOption:launchOptions];
+    [JPUSHService crashLogON];
 
 }
 
@@ -362,7 +362,7 @@
 
 - (void)uploadRegisterID
 {
-    NSString *registerID = [APService registrationID];
+    NSString *registerID = [JPUSHService registrationID];
     for (int i=0; i<3; i++) {
         if (registerID.length > 0) {
             if (thirdPartyLoginUserId.length == 0) {
@@ -443,8 +443,8 @@
 
 #pragma mark 推送
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [APService registerDeviceToken:deviceToken];
-    registeredID = [APService registrationID];
+    [JPUSHService registerDeviceToken:deviceToken];
+    registeredID = [JPUSHService registrationID];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

@@ -11,10 +11,33 @@
 #import "AppDelegate.h"
 #import "LeftSideViewController.h"
 #import "ConversationListViewController.h"
+#import "RxWebViewController.h"
+#import "TSMessage.h"
+#import "CWStatusBarNotification.h"
 
 static JPushNotiManager *shareInstance = nil;
 
+@interface JPushNotiManager ()
+
+@property (strong, nonatomic) CWStatusBarNotification *notification;
+
+@end
+
 @implementation JPushNotiManager
+
+- (CWStatusBarNotification *)notification
+{
+    if (!_notification) {
+        _notification = [CWStatusBarNotification new];
+        
+        // set default blue color (since iOS 7.1, default window tintColor is black)
+//        _notification.notificationLabelBackgroundColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+        _notification.notificationAnimationInStyle = CWNotificationAnimationStyleTop;
+        _notification.notificationAnimationOutStyle = CWNotificationAnimationStyleBottom;
+        _notification.notificationStyle = CWNotificationStyleNavigationBarNotification;
+    }
+    return _notification;
+}
 
 + (instancetype)sharedInstance
 {
@@ -27,7 +50,7 @@ static JPushNotiManager *shareInstance = nil;
 
 - (void)handPushApplication:(UIApplication *)application receiveRemoteNotification:(NSDictionary *)userInfo
 {
-    [APService handleRemoteNotification:userInfo];
+    [JPUSHService handleRemoteNotification:userInfo];
     if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
 //        [self playSound];
     }
@@ -35,7 +58,7 @@ static JPushNotiManager *shareInstance = nil;
 
 - (void)handPushApplication:(UIApplication *)application receiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    [APService handleRemoteNotification:userInfo];
+    [JPUSHService handleRemoteNotification:userInfo];
     NSString *alertString = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     NSString *key = [userInfo objectForKey:@"message_type"];
     switch ([key intValue]) {
@@ -90,13 +113,23 @@ static JPushNotiManager *shareInstance = nil;
         } break;
         case 111:{
             DeBugLog(@"文章推送");
+            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+                [self.notification displayNotificationWithMessage:@"你好" forDuration:2];
+            }else  {
+                NSString *articleUrl = [userInfo objectForKey:@"ArticleUrl"];
+                RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:articleUrl]];
+                webViewController.urlString = articleUrl;
+                webViewController.articleTitle = alertString;
+                [app.currentNavigationController pushViewController:webViewController animated:YES];
+            }
             break;
         }
         case 112:{
             DeBugLog(@"医生回复");
             AppDelegate *app = [UIApplication sharedApplication].delegate;
             if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"docGiveMessage" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:kJPushNotification object:nil userInfo:userInfo];
             }else  {
                 ConversationListViewController *con = [[ConversationListViewController alloc]init];
                 [app.currentNavigationController pushViewController:con animated:YES];
