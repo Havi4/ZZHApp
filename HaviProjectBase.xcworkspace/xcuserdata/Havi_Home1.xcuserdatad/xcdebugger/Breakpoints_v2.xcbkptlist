@@ -1034,11 +1034,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/NewUI/XHDemoWeChatMessageTableViewController.m"
-            timestampString = "496663249.185441"
+            timestampString = "496663860.915972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "730"
-            endingLineNumber = "730"
+            startingLineNumber = "732"
+            endingLineNumber = "732"
             landmarkName = "-sendImessageWith:"
             landmarkType = "7">
             <Locations>
@@ -1082,11 +1082,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/NewUI/XHDemoWeChatMessageTableViewController.m"
-            timestampString = "496663249.185441"
+            timestampString = "496663860.915972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "788"
-            endingLineNumber = "788"
+            startingLineNumber = "790"
+            endingLineNumber = "790"
             landmarkName = "-uploadWithImageData:withType:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1312,22 +1312,6 @@
             startingLineNumber = "135"
             endingLineNumber = "135"
             landmarkName = "+showNotificationInViewController:title:subtitle:image:type:duration:callback:buttonTitle:buttonCallback:atPosition:canBeDismissedByUser:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HaviProjectBase/Controller/NewUI/XHDemoWeChatMessageTableViewController.m"
-            timestampString = "496663249.185441"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "879"
-            endingLineNumber = "879"
-            landmarkName = "-convertStrToTime:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

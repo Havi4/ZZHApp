@@ -650,7 +650,9 @@
 - (BOOL)shouldDisplayTimestampForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row % 2) {
         return YES;
-    } else {
+    } else if(indexPath.row == 0) {
+        return YES;
+    }else{
         return NO;
     }
 }
@@ -872,19 +874,9 @@
 - (NSDate *)convertStrToTime:(NSString *)timeStr
 
 {
-    
     long long time=[timeStr longLongValue];
-    
     NSDate *d = [[NSDate alloc]initWithTimeIntervalSince1970:time/1000.0];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    
-    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
-    
-    NSString*timeString=[formatter stringFromDate:d];
-    
     return d;
-    
 }
 
 @end
