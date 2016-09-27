@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
 #import "LeftSideViewController.h"
+#import "ConversationListViewController.h"
 
 static JPushNotiManager *shareInstance = nil;
 
@@ -67,7 +68,7 @@ static JPushNotiManager *shareInstance = nil;
         } break;
         case 106:{
             NSInteger badage = application.applicationIconBadgeNumber;
-            AppDelegate *app = [UIApplication sharedApplication].delegate;
+             AppDelegate *app = [UIApplication sharedApplication].delegate;
             if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
                 [(LeftSideViewController *)app.sideMenuController.leftPanel showBadageValue:[NSString stringWithFormat:@"%d",1]];
             }else if (badage > 0) {
@@ -87,11 +88,24 @@ static JPushNotiManager *shareInstance = nil;
             //版本更新
             
         } break;
+        case 111:{
+            DeBugLog(@"文章推送");
+            break;
+        }
+        case 112:{
+            DeBugLog(@"医生回复");
+            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"docGiveMessage" object:nil];
+            }else  {
+                ConversationListViewController *con = [[ConversationListViewController alloc]init];
+                [app.currentNavigationController pushViewController:con animated:YES];
+            }
+            break;
+        }
         default:
             break;
     }
-    
-    NSLog(@"收到");
     completionHandler(UIBackgroundFetchResultNewData);
 }
 

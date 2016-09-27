@@ -124,10 +124,13 @@
             label.font = [UIFont systemFontOfSize:13];
             label.textAlignment = NSTextAlignmentCenter;
             [self addSubview:label];
+            if (i==0) {
+                label.frame = CGRectMake(cX-5, cY+3, ((xCoordinateWidth)/(count)), 10);
+            }
             //
             UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 0, 0.5, cY)];
             if (i==0) {
-                labelLine.frame = CGRectMake(cX+10, 0, 0.5, cY);
+                labelLine.frame = CGRectMake(cX, 0, 0.5, cY);
             }
             labelLine.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
             labelLine.tag = 1002;

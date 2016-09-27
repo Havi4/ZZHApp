@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSString *deviceUUID;
 
+@property (nonatomic, strong) SensorInfoModel *sensorInfoDetail;
+
 - (void)getSleepDataWithStartTime:(NSString *)startTime endTime:(NSString *)endTime;
 
 @end

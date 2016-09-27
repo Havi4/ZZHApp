@@ -48,6 +48,9 @@
     [[NSNotificationCenter defaultCenter]addObserverForName:@"deletProblem" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self getProblemList];
     }];
+    [[NSNotificationCenter defaultCenter]addObserverForName:@"docGiveMessage" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self getProblemList];
+    }];
 }
 
 - (void)getProblemList

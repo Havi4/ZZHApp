@@ -20,6 +20,7 @@
              @"detailDeviceList" : @"DetailDevice",
              @"cellPhone" : @"CellPhone",
              @"friendUserName" : @"FriendUserName",
+             @"activationStatusCode":@"ActivationStatusCode"
              };
 }
 //属性的类型说明数组中对象是什么

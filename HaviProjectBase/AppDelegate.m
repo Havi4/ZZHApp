@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 @property (nonatomic, strong) ZZHRootViewController *rootView;
-
+@property (nonatomic, assign) BOOL isIn;
 @end
 
 @implementation AppDelegate
@@ -44,6 +44,7 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
     [self setThirdAppSettingWith:launchOptions];
     [self getSuggestionList];
+    self.isIn = YES;
     
     if ([UserManager GetUserObj]) {
         [self setRootViewController];
@@ -98,9 +99,10 @@
     if (newLocation) {
         [manager stopUpdatingLocation];
     }
+    @weakify(self);
+    
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
         if (array.count > 0){
-            static dispatch_once_t onceToken;
             CLPlacemark *placemark = [array objectAtIndex:0];
             //将获得的所有信息显示到label上
             //            self.location.text = placemark.name;
@@ -111,25 +113,11 @@
                 //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
                 city = placemark.administrativeArea;
             }
-            if (city) {
-                dispatch_once(&onceToken, ^{
-                    
-                    [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":[city substringToIndex:city.length-1]}];
-                    [[NSUserDefaults standardUserDefaults]setObject:[city substringToIndex:city.length-1] forKey:@"city"];
-                    [[NSUserDefaults standardUserDefaults]synchronize];
-                    NSDictionary *dic19 = @{
-                                            @"city" : [city substringToIndex:city.length-1],
-                                            @"province": [province substringToIndex:city.length-1]
-                                            };
-                    [GetWeatherAPI getWeatherInfoWith:dic19 finished:^(NSURLResponse *response, NSData *data) {
-                        NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                        DeBugLog(@"天气是%@",weatherDic);
-                        [[NSNotificationCenter defaultCenter]postNotificationName:kGetWeatherData object:nil userInfo:@{@"data":data}];
-                    } failed:^(NSURLResponse *response, NSError *error) {
-                        
-                    }];
-                    DeBugLog(@"province = %@ - city = %@",province, city);
-                });
+            
+            if (city && self.isIn) {
+                @strongify(self);
+                self.isIn = NO;
+                [self sendLocationWith:city andProvie:province];
             }
         }
         else if (error == nil && [array count] == 0)
@@ -145,6 +133,24 @@
     [manager stopUpdatingLocation];
 }
 
+- (void)sendLocationWith:(NSString *)city andProvie:(NSString *)province
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":[city substringToIndex:city.length-1]}];
+    [[NSUserDefaults standardUserDefaults]setObject:[city substringToIndex:city.length-1] forKey:@"city"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    NSDictionary *dic19 = @{
+                            @"city" : [city substringToIndex:city.length-1],
+                            @"province": [province substringToIndex:city.length-1]
+                            };
+    [GetWeatherAPI getWeatherInfoWith:dic19 finished:^(NSURLResponse *response, NSData *data) {
+        NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        DeBugLog(@"天气是%@",weatherDic);
+        [[NSNotificationCenter defaultCenter]postNotificationName:kGetWeatherData object:nil userInfo:@{@"data":data}];
+    } failed:^(NSURLResponse *response, NSError *error) {
+        
+    }];
+
+}
 - (void)setRootViewController
 {
     

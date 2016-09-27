@@ -210,6 +210,7 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
     self.sleepNavi = [[SCNavigationController alloc]initWithRootViewController:self.sleep];
     self.setting = [[APPSettingViewController alloc]init];
     self.settingNavi = [[SCNavigationController alloc]initWithRootViewController:self.setting];
+    self.settingNavi.enableInnerInactiveGesture = NO;
     self.message = [[MessageListViewController alloc]init];
     self.messageNavi = [[SCNavigationController alloc]initWithRootViewController:self.message];
     [self.viewControllerContainView addSubview:[self viewControllerForIndex:0].view];

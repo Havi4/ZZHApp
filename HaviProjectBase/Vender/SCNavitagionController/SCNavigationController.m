@@ -31,7 +31,7 @@
     self = [super initWithRootViewController:rootViewController];
     if (self) {
         
-        self.enableInnerInactiveGesture = YES;
+        self.enableInnerInactiveGesture = NO;
         
     }
     return self;
@@ -40,7 +40,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         
-        self.enableInnerInactiveGesture = YES;
+        self.enableInnerInactiveGesture = NO;
         
     }
     return self;

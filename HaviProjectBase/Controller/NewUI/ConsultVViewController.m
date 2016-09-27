@@ -50,7 +50,7 @@
 
 - (void)initImagePickerPara
 {
-    self.textString = @"请输入50-200个字";
+    self.textString = @"请输入10-200个字";
     self.selectGenderIndex = 0;
     self.presentImageNumber = 3;
     self.presentColumnNumber = 4;//每行的照片
@@ -503,7 +503,7 @@
 
 - (void)uploadProblem
 {
-    if ([self.textString isEqualToString:@"请输入50-200个字"] || self.textString.length == 0) {
+    if ([self.textString isEqualToString:@"请输入10-200个字"] || self.textString.length == 0) {
         [NSObject showHudTipStr:@"请输入病情描述"];
         return;
     }

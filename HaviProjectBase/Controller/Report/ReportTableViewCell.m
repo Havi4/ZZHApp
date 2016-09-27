@@ -126,8 +126,8 @@
         [backView addSubview:middleTitleLabel];
         
         middleTitleSubLabel = [[UILabel alloc]init];
-        middleTitleSubLabel.text = @"--";
-        middleTitleSubLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        middleTitleSubLabel.text = @"";
+        middleTitleSubLabel.layer.borderColor = [UIColor clearColor].CGColor;
         middleTitleSubLabel.layer.borderWidth = 0.5;
         middleTitleSubLabel.layer.cornerRadius = 7.5;
         middleTitleSubLabel.textAlignment = NSTextAlignmentCenter;

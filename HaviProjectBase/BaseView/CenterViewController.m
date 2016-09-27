@@ -36,6 +36,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @property (nonatomic, strong) SCBarButtonItem *rightBarItem;
 @property (nonatomic, strong) NaviTitleScrollView *naviBarTitle;
 @property (nonatomic, strong) UIButton *calendarButton;
+@property (nonatomic, strong) SensorInfoModel *sensorInfo;
 
 @end
 
@@ -60,7 +61,24 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         }];
         self.activeDeviceInfo = device;
         gloableActiveDevice = device;
-        [self initCenterViewControllers];
+        [self getSensorInfo];
+    }];
+}
+
+- (void)getSensorInfo
+{
+    NSDictionary *para = @{
+                           @"UUID": self.activeDeviceInfo.deviceUUID,
+                           };
+    @weakify(self);
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestCheckSensorInfoParams:para andBlcok:^(SensorInfoModel *sensorModel, NSError *error) {
+        @strongify(self);
+        self.sensorInfo = sensorModel;
+        if (sensorModel) {
+             [self initCenterViewControllers];
+        }else{
+        }
     }];
 }
 
@@ -183,6 +201,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
         dataShow.title = self.activeDeviceInfo.nDescription.length == 0?@"":self.activeDeviceInfo.nDescription;
         dataShow.deviceUUID = self.activeDeviceInfo.deviceUUID;
+        dataShow.sensorInfoDetail = self.sensorInfo;
         dataShow.view.frame = self.containerDataView.view.bounds;
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
     }else{
@@ -194,6 +213,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
             CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
             dataShow.title = @"";
             dataShow.deviceUUID = obj.detailUUID;
+            dataShow.sensorInfoDetail = self.sensorInfo;
             dataShow.view.frame = self.containerDataView.view.bounds;
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
             [arr addObject:obj.detailDescription];

@@ -47,16 +47,25 @@
 
 - (void)configNoti
 {
-    [[NSNotificationCenter defaultCenter]addObserverForName:kGetCurrentCity object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        self.city = [[NSUserDefaults standardUserDefaults] objectForKey:@"city"];
-        if (self.city) {
-            [self getAriticleList:[[NSUserDefaults standardUserDefaults] objectForKey:@"city"]];
-        }
-    }];
+//    [[NSNotificationCenter defaultCenter]addObserverForName:kGetCurrentCity object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//        
+//    }];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showArticle) name:kGetCurrentCity object:nil];
+}
+
+- (void)showArticle
+{
+    self.city = [[NSUserDefaults standardUserDefaults] objectForKey:@"city"];
+    if (self.city) {
+        [self getAriticleList:[[NSUserDefaults standardUserDefaults] objectForKey:@"city"]];
+    }
 }
 
 - (void)getAriticleList:(NSString *)dic
 {
+    if (self.deviceUUID.length==0) {
+        return;
+    }
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic19 = @{
                             @"UUID" : self.deviceUUID,
@@ -70,7 +79,9 @@
         @strongify(self);
         ArticleNewModel *article = [baseModel.articleNewsList objectAtIndex:0];
         self.articleModel = article;
-        self.cellRecommend.text = article.title;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.cellRecommend.text = article.title;
+        });
     }];
 }
 
@@ -142,7 +153,7 @@
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
 
         }else{
-            [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+            [cell configure:cell customObj:self.sensorInfoDetail indexPath:indexPath withOtherInfo:self.sleepQualityModel];
         }
         
     };

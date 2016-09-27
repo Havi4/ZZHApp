@@ -12,7 +12,7 @@
 #import "ProgressView.h"
 #import "NameDoubleViewController.h"
 #import "ReactiveSingleViewController.h"
-
+#import "ReactiveDoubleViewController.h"
 
 @interface AddProductNameViewController ()<UITextFieldDelegate>
 @property (nonatomic,strong)  UITextField *productNameTextField;
@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (assign,nonatomic) float yCordinate;
+@property (nonatomic, strong) SensorInfoModel *sensorInfo;
 
 @end
 
@@ -27,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = NO;
     // Do any additional setup after loading the view.
     [self setSubView];
 }
@@ -38,6 +39,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)setSubView
@@ -345,6 +352,7 @@
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestCheckSensorInfoParams:para andBlcok:^(SensorInfoModel *sensorModel, NSError *error) {
         @strongify(self);
+        self.sensorInfo = sensorModel;
         if (sensorModel) {
             if (sensorModel.sensorDetail.detailSensorInfoList.count == 0) {
                 [self bindingDeviceWithUUID:deviceUUID];
@@ -413,8 +421,14 @@
                         break;
                     }
                     case 1:{
-                        ReactiveSingleViewController *doubleUDP = [[ReactiveSingleViewController alloc]init];
-                        [self.navigationController pushViewController:doubleUDP animated:YES];
+                        if ([self.sensorInfo.sensorDetail.factoryCode isEqualToString:@"LongSys"]) {
+                            
+                            ReactiveSingleViewController *doubleUDP = [[ReactiveSingleViewController alloc]init];
+                            [self.navigationController pushViewController:doubleUDP animated:YES];
+                        }else{
+                            ReactiveDoubleViewController *doubleUDP = [[ReactiveDoubleViewController alloc]init];
+                            [self.navigationController pushViewController:doubleUDP animated:YES];
+                        }
                         break;
                     }
                         

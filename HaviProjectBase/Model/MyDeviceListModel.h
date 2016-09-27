@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSArray *detailDeviceList;
 @property (strong, nonatomic) NSString *cellPhone;
 @property (strong, nonatomic) NSString *friendUserName;
+@property (strong, nonatomic) NSString *activationStatusCode;
 
 @end
 

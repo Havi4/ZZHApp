@@ -427,6 +427,8 @@
     @[MMItemMake(@"取消", MMItemTypeNormal, block),MMItemMake(@"确定", MMItemTypeNormal, block)];
     MMAlertView *alert = [[MMAlertView alloc]initWithTitle:@"提示" detail:@"您还没有绑定或者激活床垫设备,没有办法显示数据,是否现在绑定或者激活?" items:items];
     [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有绑定或者激活床垫设备,没有办法显示数据,是否现在绑定或者激活?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//    [alert show];
     
 }
 

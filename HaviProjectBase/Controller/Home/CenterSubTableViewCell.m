@@ -23,6 +23,8 @@
 @property (nonatomic, strong) UILabel *deepSleepNum;
 @property (nonatomic, strong) UILabel *lightSleepNum;
 
+@property (nonatomic, strong) UIImageView *statusImage;
+
 @end
 
 @implementation CenterSubTableViewCell
@@ -34,6 +36,11 @@
         _bedImageView = [[UIImageView alloc]init];
         _bedImageView.image = [UIImage imageNamed:@"bed_no_people@3x"];
         [self addSubview:_bedImageView];
+        
+        _statusImage = [[UIImageView alloc]init];
+        _statusImage.image = [UIImage imageNamed:@"tuoji"];
+        [_bedImageView addSubview:_statusImage];
+        _statusImage.hidden = YES;
         
         _longSleepView = [[UIImageView alloc]init];
         _longSleepView.image = [UIImage imageNamed:@"long_sleep@3x"];
@@ -94,6 +101,13 @@
             make.centerY.equalTo(self.mas_centerY);
             make.left.equalTo(self.mas_left).offset(25);
             make.height.with.equalTo(@40);
+        }];
+        
+        [_statusImage makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_bedImageView.mas_centerY);
+            make.centerX.equalTo(_bedImageView.mas_centerX);
+            make.width.equalTo(@42);
+            make.height.equalTo(@36);
         }];
         
         [_longSleepView makeConstraints:^(MASConstraintMaker *make) {
@@ -173,13 +187,33 @@
     [SleepModelChange changeSleepDuration:model callBack:^(id callBack) {
         _longSleepNum.text = [NSString stringWithFormat:@"%@",callBack];
     }];
-    if (gloableActiveDevice.detailDeviceList.count == 0) {
-        _bedImageView.image = [UIImage imageNamed:@"single@3x"];
-    }else if (gloableActiveDevice.detailDeviceList.count == 1){
-        _bedImageView.image = [UIImage imageNamed:@"single@3x"];
-    }else if (gloableActiveDevice.detailDeviceList.count == 2){
-        _bedImageView.image = [UIImage imageNamed:@"two@3x"];
+    SensorInfoModel *sensor = (SensorInfoModel *)obj;
+    if ([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"False"]) {
+        if (gloableActiveDevice.detailDeviceList.count == 0) {
+            _bedImageView.image = [UIImage imageNamed:@"bed_no_sigle@3x"];
+        }else if (gloableActiveDevice.detailDeviceList.count == 1){
+            _bedImageView.image = [UIImage imageNamed:@"bed_no_sigle@3x"];
+        }else if (gloableActiveDevice.detailDeviceList.count == 2){
+            _bedImageView.image = [UIImage imageNamed:@"bed_no_people@3x"];
+        }
+
+    }else{
+        if (gloableActiveDevice.detailDeviceList.count == 0) {
+            _bedImageView.image = [UIImage imageNamed:@"single@3x"];
+        }else if (gloableActiveDevice.detailDeviceList.count == 1){
+            _bedImageView.image = [UIImage imageNamed:@"single@3x"];
+        }else if (gloableActiveDevice.detailDeviceList.count == 2){
+            _bedImageView.image = [UIImage imageNamed:@"two@3x"];
+        }
     }
+    if (sensor.sensorDetail.activationStatusCode == 0) {
+        self.statusImage.hidden = NO;
+        self.statusImage.image = [UIImage imageNamed:@"lixian"];
+    }else if (sensor.sensorDetail.activationStatusCode == -1){
+        self.statusImage.hidden = NO;
+        self.statusImage.image = [UIImage imageNamed:@"tuoji"];
+    }
+    
     cell.backgroundColor = [UIColor clearColor];
 }
 

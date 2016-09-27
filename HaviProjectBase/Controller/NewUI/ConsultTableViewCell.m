@@ -112,7 +112,7 @@
             make.top.equalTo(_backImageView.mas_top).offset(1.5);
             make.height.equalTo(@60);
         }];
-        _textView.text = @"请输入50-200个字";
+        _textView.text = @"请输入10-200个字";
         _textView.textColor = [UIColor grayColor];
         
         [self configCollectionView];
@@ -176,7 +176,7 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if ([textView.text isEqualToString:@"请输入50-200个字"]) {
+    if ([textView.text isEqualToString:@"请输入10-200个字"]) {
         textView.text = @"";
     }
 }

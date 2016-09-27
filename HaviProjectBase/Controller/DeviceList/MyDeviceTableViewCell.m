@@ -15,6 +15,7 @@
 @property (nonatomic ,strong) UIImageView *selectImageView;
 @property (nonatomic, strong) UIImageView *cellIconImageView;
 @property (nonatomic, strong) UILabel *messageTime;
+@property (nonatomic, strong) UIButton *deviceStatusImage;
 
 @end
 
@@ -59,10 +60,13 @@
         [_messageTime makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.topContentView.mas_right).offset(-30);
             make.left.equalTo(_cellIconImageView.mas_right).offset(20);
-            make.centerY.equalTo(_cellIconImageView.mas_centerY);
+            make.centerY.equalTo(_cellIconImageView.mas_centerY).offset(0);
             make.height.equalTo(@30);
             
         }];
+        
+        
+        
     }
     return self;
 }
@@ -82,6 +86,55 @@
             _selectImageView.hidden = NO;
         }
         _messageTime.text = deviceModel.nDescription;
+        
+        if ([deviceModel.activationStatusCode intValue]==0) {
+            _deviceStatusImage = [UIButton buttonWithType:UIButtonTypeCustom];
+            _deviceStatusImage.layer.borderColor = [UIColor redColor].CGColor;
+            _deviceStatusImage.layer.borderWidth = 1;
+            _deviceStatusImage.layer.cornerRadius = 5;
+            _deviceStatusImage.layer.masksToBounds = YES;
+            _deviceStatusImage.titleLabel.font = [UIFont systemFontOfSize:10];
+            [_deviceStatusImage setTitle:@"离线" forState:UIControlStateNormal];
+            [_deviceStatusImage setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [self.topContentView addSubview:_deviceStatusImage];
+            [_deviceStatusImage makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(_cellIconImageView.mas_right).offset(20);
+                make.centerY.equalTo(_cellIconImageView.mas_centerY).offset(10);
+                make.height.equalTo(@15);
+                make.width.equalTo(@30);
+
+            }];
+            [_messageTime makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.topContentView.mas_right).offset(-30);
+                make.left.equalTo(_cellIconImageView.mas_right).offset(20);
+                make.centerY.equalTo(_cellIconImageView.mas_centerY).offset(-10);
+                make.height.equalTo(@30);
+                
+            }];
+        }else if ([deviceModel.activationStatusCode intValue]==-1){
+            _deviceStatusImage = [UIButton buttonWithType:UIButtonTypeCustom];
+            _deviceStatusImage.layer.borderColor = [UIColor redColor].CGColor;
+            _deviceStatusImage.layer.borderWidth = 1;
+            _deviceStatusImage.layer.cornerRadius = 5;
+            _deviceStatusImage.layer.masksToBounds = YES;
+            _deviceStatusImage.titleLabel.font = [UIFont systemFontOfSize:10];
+            [_deviceStatusImage setTitle:@"脱机" forState:UIControlStateNormal];
+            [_deviceStatusImage setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [self.topContentView addSubview:_deviceStatusImage];
+            [_deviceStatusImage makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(_cellIconImageView.mas_right).offset(20);
+                make.centerY.equalTo(_cellIconImageView.mas_centerY).offset(10);
+                make.height.equalTo(@15);
+                make.width.equalTo(@30);
+            }];
+            [_messageTime makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.topContentView.mas_right).offset(-30);
+                make.left.equalTo(_cellIconImageView.mas_right).offset(20);
+                make.centerY.equalTo(_cellIconImageView.mas_centerY).offset(-10);
+                make.height.equalTo(@30);
+                
+            }];
+        }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     cell.backgroundColor = [UIColor grayColor];

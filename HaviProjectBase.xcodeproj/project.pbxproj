@@ -243,6 +243,9 @@
 		2C96AA7F1D41F65700ACCA08 /* zhong@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA791D41F65700ACCA08 /* zhong@3x.png */; };
 		2C96AA811D41FA4500ACCA08 /* IntroduceView3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA801D41FA4500ACCA08 /* IntroduceView3.png */; };
 		2C96AA851D4203D300ACCA08 /* icon_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C96AA841D4203D300ACCA08 /* icon_message@2x.png */; };
+		2C9D1F8E1D9A051500CBF4D6 /* lixian.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F8C1D9A051500CBF4D6 /* lixian.png */; };
+		2C9D1F8F1D9A051500CBF4D6 /* tuoji.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F8D1D9A051500CBF4D6 /* tuoji.png */; };
+		2C9D1F911D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F901D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png */; };
 		2C9EF2C31C7C0FFA000704E2 /* btn_ellipse_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C11C7C0FFA000704E2 /* btn_ellipse_0@2x.png */; };
 		2C9EF2C61C7C1026000704E2 /* navi_bg_night_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C51C7C1026000704E2 /* navi_bg_night_0@2x.png */; };
 		2C9EF2CA1C7C1031000704E2 /* navi_bg_night_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9EF2C81C7C1031000704E2 /* navi_bg_night_1@2x.png */; };
@@ -1162,6 +1165,9 @@
 		2C96AA791D41F65700ACCA08 /* zhong@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhong@3x.png"; sourceTree = "<group>"; };
 		2C96AA801D41FA4500ACCA08 /* IntroduceView3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView3.png; sourceTree = "<group>"; };
 		2C96AA841D4203D300ACCA08 /* icon_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_message@2x.png"; sourceTree = "<group>"; };
+		2C9D1F8C1D9A051500CBF4D6 /* lixian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lixian.png; sourceTree = "<group>"; };
+		2C9D1F8D1D9A051500CBF4D6 /* tuoji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuoji.png; sourceTree = "<group>"; };
+		2C9D1F901D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bed_no_sigle@3x.png"; sourceTree = "<group>"; };
 		2C9EF2C11C7C0FFA000704E2 /* btn_ellipse_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ellipse_0@2x.png"; sourceTree = "<group>"; };
 		2C9EF2C51C7C1026000704E2 /* navi_bg_night_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg_night_0@2x.png"; sourceTree = "<group>"; };
 		2C9EF2C81C7C1031000704E2 /* navi_bg_night_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg_night_1@2x.png"; sourceTree = "<group>"; };
@@ -1471,6 +1477,7 @@
 		2C9EF53A1C859986000704E2 /* PinLockSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinLockSetting.h; sourceTree = "<group>"; };
 		2C9EF53B1C859986000704E2 /* PinLockSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinLockSetting.m; sourceTree = "<group>"; };
 		2CADAB6E1D98E6D00056CC12 /* xiumeimei@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiumeimei@2x.png"; sourceTree = "<group>"; };
+		2CADAB701D991B7B0056CC12 /* HaviProjectBase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HaviProjectBase.entitlements; sourceTree = "<group>"; };
 		2CCBB5A21D92545E009FD1F8 /* star_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_fill.png; sourceTree = "<group>"; };
 		2CCBB5A31D92545E009FD1F8 /* star_nofill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_nofill.png; sourceTree = "<group>"; };
 		2CCBB5A61D925FC1009FD1F8 /* IMTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMTitleView.h; path = NewUI/IMTitleView.h; sourceTree = "<group>"; };
@@ -2285,6 +2292,8 @@
 				2C457B541D86328D00FFAB95 /* wenzhen.png */,
 				2C457B4E1D86303900FFAB95 /* tuoy.png */,
 				2C457B4F1D86303900FFAB95 /* xuanze.png */,
+				2C9D1F8C1D9A051500CBF4D6 /* lixian.png */,
+				2C9D1F8D1D9A051500CBF4D6 /* tuoji.png */,
 				2CCBB5A91D9273B1009FD1F8 /* new_noise.mp3 */,
 			);
 			name = Consult;
@@ -2454,7 +2463,6 @@
 				2C3589CB1D533DD200BEC198 /* heart_cell_back@3x.png */,
 				2C3589C71D5330F800BEC198 /* icon_heart@3x.png */,
 				2C3589C91D53311100BEC198 /* icon_breath@3x.png */,
-				2C1D9FD91D4F18C900FA6678 /* bed_no_people@3x.png */,
 				2C1D9FED1D4F258900FA6678 /* icon_share@3x.png */,
 				2C1D9FDB1D4F18D800FA6678 /* moveon@3x.png */,
 				2C3589CD1D53519D00BEC198 /* new_about@3x.png */,
@@ -2463,6 +2471,8 @@
 				2C1D9FE31D4F191500FA6678 /* getup@3x.png */,
 				2C1D9FE51D4F192700FA6678 /* deep_sleep@3x.png */,
 				2C1D9FE71D4F193000FA6678 /* light_sleep@3x.png */,
+				2C9D1F901D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png */,
+				2C1D9FD91D4F18C900FA6678 /* bed_no_people@3x.png */,
 				2C1D9FEB1D4F194700FA6678 /* bed_on_double@3x.png */,
 				2C1D9FE91D4F193C00FA6678 /* bed_on_single@3x.png */,
 				2C1D9FE11D4F190C00FA6678 /* long_sleep@3x.png */,
@@ -3352,6 +3362,7 @@
 		2CD75B171C61B57000E7E076 /* HaviProjectBase */ = {
 			isa = PBXGroup;
 			children = (
+				2CADAB701D991B7B0056CC12 /* HaviProjectBase.entitlements */,
 				2CD75B1B1C61B57000E7E076 /* AppDelegate.h */,
 				2CD75B1C1C61B57000E7E076 /* AppDelegate.m */,
 				2CD75B851C61C5DF00E7E076 /* Definations.h */,
@@ -4478,13 +4489,16 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = A4R9NHT83H;
 						DevelopmentTeamName = "Shanghai Meddo Medical Device Co., Ltd.";
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -4673,6 +4687,7 @@
 				2CD0149C1C634305001F9514 /* btn_right_0@2x.png in Resources */,
 				2CF2E14A1C7590550007A639 /* textbox_hollow_0@2x.png in Resources */,
 				2CE3CDE31D8E426B001DDD1C /* RecordingSignal001@2x.png in Resources */,
+				2C9D1F911D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png in Resources */,
 				2C11C9861D767BBC0032CA95 /* jiant@3x.png in Resources */,
 				2CD014E81C64CD22001F9514 /* height@2x.png in Resources */,
 				2CF2E16B1C759F530007A639 /* havi1_8@2x.png in Resources */,
@@ -4709,6 +4724,7 @@
 				2C1DA0301D503A2300FA6678 /* duan@3x.png in Resources */,
 				2C96AA091D40882B00ACCA08 /* password@3x.png in Resources */,
 				2C9EF5101C854E8B000704E2 /* pic_bad_2@2x.png in Resources */,
+				2C9D1F8F1D9A051500CBF4D6 /* tuoji.png in Resources */,
 				2C96AA4D1D410F2A00ACCA08 /* navi_menu@3x.png in Resources */,
 				2CD014AD1C634CF5001F9514 /* week_1@2x.png in Resources */,
 				2C34AE331CEAC45400B24B6E /* pic_about@2x.png in Resources */,
@@ -4794,6 +4810,7 @@
 				2CCBB5A51D92545E009FD1F8 /* star_nofill.png in Resources */,
 				2CF2E1501C7590930007A639 /* plus_math_1@2x.png in Resources */,
 				2C9EF4C71C844388000704E2 /* sad-75_1.png in Resources */,
+				2C9D1F8E1D9A051500CBF4D6 /* lixian.png in Resources */,
 				2CF2E2151C79D2180007A639 /* AppSetting.plist in Resources */,
 				2CF2E29E1C7AE0660007A639 /* res1thumb.png in Resources */,
 				2CD014C11C6393AF001F9514 /* person_background@3x.png in Resources */,
@@ -5505,8 +5522,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HaviProjectBase/HaviProjectBase.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Pan (EJXFR28D5Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = A4R9NHT83H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5529,8 +5547,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "195a396b-6c43-41f2-9f3e-538b6b71aaca";
-				PROVISIONING_PROFILE_SPECIFIER = ZZH_P_Development_0815;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -5540,8 +5558,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HaviProjectBase/HaviProjectBase.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Meddo Medical Technology Co., Ltd. (A4R9NHT83H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = A4R9NHT83H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5564,8 +5583,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.meddo99.ihs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6160d8cc-6b4d-42bc-b5e4-901ecd081a15";
-				PROVISIONING_PROFILE_SPECIFIER = ZZH_APDIR_Profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
