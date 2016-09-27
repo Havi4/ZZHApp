@@ -41,30 +41,39 @@
 
 @implementation XHDemoWeChatMessageTableViewController
 
-- (XHMessage *)getTextMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl{
+- (XHMessage *)getTextMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl andTime:(NSString *)time{
     XHMessage *textMessage = [[XHMessage alloc] initWithText:[messdic objectForKey:@"text"] sender:@"华仔" timestamp:[NSDate distantPast]];
     textMessage.avatar = [UIImage imageNamed:@"doc"];
+    NSDate *time1 = [self convertStrToTime:time];
+    textMessage.timestamp = time1;
+    DeBugLog(@"%@",time);
     textMessage.avatarUrl = iconUrl;
     textMessage.bubbleMessageType = bubbleMessageType;
     
     return textMessage;
 }
 
-- (XHMessage *)getPhotoMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl {
+- (XHMessage *)getPhotoMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl andTime:(NSString *)time{
     XHMessage *photoMessage = [[XHMessage alloc] initWithPhoto:nil thumbnailUrl:[messdic objectForKey:@"file"] originPhotoUrl:[messdic objectForKey:@"file"] sender:@"Jack" timestamp:[NSDate date]];
     photoMessage.avatar = [UIImage imageNamed:@"doc"];
+    photoMessage.timestamp = [NSDate dateWithTimeIntervalSinceNow:[[messdic objectForKey:@"created_time_ms"] integerValue]];
+    NSDate *time1 = [self convertStrToTime:time];
+    photoMessage.timestamp = time1;
     photoMessage.avatarUrl = iconUrl;
     photoMessage.bubbleMessageType = bubbleMessageType;
     
     return photoMessage;
 }
 
-- (XHMessage *)getVoiceMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl {
+- (XHMessage *)getVoiceMessageWithBubbleMessageType:(XHBubbleMessageType)bubbleMessageType withDic:(NSDictionary *)messdic andIconUrl:(NSString *)iconUrl andTime:(NSString *)time{
     XHMessage *voiceMessage = [[XHMessage alloc] initWithVoicePath:[[NSBundle mainBundle] pathForResource:@"new_noise" ofType:@"mp3"] voiceUrl:[messdic objectForKey:@"file"] voiceDuration:@"1" sender:@"Jayson" timestamp:[NSDate date] isRead:NO];
     voiceMessage.avatar = [UIImage imageNamed:@"doc"];
+    voiceMessage.timestamp = [NSDate dateWithTimeIntervalSinceNow:[[messdic objectForKey:@"created_time_ms"] integerValue]];
     voiceMessage.avatarUrl = iconUrl;
     voiceMessage.bubbleMessageType = bubbleMessageType;
-    
+    NSDate *time1 = [self convertStrToTime:time];
+    voiceMessage.timestamp = time1;
+    voiceMessage.avatarUrl = iconUrl;
     return voiceMessage;
 }
 //######
@@ -146,11 +155,11 @@
             NSArray *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             for (NSDictionary *contentDic in dic) {
                 if ([[contentDic objectForKey:@"type"]isEqualToString:@"text"]) {
-                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl andTime:[[arr objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"image"]) {
-                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl andTime:[[arr objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"audio"]) {
-                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl andTime:[[arr objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }
             }
         }else if ([[[arr objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"p"]){
@@ -159,11 +168,11 @@
             NSArray *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             for (NSDictionary *contentDic in dic) {
                 if ([[contentDic objectForKey:@"type"]isEqualToString:@"text"]) {
-                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl andTime:[[arr objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"image"]) {
-                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl andTime:[[arr objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"audio"]) {
-                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl andTime:[[arr objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }
             }
         }
@@ -275,7 +284,7 @@
 {
     NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/Detail";
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"ProblemId":self.problemID,
                               };
     [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
@@ -355,11 +364,11 @@
             NSArray *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             for (NSDictionary *contentDic in dic) {
                 if ([[contentDic objectForKey:@"type"]isEqualToString:@"text"]) {
-                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl andTime:[[message objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"image"]) {
-                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl andTime:[[message objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"audio"]) {
-                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl]];
+                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeReceiving withDic:contentDic andIconUrl:self.docThumUrl andTime:[[message objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }
             }
         }else if ([[[message objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"p"]){
@@ -368,11 +377,11 @@
             NSArray *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             for (NSDictionary *contentDic in dic) {
                 if ([[contentDic objectForKey:@"type"]isEqualToString:@"text"]) {
-                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                    [messages addObject:[self getTextMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl andTime:[[message objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"image"]) {
-                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                    [messages addObject:[self getPhotoMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl andTime:[[message objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }else if ([[contentDic objectForKey:@"type"]isEqualToString:@"audio"]) {
-                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl]];
+                    [messages addObject:[self getVoiceMessageWithBubbleMessageType:XHBubbleMessageTypeSending withDic:contentDic andIconUrl:self.myThumUrl andTime:[[message objectAtIndex:i] objectForKey:@"created_time_ms"]]];
                 }
             }
         }
@@ -714,7 +723,7 @@
                                   @"text": text,
                                   };
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"Content": @[textPloblem],
                               @"ProblemId":self.problemID
                               };
@@ -817,7 +826,7 @@
                                   @"file": text,
                                   };
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"Content": @[textPloblem],
                               @"ProblemId":self.problemID
                               };
@@ -842,7 +851,7 @@
                                   @"file": text,
                                   };
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"Content": @[textPloblem],
                               @"ProblemId":self.problemID
                               };
@@ -860,5 +869,22 @@
 }
 
 
+- (NSDate *)convertStrToTime:(NSString *)timeStr
+
+{
+    
+    long long time=[timeStr longLongValue];
+    
+    NSDate *d = [[NSDate alloc]initWithTimeIntervalSince1970:time/1000.0];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    
+    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+    
+    NSString*timeString=[formatter stringFromDate:d];
+    
+    return d;
+    
+}
 
 @end

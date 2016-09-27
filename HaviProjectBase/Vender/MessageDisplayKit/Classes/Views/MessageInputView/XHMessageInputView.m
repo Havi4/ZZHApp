@@ -339,7 +339,7 @@
     textViewLeftMargin += CGRectGetMaxX(buttonFrame);
     self.textChangeButton = button;
     //发送语音havi
-    button = [self createButtonWithImage:[UIImage imageNamed:@"voice"] HLImage:[UIImage imageNamed:@"voice_select"]];
+    button = [self createButtonWithImage:[UIImage imageNamed:@"voice1"] HLImage:[UIImage imageNamed:@"voice_select"]];
     [button addTarget:self action:@selector(voiceButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = 0;
     [button setImage:[UIImage imageNamed:@"voice_select"] forState:UIControlStateSelected];

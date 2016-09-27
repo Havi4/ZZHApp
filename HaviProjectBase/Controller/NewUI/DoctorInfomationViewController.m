@@ -60,7 +60,7 @@
 {
     NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Doctor/Detail";
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"DoctorId":self.docID,
                               };
     [NSObject showHud];

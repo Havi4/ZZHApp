@@ -57,7 +57,7 @@
 {
     NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/List/My";
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"pagenum":@"1",
                               @"count":@"100",
                               };
@@ -276,7 +276,7 @@
 {
     NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/Delete";
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"ProblemId": problemID,
                               };
     

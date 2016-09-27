@@ -127,7 +127,7 @@
     }
     NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/Assess";
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"Content": @[
                                       @{
                                           @"type": @"text",

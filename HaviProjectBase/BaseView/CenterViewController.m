@@ -381,7 +381,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     if ([item.title isEqualToString:@"快速提问"]) {
         NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Login";
         NSDictionary *dicPara = @{
-                                  @"UserId": @"meddo99.com$13122785292"
+                                  @"UserId": thirdPartyLoginUserId
                                   };
         [NSObject showHud];
         [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {

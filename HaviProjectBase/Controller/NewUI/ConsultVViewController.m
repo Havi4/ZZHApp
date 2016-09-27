@@ -546,7 +546,7 @@
     }
     [contentArr addObject:patient_meta];
     NSDictionary *dicPara = @{
-                              @"UserId": @"meddo99.com$13122785292",
+                              @"UserId": thirdPartyLoginUserId,
                               @"Content": contentArr,
                               };
 
