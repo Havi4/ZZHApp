@@ -101,7 +101,7 @@
         }
     }else{
         if (![self checkIsValiadForNum:self.textFiledString]) {
-            [NSObject showHudTipStr:@"请输入11位有效手机号码"];
+            [NSObject showHudTipStr:@"请输入有效的联系方式"];
             return;
         }
     }
@@ -166,14 +166,14 @@
 
 - (BOOL)checkIsValiadForNum:(NSString *)checkString
 {
-    NSString *regex = @"1[0-9]{10}";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    
-    if ([pred evaluateWithObject:checkString]) {
+//    NSString *regex = @"1[0-9]{10}";
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+
+    if (checkString.length > 11) {
         
-        return YES;
-    }else{
         return NO;
+    }else{
+        return YES;
     }
 }
 

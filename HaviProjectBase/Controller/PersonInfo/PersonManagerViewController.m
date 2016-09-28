@@ -24,7 +24,7 @@
 #import "EditAddressTableViewController.h"
 #import "AppDelegate.h"
 #import "APPSettingViewController.h"
-
+#import "Reachability.h"
 @interface PersonManagerViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 @property (nonatomic, strong) UIButton *left;
 @property (nonatomic, strong) UIButton *right;
@@ -168,14 +168,19 @@
 
 - (void)changeGender:(UIButton *)button
 {
-    if (button.tag == 700) {
-        [self saveUserInfoWithKey:@"Gender" andData:@"男"];
-        [_left setImage:[UIImage imageNamed:@"b0@3x"] forState:UIControlStateNormal];
-        [_right setImage:[UIImage imageNamed:@"g1@3x"] forState:UIControlStateNormal];
+    Reachability * reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+    if ([reach isReachable]) {
+        if (button.tag == 700) {
+            [self saveUserInfoWithKey:@"Gender" andData:@"男"];
+            [_left setImage:[UIImage imageNamed:@"b0@3x"] forState:UIControlStateNormal];
+            [_right setImage:[UIImage imageNamed:@"g1@3x"] forState:UIControlStateNormal];
+        }else{
+            [self saveUserInfoWithKey:@"Gender" andData:@"女"];
+            [_left setImage:[UIImage imageNamed:@"b1@3x"] forState:UIControlStateNormal];
+            [_right setImage:[UIImage imageNamed:@"g0@3x"] forState:UIControlStateNormal];
+        }
     }else{
-        [self saveUserInfoWithKey:@"Gender" andData:@"女"];
-        [_left setImage:[UIImage imageNamed:@"b1@3x"] forState:UIControlStateNormal];
-        [_right setImage:[UIImage imageNamed:@"g0@3x"] forState:UIControlStateNormal];
+        [NSObject showHudTipStr:@"没有网络"];
     }
 }
 

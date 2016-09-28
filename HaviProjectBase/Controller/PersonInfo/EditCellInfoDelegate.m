@@ -51,7 +51,7 @@
     }else if ([string isEqual:@"EmergencyContact"]){
         self.cellFooterView.text = @"2-8个字符，可由中文、英文、数字组成";
     }else if ([string isEqual:@"Telephone"]){
-        self.cellFooterView.text = @"11位有效手机号码";
+        self.cellFooterView.text = @"输入有效的联系方式";
     }
     
 }

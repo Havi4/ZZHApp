@@ -166,7 +166,7 @@
      */
     self.rootView = [[ZZHRootViewController alloc] init];
     self.window.rootViewController = self.rootView;
-//    [self setWifiNotification];
+    [self setWifiNotification];
 
 }
 
@@ -196,7 +196,7 @@
                                                    UIRemoteNotificationTypeSound |
                                                    UIRemoteNotificationTypeAlert)
                                        categories:nil];
-    [JPUSHService setupWithOption:launchOptions];
+    [JPUSHService setupWithOption:launchOptions appKey:@"ea0d704f24539eb667b81002" channel:@"Publish channel" apsForProduction:YES];
     [JPUSHService crashLogON];
 
 }
@@ -249,19 +249,19 @@
         Reachability * reach = [note object];
         
         if ([reach isReachable]) {
-            if ([reach isReachableViaWiFi]) {
-                [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至Wifi网络" duration:1.5 position:@"center"];
-            }else if ([reach isReachableViaWWAN]){
-                if ([[reach currentReachabilityFrom234G]isEqualToString:@"2G"]) {
-                    
-                    [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至2G网络" duration:1.5 position:@"center"];
-                }else if ([[reach currentReachabilityFrom234G]isEqualToString:@"3G"]) {
-                    [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至3G网络" duration:1.5 position:@"center"];
-                }else if ([[reach currentReachabilityFrom234G]isEqualToString:@"4G"]){
-                    [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至4G网络" duration:1.5 position:@"center"];
-                    
-                }
-            }
+//            if ([reach isReachableViaWiFi]) {
+//                [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至Wifi网络" duration:1.5 position:@"center"];
+//            }else if ([reach isReachableViaWWAN]){
+//                if ([[reach currentReachabilityFrom234G]isEqualToString:@"2G"]) {
+//                    
+//                    [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至2G网络" duration:1.5 position:@"center"];
+//                }else if ([[reach currentReachabilityFrom234G]isEqualToString:@"3G"]) {
+//                    [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至3G网络" duration:1.5 position:@"center"];
+//                }else if ([[reach currentReachabilityFrom234G]isEqualToString:@"4G"]){
+//                    [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至4G网络" duration:1.5 position:@"center"];
+//                    
+//                }
+//            }
         }else {
             [[UIApplication sharedApplication].keyWindow makeToast:@"没有网络,请检查您的网络！" duration:1.5 position:@"center"];
         }

@@ -96,7 +96,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.profileBackView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"profile_back"]];
     [self addSubview:self.profileBackView];
     
-    self.avatarImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"avatar_default"]];
+    self.avatarImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head_placeholder"]];
     self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.avatarImageView.clipsToBounds = YES;
     self.avatarImageView.layer.cornerRadius = 35; //kAvatarHeight / 2.0;
@@ -152,7 +152,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     [[NSNotificationCenter defaultCenter] addObserverForName:@"iconImageChanged" object:nil queue:nil usingBlock:^(NSNotification *note) {
         @strongify(self);
         
-        [self.avatarImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"avatar_default"]];
+        [self.avatarImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"head_placeholder"]];
         self.avatarImageView.layer.borderColor = [UIColor grayColor].CGColor;
 
     }];
@@ -164,7 +164,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     }];
 //
     
-    [self.avatarImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+    [self.avatarImageView setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"head_placeholder"] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
     }];
     
     [[NSNotificationCenter defaultCenter]addObserverForName:kUserTapedDataReportButton object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {

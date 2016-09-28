@@ -7,6 +7,7 @@
 //
 
 #import "IconImageView.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface IconImageView ()
 {
@@ -71,12 +72,14 @@
 - (void)setUserIconURL:(NSString *)userIconURL
 {
     _iconUrl = userIconURL;
-    [_iconImageView setImageWithURL:[NSURL URLWithString:userIconURL] placeholder:[UIImage imageNamed:@"head_placeholder"]];
+    [_iconImageView setImageWithURL:[NSURL URLWithString:userIconURL] placeholderImage:[UIImage imageNamed:@"head_placeholder@2x"]];
+//    [_iconImageView setImageWithURL:[NSURL URLWithString:userIconURL] placeholder:[UIImage imageNamed:@"head_placeholder@2x"]];
 }
 
 - (void)refreshImage
 {
-    [_iconImageView setImageWithURL:[NSURL URLWithString:_iconUrl] placeholder:[UIImage imageNamed:@"head_placeholder"]];
+    [_iconImageView setImageWithURL:[NSURL URLWithString:_iconUrl] placeholderImage:[UIImage imageNamed:@"head_placeholder@2x"]];
+//    [_iconImageView setImageWithURL:[NSURL URLWithString:_iconUrl] placeholder:[UIImage imageNamed:@"head_placeholder@2x"]];
 }
 
 - (void)setUserName:(NSString *)userName
