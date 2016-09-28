@@ -56,7 +56,7 @@
         
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
-        return 130;
+        return 64;
     };
     self.messageDelegate = [[MessageDataDelegate alloc]initWithItems:nil cellIdentifier:@"cell" configureCellBlock:configureCellBlock cellHeightBlock:configureCellHeightBlock didSelectBlock:nil];
     @weakify(self);
