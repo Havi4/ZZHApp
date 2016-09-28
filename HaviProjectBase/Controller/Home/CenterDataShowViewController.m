@@ -124,6 +124,7 @@
 {
     
     RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:self.articleModel.url]];
+    webViewController.tagLists = self.articleModel.tips;
     webViewController.urlString = self.articleModel.url;
     webViewController.articleTitle = self.articleModel.title;
     [self.navigationController pushViewController:webViewController animated:YES];

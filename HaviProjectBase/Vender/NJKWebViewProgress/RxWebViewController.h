@@ -11,6 +11,8 @@
 @interface RxWebViewController : UIViewController
 
 @property (nonatomic, strong) NSString *articleTitle;
+
+@property (nonatomic, strong) NSArray *tagLists;
 /**
  *  origin url
  */

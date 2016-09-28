@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSString *articleId;
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *tips;
+@property (nonatomic, strong) NSArray *tips;
 @property (nonatomic, strong) NSString *systemDate;
 @property (nonatomic, strong) NSString *source;
 @property (nonatomic, strong) NSString *url;

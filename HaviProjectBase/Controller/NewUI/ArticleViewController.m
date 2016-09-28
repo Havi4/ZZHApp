@@ -71,7 +71,8 @@
 -(void)loadGoogle
 {
 //    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.articleURL]];
-    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+    NSString *url = [NSString stringWithFormat:@"http://zzhdemo.meddo99.com/html/%@",self.articleURL];
+    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [_webView loadRequest:req];
 }
 

@@ -437,6 +437,7 @@
 		2C9EF5381C8597C9000704E2 /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF52E1C8597C9000704E2 /* THPinViewController.m */; };
 		2C9EF5391C8597C9000704E2 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF5311C8597C9000704E2 /* UIImage+ImageEffects.m */; };
 		2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EF53B1C859986000704E2 /* PinLockSetting.m */; };
+		2CA0D51A1D9B86E000EEA00B /* ArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0D5191D9B86E000EEA00B /* ArticleListViewController.m */; };
 		2CADAB6F1D98E6D00056CC12 /* xiumeimei@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CADAB6E1D98E6D00056CC12 /* xiumeimei@2x.png */; };
 		2CCBB5A41D92545E009FD1F8 /* star_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CCBB5A21D92545E009FD1F8 /* star_fill.png */; };
 		2CCBB5A51D92545E009FD1F8 /* star_nofill.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CCBB5A31D92545E009FD1F8 /* star_nofill.png */; };
@@ -1494,6 +1495,8 @@
 		2C9EF5311C8597C9000704E2 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		2C9EF53A1C859986000704E2 /* PinLockSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinLockSetting.h; sourceTree = "<group>"; };
 		2C9EF53B1C859986000704E2 /* PinLockSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinLockSetting.m; sourceTree = "<group>"; };
+		2CA0D5181D9B86E000EEA00B /* ArticleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleListViewController.h; sourceTree = "<group>"; };
+		2CA0D5191D9B86E000EEA00B /* ArticleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleListViewController.m; sourceTree = "<group>"; };
 		2CADAB6E1D98E6D00056CC12 /* xiumeimei@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiumeimei@2x.png"; sourceTree = "<group>"; };
 		2CADAB701D991B7B0056CC12 /* HaviProjectBase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HaviProjectBase.entitlements; sourceTree = "<group>"; };
 		2CCBB5A21D92545E009FD1F8 /* star_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_fill.png; sourceTree = "<group>"; };
@@ -2368,6 +2371,8 @@
 				2CD4C3301D87F17200ECB1FF /* backItemImage@2x.png */,
 				2CD4C3291D87EECB00ECB1FF /* RxWebViewController.h */,
 				2CD4C32A1D87EECB00ECB1FF /* RxWebViewController.m */,
+				2CA0D5181D9B86E000EEA00B /* ArticleListViewController.h */,
+				2CA0D5191D9B86E000EEA00B /* ArticleListViewController.m */,
 				2CADAB6E1D98E6D00056CC12 /* xiumeimei@2x.png */,
 				2CD4C32B1D87EECB00ECB1FF /* RxWebViewNavigationViewController.h */,
 				2CD4C32C1D87EECB00ECB1FF /* RxWebViewNavigationViewController.m */,
@@ -5303,6 +5308,7 @@
 				2C9EF5361C8597C9000704E2 /* THPinView.m in Sources */,
 				2C9EF4A81C82FBC3000704E2 /* WeiBoLogoutAPI.m in Sources */,
 				2C9EF5341C8597C9000704E2 /* THPinNumButton.m in Sources */,
+				2CA0D51A1D9B86E000EEA00B /* ArticleListViewController.m in Sources */,
 				2CE3CDA81D8E426B001DDD1C /* XHVideoOutputSampleBufferFactory.m in Sources */,
 				2CE3CDB71D8E426B001DDD1C /* SETextEditingCaret.m in Sources */,
 				2CF2E16E1C75B3BA0007A639 /* SearchBarDisplayController.m in Sources */,

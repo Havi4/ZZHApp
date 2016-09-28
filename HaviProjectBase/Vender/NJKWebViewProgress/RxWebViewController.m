@@ -9,10 +9,12 @@
 #import "RxWebViewController.h"
 #import "WTRequestCenter.h"
 #import "ConversationListViewController.h"
+#import "ArticleListViewController.h"
+#import "ArticleViewController.h"
 
 #define boundsWidth self.view.bounds.size.width
 #define boundsHeight (self.view.bounds.size.height-64)
-@interface RxWebViewController ()<UIWebViewDelegate,UINavigationBarDelegate>
+@interface RxWebViewController ()<UIWebViewDelegate,UINavigationBarDelegate,UITableViewDelegate,UITableViewDataSource>
 
 //@property (strong, nonatomic) UIBarButtonItem* customBackBarItem;
 @property (strong, nonatomic) UIBarButtonItem* closeButtonItem;
@@ -23,6 +25,9 @@
 @property (nonatomic) BOOL loading;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) UIImageView *docImageView;
+@property (nonatomic, strong) UITableView *consultView;
+@property (nonatomic, strong) UITableView *tagTableView;
+@property (nonatomic, strong) UIView *tagBackView;
 
 
 /**
@@ -55,6 +60,8 @@
  */
 @property (nonatomic)BOOL isSwipingBack;
 
+@property (nonatomic, strong) NSDictionary *articleList;
+
 @end
 
 @implementation RxWebViewController
@@ -81,17 +88,17 @@
     }
     
     self.title = @"";
-    
+//    self.urlString = @"http://adad184.com/2014/09/28/use-masonry-to-quick-solve-autolayout/";
+
     //config navigation item
     self.navigationItem.leftItemsSupplementBackButton = YES;
-    
+//    [self.view addSubview:self.consultView];
     [self.view addSubview:self.webView];
     [self.webView insertSubview:self.hostInfoLabel belowSubview:self.webView.scrollView];
     [self.view addSubview:self.progressView];
     NSString * htmlstr = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:self.urlString] encoding:NSUTF8StringEncoding error:nil];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlstr]]];
     [self.webView loadHTMLString:htmlstr baseURL:[NSURL URLWithString:self.urlString]];
-//    [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
     _docImageView = [[UIImageView alloc]init];
     _docImageView.image = [UIImage imageNamed:@"xiumeimei"];
     _docImageView.frame = (CGRect){self.view.frame.size.width - 50,self.view.frame.size.height - 70,40,60};
@@ -99,6 +106,128 @@
     _docImageView.userInteractionEnabled = YES;
     [_docImageView addGestureRecognizer:tap];
     [self.view addSubview:_docImageView];
+}
+
+//- (UITableView *)consultView
+//{
+//    if (!_consultView) {
+//        _consultView = [[UITableView alloc]initWithFrame:(CGRect){0,64,self.view.frame.size.width,self.view.frame.size.height-64} style:UITableViewStylePlain];
+//        _consultView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _consultView.delegate = self;
+//        _consultView.dataSource = self;
+//        _consultView.backgroundColor = [UIColor redColor];
+//    }
+//    return _consultView;
+//}
+
+- (UITableView *)tagTableView
+{
+    if (!_tagTableView) {
+        _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,self.webView.scrollView.contentSize.height-44*6,self.view.frame.size.width,44*6} style:UITableViewStylePlain];
+        _tagTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tagTableView.delegate = self;
+        _tagTableView.dataSource = self;
+        _tagTableView.backgroundColor = [UIColor whiteColor];
+    }
+    return _tagTableView;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 6;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    if ([tableView isEqual:self.consultView]) {
+//        if (indexPath.section == 0) {
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell0"];
+//            if (!cell) {
+//                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell0"];
+//            }
+//            [cell addSubview:self.webView];
+//            return cell;
+//        }else{
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
+//            if (!cell) {
+//                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell1"];
+//            }
+//            [cell addSubview:self.tagTableView];
+//            cell.backgroundColor = [UIColor redColor];
+//            return cell;
+//        }
+//
+//    }else{
+//    }
+    if (indexPath.row == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell01"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell01"];
+        }
+        UIButton *cellTitle = [UIButton buttonWithType:UIButtonTypeCustom];
+        [cellTitle setTitle:self.tagLists[0] forState:UIControlStateNormal];
+        [cellTitle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        cellTitle.backgroundColor = [UIColor lightGrayColor];
+        cellTitle.titleLabel.font = [UIFont systemFontOfSize:14];
+        [cellTitle addTarget:self action:@selector(showTagList:) forControlEvents:UIControlEventTouchUpInside];
+        cellTitle.layer.cornerRadius = 3;
+        cellTitle.layer.masksToBounds = YES;
+        [cell addSubview:cellTitle];
+        [cellTitle makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(cell.mas_centerY);
+            make.left.equalTo(cell.mas_left).offset(8);
+            make.height.equalTo(@25);
+        }];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+        return cell;
+    }else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell11"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell11"];
+        }
+        UILabel *cellTitle = [[UILabel alloc]init];
+        [cell addSubview:cellTitle];
+        cellTitle.font = [UIFont systemFontOfSize:15];
+        [cellTitle makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(cell.mas_centerY);
+            make.left.equalTo(cell.mas_left).offset(8);
+        }];
+        cellTitle.text = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Title"];
+        UILabel *date = [[UILabel alloc]init];
+        [cell addSubview:date];
+        date.font = [UIFont systemFontOfSize:12];
+        date.textColor = [UIColor lightGrayColor];
+        [date makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(cell.mas_centerY);
+            make.right.equalTo(cell.mas_right).offset(-8);
+            make.left.equalTo(cellTitle.mas_right).offset(-4);
+            make.width.equalTo(@70);
+        }];
+        date.text = [[[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"SystemDate"] substringToIndex:10];
+        cell.backgroundColor = [UIColor clearColor];
+        
+        return cell;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    if ([tableView isEqual:self.consultView]) {
+//        
+//        if (indexPath.section ==0) {
+//            return self.view.frame.size.height -64;
+//        }else{
+//            return 100;
+//        }
+//    }else{
+//    }
+    return 44;
 }
 
 - (void)showDoc{
@@ -117,6 +246,38 @@
             [self.navigationController pushViewController:c animated:YES];
         }else{
             [NSObject showHudTipStr:@"登录问诊失败"];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject hideHud];
+        [NSObject showHudTipStr:@"服务器出错了"];
+    }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row>0) {
+        ArticleViewController *article = [[ArticleViewController alloc]init];
+        article.articleTitle = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Title"];
+        article.articleURL = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"FileName"];
+        [self.navigationController pushViewController:article animated:YES];
+    }
+}
+
+- (void)getArticleList{
+    
+    NSString *url = [NSString stringWithFormat:@"http://testzzhapi.meddo99.com:8088/v1/news/ArticleList?PageNum=0&Count=100&Tips=%@",self.tagLists[0]];
+    
+    [NSObject showHud];
+    [WTRequestCenter getWithURL:url headers:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {
+        [NSObject hideHud];
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        DeBugLog(@"文章列表是%@",obj);
+        self.articleList = obj;
+        if ([[self.articleList objectForKey:@"ArticleList"] count]>0) {
+            self.webView.scrollView.contentSize = (CGSize){self.webView.scrollView.contentSize.width,self.webView.scrollView.contentSize.height+44*6};
+            [self.webView.scrollView addSubview:self.tagTableView];
+            [self.tagTableView reloadData];
         }
     } failed:^(NSURLResponse *response, NSError *error) {
         [NSObject hideHud];
@@ -402,6 +563,9 @@
     if (self.prevSnapShotView.superview) {
         [self.prevSnapShotView removeFromSuperview];
     }
+    [self getArticleList];
+
+    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -416,7 +580,7 @@
         _webView.delegate = (id)self;
         _webView.scalesPageToFit = NO;
         _webView.contentMode = UIViewContentModeScaleAspectFit;
-        _webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight |UIViewAutoresizingFlexibleWidth);
+//        _webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight |UIViewAutoresizingFlexibleWidth);
         [_webView addGestureRecognizer:self.swipePanGesture];
     }
     return _webView;
@@ -499,6 +663,14 @@
     }
     
     return _hostInfoLabel;
+}
+
+- (void)showTagList:(UIButton *)sender
+{
+    ArticleListViewController *article = [[ArticleListViewController alloc]init];
+    article.articleList = self.articleList;
+    article.stitle = self.tagLists[0];
+    [self.navigationController pushViewController:article animated:YES];
 }
 
 @end

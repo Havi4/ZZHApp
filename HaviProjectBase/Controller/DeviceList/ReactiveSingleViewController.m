@@ -238,8 +238,8 @@
 //搜索硬件UDP
 - (void)searchHardware:(UIButton *)button
 {
-    if ([self.textFiledName.text isEqualToString:@""]||[self.textFiledPassWord.text isEqualToString:@""]) {
-        [NSObject showHudTipStr:@"请输入网络名或者密码"];
+    if ([self.textFiledName.text isEqualToString:@""]) {
+        [NSObject showHudTipStr:@"请输入网络名"];
         return;
     }
     ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
