@@ -136,7 +136,7 @@ static JPushNotiManager *shareInstance = nil;
                     }
                 };
                 [self.notification displayNotificationWithView:no forDuration:4];
-            }else  {
+            }else  if([[UIApplication sharedApplication] applicationState] ==UIApplicationStateInactive || [[UIApplication sharedApplication] applicationState] ==UIApplicationStateBackground){
                 RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:articleUrl]];
                 webViewController.urlString = articleUrl;
                 webViewController.articleTitle = alertString;
@@ -149,11 +149,12 @@ static JPushNotiManager *shareInstance = nil;
             NSString *problemId = [userInfo objectForKey:@"ProblemId"];
             AppDelegate *app = [UIApplication sharedApplication].delegate;
             if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-                [self.notification dismissNotification];
+                
                 NotiView *no = [[NotiView alloc]init];
                 no.frame = (CGRect){0,0,100,64};
                 [no configNotiView:userInfo];
                 no.buttonClockTaped = ^(NSInteger index){
+                    [self.notification dismissNotification];
                     DeBugLog(@"查看回复");
                     [self.notification dismissNotification];
                     if (![[self getCurrentVC] isKindOfClass:[XHDemoWeChatMessageTableViewController class]]) {
