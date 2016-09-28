@@ -50,7 +50,7 @@
     }
     
     if (![self checkIsValiadForString:self.cellTextField.text]) {
-        [NSObject showHudTipStr:@"地址只能由10-40个中文字符组成"];
+        [NSObject showHudTipStr:@"地址只能由2-40个中文字符组成"];
         return;
     }
     [self saveUserInfoWithKey:self.cellString andData:self.cellTextField.text];
@@ -233,7 +233,7 @@
 
 - (BOOL)checkIsValiadForString:(NSString *)checkString
 {
-    NSString *regex = @"[A-Za-z0-9\u4e00-\u9fa5]{0,40}";
+    NSString *regex = @"[A-Za-z0-9\u4e00-\u9fa5]{2,40}";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     
     if ([pred evaluateWithObject:checkString]) {

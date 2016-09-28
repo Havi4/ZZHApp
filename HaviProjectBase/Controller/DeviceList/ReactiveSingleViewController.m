@@ -186,6 +186,7 @@
     [lookButton setBackgroundImage:[UIImage imageNamed:@"button_down_image@3x"] forState:UIControlStateNormal];
     lookButton.layer.cornerRadius = 0;
     lookButton.layer.masksToBounds = YES;
+    lookButton.tag = 8000;
     [lookButton setTitle:@"激活设备" forState:UIControlStateNormal];
     [lookButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [lookButton addTarget:self action:@selector(searchHardware:) forControlEvents:UIControlEventTouchUpInside];
@@ -248,25 +249,33 @@
 //搜索硬件UDP
 - (void)searchHardware:(UIButton *)button
 {
-    if ([self.textFiledName.text isEqualToString:@""]) {
-        [NSObject showHudTipStr:@"请输入网络名"];
-        return;
-    }
-    [self.sliderView start];
-//    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-//    [hud showHUDWithView:kKeyWindow];
-    self.noReceiveData = YES;
-    NSError *error =[sniffer startSniffer:[self fetchSSIDInfo] password:self.textFiledPassWord.text];
-    if (error) {
-//        ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+    if ([button.titleLabel.text isEqualToString:@"取消激活"]) {
+         [button setTitle:@"激活激活" forState:UIControlStateNormal];
         [self.sliderView stop];
-        [NSObject showStatusBarErrorStr:[NSString stringWithFormat:@"硬件出错了%@",error.localizedDescription]];
-    }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(120 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.noReceiveData) {
-            [self stopUDPAndAgain];
+        [self stopSniffer];
+        self.noReceiveData = NO;
+    }else{
+        [button setTitle:@"取消激活" forState:UIControlStateNormal];
+        if ([self.textFiledName.text isEqualToString:@""]) {
+            [NSObject showHudTipStr:@"请输入网络名"];
+            return;
         }
-    });
+        [self.sliderView start];
+        //    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+        //    [hud showHUDWithView:kKeyWindow];
+        self.noReceiveData = YES;
+        NSError *error =[sniffer startSniffer:[self fetchSSIDInfo] password:self.textFiledPassWord.text];
+        if (error) {
+            //        ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+            [self.sliderView stop];
+            [NSObject showStatusBarErrorStr:[NSString stringWithFormat:@"硬件出错了%@",error.localizedDescription]];
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(120 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (self.noReceiveData) {
+                [self stopUDPAndAgain];
+            }
+        });
+    }
     //这里是调用不同的硬件设备
 }
 #pragma mark 江波龙硬件设备配置
@@ -278,6 +287,8 @@
 //    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
 //    [hud hideHUD];
     [self.sliderView stop];
+    UIButton *button = (UIButton *)[self.view viewWithTag:8000];
+    [button setTitle:@"激活激活" forState:UIControlStateNormal];
     [NSObject showHudTipStr:@"激活超时,请重试"];
 }
 //江波龙硬件配置

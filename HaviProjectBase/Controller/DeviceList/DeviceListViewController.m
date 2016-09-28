@@ -80,7 +80,7 @@
 //设置导航栏中的titleView
 - (void)setNaviTitleView
 {
-    self.segmentTitle = [[UISegmentedControl alloc] initWithItems:@[@"我的设备", @"他人设备"]];
+    self.segmentTitle = [[UISegmentedControl alloc] initWithItems:@[@"我的设备", @"好友设备"]];
     self.segmentTitle.selectedSegmentIndex = 0;
     self.segmentTitle.dk_tintColorPicker = kTextColorPicker;
     self.segmentTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;

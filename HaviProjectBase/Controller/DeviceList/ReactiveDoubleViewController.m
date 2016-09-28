@@ -188,6 +188,7 @@
     [lookButton setBackgroundImage:[UIImage imageNamed:@"button_down_image@3x"] forState:UIControlStateNormal];
     lookButton.layer.cornerRadius = 0;
     lookButton.layer.masksToBounds = YES;
+    lookButton.tag = 8000;
     [lookButton setTitle:@"激活设备" forState:UIControlStateNormal];
     [lookButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [lookButton addTarget:self action:@selector(searchHardware:) forControlEvents:UIControlEventTouchUpInside];
@@ -259,33 +260,40 @@
 //搜索硬件UDP
 - (void)searchHardware:(UIButton *)button
 {
-    if ([self.textFiledName.text isEqualToString:@""]) {
-        [NSObject showHudTipStr:@"请输入网络名"];
-        return;
-    }
-//    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-//    [hud showHUDWithView:kKeyWindow];
-    [self.sliderView start];
-    times= 0;
-    smtlkState= 0;
-    isfinding = YES;
-    [macArray removeAllObjects];
-    if (smtlkState== 0)
-    {
-        
-        smtlkState= 1;
-        times= 0;
-        findTimes= 0;
-        [macArray removeAllObjects];
-        // start to do smtlk
-        [self startSmartLink];
-    }
-    else
-    {
-        // stop smtlk
+    if ([button.titleLabel.text isEqualToString:@"取消激活"]) {
+        [button setTitle:@"激活激活" forState:UIControlStateNormal];
+        [self.sliderView stop];
         [self stopSmartLink];
+    }else{
+        [button setTitle:@"取消激活" forState:UIControlStateNormal];
+        if ([self.textFiledName.text isEqualToString:@""]) {
+            [NSObject showHudTipStr:@"请输入网络名"];
+            return;
+        }
+        //    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+        //    [hud showHUDWithView:kKeyWindow];
+        [self.sliderView start];
+        times= 0;
         smtlkState= 0;
-        isfinding = NO;
+        isfinding = YES;
+        [macArray removeAllObjects];
+        if (smtlkState== 0)
+        {
+            
+            smtlkState= 1;
+            times= 0;
+            findTimes= 0;
+            [macArray removeAllObjects];
+            // start to do smtlk
+            [self startSmartLink];
+        }
+        else
+        {
+            // stop smtlk
+            [self stopSmartLink];
+            smtlkState= 0;
+            isfinding = NO;
+        }
     }
 }
 
@@ -300,6 +308,8 @@
     [smtlk SmtlkV30Stop];
 //    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
 //    [hud hideHUD];
+    UIButton *button = (UIButton *)[self.view viewWithTag:8000];
+    [button setTitle:@"激活激活" forState:UIControlStateNormal];
     [self.sliderView stop];
 }
 
@@ -310,6 +320,8 @@
         [self stopSmartLink];
         smtlkState= 0;
         [self.sliderView stop];
+        UIButton *button = (UIButton *)[self.view viewWithTag:8000];
+        [button setTitle:@"激活激活" forState:UIControlStateNormal];
         [NSObject showHudTipStr:@"激活超时"];
         return;
     }

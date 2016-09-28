@@ -70,7 +70,6 @@
     else
         
     {
-        DeBugLog(@"slider is %f",proValue);
         [self.progressView setProgress:(proValue)];//重置进度条
         CGFloat width = (kScreenSize.width - 60)*proValue;
         _titleView.frame = (CGRect){width,0,15,10};
@@ -80,6 +79,7 @@
 }
 
 - (void)stop{
+    proValue = 0.0;
     _titleView.frame = (CGRect){0,0,15,10};
     [self.progressView setProgress:0];
     [self.timer invalidate];
