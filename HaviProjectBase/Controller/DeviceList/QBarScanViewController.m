@@ -230,16 +230,21 @@
     [client requestCheckSensorInfoParams:para andBlcok:^(SensorInfoModel *sensorModel, NSError *error) {
         @strongify(self);
         if (sensorModel) {
-            if (sensorModel.sensorDetail.detailSensorInfoList.count == 0) {
-                [self bindingDeviceWithUUID:deviceUUID];
+            if ([sensorModel.returnCode intValue]==200) {
+                
+                if (sensorModel.sensorDetail.detailSensorInfoList.count == 0) {
+                    [self bindingDeviceWithUUID:deviceUUID];
+                }else{
+                    [UIView transitionFromView:self.editView toView:self.view duration:0.0f options:UIViewAnimationOptionTransitionNone completion:^(BOOL finished) {
+                        NameDoubleViewController *doubleBed = [[NameDoubleViewController alloc]init];
+                        doubleBed.barUUIDString = deviceUUID;
+                        doubleBed.doubleDeviceName = self.deviceDescription;
+                        doubleBed.dicDetailDevice = sensorModel.sensorDetail.detailSensorInfoList;
+                        [self.navigationController pushViewController:doubleBed animated:YES];
+                    }];
+                }
             }else{
-                [UIView transitionFromView:self.editView toView:self.view duration:0.0f options:UIViewAnimationOptionTransitionNone completion:^(BOOL finished) {
-                    NameDoubleViewController *doubleBed = [[NameDoubleViewController alloc]init];
-                    doubleBed.barUUIDString = deviceUUID;
-                    doubleBed.doubleDeviceName = self.deviceDescription;
-                    doubleBed.dicDetailDevice = sensorModel.sensorDetail.detailSensorInfoList;
-                    [self.navigationController pushViewController:doubleBed animated:YES];
-                }];
+                
             }
         }else{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

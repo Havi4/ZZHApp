@@ -353,20 +353,25 @@
     [client requestCheckSensorInfoParams:para andBlcok:^(SensorInfoModel *sensorModel, NSError *error) {
         @strongify(self);
         self.sensorInfo = sensorModel;
-        if (sensorModel) {
-            if (sensorModel.sensorDetail.detailSensorInfoList.count == 0) {
-                [self bindingDeviceWithUUID:deviceUUID];
+        
+        if ([sensorModel.returnCode intValue]==200) {
+            if (sensorModel) {
+                if (sensorModel.sensorDetail.detailSensorInfoList.count == 0) {
+                    [self bindingDeviceWithUUID:deviceUUID];
+                }else{
+                    NameDoubleViewController *doubleBed = [[NameDoubleViewController alloc]init];
+                    doubleBed.barUUIDString = deviceUUID;
+                    doubleBed.doubleDeviceName = self.productNameTextField.text;
+                    doubleBed.dicDetailDevice = sensorModel.sensorDetail.detailSensorInfoList;
+                    [self.navigationController pushViewController:doubleBed animated:YES];
+                }
             }else{
-                NameDoubleViewController *doubleBed = [[NameDoubleViewController alloc]init];
-                doubleBed.barUUIDString = deviceUUID;
-                doubleBed.doubleDeviceName = self.productNameTextField.text;
-                doubleBed.dicDetailDevice = sensorModel.sensorDetail.detailSensorInfoList;
-                [self.navigationController pushViewController:doubleBed animated:YES];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    //                [self reStartDevice];
+                });
             }
         }else{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [self reStartDevice];
-            });
+            [NSObject showHudTipStr:sensorModel.errorMessage];
         }
     }];
     

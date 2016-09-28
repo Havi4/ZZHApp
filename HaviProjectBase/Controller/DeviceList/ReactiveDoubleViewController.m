@@ -21,6 +21,7 @@
 #import "AppDelegate.h"
 #import "BetaNaoTextField.h"
 #import "ProgressView.h"
+#import "SliderView.h"
 
 @interface ReactiveDoubleViewController ()<UITextFieldDelegate>
 {
@@ -33,6 +34,7 @@
     NSMutableArray *macArray;
 }
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (nonatomic, strong) SliderView *sliderView;
 
 @property (nonatomic,strong) BetaNaoTextField *textFiledName;
 @property (nonatomic,strong) BetaNaoTextField *textFiledPassWord;
@@ -44,6 +46,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _sliderView = [[SliderView alloc]init];
+    [self.view addSubview:_sliderView];
     ProgressView *p = [[ProgressView alloc]init];
     p.frame = (CGRect){0,64,self.view.frame.size.width,3};
     [self.view addSubview:p];
@@ -125,6 +129,7 @@
         make.height.equalTo(@80);
     }];
     
+    
     [self.textFiledPassWord makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(self.textFiledName.mas_bottom).offset(-8);
@@ -191,7 +196,13 @@
         make.right.equalTo(self.view).offset(-20);
         make.centerX.equalTo(self.view.mas_centerX);
         make.height.equalTo(@44);
-        make.top.mas_lessThanOrEqualTo(showLabel.mas_bottom).offset(24);
+        make.top.mas_lessThanOrEqualTo(showLabel.mas_bottom).offset(34);
+    }];
+    [_sliderView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(showLabel.mas_bottom).offset(5);
+        make.left.equalTo(self.view).offset(30);
+        make.right.equalTo(self.view).offset(-30);
+        make.height.equalTo(@15);
     }];
     //
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -252,8 +263,9 @@
         [NSObject showHudTipStr:@"请输入网络名"];
         return;
     }
-    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-    [hud showHUDWithView:kKeyWindow];
+//    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+//    [hud showHUDWithView:kKeyWindow];
+    [self.sliderView start];
     times= 0;
     smtlkState= 0;
     isfinding = YES;
@@ -286,8 +298,9 @@
 - (void)stopSmartLink
 {
     [smtlk SmtlkV30Stop];
-    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-    [hud hideHUD];
+//    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+//    [hud hideHUD];
+    [self.sliderView stop];
 }
 
 - (void)SmtlkTimeOut
@@ -296,6 +309,7 @@
     {
         [self stopSmartLink];
         smtlkState= 0;
+        [self.sliderView stop];
         [NSObject showHudTipStr:@"激活超时"];
         return;
     }
@@ -331,8 +345,9 @@
     smtlkState = 0;
     times = 0;
     // 让模块停止发送信息。
-    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-    [hud hideHUD];
+//    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+//    [hud hideHUD];
+    [self.sliderView stop];
     [NSObject showHudTipStr:@"激活成功"];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     DeviceListViewController *controller = [[DeviceListViewController alloc]init];

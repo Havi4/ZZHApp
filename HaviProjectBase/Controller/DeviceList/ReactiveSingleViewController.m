@@ -18,6 +18,7 @@
 #import "BetaNaoTextField.h"
 #import "Sniffer.h"
 #import "ProgressView.h"
+#import "SliderView.h"
 
 @interface ReactiveSingleViewController ()<UITextFieldDelegate,EventListener>
 {
@@ -31,14 +32,16 @@
 @property (nonatomic,strong) BetaNaoTextField *textFiledPassWord;
 @property (nonatomic, assign) BOOL noReceiveData;
 @property (nonatomic,assign) CGFloat keyBoardHeight;
-
-
+@property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) SliderView *sliderView;
 @end
 
 @implementation ReactiveSingleViewController
 
 - (void)viewDidLoad {
     ProgressView *p = [[ProgressView alloc]init];
+    _sliderView = [[SliderView alloc]init];
+    [self.view addSubview:_sliderView];
     p.frame = (CGRect){0,64,self.view.frame.size.width,3};
     [self.view addSubview:p];
     p.selectIndex = 3;
@@ -170,6 +173,13 @@
         make.right.equalTo(self.view.mas_right).offset(-20);
         make.centerY.equalTo(self.view.mas_centerY).offset(16);
     }];
+    
+    [_sliderView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(showLabel.mas_bottom).offset(5);
+        make.left.equalTo(self.view).offset(30);
+        make.right.equalTo(self.view).offset(-30);
+        make.height.equalTo(@15);
+    }];
     //
     UIButton *lookButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:lookButton];
@@ -184,7 +194,7 @@
         make.right.equalTo(self.view).offset(-20);
         make.centerX.equalTo(self.view.mas_centerX);
         make.height.equalTo(@44);
-        make.top.mas_lessThanOrEqualTo(showLabel.mas_bottom).offset(24);
+        make.top.mas_lessThanOrEqualTo(showLabel.mas_bottom).offset(34);
     }];
     //
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -242,13 +252,14 @@
         [NSObject showHudTipStr:@"请输入网络名"];
         return;
     }
-    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-    [hud showHUDWithView:kKeyWindow];
+    [self.sliderView start];
+//    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+//    [hud showHUDWithView:kKeyWindow];
     self.noReceiveData = YES;
     NSError *error =[sniffer startSniffer:[self fetchSSIDInfo] password:self.textFiledPassWord.text];
     if (error) {
-        ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-        [hud hideHUD];
+//        ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+        [self.sliderView stop];
         [NSObject showStatusBarErrorStr:[NSString stringWithFormat:@"硬件出错了%@",error.localizedDescription]];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(120 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -264,8 +275,9 @@
 {
     [self stopSniffer];
     self.noReceiveData = NO;
-    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-    [hud hideHUD];
+//    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+//    [hud hideHUD];
+    [self.sliderView stop];
     [NSObject showHudTipStr:@"激活超时,请重试"];
 }
 //江波龙硬件配置
@@ -393,8 +405,9 @@
 -(void)udpReceiveDataString:(NSString *)string{
     //接收到udp包后，将标识位改为no
     self.noReceiveData = NO;
-    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-    [hud hideHUD];
+//    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+//    [hud hideHUD];
+    [self.sliderView stop];
     [NSObject showHudTipStr:@"激活成功"];
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[DeviceListViewController class]]) {

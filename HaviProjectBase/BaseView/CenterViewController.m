@@ -61,7 +61,18 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         }];
         self.activeDeviceInfo = device;
         gloableActiveDevice = device;
-        [self getSensorInfo];
+        if (self.activeDeviceInfo) {
+            [self getSensorInfo];
+        }else{
+            isDoubleDevice = NO;
+            CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
+            dataShow.title = self.activeDeviceInfo.nDescription.length == 0?@"":self.activeDeviceInfo.nDescription;
+            dataShow.deviceUUID = self.activeDeviceInfo.deviceUUID;
+            dataShow.sensorInfoDetail = self.sensorInfo;
+            dataShow.view.frame = self.containerDataView.view.bounds;
+            [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
+
+        }
     }];
 }
 
