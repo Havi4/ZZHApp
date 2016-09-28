@@ -249,6 +249,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSString *isAnswer = [[[self.problemArr objectAtIndex:indexPath.section] objectForKey:@"problem"]objectForKey:@"status"];
+    if ([isAnswer isEqualToString:@"c"]) {
+        [NSObject showHudTipStr:@"该问题已关闭,不能回复"];
+        return;
+    }
     XHDemoWeChatMessageTableViewController *demoWeChatMessageTableViewController = [[XHDemoWeChatMessageTableViewController alloc] init];
     demoWeChatMessageTableViewController.allowsSendFace = NO;
     demoWeChatMessageTableViewController.allowsSendVoice = NO;

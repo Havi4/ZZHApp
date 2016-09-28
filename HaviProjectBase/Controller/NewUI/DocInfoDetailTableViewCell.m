@@ -28,7 +28,7 @@
     if (self) {
         
         _titleDoc = [[UILabel alloc]init];
-        _titleDoc.text = @"擅长疾病及诊所介绍";
+        _titleDoc.text = @"";
         _titleDoc.alpha = 0.8;
         _titleDoc.font = [UIFont systemFontOfSize:13];
         [self addSubview:_titleDoc];
@@ -50,7 +50,7 @@
         _detailDoc = [[UILabel alloc]init];
         _detailDoc.textColor = [UIColor grayColor];
         _detailDoc.numberOfLines = 0;
-        _detailDoc.text = @"ksld两阶段发 的对了师傅；金沙江看";
+        _detailDoc.text = @"";
         _detailDoc.font = [UIFont systemFontOfSize:11];
         [self addSubview:_detailDoc];
         [_detailDoc makeConstraints:^(MASConstraintMaker *make) {

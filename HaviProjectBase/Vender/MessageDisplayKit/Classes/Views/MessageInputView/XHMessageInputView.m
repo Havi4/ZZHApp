@@ -423,7 +423,7 @@
         [button addTarget:self action:@selector(messageStyleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = 2;
         buttonFrame = button.frame;
-        buttonFrame.origin = CGPointMake(CGRectGetWidth(self.bounds) - 16 - CGRectGetWidth(buttonFrame), 44.5);
+        buttonFrame.origin = CGPointMake((CGRectGetWidth(self.bounds) - 16 )/4+5, 44.5);
         button.frame = buttonFrame;
         [self addSubview:button];
         allButtonWidth += CGRectGetWidth(buttonFrame) + horizontalPadding * 2.5;
@@ -497,6 +497,7 @@
     }
     
     textView.placeHolder = placeHolder;
+    textView.font = [UIFont systemFontOfSize:15];
     textView.delegate = self;
     
     [self addSubview:textView];
