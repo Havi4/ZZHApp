@@ -343,6 +343,11 @@
     }
 }
 
+- (void)refreshBedStaus
+{
+    [self.dataShowTableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

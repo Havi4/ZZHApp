@@ -16,4 +16,6 @@
 
 - (void)getSleepDataWithStartTime:(NSString *)startTime endTime:(NSString *)endTime;
 
+- (void)refreshBedStaus;
+
 @end

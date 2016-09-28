@@ -49,6 +49,30 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     [self createBarItems];
     [self queryDeviceListForControllers];
 //    [self initDatePicker];
+    [self obserBedStatus];
+    
+}
+
+- (void)obserBedStatus
+{
+    [[NSNotificationCenter defaultCenter]addObserverForName:kUserBedStatusChanged object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary *para = @{
+                               @"UUID": self.activeDeviceInfo.deviceUUID,
+                               };
+        @weakify(self);
+        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+        [client requestCheckSensorInfoParams:para andBlcok:^(SensorInfoModel *sensorModel, NSError *error) {
+            @strongify(self);
+            self.sensorInfo = sensorModel;
+            if (sensorModel) {
+                [self.containerDataView.childViewControllers enumerateObjectsUsingBlock:^(__kindof CenterDataShowViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [obj refreshBedStaus];
+                }];
+            }else{
+            }
+        }];
+
+    }];
 }
 
 - (void)queryDeviceListForControllers

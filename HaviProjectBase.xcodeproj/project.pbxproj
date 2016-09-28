@@ -562,6 +562,11 @@
 		2CD75BA61C61F8E200E7E076 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD75BA51C61F8E200E7E076 /* CenterViewController.m */; };
 		2CD75BAB1C6203BB00E7E076 /* HaviBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD75BAA1C6203BB00E7E076 /* HaviBaseTableViewCell.m */; };
 		2CDB2DC81CE471B300E931F0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB2DC71CE471B300E931F0 /* Reachability.m */; };
+		2CDF0AB31D9BD21E00A215B8 /* TTGTagCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0AAA1D9BD21E00A215B8 /* TTGTagCollectionCell.m */; };
+		2CDF0AB41D9BD21E00A215B8 /* TTGTagCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0AAC1D9BD21E00A215B8 /* TTGTagCollectionLayout.m */; };
+		2CDF0AB51D9BD21E00A215B8 /* TTGTagCollectionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0AAE1D9BD21E00A215B8 /* TTGTagCollectionUtil.m */; };
+		2CDF0AB61D9BD21E00A215B8 /* TTGTagCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0AB01D9BD21E00A215B8 /* TTGTagCollectionView.m */; };
+		2CDF0AB71D9BD21E00A215B8 /* TTGTextTagCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0AB21D9BD21E00A215B8 /* TTGTextTagCollectionView.m */; };
 		2CE3CD8A1D8E426B001DDD1C /* NSString+MessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3CCBB1D8E426B001DDD1C /* NSString+MessageInputView.m */; };
 		2CE3CD8B1D8E426B001DDD1C /* NSString+XHMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3CCBD1D8E426B001DDD1C /* NSString+XHMD5.m */; };
 		2CE3CD8C1D8E426B001DDD1C /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3CCC01D8E426B001DDD1C /* UIImage+Alpha.m */; };
@@ -1697,6 +1702,16 @@
 		2CD75BAA1C6203BB00E7E076 /* HaviBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaviBaseTableViewCell.m; sourceTree = "<group>"; };
 		2CDB2DC61CE471B300E931F0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2CDB2DC71CE471B300E931F0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		2CDF0AA91D9BD21E00A215B8 /* TTGTagCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGTagCollectionCell.h; sourceTree = "<group>"; };
+		2CDF0AAA1D9BD21E00A215B8 /* TTGTagCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGTagCollectionCell.m; sourceTree = "<group>"; };
+		2CDF0AAB1D9BD21E00A215B8 /* TTGTagCollectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGTagCollectionLayout.h; sourceTree = "<group>"; };
+		2CDF0AAC1D9BD21E00A215B8 /* TTGTagCollectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGTagCollectionLayout.m; sourceTree = "<group>"; };
+		2CDF0AAD1D9BD21E00A215B8 /* TTGTagCollectionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGTagCollectionUtil.h; sourceTree = "<group>"; };
+		2CDF0AAE1D9BD21E00A215B8 /* TTGTagCollectionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGTagCollectionUtil.m; sourceTree = "<group>"; };
+		2CDF0AAF1D9BD21E00A215B8 /* TTGTagCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGTagCollectionView.h; sourceTree = "<group>"; };
+		2CDF0AB01D9BD21E00A215B8 /* TTGTagCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGTagCollectionView.m; sourceTree = "<group>"; };
+		2CDF0AB11D9BD21E00A215B8 /* TTGTextTagCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGTextTagCollectionView.h; sourceTree = "<group>"; };
+		2CDF0AB21D9BD21E00A215B8 /* TTGTextTagCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGTextTagCollectionView.m; sourceTree = "<group>"; };
 		2CE3CCBA1D8E426B001DDD1C /* NSString+MessageInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MessageInputView.h"; sourceTree = "<group>"; };
 		2CE3CCBB1D8E426B001DDD1C /* NSString+MessageInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MessageInputView.m"; sourceTree = "<group>"; };
 		2CE3CCBC1D8E426B001DDD1C /* NSString+XHMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XHMD5.h"; sourceTree = "<group>"; };
@@ -3241,6 +3256,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				2CDF0AA81D9BD21E00A215B8 /* tag */,
 				2C9D1FA41D9A3FC300CBF4D6 /* CWStatusBarNotification */,
 				2C9D1F951D9A377300CBF4D6 /* TSmessage */,
 				2CCBB5AE1D928995009FD1F8 /* HysteriaPlayer */,
@@ -3741,6 +3757,23 @@
 				2CDB2DC71CE471B300E931F0 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		2CDF0AA81D9BD21E00A215B8 /* tag */ = {
+			isa = PBXGroup;
+			children = (
+				2CDF0AA91D9BD21E00A215B8 /* TTGTagCollectionCell.h */,
+				2CDF0AAA1D9BD21E00A215B8 /* TTGTagCollectionCell.m */,
+				2CDF0AAB1D9BD21E00A215B8 /* TTGTagCollectionLayout.h */,
+				2CDF0AAC1D9BD21E00A215B8 /* TTGTagCollectionLayout.m */,
+				2CDF0AAD1D9BD21E00A215B8 /* TTGTagCollectionUtil.h */,
+				2CDF0AAE1D9BD21E00A215B8 /* TTGTagCollectionUtil.m */,
+				2CDF0AAF1D9BD21E00A215B8 /* TTGTagCollectionView.h */,
+				2CDF0AB01D9BD21E00A215B8 /* TTGTagCollectionView.m */,
+				2CDF0AB11D9BD21E00A215B8 /* TTGTextTagCollectionView.h */,
+				2CDF0AB21D9BD21E00A215B8 /* TTGTextTagCollectionView.m */,
+			);
+			path = tag;
 			sourceTree = "<group>";
 		};
 		2CE3CCB61D8E426B001DDD1C /* MessageDisplayKit */ = {
@@ -5143,6 +5176,7 @@
 				2CE3CDA91D8E426B001DDD1C /* XHAnnotation.m in Sources */,
 				2CF2E1911C75C6D30007A639 /* MMPopupCategory.m in Sources */,
 				2CE3CDCA1D8E426B001DDD1C /* XHEmotionManagerView.m in Sources */,
+				2CDF0AB31D9BD21E00A215B8 /* TTGTagCollectionCell.m in Sources */,
 				2C9EF4391C803146000704E2 /* UIColor+expanded.m in Sources */,
 				2CCBB5A81D925FC1009FD1F8 /* IMTitleView.m in Sources */,
 				2CD75B771C61C2D000E7E076 /* ServerTimeModel.m in Sources */,
@@ -5178,6 +5212,7 @@
 				2CD75B751C61C2D000E7E076 /* SensorDataModel.m in Sources */,
 				2CF2E1FD1C78A82C0007A639 /* DTError.m in Sources */,
 				2CE3CD8A1D8E426B001DDD1C /* NSString+MessageInputView.m in Sources */,
+				2CDF0AB71D9BD21E00A215B8 /* TTGTextTagCollectionView.m in Sources */,
 				2C457B661D86961F00FFAB95 /* NJKWebViewProgress.m in Sources */,
 				2C1DA0241D4F2BF300FA6678 /* ZZHCalendarCircleView.m in Sources */,
 				2C457B451D85A0B700FFAB95 /* ConsultTableViewCell.m in Sources */,
@@ -5288,6 +5323,7 @@
 				2C9EF5351C8597C9000704E2 /* THPinNumPadView.m in Sources */,
 				2C94E5521D9114110062A33C /* SatisfactionTableViewCell.m in Sources */,
 				2CD014FC1C6EABDF001F9514 /* EditInfoCellTableViewCell.m in Sources */,
+				2CDF0AB41D9BD21E00A215B8 /* TTGTagCollectionLayout.m in Sources */,
 				2CD014F21C6E2024001F9514 /* EditCellInfoViewController.m in Sources */,
 				2C94E58A1D9209B70062A33C /* UIImage+JTSImageEffects.m in Sources */,
 				2CD015231C707651001F9514 /* DeviceListViewController.m in Sources */,
@@ -5402,6 +5438,7 @@
 				2CF2E27D1C7ADDF40007A639 /* Gloable.m in Sources */,
 				2CFB35841D891781003CB6B2 /* UIView+Layout.m in Sources */,
 				2CF2E21D1C79D6600007A639 /* UserProtocolViewController.m in Sources */,
+				2CDF0AB61D9BD21E00A215B8 /* TTGTagCollectionView.m in Sources */,
 				2CF2E1341C747CF90007A639 /* ODRefreshControl.m in Sources */,
 				2CE3CDB51D8E426B001DDD1C /* SESelectionGrabber.m in Sources */,
 				2C457B4B1D85A0E200FFAB95 /* ConsultBirthTableViewCell.m in Sources */,
@@ -5461,6 +5498,7 @@
 				2CE3CDA01D8E426B001DDD1C /* XHCacheManager.m in Sources */,
 				2C5872651C7AF491001C2F3A /* LaunchStartView.m in Sources */,
 				2C9D1FA31D9A381B00CBF4D6 /* HexColors.m in Sources */,
+				2CDF0AB51D9BD21E00A215B8 /* TTGTagCollectionUtil.m in Sources */,
 				2CE3CDBD1D8E426B001DDD1C /* SETextSelection.m in Sources */,
 				2C9EF4AA1C82FBC3000704E2 /* WTRequestCenter.m in Sources */,
 				2C6AA32D1D5F5F9B00CC5831 /* ProgressView.m in Sources */,

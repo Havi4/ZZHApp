@@ -111,6 +111,14 @@ static JPushNotiManager *shareInstance = nil;
         } break;
         case 108:{
             //版本更新
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:userInfo];
+        } break;
+        case 109:{
+            //版本更新
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:userInfo];
+        } break;
+        case 110:{
+            //版本更新
             
         } break;
         case 111:{

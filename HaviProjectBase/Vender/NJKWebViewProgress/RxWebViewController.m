@@ -11,10 +11,11 @@
 #import "ConversationListViewController.h"
 #import "ArticleListViewController.h"
 #import "ArticleViewController.h"
+#import "TTGTextTagCollectionView.h"
 
 #define boundsWidth self.view.bounds.size.width
 #define boundsHeight (self.view.bounds.size.height-64)
-@interface RxWebViewController ()<UIWebViewDelegate,UINavigationBarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface RxWebViewController ()<UIWebViewDelegate,UINavigationBarDelegate,UITableViewDelegate,UITableViewDataSource,TTGTextTagCollectionViewDelegate>
 
 //@property (strong, nonatomic) UIBarButtonItem* customBackBarItem;
 @property (strong, nonatomic) UIBarButtonItem* closeButtonItem;
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) UITableView *consultView;
 @property (nonatomic, strong) UITableView *tagTableView;
 @property (nonatomic, strong) UIView *tagBackView;
+@property (strong, nonatomic)  TTGTextTagCollectionView *textTagCollectionView;
 
 
 /**
@@ -62,6 +64,7 @@
 
 @property (nonatomic, strong) NSDictionary *articleList;
 
+
 @end
 
 @implementation RxWebViewController
@@ -86,7 +89,6 @@
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-    
     self.title = @"";
 //    self.urlString = @"http://adad184.com/2014/09/28/use-masonry-to-quick-solve-autolayout/";
 
@@ -106,6 +108,7 @@
     _docImageView.userInteractionEnabled = YES;
     [_docImageView addGestureRecognizer:tap];
     [self.view addSubview:_docImageView];
+    [self.textTagCollectionView addTags:self.tagLists];
 }
 
 //- (UITableView *)consultView
@@ -119,6 +122,20 @@
 //    }
 //    return _consultView;
 //}
+
+- (TTGTextTagCollectionView *)textTagCollectionView{
+    if (!_textTagCollectionView) {
+        _textTagCollectionView = [[TTGTextTagCollectionView alloc]init];
+        _textTagCollectionView.frame = (CGRect){90,0,self.view.frame.size.width-70-8,60};
+        _textTagCollectionView.delegate = self;
+        _textTagCollectionView.tagTextFont = [UIFont systemFontOfSize:14.0f];
+        _textTagCollectionView.extraSpace = CGSizeMake(12, -1);
+        _textTagCollectionView.tagTextColor = [UIColor blackColor];
+        _textTagCollectionView.tagBackgroundColor = [UIColor lightGrayColor];
+
+    }
+    return _textTagCollectionView;
+}
 
 - (UITableView *)tagTableView
 {
@@ -169,20 +186,22 @@
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell01"];
         }
+        UIView *circleView = [[UIView alloc]init];
+        circleView.frame = (CGRect){8,10,10,10};
+        circleView.layer.cornerRadius = 5;
+        circleView.layer.masksToBounds = YES;
+        circleView.backgroundColor = [UIColor colorWithRed:0.149 green:0.678 blue:0.867 alpha:1.00];
+        [cell addSubview:circleView];
         UIButton *cellTitle = [UIButton buttonWithType:UIButtonTypeCustom];
-        [cellTitle setTitle:self.tagLists[0] forState:UIControlStateNormal];
-        [cellTitle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        cellTitle.backgroundColor = [UIColor lightGrayColor];
+//        [cellTitle setTitle:self.tagLists[0] forState:UIControlStateNormal];
+        [cellTitle setTitle:@"更多板块" forState:UIControlStateNormal];
+        [cellTitle setTitleColor:[UIColor colorWithRed:0.149 green:0.678 blue:0.867 alpha:1.00] forState:UIControlStateNormal];
         cellTitle.titleLabel.font = [UIFont systemFontOfSize:14];
         [cellTitle addTarget:self action:@selector(showTagList:) forControlEvents:UIControlEventTouchUpInside];
-        cellTitle.layer.cornerRadius = 3;
-        cellTitle.layer.masksToBounds = YES;
+        cellTitle.frame = (CGRect){20,0,60,30};
         [cell addSubview:cellTitle];
-        [cellTitle makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(cell.mas_centerY);
-            make.left.equalTo(cell.mas_left).offset(8);
-            make.height.equalTo(@25);
-        }];
+        
+        [cell addSubview:self.textTagCollectionView];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         return cell;
@@ -672,5 +691,16 @@
     article.stitle = self.tagLists[0];
     [self.navigationController pushViewController:article animated:YES];
 }
+
+#pragma mark - TTGTextTagCollectionViewDelegate
+
+- (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView didTapTag:(NSString *)tagText atIndex:(NSUInteger)index selected:(BOOL)selected {
+    NSString *r = [NSString stringWithFormat:@"Tap tag: %@, at: %ld, selected: %d", tagText, (long) index, selected];
+}
+
+- (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView updateContentHeight:(CGFloat)newContentHeight {
+    NSLog(@"text tag collection: %@ new content height: %g", textTagCollectionView, newContentHeight);
+}
+
 
 @end

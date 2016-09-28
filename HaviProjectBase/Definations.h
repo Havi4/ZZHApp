@@ -89,6 +89,7 @@
 
 #define kPostEmergencyNoti @"PostEmergencyNoti"
 
+#define kUserBedStatusChanged @"kUserBedStatusChanged"
 
 //换肤
 #define kReloadAppTheme @"kReloadAppTheme"

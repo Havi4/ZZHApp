@@ -45,7 +45,7 @@
     self.phoneText = [[UITextField alloc]init];
     [self.view addSubview:self.phoneText];
     self.phoneText.delegate = self;
-    self.phoneText.dk_textColorPicker = DKColorWithColors(kDefaultColor, [UIColor grayColor]);
+    self.phoneText.dk_textColorPicker = DKColorWithColors([UIColor blackColor], [UIColor blackColor]);
     self.phoneText.borderStyle = UITextBorderStyleNone;
     self.phoneText.font = kDefaultWordFont;
     self.phoneText.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -57,7 +57,7 @@
     self.codeText = [[UITextField alloc]init];
     [self.view addSubview:self.codeText];
     self.codeText.delegate = self;
-    self.codeText.dk_textColorPicker = DKColorWithColors(kDefaultColor, [UIColor grayColor]);
+    self.codeText.dk_textColorPicker = DKColorWithColors([UIColor blackColor], [UIColor blackColor]);
     self.codeText.borderStyle = UITextBorderStyleNone;
     self.codeText.font = kDefaultWordFont;
     NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"验证码" attributes:boldFont];

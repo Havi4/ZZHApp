@@ -45,7 +45,7 @@
     self.nameText = [[UITextField alloc]init];
     [self.view addSubview:self.nameText];
     self.nameText.delegate = self;
-    [self.nameText setTextColor:kTextFieldWordColor];
+    [self.nameText setTextColor:[UIColor blackColor]];
     self.nameText.borderStyle = UITextBorderStyleNone;
     self.nameText.font = kTextFieldWordFont;
     NSDictionary *boldFont = @{NSForegroundColorAttributeName:kTextPlaceHolderColor,NSFontAttributeName:kTextPlaceHolderFont};
@@ -60,7 +60,7 @@
     [self.view addSubview:self.passWordText];
     self.passWordText.delegate = self;
     [self.passWordText setReturnKeyType:UIReturnKeyDone];
-    self.passWordText.textColor = kTextFieldWordColor;
+    self.passWordText.textColor = [UIColor blackColor];
     self.passWordText.borderStyle = UITextBorderStyleNone;
     self.passWordText.font = kTextFieldWordFont;
     NSAttributedString *attrValue1 = [[NSAttributedString alloc] initWithString:@"请确认密码" attributes:boldFont];
