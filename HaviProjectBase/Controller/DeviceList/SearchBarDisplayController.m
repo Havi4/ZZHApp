@@ -92,7 +92,7 @@
         [cell configure:cell customObj:item indexPath:indexPath];
     };
     CellHeightBlock configureCellHeightBlock = ^ CGFloat (NSIndexPath *indexPath, id item){
-        return 75;
+        return 64;
     };
     @weakify(self);
     DidSelectCellBlock didSelectBlock = ^(NSIndexPath *indexPath, id item){

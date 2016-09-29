@@ -40,7 +40,7 @@
         titleLabel = [[UILabel alloc]init];
         titleLabel.text = @"心率分析:";
         titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.font = [UIFont systemFontOfSize:20];
+        titleLabel.font = [UIFont systemFontOfSize:17];
         [self addSubview:titleLabel];
         [titleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(8);

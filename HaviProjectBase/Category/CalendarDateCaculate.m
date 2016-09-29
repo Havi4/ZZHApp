@@ -64,7 +64,7 @@ static CalendarDateCaculate *shareInstance = nil;
     BOOL b = [gregorian rangeOfUnit:NSWeekCalendarUnit startDate:&dateOut interval:&count forDate:nowDate];
     self.dateComponents.day = 6;//设置日开始
     NSDate *new = [[NSCalendar currentCalendar] dateByAddingComponents:self.dateComponents toDate:dateOut options:0];
-    NSString *start = [[NSString stringWithFormat:@"%@",[dateOut dateByAddingHours:8]] substringWithRange:NSMakeRange(5, 5)];
+    NSString *start = [[NSString stringWithFormat:@"%@",[[dateOut dateByAddingHours:8]dateByAddingDays:1] ] substringWithRange:NSMakeRange(5, 5)];
     NSString *newStart = [NSString stringWithFormat:@"%@月%@日",[start substringWithRange:NSMakeRange(0, 2)],[start substringWithRange:NSMakeRange(3, 2)]];
     NSString *end = [[NSString stringWithFormat:@"%@",new] substringWithRange:NSMakeRange(5, 5)];
     NSString *newEnd = [NSString stringWithFormat:@"%@月%@日",[end substringWithRange:NSMakeRange(0, 2)],[end substringWithRange:NSMakeRange(3, 2)]];
@@ -216,7 +216,9 @@ static CalendarDateCaculate *shareInstance = nil;
     NSString *now = [NSString stringWithFormat:@"%@年%@",year,[subMonth substringToIndex:range1N.location]];
     NSDate *nowdate = [self.dateFormmatter dateFromString:now];
     self.dateComponents.day = 7*totalWeek;
-    NSDate *nextWeekStart = [[NSCalendar currentCalendar] dateByAddingComponents:self.dateComponents toDate:nowdate options:0];//下周的日期
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    [calendar setFirstWeekday:2];
+    NSDate *nextWeekStart = [calendar dateByAddingComponents:self.dateComponents toDate:nowdate options:0];//下周的日期
     NSString *weekNumString = [self getCurrentWeekInOneYear:nextWeekStart];//周
     NSString *selectDuration = [self getWeekTimeDuration:nextWeekStart];
     block(weekNumString,selectDuration);

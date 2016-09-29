@@ -101,7 +101,7 @@
         }
     }else{
         if (![self checkIsValiadForNum:self.textFiledString]) {
-            [NSObject showHudTipStr:@"请输入有效的联系方式"];
+            [NSObject showHudTipStr:@"2-11个数字"];
             return;
         }
     }
@@ -169,7 +169,7 @@
 //    NSString *regex = @"1[0-9]{10}";
 //    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
 
-    if (checkString.length > 11) {
+    if (checkString.length > 11 || checkString.length<2) {
         
         return NO;
     }else{

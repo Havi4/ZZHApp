@@ -207,7 +207,7 @@
 {
     if (!_monthTitleLabel) {
         _monthTitleLabel = [[UILabel alloc]init];
-        _monthTitleLabel.font = [UIFont systemFontOfSize:18];
+        _monthTitleLabel.font = [UIFont systemFontOfSize:13];
         _monthTitleLabel.textColor = [UIColor whiteColor];
         _monthTitleLabel.textAlignment = NSTextAlignmentCenter;
         if (self.reportType == ReportViewWeek) {

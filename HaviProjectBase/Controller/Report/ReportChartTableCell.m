@@ -55,19 +55,25 @@
     if (!_subView) {
         _subView = [[UIView alloc]initWithFrame:(CGRect){0,0,24,200}];
         _subView.backgroundColor = [UIColor clearColor];
-        CGFloat cY = (200 - bottomLineMargin-16)/5;
-        for (int i = 0; i<3; i++) {
+        CGFloat cY = (200 - bottomLineMargin-16)/6;
+        for (int i = 0; i<6; i++) {
             UILabel *lineView = [[UILabel alloc] init];
-            lineView.frame = CGRectMake(2, 16 + cY*i*2-10, 24, 20);
+            lineView.frame = CGRectMake(2, 16 + cY*i-10, 24, 20);
             lineView.textColor = [UIColor whiteColor];
             lineView.font = [UIFont systemFontOfSize:14];
             lineView.textAlignment = NSTextAlignmentCenter;
             if (i==0) {
                 lineView.text = @"12";
             }else if (i==1){
-                lineView.text = @"8";
+                lineView.text = @"10";
             }else if (i==2){
+                lineView.text = @"8";
+            }else if (i==3){
                 lineView.text = @"6";
+            }else if (i==4){
+                lineView.text = @"4";
+            }else if (i==5){
+                lineView.text = @"2";
             }
             
             [self addSubview:lineView];
@@ -143,7 +149,7 @@
 {
     if (!_weekReport) {
         _weekReport = [[NewWeekReport alloc]initWithFrame:CGRectMake(24, 0, self.frame.size.width-32, 180)];
-        _weekReport.xValues = @[@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"];
+        _weekReport.xValues = @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
         _weekReport.sleepQulityDataValues = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
         _weekReport.sleepTimeDataValues = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
         _weekReport.backgroundColor = [UIColor clearColor];

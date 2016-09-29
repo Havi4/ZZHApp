@@ -171,11 +171,11 @@
         searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 64);
         searchBar.delegate = self;
         [searchBar sizeToFit];
-        [searchBar setPlaceholder:@"输入手机号查找相应的设备"];
+        [searchBar setPlaceholder:@"输入手机号码添加好友"];
         [searchBar setTintColor:[UIColor blueColor]];
         searchBar.showsCancelButton = YES;
         [searchBar setTranslucent:NO];
-        [searchBar insertBGColor:[UIColor colorWithHexString:@"0x28303b"]];
+        [searchBar insertBGColor:[UIColor colorWithRed:0.176 green:0.173 blue:0.196 alpha:1.00]];
         [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
         searchBar;
     });

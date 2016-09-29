@@ -25,8 +25,6 @@
     if (self) {
         _messageIcon = [[UIImageView alloc]init];
         [self addSubview:_messageIcon];
-        _messageIcon.layer.cornerRadius = 27.5;
-        _messageIcon.layer.masksToBounds = YES;
         _messageIcon.layer.shouldRasterize = YES;
         _messageIcon.layer.rasterizationScale = [UIScreen mainScreen].scale;
         _messageIcon.image = [UIImage imageNamed:@"head_portrait_0"];
@@ -46,25 +44,25 @@
         _messageSendButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:_messageSendButton];
         [_messageSendButton setTitle:@"申请查看" forState:UIControlStateNormal];
-        [_messageSendButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:0.000f green:0.867f blue:0.596f alpha:1.00f]] forState:UIControlStateNormal];
+        [_messageSendButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:0.427 green:0.757 blue:0.929 alpha:1.00]] forState:UIControlStateNormal];
         _messageSendButton.layer.cornerRadius = 5;
         _messageSendButton.layer.masksToBounds = YES;
         [_messageSendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_messageSendButton addTarget:self action:@selector(buttonTarget:) forControlEvents:UIControlEventTouchUpInside];
         [_messageSendButton setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateSelected];
-        _messageSendButton.titleLabel.font = [UIFont systemFontOfSize:17];
+        _messageSendButton.titleLabel.font = [UIFont systemFontOfSize:15];
         //
         
         [_messageIcon makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(15);
-            make.top.equalTo(self).offset(10);
-            make.height.equalTo(@55);
-            make.width.equalTo(@55);
+            make.centerY.equalTo(self.mas_centerY);
+            make.height.equalTo(@44);
+            make.width.equalTo(@44);
         }];
         //
         [_messageName makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_messageIcon.mas_right).offset(10);
-            make.top.equalTo(self).offset(10);
+            make.top.equalTo(_messageIcon.mas_top);
             make.height.equalTo(@20);
             make.height.equalTo(_messagePhone.mas_height);
             make.width.equalTo(@100);
@@ -72,13 +70,13 @@
         //
         [_messagePhone makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_messageIcon.mas_right).offset(10);
-            make.bottom.equalTo(self.mas_bottom).offset(-10);
+            make.bottom.equalTo(_messageIcon.mas_bottom);
             make.width.equalTo(@100);
         }];
         //
         [_messageSendButton makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-20);
-            make.centerY.equalTo(_messagePhone.mas_centerY);
+            make.centerY.equalTo(self.mas_centerY);
             make.width.equalTo(@80);
             make.height.equalTo(@30);
         }];
@@ -109,13 +107,18 @@
     MMPopupBlock completeBlock = ^(MMPopupView *popupView){
         
     };
-    [[[MMAlertView alloc] initWithInputTitle:@"提示" detail:@"请输入验证信息，可以提高您的申请成功率" placeholder:@"我是***,希望查看您的设备" handler:^(NSString *text) {
+    MMAlertViewConfig *cong = [MMAlertViewConfig globalConfig];
+    cong.cornerRadius = 15;
+    cong.itemHighlightColor = [UIColor colorWithRed:0.000 green:0.294 blue:0.863 alpha:1.00];
+    MMAlertView *alert = [[MMAlertView alloc] initWithInputTitle:@"提示" detail:@"请输入验证信息，提高申请成功率" placeholder:@"我是***" handler:^(NSString *text) {
         if (text.length==0) {
             [NSObject showHudTipStr:@"请输入验证信息"];
             return;
         }
         self.sendMessageTaped(self,text);
-    }] showWithBlock:completeBlock];
+    }];
+    [alert showWithBlock:completeBlock];
+    
 }
 
 @end

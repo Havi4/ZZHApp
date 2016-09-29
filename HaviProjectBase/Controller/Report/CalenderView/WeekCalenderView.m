@@ -101,6 +101,7 @@
     [compt setMonth:1];
     [compt setDay:20];
     NSCalendar *calendar = [NSCalendar currentCalendar];
+    [calendar setFirstWeekday:2];
     NSDate *date = [calendar dateFromComponents:compt];
     self.weekTitle = [NSString stringWithFormat:@"%d",titleNum -1];
 
