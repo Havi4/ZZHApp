@@ -136,6 +136,7 @@
 - (void)sendLocationWith:(NSString *)city andProvie:(NSString *)province
 {
     [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":[city substringToIndex:city.length-1]}];
+    [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"city":@""}];
     [[NSUserDefaults standardUserDefaults]setObject:[city substringToIndex:city.length-1] forKey:@"city"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     NSDictionary *dic19 = @{

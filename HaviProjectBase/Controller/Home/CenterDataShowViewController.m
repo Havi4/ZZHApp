@@ -43,20 +43,26 @@
     NSString *queryFromDate = [SleepModelChange chageDateFormatteToQueryString:[[NSDate date] dateByAddingDays:-1]];
     [self getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
     [self configNoti];
+    [self showArticle];
 }
 
 - (void)configNoti
 {
-//    [[NSNotificationCenter defaultCenter]addObserverForName:kGetCurrentCity object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-//        
-//    }];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showArticle) name:kGetCurrentCity object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showArticleL) name:kGetCurrentCity object:nil];
+}
+
+- (void)showArticleL{
+    if (self.cellRecommend.text.length > 0) {
+        return;
+    }else{
+        [self showArticle];
+    }
 }
 
 - (void)showArticle
 {
     self.city = [[NSUserDefaults standardUserDefaults] objectForKey:@"city"];
-    if (self.city) {
+    if (self.city.length > 0) {
         [self getAriticleList:[[NSUserDefaults standardUserDefaults] objectForKey:@"city"]];
     }
 }
