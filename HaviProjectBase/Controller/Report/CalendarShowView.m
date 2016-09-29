@@ -315,6 +315,20 @@
     switch (self.reportType) {
         case ReportViewWeek:
         {
+            NSUInteger a = [[self.monthTitleLabel.text substringWithRange:NSMakeRange(6, 2)] integerValue];
+            NSUInteger titleYear = [[self.monthTitleLabel.text substringWithRange:NSMakeRange(0, 4)] integerValue];
+
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            NSInteger unitFlags = NSWeekCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit;
+            NSDateComponents *comps = [calendar components:unitFlags fromDate:[NSDate date]];
+            if (titleYear > [comps year] ) {
+                [NSObject showHudTipStr:@"请选择历史日期"];
+                return;
+            }
+            if ((a > [comps week] || a == [comps week]) && (titleYear == [comps year] )) {
+                [NSObject showHudTipStr:@"请选择历史日期"];
+                return;
+            }
             @weakify(self);
             [[CalendarDateCaculate sharedInstance] getChangeWeek:self.monthTitleLabel.text monthSubTitleString:self.monthLabel.text withWeekStep:CalendarStepTypeNext callBack:^(NSString *monthTitle, NSString *monthSubTitle) {
                 @strongify(self);
@@ -325,6 +339,24 @@
             break;
         }
         case ReportViewMonth:{
+            NSUInteger titleMonth = [[self.monthTitleLabel.text substringWithRange:NSMakeRange(5, 2)] integerValue];
+            NSUInteger titleYear = [[self.monthTitleLabel.text substringWithRange:NSMakeRange(0, 4)] integerValue];
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+            
+            NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
+            NSInteger iCurYear = [components year];  //当前的年份
+            NSInteger iCurMonth = [components month];  //当前的月份
+            if (titleYear > iCurYear ) {
+                [NSObject showHudTipStr:@"请选择历史日期"];
+                return;
+            }
+            if ((titleMonth > iCurMonth || titleMonth == iCurMonth) && (titleYear == iCurYear)) {
+                [NSObject showHudTipStr:@"请选择历史日期"];
+                return;
+            }
+            
+
             @weakify(self);
             [[CalendarDateCaculate sharedInstance]getChangeMonth:self.monthTitleLabel.text withCalendarStep:CalendarStepTypeNext callBack:^(NSString *monthTitle, NSInteger daysInMonth) {
                 @strongify(self);
@@ -334,6 +366,24 @@
             break;
         }
         case ReportViewQuater:{
+            NSUInteger a = [[self.monthTitleLabel.text substringWithRange:NSMakeRange(6, 1)] integerValue];
+            NSUInteger titleYear = [[self.monthTitleLabel.text substringWithRange:NSMakeRange(0, 4)] integerValue];
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            unsigned unitFlags = NSYearCalendarUnit | NSQuarterCalendarUnit;
+            
+            NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
+            NSInteger iCurYear = [components year];  //当前的年份
+            NSInteger iCurQuar = [components quarter];
+            if (titleYear > iCurYear ) {
+                [NSObject showHudTipStr:@"请选择历史日期"];
+                return;
+            }
+
+            if ((a > iCurQuar || a == iCurQuar) && (titleYear == iCurYear) && iCurQuar != 0) {
+                [NSObject showHudTipStr:@"请选择历史日期"];
+
+                return;
+            }
             @weakify(self);
             [[CalendarDateCaculate sharedInstance]getChangeQuater:self.monthTitleLabel.text withQuaterStep:CalendarStepTypeNext callBack:^(NSString *monthTitle, NSString *monthSubTitle) {
                 @strongify(self);
