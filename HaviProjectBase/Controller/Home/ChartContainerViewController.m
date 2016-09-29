@@ -58,7 +58,7 @@
     
     self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_share@3x"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         @strongify(self);
-        [self showMoreInfo:nil];
+        [self shareInfo];
     }];
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     [self.sc_navigationBar addSubview:self.naviBarTitle];

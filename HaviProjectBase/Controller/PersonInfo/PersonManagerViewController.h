@@ -10,5 +10,7 @@
 
 @interface PersonManagerViewController : UIViewController
 
+@property (nonatomic, assign) BOOL isNavi;
+
 @end
 

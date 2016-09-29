@@ -250,26 +250,36 @@
 }
 
 - (void)showDoc{
+    [[NSUserDefaults standardUserDefaults]registerDefaults:@{thirdPartyLoginUserId:@"NO"}];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:thirdPartyLoginUserId]isEqualToString:@"NO"]) {
+        NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Login";
+        NSDictionary *dicPara = @{
+                                  @"UserId": thirdPartyLoginUserId
+                                  };
+        [NSObject showHud];
+        [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+            [NSObject hideHud];
+            NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            DeBugLog(@"登录结果%@",obj);
+            if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
+                ConversationListViewController *c = [[ConversationListViewController alloc]init];
+                [self.navigationController pushViewController:c animated:YES];
+                [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:thirdPartyLoginUserId];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+            }else{
+                [NSObject showHudTipStr:@"登录问诊失败"];
+            }
+        } failed:^(NSURLResponse *response, NSError *error) {
+            [NSObject hideHud];
+            [NSObject showHudTipStr:@"服务器出错了"];
+        }];
+    }else{
+        ConversationListViewController *c = [[ConversationListViewController alloc]init];
+        [self.navigationController pushViewController:c animated:YES];
 
-    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Login";
-    NSDictionary *dicPara = @{
-                              @"UserId": thirdPartyLoginUserId
-                              };
-    [NSObject showHud];
-    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
-        [NSObject hideHud];
-        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        DeBugLog(@"登录结果%@",obj);
-        if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
-            ConversationListViewController *c = [[ConversationListViewController alloc]init];
-            [self.navigationController pushViewController:c animated:YES];
-        }else{
-            [NSObject showHudTipStr:@"登录问诊失败"];
-        }
-    } failed:^(NSURLResponse *response, NSError *error) {
-        [NSObject hideHud];
-        [NSObject showHudTipStr:@"服务器出错了"];
-    }];
+    }
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

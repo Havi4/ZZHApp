@@ -164,6 +164,7 @@
     if([dayView isFromAnotherMonth]){
         dayView.hidden = YES;
     }
+    
     // Today
     else if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
@@ -174,7 +175,7 @@
     // Selected date
     else if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
-        dayView.circleView.backgroundColor = [UIColor redColor];
+        dayView.circleView.backgroundColor = [UIColor clearColor];
         dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
@@ -195,7 +196,10 @@
         dayView.dotView.hidden = NO;
     }
     else{
-        dayView.dotView.hidden = YES;
+    }
+    dayView.dotView.hidden = YES;
+    if ([dayView.date isLaterThan:[NSDate date]]) {
+        dayView.textLabel.textColor = [UIColor lightGrayColor];
     }
 }
 
@@ -229,10 +233,13 @@
             [_calendarContentView loadPreviousPageWithAnimation];
         }
     }
-//    DeBugLog(@"测试价值");
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    if ([_dateSelected isLaterThan:[NSDate date]]) {
+        [NSObject showHudTipStr:@"请选择历史日期"];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
 }
 
 #pragma mark - Fake data

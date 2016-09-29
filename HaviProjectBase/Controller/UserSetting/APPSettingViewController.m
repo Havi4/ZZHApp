@@ -116,7 +116,15 @@
     Class class = NSClassFromString(className);
     if (class) {
         UIViewController *controller = class.new;
-        [self.navigationController pushViewController:controller animated:YES];
+        if (indexPath.section == 0 && indexPath.row == 0) {
+            PersonManagerViewController *person = (PersonManagerViewController *)controller;
+            person.isNavi = YES;
+            [self.navigationController pushViewController:person animated:YES];
+
+        }else{
+            [self.navigationController pushViewController:controller animated:YES];
+
+        }
     }else{
         [self logoutMyId];
     }

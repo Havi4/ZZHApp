@@ -75,7 +75,7 @@
             make.centerY.equalTo(backImageView);
             make.left.equalTo(titleLabel.mas_right).offset(10);
             make.right.equalTo(dataSub.mas_left).offset(0);
-            make.width.equalTo(titleLabel.mas_width).multipliedBy(0.5);
+            make.width.equalTo(titleLabel.mas_width).multipliedBy(0.45);
         }];
         
         

@@ -38,7 +38,6 @@
     [self.refreshControl addTarget:self action:@selector(getProblemList) forControlEvents:UIControlEventValueChanged];
     [self.consultView addSubview:self.refreshControl];
     [self.view addSubview:self.consultView];
-    [self.view addSubview:self.noProblemBack];
     [self getProblemList];
     [self configNoti];
 }
@@ -74,6 +73,8 @@
             [self.consultView reloadData];
             DeBugLog(@"咨询列表是%@",obj);
         }else{
+            self.problemArr = nil;
+            [self.consultView reloadData];
             [self.view addSubview:self.noProblemBack];
         }
     } failed:^(NSURLResponse *response, NSError *error) {

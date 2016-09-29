@@ -44,6 +44,15 @@
 
 @implementation PersonManagerViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isNavi = NO;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getUserDetailInfo];
@@ -57,9 +66,7 @@
     [self.view addSubview:self.personInfoTableView];
     UIView *view = [[UIView alloc]initWithFrame:(CGRect){0,0,self.view.frame.size.width,0}];
     [self.view addSubview:view];
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    NSArray *controllers = app.currentNavigationController.viewControllers;
-    if (controllers.count ==1) {
+    if (self.isNavi) {
         self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
@@ -600,6 +607,36 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
         [self setNeedsStatusBarAppearanceUpdate];
     }];
+}
+
+//获取当前屏幕显示的viewcontroller
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
 }
 
 - (void)didReceiveMemoryWarning {
