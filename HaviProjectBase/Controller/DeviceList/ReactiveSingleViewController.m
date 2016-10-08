@@ -74,8 +74,9 @@
     self.textFiledName = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
     self.textFiledName.textPlaceHolder = @"WiFi名称";
     self.textFiledName.textPlaceHolderColor = [UIColor lightGrayColor];
-    self.textFiledName.returnKeyType = UIReturnKeyGo;
+    self.textFiledName.returnKeyType = UIReturnKeyDone;
     self.textFiledName.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+    self.textFiledName.userInteractionEnabled = NO;
     [self.view addSubview:self.textFiledName];
     self.textFiledPassWord = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
     self.textFiledPassWord.textPlaceHolderColor = [UIColor lightGrayColor];
@@ -162,7 +163,7 @@
 //        make.bottom.equalTo(self.textFiledName.mas_top).offset(5);
 //    }];
     
-    //
+    
     UILabel *showLabel = [[UILabel alloc]init];
     [self.view addSubview:showLabel];
     showLabel.textColor = kWhiteBackTextColor;

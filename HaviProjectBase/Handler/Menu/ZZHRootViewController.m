@@ -221,7 +221,9 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
     self.rootBackgroundBlurView.alpha = 0.0;
     [self.viewControllerContainView addSubview:self.rootBackgroundBlurView];
     
-    
+    [[NSNotificationCenter defaultCenter]addObserverForName:@"showleftView" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self handlePanRecognizer:nil];
+    }];
 }
 
 #pragma mark - Private Methods
@@ -401,7 +403,13 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
 }
 
 - (void)handlePanRecognizer:(UIPanGestureRecognizer *)recognizer {
-    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self setMenuOffset:kMenuWidth];
+    } completion:^(BOOL finished) {
+        self.rootBackgroundButton.hidden = NO;
+    }];
+
+    /*
     CGFloat progress = [recognizer translationInView:self.rootBackgroundButton].x / (self.rootBackgroundButton.bounds.size.width * 0.5);
     progress = - MIN(progress, 0);
     
@@ -444,7 +452,7 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
             }
         }];
     }
-    
+    */
 }
 
 - (void)handleEdgePanRecognizer:(UIScreenEdgePanGestureRecognizer *)recognizer {

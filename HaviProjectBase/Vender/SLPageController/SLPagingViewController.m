@@ -9,7 +9,7 @@
 #import "SLPagingViewController.h"
 #import "HAVIPageControl.h"
 
-@interface SLPagingViewController () <UIScrollViewDelegate>
+@interface SLPagingViewController () <UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) HAVIPageControl *pageControl;
@@ -547,6 +547,9 @@
     CGFloat xOffset    = scrollView.contentOffset.x;
     NSInteger oldIndex = self.indexSelected;
     self.indexSelected = ((int) roundf(xOffset) % (self.navigationBarView.subviews.count * (int)SCREEN_SIZE.width)) / SCREEN_SIZE.width;
+    if ((oldIndex == 0 && self.indexSelected == 0)) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"showleftView" object:nil];
+    }
     if(oldIndex != self.indexSelected)
         [self notifyControllers:NSSelectorFromString(@"viewDidDisappear:")
                          object:@(YES)
@@ -618,6 +621,7 @@
     [self sendNewIndex:scrollView];
 }
 
+
 @end
 
 #pragma mark - SLPagingViewControllerSegueSetController segue identifier's prefix
@@ -636,5 +640,6 @@ NSString * const SLPagingViewPrefixIdentifier = @"sl_";
         [src addViewControllers:self.destinationViewController
                   needToRefresh:NO];
 }
+
 
 @end
