@@ -84,6 +84,15 @@
     self.enterButton.alpha = 0;
     [self.view addSubview:self.enterButton];
     
+    if (!self.skipButton) {
+        self.skipButton = [UIButton new];
+        self.skipButton.backgroundColor = [UIColor clearColor];
+        [self.skipButton setTitleColor:[UIColor colorWithRed:0.427 green:0.643 blue:0.267 alpha:1.00] forState:UIControlStateNormal];
+    }
+    [self.skipButton addTarget:self action:@selector(enter:) forControlEvents:UIControlEventTouchUpInside];
+    self.skipButton.frame = (CGRect){kScreenSize.width -60,20,50,30};
+    self.skipButton.alpha = 1;
+    [self.view addSubview:self.skipButton];
     [self reloadPages];
 }
 

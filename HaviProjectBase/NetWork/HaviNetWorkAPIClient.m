@@ -61,6 +61,13 @@ static HaviNetWorkAPIClient *_netWorkClient;
     if (aPath.length ==0 || !aPath) {
         return;
     }
+    if (![netReachability isReachable] && netReachability) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [NSObject showHudTipStr:@"没有网络，请检查您的网络"];
+        });
+        block(nil,nil);
+        return;
+    }
     [[UIApplication sharedApplication]incrementNetworkActivityCount];
     DeBugLog(@"\n网络请求log========request=========\n%@\n%@:\n%@", kNetworkMethodName[method], aPath, params);
     aPath = [aPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

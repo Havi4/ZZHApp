@@ -38,6 +38,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setWifiNotification];
     [self setAppSetting];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{kAppIntroduceViewKey:@NO}];
@@ -167,7 +168,7 @@
      */
     self.rootView = [[ZZHRootViewController alloc] init];
     self.window.rootViewController = self.rootView;
-    [self setWifiNotification];
+    
 
 }
 
@@ -245,10 +246,8 @@
 -(void)reachabilityChanged:(NSNotification*)note
 {
     @try {
-        
-        
         Reachability * reach = [note object];
-        
+        netReachability = reach;
         if ([reach isReachable]) {
 //            if ([reach isReachableViaWiFi]) {
 //                [[UIApplication sharedApplication].keyWindow makeToast:@"您已切换至Wifi网络" duration:1.5 position:@"center"];
@@ -264,6 +263,7 @@
 //                }
 //            }
         }else {
+            
             [[UIApplication sharedApplication].keyWindow makeToast:@"没有网络,请检查您的网络！" duration:1.5 position:@"center"];
         }
     } @catch (NSException *e) {

@@ -111,6 +111,7 @@
     [self.textTagCollectionView addTags:self.tagLists];
 }
 
+
 //- (UITableView *)consultView
 //{
 //    if (!_consultView) {
@@ -126,12 +127,13 @@
 - (TTGTextTagCollectionView *)textTagCollectionView{
     if (!_textTagCollectionView) {
         _textTagCollectionView = [[TTGTextTagCollectionView alloc]init];
-        _textTagCollectionView.frame = (CGRect){90,0,self.view.frame.size.width-70-8,60};
+        _textTagCollectionView.frame = (CGRect){90,5,self.view.frame.size.width-70-8,60};
         _textTagCollectionView.delegate = self;
         _textTagCollectionView.tagTextFont = [UIFont systemFontOfSize:14.0f];
-        _textTagCollectionView.extraSpace = CGSizeMake(12, -1);
-        _textTagCollectionView.tagTextColor = [UIColor blackColor];
+        _textTagCollectionView.extraSpace = CGSizeMake(12, 5);
+        _textTagCollectionView.tagTextColor = [UIColor colorWithRed:0.224 green:0.227 blue:0.235 alpha:1.00];
         _textTagCollectionView.tagBackgroundColor = [UIColor lightGrayColor];
+        _textTagCollectionView.tagSelectedBackgroundColor = [UIColor lightGrayColor];
 
     }
     return _textTagCollectionView;
@@ -156,7 +158,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -205,6 +207,18 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         return cell;
+    }else if(indexPath.row == 1){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell01"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell01"];
+        }
+        UILabel *label = [[UILabel alloc]init];
+        label.frame = (CGRect){16,0,80,40};
+        label.text = @"推荐文章";
+        [cell addSubview:label];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    
     }else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell11"];
         if (!cell) {
@@ -246,6 +260,9 @@
 //        }
 //    }else{
 //    }
+    if(indexPath.row == 1 ){
+        return 30;
+    }
     return 44;
 }
 
@@ -285,7 +302,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row>0) {
+    if (indexPath.row>1) {
         ArticleViewController *article = [[ArticleViewController alloc]init];
         article.articleTitle = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Title"];
         article.articleURL = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"FileName"];
@@ -581,7 +598,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [self updateNavigationItems];
+//    [self updateNavigationItems];
     NSString *theTitle=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if (theTitle.length > 10) {
         theTitle = [[theTitle substringToIndex:9] stringByAppendingString:@"…"];
@@ -599,6 +616,10 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    if (error) {
+        [self.webView stopLoading];
+    }
+    
 }
 
 #pragma mark - setters and getters
@@ -706,6 +727,10 @@
 
 - (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView didTapTag:(NSString *)tagText atIndex:(NSUInteger)index selected:(BOOL)selected {
     NSString *r = [NSString stringWithFormat:@"Tap tag: %@, at: %ld, selected: %d", tagText, (long) index, selected];
+    ArticleListViewController *article = [[ArticleListViewController alloc]init];
+    article.articleList = self.articleList;
+    article.stitle = tagText;
+    [self.navigationController pushViewController:article animated:YES];
 }
 
 - (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView updateContentHeight:(CGFloat)newContentHeight {

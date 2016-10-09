@@ -36,6 +36,6 @@ NSInteger selectPageIndex = 0;
 BOOL isDoubleDevice = NO;
 DeviceList *gloableActiveDevice = nil;
 
-YYReachability *netReachability = nil;
+Reachability *netReachability = nil;
 NSString *phoneGetCode = @"";
 

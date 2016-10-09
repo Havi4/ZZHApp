@@ -13,6 +13,7 @@ typedef void (^DidSelectedEnter)();
 
 @property (nonatomic, strong) UIScrollView *pagingScrollView;
 @property (nonatomic, strong) UIButton *enterButton;
+@property (nonatomic, strong) UIButton *skipButton;
 
 @property (nonatomic, copy) DidSelectedEnter didSelectedEnter;
 

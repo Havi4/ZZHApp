@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Reachability.h"
 //主题
 extern int selectedThemeIndex;
 //返回值对象
@@ -36,7 +37,7 @@ extern NSDate *selectedDateToUse;
 extern BOOL isDoubleDevice;
 extern DeviceList *gloableActiveDevice;
 
-extern YYReachability *netReachability;
+extern Reachability *netReachability;
 extern NSString *phoneGetCode;
 
 
