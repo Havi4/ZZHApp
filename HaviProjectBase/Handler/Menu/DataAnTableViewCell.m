@@ -39,6 +39,11 @@ static CGFloat const kFontSize   = 16;
 
         
         [self configureViews];
+        [[NSNotificationCenter defaultCenter]addObserverForName:@"tapcell" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.tag = 1001;
+            [self buttonTaped:button];
+        }];
         
     }
     return self;

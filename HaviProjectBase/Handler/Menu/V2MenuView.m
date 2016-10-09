@@ -60,10 +60,10 @@
     @weakify(self);
     [self.sectionView setDidSelectedIndexBlock:^(NSInteger index) {
         @strongify(self);
-        
         if (self.didSelectedIndexBlock) {
             self.didSelectedIndexBlock(index);
         }
+        
         
     }];
     

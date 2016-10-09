@@ -183,8 +183,11 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
 //
     [self.menuView setDidSelectedIndexBlock:^(NSInteger index) {
         @strongify(self);
-        
-        [self showViewControllerAtIndex:index animated:YES];
+        if (index == 1) {
+            [self showViewControllerAtIndex:1001 animated:YES];
+        }else{
+            [self showViewControllerAtIndex:index animated:YES];
+        }
         
     }];
     

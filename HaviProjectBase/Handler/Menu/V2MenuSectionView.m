@@ -312,6 +312,7 @@ static CGFloat const kAvatarHeight = 70.0f;
         [self.tableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
     }else {
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indexPath.row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"tapcell" object:nil];
     }
 }
 
