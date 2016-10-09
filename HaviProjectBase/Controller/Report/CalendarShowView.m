@@ -378,6 +378,11 @@
                 [NSObject showHudTipStr:@"请选择历史日期"];
                 return;
             }
+            
+            if (titleYear == iCurYear && a == 4) {
+                [NSObject showHudTipStr:@"请选择历史日期"];
+                return;
+            }
 
             if ((a > iCurQuar || a == iCurQuar) && (titleYear == iCurYear) && iCurQuar != 0) {
                 [NSObject showHudTipStr:@"请选择历史日期"];

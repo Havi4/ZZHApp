@@ -141,7 +141,7 @@ static CalendarDateCaculate *shareInstance = nil;
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSDate *showDate = [self.dateMonthFormmatter dateFromString:monthTitleString];
+        NSDate *showDate = [[self.dateMonthFormmatter dateFromString:monthTitleString] dateByAddingHours:8];
         NSDate *nextMonth = [self dayInTheLastOrNextMonth:showDate withType:type];
         NSString *nextMonthString = [NSString stringWithFormat:@"%@",nextMonth];
         NSString *subString = [nextMonthString substringToIndex:10];

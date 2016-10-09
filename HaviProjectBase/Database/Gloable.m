@@ -38,4 +38,5 @@ DeviceList *gloableActiveDevice = nil;
 
 Reachability *netReachability = nil;
 NSString *phoneGetCode = @"";
+NSString *accessTocken = @"";
 

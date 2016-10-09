@@ -819,6 +819,7 @@
 		57D1CD801DAA0C9E00AE9186 /* IntroduceView2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7D1DAA0C9E00AE9186 /* IntroduceView2.png */; };
 		57D1CD811DAA0C9E00AE9186 /* IntroduceView3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7E1DAA0C9E00AE9186 /* IntroduceView3.png */; };
 		57F852361DAA11E5005D8DF4 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F852351DAA11E5005D8DF4 /* login.png */; };
+		57F852391DAA1D0E005D8DF4 /* AccessTockenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F852381DAA1D0E005D8DF4 /* AccessTockenModel.m */; };
 		5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */; };
 /* End PBXBuildFile section */
 
@@ -2115,6 +2116,8 @@
 		57D1CD7D1DAA0C9E00AE9186 /* IntroduceView2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView2.png; sourceTree = "<group>"; };
 		57D1CD7E1DAA0C9E00AE9186 /* IntroduceView3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView3.png; sourceTree = "<group>"; };
 		57F852351DAA11E5005D8DF4 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		57F852371DAA1D0E005D8DF4 /* AccessTockenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTockenModel.h; sourceTree = "<group>"; };
+		57F852381DAA1D0E005D8DF4 /* AccessTockenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTockenModel.m; sourceTree = "<group>"; };
 		63A2D9002C58A4DE4A995D75 /* Pods-HaviProjectBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.release.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3625,6 +3628,8 @@
 				2C9EF5151C8550D8000704E2 /* AssessmentListModel.m */,
 				2C457B5E1D8674FE00FFAB95 /* ArticleModel.h */,
 				2C457B5F1D8674FE00FFAB95 /* ArticleModel.m */,
+				57F852371DAA1D0E005D8DF4 /* AccessTockenModel.h */,
+				57F852381DAA1D0E005D8DF4 /* AccessTockenModel.m */,
 			);
 			name = Model;
 			path = HaviProjectBase/Model;
@@ -5127,6 +5132,7 @@
 				2CCBB5B21D928995009FD1F8 /* HysteriaPlayer.m in Sources */,
 				2CF2E1591C7593FC0007A639 /* ReNameDoubleDeviceViewController.m in Sources */,
 				2C1DA01F1D4F2BF300FA6678 /* JTCalendarWeekDayView.m in Sources */,
+				57F852391DAA1D0E005D8DF4 /* AccessTockenModel.m in Sources */,
 				2CE3CDC11D8E426B001DDD1C /* XHBubblePhotoImageView.m in Sources */,
 				2CE3CDBB1D8E426B001DDD1C /* SETextMagnifierCaret.m in Sources */,
 				2C9EF2E11C7C2AFC000704E2 /* AllDeviceModel.m in Sources */,

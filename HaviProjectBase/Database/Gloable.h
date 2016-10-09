@@ -39,6 +39,7 @@ extern DeviceList *gloableActiveDevice;
 
 extern Reachability *netReachability;
 extern NSString *phoneGetCode;
+extern NSString *accessTocken;
 
 
 

@@ -23,6 +23,7 @@
 #import "AssessmentListModel.h"
 #import "WeatherModel.h"
 #import "ArticleModel.h"
+#import "AccessTockenModel.h"
 
 @interface ZZHAPIManager : NSObject
 
@@ -32,6 +33,8 @@
 
 - (void)requestServerTimeWithBlock:(void (^)(ServerTimeModel *serVerTime , NSError *error))blcok;
 
+//请求accessTocken
+- (void)requestAccessTockenWithParams:(NSDictionary *)params withBlock:(void (^)(AccessTockenModel *serVerTime , NSError *error))blcok;
 //获取专家建议表
 
 - (void)requestAssessmentListWithBlock:(void (^)(AssessmentListModel *assessList , NSError *error))blcok;

@@ -48,8 +48,36 @@
     self.isIn = YES;
     
     if ([UserManager GetUserObj]) {
+        __block BOOL isDone = NO;
+        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+        [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
+            if (!error) {
+                DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
+                if (serVerTime.serverTime.length==0) {
+                    return;
+                }
+                NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
+                NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",thirdPartyLoginUserId,atTime];
+                NSString *md5String = [md5OriginalString md5String];
+                NSDictionary *dic = @{
+                                      @"UserId": thirdPartyLoginUserId,
+                                      @"Atime": atTime,
+                                      @"MD5":[md5String uppercaseString],
+                                      };
+                [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
+                    if (!error) {
+                        accessTocken = serVerTime.accessTockenString;
+                        isDone = YES;
+                    }
+                    DeBugLog(@"请求accessTocken: %@,错误是%@",serVerTime,error);
+                }];
+            }else{
+                
+            }
+        }];
         [self setRootViewController];
         [self getUserLocationWith:launchOptions];
+    
     }else{
         LoginViewController *login = [[LoginViewController alloc]init];
         
@@ -77,6 +105,11 @@
     return YES;
 }
 
+- (void)setRootWithOptions:(NSDictionary *)launchOptions
+{
+    [self setRootViewController];
+    [self getUserLocationWith:launchOptions];
+}
 #pragma mark settings
 - (void)getUserLocationWith:(NSDictionary *)launchOptions
 {

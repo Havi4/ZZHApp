@@ -29,6 +29,17 @@ static ZZHAPIManager *_apiManager = nil;
     }];
 }
 
+- (void)requestAccessTockenWithParams:(NSDictionary *)params withBlock:(void (^)(AccessTockenModel *serVerTime , NSError *error))blcok
+{
+    NSString *aPath = [NSString stringWithFormat:@"v1/app/GetAccessToken/%@/%@/%@",[params objectForKey:@"UserId"],[params objectForKey:@"Atime"],[params objectForKey:@"MD5"]];
+    [[HaviNetWorkAPIClient sharedJSONClient]requestJSONDataWithPath:aPath withParams:params withNetWorkMethod:Get andBlock:^(id data, NSError *error) {
+        NSDictionary *dic = (NSDictionary *)data;
+        AccessTockenModel *loginModel = [AccessTockenModel modelWithDictionary:dic];
+        blcok(loginModel,error);
+    }];
+
+}
+
 //获取专家建议表
 
 - (void)requestAssessmentListWithBlock:(void (^)(AssessmentListModel *assessList , NSError *error))blcok
