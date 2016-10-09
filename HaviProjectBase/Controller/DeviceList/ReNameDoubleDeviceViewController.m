@@ -287,6 +287,8 @@
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestRenameFriendDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
             [self backToHomeView:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
+
             [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
         }];        
     }else{
@@ -311,6 +313,7 @@
         [client requestRenameMyDeviceParams:para andBlock:^(BaseModel *resultModel, NSError *error) {
             [self backToHomeView:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
         }];
     }
 }

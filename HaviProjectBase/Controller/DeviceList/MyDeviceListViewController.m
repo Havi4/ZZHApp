@@ -155,8 +155,8 @@
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestActiveMyDeviceParams:dic14 andBlock:^(BaseModel *resultModel, NSError *error) {
             if ([resultModel.returnCode intValue]==200) {
-                [self getUserDeviceList];
                 gloableActiveDevice = model;
+                [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
                 [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
             }
         }];
@@ -212,6 +212,7 @@
                 [self deleteMySureUUID:self.selectDevice.deviceUUID];
                 if ([self.selectDevice.isActivated isEqualToString:@"True"]) {
                     gloableActiveDevice = nil;
+
                     [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
                 }
                 break;
@@ -235,7 +236,8 @@
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestRemoveDeviceParams:dic andBlock:^(BaseModel *resultModel, NSError *error) {
         if ([resultModel.returnCode intValue]==200) {
-            [self getUserDeviceList];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
+
         }
     }];
 }

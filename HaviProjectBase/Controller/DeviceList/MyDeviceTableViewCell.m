@@ -86,16 +86,17 @@
             _selectImageView.hidden = NO;
         }
         _messageTime.text = deviceModel.nDescription;
-        
+        if (_deviceStatusImage) {
+            [_deviceStatusImage removeFromSuperview];
+        }
         if ([deviceModel.activationStatusCode intValue]==0) {
             _deviceStatusImage = [UIButton buttonWithType:UIButtonTypeCustom];
-            _deviceStatusImage.layer.borderColor = [UIColor redColor].CGColor;
-            _deviceStatusImage.layer.borderWidth = 1;
             _deviceStatusImage.layer.cornerRadius = 5;
             _deviceStatusImage.layer.masksToBounds = YES;
+            _deviceStatusImage.backgroundColor = [UIColor redColor];
             _deviceStatusImage.titleLabel.font = [UIFont systemFontOfSize:10];
             [_deviceStatusImage setTitle:@"离线" forState:UIControlStateNormal];
-            [_deviceStatusImage setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [_deviceStatusImage setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [self.topContentView addSubview:_deviceStatusImage];
             [_deviceStatusImage makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(_cellIconImageView.mas_right).offset(20);
@@ -116,10 +117,11 @@
             _deviceStatusImage.layer.borderColor = [UIColor redColor].CGColor;
             _deviceStatusImage.layer.borderWidth = 1;
             _deviceStatusImage.layer.cornerRadius = 5;
+            _deviceStatusImage.backgroundColor = [UIColor redColor];
             _deviceStatusImage.layer.masksToBounds = YES;
             _deviceStatusImage.titleLabel.font = [UIFont systemFontOfSize:10];
             [_deviceStatusImage setTitle:@"脱机" forState:UIControlStateNormal];
-            [_deviceStatusImage setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [_deviceStatusImage setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [self.topContentView addSubview:_deviceStatusImage];
             [_deviceStatusImage makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(_cellIconImageView.mas_right).offset(20);

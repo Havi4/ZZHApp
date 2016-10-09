@@ -67,6 +67,9 @@
         @strongify(self);
         [self cellRightButtonSelectedType:type indexPath:indexPath obj:item cell:cell];
     };
+    [[NSNotificationCenter defaultCenter]addObserverForName:kRefreshDeviceList object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self getFriendDeviceList];
+    }];
 }
 
 #pragma mark setter meathod
@@ -142,7 +145,7 @@
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestActiveFriendDeviceParams:dic14 andBlock:^(BaseModel *resultModel, NSError *error) {
             if ([resultModel.returnCode intValue]==200) {
-                [self getFriendDeviceList];
+                [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
                 gloableActiveDevice = model;
                 [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
             }
@@ -205,7 +208,8 @@
                            };
     [client requestRemoveFriendParam:dic8 andBlock:^(BaseModel *resultModel, NSError *error) {
         if ([resultModel.returnCode intValue]==200) {
-            [self getFriendDeviceList];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
+
         }
     }];
 }
