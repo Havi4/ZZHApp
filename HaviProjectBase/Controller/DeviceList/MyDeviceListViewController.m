@@ -34,6 +34,7 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     [self addTableViewDataHandle];
+    [self getUserDeviceList];
 }
 
 - (void)addTableViewDataHandle
@@ -70,6 +71,10 @@
         @strongify(self);
         [self cellRightButtonSelectedType:type indexPath:indexPath obj:item cell:cell];
     };
+    
+    [[NSNotificationCenter defaultCenter]addObserverForName:kRefreshDeviceList object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self getUserDeviceList];
+    }];
 }
 
 #pragma mark setter
@@ -238,7 +243,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self getUserDeviceList];
+//    [self getUserDeviceList];
 
 }
 

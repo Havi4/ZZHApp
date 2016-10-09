@@ -33,6 +33,7 @@
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self addTableViewDataHandle];
+    [self getFriendDeviceList];
 }
 
 - (void)addTableViewDataHandle
@@ -212,8 +213,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getFriendDeviceList];
-    
+//    [self getFriendDeviceList];
 }
 
 

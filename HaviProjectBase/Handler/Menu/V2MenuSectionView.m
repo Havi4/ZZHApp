@@ -20,6 +20,7 @@ static CGFloat const kAvatarHeight = 70.0f;
 @interface V2MenuSectionView () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIImageView *profileBackView;
 @property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UIView *profileBorderView;
 @property (nonatomic, strong) UIButton    *avatarButton;
 @property (nonatomic, strong) UIImageView *divideImageView;
 @property (nonatomic, strong) UILabel     *usernameLabel;
@@ -93,6 +94,8 @@ static CGFloat const kAvatarHeight = 70.0f;
 }
 
 - (void)configureProfileView {
+    
+    
     self.profileBackView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"profile_back"]];
     [self addSubview:self.profileBackView];
     
@@ -101,7 +104,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.avatarImageView.clipsToBounds = YES;
     self.avatarImageView.layer.cornerRadius = 35; //kAvatarHeight / 2.0;
     self.avatarImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.avatarImageView.layer.borderWidth = 1.0f;
+    self.avatarImageView.layer.borderWidth = 0.0f;
     [self addSubview:self.avatarImageView];
     
 
@@ -211,6 +214,18 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.weatherImage.frame = (CGRect){20,20,20,20};
     self.weatherImage.contentMode = UIViewContentModeScaleAspectFill;
     
+    self.profileBorderView = [[UIView alloc] init];
+    self.profileBorderView.layer.cornerRadius = 37;
+    self.profileBorderView.backgroundColor = [UIColor clearColor];
+    self.profileBorderView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.3].CGColor;
+    self.profileBorderView.layer.borderWidth = 1.f;
+    self.profileBorderView.frame = (CGRect)(CGRect){(280-70)/2-3, 27, kAvatarHeight+6, kAvatarHeight+6};
+    self.profileBorderView.userInteractionEnabled = YES;
+    [self addSubview:self.profileBorderView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id sender) {
+        [self showProfile:nil];
+    }];
+    [self.profileBorderView addGestureRecognizer:tap];
 //
 }
 

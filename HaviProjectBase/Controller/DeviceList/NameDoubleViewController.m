@@ -248,9 +248,11 @@
         if (resultModel) {
             [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
             @weakify(self);
+            
             [LBXAlertAction showAlertWithTitle:@"绑定成功" msg:@"您已经成功绑定该设备，是否现在激活？" chooseBlock:^(NSInteger buttonIdx) {
                 @strongify(self);
                 //点击完，继续扫码
+                [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
                 switch (buttonIdx) {
                     case 0:{
                         [self.navigationController popToRootViewControllerAnimated:YES];
