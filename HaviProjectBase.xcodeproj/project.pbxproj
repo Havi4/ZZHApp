@@ -820,6 +820,8 @@
 		57D1CD811DAA0C9E00AE9186 /* IntroduceView3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7E1DAA0C9E00AE9186 /* IntroduceView3.png */; };
 		57F852361DAA11E5005D8DF4 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F852351DAA11E5005D8DF4 /* login.png */; };
 		57F852391DAA1D0E005D8DF4 /* AccessTockenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F852381DAA1D0E005D8DF4 /* AccessTockenModel.m */; };
+		57F8523C1DAB60D7005D8DF4 /* LoginBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F8523B1DAB60D6005D8DF4 /* LoginBackViewController.m */; };
+		57F8523E1DAB620C005D8DF4 /* backlogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F8523D1DAB620C005D8DF4 /* backlogin.png */; };
 		5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */; };
 /* End PBXBuildFile section */
 
@@ -2118,6 +2120,9 @@
 		57F852351DAA11E5005D8DF4 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		57F852371DAA1D0E005D8DF4 /* AccessTockenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTockenModel.h; sourceTree = "<group>"; };
 		57F852381DAA1D0E005D8DF4 /* AccessTockenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTockenModel.m; sourceTree = "<group>"; };
+		57F8523A1DAB60D6005D8DF4 /* LoginBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBackViewController.h; sourceTree = "<group>"; };
+		57F8523B1DAB60D6005D8DF4 /* LoginBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBackViewController.m; sourceTree = "<group>"; };
+		57F8523D1DAB620C005D8DF4 /* backlogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backlogin.png; sourceTree = "<group>"; };
 		63A2D9002C58A4DE4A995D75 /* Pods-HaviProjectBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.release.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2483,6 +2488,7 @@
 			isa = PBXGroup;
 			children = (
 				57F852351DAA11E5005D8DF4 /* login.png */,
+				57F8523D1DAB620C005D8DF4 /* backlogin.png */,
 				2CA0D5281D9BBA5C00EEA00B /* blue_tracker@3x.png */,
 				2CA0D5291D9BBA5C00EEA00B /* bluec@3x.png */,
 				2CA0D5231D9BB6DB00EEA00B /* car@3x.png */,
@@ -4431,6 +4437,8 @@
 				2C2297FB1D6AE2A50086ACF5 /* ForgetPassViewController.m */,
 				2C2297FD1D6AE9E50086ACF5 /* ForgetViewController.h */,
 				2C2297FE1D6AE9E50086ACF5 /* ForgetViewController.m */,
+				57F8523A1DAB60D6005D8DF4 /* LoginBackViewController.h */,
+				57F8523B1DAB60D6005D8DF4 /* LoginBackViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -4782,6 +4790,7 @@
 				2C9EF3C81C7EFBCA000704E2 /* icon_turn_over_1@2x.png in Resources */,
 				2CF2E29C1C7AE0660007A639 /* read_me.txt in Resources */,
 				2CA0D5211D9B9CDA00EEA00B /* toux1@3x.png in Resources */,
+				57F8523E1DAB620C005D8DF4 /* backlogin.png in Resources */,
 				2CE3CDDF1D8E426B001DDD1C /* ReceiverVoiceNodePlaying003@2x.png in Resources */,
 				2CF2E2171C79D2EC0007A639 /* AppSetting1.plist in Resources */,
 				2C11C98B1D76A6D70032CA95 /* erweim@3x.png in Resources */,
@@ -5125,6 +5134,7 @@
 				2C96AA271D40C86100ACCA08 /* ZZHRootViewController.m in Sources */,
 				2C9EF3F51C7F0B99000704E2 /* TriangleView.m in Sources */,
 				2CD75B8F1C61CCC600E7E076 /* NSObject+Common.m in Sources */,
+				57F8523C1DAB60D7005D8DF4 /* LoginBackViewController.m in Sources */,
 				2C9EF4171C7FEC4D000704E2 /* FloatLayerView.m in Sources */,
 				2CF2E2131C79D1690007A639 /* AppSettingTableViewCell.m in Sources */,
 				2CE3CDA51D8E426B001DDD1C /* XHMessageBubbleFactory.m in Sources */,

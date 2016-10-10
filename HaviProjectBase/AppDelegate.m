@@ -23,8 +23,9 @@
 #import "CCLocationManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "GetWeatherAPI.h"
+#import "LoginBackViewController.h"
 
-@interface AppDelegate ()<CLLocationManagerDelegate>
+@interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
@@ -48,36 +49,9 @@
     self.isIn = YES;
     
     if ([UserManager GetUserObj]) {
-        __block BOOL isDone = NO;
-        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
-        [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
-            if (!error) {
-                DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
-                if (serVerTime.serverTime.length==0) {
-                    return;
-                }
-                NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
-                NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",thirdPartyLoginUserId,atTime];
-                NSString *md5String = [md5OriginalString md5String];
-                NSDictionary *dic = @{
-                                      @"UserId": thirdPartyLoginUserId,
-                                      @"Atime": atTime,
-                                      @"MD5":[md5String uppercaseString],
-                                      };
-                [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
-                    if (!error) {
-                        accessTocken = serVerTime.accessTockenString;
-                        isDone = YES;
-                    }
-                    DeBugLog(@"请求accessTocken: %@,错误是%@",serVerTime,error);
-                }];
-            }else{
-                
-            }
-        }];
-        [self setRootViewController];
-        [self getUserLocationWith:launchOptions];
-    
+        [self getUserAccessTockenWith:launchOptions];
+        LoginBackViewController *back = [[LoginBackViewController alloc]init];
+        self.window.rootViewController = back;
     }else{
         LoginViewController *login = [[LoginViewController alloc]init];
         
@@ -103,6 +77,47 @@
     //启动更新检查SDK
 //    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"PGY_APP_ID"];
     return YES;
+}
+
+- (void)getUserAccessTockenWith:(NSDictionary *)launchOptions
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
+        if (!error) {
+            DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
+            if (serVerTime.serverTime.length==0) {
+                return;
+            }
+            NSDateFormatter *date = [[NSDateFormatter alloc]init];
+            [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *n = [date dateFromString:serVerTime.serverTime];
+            NSInteger time = [n timeIntervalSince1970];
+            NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
+            NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",thirdPartyLoginUserId,atTime];
+            NSString *md5String = [md5OriginalString md5String];
+            NSDictionary *dic = @{
+                                  @"UserId": thirdPartyLoginUserId,
+                                  @"Atime": [NSNumber numberWithInteger:(time)],
+                                  @"MD5":[md5String uppercaseString],
+                                  };
+            [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
+                if (!error) {
+                    accessTocken = serVerTime.accessTockenString;
+                    [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
+                    dispatch_async_on_main_queue(^{
+                        [self setRootViewController];
+                        [self getUserLocationWith:launchOptions];
+                    });
+                }else{
+                    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    [alertView show];
+                }
+            }];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alertView show];
+        }
+    }];
 }
 
 - (void)setRootWithOptions:(NSDictionary *)launchOptions
@@ -308,7 +323,6 @@
 {
     YYReachability *reachablity = [YYReachability reachabilityWithHostname:@"www.baidu.com"];
     reachablity.notifyBlock = ^(YYReachability *reachability){
-        netReachability = reachablity;
         if (reachablity.status == YYReachabilityStatusNone) {
             [NSObject showHudTipStr:@"您的手机没有网络,请检查您的网络"];
         }else if (reachablity.status == YYReachabilityStatusWWAN){
@@ -491,6 +505,11 @@
 {
     JPushNotiManager *manager = [JPushNotiManager sharedInstance];
     [manager handPushApplication:application receiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self getUserAccessTockenWith:nil];
 }
 
 @end

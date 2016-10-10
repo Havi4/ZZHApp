@@ -179,6 +179,40 @@
 
 }
 
+- (void)getUserAccessTockenWith:(NSDictionary *)launchOptions
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
+        if (!error) {
+            DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
+            if (serVerTime.serverTime.length==0) {
+                return;
+            }
+            NSDateFormatter *date = [[NSDateFormatter alloc]init];
+            [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *n = [date dateFromString:serVerTime.serverTime];
+            NSInteger time = [n timeIntervalSince1970];
+            NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
+            NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",thirdPartyLoginUserId,atTime];
+            NSString *md5String = [md5OriginalString md5String];
+            NSDictionary *dic = @{
+                                  @"UserId": thirdPartyLoginUserId,
+                                  @"Atime": [NSNumber numberWithInteger:(time)],
+                                  @"MD5":[md5String uppercaseString],
+                                  };
+            [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
+                if (!error) {
+                    accessTocken = serVerTime.accessTockenString;
+                    [self registerUser:nil];
+                }else{
+                }
+            }];
+        }else{
+        }
+    }];
+}
+
+
 - (void)registerUser:(UIButton *)sender
 {
     if (![self.nameText.text isEqualToString:self.passWordText.text]) {
@@ -206,11 +240,12 @@
             thirdPartyLoginIcon = @"";
             thirdPartyLoginToken = @"";
             [UserManager setGlobalOauth];
-            if (self.iconData) {
-                [self uploadWithImageData:self.iconData withUserId:thirdPartyLoginUserId];
-            }
-            AppDelegate *app = [UIApplication sharedApplication].delegate;
-            [app setRootViewController];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+//            if (self.iconData) {
+//                [self uploadWithImageData:self.iconData withUserId:thirdPartyLoginUserId];
+//            }
+//            AppDelegate *app = [UIApplication sharedApplication].delegate;
+//            [app setRootViewController];
         }else{
             [NSObject showHudTipStr:[NSString stringWithFormat:@"%@",error]];
         }
