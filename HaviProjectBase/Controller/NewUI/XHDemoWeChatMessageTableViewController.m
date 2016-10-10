@@ -605,6 +605,10 @@
  *  @param date             发送时间
  */
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSString *)voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
+    if ([voiceDuration intValue]< 0.5) {
+        [NSObject showHudTipStr:@"录音时间过短"];
+        return;
+    }
     XHMessage *voiceMessage = [[XHMessage alloc] initWithVoicePath:voicePath voiceUrl:nil voiceDuration:voiceDuration sender:sender timestamp:date];
     voiceMessage.avatar = [UIImage imageNamed:@"avatar"];
     voiceMessage.avatarUrl = self.myThumUrl;
@@ -733,7 +737,7 @@
     [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
-            [NSObject showHudTipStr:@"提交成功"];
+//            [NSObject showHudTipStr:@"提交成功"];
         }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==1){
             [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
         }
@@ -836,7 +840,7 @@
     [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
-            [NSObject showHudTipStr:@"提交成功"];
+//            [NSObject showHudTipStr:@"提交成功"];
             
         }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==1){
             [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
@@ -861,7 +865,7 @@
     [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
-            [NSObject showHudTipStr:@"提交成功"];
+//            [NSObject showHudTipStr:@"提交成功"];
             
         }else if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==1){
             [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];

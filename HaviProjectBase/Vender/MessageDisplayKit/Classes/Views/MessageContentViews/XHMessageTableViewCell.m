@@ -456,6 +456,8 @@ static const CGFloat kXHUserNameLabelHeight = 20;
         [avatarButton setImage:[self getAvatarPlaceholderImage] forState:UIControlStateNormal];
         [avatarButton addTarget:self action:@selector(avatarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:avatarButton];
+        avatarButton.layer.cornerRadius = 20;
+        avatarButton.layer.masksToBounds = YES;
         self.avatarButton = avatarButton;
         
         if (message.shouldShowUserName) {
