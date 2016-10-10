@@ -95,7 +95,7 @@
     leftButton.tag = 9000;
     [leftButton addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom ];
-    [rightButton setTitle:@"他人设备" forState:UIControlStateNormal];
+    [rightButton setTitle:@"好友设备" forState:UIControlStateNormal];
     [rightButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [rightButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     rightButton.frame = (CGRect){(self.view.frame.size.width - 140)/2,0,(self.view.frame.size.width - 140)/2,44};

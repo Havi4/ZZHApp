@@ -70,6 +70,7 @@
     voiceMessage.avatar = [UIImage imageNamed:@"doc"];
     voiceMessage.timestamp = [NSDate dateWithTimeIntervalSinceNow:[[messdic objectForKey:@"created_time_ms"] integerValue]];
     voiceMessage.avatarUrl = iconUrl;
+    voiceMessage.isRead = YES;
     voiceMessage.bubbleMessageType = bubbleMessageType;
     NSDate *time1 = [self convertStrToTime:time];
     voiceMessage.timestamp = time1;
