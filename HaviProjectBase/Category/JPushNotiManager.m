@@ -110,14 +110,13 @@ static JPushNotiManager *shareInstance = nil;
             [alert show];
         } break;
         case 108:{
-            //版本更新
-            [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:userInfo];
+            
         } break;
         case 109:{
-            //版本更新
             [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:userInfo];
         } break;
         case 110:{
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:userInfo];
             //版本更新
             
         } break;
@@ -188,6 +187,15 @@ static JPushNotiManager *shareInstance = nil;
             }
             break;
         }
+        case 113:{
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:userInfo];
+        } break;
+        case 114:{
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:userInfo];
+        } break;
+
         default:
             break;
     }
@@ -231,6 +239,11 @@ static SystemSoundID soundId;
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     UIViewController *controllers = app.currentNavigationController.topViewController;
     return controllers;
+}
+
+- (void)handJPushMessage:(NSNotification *)userInfo
+{
+    
 }
 
 @end

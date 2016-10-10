@@ -270,7 +270,7 @@
     [[NSUserDefaults standardUserDefaults]registerDefaults:@{thirdPartyLoginUserId:@"NO"}];
     [[NSUserDefaults standardUserDefaults] synchronize];
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:thirdPartyLoginUserId]isEqualToString:@"NO"]) {
-        NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Login";
+        NSString *url = [NSString stringWithFormat:@"%@v1/cy/Login",kAppBaseURL];
         NSDictionary *dicPara = @{
                                   @"UserId": thirdPartyLoginUserId
                                   };
@@ -312,7 +312,7 @@
 
 - (void)getArticleList{
     
-    NSString *url = [NSString stringWithFormat:@"http://testzzhapi.meddo99.com:8088/v1/news/ArticleList?PageNum=0&Count=100&Tips=%@",self.tagLists[0]];
+    NSString *url = [NSString stringWithFormat:@"%@v1/news/ArticleList?PageNum=0&Count=100&Tips=%@",kAppBaseURL,self.tagLists[0]];
     
     [NSObject showHud];
     [WTRequestCenter getWithURL:url headers:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {

@@ -71,7 +71,7 @@
 -(void)loadGoogle
 {
 //    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.articleURL]];
-    NSString *url = [NSString stringWithFormat:@"http://zzhdemo.meddo99.com/html/%@",self.articleURL];
+    NSString *url = [NSString stringWithFormat:@"%@/html/%@",kAppBaseURL,self.articleURL];
     NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [_webView loadRequest:req];
 }

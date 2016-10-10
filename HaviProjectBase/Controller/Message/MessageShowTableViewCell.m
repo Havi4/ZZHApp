@@ -26,16 +26,14 @@
 
 @implementation MessageShowTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _messageIcon = [[UIImageView alloc]init];
         [self addSubview:_messageIcon];
+        _messageIcon.layer.cornerRadius = 25;
+        _messageIcon.layer.masksToBounds = YES;
         _messageIcon.layer.shouldRasterize = YES;
         _messageIcon.layer.rasterizationScale = 2;
         _messageIcon.image = [UIImage imageNamed:@"head_placeholder"];
@@ -49,16 +47,16 @@
         //
         _messagePhone = [[UILabel alloc]init];
         [self addSubview:_messagePhone];
-        _messagePhone.font = [UIFont systemFontOfSize:14];
+        _messagePhone.font = [UIFont systemFontOfSize:12];
         _messagePhone.text = @"";
         _messagePhone.textColor = [UIColor colorWithRed:0.247f green:0.263f blue:0.271f alpha:1.00f];
 
         //
-//        _messageTime = [[UILabel alloc]init];
-//        [self addSubview:_messageTime];
-//        _messageTime.text = @"";
-//        _messageTime.font = [UIFont systemFontOfSize:14];
-//        _messageTime.textColor = [UIColor colorWithRed:0.247f green:0.263f blue:0.271f alpha:1.00f];
+        _messageTime = [[UILabel alloc]init];
+        [self addSubview:_messageTime];
+        _messageTime.text = @"";
+        _messageTime.font = [UIFont systemFontOfSize:10];
+        _messageTime.textColor = [UIColor colorWithRed:0.247f green:0.263f blue:0.271f alpha:1.00f];
         //
         _messageBack = [[UIImageView alloc]init];
         _messageBack.image = [UIImage imageNamed:@"message_back"];
@@ -80,6 +78,7 @@
         _messageAccepteButton.layer.masksToBounds = YES;
         [_messageAccepteButton setTitle:@"同意" forState:UIControlStateNormal];
         [_messageAccepteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
         [_messageAccepteButton addTarget:self action:@selector(acceptButtonTarget:) forControlEvents:UIControlEventTouchUpInside];
         [_messageAccepteButton setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateSelected];
         _messageAccepteButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -108,23 +107,23 @@
         //
         [_messageName makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_messageIcon.mas_right).offset(5);
-            make.top.equalTo(_messageIcon.mas_top);
-            make.height.equalTo(@25);
+            make.top.equalTo(self.mas_top).offset(5);
             make.width.equalTo(@150);
         }];
         //
         [_messagePhone makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_messageIcon.mas_right).offset(5);
-            make.bottom.equalTo(_messageIcon.mas_bottom);
+            make.top.equalTo(_messageName.mas_bottom);
             make.width.equalTo(@150);
-            make.height.equalTo(@25);
         }];
         //
-//        [_messageTime makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.equalTo(self.mas_right).offset(-10);
-//            make.height.equalTo(@20);
-//            make.top.equalTo(self.mas_top).offset(10);
-//        }];
+        [_messageTime makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_messageIcon.mas_right).offset(5);
+            make.top.equalTo(_messagePhone.mas_bottom);
+            make.height.equalTo(_messagePhone.mas_height);
+            make.height.equalTo(_messageName.mas_height);
+            make.bottom.equalTo(self.mas_bottom).offset(-5);
+        }];
         //
         [_messageAccepteButton makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.mas_centerY);
@@ -178,27 +177,32 @@
             _messageName.text = userInfo.userName;
         }
         if (userInfo.statusCode == 1) {
-//            _statusImageView.image = [UIImage imageNamed:@"accept"];
-//            _messageAccepteButton.userInteractionEnabled = NO;
-//            [_messageAccepteButton setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
-//            _messageRefuseButton.userInteractionEnabled = NO;
-//            [_messageRefuseButton setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
-//            _messageName.textColor = [UIColor grayColor];
-//            _messagePhone.textColor = [UIColor grayColor];
-//            _messageTime.textColor = [UIColor grayColor];
-        }else if (userInfo.statusCode == -1){
-//            _statusImageView.image = [UIImage imageNamed:@"refuse"];
-            _messageAccepteButton.userInteractionEnabled = NO;
-            [_messageAccepteButton setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
+            _messageAccepteButton.hidden = YES;
+            _messageRefuseButton.backgroundColor = [UIColor clearColor];
+            [_messageRefuseButton setTitle:@"已接受" forState:UIControlStateNormal];
+            [_messageRefuseButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
             _messageRefuseButton.userInteractionEnabled = NO;
-            [_messageRefuseButton setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
-            _messageName.textColor = [UIColor grayColor];
-            _messagePhone.textColor = [UIColor grayColor];
-            _messageTime.textColor = [UIColor grayColor];
+            [_messageRefuseButton setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+
+        }else if (userInfo.statusCode == -1){
+            _messageAccepteButton.hidden = YES;
+            _messageRefuseButton.backgroundColor = [UIColor clearColor];
+            [_messageRefuseButton setTitle:@"已拒绝" forState:UIControlStateNormal];
+            [_messageRefuseButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            _messageRefuseButton.userInteractionEnabled = NO;
+            [_messageRefuseButton setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
         }else if (userInfo.statusCode == 0){
-//            _statusImageView.image = [UIImage imageNamed:@"apply"];
+            _messageAccepteButton.hidden = NO;
+            [_messageAccepteButton setTitle:@"同意" forState:UIControlStateNormal];
+            [_messageAccepteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_messageRefuseButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1.00]] forState:UIControlStateNormal];
+
+            [_messageRefuseButton setTitle:@"拒绝" forState:UIControlStateNormal];
+            [_messageRefuseButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            _messageRefuseButton.userInteractionEnabled = YES;
         }
         _messagePhone.text = userInfo.comment;
+        _messageTime.text = userInfo.requestDate;
     }
     self.indexPath = indexPath;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

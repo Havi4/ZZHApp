@@ -378,6 +378,54 @@
     [WeiboSDK sendRequest:request];
 }
 
+- (void)getUserAccessTocken
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
+        if (!error) {
+            DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
+            if (serVerTime.serverTime.length==0) {
+                return;
+            }
+            NSDateFormatter *date = [[NSDateFormatter alloc]init];
+            [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *n = [date dateFromString:serVerTime.serverTime];
+            NSInteger time = [n timeIntervalSince1970];
+            NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
+            NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",[NSString stringWithFormat:@"%@$%@",kMeddoPlatform,self.nameText.text],atTime];
+            NSString *md5String = [md5OriginalString md5String];
+            NSDictionary *dic = @{
+                                  @"UserId": [NSString stringWithFormat:@"%@$%@",kMeddoPlatform,self.nameText.text],
+                                  @"Atime": [NSNumber numberWithInteger:(time)],
+                                  @"MD5":[md5String uppercaseString],
+                                  };
+            [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
+                if (!error) {
+                    if ([serVerTime.returnCode intValue]==200) {
+                        
+                        accessTocken = serVerTime.accessTockenString;
+                        [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
+                        [self login:nil];
+                    }else{
+                        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                        alertView.tag = 101;
+                        [alertView show];
+                    }
+                }else{
+                    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    alertView.tag = 101;
+                    [alertView show];
+                }
+            }];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            alertView.tag = 101;
+            [alertView show];
+        }
+    }];
+}
+
+
 
 - (void)login:(UIButton *)sender
 {

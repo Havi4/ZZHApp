@@ -66,9 +66,11 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
             self.sensorInfo = sensorModel;
             if (sensorModel) {
                 [self.containerDataView.childViewControllers enumerateObjectsUsingBlock:^(__kindof CenterDataShowViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    obj.sensorInfoDetail = self.sensorInfo;
                     [obj refreshBedStaus];
                 }];
             }else{
+                
             }
         }];
 
@@ -414,7 +416,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     KxMenuItem *item = (KxMenuItem *)sender;
     if ([item.title isEqualToString:@"快速提问"]) {
-        NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Login";
+        NSString *url = [NSString stringWithFormat:@"%@/v1/cy/Login",kAppBaseURL];
         NSDictionary *dicPara = @{
                                   @"UserId": thirdPartyLoginUserId
                                   };

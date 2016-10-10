@@ -32,7 +32,7 @@ static HaviNetWorkAPIClient *_netWorkClient;
         self.requestSerializer = [AFJSONRequestSerializer serializer];
         self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", @"text/html", nil];
         [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//        [self.requestSerializer setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
+        [self.requestSerializer setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
         [self.requestSerializer setValue:url.absoluteString forHTTPHeaderField:@"Referer"];
     }
     return self;

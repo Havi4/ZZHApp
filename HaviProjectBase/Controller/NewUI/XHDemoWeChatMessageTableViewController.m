@@ -297,7 +297,7 @@
 
 - (void)getContentMessage
 {
-    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/Detail";
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/Detail",kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"ProblemId":self.problemID,
@@ -738,7 +738,7 @@
 
 - (void)sendImessageWith:(NSString *)text
 {
-    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/ProblemContent/Create";
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",kAppBaseURL];
     NSDictionary *textPloblem = @{
                                   @"type": @"text",
                                   @"text": text,
@@ -801,7 +801,7 @@
     NSDictionary *dicHeader = @{
                                 @"AccessToken": @"123456789",
                                 };
-    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",kAppTestBaseURL,thirdPartyLoginUserId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
     [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
     [self setRequest:request withImageData:imageData];
@@ -841,7 +841,7 @@
 
 - (void)sendImageWith:(NSString *)text
 {
-    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/ProblemContent/Create";
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",kAppBaseURL];
     NSDictionary *textPloblem = @{
                                   @"type": @"image",
                                   @"file": text,
@@ -866,7 +866,7 @@
 
 - (void)sendAudioWith:(NSString *)text
 {
-    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/ProblemContent/Create";
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",kAppBaseURL];
     NSDictionary *textPloblem = @{
                                   @"type": @"audio",
                                   @"file": text,

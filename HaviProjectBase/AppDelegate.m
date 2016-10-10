@@ -48,7 +48,11 @@
     self.isIn = YES;
     
     if ([UserManager GetUserObj]) {
-        [self getUserAccessTockenWith:launchOptions];
+//        [self getUserAccessTockenWith:launchOptions];//获取tocken时候开启，下面四行关闭
+        [self setRootViewController];
+        [self getUserLocationWith:launchOptions];
+        [self getSuggestionList];
+        [self uploadRegisterID];
         LoginBackViewController *back = [[LoginBackViewController alloc]init];
         self.window.rootViewController = back;
     }else{
@@ -80,6 +84,11 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.9*60*60 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self refreshAccessTocken];
     });
+    //自定义消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                      selector:@selector(networkDidReceiveMessage:)
+                          name:kJPFNetworkDidReceiveMessageNotification
+                        object:nil];
     return YES;
 }
 
@@ -145,7 +154,7 @@
                                   @"MD5":[md5String uppercaseString],
                                   };
             [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
-                if (!error) {
+                if ([serVerTime.returnCode intValue]==200) {
                     accessTocken = serVerTime.accessTockenString;
                     [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
                     dispatch_async_on_main_queue(^{
@@ -563,6 +572,12 @@
     }else{
         [self refreshAccessTocken];
     }
+}
+
+- (void)networkDidReceiveMessage:(NSNotification *)notification
+{
+    JPushNotiManager *manager = [JPushNotiManager sharedInstance];
+    [manager handJPushMessage:notification];
 }
 
 @end

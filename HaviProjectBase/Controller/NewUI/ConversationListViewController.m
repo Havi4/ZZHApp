@@ -54,7 +54,7 @@
 
 - (void)getProblemList
 {
-    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/List/My";
+    NSString *url = [NSString stringWithFormat:@"%@/v1/cy/Problem/List/My",kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"pagenum":@"1",
@@ -65,17 +65,24 @@
         [self.refreshControl endRefreshing];
         [NSObject hideHud];
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSArray *probleList = [obj objectForKey:@"Result"];
-        if (probleList.count>0) {
-            [self.noProblemBack removeFromSuperview];
-            self.noProblemBack = nil;
-            self.problemArr = probleList;
-            [self.consultView reloadData];
-            DeBugLog(@"咨询列表是%@",obj);
+        if ([[obj objectForKey:@"Result"]isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = [obj objectForKey:@"Result"];
+            if ([[dic objectForKey:@"error"] intValue]==1) {
+                [NSObject showHudTipStr:[dic objectForKey:@"error_msg"]];
+            }
         }else{
-            self.problemArr = nil;
-            [self.consultView reloadData];
-            [self.view addSubview:self.noProblemBack];
+            NSArray *probleList = [obj objectForKey:@"Result"];
+            if (probleList.count>0) {
+                [self.noProblemBack removeFromSuperview];
+                self.noProblemBack = nil;
+                self.problemArr = probleList;
+                [self.consultView reloadData];
+                DeBugLog(@"咨询列表是%@",obj);
+            }else{
+                self.problemArr = nil;
+                [self.consultView reloadData];
+                [self.view addSubview:self.noProblemBack];
+            }
         }
     } failed:^(NSURLResponse *response, NSError *error) {
         [NSObject hideHud];
@@ -282,7 +289,7 @@
 
 - (void)deleteProblemWith:(NSString *)problemID
 {
-    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Problem/Delete";
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/Delete",kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"ProblemId": problemID,

@@ -17,4 +17,6 @@
 
 - (void)handPushApplication:(UIApplication *)application receiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 
+- (void)handJPushMessage:(NSNotification *)userInfo;
+
 @end

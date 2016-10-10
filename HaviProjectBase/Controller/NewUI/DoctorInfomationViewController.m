@@ -58,7 +58,7 @@
 
 - (void)getDocInfomation
 {
-    NSString *url = @"http://testzzhapi.meddo99.com:8088/v1/cy/Doctor/Detail";
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Doctor/Detail",kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"DoctorId":self.docID,
