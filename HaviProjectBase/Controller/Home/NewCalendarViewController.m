@@ -142,9 +142,11 @@
 - (void)changeMonth:(UIButton *)button
 {
     if (button.tag == 800) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"selectCalendar" object:nil userInfo:@{@"code":@0}];
+        [_calendarContentView loadPreviousPageWithAnimation];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"selectCalendar" object:nil userInfo:@{@"code":@0}];
     }else if (button.tag == 801){
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"selectCalendar" object:nil userInfo:@{@"code":@1}];
+        [_calendarContentView loadNextPageWithAnimation];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"selectCalendar" object:nil userInfo:@{@"code":@1}];
     }
 }
 

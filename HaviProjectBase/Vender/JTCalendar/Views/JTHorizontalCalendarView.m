@@ -151,22 +151,24 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
     
     CGSize size = self.frame.size;
     CGPoint point = CGPointMake(self.contentOffset.x - size.width, 0);
-    [self setContentOffset:point animated:YES];
+    [self setContentOffset:point animated:NO];
 }
 
 - (void)loadNextPageWithAnimation
 {
-    switch (_pageMode) {
-        case JTCalendarPageModeCenterLeft:
-        case JTCalendarPageModeCenter:
-            return;
-        default:
-            break;
+    @synchronized (self) {
+        switch (_pageMode) {
+            case JTCalendarPageModeCenterLeft:
+            case JTCalendarPageModeCenter:
+                return;
+            default:
+                break;
+        }
+        
+        CGSize size = self.frame.size;
+        CGPoint point = CGPointMake(self.contentOffset.x + size.width, 0);
+        [self setContentOffset:point animated:NO];
     }
-    
-    CGSize size = self.frame.size;
-    CGPoint point = CGPointMake(self.contentOffset.x + size.width, 0);
-    [self setContentOffset:point animated:YES];
 }
 
 - (void)loadPreviousPage
