@@ -69,5 +69,6 @@
         cell.imageView.image = [UIImage imageNamed:@"guanyu"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    cell.textLabel.font = [UIFont systemFontOfSize:16];
 }
 @end

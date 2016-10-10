@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>10034</key>
-	<string>双人床设备不允许单独添加</string>
 	<key>10001</key>
 	<string>http请求URL错误</string>
 	<key>10002</key>
@@ -58,7 +56,17 @@
 	<string>数据提交失败</string>
 	<key>10029</key>
 	<string>无效用户ID</string>
+	<key>10030</key>
+	<string>好友搜索条件不可以为空</string>
+	<key>10031</key>
+	<string>产品识别码不存在</string>
+	<key>10032</key>
+	<string>好友关系不存在</string>
 	<key>10033</key>
 	<string>您已经绑定过该设备</string>
+	<key>10034</key>
+	<string>双人床设备不允许单独添加</string>
+	<key>10037</key>
+	<string>已是好友</string>
 </dict>
 </plist>

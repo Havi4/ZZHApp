@@ -45,7 +45,6 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{kAppIntroduceViewKey:@NO}];
     [[NSUserDefaults standardUserDefaults]synchronize];
     [self setThirdAppSettingWith:launchOptions];
-    [self getSuggestionList];
     self.isIn = YES;
     
     if ([UserManager GetUserObj]) {
@@ -60,6 +59,8 @@
             @strongify(self);
             [self setRootViewController];
             [self getUserLocationWith:launchOptions];
+            [self getSuggestionList];
+            [self uploadRegisterID];
         };
         self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:login];
     }
@@ -70,13 +71,56 @@
 //    [self setNetworkNoti];
     [self setIntroduceView];
     [PinLockSetting sharedInstance];
-    [self uploadRegisterID];
+    
     
     //启动基本SDK
 //    [[PgyManager sharedPgyManager] startManagerWithAppId:@"7eb7c775936eef758a5314cd4349f236"];
     //启动更新检查SDK
 //    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"PGY_APP_ID"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.9*60*60 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self refreshAccessTocken];
+    });
     return YES;
+}
+
+- (void)refreshAccessTocken
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
+        if (!error) {
+            DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
+            if (serVerTime.serverTime.length==0) {
+                return;
+            }
+            NSDateFormatter *date = [[NSDateFormatter alloc]init];
+            [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *n = [date dateFromString:serVerTime.serverTime];
+            NSInteger time = [n timeIntervalSince1970];
+            NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
+            NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",thirdPartyLoginUserId,atTime];
+            NSString *md5String = [md5OriginalString md5String];
+            NSDictionary *dic = @{
+                                  @"UserId": thirdPartyLoginUserId,
+                                  @"Atime": [NSNumber numberWithInteger:(time)],
+                                  @"MD5":[md5String uppercaseString],
+                                  };
+            [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
+                if (!error) {
+                    accessTocken = serVerTime.accessTockenString;
+                    [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
+                }else{
+                    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    alertView.tag = 102;
+                    [alertView show];
+                }
+            }];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            alertView.tag = 102;
+            [alertView show];
+        }
+    }];
+
 }
 
 - (void)getUserAccessTockenWith:(NSDictionary *)launchOptions
@@ -107,14 +151,18 @@
                     dispatch_async_on_main_queue(^{
                         [self setRootViewController];
                         [self getUserLocationWith:launchOptions];
+                        [self getSuggestionList];
+                        [self uploadRegisterID];
                     });
                 }else{
                     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    alertView.tag = 101;
                     [alertView show];
                 }
             }];
         }else{
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            alertView.tag = 101;
             [alertView show];
         }
     }];
@@ -509,7 +557,12 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self getUserAccessTockenWith:nil];
+    if (alertView.tag == 101) {
+        
+        [self getUserAccessTockenWith:nil];
+    }else{
+        [self refreshAccessTocken];
+    }
 }
 
 @end
