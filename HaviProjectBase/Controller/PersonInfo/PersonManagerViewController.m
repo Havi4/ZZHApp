@@ -203,7 +203,11 @@
         [self.refreshControl endRefreshing];
         self.userInfoModel = userInfo;
         [self.personInfoTableView reloadData];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"userName" object:nil userInfo:@{@"userName":userInfo.nUserInfo.userName}];
+        NSString *name = @"匿名用户";
+        if (userInfo.nUserInfo.userName.length > 0) {
+            name = userInfo.nUserInfo.userName;
+        }
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"userName" object:nil userInfo:@{@"userName":name}];
     }];
 }
 

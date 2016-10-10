@@ -244,8 +244,8 @@
 //            if (self.iconData) {
 //                [self uploadWithImageData:self.iconData withUserId:thirdPartyLoginUserId];
 //            }
-//            AppDelegate *app = [UIApplication sharedApplication].delegate;
-//            [app setRootViewController];
+            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            [app setRootViewController];
         }else{
             [NSObject showHudTipStr:[NSString stringWithFormat:@"%@",error]];
         }

@@ -138,7 +138,7 @@
     }];
     //
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [nextButton setBackgroundColor:[UIColor lightGrayColor]];
+    [nextButton setBackgroundImage:[UIImage imageNamed:@"button_background"] forState:UIControlStateNormal];
     nextButton.tag = 1001;
     nextButton.userInteractionEnabled = YES;
     [nextButton setTitle:@"下一步" forState:UIControlStateNormal];
@@ -227,7 +227,7 @@
             [self shake:self.codeText];
         }else if (self.codeText.text.length<4){
             button.userInteractionEnabled = NO;
-            [button setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"button_background"] forState:UIControlStateNormal];
             button.backgroundColor = [UIColor lightGrayColor];
         }
     }

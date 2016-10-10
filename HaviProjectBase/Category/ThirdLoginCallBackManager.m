@@ -118,7 +118,7 @@ static ThirdLoginCallBackManager *shareInstance = nil;
                 NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 //第三方登录
                 self.ThirdPlatformInfoDic = obj;
-                [self checkUseridIsRegister:obj andPlatform:kWXPlatform];
+                [self getUserAccessTockenWith:obj andPlatform:kWXPlatform];
                 NSLog(@"用户信息是%@",obj);
             } failed:^(NSURLResponse *response, NSError *error) {
                 
@@ -178,7 +178,7 @@ static ThirdLoginCallBackManager *shareInstance = nil;
             [WeiBoAPI getWeiBoInfoWith:nil parameters:dic finished:^(NSURLResponse *response, NSData *data) {
                 NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 self.ThirdPlatformInfoDic = obj;
-                [self checkUseridIsRegister:obj andPlatform:kSinaPlatform];
+                [self getUserAccessTockenWith:obj andPlatform:kSinaPlatform];
                 NSLog(@"获取到微博个人信息%@",obj);
                 
             } failed:^(NSURLResponse *response, NSError *error) {
@@ -236,7 +236,7 @@ static ThirdLoginCallBackManager *shareInstance = nil;
 {
     DeBugLog(@"用户回调%@",response.jsonResponse);
     self.ThirdPlatformInfoDic = response.jsonResponse;
-    [self checkUseridIsRegister:response.jsonResponse andPlatform:kTXPlatform];
+    [self getUserAccessTockenWith:response.jsonResponse andPlatform:kTXPlatform];
 }
 
 #pragma mark 自身帐号注册检查
@@ -300,5 +300,56 @@ static ThirdLoginCallBackManager *shareInstance = nil;
     }];
 }
 
+- (void)getUserAccessTockenWith:(NSDictionary *)infoDic andPlatform:(NSString *)platfrom
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
+        if (!error) {
+            DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
+            if (serVerTime.serverTime.length==0) {
+                return;
+            }
+            NSString *thirdID;
+            NSString *thirdName;
+            if ([platfrom isEqualToString:kWXPlatform]) {
+                thirdName = [infoDic objectForKey:@"nickname"];
+            }else if ([platfrom isEqualToString:kSinaPlatform]){
+                thirdName = [infoDic objectForKey:@"name"];
+            }else{
+                thirdName = [infoDic objectForKey:@"nickname"];
+            }
+            if ([platfrom isEqualToString:kWXPlatform]) {
+                thirdID = [infoDic objectForKey:@"unionid"];
+            }else if ([platfrom isEqualToString:kSinaPlatform]){
+                thirdID = [infoDic objectForKey:@"id"];
+            }else{
+                thirdID = self.tencentID;
+            }
+            NSDateFormatter *date = [[NSDateFormatter alloc]init];
+            [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *n = [date dateFromString:serVerTime.serverTime];
+            NSInteger time = [n timeIntervalSince1970];
+            NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
+            NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",[NSString stringWithFormat:@"%@$%@",platfrom,thirdID],atTime];
+            NSString *md5String = [md5OriginalString md5String];
+            NSDictionary *dic = @{
+                                  @"UserId": [NSString stringWithFormat:@"%@$%@",platfrom,thirdID],
+                                  @"Atime": [NSNumber numberWithInteger:(time)],
+                                  @"MD5":[md5String uppercaseString],
+                                  };
+            [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
+                if (!error) {
+                    accessTocken = serVerTime.accessTockenString;
+                    [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
+                    [self checkUseridIsRegister:infoDic andPlatform:platfrom];
+                }else{
+                    
+                }
+            }];
+        }else{
+            
+        }
+    }];
+}
 
 @end

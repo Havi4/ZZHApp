@@ -97,22 +97,37 @@
     _cellInfoTitle.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cellName"]];
     NSString *cellDataString = [dic objectForKey:@"cellData"];
     if ([cellDataString isEqualToString:@"userName"]) {
-        _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.userName];
+        if (userModel.nUserInfo.userName.length > 0) {
+            _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.userName];
+        }
     }else if ([cellDataString isEqualToString:@"birthday"]) {
-        _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.birthday];
+        if (userModel.nUserInfo.birthday.length > 0) {
+            _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.birthday];
+        }
     }else if ([cellDataString isEqualToString:@"gender"]) {
         _cellInfoData.text = @"";
         _cellInfoArrow.hidden = YES;
     }else if ([cellDataString isEqualToString:@"emergencyContact"]) {
-        _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.emergencyContact];
+        if (userModel.nUserInfo.emergencyContact.length > 0) {
+            _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.emergencyContact];
+        }
     }else if ([cellDataString isEqualToString:@"telephone"]) {
-        _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.telephone];
+        if (userModel.nUserInfo.telephone.length > 0) {
+        
+            _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.telephone];
+        }
     }else if ([cellDataString isEqualToString:@"height"]) {
-        _cellInfoData.text = [NSString stringWithFormat:@"%@ CM",userModel.nUserInfo.height];
+        if (userModel.nUserInfo.height.length > 0) {
+            _cellInfoData.text = [NSString stringWithFormat:@"%@ CM",userModel.nUserInfo.height];
+        }
     }else if ([cellDataString isEqualToString:@"weight"]) {
-        _cellInfoData.text = [NSString stringWithFormat:@"%@ KG",userModel.nUserInfo.weight];
+        if (userModel.nUserInfo.weight.length > 0) {
+            _cellInfoData.text = [NSString stringWithFormat:@"%@ KG",userModel.nUserInfo.weight];
+        }
     }else if ([cellDataString isEqualToString:@"address"]) {
-        _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.address];
+        if (userModel.nUserInfo.address.length > 0) {
+            _cellInfoData.text = [NSString stringWithFormat:@"%@",userModel.nUserInfo.address];
+        }
     }
     if ((indexPath.section == 1 && indexPath.row ==2)) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;

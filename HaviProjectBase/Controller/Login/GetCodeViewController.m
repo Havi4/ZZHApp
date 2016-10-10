@@ -126,7 +126,7 @@
     [self.getCodeButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     self.getCodeButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.getCodeButton addTarget:self action:@selector(tapedGetCode:) forControlEvents:UIControlEventTouchUpInside];
-    [self.getCodeButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background"]] forState:UIControlStateNormal];
+    [self.getCodeButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background@3x"]] forState:UIControlStateNormal];
     self.getCodeButton.layer.cornerRadius = 5;
     self.getCodeButton.layer.masksToBounds = YES;
     //
@@ -138,9 +138,9 @@
     }];
     //
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [nextButton setBackgroundColor:[UIColor lightGrayColor]];
     nextButton.tag = 1001;
     nextButton.userInteractionEnabled = YES;
+    [nextButton setBackgroundImage:[UIImage imageNamed:@"button_background@3x"] forState:UIControlStateNormal];
     [nextButton setTitle:@"下一步" forState:UIControlStateNormal];
     [nextButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     nextButton.titleLabel.font = kDefaultWordFont;
@@ -237,13 +237,13 @@
         UIButton *button = (UIButton *)[self.view viewWithTag:1001];
         if (self.codeText.text.length == 4) {
             button.userInteractionEnabled = YES;
-            [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background"]] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"button_background@3x"]] forState:UIControlStateNormal];
         }else if(self.codeText.text.length > 4){
             self.codeText.text = [self.codeText.text substringToIndex:4];
             [self shake:self.codeText];
         }else if (self.codeText.text.length<4){
             button.userInteractionEnabled = NO;
-            [button setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"button_background@3x"] forState:UIControlStateNormal];
             button.backgroundColor = [UIColor lightGrayColor];
         }
     }
