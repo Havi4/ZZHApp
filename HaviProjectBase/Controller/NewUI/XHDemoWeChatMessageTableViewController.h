@@ -13,4 +13,5 @@
 - (void)loadDemoDataSource;
 @property (nonatomic, strong) NSString *problemID;
 
+@property (nonatomic, assign) BOOL isShowInputView;
 @end

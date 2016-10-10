@@ -266,6 +266,20 @@
     [self loadDemoDataSource];
     [self getContentMessage];
     [self initNavigationBar];
+    if (self.isShowInputView) {
+        self.messageInputView.hidden = NO;
+    }else{
+        self.messageInputView.hidden = YES;
+        UIView *backView = [[UIView alloc]init];
+        backView.frame = (CGRect){0,self.view.frame.size.height - 44,self.view.frame.size.width,44};
+        backView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:backView];
+        UILabel *title = [[UILabel alloc]init];
+        title.text = @"问题已关闭";
+        title.textColor = [UIColor grayColor];
+        title.frame = (CGRect){16,0,200,40};
+        [backView addSubview:title];
+    }
 }
 
 - (void)initNavigationBar

@@ -251,16 +251,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *isAnswer = [[[self.problemArr objectAtIndex:indexPath.section] objectForKey:@"problem"]objectForKey:@"status"];
-    if ([isAnswer isEqualToString:@"c"]) {
-        [NSObject showHudTipStr:@"该问题已关闭,不能回复"];
-        return;
-    }
     XHDemoWeChatMessageTableViewController *demoWeChatMessageTableViewController = [[XHDemoWeChatMessageTableViewController alloc] init];
     demoWeChatMessageTableViewController.allowsSendFace = NO;
     demoWeChatMessageTableViewController.allowsSendVoice = NO;
     demoWeChatMessageTableViewController.allowsSendMultiMedia = YES;
     NSString *problemId = [[[self.problemArr objectAtIndex:indexPath.section] objectForKey:@"problem"]objectForKey:@"id"];
     demoWeChatMessageTableViewController.problemID = problemId;
+    if ([isAnswer isEqualToString:@"c"]) {
+        demoWeChatMessageTableViewController.isShowInputView = NO;
+    }else{
+        demoWeChatMessageTableViewController.isShowInputView = YES;
+    }
+
     [self.navigationController pushViewController:demoWeChatMessageTableViewController animated:YES];
 }
 
