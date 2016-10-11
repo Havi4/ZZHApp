@@ -85,15 +85,15 @@
         leftTitleLabel.textColor = [UIColor whiteColor];
         [backView addSubview:leftTitleLabel];
         
-//        leftTitleSubLabel = [[UILabel alloc]init];
-//        leftTitleSubLabel.text = @"--";
-//        leftTitleSubLabel.layer.borderColor = [UIColor whiteColor].CGColor;
-//        leftTitleSubLabel.layer.borderWidth = 0.5;
-//        leftTitleSubLabel.layer.cornerRadius = 7.5;
-//        leftTitleSubLabel.textAlignment = NSTextAlignmentCenter;
-//        leftTitleSubLabel.font = [UIFont systemFontOfSize:10];
-//        leftTitleSubLabel.textColor = [UIColor whiteColor];
-//        [backView addSubview:leftTitleSubLabel];
+        leftTitleSubLabel = [[UILabel alloc]init];
+        leftTitleSubLabel.text = @"--";
+        leftTitleSubLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        leftTitleSubLabel.layer.borderWidth = 0.5;
+        leftTitleSubLabel.layer.cornerRadius = 7.5;
+        leftTitleSubLabel.textAlignment = NSTextAlignmentCenter;
+        leftTitleSubLabel.font = [UIFont systemFontOfSize:10];
+        leftTitleSubLabel.textColor = [UIColor whiteColor];
+        [backView addSubview:leftTitleSubLabel];
         
         [leftTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(backView.mas_top).offset(8);
@@ -101,12 +101,12 @@
             make.left.mas_greaterThanOrEqualTo(backView.mas_left).offset(5).priorityHigh();
 //            make.right.equalTo(leftTitleSubLabel.mas_left).offset(0);
         }];
-//        [leftTitleSubLabel makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerY.equalTo(leftTitleLabel.mas_centerY);
-//            make.right.mas_greaterThanOrEqualTo(leftLine.mas_left).offset(-3).priorityHigh();
-//            make.width.equalTo(@25);
-//            make.height.equalTo(@15);
-//        }];
+        [leftTitleSubLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(leftTitleLabel.mas_centerY);
+            make.right.mas_greaterThanOrEqualTo(leftLine.mas_left).offset(-3).priorityHigh();
+            make.width.equalTo(@25);
+            make.height.equalTo(@15);
+        }];
         
         leftDataLabel = [[UILabel alloc]init];
         leftDataLabel.textAlignment = NSTextAlignmentLeft;
@@ -214,6 +214,13 @@
             leftDataLabel.text = [NSString stringWithFormat:@"--次/分钟"];
         }else{
             leftDataLabel.text = [NSString stringWithFormat:@"%d次/分钟",[model.averageHeartRate intValue]];
+            if ([model.averageHeartRate intValue]<40) {
+                leftTitleSubLabel.text = @"偏低";
+            }else if([model.averageHeartRate intValue]>140){
+                leftTitleSubLabel.text = @"偏高";
+            }else{
+                leftTitleSubLabel.text = @"正常";
+            }
         }
         if (([model.fastHeartRateTimes intValue]+[model.slowHeartRateTimes intValue])==0) {
             middleDataLabel.text = [NSString stringWithFormat:@"--次"];
@@ -231,6 +238,13 @@
             leftDataLabel.text = [NSString stringWithFormat:@"--次/分钟"];
         }else{
             leftDataLabel.text = [NSString stringWithFormat:@"%d次/分钟",[model.averageRespiratoryRate intValue]];
+            if ([model.averageRespiratoryRate intValue]<5) {
+                leftTitleSubLabel.text = @"偏低";
+            }else if([model.averageRespiratoryRate intValue]>20){
+                leftTitleSubLabel.text = @"偏高";
+            }else{
+                leftTitleSubLabel.text = @"正常";
+            }
         }
         
         if ([model.fastRespiratoryRateTimes intValue]+[model.slowRespiratoryRateTimes intValue]==0) {
