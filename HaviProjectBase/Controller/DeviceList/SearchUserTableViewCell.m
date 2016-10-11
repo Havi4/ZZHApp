@@ -25,6 +25,8 @@
     if (self) {
         _messageIcon = [[UIImageView alloc]init];
         [self addSubview:_messageIcon];
+        _messageIcon.layer.cornerRadius = 22;
+        _messageIcon.layer.masksToBounds = YES;
         _messageIcon.layer.shouldRasterize = YES;
         _messageIcon.layer.rasterizationScale = [UIScreen mainScreen].scale;
         _messageIcon.image = [UIImage imageNamed:@"head_portrait_0"];

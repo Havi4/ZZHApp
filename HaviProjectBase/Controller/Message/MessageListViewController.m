@@ -16,7 +16,7 @@
 @property (nonatomic, strong) UITableView *messageShowListView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) MessageDataDelegate *messageDelegate;
-@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UIImageView *messageLabel;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
@@ -105,27 +105,31 @@
 
 #pragma setter meathod
 
-- (UILabel *)messageLabel
+- (UIImageView *)messageLabel
 {
     if (!_messageLabel) {
-        _messageLabel = [[UILabel alloc]init];
-        _messageLabel.frame = CGRectMake(0, self.view.frame.size.height/2-100,self.view.frame.size.width , 40);
-        _messageLabel.text = @"没有申请消息！";
-        _messageLabel.font = [UIFont systemFontOfSize:17];
-        _messageLabel.textAlignment = NSTextAlignmentCenter;
-        _messageLabel.textColor = [UIColor lightGrayColor];
+        _messageLabel = [[UIImageView alloc]init];
+        _messageLabel.frame = CGRectMake((self.view.frame.size.width -112)/2, (self.view.frame.size.height -126-64-64)/2,112 , 126);
+        _messageLabel.image = [UIImage imageNamed:@"feiji"];
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"空空如也,没有收到消息";
+        label.frame = (CGRect){-44,126-20,200,30};
+        label.font = [UIFont systemFontOfSize:16];
+        [_messageLabel addSubview:label];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor lightGrayColor];
+        //        _messageLabel.font = [UIFont systemFontOfSize:17];
         
     }
     return _messageLabel;
 }
-
 
 - (UITableView *)messageShowListView
 {
     if (!_messageShowListView) {
         _messageShowListView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _messageShowListView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _messageShowListView.backgroundColor = KTableViewBackGroundColor;
+        _messageShowListView.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
     }
     return _messageShowListView;
 }

@@ -19,7 +19,7 @@
 @property (nonatomic, strong) FriendDeviceDelegate *friendDeviceDelegate;
 
 @property (nonatomic, strong) NSArray *resultArr;
-@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UIImageView *messageLabel;
 @property (nonatomic, strong) DeviceList *selectDeviceUUID;
 @property (nonatomic, strong) JASwipeCell *selectTableViewCell;
 
@@ -74,15 +74,20 @@
 
 #pragma mark setter meathod
 
-- (UILabel *)messageLabel
+- (UIImageView *)messageLabel
 {
     if (!_messageLabel) {
-        _messageLabel = [[UILabel alloc]init];
-        _messageLabel.frame = CGRectMake(0, self.friendDeviceListView.frame.size.height/2-100,self.friendDeviceListView.frame.size.width , 40);
-        _messageLabel.text = @"没有他人设备！";
-        _messageLabel.font = [UIFont systemFontOfSize:17];
-        _messageLabel.textAlignment = NSTextAlignmentCenter;
-        _messageLabel.textColor = [UIColor grayColor];
+        _messageLabel = [[UIImageView alloc]init];
+        _messageLabel.frame = CGRectMake((self.view.frame.size.width -112)/2, (self.view.frame.size.height -126-64)/2,112 , 126);
+        _messageLabel.image = [UIImage imageNamed:@"feiji"];
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"空空如也,没有收到消息";
+        label.frame = (CGRect){-44,126-20,200,30};
+        label.font = [UIFont systemFontOfSize:16];
+        [_messageLabel addSubview:label];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor lightGrayColor];
+//        _messageLabel.font = [UIFont systemFontOfSize:17];
         
     }
     return _messageLabel;
