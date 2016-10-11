@@ -143,6 +143,7 @@
         }];
     }
     return _subView;
+    
 }
 
 - (NewWeekReport*)weekReport

@@ -12,7 +12,7 @@
 #import "ZZHPieView.h"
 #import "TurnAroundView.h"
 
-@interface ChartTableDataDelegate ()
+@interface ChartTableDataDelegate ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) ChartTableTitleView *titleView;
 
@@ -82,70 +82,29 @@
             make.left.equalTo(_dataLabel.mas_right);
             make.baseline.equalTo(_dataLabel.mas_baseline);
         }];
-        
-        UIView *leftView1 = [[UIView alloc]init];
-        leftView1.backgroundColor = [UIColor colorWithRed:0.784 green:0.753 blue:0.235 alpha:1.00];
-        [_turnBackView addSubview:leftView1];
-        
-        UILabel *leftLabel1 = [[UILabel alloc]init];
-        leftLabel1.text = @"体动";
-        leftLabel1.textColor = [UIColor whiteColor];
-        leftLabel1.font = [UIFont systemFontOfSize:14];
-        [_turnBackView addSubview:leftLabel1];
-        
-        UIView *leftView = [[UIView alloc]init];
-        leftView.backgroundColor = [UIColor colorWithRed:0.635 green:0.851 blue:0.867 alpha:1.00];
-        [_turnBackView addSubview:leftView];
-        
-        UILabel *leftLabel = [[UILabel alloc]init];
-        leftLabel.text = @"入睡";
-        leftLabel.textColor = [UIColor whiteColor];
-        leftLabel.font = [UIFont systemFontOfSize:14];
-        [_turnBackView addSubview:leftLabel];
-        
-        UIView *rightView = [[UIView alloc]init];
-        rightView.backgroundColor = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.00];
-        [_turnBackView addSubview:rightView];
-        
-        UILabel *rightLabel = [[UILabel alloc]init];
-        rightLabel.text = @"离床";
-        rightLabel.textColor = [UIColor whiteColor];
-        rightLabel.font = [UIFont systemFontOfSize:14];
-        [_turnBackView addSubview:rightLabel];
-        
-        [leftLabel1 makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(_scrollContainerView.mas_bottom).offset(32);
-            make.right.equalTo(_turnBackView.mas_right).offset(-16);
-        }];
-        
-        [leftView1 makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(leftLabel1.mas_centerY);
-            make.right.equalTo(leftLabel1.mas_left).offset(-8);
-            make.height.width.equalTo(@15);
-        }];
-        
-        [rightLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(leftView1.mas_centerY);
-            make.right.equalTo(leftView1.mas_left).offset(-16);
-        }];
-        
-        [rightView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(rightLabel.mas_centerY);
-            make.right.equalTo(rightLabel.mas_left).offset(-8);
-            make.height.width.equalTo(@15);
-        }];
-        
-        [leftLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(rightLabel.mas_centerY);
-            make.right.equalTo(rightView.mas_left).offset(-16);
-        }];
-        
-        [leftView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(leftLabel.mas_centerY);
-            make.right.equalTo(leftLabel.mas_left).offset(-8);
-            make.height.width.equalTo(@15);
-        }];
-        
+        CGFloat cY = (200 - 20-16)/7;
+        for (int i = 0; i<6; i++) {
+            UILabel *lineView = [[UILabel alloc] init];
+            lineView.frame = CGRectMake(2, 16 + cY*i+63, 24, 20);
+            lineView.textColor = [UIColor whiteColor];
+            lineView.font = [UIFont systemFontOfSize:14];
+            lineView.textAlignment = NSTextAlignmentCenter;
+            if (i==0) {
+                lineView.text = @"24";
+            }else if (i==1){
+                lineView.text = @"20";
+            }else if (i==2){
+                lineView.text = @"16";
+            }else if (i==3){
+                lineView.text = @"12";
+            }else if (i==4){
+                lineView.text = @"8";
+            }else if (i==5){
+                lineView.text = @"6";
+            }
+            
+            [_turnBackView addSubview:lineView];
+        }
         UIImageView *image = [[UIImageView alloc]init];
         image.image = [UIImage imageNamed:@"moveon@3x"];
         [_turnBackView addSubview:image];
@@ -162,8 +121,8 @@
 - (UIScrollView *)scrollContainerView
 {
     if (!_scrollContainerView) {
-        _scrollContainerView = [[UIScrollView alloc]initWithFrame:CGRectMake(16, 64, kScreenWidth-32, 180)];
-        _scrollContainerView.contentSize = CGSizeMake((kScreenWidth-32)*4, 180);
+        _scrollContainerView = [[UIScrollView alloc]initWithFrame:CGRectMake(25, 64, kScreenWidth-41, 180)];
+        _scrollContainerView.contentSize = CGSizeMake((kScreenWidth-41)*4, 180);
         _scrollContainerView.showsHorizontalScrollIndicator = NO;
         _scrollContainerView.delegate = self;
         _scrollContainerView.userInteractionEnabled = YES;
@@ -185,7 +144,7 @@
 - (TurnAroundView *)turnView
 {
     if (!_turnView) {
-        _turnView = [[TurnAroundView alloc]initWithFrame:CGRectMake(0, 0, (kScreenWidth-32)*4, 180)];
+        _turnView = [[TurnAroundView alloc]initWithFrame:CGRectMake(0, 0, (kScreenWidth-41)*4, 180)];
         
     }
     return _turnView;
@@ -328,6 +287,20 @@
     }else{
         self.turnView.dataValues = data;
     }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.x < 0) {
+        scrollView.contentOffset = CGPointMake(0, 0);
+        return;
+    }
+    if (scrollView.contentSize.width>scrollView.frame.size.width&&scrollView.contentOffset.x>0) {
+        if (scrollView.contentSize.width-scrollView.contentOffset.x < scrollView.frame.size.width) {
+            scrollView.contentOffset = CGPointMake(scrollView.contentSize.width - scrollView.frame.size.width,0 );
+            return;
+        }
+    }
+    
 }
 
 @end

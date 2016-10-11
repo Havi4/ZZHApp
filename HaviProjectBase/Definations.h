@@ -11,8 +11,8 @@
 
 
 #endif /* Definations_h */
-#define kAppBaseURL @"http://testzzhapi.meddo99.com:8088/"
-//#define kAppBaseURL @"http://webservice.meddo99.com:9000/"
+//#define kAppBaseURL @"http://testzzhapi.meddo99.com:8088/"
+#define kAppBaseURL @"http://webservice.meddo99.com:9000/"
 #define kAppTestBaseURL @"http://testzzhapi.meddo99.com:8088/"
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 

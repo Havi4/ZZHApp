@@ -122,11 +122,14 @@
                 [self.sensorDelegate reloadTableViewWith:arr withType:self.sensorType];
             }];
         }else{
-            [SleepModelChange filterTurnAroundWithTime:sensorModel withType:self.sensorType callBack:^(id callBack) {
+            [SleepModelChange filterNewTurnAroundWithTime:sensorModel withType:self.sensorType callBack:^(id callBack) {
                 @strongify(self);
                 NSArray *arr = callBack;
                 [self.sensorDelegate reloadTableViewWith:arr withType:self.sensorType];
+
             }];
+//            [SleepModelChange filterTurnAroundWithTime:sensorModel withType:self.sensorType callBack:^(id callBack) {
+//            }];
         }
         
 //        [SleepModelChange filterSensorLeaveDataWithTime:sensorModel callBack:^(id callBack) {

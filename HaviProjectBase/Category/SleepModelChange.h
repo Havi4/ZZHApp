@@ -36,4 +36,5 @@
 
 + (void)filterTurnAroundWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType callBack:(void(^)(id callBack))block;
 
++ (void)filterNewTurnAroundWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType callBack:(void(^)(id callBack))block;
 @end

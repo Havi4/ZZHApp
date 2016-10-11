@@ -112,11 +112,12 @@
             NSString *xValue = values[i];
             
             CGFloat cX = 0;
-            cX = ((xCoordinateWidth) / (count)) * i;
+            cX = ((xCoordinateWidth-25) / (count-1)) * i;
             
             CGFloat cY = self.frame.size.height - bottomLineMargin;
             // 收集坐标点
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX, cY+3, ((xCoordinateWidth)/(count)), 10)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX-17, cY+3, ((xCoordinateWidth)/(count)), 10)];
+//            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX, cY+3, ((xCoordinateWidth)/(count)), 10)];
             label.backgroundColor = [UIColor clearColor];
             label.text = xValue;
             label.tag = 1001;
@@ -125,13 +126,17 @@
             label.textAlignment = NSTextAlignmentCenter;
             [self addSubview:label];
             if (i==0) {
-                label.frame = CGRectMake(cX-5, cY+3, ((xCoordinateWidth)/(count)), 10);
+                label.frame = CGRectMake(cX-7, cY+3, ((xCoordinateWidth)/(count)), 10);
             }
             //
-            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 0, 0.5, cY)];
+            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX +5, 0, 0.5, cY)];
             if (i==0) {
                 labelLine.frame = CGRectMake(cX, 0, 0.5, cY);
             }
+//            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 0, 0.5, cY)];
+//            if (i==0) {
+//                labelLine.frame = CGRectMake(cX, 0, 0.5, cY);
+//            }
             labelLine.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
             labelLine.tag = 1002;
             //

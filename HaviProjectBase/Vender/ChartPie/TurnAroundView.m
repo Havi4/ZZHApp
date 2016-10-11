@@ -26,6 +26,7 @@
         self.backgroundColor = [UIColor clearColor];
         [self setUpCoordinateSystem];
         //        [self setBackImage];
+        [self setDashLine];
         
     }
     return self;
@@ -72,15 +73,49 @@
     }
     for (int i = 0; i<dataValues.count; i++) {
         int tx = [dataValues[i] intValue];
-        float percent = self.frame.size.width/(24*60);
-        float x = tx * percent;
-        CGFloat cY = self.frame.size.height - bottomLineMargin;
-        UIView *sub = [[UIView alloc]initWithFrame:(CGRect){x,0,1,cY}];
-        sub.tag = 9000;
-        sub.backgroundColor = [UIColor colorWithRed:0.784 green:0.753 blue:0.235 alpha:1.00];
-        [self addSubview:sub];
+        if (tx != 0) {
+            float cX = ((xCoordinateWidth-25) / (24)) * i;
+            CGFloat cY = 0;
+            if (tx > 24) {
+                cY = self.frame.size.height-bottomLineMargin-(self.frame.size.height - bottomLineMargin)/24 * 24;
+            }else{
+                cY = self.frame.size.height-bottomLineMargin-5-(self.frame.size.height - bottomLineMargin-15)/24 * tx;
+            }
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.tag = 9000;
+            button.frame = (CGRect){cX,cY,15,15};
+            [button setTitle:[NSString stringWithFormat:@"%d",tx] forState:UIControlStateNormal];
+            button.titleLabel.font = [UIFont systemFontOfSize:9];
+            [self addSubview:button];
+            button.backgroundColor = [UIColor grayColor];
+            if (tx < 6 || tx == 6) {
+                button.backgroundColor = [UIColor colorWithRed:0.369 green:0.757 blue:0.451 alpha:1.00];
+                button.layer.cornerRadius = 7.5;
+            }else if (tx > 6 && (tx < 7 || tx == 7)){
+                button.frame = (CGRect){cX,cY,20,20};
+                button.backgroundColor = [UIColor colorWithRed:0.561 green:0.906 blue:0.980 alpha:1.00];
+                button.layer.cornerRadius = 10;
+            }else if (tx > 7){
+                button.frame = (CGRect){cX,cY,25,25};
+                button.backgroundColor = [UIColor colorWithRed:0.800 green:0.729 blue:0.184 alpha:1.00];
+                button.layer.cornerRadius = 12.5;
+
+            }
+        }
     }
     
+}
+
+- (void)setDashLine
+{
+    CGFloat cY = (200 - bottomLineMargin-16)/7;
+    for (int i = 0; i<6; i++) {
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
+        lineView.alpha = 0.5;
+        lineView.frame = CGRectMake(2, 16 + cY*i+10, self.frame.size.width-2, 0.5);
+        [self addSubview:lineView];
+    }
 }
 
 -(void)setXValues:(NSArray *)values
@@ -96,26 +131,36 @@
             NSString *xValue = values[i];
             
             CGFloat cX = 0;
-            cX = ((xCoordinateWidth) / (count)) * i;
+            cX = ((xCoordinateWidth-25) / (count-1)) * i;
             
             CGFloat cY = self.frame.size.height - bottomLineMargin;
             // 收集坐标点
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX, cY+3, ((xCoordinateWidth)/(count)), 10)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX-15, cY+3, ((xCoordinateWidth)/(count)), 10)];
             label.backgroundColor = [UIColor clearColor];
             label.text = xValue;
             label.tag = 1001;
             label.textColor = [UIColor whiteColor];
-            label.font = [UIFont systemFontOfSize:13];
+            label.font = [UIFont systemFontOfSize:12];
             label.textAlignment = NSTextAlignmentCenter;
             [self addSubview:label];
+            if (i==0) {
+                label.frame = CGRectMake(cX-6, cY+3, ((xCoordinateWidth)/(count)), 10);
+            }
             //
-            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 0, 0.5, cY)];
+//            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 0, 0.5, cY)];
+            UILabel *labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX +5, 0, 0.5, cY)];
+            if (i==0) {
+                labelLine.frame = CGRectMake(cX, 0, 0.5, cY);
+            }
+            labelLine.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
+            labelLine.tag = 1002;
+            //
             [self.xPoints addObject:[NSValue valueWithCGPoint:CGPointMake(labelLine.frame.origin.x, cY)]];
+            [self addSubview:labelLine];
         }
         //设置分割线
     }
 }
-
 
 -(NSDictionary *)textStyleDict
 {

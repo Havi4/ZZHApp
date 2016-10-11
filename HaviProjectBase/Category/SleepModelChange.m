@@ -213,6 +213,92 @@
     }
 }
 
++ (void)filterNewTurnAroundWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType callBack:(void(^)(id callBack))block
+{
+    
+    @synchronized(self) {
+        if (sensorData) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
+                NSArray *sensorInfo = sensorArr.propertyDataList;
+                NSMutableArray *arr = [[NSMutableArray alloc]init];
+                for (int i=0; i<24; i++) {
+                    [arr addObject:@0];
+                }
+                
+                for (int i = 0; i<sensorInfo.count; i++) {
+                    PropertyData *dic = [sensorInfo objectAtIndex:i];
+                    NSString *date = dic.propertyDate;
+                    NSString *hourDate1 = [date substringWithRange:NSMakeRange(11, 2)];
+//                    NSString *minuteDate2 = [date substringWithRange:NSMakeRange(14, 2)];
+                    int indexIn = 0;
+                    if (([hourDate1 intValue] > 18 || [hourDate1 intValue] == 18) && [hourDate1 intValue] < 19) {
+                        indexIn = 0;
+                    }else if(([hourDate1 intValue] > 19 || [hourDate1 intValue] == 19) && [hourDate1 intValue] < 20){
+                        indexIn = 1;
+                    }else if(([hourDate1 intValue] > 20 || [hourDate1 intValue] == 20) && [hourDate1 intValue] < 21){
+                        indexIn = 2;
+                    }else if(([hourDate1 intValue] > 21 || [hourDate1 intValue] == 21) && [hourDate1 intValue] < 22){
+                        indexIn = 3;
+                    }else if(([hourDate1 intValue] > 22 || [hourDate1 intValue] == 22) && [hourDate1 intValue] < 23){
+                        indexIn = 4;
+                    }else if(([hourDate1 intValue] > 23 || [hourDate1 intValue] == 23) && [hourDate1 intValue] < 24){
+                        indexIn = 5;
+                    }else if(([hourDate1 intValue] > 0 || [hourDate1 intValue] == 0) && [hourDate1 intValue] < 1){
+                        indexIn = 6;
+                    }else if(([hourDate1 intValue] > 1 || [hourDate1 intValue] == 1) && [hourDate1 intValue] < 2){
+                        indexIn = 7;
+                    }else if(([hourDate1 intValue] > 2 || [hourDate1 intValue] == 2) && [hourDate1 intValue] < 3){
+                        indexIn = 8;
+                    }else if(([hourDate1 intValue] > 3 || [hourDate1 intValue] == 3) && [hourDate1 intValue] < 4){
+                        indexIn = 9;
+                    }else if(([hourDate1 intValue] > 4 || [hourDate1 intValue] == 4) && [hourDate1 intValue] < 5){
+                        indexIn = 10;
+                    }else if(([hourDate1 intValue] > 5 || [hourDate1 intValue] == 5) && [hourDate1 intValue] < 6){
+                        indexIn = 11;
+                    }else if(([hourDate1 intValue] > 6 || [hourDate1 intValue] == 6) && [hourDate1 intValue] < 7){
+                        indexIn = 12;
+                    }else if(([hourDate1 intValue] > 7 || [hourDate1 intValue] == 7) && [hourDate1 intValue] < 8){
+                        indexIn = 13;
+                    }else if(([hourDate1 intValue] > 8 || [hourDate1 intValue] == 8) && [hourDate1 intValue] < 9){
+                        indexIn = 14;
+                    }else if(([hourDate1 intValue] > 9 || [hourDate1 intValue] == 9) && [hourDate1 intValue] < 10){
+                        indexIn = 15;
+                    }else if(([hourDate1 intValue] > 10 || [hourDate1 intValue] == 10) && [hourDate1 intValue] < 11){
+                        indexIn = 16;
+                    }else if(([hourDate1 intValue] > 11 || [hourDate1 intValue] == 11) && [hourDate1 intValue] < 12){
+                        indexIn = 17;
+                    }else if(([hourDate1 intValue] > 12 || [hourDate1 intValue] == 12) && [hourDate1 intValue] < 13){
+                        indexIn = 18;
+                    }else if(([hourDate1 intValue] > 13 || [hourDate1 intValue] == 13) && [hourDate1 intValue] < 14){
+                        indexIn = 19;
+                    }else if(([hourDate1 intValue] > 14 || [hourDate1 intValue] == 14) && [hourDate1 intValue] < 15){
+                        indexIn = 20;
+                    }else if(([hourDate1 intValue] > 15 || [hourDate1 intValue] == 15) && [hourDate1 intValue] < 16){
+                        indexIn = 21;
+                    }else if(([hourDate1 intValue] > 16 || [hourDate1 intValue] == 16) && [hourDate1 intValue] < 17){
+                        indexIn = 22;
+                    }else if(([hourDate1 intValue] > 17 || [hourDate1 intValue] == 17) && [hourDate1 intValue] < 18){
+                        indexIn = 23;
+                    }
+//                    if ([hourDate1 intValue]<18) {
+//                        indexIn = (int)((24 -18)*60 + [hourDate1 intValue]*60 + [minuteDate2 intValue])/1;
+//                    }else {
+//                        indexIn = (int)(([hourDate1 intValue]-18)*60 + [minuteDate2 intValue])/1;
+//                    }
+                    NSInteger index = [[arr objectAtIndex:indexIn] integerValue];
+                    index +=1;
+                    [arr replaceObjectAtIndex:indexIn withObject:[NSNumber numberWithInteger:index]];
+                }
+                dispatch_async_on_main_queue(^{
+                    block(arr);
+                });
+            });
+        }
+    }
+}
+
+
 + (void)filterSensorLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block
 {
     @synchronized(self) {

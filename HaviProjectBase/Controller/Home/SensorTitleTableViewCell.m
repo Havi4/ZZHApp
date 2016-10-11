@@ -17,9 +17,6 @@
 
 @implementation SensorTitleTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
