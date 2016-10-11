@@ -4544,12 +4544,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CD75B421C61B57000E7E076 /* Build configuration list for PBXNativeTarget "HaviProjectBase" */;
 			buildPhases = (
-				487097531FD261F10E1EC704 /* Check Pods Manifest.lock */,
+				487097531FD261F10E1EC704 /* [CP] Check Pods Manifest.lock */,
 				2CD75B111C61B57000E7E076 /* Sources */,
 				2CD75B121C61B57000E7E076 /* Frameworks */,
 				2CD75B131C61B57000E7E076 /* Resources */,
-				5E198F64E56F93ED2681B661 /* Embed Pods Frameworks */,
-				D4F22CAFFD7CC57B4C5819F2 /* Copy Pods Resources */,
+				5E198F64E56F93ED2681B661 /* [CP] Embed Pods Frameworks */,
+				D4F22CAFFD7CC57B4C5819F2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5048,14 +5048,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		487097531FD261F10E1EC704 /* Check Pods Manifest.lock */ = {
+		487097531FD261F10E1EC704 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5063,14 +5063,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		5E198F64E56F93ED2681B661 /* Embed Pods Frameworks */ = {
+		5E198F64E56F93ED2681B661 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5078,14 +5078,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D4F22CAFFD7CC57B4C5819F2 /* Copy Pods Resources */ = {
+		D4F22CAFFD7CC57B4C5819F2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

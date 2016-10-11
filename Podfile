@@ -8,7 +8,7 @@ target "HaviProjectBase" do
     pod 'MBProgressHUD', '~> 0.9.2'
     pod 'HKRLocalNotificationManager', '~> 0.6'
     pod 'DKNightVersion', '~> 1.2'
-    pod 'WeiboSDK', '~> 3.1.3'
+    pod "WeiboSDK", :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
     pod 'DXPopover', '~> 0.1.1'
 #    pod 'BlocksKit', '~> 2.2.0'
 end
