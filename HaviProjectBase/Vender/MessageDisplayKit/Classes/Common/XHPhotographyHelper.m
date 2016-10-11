@@ -62,7 +62,7 @@
     imagePickerVc.allowPickingVideo = NO;
     imagePickerVc.allowPickingImage = YES;
     imagePickerVc.allowPickingOriginalPhoto = NO;
-    imagePickerVc.navigationBar.barTintColor = [UIColor colorWithRed:0.176 green:0.173 blue:0.196 alpha:1.00];
+    [imagePickerVc.navigationBar setBackgroundColor:[UIColor colorWithRed:0.176 green:0.173 blue:0.196 alpha:1.00]];
     // 4. 照片排列按修改时间升序
     imagePickerVc.sortAscendingByModificationDate = YES;
 #pragma mark - 到这里为止

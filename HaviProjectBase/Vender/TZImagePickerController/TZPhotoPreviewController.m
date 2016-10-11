@@ -76,7 +76,7 @@
     TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
 
     _naviBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.tz_width, 64)];
-    _naviBar.backgroundColor = [UIColor colorWithRed:(34/255.0) green:(34/255.0)  blue:(34/255.0) alpha:1.0];
+    _naviBar.backgroundColor = [UIColor colorWithRed:0.176 green:0.173 blue:0.196 alpha:1.00];
     _naviBar.alpha = 0.7;
     
     _backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 44, 44)];
