@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UITableView *consultView;
 @property (nonatomic, strong) UITableView *tagTableView;
 @property (nonatomic, strong) UIView *tagBackView;
+@property (nonatomic, strong) NSError *error;
 @property (strong, nonatomic)  TTGTextTagCollectionView *textTagCollectionView;
 
 
@@ -142,7 +143,11 @@
 - (UITableView *)tagTableView
 {
     if (!_tagTableView) {
-        _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,self.webView.scrollView.contentSize.height-44*6,self.view.frame.size.width,44*6} style:UITableViewStylePlain];
+        if (!self.error) {
+            _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,self.webView.scrollView.contentSize.height-44*6,self.view.frame.size.width,44*6+30} style:UITableViewStylePlain];
+        }else{
+            _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,64,self.view.frame.size.width,44*6+30} style:UITableViewStylePlain];
+        }
         _tagTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tagTableView.delegate = self;
         _tagTableView.dataSource = self;
@@ -224,6 +229,7 @@
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell11"];
         }
+        [cell removeAllSubviews];
         UILabel *cellTitle = [[UILabel alloc]init];
         [cell addSubview:cellTitle];
         cellTitle.font = [UIFont systemFontOfSize:15];
@@ -310,7 +316,7 @@
     }
 }
 
-- (void)getArticleList{
+- (void)getArticleListWithError:(NSError *)error{
     
     NSString *url = [NSString stringWithFormat:@"%@v1/news/ArticleList?PageNum=0&Count=100&Tips=%@",kAppBaseURL,self.tagLists[0]];
     
@@ -321,9 +327,14 @@
         DeBugLog(@"文章列表是%@",obj);
         self.articleList = obj;
         if ([[self.articleList objectForKey:@"ArticleList"] count]>0) {
-            self.webView.scrollView.contentSize = (CGSize){self.webView.scrollView.contentSize.width,self.webView.scrollView.contentSize.height+44*6};
-            [self.webView.scrollView addSubview:self.tagTableView];
-            [self.tagTableView reloadData];
+            if (!error) {
+                self.webView.scrollView.contentSize = (CGSize){self.webView.scrollView.contentSize.width,self.webView.scrollView.contentSize.height+44*6};
+                [self.webView.scrollView addSubview:self.tagTableView];
+                [self.tagTableView reloadData];
+            }else{
+                [self.view addSubview:self.tagTableView];
+                [self.tagTableView reloadData];
+            }
         }
     } failed:^(NSURLResponse *response, NSError *error) {
         [NSObject hideHud];
@@ -609,7 +620,8 @@
     if (self.prevSnapShotView.superview) {
         [self.prevSnapShotView removeFromSuperview];
     }
-    [self getArticleList];
+    self.error = nil;
+    [self getArticleListWithError:nil];
 
     
 }
@@ -618,6 +630,12 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     if (error) {
         [self.webView stopLoading];
+        [self.webView removeFromSuperview];
+        self.webView = nil;
+        self.tagTableView = nil;
+        self.view.backgroundColor = [UIColor whiteColor];
+        self.error = error;
+        [self getArticleListWithError:error];
     }
     
 }

@@ -29,6 +29,7 @@
 - (void)initNavigationBar
 {
     self.backgroundImageView.image = [UIImage imageNamed:@""];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -44,7 +45,7 @@
         _tagTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tagTableView.delegate = self;
         _tagTableView.dataSource = self;
-        _tagTableView.backgroundColor = [UIColor lightGrayColor];
+        _tagTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
     }
     return _tagTableView;
 }
@@ -96,7 +97,7 @@
         }];
     }
     date.text = [[[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"SystemDate"] substringToIndex:10];
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
     
     return cell;
 }
