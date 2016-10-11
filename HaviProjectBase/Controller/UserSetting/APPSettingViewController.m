@@ -14,6 +14,7 @@
 #import "AboutMeViewController.h"
 #import "SelectThemeViewController.h"
 #import "PassCodeSettingViewController.h"
+#import "JPUSHService.h"
 //#import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "ChangeLanguageViewController.h"
@@ -135,6 +136,27 @@
 - (void)logoutMyId
 {
     [UserManager resetUserInfo];
+    [self uploadRegisterID];
+    
+}
+
+- (void)uploadRegisterID
+{
+    NSString *registerID = [JPUSHService registrationID];
+
+    NSDictionary *dic = @{
+                          @"UserId": thirdPartyLoginUserId, //关键字，必须传递
+                          @"PushRegistrationId": registerID, //密码
+                          @"AppVersion" : [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
+                          @"OSName" : @"iOS",
+                          @"OSVersion" : [UIDevice currentDevice].systemVersion,
+                          @"CellPhoneModal" : [UIDevice currentDevice].machineModelName,
+                          @"OffLine": @"0"
+                          };
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestRegisterUserIdForPush:dic andBlock:^(BaseModel *baseModel, NSError *error) {
+        
+    }];
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     [app setLoginViewController];
 }
