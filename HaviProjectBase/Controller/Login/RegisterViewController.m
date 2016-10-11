@@ -429,7 +429,7 @@
 - (void)uploadWithImageData:(NSData*)imageData withUserId:(NSString *)userId
 {
     NSDictionary *dicHeader = @{
-                                @"AccessToken": @"123456789",
+                                @"AccessToken": accessTocken,
                                 };
     NSString *urlStr = [NSString stringWithFormat:@"%@/v1/file/UploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];

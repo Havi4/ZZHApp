@@ -16,7 +16,7 @@
                             failed:(WeatherFailedBlock)failed;
 {
     NSString *tockenUrl = [NSString stringWithFormat:@"%@v1/app/GetWeather?City=%@&Province=%@",kAppBaseURL,[parameters objectForKey:@"city"],[parameters objectForKey:@"province"]];
-    [WTRequestCenter getWithURL:tockenUrl headers:@{@"AccessToken":@"A29#XXFDs1-FDKSD-JGLjx2"} parameters:nil option:WTRequestCenterCachePolicyNormal finished:finished failed:failed];
+    [WTRequestCenter getWithURL:tockenUrl headers:@{@"AccessToken":accessTocken} parameters:nil option:WTRequestCenterCachePolicyNormal finished:finished failed:failed];
 //    [WTRequestCenter getWithURL:tockenUrl parameters:nil finished:finished failed:failed];
     return nil;
     

@@ -64,7 +64,7 @@
                               @"DoctorId":self.docID,
                               };
     [NSObject showHud];
-    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
         [NSObject hideHud];
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[obj objectForKey:@"ReturnCode"] intValue]==200) {

@@ -551,7 +551,7 @@
                               };
 
     [NSObject showHud];
-    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
         [NSObject hideHud];
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
@@ -622,7 +622,7 @@
 - (void)uploadWithImageData:(NSData*)imageData withUserId:(NSString *)userId
 {
     NSDictionary *dicHeader = @{
-                                @"AccessToken": @"123456789",
+                                @"AccessToken": accessTocken,
                                 };
     NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];

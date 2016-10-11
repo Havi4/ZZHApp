@@ -321,7 +321,7 @@
     NSString *url = [NSString stringWithFormat:@"%@v1/news/ArticleList?PageNum=0&Count=100&Tips=%@",kAppBaseURL,self.tagLists[0]];
     
     [NSObject showHud];
-    [WTRequestCenter getWithURL:url headers:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {
+    [WTRequestCenter getWithURL:url headers:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {
         [NSObject hideHud];
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         DeBugLog(@"文章列表是%@",obj);

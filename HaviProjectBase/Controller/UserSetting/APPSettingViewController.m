@@ -135,8 +135,8 @@
 
 - (void)logoutMyId
 {
-    [UserManager resetUserInfo];
     [self uploadRegisterID];
+    [UserManager resetUserInfo];
     
 }
 

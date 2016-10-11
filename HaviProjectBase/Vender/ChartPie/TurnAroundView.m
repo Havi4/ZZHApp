@@ -92,11 +92,11 @@
                 button.backgroundColor = [UIColor colorWithRed:0.369 green:0.757 blue:0.451 alpha:1.00];
                 button.layer.cornerRadius = 7.5;
             }else if (tx > 6 && (tx < 7 || tx == 7)){
-                button.frame = (CGRect){cX,cY,20,20};
+                button.frame = (CGRect){cX+20,cY,20,20};
                 button.backgroundColor = [UIColor colorWithRed:0.561 green:0.906 blue:0.980 alpha:1.00];
                 button.layer.cornerRadius = 10;
             }else if (tx > 7){
-                button.frame = (CGRect){cX,cY,25,25};
+                button.frame = (CGRect){cX+20,cY,25,25};
                 button.backgroundColor = [UIColor colorWithRed:0.800 green:0.729 blue:0.184 alpha:1.00];
                 button.layer.cornerRadius = 12.5;
 

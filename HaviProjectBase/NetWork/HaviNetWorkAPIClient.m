@@ -32,7 +32,8 @@ static HaviNetWorkAPIClient *_netWorkClient;
         self.requestSerializer = [AFJSONRequestSerializer serializer];
         self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", @"text/html", nil];
         [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [self.requestSerializer setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
+#pragma tocken正式ok后注释掉下一行
+//        [self.requestSerializer setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
         [self.requestSerializer setValue:url.absoluteString forHTTPHeaderField:@"Referer"];
     }
     return self;
@@ -182,7 +183,7 @@ static HaviNetWorkAPIClient *_netWorkClient;
     NSString *fileName = [NSString stringWithFormat:@"%@_%@.jpg", @"LI", str];
     DeBugLog(@"\nuploadImageSize\n%@ : %.0f", fileName, (float)data.length/1024);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:@"123456789" forHTTPHeaderField:@"AccessToken"];
+    [manager.requestSerializer setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
     [manager POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [formData appendPartWithFileData:data name:name fileName:fileName mimeType:@"image/png"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {

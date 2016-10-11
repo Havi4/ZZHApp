@@ -789,11 +789,8 @@
 		2CF2E27A1C7ADD960007A639 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E2791C7ADD960007A639 /* UserManager.m */; };
 		2CF2E27D1C7ADDF40007A639 /* Gloable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E27C1C7ADDF40007A639 /* Gloable.m */; };
 		2CF2E2801C7ADFE50007A639 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E27F1C7ADFE50007A639 /* LoginViewController.m */; };
-		2CF2E29A1C7AE0660007A639 /* image_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2901C7AE0660007A639 /* image_1.jpg */; };
 		2CF2E29B1C7AE0660007A639 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF2E2911C7AE0660007A639 /* libWeChatSDK.a */; };
 		2CF2E29C1C7AE0660007A639 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2921C7AE0660007A639 /* read_me.txt */; };
-		2CF2E29D1C7AE0660007A639 /* res1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2931C7AE0660007A639 /* res1.jpg */; };
-		2CF2E29E1C7AE0660007A639 /* res1thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2941C7AE0660007A639 /* res1thumb.png */; };
 		2CF2E2A21C7AE0E80007A639 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF2E2A11C7AE0E80007A639 /* TencentOpenAPI.framework */; };
 		2CF2E2A41C7AE2950007A639 /* textbox_password_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2A31C7AE2950007A639 /* textbox_password_1@2x.png */; };
 		2CF2E2A61C7AE30E0007A639 /* textbox_password_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E2A51C7AE30E0007A639 /* textbox_password_0@2x.png */; };
@@ -2073,11 +2070,8 @@
 		2CF2E27C1C7ADDF40007A639 /* Gloable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gloable.m; sourceTree = "<group>"; };
 		2CF2E27E1C7ADFE50007A639 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2CF2E27F1C7ADFE50007A639 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		2CF2E2901C7AE0660007A639 /* image_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_1.jpg; sourceTree = "<group>"; };
 		2CF2E2911C7AE0660007A639 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		2CF2E2921C7AE0660007A639 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
-		2CF2E2931C7AE0660007A639 /* res1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = res1.jpg; sourceTree = "<group>"; };
-		2CF2E2941C7AE0660007A639 /* res1thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = res1thumb.png; sourceTree = "<group>"; };
 		2CF2E2961C7AE0660007A639 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		2CF2E2971C7AE0660007A639 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		2CF2E2A11C7AE0E80007A639 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -4484,11 +4478,8 @@
 		2CF2E28F1C7AE0660007A639 /* WeChatSDK_1.5_OnlyIphone */ = {
 			isa = PBXGroup;
 			children = (
-				2CF2E2901C7AE0660007A639 /* image_1.jpg */,
 				2CF2E2911C7AE0660007A639 /* libWeChatSDK.a */,
 				2CF2E2921C7AE0660007A639 /* read_me.txt */,
-				2CF2E2931C7AE0660007A639 /* res1.jpg */,
-				2CF2E2941C7AE0660007A639 /* res1thumb.png */,
 				2CF2E2961C7AE0660007A639 /* WXApi.h */,
 				2CF2E2971C7AE0660007A639 /* WXApiObject.h */,
 			);
@@ -4823,7 +4814,6 @@
 				2CF2E16B1C759F530007A639 /* havi1_8@2x.png in Resources */,
 				2CD014DC1C64CA1E001F9514 /* PersonInfoPlist.plist in Resources */,
 				2CCBB5C21D93E273009FD1F8 /* picture@2x.png in Resources */,
-				2CF2E29D1C7AE0660007A639 /* res1.jpg in Resources */,
 				2C94E5581D9117DC0062A33C /* yb.png in Resources */,
 				2CF2E24E1C7AB7E80007A639 /* papasscode_failed_bg@2x.png in Resources */,
 				2C2298111D6AF6280086ACF5 /* lxr@3x.png in Resources */,
@@ -4924,7 +4914,6 @@
 				2C8D87D11D461DC5008573EA /* jia@3x.png in Resources */,
 				2C1DA0311D503A2300FA6678 /* shic@3x.png in Resources */,
 				2C6AA3241D5F27BD00CC5831 /* bi@3x.png in Resources */,
-				2CF2E29A1C7AE0660007A639 /* image_1.jpg in Resources */,
 				2CF2E2241C79DAFE0007A639 /* textbox_devicename_1@2x.png in Resources */,
 				2C9EF4FD1C852E89000704E2 /* btn_x_1@2x.png in Resources */,
 				2CD014A51C634CE7001F9514 /* month_0@2x.png in Resources */,
@@ -4949,7 +4938,6 @@
 				2C9EF4C71C844388000704E2 /* sad-75_1.png in Resources */,
 				2C9D1F8E1D9A051500CBF4D6 /* lixian.png in Resources */,
 				2CF2E2151C79D2180007A639 /* AppSetting.plist in Resources */,
-				2CF2E29E1C7AE0660007A639 /* res1thumb.png in Resources */,
 				2CD014C11C6393AF001F9514 /* person_background@3x.png in Resources */,
 				2C96AA0E1D408F0E00ACCA08 /* button_background@3x.png in Resources */,
 				2C9EF3931C7E973F000704E2 /* ic_compile_0.png in Resources */,

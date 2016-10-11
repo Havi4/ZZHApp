@@ -48,13 +48,13 @@
     self.isIn = YES;
     
     if ([UserManager GetUserObj]) {
-//        [self getUserAccessTockenWith:launchOptions];//获取tocken时候开启，下面四行关闭
-        [self setRootViewController];
-        [self getUserLocationWith:launchOptions];
-        [self getSuggestionList];
-        [self uploadRegisterID];
-//        LoginBackViewController *back = [[LoginBackViewController alloc]init];
-//        self.window.rootViewController = back;
+        [self getUserAccessTockenWith:launchOptions];//获取tocken时候开启，下面四行关闭
+//        [self setRootViewController];
+//        [self getUserLocationWith:launchOptions];
+//        [self getSuggestionList];
+//        [self uploadRegisterID];
+        LoginBackViewController *back = [[LoginBackViewController alloc]init];
+        self.window.rootViewController = back;
     }else{
         LoginViewController *login = [[LoginViewController alloc]init];
         

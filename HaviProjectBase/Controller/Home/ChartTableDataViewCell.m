@@ -101,7 +101,7 @@
         dataSub.text = @"次/天";
     }else{
         titleLabel.text = @"体动次数";
-        if ([dataModel.outOfBedTimes intValue]==0) {
+        if ([dataModel.bodyMovementTimes intValue]==0) {
             dataLabel.text = @"--";
         }else{
             dataLabel.text = [NSString stringWithFormat:@"%d",[dataModel.bodyMovementTimes intValue]];

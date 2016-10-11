@@ -302,7 +302,7 @@
                               @"UserId": thirdPartyLoginUserId,
                               @"ProblemId":self.problemID,
                               };
-    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
             [self.refreshControl endRefreshing];
             NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([obj objectForKey:@"Result"]) {
@@ -748,7 +748,7 @@
                               @"Content": @[textPloblem],
                               @"ProblemId":self.problemID
                               };
-    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
 //            [NSObject showHudTipStr:@"提交成功"];
@@ -799,7 +799,7 @@
 - (void)uploadWithImageData:(NSData*)imageData withType:(NSString *)type
 {
     NSDictionary *dicHeader = @{
-                                @"AccessToken": @"123456789",
+                                @"AccessToken": accessTocken,
                                 };
     NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
@@ -851,7 +851,7 @@
                               @"Content": @[textPloblem],
                               @"ProblemId":self.problemID
                               };
-    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
 //            [NSObject showHudTipStr:@"提交成功"];
@@ -876,7 +876,7 @@
                               @"Content": @[textPloblem],
                               @"ProblemId":self.problemID
                               };
-    [WTRequestCenter postWithURL:url header:@{@"AccessToken":@"123456789",@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if ([[[obj objectForKey:@"Result"] objectForKey:@"error"] intValue]==0) {
 //            [NSObject showHudTipStr:@"提交成功"];
