@@ -44,7 +44,7 @@
             }
         }else{
             if (indexPath.row ==0) {
-                cell.textLabel.text = @"";
+                cell.textLabel.text = @"体动分析";
             }else{
                 [cell configure:cell customObj:self.sleepQualityModel indexPath:indexPath withOtherInfo:@(self.sensorType)];
             }
@@ -96,7 +96,7 @@
 //            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
         }else{
             [self.sensorDelegate reloadTableViewHeaderWith:qualityModel withType:self.sensorType];
-//            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
         }
        
     }];

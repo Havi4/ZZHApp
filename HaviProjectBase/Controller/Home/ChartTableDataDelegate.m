@@ -166,7 +166,7 @@
     if (self.type == SensorDataLeave) {
         return 1;
     }else if (self.type == SensorDataTurn){
-        return 1;
+        return 2;
     }
     return self.items.count;
 }
@@ -234,15 +234,15 @@
             cell.dk_backgroundColorPicker = DKColorWithColors([UIColor clearColor], [UIColor clearColor]);
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.dk_textColorPicker = kTextColorPicker;
-//            UIView *lineViewBottom = [[UIView alloc]init];
-//            lineViewBottom.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.627 green:0.847 blue:0.890 alpha:1.00], [UIColor colorWithRed:0.627 green:0.847 blue:0.890 alpha:1.00]);
-//            [cell addSubview:lineViewBottom];
-//            [lineViewBottom makeConstraints:^(MASConstraintMaker *make) {
-//                make.top.equalTo(cell.textLabel.mas_baseline).offset(-15);
-//                make.height.equalTo(@0.5);
-//                make.centerX.equalTo(cell.mas_centerX);
-//                make.width.equalTo(@70);
-//            }];
+            UIView *lineViewBottom = [[UIView alloc]init];
+            lineViewBottom.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithRed:0.627 green:0.847 blue:0.890 alpha:1.00], [UIColor colorWithRed:0.627 green:0.847 blue:0.890 alpha:1.00]);
+            [cell addSubview:lineViewBottom];
+            [lineViewBottom makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(cell.textLabel.mas_baseline).offset(-15);
+                make.height.equalTo(@0.5);
+                make.centerX.equalTo(cell.mas_centerX);
+                make.width.equalTo(@70);
+            }];
             self.configureCellBlock(indexPath,nil,cell);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
