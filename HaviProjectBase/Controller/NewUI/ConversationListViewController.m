@@ -54,7 +54,7 @@
 
 - (void)getProblemList
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/cy/Problem/List/My",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/List/My",kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"pagenum":@"1",

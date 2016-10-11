@@ -151,7 +151,7 @@
                           @"OSName" : @"iOS",
                           @"OSVersion" : [UIDevice currentDevice].systemVersion,
                           @"CellPhoneModal" : [UIDevice currentDevice].machineModelName,
-                          @"OffLine": @"0"
+                          @"OffLine": @"1"
                           };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestRegisterUserIdForPush:dic andBlock:^(BaseModel *baseModel, NSError *error) {

@@ -88,7 +88,8 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         self.activeDeviceInfo = device;
         gloableActiveDevice = device;
         if (self.activeDeviceInfo) {
-            [self getSensorInfo];
+            [self initCenterViewControllers];
+//            [self getSensorInfo];
         }else{
             isDoubleDevice = NO;
             CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
@@ -101,7 +102,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         }
     }];
 }
-
+/*
 - (void)getSensorInfo
 {
     NSDictionary *para = @{
@@ -113,12 +114,11 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         @strongify(self);
         self.sensorInfo = sensorModel;
         if (sensorModel) {
-             [self initCenterViewControllers];
         }else{
         }
     }];
 }
-
+*/
 - (void)initDatePicker
 {
 //    [self.view addSubview:self.calendarView];

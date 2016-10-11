@@ -212,6 +212,9 @@
     }else if (sensor.sensorDetail.activationStatusCode == -1){
         self.statusImage.hidden = NO;
         self.statusImage.image = [UIImage imageNamed:@"tuoji"];
+    }else{
+        self.statusImage.hidden = YES;
+        self.statusImage.image = [UIImage imageNamed:@"tuoji"];
     }
     
     cell.backgroundColor = [UIColor clearColor];

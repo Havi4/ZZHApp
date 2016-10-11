@@ -44,6 +44,7 @@
     [self getSleepDataWithStartTime:queryFromDate endTime:queryEndDate];
     [self configNoti];
     [self showArticle];
+    [self getSensorInfo];
 }
 
 - (void)configNoti
@@ -349,9 +350,29 @@
     }
 }
 
+- (void)getSensorInfo
+{
+    if (self.deviceUUID.length == 0) {
+        return;
+    }
+    NSDictionary *para = @{
+                           @"UUID": self.deviceUUID
+                           };
+    @weakify(self);
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestCheckSensorInfoParams:para andBlcok:^(SensorInfoModel *sensorModel, NSError *error) {
+        @strongify(self);
+        if (sensorModel) {
+            self.sensorInfoDetail = sensorModel;
+            [self.dataShowTableView reloadData];
+        }else{
+        }
+    }];
+}
+
 - (void)refreshBedStaus
 {
-    [self.dataShowTableView reloadData];
+    [self getSensorInfo];
 }
 
 - (void)didReceiveMemoryWarning {
