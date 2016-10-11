@@ -53,8 +53,8 @@
         [self getUserLocationWith:launchOptions];
         [self getSuggestionList];
         [self uploadRegisterID];
-        LoginBackViewController *back = [[LoginBackViewController alloc]init];
-        self.window.rootViewController = back;
+//        LoginBackViewController *back = [[LoginBackViewController alloc]init];
+//        self.window.rootViewController = back;
     }else{
         LoginViewController *login = [[LoginViewController alloc]init];
         

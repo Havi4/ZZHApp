@@ -141,7 +141,12 @@
         }
         case 2:{
             type = SleepSettingSwitchLongTime;
-            [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
+//            [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
+            if (cellSwitch.on) {
+                [self openDateSelectionController:SleepSettingLongTime withSwitch:cellSwitch];
+            }else{
+                [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
+            }
             break;
         }
         case 3:{
@@ -166,22 +171,22 @@
         case 0:
         {
             type = SleepSettingStartTime;
-            [self openDateSelectionController:type];
+            [self openDateSelectionController:type withSwitch:nil];
             break;
         }
         case 1:{
             type = SleepSettingEndTime;
-            [self openDateSelectionController:type];
+            [self openDateSelectionController:type withSwitch:nil];
             break;
         }
         case 4:{
             type = SleepSettingAlertTime;
-            [self openDateSelectionController:type];
+            [self openDateSelectionController:type withSwitch:nil];
             break;
         }
         case 2:{
             type = SleepSettingLongTime;
-            [self openDateSelectionController:type];
+            [self openDateSelectionController:SleepSettingLongTime withSwitch:nil];
             break;
         }
         case 3:{
@@ -195,7 +200,7 @@
     }
 }
 
-- (void)openDateSelectionController:(SleepSettingButtonType)type {
+- (void)openDateSelectionController:(SleepSettingButtonType)type withSwitch:(UISwitch *)fswitch {
     //Create select action
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite];
     RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
@@ -226,6 +231,7 @@
             }
             case SleepSettingLongTime:{
                 NSString *endTime = [NSString stringWithFormat:@"%ld",date.hour*60 + date.minute];
+                [self changeUserLongSettingInfo:@"True" type:type];
                 [self changeUserSleepSettingInfo:endTime type:SleepSettingLongTime];
                 [[NSUserDefaults standardUserDefaults]setObject:date forKey:@"userLongDate"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
@@ -245,7 +251,14 @@
     
     //Create cancel action
     RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-        
+        NSString *time = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]];
+        if ([time isEqualToString:@"0分钟"]) {
+            fswitch.on = NO;
+            [self changeUserLongSettingInfo:@"False" type:type];
+            [NSObject showHudTipStr:@"请选择正确的防护时间"];
+//            [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
+//            [self openDateSelectionController:SleepSettingLongTime];
+        }
     }];
     
     [dateSelectionController addAction:selectAction];
@@ -371,6 +384,21 @@
 
 #pragma mark 修改用户睡眠设定
 
+- (void)changeUserLongSettingInfo:(NSString *)info type:(SleepSettingButtonType)type{
+    NSDictionary *dic3 = @{
+                           @"UserID":thirdPartyLoginUserId,
+                           @"IsTimeoutAlarmSleepTooLong": info, //真实姓名
+                           };
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestChangeUserInfoParam:dic3 andBlock:^(BaseModel *resultModel, NSError *error) {
+//        [JDStatusBarNotification showWithStatus:@"褥疮防护提醒开启" dismissAfter:2 styleName:JDStatusBarStyleDark];
+        if (self.didSelectCellBlock) {
+            self.didSelectCellBlock(nil,nil);
+        }
+    }];
+
+}
+
 - (void)changeUserSleepSettingInfo:(NSString *)info type:(SleepSettingButtonType)type
 {
     NSString *key;
@@ -406,6 +434,7 @@
             key = @"IsTimeoutAlarmOutOfBed";
             if ([info isEqualToString:@"True"]) {
                 notiString = @"离床超时提醒开启";
+                [self openPickerController:SleepSettingLeaveBedTime];
             }else{
                 notiString = @"离床超时提醒关闭";
             }
@@ -415,6 +444,7 @@
             key = @"IsTimeoutAlarmSleepTooLong";
             if ([info isEqualToString:@"True"]) {
                 notiString = @"褥疮防护提醒开启";
+                [self openDateSelectionController:SleepSettingLongTime withSwitch:nil];
             }else{
                 notiString = @"褥疮防护提醒关闭";
             }

@@ -135,6 +135,10 @@
                     NSString *cellString = [NSString stringWithFormat:@"%d分钟",time];
                     [_cellInfoButton setTitle:cellString forState:UIControlStateNormal];
                 }
+                if (time == 0) {
+                    [[NSUserDefaults standardUserDefaults]registerDefaults:@{[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]:@"0分钟"}];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
+                }
                 _cellInfoButton.titleLabel.font = kNumberFont(25);
 
                 break;
