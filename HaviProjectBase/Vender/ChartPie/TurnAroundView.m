@@ -83,7 +83,7 @@
             }
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.tag = 9000;
-            button.frame = (CGRect){cX,cY,15,15};
+            button.frame = (CGRect){cX+20,cY,15,15};
             [button setTitle:[NSString stringWithFormat:@"%d",tx] forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:9];
             [self addSubview:button];

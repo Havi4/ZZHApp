@@ -272,7 +272,7 @@
         [self.pieView reloadTableViewHeaderWith:data withType:type];
     }else{
         SleepQualityModel *model = data;
-        if ([model.outOfBedTimes intValue]==0) {
+        if ([model.bodyMovementTimes intValue]==0) {
             self.dataLabel.text = @"--";
         }else{
             self.dataLabel.text = [NSString stringWithFormat:@"%d",[model.bodyMovementTimes intValue]];

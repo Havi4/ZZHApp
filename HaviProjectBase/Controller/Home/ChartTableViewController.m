@@ -96,7 +96,8 @@
 //            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
         }else{
             [self.sensorDelegate reloadTableViewHeaderWith:qualityModel withType:self.sensorType];
-            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+            [self.sensorShowTableView reloadData];
+//            [self.sensorShowTableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
         }
        
     }];
