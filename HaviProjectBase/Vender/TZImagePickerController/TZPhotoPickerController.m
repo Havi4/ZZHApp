@@ -402,10 +402,31 @@ static CGSize AssetGridThumbnailSize;
             [self.navigationController pushViewController:videoPlayerVc animated:YES];
         }
     } else {
-        TZPhotoPreviewController *photoPreviewVc = [[TZPhotoPreviewController alloc] init];
-        photoPreviewVc.currentIndex = index;
-        photoPreviewVc.models = _models;
-        [self pushPhotoPrevireViewController:photoPreviewVc];
+        if (tzImagePickerVc.maxImagesCount == 1) {
+            TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
+            [[TZImageManager manager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+                if (isDegraded) return;
+                if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:)]) {
+                    [tzImagePickerVc.pickerDelegate imagePickerController:tzImagePickerVc didFinishPickingPhotos:@[photo] sourceAssets:nil isSelectOriginalPhoto:_isSelectOriginalPhoto];
+                }
+                if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:infos:)]) {
+                    [tzImagePickerVc.pickerDelegate imagePickerController:tzImagePickerVc didFinishPickingPhotos:@[photo] sourceAssets:nil isSelectOriginalPhoto:_isSelectOriginalPhoto infos:nil];
+                }
+                if (tzImagePickerVc.autoDismiss) {
+                    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                    }];
+                }
+
+            }];
+
+
+            
+        }else{
+            TZPhotoPreviewController *photoPreviewVc = [[TZPhotoPreviewController alloc] init];
+            photoPreviewVc.currentIndex = index;
+            photoPreviewVc.models = _models;
+            [self pushPhotoPrevireViewController:photoPreviewVc];
+        }
     }
 }
 
