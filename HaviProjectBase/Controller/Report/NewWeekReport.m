@@ -166,7 +166,7 @@
         CGFloat height = (yCoordinateHeight-15-20)/100*gradePercent*20;
         float test = [[_sleepTimeDataValues objectAtIndex:i] floatValue];
         if (height == 0 && test) {
-            height = 3;
+            height = 10;
         }
         __block SleepQualityBar *bar = [[SleepQualityBar alloc] initWithFrame:CGRectMake(xPoint.x+5, 15+(yCoordinateHeight-15)-height-5, 5,height) andGrade:(int)gradePercent];
         bar.alpha = 0;
@@ -187,12 +187,16 @@
     //睡眠时长
     for (int i=0; i<_sleepTimeDataValues.count; i++) {
         float gradePercent = [[_sleepTimeDataValues objectAtIndex:i] floatValue];
+        float vset = [[_sleepQulityDataValues objectAtIndex:i] floatValue];
+
         CGPoint xPoint = [[self.xPoints objectAtIndex:i]CGPointValue];
         CGFloat height = (yCoordinateHeight-15-20)/24*gradePercent;
+        if (height == 0 && vset) {
+            height = 10;
+        }
         __block SleepTimeLongBar *bar = [[SleepTimeLongBar alloc] initWithFrame:CGRectMake(xPoint.x-9, 15+(yCoordinateHeight-15)-height-5, 5,height)];
-        bar.alpha = 0;
+        bar.alpha = 1;
         [UIView animateWithDuration:0.3 animations:^{
-            bar.alpha = 1;
         } completion:^(BOOL finished) {
             /*
             if (gradePercent!=0) {

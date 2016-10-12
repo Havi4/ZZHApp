@@ -247,7 +247,7 @@
 {
     if (!_rightCalButton) {
         _rightCalButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
         [_rightCalButton addTarget:self action:@selector(nextStep:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightCalButton;
@@ -277,6 +277,7 @@
         case ReportViewWeek:
         {
             @weakify(self);
+            [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
             [[CalendarDateCaculate sharedInstance] getChangeWeek:self.monthTitleLabel.text monthSubTitleString:self.monthLabel.text withWeekStep:CalendarStepTypeLast callBack:^(NSString *monthTitle, NSString *monthSubTitle) {
                 @strongify(self);
                 self.monthTitleLabel.text = monthTitle;
@@ -287,6 +288,7 @@
         }
         case ReportViewMonth:{
             @weakify(self);
+            [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
             [[CalendarDateCaculate sharedInstance]getChangeMonth:self.monthTitleLabel.text withCalendarStep:CalendarStepTypeLast callBack:^(NSString *monthTitle, NSInteger daysInMonth) {
                 @strongify(self);
                 self.monthTitleLabel.text = monthTitle;
@@ -295,6 +297,7 @@
             break;
         }
         case ReportViewQuater:{
+            [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
             @weakify(self);
             [[CalendarDateCaculate sharedInstance]getChangeQuater:self.monthTitleLabel.text withQuaterStep:CalendarStepTypeLast callBack:^(NSString *monthTitle, NSString *monthSubTitle) {
                 @strongify(self);
@@ -322,11 +325,12 @@
             NSInteger unitFlags = NSWeekCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit;
             NSDateComponents *comps = [calendar components:unitFlags fromDate:[NSDate date]];
             if (titleYear > [comps year] ) {
-                [NSObject showHudTipStr:@"请选择历史日期"];
+//                [NSObject showHudTipStr:@"请选择历史日期"];
+                [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
                 return;
             }
             if ((a > [comps week] || a == [comps week]) && (titleYear == [comps year] )) {
-                [NSObject showHudTipStr:@"请选择历史日期"];
+                [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
                 return;
             }
             @weakify(self);
@@ -348,11 +352,13 @@
             NSInteger iCurYear = [components year];  //当前的年份
             NSInteger iCurMonth = [components month];  //当前的月份
             if (titleYear > iCurYear ) {
-                [NSObject showHudTipStr:@"请选择历史日期"];
+//                [NSObject showHudTipStr:@"请选择历史日期"];
+                [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
                 return;
             }
             if ((titleMonth > iCurMonth || titleMonth == iCurMonth) && (titleYear == iCurYear)) {
-                [NSObject showHudTipStr:@"请选择历史日期"];
+//                [NSObject showHudTipStr:@"请选择历史日期"];
+                [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
                 return;
             }
             
@@ -375,17 +381,20 @@
             NSInteger iCurYear = [components year];  //当前的年份
             NSInteger iCurQuar = [components quarter];
             if (titleYear > iCurYear ) {
-                [NSObject showHudTipStr:@"请选择历史日期"];
+//                [NSObject showHudTipStr:@"请选择历史日期"];
+                [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
                 return;
             }
             
             if (titleYear == iCurYear && a == 4) {
-                [NSObject showHudTipStr:@"请选择历史日期"];
+//                [NSObject showHudTipStr:@"请选择历史日期"];
+                [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
                 return;
             }
 
             if ((a > iCurQuar || a == iCurQuar) && (titleYear == iCurYear) && iCurQuar != 0) {
-                [NSObject showHudTipStr:@"请选择历史日期"];
+//                [NSObject showHudTipStr:@"请选择历史日期"];
+                [_rightCalButton setImage:[[UIImage imageNamed:[NSString stringWithFormat:@"btn_right_%d",selectedThemeIndex]] imageByTintColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
 
                 return;
             }

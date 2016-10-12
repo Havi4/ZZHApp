@@ -18,7 +18,7 @@
 
 #define kWXPlatform @"wx.com"
 #define kSinaPlatform @"sina.com"
-#define kTXPlatform @"11qq.com"
+#define kTXPlatform @"qq.com"
 #define kMeddoPlatform @"meddo99.com"
 
 #define kWXAPPKey @"wx7be2e0c9ebd9e161"

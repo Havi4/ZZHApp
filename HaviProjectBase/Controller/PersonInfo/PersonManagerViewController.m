@@ -474,10 +474,18 @@
                         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
                         imagePickerController.mediaTypes = @[(NSString*) kUTTypeImage];
+                        imagePickerController.title = @"";
                         imagePickerController.delegate = self;
                         imagePickerController.allowsEditing = YES;
                         imagePickerController.sourceType = sourceType;
-                        [self presentViewController:imagePickerController animated:YES completion:^{
+                        if ([imagePickerController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
+                            [imagePickerController.navigationBar setBarTintColor:[UIColor colorWithRed:0.176 green:0.173 blue:0.196 alpha:1.00]];
+                            [imagePickerController.navigationBar setTranslucent:NO];
+                             [imagePickerController.navigationBar setTintColor:[UIColor whiteColor]];
+                            
+                        }else{
+                            [imagePickerController.navigationBar setBackgroundColor:[UIColor colorWithRed:0.176 green:0.173 blue:0.196 alpha:1.00]];
+                        }                         [self presentViewController:imagePickerController animated:YES completion:^{
                         }];
                     }
                     break;

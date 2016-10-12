@@ -63,10 +63,10 @@ static CalendarDateCaculate *shareInstance = nil;
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     BOOL b = [gregorian rangeOfUnit:NSWeekCalendarUnit startDate:&dateOut interval:&count forDate:nowDate];
     self.dateComponents.day = 6;//设置日开始
-    NSDate *new = [[NSCalendar currentCalendar] dateByAddingComponents:self.dateComponents toDate:dateOut options:0];
     NSString *start = [[NSString stringWithFormat:@"%@",[[dateOut dateByAddingHours:8]dateByAddingDays:1] ] substringWithRange:NSMakeRange(5, 5)];
     NSString *newStart = [NSString stringWithFormat:@"%@月%@日",[start substringWithRange:NSMakeRange(0, 2)],[start substringWithRange:NSMakeRange(3, 2)]];
-    NSString *end = [[NSString stringWithFormat:@"%@",new] substringWithRange:NSMakeRange(5, 5)];
+    NSDate *nextWeekStart = [[[dateOut dateByAddingHours:8]dateByAddingDays:1] dateByAddingDays:6];
+    NSString *end = [[NSString stringWithFormat:@"%@",nextWeekStart] substringWithRange:NSMakeRange(5, 5)];
     NSString *newEnd = [NSString stringWithFormat:@"%@月%@日",[end substringWithRange:NSMakeRange(0, 2)],[end substringWithRange:NSMakeRange(3, 2)]];
     if (b) {
         return [NSString stringWithFormat:@"%@到%@",newStart,newEnd];
@@ -114,9 +114,9 @@ static CalendarDateCaculate *shareInstance = nil;
         BOOL b = [self.calender rangeOfUnit:NSWeekCalendarUnit startDate:&dateOut interval:&count forDate:nextWeekStart];
         self.dateComponents.day = 6;
         NSDate *nextWeekEnd = [[NSCalendar currentCalendar] dateByAddingComponents:self.dateComponents toDate:dateOut options:0];
-        NSString *start = [[NSString stringWithFormat:@"%@",dateOut] substringWithRange:NSMakeRange(5, 5)];
+        NSString *start = [[NSString stringWithFormat:@"%@",[dateOut dateByAddingDays:1]] substringWithRange:NSMakeRange(5, 5)];
         NSString *newStart = [NSString stringWithFormat:@"%@月%@日",[start substringWithRange:NSMakeRange(0, 2)],[start substringWithRange:NSMakeRange(3, 2)]];
-        NSString *end = [[NSString stringWithFormat:@"%@",nextWeekEnd] substringWithRange:NSMakeRange(5, 5)];
+        NSString *end = [[NSString stringWithFormat:@"%@",[nextWeekEnd dateByAddingDays:1]] substringWithRange:NSMakeRange(5, 5)];
         NSString *newEnd = [NSString stringWithFormat:@"%@月%@日",[end substringWithRange:NSMakeRange(0, 2)],[end substringWithRange:NSMakeRange(3, 2)]];
         NSString *lastMonthTitle = @"";
         lastMonthTitle = [self getCurrentWeekInOneYear:nextWeekEnd];//上周的周数;
