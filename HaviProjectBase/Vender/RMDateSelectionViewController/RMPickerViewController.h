@@ -44,4 +44,6 @@
  */
 @property (nonatomic, readonly) UIPickerView *picker;
 
+@property (nonatomic, assign) int type;
+
 @end

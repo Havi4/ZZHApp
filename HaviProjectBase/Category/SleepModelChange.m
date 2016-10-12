@@ -317,7 +317,7 @@
 + (void)filterSensorNewLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block
 {
     @synchronized(self) {
-        if (sensorData) {
+        if (sensorData.sensorDataList) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
                 NSArray *sensorInfo = sensorArr.propertyDataList;
@@ -353,6 +353,77 @@
                     [dic setObject:time forKey:@"name"];
                     [dic setObject:[UIColor clearColor] forKey:@"strokeColor"];
                     [dic setObject:[NSNumber numberWithDouble:timeSub] forKey:@"value"];
+                    [arr1 addObject:dic];
+                }
+                PropertyData *data0 = [_sortedDetailDevice objectAtIndex:0];
+                NSString *time0 = [NSString stringWithFormat:@"%@",data0.propertyDate];
+                if ([[NSString stringWithFormat:@"%@",[time0 substringWithRange:NSMakeRange(11, 2)]] intValue]>18 || [[NSString stringWithFormat:@"%@",[time0 substringWithRange:NSMakeRange(11, 2)]] intValue]==18) {
+                    int hour = [[time0 substringWithRange:NSMakeRange(11, 2)] intValue];
+                    int minute = [[time0 substringWithRange:NSMakeRange(15, 2)] intValue];
+                    int timeLong = (hour-18) *60  + minute;
+                    NSMutableDictionary *dic = @{}.mutableCopy;
+                    if ([data0.propertyValue integerValue]==0) {
+                        [dic setObject:[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1.00] forKey:@"color"];
+                    }else{
+                        [dic setObject:[UIColor colorWithRed:0.694 green:0.835 blue:0.800 alpha:1.00] forKey:@"color"];
+                    }
+                    NSString *time = [NSString stringWithFormat:@"18:00-%@",[time0 substringWithRange:NSMakeRange(11, 5)]];
+                    [dic setObject:time forKey:@"name"];
+                    [dic setObject:[UIColor clearColor] forKey:@"strokeColor"];
+                    [dic setObject:[NSNumber numberWithInt:timeLong] forKey:@"value"];
+                    [arr1 insertObject:dic atIndex:0];
+                    
+                }else{
+                    int hour = [[time0 substringWithRange:NSMakeRange(11, 2)] intValue];
+                    int minute = [[time0 substringWithRange:NSMakeRange(15, 2)] intValue];
+                    int timeLong = (hour+6) *60  + minute;
+                    NSMutableDictionary *dic = @{}.mutableCopy;
+                    if ([data0.propertyValue integerValue]==0) {
+                        [dic setObject:[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1.00] forKey:@"color"];
+                    }else{
+                        [dic setObject:[UIColor colorWithRed:0.694 green:0.835 blue:0.800 alpha:1.00] forKey:@"color"];
+                    }
+                    NSString *time = [NSString stringWithFormat:@"18:00-%@",[time0 substringWithRange:NSMakeRange(11, 5)]];
+                    [dic setObject:time forKey:@"name"];
+                    [dic setObject:[UIColor clearColor] forKey:@"strokeColor"];
+                    [dic setObject:[NSNumber numberWithInt:timeLong] forKey:@"value"];
+                    [arr1 insertObject:dic atIndex:0];
+                }
+                
+                PropertyData *dataLast = [_sortedDetailDevice lastObject];
+                NSString *timeLast = [NSString stringWithFormat:@"%@",dataLast.propertyDate];
+                if ([[NSString stringWithFormat:@"%@",[timeLast substringWithRange:NSMakeRange(11, 2)]] intValue]>18 || [[NSString stringWithFormat:@"%@",[timeLast substringWithRange:NSMakeRange(11, 2)]] intValue]==18) {
+                    int hour = [[timeLast substringWithRange:NSMakeRange(11, 2)] intValue];
+                    int minute = [[timeLast substringWithRange:NSMakeRange(15, 2)] intValue];
+                    int timeLong = (hour-18) *60  + minute;
+                    NSMutableDictionary *dic = @{}.mutableCopy;
+                    if ([dataLast.propertyValue integerValue]==0) {
+                        //上床
+                        [dic setObject:[UIColor colorWithRed:0.694 green:0.835 blue:0.800 alpha:1.00] forKey:@"color"];
+                    }else{
+                        [dic setObject:[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1.00] forKey:@"color"];
+                    }
+                    NSString *time = [NSString stringWithFormat:@"%@-18:00",[timeLast substringWithRange:NSMakeRange(11, 5)]];
+                    [dic setObject:time forKey:@"name"];
+                    [dic setObject:[UIColor clearColor] forKey:@"strokeColor"];
+                    [dic setObject:[NSNumber numberWithInt:timeLong] forKey:@"value"];
+                    [arr1 addObject:dic];
+                    
+                }else{
+                    int hour = [[timeLast substringWithRange:NSMakeRange(11, 2)] intValue];
+                    int minute = [[timeLast substringWithRange:NSMakeRange(15, 2)] intValue];
+                    int timeLong = (hour+6) *60  + minute;
+                    NSMutableDictionary *dic = @{}.mutableCopy;
+                    if ([dataLast.propertyValue integerValue]==0) {
+                        //上床
+                        [dic setObject:[UIColor colorWithRed:0.694 green:0.835 blue:0.800 alpha:1.00] forKey:@"color"];
+                    }else{
+                        [dic setObject:[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1.00] forKey:@"color"];
+                    }
+                    NSString *time = [NSString stringWithFormat:@"%@-18:00",[timeLast substringWithRange:NSMakeRange(11, 5)]];
+                    [dic setObject:time forKey:@"name"];
+                    [dic setObject:[UIColor clearColor] forKey:@"strokeColor"];
+                    [dic setObject:[NSNumber numberWithInt:timeLong] forKey:@"value"];
                     [arr1 addObject:dic];
                 }
 //                [sensorInfo enumerateObjectsUsingBlock:^(PropertyData *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

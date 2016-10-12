@@ -100,7 +100,7 @@
             }else if (i==4){
                 lineView.text = @"8";
             }else if (i==5){
-                lineView.text = @"6";
+                lineView.text = @"4";
             }
             
             [_turnBackView addSubview:lineView];

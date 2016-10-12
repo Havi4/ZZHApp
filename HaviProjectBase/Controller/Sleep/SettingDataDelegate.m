@@ -18,7 +18,10 @@
 
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, strong) NSArray *sleepLeaveBedTime;
-
+@property (nonatomic, strong) NSArray *hourArr;
+@property (nonatomic, strong) NSArray *minuteArr;
+@property (nonatomic, assign) NSInteger zeroLastRow;
+@property (nonatomic, assign) NSInteger oneLastRow;
 @end
 
 @implementation SettingDataDelegate
@@ -143,7 +146,7 @@
             type = SleepSettingSwitchLongTime;
 //            [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
             if (cellSwitch.on) {
-                [self openDateSelectionController:SleepSettingLongTime withSwitch:cellSwitch];
+                [self openPickerController:SleepSettingLongTime];
             }else{
                 [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
             }
@@ -186,7 +189,8 @@
         }
         case 2:{
             type = SleepSettingLongTime;
-            [self openDateSelectionController:SleepSettingLongTime withSwitch:nil];
+//            [self openDateSelectionController:SleepSettingLongTime withSwitch:nil];
+            [self openPickerController:SleepSettingLongTime];
             break;
         }
         case 3:{
@@ -291,53 +295,117 @@
 
 - (void)openPickerController:(SleepSettingButtonType)type {
     //Create select action
-    RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
-        UIPickerView *picker = ((RMPickerViewController *)controller).picker;
-        NSMutableArray *selectedRows = [NSMutableArray array];
-        for(NSInteger i=0 ; i<[picker numberOfComponents] ; i++) {
-            [selectedRows addObject:@([picker selectedRowInComponent:i])];
-        }
-        NSInteger index = [[selectedRows objectAtIndex:0] integerValue];
-        NSString *time = [self.sleepLeaveBedTime objectAtIndex:index];
-        NSRange rangeMinute = [time rangeOfString:@"分钟"];
-        int num=0;
-        if (rangeMinute.length>0) {
-            num = [[time substringToIndex:rangeMinute.location] intValue];
-            num = num*60;
-        }else{
-            NSRange rangeMinute1 = [time rangeOfString:@"秒"];
-            num = [[time substringToIndex:rangeMinute1.location] intValue];
-        }
-        [self changeUserSleepSettingInfo:[NSString stringWithFormat:@"%d",num] type:SleepSettingLeaveBedTime];
-    }];
-    
-    
-    RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-        NSLog(@"Row selection was canceled");
-    }];
-    
-    //Create picker view controller
-    RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:RMActionControllerStyleWhite];
-    [pickerController addAction:cancelAction];
-    [pickerController addAction:selectAction];
-    pickerController.picker.delegate = self;
-    pickerController.picker.dataSource = self;
-    self.sleepLeaveBedTime = @[@"5秒",@"15秒",@"30秒",@"1分钟",@"5分钟",@"10分钟",@"15分钟",];
-    int time = [self.userInfo.nUserInfo.alarmTimeOutOfBed intValue];
-    NSString *cellString = @"";
-    if (time > 60 || time == 60) {
-        cellString = [NSString stringWithFormat:@"%d分钟",time/60];
+    if (type == SleepSettingLeaveBedTime) {
         
-    }else{
-        cellString = [NSString stringWithFormat:@"%d秒",time];
+        RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+            UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+            NSMutableArray *selectedRows = [NSMutableArray array];
+            for(NSInteger i=0 ; i<[picker numberOfComponents] ; i++) {
+                [selectedRows addObject:@([picker selectedRowInComponent:i])];
+            }
+            NSInteger index = [[selectedRows objectAtIndex:0] integerValue];
+            NSString *time = [self.sleepLeaveBedTime objectAtIndex:index];
+            NSRange rangeMinute = [time rangeOfString:@"分钟"];
+            int num=0;
+            if (rangeMinute.length>0) {
+                num = [[time substringToIndex:rangeMinute.location] intValue];
+                num = num*60;
+            }else{
+                NSRange rangeMinute1 = [time rangeOfString:@"秒"];
+                num = [[time substringToIndex:rangeMinute1.location] intValue];
+            }
+            [self changeUserSleepSettingInfo:[NSString stringWithFormat:@"%d",num] type:SleepSettingLeaveBedTime];
+        }];
+        
+        
+        RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+            NSLog(@"Row selection was canceled");
+        }];
+        
+        //Create picker view controller
+        RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:RMActionControllerStyleWhite];
+        [pickerController addAction:cancelAction];
+        [pickerController addAction:selectAction];
+        pickerController.picker.tag = 0;
+        pickerController.picker.delegate = self;
+        pickerController.picker.dataSource = self;
+        self.sleepLeaveBedTime = @[@"5秒",@"15秒",@"30秒",@"1分钟",@"5分钟",@"10分钟",@"15分钟",];
+        int time = [self.userInfo.nUserInfo.alarmTimeOutOfBed intValue];
+        NSString *cellString = @"";
+        if (time > 60 || time == 60) {
+            cellString = [NSString stringWithFormat:@"%d分钟",time/60];
+            
+        }else{
+            cellString = [NSString stringWithFormat:@"%d秒",time];
+        }
+        if ([self.sleepLeaveBedTime containsObject:cellString]) {
+            NSUInteger index = [self.sleepLeaveBedTime indexOfObject:cellString];
+            [pickerController.picker selectRow:index inComponent:0 animated:NO];
+        }
+        
+        //Now just present the picker controller using the standard iOS presentation method
+        [[NSObject appNaviRootViewController] presentViewController:pickerController animated:YES completion:nil];
+    }else{//防护警告
+        RMAction *selectAction = [RMAction actionWithTitle:@"确认" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+            UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+            NSMutableArray *selectedRows = [NSMutableArray array];
+            for(NSInteger i=0 ; i<[picker numberOfComponents] ; i++) {
+                [selectedRows addObject:@([picker selectedRowInComponent:i])];
+            }
+            NSInteger leftindex = [[selectedRows objectAtIndex:0] integerValue];
+            NSString *lefttime = [self.hourArr objectAtIndex:leftindex];
+            NSInteger rightindex = [[selectedRows objectAtIndex:1] integerValue];
+            NSString *righttime = [self.minuteArr objectAtIndex:rightindex];
+            NSRange rangeMinute = [lefttime rangeOfString:@"小时"];
+            int num=0;
+            if (rangeMinute.length>0) {
+                num = [[lefttime substringToIndex:rangeMinute.location] intValue];
+                num = num*60;
+            }
+             NSRange rangeMinute1 = [righttime rangeOfString:@"分钟"];
+            num += [[righttime substringToIndex:rangeMinute1.location] intValue];
+            
+            [self changeUserLongSettingInfo:@"True" type:type];
+            [self changeUserSleepSettingInfo:[NSString stringWithFormat:@"%d",num] type:SleepSettingLongTime];
+        }];
+        
+        
+        RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+            NSLog(@"Row selection was canceled");
+            NSString *time = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]];
+            if ([time isEqualToString:@"0分钟"]) {
+                [self changeUserLongSettingInfo:@"False" type:type];
+                [NSObject showHudTipStr:@"请选择正确的防护时间"];
+                //            [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
+                //            [self openDateSelectionController:SleepSettingLongTime];
+            }
+        }];
+        
+        //Create picker view controller
+        RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:RMActionControllerStyleWhite];
+        [pickerController addAction:cancelAction];
+        [pickerController addAction:selectAction];
+        pickerController.picker.tag = 1;
+        pickerController.picker.delegate = self;
+        pickerController.picker.dataSource = self;
+        self.hourArr = @[@"0小时",@"1小时",@"2小时",@"3小时",@"4小时",@"5小时",@"6小时",@"7小时",@"8小时",@"9小时",@"10小时",@"11小时",@"12小时",@"13小时",@"14小时",@"15小时",@"16小时",@"17小时",@"18小时",@"19小时",@"20小时",@"21小时",@"22小时",@"23小时"];
+        self.minuteArr = @[@"0分钟",@"15分钟",@"30分钟",@"45分钟"];
+//        int time = [self.userInfo.nUserInfo.alarmTimeSleepTooLong intValue];
+//        NSString *cellString = @"";
+//        if (time > 60 || time == 60) {
+//            cellString = [NSString stringWithFormat:@"%d分钟",time/60];
+//            
+//        }else{
+//            cellString = [NSString stringWithFormat:@"%d秒",time];
+//        }
+//        if ([self.sleepLeaveBedTime containsObject:cellString]) {
+//            NSUInteger index = [self.sleepLeaveBedTime indexOfObject:cellString];
+//        }
+        [pickerController.picker selectRow:1 inComponent:0 animated:NO];
+        
+        //Now just present the picker controller using the standard iOS presentation method
+        [[NSObject appNaviRootViewController] presentViewController:pickerController animated:YES completion:nil];
     }
-    if ([self.sleepLeaveBedTime containsObject:cellString]) {
-        NSUInteger index = [self.sleepLeaveBedTime indexOfObject:cellString];
-        [pickerController.picker selectRow:index inComponent:0 animated:NO];
-    }
-    
-    //Now just present the picker controller using the standard iOS presentation method
-    [[NSObject appNaviRootViewController] presentViewController:pickerController animated:YES completion:nil];
 }
 
 #pragma mark 控制本地通知
@@ -444,7 +512,8 @@
             key = @"IsTimeoutAlarmSleepTooLong";
             if ([info isEqualToString:@"True"]) {
                 notiString = @"褥疮防护提醒开启";
-                [self openDateSelectionController:SleepSettingLongTime withSwitch:nil];
+                [self openPickerController:SleepSettingLongTime];
+//                [self openDateSelectionController:SleepSettingLongTime withSwitch:nil];
             }else{
                 notiString = @"褥疮防护提醒关闭";
             }
@@ -473,17 +542,56 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+    if (pickerView.tag == 0) {
+        return 1;
+    }else{
+        return 2;
+    }
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.sleepLeaveBedTime.count;
+    if (pickerView.tag == 0) {
+        return self.sleepLeaveBedTime.count;
+    }else{
+        if (component == 0) {
+            return self.hourArr.count;
+        }else{
+            return self.minuteArr.count;
+        }
+    }
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%@",[self.sleepLeaveBedTime objectAtIndex:row]];
+    if (pickerView.tag == 0) {
+    
+        return [NSString stringWithFormat:@"%@",[self.sleepLeaveBedTime objectAtIndex:row]];
+    }else{
+        if (component ==0) {
+            return [NSString stringWithFormat:@"%@",[self.hourArr objectAtIndex:row]];
+        }else{
+            return [NSString stringWithFormat:@"%@",[self.minuteArr objectAtIndex:row]];
+        }
+    }
 }
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (component == 0) {
+        if (row == 0 && self.oneLastRow==0) {
+            [pickerView selectRow:1 inComponent:1 animated:YES];
+        }
+        
+        self.zeroLastRow = row;
+    }else if (component == 1){
+        if (row == 0 && self.zeroLastRow == 0) {
+            [pickerView selectRow:1 inComponent:0 animated:YES];
+        }
+        self.oneLastRow = row;
+    }
+}
+
+
 
 @end
