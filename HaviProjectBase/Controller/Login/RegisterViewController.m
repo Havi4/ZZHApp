@@ -431,7 +431,7 @@
     NSDictionary *dicHeader = @{
                                 @"AccessToken": accessTocken,
                                 };
-    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/file/UploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/file/UploadFile/%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
     [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
     [self setRequest:request withImageData:imageData];

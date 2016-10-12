@@ -20,6 +20,7 @@
 #import "ConsultVViewController.h"
 #import "ConversationListViewController.h"
 #import "WTRequestCenter.h"
+#import "NSObject+Common.h"
 
 static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 @interface CenterViewController ()<CLWeeklyCalendarViewDelegate,UIViewControllerTransitioningDelegate>
@@ -49,10 +50,10 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     [self createBarItems];
     [self queryDeviceListForControllers];
 //    [self initDatePicker];
-    [self obserBedStatus];
+//    [self obserBedStatus];
     
 }
-
+/*
 - (void)obserBedStatus
 {
     [[NSNotificationCenter defaultCenter]addObserverForName:kUserBedStatusChanged object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
@@ -76,7 +77,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
     }];
 }
-
+*/
 - (void)queryDeviceListForControllers
 {
     @weakify(self)
@@ -416,7 +417,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 {
     KxMenuItem *item = (KxMenuItem *)sender;
     if ([item.title isEqualToString:@"快速提问"]) {
-        NSString *url = [NSString stringWithFormat:@"%@/v1/cy/Login",kAppBaseURL];
+        NSString *url = [NSString stringWithFormat:@"%@/v1/cy/Login",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
         NSDictionary *dicPara = @{
                                   @"UserId": thirdPartyLoginUserId
                                   };

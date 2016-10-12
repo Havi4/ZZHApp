@@ -204,6 +204,9 @@
     withOtherInfo:(id)objInfo
 {
     // Rewrite this func in SubClass !
+    if (!obj) {
+        return;
+    }
     NSArray *dic = obj;
     NSDictionary *leftDic = dic[0];
     NSDictionary *rightDic = dic[1];

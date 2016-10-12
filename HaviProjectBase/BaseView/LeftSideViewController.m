@@ -79,7 +79,7 @@
     if (thirdPartyLoginIcon.length>0) {
         _userIconImageView.userIconURL = thirdPartyLoginIcon;
     }else{
-        _userIconImageView.userIconURL = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
+        _userIconImageView.userIconURL = [NSString stringWithFormat:@"%@%@%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
     }
 }
 

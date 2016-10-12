@@ -125,7 +125,7 @@
         [NSObject showHudTipStr:@"请输入评价描述"];
         return;
     }
-    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/Assess",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/Assess",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"Content": @[

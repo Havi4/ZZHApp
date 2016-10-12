@@ -519,7 +519,7 @@
         [self uploadImageArr];
     }
     [NSObject hideHud];
-    NSString *url = [NSString stringWithFormat:@"%@v1/cy/FreeProblem/Create",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/FreeProblem/Create",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
     NSDateFormatter *_dateFormmatter = [[NSDateFormatter alloc]init];
     [_dateFormmatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *date = [_dateFormmatter dateFromString:self.selectDate];
@@ -626,7 +626,7 @@
     NSDictionary *dicHeader = @{
                                 @"AccessToken": accessTocken,
                                 };
-    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
     [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
     [self setRequest:request withImageData:imageData];

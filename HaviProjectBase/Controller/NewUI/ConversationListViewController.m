@@ -54,7 +54,7 @@
 
 - (void)getProblemList
 {
-    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/List/My",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/List/My",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"pagenum":@"1",
@@ -289,7 +289,7 @@
 
 - (void)deleteProblemWith:(NSString *)problemID
 {
-    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/Delete",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/Delete",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"ProblemId": problemID,

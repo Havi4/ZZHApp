@@ -153,7 +153,7 @@
 - (void)configProfileWithCell:(UITableViewCell *)cell
 {
     self.profileCell = (ProfileTableViewCell*)cell;
-    NSString *iconUrl = thirdPartyLoginIcon.length == 0?[NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId]:thirdPartyLoginIcon;
+    NSString *iconUrl = thirdPartyLoginIcon.length == 0?[NSString stringWithFormat:@"%@%@%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId]:thirdPartyLoginIcon;
     [_profileCell.userIcon setImageWithURL:[NSURL URLWithString:iconUrl] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_placeholder"]]];
     
     NSMutableString *userId = [[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@",thirdPartyLoginNickName]];
@@ -571,7 +571,7 @@
     NSDictionary *dicHeader = @{
                                 @"AccessToken": accessTocken,
                                 };
-    NSString *urlStr = [NSString stringWithFormat:@"%@v1/file/UploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@v1/file/UploadFile/%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
     [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
     [self setRequest:request withImageData:imageData];
@@ -581,7 +581,7 @@
         if ([[dic objectForKey:@"ReturnCode"] intValue]==200) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [JDStatusBarNotification showWithStatus:@"头像上传成功" dismissAfter:2 styleName:JDStatusBarStyleDark];
-                NSString *url = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
+                NSString *url = [NSString stringWithFormat:@"%@%@%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
                 [self.profileCell.userIcon setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:[NSString stringWithFormat:@"head_portrait_%d",0]] options:YYWebImageOptionRefreshImageCache completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"iconImageChanged" object:nil];
                 }];

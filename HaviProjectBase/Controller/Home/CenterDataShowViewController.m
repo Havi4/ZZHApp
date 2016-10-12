@@ -49,7 +49,16 @@
 
 - (void)configNoti
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showArticleL) name:kGetCurrentCity object:nil];
+    [[NSNotificationCenter defaultCenter]addObserverForName:kGetCurrentCity object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSString *city = [note.userInfo objectForKey:@"city"];
+        [[NSUserDefaults standardUserDefaults]setObject:city forKey:@"city"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        [self showArticleL];
+    }];
+    [[NSNotificationCenter defaultCenter]addObserverForName:kUserBedStatusChanged object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self getSensorInfo];
+        
+    }];
 }
 
 - (void)showArticleL{
@@ -364,7 +373,7 @@
         @strongify(self);
         if (sensorModel) {
             self.sensorInfoDetail = sensorModel;
-            [self.dataShowTableView reloadData];
+            [self.dataShowTableView reloadRow:3 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
         }else{
         }
     }];

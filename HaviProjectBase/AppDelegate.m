@@ -241,10 +241,14 @@
 
 - (void)sendLocationWith:(NSString *)city andProvie:(NSString *)province
 {
-    [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":[city substringToIndex:city.length-1]}];
     [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"city":@""}];
+    NSString *cityU = [[NSUserDefaults standardUserDefaults]objectForKey:@"city"];
+    if (cityU.length == 0) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":[city substringToIndex:city.length-1]}];
+    }
     [[NSUserDefaults standardUserDefaults]setObject:[city substringToIndex:city.length-1] forKey:@"city"];
     [[NSUserDefaults standardUserDefaults]synchronize];
+    
     NSDictionary *dic19 = @{
                             @"city" : [city substringToIndex:city.length-1],
                             @"province": [province substringToIndex:city.length-1]
@@ -253,6 +257,7 @@
         NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         DeBugLog(@"天气是%@",weatherDic);
         [[NSNotificationCenter defaultCenter]postNotificationName:kGetWeatherData object:nil userInfo:@{@"data":data}];
+
     } failed:^(NSURLResponse *response, NSError *error) {
         
     }];

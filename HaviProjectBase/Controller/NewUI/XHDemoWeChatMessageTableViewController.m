@@ -226,7 +226,7 @@
     
     // 设置自身用户名
     self.messageSender = @"Jack";
-    self.myThumUrl = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
+    self.myThumUrl = [NSString stringWithFormat:@"%@%@%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
     
     // 添加第三方接入数据
     NSMutableArray *shareMenuItems = [NSMutableArray array];
@@ -297,7 +297,7 @@
 
 - (void)getContentMessage
 {
-    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/Detail",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/Problem/Detail",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
     NSDictionary *dicPara = @{
                               @"UserId": thirdPartyLoginUserId,
                               @"ProblemId":self.problemID,
@@ -738,7 +738,7 @@
 
 - (void)sendImessageWith:(NSString *)text
 {
-    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
     NSDictionary *textPloblem = @{
                                   @"type": @"text",
                                   @"text": text,
@@ -801,7 +801,7 @@
     NSDictionary *dicHeader = @{
                                 @"AccessToken": accessTocken,
                                 };
-    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",kAppBaseURL,thirdPartyLoginUserId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/v1/cy/CyUploadFile/%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,thirdPartyLoginUserId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr] cachePolicy:0 timeoutInterval:5.0f];
     [request setValue:[dicHeader objectForKey:@"AccessToken"] forHTTPHeaderField:@"AccessToken"];
     [self setRequest:request withImageData:imageData];
@@ -841,7 +841,7 @@
 
 - (void)sendImageWith:(NSString *)text
 {
-    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
     NSDictionary *textPloblem = @{
                                   @"type": @"image",
                                   @"file": text,
@@ -866,7 +866,7 @@
 
 - (void)sendAudioWith:(NSString *)text
 {
-    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",kAppBaseURL];
+    NSString *url = [NSString stringWithFormat:@"%@v1/cy/ProblemContent/Create",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL];
     NSDictionary *textPloblem = @{
                                   @"type": @"audio",
                                   @"file": text,

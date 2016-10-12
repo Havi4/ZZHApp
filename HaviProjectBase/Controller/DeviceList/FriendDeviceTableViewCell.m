@@ -111,7 +111,7 @@
         }else{
             _selectImageView.hidden = NO;
         }
-        NSString *url = [NSString stringWithFormat:@"%@/v1/file/DownloadFile/%@",kAppBaseURL,deviceModel.friendUserID];
+        NSString *url = [NSString stringWithFormat:@"%@/v1/file/DownloadFile/%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,deviceModel.friendUserID];
         [_messageIcon setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"head_placeholder"]];
         _messageTime.text = deviceModel.nDescription;
         _messagePhone.text = deviceModel.cellPhone;

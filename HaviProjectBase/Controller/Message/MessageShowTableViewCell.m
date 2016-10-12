@@ -169,7 +169,7 @@
     // Rewrite this func in SubClass !
     if (obj) {
         RequestUserInfo *userInfo = obj;
-        NSString *url = [NSString stringWithFormat:@"%@/v1/file/DownloadFile/%@",kAppBaseURL,userInfo.userID];
+        NSString *url = [NSString stringWithFormat:@"%@/v1/file/DownloadFile/%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,userInfo.userID];
         [_messageIcon setImageWithURL:[NSURL URLWithString:url] placeholder:[UIImage imageNamed:@"head_placeholder"]];
         if (userInfo.userName.length == 0) {
             _messageName.text = @"匿名用户";

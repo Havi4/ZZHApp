@@ -150,7 +150,7 @@ static CGFloat const kAvatarHeight = 70.0f;
 
 - (void)configureNotifications {
     
-    NSString *url = [NSString stringWithFormat:@"%@%@%@",kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,@"v1/file/DownloadFile/",thirdPartyLoginUserId];
     @weakify(self);
     [[NSNotificationCenter defaultCenter] addObserverForName:@"iconImageChanged" object:nil queue:nil usingBlock:^(NSNotification *note) {
         @strongify(self);

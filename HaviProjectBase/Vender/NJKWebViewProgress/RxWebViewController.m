@@ -318,7 +318,7 @@
 
 - (void)getArticleListWithError:(NSError *)error{
     
-    NSString *url = [NSString stringWithFormat:@"%@v1/news/ArticleList?PageNum=0&Count=100&Tips=%@",kAppBaseURL,self.tagLists[0]];
+    NSString *url = [NSString stringWithFormat:@"%@v1/news/ArticleList?PageNum=0&Count=100&Tips=%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,self.tagLists[0]];
     
     [NSObject showHud];
     [WTRequestCenter getWithURL:url headers:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {

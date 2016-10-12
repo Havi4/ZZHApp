@@ -139,6 +139,7 @@
 + (NSString *)baseURLStr
 {
     NSString *baseURLStr = nil;
+    [[NSUserDefaults standardUserDefaults]registerDefaults:@{kTestKey:@NO}];
     if ([self baseURLStrIsTest]) {
         baseURLStr = kAppTestBaseURL;
     }else{
@@ -149,6 +150,7 @@
 
 + (BOOL)baseURLStrIsTest
 {
+    
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     return [[userDefault objectForKey:kTestKey] boolValue];
 }
