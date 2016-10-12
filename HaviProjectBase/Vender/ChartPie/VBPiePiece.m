@@ -497,7 +497,7 @@
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
         DeBugLog(@"角度是%f",self.angle);
-        if (self.angle>0.1) {
+        if (self.angle>0.2) {
             [self.label setFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
             self.backLayer.path = [self backPathWithEnd:CGPointMake(center.x, center.y+labelSize.height/2)].CGPath;
             self.backLayer.strokeColor = [UIColor colorWithWhite:0.8 alpha:0.7].CGColor;

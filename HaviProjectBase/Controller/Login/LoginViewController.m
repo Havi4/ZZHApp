@@ -128,7 +128,7 @@
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
     [loginButton setTitleColor:selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor] forState:UIControlStateNormal];
     loginButton.titleLabel.font = [UIFont systemFontOfSize:17];
-    [loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    [loginButton addTarget:self action:@selector(getUserAccessTocken) forControlEvents:UIControlEventTouchUpInside];
     loginButton.layer.cornerRadius = 0;
     loginButton.layer.masksToBounds = YES;
     [self.view addSubview:loginButton];

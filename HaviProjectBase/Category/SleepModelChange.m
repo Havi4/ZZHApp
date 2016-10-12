@@ -230,7 +230,6 @@
                     PropertyData *dic = [sensorInfo objectAtIndex:i];
                     NSString *date = dic.propertyDate;
                     NSString *hourDate1 = [date substringWithRange:NSMakeRange(11, 2)];
-//                    NSString *minuteDate2 = [date substringWithRange:NSMakeRange(14, 2)];
                     int indexIn = 0;
                     if (([hourDate1 intValue] > 18 || [hourDate1 intValue] == 18) && [hourDate1 intValue] < 19) {
                         indexIn = 0;
@@ -281,11 +280,6 @@
                     }else if(([hourDate1 intValue] > 17 || [hourDate1 intValue] == 17) && [hourDate1 intValue] < 18){
                         indexIn = 23;
                     }
-//                    if ([hourDate1 intValue]<18) {
-//                        indexIn = (int)((24 -18)*60 + [hourDate1 intValue]*60 + [minuteDate2 intValue])/1;
-//                    }else {
-//                        indexIn = (int)(([hourDate1 intValue]-18)*60 + [minuteDate2 intValue])/1;
-//                    }
                     NSInteger index = [[arr objectAtIndex:indexIn] integerValue];
                     index +=1;
                     [arr replaceObjectAtIndex:indexIn withObject:[NSNumber numberWithInteger:index]];
@@ -327,19 +321,21 @@
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
                 NSArray *sensorInfo = sensorArr.propertyDataList;
-        
+                NSArray *_sortedDetailDevice = [sensorInfo sortedArrayUsingComparator:^NSComparisonResult(PropertyData* _Nonnull obj1, PropertyData* _Nonnull obj2) {
+                    return [obj1.propertyDate compare:obj2.propertyDate options:NSCaseInsensitiveSearch];
+                }];
                 NSMutableArray *arr1 = [[NSMutableArray alloc]init];
                 int i,j;
 //                @{@"name":@"third", @"value":@40, @"color":[UIColor blueColor], @"strokeColor":[UIColor whiteColor]},
-                for (i = 0,j = 1; j < sensorInfo.count ; i++,j++) {
+                for (i = 0,j = 1; j < _sortedDetailDevice.count ; i++,j++) {
                     NSMutableDictionary *dic = @{}.mutableCopy;
-                    PropertyData *datai = [sensorInfo objectAtIndex:i];
-                    PropertyData *dataj = [sensorInfo objectAtIndex:j];
-                    if ([dataj.propertyValue integerValue]==0) {
-                        //离床
-                        [dic setObject:[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1.00] forKey:@"color"];
-                    }else{
+                    PropertyData *datai = [_sortedDetailDevice objectAtIndex:i];
+                    PropertyData *dataj = [_sortedDetailDevice objectAtIndex:j];
+                    if ([datai.propertyValue integerValue]==0) {
+                        //上床
                         [dic setObject:[UIColor colorWithRed:0.694 green:0.835 blue:0.800 alpha:1.00] forKey:@"color"];
+                    }else{
+                        [dic setObject:[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1.00] forKey:@"color"];
                     }
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                     //设定时间格式,这里可以设置成自己需要的格式

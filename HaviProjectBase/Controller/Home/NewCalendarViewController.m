@@ -236,7 +236,7 @@
         }
     }
     if ([_dateSelected isLaterThan:[NSDate date]]) {
-        [NSObject showHudTipStr:@"请选择历史日期"];
+//        [NSObject showHudTipStr:@"请选择历史日期"];
     }else{
         [self dismissViewControllerAnimated:YES completion:^{
             

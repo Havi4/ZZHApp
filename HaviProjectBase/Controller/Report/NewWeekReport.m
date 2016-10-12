@@ -164,6 +164,10 @@
         float gradePercent = [[_sleepQulityDataValues objectAtIndex:i] floatValue];
         CGPoint xPoint = [[self.xPoints objectAtIndex:i]CGPointValue];
         CGFloat height = (yCoordinateHeight-15-20)/100*gradePercent*20;
+        float test = [[_sleepTimeDataValues objectAtIndex:i] floatValue];
+        if (height == 0 && test) {
+            height = 3;
+        }
         __block SleepQualityBar *bar = [[SleepQualityBar alloc] initWithFrame:CGRectMake(xPoint.x+5, 15+(yCoordinateHeight-15)-height-5, 5,height) andGrade:(int)gradePercent];
         bar.alpha = 0;
         [UIView animateWithDuration:0.3 animations:^{
