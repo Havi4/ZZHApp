@@ -412,7 +412,7 @@
                 }else{
                     int hour = [[timeLast substringWithRange:NSMakeRange(11, 2)] intValue];
                     int minute = [[timeLast substringWithRange:NSMakeRange(15, 2)] intValue];
-                    int timeLong = (hour+6) *60  + minute;
+                    int timeLong = (18 -hour) *60  + minute;
                     NSMutableDictionary *dic = @{}.mutableCopy;
                     if ([dataLast.propertyValue integerValue]==0) {
                         //上床
