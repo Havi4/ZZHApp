@@ -71,9 +71,11 @@
 -(void)loadGoogle
 {
 //    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.articleURL]];
-    NSString *url = [NSString stringWithFormat:@"%@",self.articleURL];
-    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [_webView loadRequest:req];
+//    NSString *url = [NSString stringWithFormat:@"%@",self.articleURL];
+    NSString * htmlstr = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:self.articleURL] encoding:NSUTF8StringEncoding error:nil];
+//    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [_webView loadHTMLString:htmlstr baseURL:[NSURL URLWithString:self.articleURL]];
+//    [_webView loadRequest:req];
 }
 
 #pragma mark - NJKWebViewProgressDelegate
