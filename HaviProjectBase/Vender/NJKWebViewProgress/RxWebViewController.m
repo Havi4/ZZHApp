@@ -311,7 +311,7 @@
     if (indexPath.row>1) {
         ArticleViewController *article = [[ArticleViewController alloc]init];
         article.articleTitle = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Title"];
-        article.articleURL = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"FileName"];
+        article.articleURL = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Url"];
         [self.navigationController pushViewController:article animated:YES];
     }
 }
