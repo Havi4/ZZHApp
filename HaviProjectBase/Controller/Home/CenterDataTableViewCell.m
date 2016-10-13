@@ -204,12 +204,17 @@
     withOtherInfo:(id)objInfo
 {
     // Rewrite this func in SubClass !
-    if (!obj) {
-        return;
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"CenterData" ofType:@"plist"];
+    NSArray *arr = [NSArray arrayWithContentsOfFile:path];
+    NSDictionary *leftDic;
+    NSDictionary *rightDic;
+    if (indexPath.row == 1) {
+        leftDic = [[arr objectAtIndex:0]objectAtIndex:0];
+        rightDic = [[arr objectAtIndex:0]objectAtIndex:1];
+    }else if (indexPath.row == 2){
+        leftDic = [[arr objectAtIndex:1]objectAtIndex:0];
+        rightDic = [[arr objectAtIndex:1]objectAtIndex:1];
     }
-    NSArray *dic = obj;
-    NSDictionary *leftDic = dic[0];
-    NSDictionary *rightDic = dic[1];
     SleepQualityModel *model = objInfo;
     YYImage *image = [YYImage imageNamed:[NSString stringWithFormat:@"%@",[leftDic objectForKey:@"cellIcon"]]];
     YYImage *image1 = [YYImage imageNamed:[NSString stringWithFormat:@"%@",[rightDic objectForKey:@"cellIcon"]]];

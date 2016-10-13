@@ -144,7 +144,7 @@
 {
     if (!_tagTableView) {
         if (!self.error) {
-            _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,self.webView.scrollView.contentSize.height-44*6,self.view.frame.size.width,44*6+30} style:UITableViewStylePlain];
+            _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,self.webView.scrollView.contentSize.height-44*6-30,self.view.frame.size.width,44*6+30} style:UITableViewStylePlain];
         }else{
             _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,64,self.view.frame.size.width,44*6+30} style:UITableViewStylePlain];
         }
@@ -328,7 +328,7 @@
         self.articleList = obj;
         if ([[self.articleList objectForKey:@"ArticleList"] count]>0) {
             if (!error) {
-                self.webView.scrollView.contentSize = (CGSize){self.webView.scrollView.contentSize.width,self.webView.scrollView.contentSize.height+44*6};
+                self.webView.scrollView.contentSize = (CGSize){self.webView.scrollView.contentSize.width,self.webView.scrollView.contentSize.height+44*6+30};
                 [self.webView.scrollView addSubview:self.tagTableView];
                 [self.tagTableView reloadData];
             }else{
@@ -629,13 +629,13 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     if (error) {
-        [self.webView stopLoading];
-        [self.webView removeFromSuperview];
-        self.webView = nil;
-        self.tagTableView = nil;
-        self.view.backgroundColor = [UIColor whiteColor];
-        self.error = error;
-        [self getArticleListWithError:error];
+//        [self.webView stopLoading];
+//        [self.webView removeFromSuperview];
+//        self.webView = nil;
+//        self.tagTableView = nil;
+//        self.view.backgroundColor = [UIColor whiteColor];
+//        self.error = error;
+//        [self getArticleListWithError:error];
     }
     
 }

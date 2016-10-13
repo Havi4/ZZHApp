@@ -373,7 +373,7 @@
         @strongify(self);
         if (sensorModel) {
             self.sensorInfoDetail = sensorModel;
-            [self.dataShowTableView reloadRow:3 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+            [self.dataShowTableView reloadData];
         }else{
         }
     }];

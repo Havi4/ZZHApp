@@ -183,11 +183,15 @@
     withOtherInfo:(id)objInfo
 {
     // Rewrite this func in SubClass !
+    
     SleepQualityModel *model = (SleepQualityModel*)objInfo;
     [SleepModelChange changeSleepDuration:model callBack:^(id callBack) {
         _longSleepNum.text = [NSString stringWithFormat:@"%@",callBack];
     }];
     SensorInfoModel *sensor = (SensorInfoModel *)obj;
+    if (!sensor) {
+        return;
+    }
     if ([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"False"]) {
         if (gloableActiveDevice.detailDeviceList.count == 0) {
             _bedImageView.image = [UIImage imageNamed:@"bed_no_sigle@3x"];
