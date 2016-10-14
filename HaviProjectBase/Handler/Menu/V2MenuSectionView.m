@@ -56,8 +56,17 @@ static CGFloat const kAvatarHeight = 70.0f;
         [self configureTableView];
         [self configureProfileView];
         [self configureNotifications];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{kBadgeKey:@0}];
+        [[NSNotificationCenter defaultCenter]addObserverForName:kFriendRequestNoti object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+            [self showFriendRequestNoti];
+        }];
     }
     return self;
+}
+
+- (void)showFriendRequestNoti
+{
+    [self.tableView reloadData];
 }
 
 - (void)dealloc {
@@ -91,6 +100,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     [self.weatherBackView addSubview:_weatherImage];
     _locationImage = [[UIImageView alloc]initWithFrame:CGRectZero];
     [self.weatherBackView addSubview:_locationImage];
+    
 }
 
 - (void)configureProfileView {
@@ -296,7 +306,12 @@ static CGFloat const kAvatarHeight = 70.0f;
         if (!cell) {
             cell = [[V2MenuSectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        
+        if (indexPath.row == 4) {
+            NSInteger appBadage =  (int)[[NSUserDefaults standardUserDefaults] integerForKey:kBadgeKey];
+            if (appBadage > 0) {
+                cell.badge = [NSString stringWithFormat:@"%d",(int)appBadage];
+            }
+        }
         return [self configureWithCell:cell IndexPath:indexPath];
     }
 }
@@ -305,6 +320,14 @@ static CGFloat const kAvatarHeight = 70.0f;
     
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row != 1) {
+        if (indexPath.row == 4) {
+            [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:kBadgeKey];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [self.tableView reloadData];
+            V2MenuSectionCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.badge = @"0";
+            
+        }
         self.indexPath = indexPath;
         if (self.didSelectedIndexBlock) {
             self.didSelectedIndexBlock(indexPath.row);
@@ -332,9 +355,6 @@ static CGFloat const kAvatarHeight = 70.0f;
     
     cell.imageName = self.sectionImageNameArray[indexPath.row];
     cell.title     = self.sectionTitleArray[indexPath.row];
-    
-    cell.badge = nil;
-    
 //    if (indexPath.row == 5) {
 //        if ([V2CheckInManager manager].isExpired && kSetting.checkInNotiticationOn) {
 //            cell.badge = @"";

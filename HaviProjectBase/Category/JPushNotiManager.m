@@ -92,13 +92,15 @@ static JPushNotiManager *shareInstance = nil;
             //呼吸异常
         } break;
         case 106:{
-            NSInteger badage = application.applicationIconBadgeNumber;
-             AppDelegate *app = [UIApplication sharedApplication].delegate;
-            if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-                [(LeftSideViewController *)app.sideMenuController.leftPanel showBadageValue:[NSString stringWithFormat:@"%d",1]];
-            }else if (badage > 0) {
-                [(LeftSideViewController *)app.sideMenuController.leftPanel showBadageValue:[NSString stringWithFormat:@"%d",1]];
-            }
+            NSInteger appBadage =  (int)[[NSUserDefaults standardUserDefaults] integerForKey:kBadgeKey];
+            appBadage +=1;
+            [[NSUserDefaults standardUserDefaults] setInteger:appBadage forKey:kBadgeKey];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+//            if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+//                [[NSNotificationCenter defaultCenter]postNotificationName:kFriendRequestNoti object:nil];
+//            }else if (badage > 0) {
+//            }
+            [[NSNotificationCenter defaultCenter]postNotificationName:kFriendRequestNoti object:nil];
             //好友请求
         } break;
         case 107:{

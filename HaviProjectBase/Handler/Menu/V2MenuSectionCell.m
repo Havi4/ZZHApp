@@ -164,15 +164,15 @@ static CGFloat const kFontSize   = 16;
 
 - (void)setBadge:(NSString *)badge {
     _badge = badge;
-    
-    static const CGFloat kBadgeWidth = 6;
+    CGFloat kBadgeWidth = 16;
     
     if (!self.badgeLabel && badge) {
         self.badgeLabel = [[UILabel alloc] init];
         self.badgeLabel.backgroundColor = [UIColor redColor];
         self.badgeLabel.textColor = [UIColor whiteColor];
+        self.badgeLabel.textAlignment = NSTextAlignmentCenter;
         self.badgeLabel.hidden = YES;
-        self.badgeLabel.font = [UIFont systemFontOfSize:5];
+        self.badgeLabel.font = [UIFont systemFontOfSize:9];
         self.badgeLabel.layer.cornerRadius = kBadgeWidth/2.0;
         self.badgeLabel.clipsToBounds = YES;
         [self addSubview:self.badgeLabel];
@@ -183,8 +183,17 @@ static CGFloat const kFontSize   = 16;
     } else {
         self.badgeLabel.hidden = YES;
     }
-    
-    self.badgeLabel.frame = (CGRect){80, 10, kBadgeWidth, kBadgeWidth};
+    if ([badge intValue]>99) {
+        self.badgeLabel.frame = (CGRect){130,10,25,kBadgeWidth};
+    }else{
+        self.badgeLabel.frame = (CGRect){130, 10, kBadgeWidth, kBadgeWidth};
+    }
+    if ([badge intValue]==0) {
+        self.badgeLabel.hidden = YES;
+    }else{
+        self.badgeLabel.hidden = NO;
+    }
+
     self.badgeLabel.text = badge;
     
 }
