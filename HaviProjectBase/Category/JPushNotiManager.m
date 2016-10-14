@@ -117,7 +117,6 @@ static JPushNotiManager *shareInstance = nil;
         } break;
         case 110:{
             [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:userInfo];
-            //版本更新
             
         } break;
         case 111:{
@@ -243,6 +242,12 @@ static SystemSoundID soundId;
 
 - (void)handJPushMessage:(NSNotification *)userInfo
 {
+    NSDictionary *dic = userInfo.userInfo;
+    NSDictionary *extras = [dic objectForKey:@"extras"];
+    NSString *type = [extras objectForKey:@"message_type"];
+    if ([type intValue]==109 || [type intValue]== 110) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kUserBedStatusChanged object:nil userInfo:nil];
+    }
     
 }
 
