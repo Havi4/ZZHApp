@@ -16,6 +16,7 @@
 #import "MMPopupItem.h"
 #import "ArticleViewController.h"
 #import "RxWebViewController.h"
+#import "CenterSubTableViewCell.h"
 
 @interface CenterDataShowViewController ()
 
@@ -170,7 +171,8 @@
             [cell configure:cell customObj:item indexPath:indexPath withOtherInfo:self.sleepQualityModel];
 
         }else{
-            [cell configure:cell customObj:self.sensorInfoDetail indexPath:indexPath withOtherInfo:self.sleepQualityModel];
+            CenterSubTableViewCell *subCell = (CenterSubTableViewCell*)cell;
+            [subCell configure:cell customObj:self.sensorInfoDetail indexPath:indexPath withOtherInfo:self.sleepQualityModel andAnObj:self.anInfoDetail andType:self.bedType];
         }
         
     };
@@ -373,7 +375,23 @@
         @strongify(self);
         if (sensorModel) {
             self.sensorInfoDetail = sensorModel;
-            [self.dataShowTableView reloadData];
+            if (self.anUUID.length == 0) {
+                [self.dataShowTableView reloadData];
+                return;
+            }
+            NSDictionary *para = @{
+                                   @"UUID": self.anUUID
+                                   };
+            @weakify(self);
+            ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+            [client requestCheckSensorInfoParams:para andBlcok:^(SensorInfoModel *sensorModel, NSError *error) {
+                @strongify(self);
+                if (sensorModel) {
+                    self.anInfoDetail = sensorModel;
+                    [self.dataShowTableView reloadData];
+                }else{
+                }
+            }];
         }else{
         }
     }];

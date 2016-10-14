@@ -238,24 +238,51 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         isDoubleDevice = NO;
         CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
         dataShow.title = self.activeDeviceInfo.nDescription.length == 0?@"":self.activeDeviceInfo.nDescription;
+        dataShow.anUUID = @"";
         dataShow.deviceUUID = self.activeDeviceInfo.deviceUUID;
         dataShow.sensorInfoDetail = self.sensorInfo;
         dataShow.view.frame = self.containerDataView.view.bounds;
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
     }else{
         isDoubleDevice = YES;
-        @weakify(self);
         NSMutableArray *arr = @[].mutableCopy;
-        [self.activeDeviceInfo.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            @strongify(self);
-            CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
-            dataShow.title = @"";
-            dataShow.deviceUUID = obj.detailUUID;
-            dataShow.sensorInfoDetail = self.sensorInfo;
-            dataShow.view.frame = self.containerDataView.view.bounds;
-            [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
-            [arr addObject:obj.detailDescription];
-        }];
+        for (int i =0 ; i<self.activeDeviceInfo.detailDeviceList.count; i++) {
+            if (i == 0) {
+                DetailDeviceList *obj = [self.activeDeviceInfo.detailDeviceList objectAtIndex:0];
+                DetailDeviceList *obj1 = [self.activeDeviceInfo.detailDeviceList objectAtIndex:1];
+                CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
+                dataShow.title = @"";
+                dataShow.anUUID = obj1.detailUUID;
+                dataShow.deviceUUID = obj.detailUUID;
+                dataShow.sensorInfoDetail = self.sensorInfo;
+                dataShow.view.frame = self.containerDataView.view.bounds;
+                dataShow.bedType = @"left";
+                [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
+                [arr addObject:obj.detailDescription];
+            }else{
+                DetailDeviceList *obj = [self.activeDeviceInfo.detailDeviceList objectAtIndex:1];
+                DetailDeviceList *obj1 = [self.activeDeviceInfo.detailDeviceList objectAtIndex:0];
+                CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
+                dataShow.title = @"";
+                dataShow.anUUID = obj1.detailUUID;
+                dataShow.bedType = @"right";
+                dataShow.deviceUUID = obj.detailUUID;
+                dataShow.sensorInfoDetail = self.sensorInfo;
+                dataShow.view.frame = self.containerDataView.view.bounds;
+                [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
+                [arr addObject:obj.detailDescription];
+            }
+        }
+//        [self.activeDeviceInfo.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            @strongify(self);
+//            CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
+//            dataShow.title = @"";
+//            dataShow.deviceUUID = obj.detailUUID;
+//            dataShow.sensorInfoDetail = self.sensorInfo;
+//            dataShow.view.frame = self.containerDataView.view.bounds;
+//            [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
+//            [arr addObject:obj.detailDescription];
+//        }];
         self.naviBarTitle.titles = arr;
     }
     

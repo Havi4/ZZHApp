@@ -83,7 +83,7 @@
     [SleepModelChange changeSleepQualityModel:model callBack:^(id callBack) {
         @strongify(self);
         QualityDetailModel *detailModel = callBack;
-        int sleepLevel = [detailModel.sleepQuality intValue];
+        int sleepLevel = [model.sleepQuality intValue];
         self.value = sleepLevel;
         [self.cellCircleView setPercentage:sleepLevel];
         [self.cellCircleView setPeoplePer:sleepLevel];

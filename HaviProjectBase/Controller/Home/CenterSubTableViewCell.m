@@ -180,7 +180,7 @@
 - (void)configure:(UITableViewCell *)cell
         customObj:(id)obj
         indexPath:(NSIndexPath *)indexPath
-    withOtherInfo:(id)objInfo
+    withOtherInfo:(id)objInfo andAnObj:(id)anObj andType:(NSString*)type
 {
     // Rewrite this func in SubClass !
     
@@ -189,27 +189,57 @@
         _longSleepNum.text = [NSString stringWithFormat:@"%@",callBack];
     }];
     SensorInfoModel *sensor = (SensorInfoModel *)obj;
+    SensorInfoModel *biSensor = (SensorInfoModel *)anObj;
     if (!sensor) {
         return;
     }
-    if ([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"False"]) {
-        if (gloableActiveDevice.detailDeviceList.count == 0) {
-            _bedImageView.image = [UIImage imageNamed:@"bed_no_sigle@3x"];
-        }else if (gloableActiveDevice.detailDeviceList.count == 1){
-            _bedImageView.image = [UIImage imageNamed:@"bed_no_sigle@3x"];
-        }else if (gloableActiveDevice.detailDeviceList.count == 2){
-            _bedImageView.image = [UIImage imageNamed:@"bed_no_people@3x"];
+    if (biSensor) {
+        if ([type isEqualToString:@"left"]) {
+            if ([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"] && [biSensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"]) {
+                _bedImageView.image = [UIImage imageNamed:@"two@3x"];
+            }else if([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"] && [biSensor.sensorDetail.isAnybodyOnBed isEqualToString:@"False"]){
+                _bedImageView.image = [UIImage imageNamed:@"zuo"];
+            }else if([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"False"] && [biSensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"]){
+                _bedImageView.image = [UIImage imageNamed:@"you"];
+            }else{
+                _bedImageView.image = [UIImage imageNamed:@"bed_no_people@3x"];
+            }
+        }else{
+            if ([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"] && [biSensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"]) {
+                _bedImageView.image = [UIImage imageNamed:@"two@3x"];
+            }else if([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"] && [biSensor.sensorDetail.isAnybodyOnBed isEqualToString:@"False"]){
+                _bedImageView.image = [UIImage imageNamed:@"you"];
+            }else if([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"False"] && [biSensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"]){
+                _bedImageView.image = [UIImage imageNamed:@"zuo"];
+            }else{
+                _bedImageView.image = [UIImage imageNamed:@"bed_no_people@3x"];
+            }
         }
-
     }else{
-        if (gloableActiveDevice.detailDeviceList.count == 0) {
+        if ([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"True"]) {
             _bedImageView.image = [UIImage imageNamed:@"single@3x"];
-        }else if (gloableActiveDevice.detailDeviceList.count == 1){
-            _bedImageView.image = [UIImage imageNamed:@"single@3x"];
-        }else if (gloableActiveDevice.detailDeviceList.count == 2){
-            _bedImageView.image = [UIImage imageNamed:@"two@3x"];
+        }else{
+            _bedImageView.image = [UIImage imageNamed:@"bed_no_sigle@3x"];
         }
     }
+//    if ([sensor.sensorDetail.isAnybodyOnBed isEqualToString:@"False"]) {
+//        if (gloableActiveDevice.detailDeviceList.count == 0) {
+//            _bedImageView.image = [UIImage imageNamed:@"bed_no_sigle@3x"];
+//        }else if (gloableActiveDevice.detailDeviceList.count == 1){
+//            _bedImageView.image = [UIImage imageNamed:@"bed_no_sigle@3x"];
+//        }else if (gloableActiveDevice.detailDeviceList.count == 2){
+//            _bedImageView.image = [UIImage imageNamed:@"bed_no_people@3x"];
+//        }
+//
+//    }else{
+//        if (gloableActiveDevice.detailDeviceList.count == 0) {
+//            _bedImageView.image = [UIImage imageNamed:@"single@3x"];
+//        }else if (gloableActiveDevice.detailDeviceList.count == 1){
+//            _bedImageView.image = [UIImage imageNamed:@"single@3x"];
+//        }else if (gloableActiveDevice.detailDeviceList.count == 2){
+//            _bedImageView.image = [UIImage imageNamed:@"two@3x"];
+//        }
+//    }
     if (sensor.sensorDetail.activationStatusCode == 0) {
         self.statusImage.hidden = NO;
         self.statusImage.image = [UIImage imageNamed:@"lixian"];

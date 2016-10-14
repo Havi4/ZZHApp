@@ -10,5 +10,8 @@
 #import "HaviBaseTableViewCell.h"
 
 @interface CenterSubTableViewCell :HaviBaseTableViewCell
-
+- (void)configure:(UITableViewCell *)cell
+        customObj:(id)obj
+        indexPath:(NSIndexPath *)indexPath
+    withOtherInfo:(id)objInfo andAnObj:(id)anObj andType:(NSString*)type;
 @end
