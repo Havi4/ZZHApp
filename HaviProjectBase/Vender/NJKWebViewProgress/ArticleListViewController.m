@@ -24,6 +24,7 @@
     // Do any additional setup after loading the view.
     [self initNavigationBar];
     [self.view addSubview:self.tagTableView];
+    self.view.backgroundColor = [UIColor lightGrayColor];
 }
 
 - (void)initNavigationBar
