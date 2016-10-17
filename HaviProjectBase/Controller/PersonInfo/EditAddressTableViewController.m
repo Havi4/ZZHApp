@@ -195,9 +195,7 @@
 {
     [super viewDidAppear:animated];
     [_cellTextField becomeFirstResponder];
-    if (self.cellInfoString) {
-        [self.cellTextField reloadTextFieldWithTextString:self.cellInfoString];
-    }
+    [self.cellTextField reloadTextFieldWithTextString:self.cellInfoString];
 
 }
 

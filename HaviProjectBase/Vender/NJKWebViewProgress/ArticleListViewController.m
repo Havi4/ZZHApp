@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view.
     [self initNavigationBar];
     [self.view addSubview:self.tagTableView];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)initNavigationBar
@@ -46,7 +46,7 @@
         _tagTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tagTableView.delegate = self;
         _tagTableView.dataSource = self;
-        _tagTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
+        _tagTableView.backgroundColor = [UIColor whiteColor];
     }
     return _tagTableView;
 }
@@ -76,10 +76,20 @@
         backView.backgroundColor = [UIColor whiteColor];
         [cell addSubview:backView];
         [backView makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cell.mas_left).offset(4);
-            make.right.equalTo(cell.mas_right).offset(-4);
-            make.top.equalTo(cell.mas_top).offset(4);
-            make.bottom.equalTo(cell.mas_bottom).offset(-4);
+            make.left.equalTo(cell.mas_left).offset(0);
+            make.right.equalTo(cell.mas_right).offset(0);
+            make.top.equalTo(cell.mas_top).offset(0);
+            make.bottom.equalTo(cell.mas_bottom).offset(0);
+        }];
+        
+        UIView *line = [[UIView alloc]init];
+        line.backgroundColor = [UIColor grayColor];
+        [cell addSubview:line];
+        [line makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(cell.mas_left).offset(0);
+            make.bottom.equalTo(cell.mas_bottom).offset(0);
+            make.height.equalTo(@0.5);
+            make.width.equalTo(cell.mas_width);
         }];
         [cell addSubview:cellTitle];
         cellTitle.font = [UIFont systemFontOfSize:15];
