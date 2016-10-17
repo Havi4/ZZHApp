@@ -50,7 +50,7 @@
         }];
         
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.text = @"疾病";
+        _titleLabel.text = @"评价";
         _titleLabel.textColor = [UIColor grayColor];
         _titleLabel.font = [UIFont systemFontOfSize:15];
         [_titlebackView addSubview:_titleLabel];
