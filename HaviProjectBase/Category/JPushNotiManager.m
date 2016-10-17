@@ -171,6 +171,7 @@ static JPushNotiManager *shareInstance = nil;
                         demoWeChatMessageTableViewController.allowsSendVoice = NO;
                         demoWeChatMessageTableViewController.allowsSendMultiMedia = YES;
                         demoWeChatMessageTableViewController.problemID = problemId;
+                        demoWeChatMessageTableViewController.isShowInputView = YES;
                         [app.currentNavigationController pushViewController:demoWeChatMessageTableViewController animated:YES];
                     }else{
                         [[NSNotificationCenter defaultCenter]postNotificationName:kJPushNotification object:nil userInfo:userInfo];
@@ -184,6 +185,7 @@ static JPushNotiManager *shareInstance = nil;
                 demoWeChatMessageTableViewController.allowsSendVoice = NO;
                 demoWeChatMessageTableViewController.allowsSendMultiMedia = YES;
                 demoWeChatMessageTableViewController.problemID = problemId;
+                demoWeChatMessageTableViewController.isShowInputView = YES;
                 [app.currentNavigationController pushViewController:demoWeChatMessageTableViewController animated:YES];
             }
             break;

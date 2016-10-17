@@ -185,7 +185,7 @@
 - (MPGraphView *)heartViewLeft
 {
     if (_heartViewLeft==nil) {
-        _heartViewLeft=[[MPGraphView alloc] initWithFrame:CGRectMake(0, 5, xCoordinateWidth, yCoordinateHeight)];
+        _heartViewLeft=[[MPGraphView alloc] initWithFrame:CGRectMake(10, 5, xCoordinateWidth, yCoordinateHeight)];
         _heartViewLeft.waitToUpdate=NO;
         _heartViewLeft.lineWidth = 0.5;
         _heartViewLeft.backgroundColor = [UIColor clearColor];

@@ -146,7 +146,7 @@
     }
 }
 
-+ (void)filterRealSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType callBack:(void(^)(id callBack))block
++ (void)filterRealSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType startTime:(NSString *)startTime endTime:(NSString *)endTime callBack:(void(^)(id callBack))block 
 {
     @synchronized(self) {
         if (sensorData) {
@@ -154,26 +154,31 @@
                 SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
                 NSArray *sensorInfo = sensorArr.propertyDataList;
                 NSMutableArray *arr = [[NSMutableArray alloc]init];
-//                for (int i=0; i<sensorInfo.count; i++) {
-//                    if (SensorDataHeart == sensorType) {
-//                        [arr addObject:[NSNumber numberWithFloat:60]];
-//                    }else{
-//                        [arr addObject:[NSNumber numberWithFloat:15]];
-//                    }
-//                }
-                for (int i = 0; i<sensorInfo.count-1; i++) {
+                for (int i=0; i<60; i++) {
+                    if (SensorDataHeart == sensorType) {
+                        [arr addObject:[NSNumber numberWithFloat:60]];
+                    }else{
+                        [arr addObject:[NSNumber numberWithFloat:15]];
+                    }
+                }
+                for (int i = 0; i<sensorInfo.count; i++) {
                     PropertyData *dic = [sensorInfo objectAtIndex:i];
-                    NSString *date = dic.propertyDate;
-                    
-                    PropertyData *dic1 = [sensorInfo objectAtIndex:i+1];
-                    NSString *date1 = dic1.propertyDate;
                     NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
                     dateF.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-                    NSDate *dateS1 = [dateF dateFromString:date];
-                    NSDate *dateS2 = [dateF dateFromString:date1];
-                    if ([dateS1 minutesEarlierThan:dateS2]>=1) {
-                        [arr addObject:[NSNumber numberWithFloat:[dic.propertyValue floatValue]]];
+                    NSString *queryDateString = [NSString stringWithFormat:@"%@-%@-%@ %@",[startTime substringWithRange:NSMakeRange(0, 4)],[startTime substringWithRange:NSMakeRange(4, 2)],[startTime substringWithRange:NSMakeRange(6, 2)],endTime];
+                    NSDate *queryDate = [dateF dateFromString:queryDateString];
+                    NSString *date = dic.propertyDate;
+                    NSDate *dateS = [dateF dateFromString:date];
+                    NSInteger minute = (NSInteger)[dateS minutesLaterThan:queryDate];
+                    if (minute < 60) {
+                        [arr replaceObjectAtIndex:minute withObject:[NSNumber numberWithFloat:[dic.propertyValue floatValue]]];
                     }
+                    
+//                    PropertyData *dic1 = [sensorInfo objectAtIndex:i+1];
+//                    NSDate *dateS2 = [dateF dateFromString:date1];
+//                    if ([dateS1 minutesEarlierThan:dateS2]>=1) {
+//                        [arr addObject:[NSNumber numberWithFloat:[dic.propertyValue floatValue]]];
+//                    }
                 }
                 dispatch_async_on_main_queue(^{
                     block(arr);

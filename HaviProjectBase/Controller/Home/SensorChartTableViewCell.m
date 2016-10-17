@@ -327,7 +327,7 @@
                                 };
         [client requestRealSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
             if ([sensorModel.returnCode integerValue]==200) {
-                [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type callBack:^(id callBack) {
+                [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type startTime:[NSString stringWithFormat:@"%@%@%@",[newD substringWithRange:NSMakeRange(0, 4)],[newD substringWithRange:NSMakeRange(5, 2)],[newD substringWithRange:NSMakeRange(8, 2)]] endTime:[NSString stringWithFormat:@"%@:00",[newD substringWithRange:NSMakeRange(11, 5)]] callBack:^(id callBack)  {
                     [self.pressView addlineView];
                     _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
                     self.pressView.heartViewLeft.values = (NSArray *)callBack;

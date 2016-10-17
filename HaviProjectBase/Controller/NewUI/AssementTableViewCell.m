@@ -61,23 +61,23 @@
         
         _arrowView = [[UIImageView alloc]init];
         _arrowView.image = [UIImage imageNamed:@"xuanze"];
-        [_titlebackView addSubview:_arrowView];
-        [_arrowView makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.mas_right).offset(-8);
-            make.centerY.equalTo(_titleLabel.mas_centerY);
-            make.width.equalTo(@10);
-            make.height.equalTo(@20);
-        }];
+//        [_titlebackView addSubview:_arrowView];
+//        [_arrowView makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.equalTo(self.mas_right).offset(-8);
+//            make.centerY.equalTo(_titleLabel.mas_centerY);
+//            make.width.equalTo(@10);
+//            make.height.equalTo(@20);
+//        }];
         
         _titleIll = [[UILabel alloc]init];
         _titleIll.text = @"未确诊可不选";
         _titleIll.textColor = [UIColor grayColor];
         _titleIll.font = [UIFont systemFontOfSize:16];
-        [_titlebackView addSubview:_titleIll];
-        [_titleIll makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(_arrowView.mas_left).offset(-8);
-            make.height.equalTo(@44);
-        }];
+//        [_titlebackView addSubview:_titleIll];
+//        [_titleIll makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.equalTo(_arrowView.mas_left).offset(-8);
+//            make.height.equalTo(@44);
+//        }];
         _textView = [[UITextView alloc]init];
         _textView.returnKeyType = UIReturnKeyDone;
         _textView.delegate = self;
@@ -88,7 +88,7 @@
             make.top.equalTo(_backImageView.mas_top).offset(1.5);
             make.height.equalTo(@60);
         }];
-        _textView.text = @"请输入5-20个字";
+        _textView.text = @"请输入0-20个字";
         _textView.textColor = [UIColor grayColor];
 
     }
@@ -107,7 +107,7 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if ([textView.text isEqualToString:@"请输入5-20个字"]) {
+    if ([textView.text isEqualToString:@"请输入0-20个字"]) {
         textView.text = @"";
     }
 }

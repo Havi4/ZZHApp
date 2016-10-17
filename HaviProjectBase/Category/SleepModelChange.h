@@ -20,7 +20,7 @@
 
 + (void)filterSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)type callBack:(void(^)(id callBack))block;
 
-+ (void)filterRealSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)type callBack:(void(^)(id callBack))block;
++ (void)filterRealSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)type startTime:(NSString *)startTime endTime:(NSString *)endTime callBack:(void(^)(id callBack))block;
 
 + (void)filterSensorLeaveDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(id callBack))block;
 
