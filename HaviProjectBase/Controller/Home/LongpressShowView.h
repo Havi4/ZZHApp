@@ -19,4 +19,8 @@
 
 @property (strong, nonatomic) NSMutableArray *dataValues;
 
+- (void)removeLine;
+
+- (void)addlineView;
+
 @end

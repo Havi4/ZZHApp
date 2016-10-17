@@ -100,6 +100,7 @@
 
 -(void)setXValues:(NSArray *)values
 {
+    
     for (UIView *view in self.subviews) {
         if (view.tag == 1001||view.tag==1002) {
             [view removeFromSuperview];
@@ -191,8 +192,17 @@
     }
     return _heartViewLeft;
 }
+- (void)removeLine
+{
+    [_heartViewLeft removeFromSuperview];
+    _heartViewLeft = nil;
+}
 
-
+- (void)addlineView
+{
+    [self addSubview:self.heartViewLeft];
+    self.heartViewLeft.userInteractionEnabled = YES;
+}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

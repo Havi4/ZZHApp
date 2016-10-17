@@ -326,17 +326,24 @@
                                 @"FromTime": [NSString stringWithFormat:@"%@:00",[newD substringWithRange:NSMakeRange(11, 5)]],
                                 };
         [client requestRealSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
-            [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type callBack:^(id callBack) {
-                self.pressView.heartViewLeft.values = (NSArray *)callBack;
-                [self.pressView.heartViewLeft animate];
-                
-            }];
+            if ([sensorModel.returnCode integerValue]==200) {
+                [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type callBack:^(id callBack) {
+                    [self.pressView addlineView];
+                    _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
+                    self.pressView.heartViewLeft.values = (NSArray *)callBack;
+                    [self.pressView.heartViewLeft animate];
+                    
+                }];
+            }else{
+                self.pressView.heartViewLeft.values = nil;
+                [self.pressView removeLine];
+            }
         }];
 
         self.pressView.heartViewLeft.curved = YES;
         self.pressView.heartViewLeft.minValue = 0;
         self.pressView.heartViewLeft.maxValue = 100;
-       self.pressView.heartViewLeft.type = self.type;
+        self.pressView.heartViewLeft.type = self.type;
         
         UIView *chaBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 195)];
         
