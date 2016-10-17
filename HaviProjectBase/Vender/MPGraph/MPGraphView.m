@@ -164,10 +164,10 @@
 
 - (CGPoint)pointAtIndex:(NSInteger)index{
 
-    CGFloat space=(self.frame.size.width-40)/(points.count+1);
+    CGFloat space=(self.frame.size.width)/(points.count+1);
 
     
-    return CGPointMake(space+(space)*index+20,[[points objectAtIndex:index] floatValue]);
+    return CGPointMake((space)*index+1,[[points objectAtIndex:index] floatValue]);
 }
 
 

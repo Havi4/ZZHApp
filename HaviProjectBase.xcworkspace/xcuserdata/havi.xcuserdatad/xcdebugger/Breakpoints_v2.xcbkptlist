@@ -58,7 +58,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "498374881.979299"
+                  timestampString = "498376915.620279"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "306"
@@ -73,7 +73,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "498374881.985518"
+                  timestampString = "498376915.622399"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "307"
@@ -106,7 +106,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "498374881.990637"
+                  timestampString = "498376915.626757"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "340"
@@ -121,7 +121,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "498374881.992134"
+                  timestampString = "498376915.628175"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "341"
@@ -240,22 +240,6 @@
             startingLineNumber = "287"
             endingLineNumber = "287"
             landmarkName = "-pushPresentImage:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HaviProjectBase/Controller/NewUI/ConsultVViewController.m"
-            timestampString = "497855269.477486"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -442,7 +426,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/CalendarDateCaculate.m"
-                  timestampString = "498374882.037192"
+                  timestampString = "498376915.676789"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "134"
@@ -457,7 +441,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/CalendarDateCaculate.m"
-                  timestampString = "498374882.038609"
+                  timestampString = "498376915.678178"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "134"
@@ -720,6 +704,38 @@
             startingLineNumber = "333"
             endingLineNumber = "333"
             landmarkName = "-longPressToDo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/Vender/TZImagePickerController/TZPhotoPickerController.m"
+            timestampString = "498376727.164007"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-configCollectionView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/Vender/TZImagePickerController/TZPhotoPickerController.m"
+            timestampString = "498376910.589093"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-configBottomToolBar"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

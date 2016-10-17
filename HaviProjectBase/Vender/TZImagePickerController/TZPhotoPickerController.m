@@ -122,7 +122,7 @@ static CGSize AssetGridThumbnailSize;
     CGFloat top = 44;
     if (iOS7Later) top += 20;
     CGFloat collectionViewHeight = tzImagePickerVc.maxImagesCount > 1 ? self.view.tz_height - 50 - top : self.view.tz_height - top;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.tz_width, collectionViewHeight) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.tz_width, collectionViewHeight) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
@@ -162,7 +162,7 @@ static CGSize AssetGridThumbnailSize;
     TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
     if (tzImagePickerVc.maxImagesCount <= 1) return;
     
-    UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.tz_height - 50, self.view.tz_width, 50)];
+    UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.tz_height - 50-64, self.view.tz_width, 50)];
     CGFloat rgb = 253 / 255.0;
     bottomToolBar.backgroundColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:1.0];
     
@@ -234,7 +234,7 @@ static CGSize AssetGridThumbnailSize;
     divide.frame = CGRectMake(0, 0, self.view.tz_width, 1);
 
     [bottomToolBar addSubview:divide];
-    [bottomToolBar addSubview:_previewButton];
+//    [bottomToolBar addSubview:_previewButton];
     [bottomToolBar addSubview:_okButton];
     [bottomToolBar addSubview:_numberImageView];
     [bottomToolBar addSubview:_numberLable];
@@ -486,6 +486,7 @@ static CGSize AssetGridThumbnailSize;
     __weak typeof(self) weakSelf = self;
     photoPreviewVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
     photoPreviewVc.backButtonClickBlock = ^(BOOL isSelectOriginalPhoto) {
+        self.navigationController.navigationBar.frame = (CGRect){0,20,self.view.frame.size.width,44};
         weakSelf.isSelectOriginalPhoto = isSelectOriginalPhoto;
         [weakSelf.collectionView reloadData];
         [weakSelf refreshBottomToolBarStatus];
