@@ -329,7 +329,7 @@
         pickerController.picker.tag = 0;
         pickerController.picker.delegate = self;
         pickerController.picker.dataSource = self;
-        self.sleepLeaveBedTime = @[@"5秒",@"15秒",@"30秒",@"1分钟",@"5分钟",@"10分钟",@"15分钟",];
+        self.sleepLeaveBedTime = @[@"5秒",@"15秒",@"30秒",@"1分钟",@"5分钟",@"10分钟",@"15分钟"];
         int time = [self.userInfo.nUserInfo.alarmTimeOutOfBed intValue];
         NSString *cellString = @"";
         if (time > 60 || time == 60) {
@@ -578,17 +578,20 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if (component == 0) {
-        if (row == 0 && self.oneLastRow==0) {
-            [pickerView selectRow:1 inComponent:1 animated:YES];
+    if (pickerView.tag == 1) {
+    
+        if (component == 0) {
+            if (row == 0 && self.oneLastRow==0) {
+                [pickerView selectRow:1 inComponent:1 animated:YES];
+            }
+            
+            self.zeroLastRow = row;
+        }else if (component == 1){
+            if (row == 0 && self.zeroLastRow == 0) {
+                [pickerView selectRow:1 inComponent:0 animated:YES];
+            }
+            self.oneLastRow = row;
         }
-        
-        self.zeroLastRow = row;
-    }else if (component == 1){
-        if (row == 0 && self.zeroLastRow == 0) {
-            [pickerView selectRow:1 inComponent:0 animated:YES];
-        }
-        self.oneLastRow = row;
     }
 }
 
