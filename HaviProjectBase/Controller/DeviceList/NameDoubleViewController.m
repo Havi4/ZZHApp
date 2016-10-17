@@ -206,6 +206,16 @@
         [NSObject showHudTipStr:@"请输入右侧床垫名称"];
         return;
     }
+    
+    if (self.leftText.text.length > 8) {
+        [NSObject showHudTipStr:@"设备名称超过8位"];
+        return;
+    }
+    
+    if (self.rightText.text.length > 8) {
+        [NSObject showHudTipStr:@"设备名称超过8位"];
+        return;
+    }
     NSArray *_arrDeatilListDescription = self.dicDetailDevice;
     NSArray *_sortedDetailDevice = [_arrDeatilListDescription sortedArrayUsingComparator:^NSComparisonResult(SensorList* _Nonnull obj1, SensorList* _Nonnull obj2) {
         return [obj1.subDeviceUUID compare:obj2.subDeviceUUID options:NSCaseInsensitiveSearch];

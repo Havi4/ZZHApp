@@ -150,6 +150,10 @@
         [NSObject showHudTipStr:@"请输入设备名称"];
         return;
     }
+    if (self.nameTextField.text.length > 8) {
+        [NSObject showHudTipStr:@"设备名称超过8位"];
+        return;
+    }
     //
     if (self.deviceInfo.friendUserID.length > 0) {
         NSDictionary *para = @{

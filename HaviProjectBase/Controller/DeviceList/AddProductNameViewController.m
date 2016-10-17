@@ -344,6 +344,11 @@
         return;
     }
     
+    if (self.productNameTextField.text.length > 8) {
+        [NSObject showHudTipStr:@"设备名称超过8位"];
+        return;
+    }
+    
     deviceUUID = self.productCodeTextField.text;
     NSDictionary *para = @{
                            @"UUID": deviceUUID,
