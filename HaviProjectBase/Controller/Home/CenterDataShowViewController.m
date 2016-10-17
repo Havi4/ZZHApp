@@ -128,6 +128,7 @@
         _cellRecommend = [[UILabel alloc]init];
         _cellRecommend.textAlignment = NSTextAlignmentCenter;
         _cellRecommend.numberOfLines = 0;
+        _cellRecommend.font = [UIFont systemFontOfSize:16];
         _cellRecommend.text = @"";
         _cellRecommend.userInteractionEnabled = YES;
         _cellRecommend.textColor = [UIColor whiteColor];

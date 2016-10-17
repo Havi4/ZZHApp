@@ -144,9 +144,9 @@
 {
     if (!_tagTableView) {
         if (!self.error) {
-            _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,self.webView.scrollView.contentSize.height-44*6-30,self.view.frame.size.width,44*6+30} style:UITableViewStylePlain];
+            _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,self.webView.scrollView.contentSize.height-30*6-30,self.view.frame.size.width,30*6+30} style:UITableViewStylePlain];
         }else{
-            _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,64,self.view.frame.size.width,44*6+30} style:UITableViewStylePlain];
+            _tagTableView = [[UITableView alloc]initWithFrame:(CGRect){0,64,self.view.frame.size.width,30*6+30} style:UITableViewStylePlain];
         }
         _tagTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tagTableView.delegate = self;
@@ -269,7 +269,7 @@
     if(indexPath.row == 1 ){
         return 30;
     }
-    return 44;
+    return 35;
 }
 
 - (void)showDoc{
@@ -328,7 +328,7 @@
         self.articleList = obj;
         if ([[self.articleList objectForKey:@"ArticleList"] count]>0) {
             if (!error) {
-                self.webView.scrollView.contentSize = (CGSize){self.webView.scrollView.contentSize.width,self.webView.scrollView.contentSize.height+44*6+30};
+                self.webView.scrollView.contentSize = (CGSize){self.webView.scrollView.contentSize.width,self.webView.scrollView.contentSize.height+30*6+30};
                 [self.webView.scrollView addSubview:self.tagTableView];
                 [self.tagTableView reloadData];
             }else{
@@ -744,7 +744,6 @@
 #pragma mark - TTGTextTagCollectionViewDelegate
 
 - (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView didTapTag:(NSString *)tagText atIndex:(NSUInteger)index selected:(BOOL)selected {
-    NSString *r = [NSString stringWithFormat:@"Tap tag: %@, at: %ld, selected: %d", tagText, (long) index, selected];
     ArticleListViewController *article = [[ArticleListViewController alloc]init];
     article.articleList = self.articleList;
     article.stitle = tagText;
