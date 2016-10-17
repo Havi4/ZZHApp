@@ -150,8 +150,8 @@
         ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
         [client requestActiveFriendDeviceParams:dic14 andBlock:^(BaseModel *resultModel, NSError *error) {
             if ([resultModel.returnCode intValue]==200) {
-                [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
                 gloableActiveDevice = model;
+                [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshDeviceList object:nil];
                 [[NSNotificationCenter defaultCenter]postNotificationName:kUserChangeUUIDInCenterView object:nil];
             }
         }];
