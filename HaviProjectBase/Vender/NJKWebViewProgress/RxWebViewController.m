@@ -128,7 +128,7 @@
 - (TTGTextTagCollectionView *)textTagCollectionView{
     if (!_textTagCollectionView) {
         _textTagCollectionView = [[TTGTextTagCollectionView alloc]init];
-        _textTagCollectionView.frame = (CGRect){90,5,self.view.frame.size.width-70-8,60};
+        _textTagCollectionView.frame = (CGRect){8,5,self.view.frame.size.width-8,60};
         _textTagCollectionView.delegate = self;
         _textTagCollectionView.tagTextFont = [UIFont systemFontOfSize:14.0f];
         _textTagCollectionView.extraSpace = CGSizeMake(12, 5);
@@ -163,7 +163,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -193,37 +193,25 @@
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell01"];
         }
-        UIView *circleView = [[UIView alloc]init];
-        circleView.frame = (CGRect){8,10,10,10};
-        circleView.layer.cornerRadius = 5;
-        circleView.layer.masksToBounds = YES;
-        circleView.backgroundColor = [UIColor colorWithRed:0.149 green:0.678 blue:0.867 alpha:1.00];
-        [cell addSubview:circleView];
-        UIButton *cellTitle = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [cellTitle setTitle:self.tagLists[0] forState:UIControlStateNormal];
-        [cellTitle setTitle:@"更多板块" forState:UIControlStateNormal];
-        [cellTitle setTitleColor:[UIColor colorWithRed:0.149 green:0.678 blue:0.867 alpha:1.00] forState:UIControlStateNormal];
-        cellTitle.titleLabel.font = [UIFont systemFontOfSize:14];
-        [cellTitle addTarget:self action:@selector(showTagList:) forControlEvents:UIControlEventTouchUpInside];
-        cellTitle.frame = (CGRect){20,0,60,30};
-        [cell addSubview:cellTitle];
+//        UIView *circleView = [[UIView alloc]init];
+//        circleView.frame = (CGRect){8,10,10,10};
+//        circleView.layer.cornerRadius = 5;
+//        circleView.layer.masksToBounds = YES;
+//        circleView.backgroundColor = [UIColor colorWithRed:0.149 green:0.678 blue:0.867 alpha:1.00];
+//        [cell addSubview:circleView];
+//        UIButton *cellTitle = [UIButton buttonWithType:UIButtonTypeCustom];
+////        [cellTitle setTitle:self.tagLists[0] forState:UIControlStateNormal];
+//        [cellTitle setTitle:@"更多板块" forState:UIControlStateNormal];
+//        [cellTitle setTitleColor:[UIColor colorWithRed:0.149 green:0.678 blue:0.867 alpha:1.00] forState:UIControlStateNormal];
+//        cellTitle.titleLabel.font = [UIFont systemFontOfSize:14];
+//        [cellTitle addTarget:self action:@selector(showTagList:) forControlEvents:UIControlEventTouchUpInside];
+//        cellTitle.frame = (CGRect){20,0,60,30};
+//        [cell addSubview:cellTitle];
         
         [cell addSubview:self.textTagCollectionView];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         return cell;
-    }else if(indexPath.row == 1){
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell01"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell01"];
-        }
-        UILabel *label = [[UILabel alloc]init];
-        label.frame = (CGRect){16,0,80,40};
-        label.text = @"推荐文章";
-        [cell addSubview:label];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    
     }else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell11"];
         if (!cell) {

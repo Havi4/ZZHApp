@@ -76,9 +76,11 @@
     self.textFiledName.textPlaceHolderColor = [UIColor lightGrayColor];
     self.textFiledName.returnKeyType = UIReturnKeyDone;
     self.textFiledName.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+    self.textFiledName.font = kDefaultWordFont;
     self.textFiledName.userInteractionEnabled = NO;
     [self.view addSubview:self.textFiledName];
     self.textFiledPassWord = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
+    self.textFiledPassWord.font = kDefaultWordFont;
     self.textFiledPassWord.textPlaceHolderColor = [UIColor lightGrayColor];
     self.textFiledPassWord.returnKeyType = UIReturnKeyGo;
     self.textFiledPassWord.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
@@ -168,18 +170,12 @@
     [self.view addSubview:showLabel];
     showLabel.textColor = kWhiteBackTextColor;
     showLabel.text = @"1.确保设备处于待配置状态(按一下指示灯后变红)\n\n2.确保手机已连入家庭网络\n\n3.输入正确的Wifi密码";
+    showLabel.font = kDefaultWordFont;
     showLabel.numberOfLines = 0;
     [showLabel makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
-        make.centerY.equalTo(self.view.mas_centerY).offset(16);
-    }];
-    
-    [_sliderView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(showLabel.mas_bottom).offset(5);
-        make.left.equalTo(self.view).offset(30);
-        make.right.equalTo(self.view).offset(-30);
-        make.height.equalTo(@15);
+        make.centerY.equalTo(self.view.mas_centerY).offset(0);
     }];
     //
     UIButton *lookButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -188,7 +184,7 @@
     lookButton.layer.cornerRadius = 0;
     lookButton.layer.masksToBounds = YES;
     lookButton.tag = 8000;
-    [lookButton setTitle:@"激活设备" forState:UIControlStateNormal];
+    [lookButton setTitle:@"开始配置" forState:UIControlStateNormal];
     [lookButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [lookButton addTarget:self action:@selector(searchHardware:) forControlEvents:UIControlEventTouchUpInside];
     [lookButton makeConstraints:^(MASConstraintMaker *make) {
@@ -196,7 +192,13 @@
         make.right.equalTo(self.view).offset(-20);
         make.centerX.equalTo(self.view.mas_centerX);
         make.height.equalTo(@44);
-        make.top.mas_lessThanOrEqualTo(showLabel.mas_bottom).offset(34);
+        make.top.mas_lessThanOrEqualTo(showLabel.mas_bottom).offset(95);
+    }];
+    [_sliderView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(showLabel.mas_bottom).offset(35);
+        make.left.equalTo(self.view).offset(30);
+        make.right.equalTo(self.view).offset(-30);
+        make.height.equalTo(@15);
     }];
     //
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -204,7 +206,7 @@
     [cancelButton setBackgroundImage:[UIImage imageNamed:@"button_back_image@3x"] forState:UIControlStateNormal];
     cancelButton.layer.cornerRadius = 0;
     cancelButton.layer.masksToBounds = YES;
-    [cancelButton setTitle:@"暂时不激活" forState:UIControlStateNormal];
+    [cancelButton setTitle:@"暂不配置" forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelButtonDone:) forControlEvents:UIControlEventTouchUpInside];
     [cancelButton setTitleColor:[UIColor colorWithRed:0.467 green:0.467 blue:0.467 alpha:1.00] forState:UIControlStateNormal];
     [cancelButton makeConstraints:^(MASConstraintMaker *make) {
@@ -213,8 +215,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.height.equalTo(@44);
         make.top.equalTo(lookButton.mas_bottom).offset(8);
-    }];
-    //
+    }];    //
     
     //获取wifi的SSID
 //    self.textFiledName.text = [self fetchSSIDInfo];
@@ -250,13 +251,13 @@
 //搜索硬件UDP
 - (void)searchHardware:(UIButton *)button
 {
-    if ([button.titleLabel.text isEqualToString:@"取消激活"]) {
-         [button setTitle:@"激活激活" forState:UIControlStateNormal];
+    if ([button.titleLabel.text isEqualToString:@"取消配置"]) {
+         [button setTitle:@"开始配置" forState:UIControlStateNormal];
         [self.sliderView stop];
         [self stopSniffer];
         self.noReceiveData = NO;
     }else{
-        [button setTitle:@"取消激活" forState:UIControlStateNormal];
+        [button setTitle:@"取消配置" forState:UIControlStateNormal];
         if ([self.textFiledName.text isEqualToString:@""]) {
             [NSObject showHudTipStr:@"请输入网络名"];
             return;
@@ -289,8 +290,8 @@
 //    [hud hideHUD];
     [self.sliderView stop];
     UIButton *button = (UIButton *)[self.view viewWithTag:8000];
-    [button setTitle:@"激活激活" forState:UIControlStateNormal];
-    [NSObject showHudTipStr:@"激活超时,请重试"];
+    [button setTitle:@"开始配置" forState:UIControlStateNormal];
+    [NSObject showHudTipStr:@"配置超时,请重试"];
 }
 //江波龙硬件配置
 - (void)getInfo:(NSString*)ip
@@ -347,14 +348,10 @@
             if (ret != -1)
             {
                 NSString *recString = [NSString stringWithFormat:@"receive %ld:%s",times, buffer];
-                DeBugLog(@"设备激活成功%@", recString);
-                
-                dispatch_async(dispatch_get_main_queue(), ^(){
-                    [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-                        [NSObject showHudTipStr:@"设备激活成功"];
-                        [self.navigationController popToRootViewControllerAnimated:YES];
-                    }];
-                    [MMProgressHUD dismiss];
+                DeBugLog(@"接受%@",recString);
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [NSObject showHudTipStr:@"配置成功"];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
                 });
                 //havi
                 self.noReceiveData = NO;
@@ -385,10 +382,7 @@
         }
         if (times>30||times==30) {
             [self stopSniffer];
-            [MMProgressHUD dismiss];
-            [[MMProgressHUD sharedHUD]setDismissAnimationCompletion:^{
-                [NSObject showHudTipStr:@"激活失败"];
-            }];
+            [NSObject showHudTipStr:@"配置失败"];
             
         }
     }
@@ -419,8 +413,8 @@
     self.noReceiveData = NO;
 //    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
 //    [hud hideHUD];
-    [self.sliderView stop];
-    [NSObject showHudTipStr:@"激活成功"];
+//    [self.sliderView stop];
+    [NSObject showHudTipStr:@"配置成功"];
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[DeviceListViewController class]]) {
             

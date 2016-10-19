@@ -80,6 +80,7 @@
     //
     self.textFiledName = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
     self.textFiledName.textPlaceHolder = @"WiFi名称";
+    self.textFiledName.font = kDefaultWordFont;
     self.textFiledName.textPlaceHolderColor = [UIColor lightGrayColor];
     self.textFiledName.returnKeyType = UIReturnKeyDone;
     self.textFiledName.userInteractionEnabled = NO;
@@ -87,6 +88,7 @@
 
     [self.view addSubview:self.textFiledName];
     self.textFiledPassWord = [[BetaNaoTextField alloc]initWithFrame:(CGRect){10,64,200,80}];
+    self.textFiledPassWord.font = kDefaultWordFont;
     self.textFiledPassWord.textPlaceHolder = @"密码";
     self.textFiledPassWord.textPlaceHolderColor = [UIColor lightGrayColor];
     self.textFiledPassWord.returnKeyType = UIReturnKeyGo;
@@ -124,7 +126,7 @@
     
     [self.textFiledName makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_top).offset(56);
+        make.top.equalTo(self.view.mas_top).offset(50);
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
         make.height.equalTo(@80);
@@ -133,7 +135,7 @@
     
     [self.textFiledPassWord makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.textFiledName.mas_bottom).offset(-8);
+        make.top.equalTo(self.textFiledName.mas_bottom).offset(-12);
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
         make.height.equalTo(@80);
@@ -177,11 +179,12 @@
     [self.view addSubview:showLabel];
     showLabel.textColor = kWhiteBackTextColor;
     showLabel.text = @"1.确保设备处于待配置状态(按一下指示灯后变红)\n\n2.确保手机已连入家庭网络\n\n3.输入正确的Wifi密码";
+    showLabel.font = kDefaultWordFont;
     showLabel.numberOfLines = 0;
     [showLabel makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
-        make.centerY.equalTo(self.view.mas_centerY).offset(16);
+        make.centerY.equalTo(self.view.mas_centerY).offset(0);
     }];
     //
     UIButton *lookButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -190,7 +193,7 @@
     lookButton.layer.cornerRadius = 0;
     lookButton.layer.masksToBounds = YES;
     lookButton.tag = 8000;
-    [lookButton setTitle:@"激活设备" forState:UIControlStateNormal];
+    [lookButton setTitle:@"开始配置" forState:UIControlStateNormal];
     [lookButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [lookButton addTarget:self action:@selector(searchHardware:) forControlEvents:UIControlEventTouchUpInside];
     [lookButton makeConstraints:^(MASConstraintMaker *make) {
@@ -198,10 +201,10 @@
         make.right.equalTo(self.view).offset(-20);
         make.centerX.equalTo(self.view.mas_centerX);
         make.height.equalTo(@44);
-        make.top.mas_lessThanOrEqualTo(showLabel.mas_bottom).offset(34);
+        make.top.mas_lessThanOrEqualTo(showLabel.mas_bottom).offset(95);
     }];
     [_sliderView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(showLabel.mas_bottom).offset(5);
+        make.top.equalTo(showLabel.mas_bottom).offset(35);
         make.left.equalTo(self.view).offset(30);
         make.right.equalTo(self.view).offset(-30);
         make.height.equalTo(@15);
@@ -212,7 +215,7 @@
     [cancelButton setBackgroundImage:[UIImage imageNamed:@"button_back_image@3x"] forState:UIControlStateNormal];
     cancelButton.layer.cornerRadius = 0;
     cancelButton.layer.masksToBounds = YES;
-    [cancelButton setTitle:@"暂时不激活" forState:UIControlStateNormal];
+    [cancelButton setTitle:@"暂不配置" forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelButtonDone:) forControlEvents:UIControlEventTouchUpInside];
     [cancelButton setTitleColor:[UIColor colorWithRed:0.467 green:0.467 blue:0.467 alpha:1.00] forState:UIControlStateNormal];
     [cancelButton makeConstraints:^(MASConstraintMaker *make) {
@@ -261,12 +264,12 @@
 //搜索硬件UDP
 - (void)searchHardware:(UIButton *)button
 {
-    if ([button.titleLabel.text isEqualToString:@"取消激活"]) {
-        [button setTitle:@"激活激活" forState:UIControlStateNormal];
+    if ([button.titleLabel.text isEqualToString:@"取消配置"]) {
+        [button setTitle:@"开始配置" forState:UIControlStateNormal];
         [self.sliderView stop];
         [self stopSmartLink];
     }else{
-        [button setTitle:@"取消激活" forState:UIControlStateNormal];
+        [button setTitle:@"取消配置" forState:UIControlStateNormal];
         if ([self.textFiledName.text isEqualToString:@""]) {
             [NSObject showHudTipStr:@"请输入网络名"];
             return;
@@ -310,7 +313,7 @@
 //    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
 //    [hud hideHUD];
     UIButton *button = (UIButton *)[self.view viewWithTag:8000];
-    [button setTitle:@"激活激活" forState:UIControlStateNormal];
+    [button setTitle:@"开始配置" forState:UIControlStateNormal];
     [self.sliderView stop];
 }
 
@@ -322,8 +325,8 @@
         smtlkState= 0;
         [self.sliderView stop];
         UIButton *button = (UIButton *)[self.view viewWithTag:8000];
-        [button setTitle:@"激活激活" forState:UIControlStateNormal];
-        [NSObject showHudTipStr:@"激活超时"];
+        [button setTitle:@"开始配置" forState:UIControlStateNormal];
+        [NSObject showHudTipStr:@"配置超时"];
         return;
     }
     
@@ -361,7 +364,7 @@
 //    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
 //    [hud hideHUD];
     [self.sliderView stop];
-    [NSObject showHudTipStr:@"激活成功"];
+    [NSObject showHudTipStr:@"配置成功"];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     DeviceListViewController *controller = [[DeviceListViewController alloc]init];
     delegate.sideMenuController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];

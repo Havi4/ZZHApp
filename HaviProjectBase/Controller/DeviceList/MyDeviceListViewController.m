@@ -179,15 +179,34 @@
 
 - (void)reActiveMyDevice:(DeviceList *)deviceInfo
 {
-    if (deviceInfo.detailDeviceList.count > 0) {
-        ReactiveDoubleViewController *doubleUDP = [[ReactiveDoubleViewController alloc]init];
-        [self.navigationController pushViewController:doubleUDP animated:YES];
-    }else{
-        ReactiveSingleViewController *sigleUDP = [[ReactiveSingleViewController alloc]init];
-        sigleUDP.deviceName = deviceInfo.description;
-        sigleUDP.deviceUUID = deviceInfo.deviceUUID;
-        [self.navigationController pushViewController:sigleUDP animated:YES];
-    }
+    NSDictionary *para = @{
+                           @"UUID": deviceInfo.deviceUUID,
+                           };
+    @weakify(self);
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestCheckSensorInfoParams:para andBlcok:^(SensorInfoModel *sensorModel, NSError *error) {
+        @strongify(self);
+
+        if ([sensorModel.returnCode intValue]==200) {
+            if (sensorModel) {
+                if ([sensorModel.sensorDetail.factoryCode isEqualToString:@"LongSys"]) {
+                    ReactiveSingleViewController *sigleUDP = [[ReactiveSingleViewController alloc]init];
+                    sigleUDP.deviceName = deviceInfo.description;
+                    sigleUDP.deviceUUID = deviceInfo.deviceUUID;
+                    [self.navigationController pushViewController:sigleUDP animated:YES];
+                }else{
+                    ReactiveDoubleViewController *doubleUDP = [[ReactiveDoubleViewController alloc]init];
+                    [self.navigationController pushViewController:doubleUDP animated:YES];
+                }
+            }else{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    //                [self reStartDevice];
+                });
+            }
+        }else{
+            [NSObject showHudTipStr:sensorModel.errorMessage];
+        }
+    }];
 }
 
 - (void)renameMyDevice:(DeviceList *)deviceInfo

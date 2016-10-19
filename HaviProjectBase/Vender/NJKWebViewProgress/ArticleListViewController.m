@@ -103,7 +103,7 @@
         [date makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(cell.mas_centerY);
             make.right.equalTo(cell.mas_right).offset(-8);
-            make.left.equalTo(cellTitle.mas_right).offset(-4);
+            make.left.equalTo(cellTitle.mas_right).offset(8);
             make.width.equalTo(@70);
         }];
     }

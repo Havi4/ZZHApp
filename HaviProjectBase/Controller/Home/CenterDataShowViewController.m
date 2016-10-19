@@ -167,8 +167,8 @@
             }
             [_cellRecommend makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(cell.mas_centerX);
-                make.top.equalTo(@(height - 62));
-                make.height.equalTo(@50);
+                make.top.equalTo(@(height - 45));
+                make.width.mas_lessThanOrEqualTo(cell.mas_width);
             }];
 
 

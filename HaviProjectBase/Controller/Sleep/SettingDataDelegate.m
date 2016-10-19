@@ -139,7 +139,7 @@
     switch (index.section) {
         case 4:{
             type = SleepSettingSwitchAlertTime;
-            [self controlLocalNotiOpen:(cellSwitch.on ? @"True" : @"False") type:type];
+//            [self controlLocalNotiOpen:(cellSwitch.on ? @"True" : @"False") type:type];
             break;
         }
         case 2:{
@@ -244,7 +244,7 @@
             case SleepSettingAlertTime:{
                 [[NSUserDefaults standardUserDefaults]setObject:date forKey:@"userAlert"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
-                [self changeUserAlarm:date];
+//                [self changeUserAlarm:date];
                 break;
             }
                 
@@ -445,9 +445,9 @@
     [[NSUserDefaults standardUserDefaults]setObject:localDate forKey:kAlarmTimeValue];
     [[NSUserDefaults standardUserDefaults]synchronize];
     [[LocalNotificationManager sharedManager]cancelAllNotifications];
-    UILocalNotification *noti = [[LocalNotificationManager sharedManager] scheduleNotificationOn:localDate body:@"您有一个起床闹铃" userInfo:nil options:@{@"soundName":@"alarmSound.wav"}];
-    noti.repeatInterval = kCFCalendarUnitDay;
-    [self.myTableView reloadData];
+//    UILocalNotification *noti = [[LocalNotificationManager sharedManager] scheduleNotificationOn:localDate body:@"您有一个起床闹铃" userInfo:nil options:@{@"soundName":@"alarmSound.wav"}];
+//    noti.repeatInterval = kCFCalendarUnitDay;
+//    [self.myTableView reloadData];
     DeBugLog(@"闹铃时间是%@",localDate);
 }
 
@@ -531,7 +531,7 @@
                            };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestChangeUserInfoParam:dic3 andBlock:^(BaseModel *resultModel, NSError *error) {
-        [JDStatusBarNotification showWithStatus:notiString dismissAfter:2 styleName:JDStatusBarStyleDark];
+//        [JDStatusBarNotification showWithStatus:notiString dismissAfter:2 styleName:JDStatusBarStyleDark];
         if (self.didSelectCellBlock) {
             self.didSelectCellBlock(nil,nil);
         }
