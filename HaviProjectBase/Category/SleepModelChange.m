@@ -36,9 +36,12 @@
         double subsecond2 = modf([sleepDuration floatValue], &second2);
         NSString *sleepTimeDuration= @"";
         if((int)round(subsecond2*60)<10){
-            sleepTimeDuration = [NSString stringWithFormat:@"%@时0%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+            sleepTimeDuration = [NSString stringWithFormat:@"%@小时0%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
         }else{
-            sleepTimeDuration = [NSString stringWithFormat:@"%@时%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+            sleepTimeDuration = [NSString stringWithFormat:@"%@小时%d分",hour<10?[NSString stringWithFormat:@"0%d",hour]:[NSString stringWithFormat:@"%d",hour],(int)round(subsecond2*60)];
+        }
+        if (hour == 0 & subsecond2 == 0) {
+            sleepTimeDuration = [NSString stringWithFormat:@"--小时--分"];
         }
         dispatch_async_on_main_queue(^{
             block(sleepTimeDuration);

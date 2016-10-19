@@ -16,7 +16,7 @@
 #define kAppTestBaseURL @"http://testzzhapi.meddo99.com:8088/"
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 
-#define kWXPlatform @"89wx.com"
+#define kWXPlatform @"wx.com"
 #define kSinaPlatform @"sina.com"
 #define kTXPlatform @"qq.com"
 #define kMeddoPlatform @"meddo99.com"
