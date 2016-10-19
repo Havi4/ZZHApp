@@ -11,6 +11,7 @@
 //#import "SCActionSheet.h"
 //#import "SCActionSheetButton.h"
 #import "ScrollViewFrameAccessor.h"
+#import "GetWeatherAPI.h"
 
 #import "V2MenuSectionCell.h"
 #import "DataAnTableViewCell.h"
@@ -64,6 +65,21 @@ static CGFloat const kAvatarHeight = 70.0f;
     return self;
 }
 
+- (void)getWeather
+{
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"city"] length]>0&&[[[NSUserDefaults standardUserDefaults]objectForKey:@"province"] length]>0) {
+        NSDictionary *dic19 = @{
+                                @"city" : [[NSUserDefaults standardUserDefaults]objectForKey:@"city"],
+                                @"province": [[NSUserDefaults standardUserDefaults]objectForKey:@"province"]
+                                };
+        [GetWeatherAPI getWeatherInfoWith:dic19 finished:^(NSURLResponse *response, NSData *data) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGetWeatherData object:nil userInfo:@{@"data":data}];
+            
+        } failed:^(NSURLResponse *response, NSError *error) {
+            
+        }];
+    }
+}
 - (void)showFriendRequestNoti
 {
     [self.tableView reloadData];
@@ -198,7 +214,7 @@ static CGFloat const kAvatarHeight = 70.0f;
         self.locationImage.image = [UIImage imageNamed:@"location"];
 
     }];
-
+    [self getWeather];
 
 }
 

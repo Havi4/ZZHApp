@@ -185,7 +185,6 @@
 #pragma mark settings
 - (void)getUserLocationWith:(NSDictionary *)launchOptions
 {
-    
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
     if ([[UIDevice currentDevice] systemVersion].doubleValue > 8.0) {//如果iOS是8.0以上版本
@@ -195,7 +194,6 @@
     }
     _locationManager.delegate = self;
     [_locationManager startUpdatingLocation];
-
 }
 //获取城市
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
@@ -241,12 +239,15 @@
 
 - (void)sendLocationWith:(NSString *)city andProvie:(NSString *)province
 {
-    [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"city":@""}];
     NSString *cityU = [[NSUserDefaults standardUserDefaults]objectForKey:@"city"];
     if (cityU.length == 0) {
         [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":[city substringToIndex:city.length-1]}];
     }
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"city"] isEqualToString:[city substringToIndex:city.length-1]] && [[[NSUserDefaults standardUserDefaults]objectForKey:@"province"] isEqualToString:[province substringToIndex:city.length-1]]) {
+        return;
+    }
     [[NSUserDefaults standardUserDefaults]setObject:[city substringToIndex:city.length-1] forKey:@"city"];
+    [[NSUserDefaults standardUserDefaults]setObject:[province substringToIndex:city.length-1] forKey:@"province"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     NSDictionary *dic19 = @{
@@ -433,6 +434,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[NSUserDefaults standardUserDefaults]registerDefaults:@{kAppPassWordKeyNoti : @"NO"}];
     [[NSUserDefaults standardUserDefaults]synchronize];
+    [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"city":@""}];
 }
 
 #pragma mark 设置引导画面
