@@ -83,27 +83,27 @@
             }
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.tag = 9000;
-            button.frame = (CGRect){cX+20,cY,10,10};
+            button.frame = (CGRect){cX+20,cY,15,15};
             [button setTitle:[NSString stringWithFormat:@"%d",tx] forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:9];
             [self addSubview:button];
             button.backgroundColor = [UIColor grayColor];
             if (tx < 5 || tx == 5) {
                 button.backgroundColor = [UIColor colorWithRed:0.337 green:0.773 blue:0.471 alpha:1.00];
-                button.layer.cornerRadius = 5;
-            }else if (tx > 5 && (tx < 10 || tx == 10)){
-                button.frame = (CGRect){cX+20,cY,15,15};
-                button.backgroundColor = [UIColor colorWithRed:0.549 green:0.902 blue:1.000 alpha:1.00];
                 button.layer.cornerRadius = 7.5;
-            }else if (tx > 10 && (tx < 15 || tx == 15)){
-                button.frame = (CGRect){cX+20,cY,20,20};
-                button.backgroundColor = [UIColor colorWithRed:0.788 green:0.749 blue:0.114 alpha:1.00];
+            }else if (tx > 5 && (tx < 10 || tx == 10)){
+                button.frame = (CGRect){cX+17,cY,20,20};
+                button.backgroundColor = [UIColor colorWithRed:0.549 green:0.902 blue:1.000 alpha:1.00];
                 button.layer.cornerRadius = 10;
+            }else if (tx > 10 && (tx < 15 || tx == 15)){
+                button.frame = (CGRect){cX+15,cY,25,25};
+                button.backgroundColor = [UIColor colorWithRed:0.788 green:0.749 blue:0.114 alpha:1.00];
+                button.layer.cornerRadius = 12.5;
 
             }else{
-                button.frame = (CGRect){cX+20,cY,25,25};
+                button.frame = (CGRect){cX+13,cY,30,30};
                 button.backgroundColor = [UIColor colorWithRed:0.878 green:0.282 blue:0.204 alpha:1.00];
-                button.layer.cornerRadius = 12.5;
+                button.layer.cornerRadius = 15;
             }
         }
     }
