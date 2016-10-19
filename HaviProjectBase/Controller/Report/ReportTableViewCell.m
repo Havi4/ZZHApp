@@ -40,7 +40,7 @@
         titleLabel = [[UILabel alloc]init];
         titleLabel.text = @"心率分析:";
         titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.font = [UIFont systemFontOfSize:17];
+        titleLabel.font = [UIFont systemFontOfSize:16];
         [self addSubview:titleLabel];
         [titleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(8);
@@ -139,7 +139,7 @@
         middleDataLabel.textAlignment = NSTextAlignmentLeft;
         middleDataLabel.textColor = [UIColor whiteColor];
         middleDataLabel.text = @"--次";
-        middleDataLabel.font = [UIFont systemFontOfSize:17];
+        middleDataLabel.font = [UIFont systemFontOfSize:16];
         [backView addSubview:middleDataLabel];
         [middleTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(backView.mas_top).offset(8);
@@ -180,7 +180,7 @@
         rightDataLabel.textColor = [UIColor whiteColor];
         rightDataLabel.text = @"";
         
-        rightDataLabel.font = [UIFont systemFontOfSize:17];
+        rightDataLabel.font = [UIFont systemFontOfSize:16];
         [backView addSubview:rightDataLabel];
         [rightTitleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(backView.mas_top).offset(8);

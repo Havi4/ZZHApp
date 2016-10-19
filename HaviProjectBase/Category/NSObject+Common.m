@@ -334,7 +334,7 @@
     //code为非0值时，表示有错
     NSNumber *resultCode = [responseJSON valueForKeyPath:@"ReturnCode"];
     
-    if (resultCode.intValue != 200 && resultCode.intValue != 10029 && resultCode.intValue != 10013 && resultCode.intValue != 10012 && resultCode.intValue != 10023) {
+    if (resultCode.intValue != 200 && resultCode.intValue != 10029 && resultCode.intValue != 10013 && resultCode.intValue != 10012 && resultCode.intValue != 10023&&resultCode.intValue != 10037) {
         error = [NSError errorWithDomain:[NSObject baseURLStr] code:resultCode.intValue userInfo:responseJSON];
         DeBugLog(@"***********服务器提示：%@********************",error);
         NSString *showError = [returnErrorMessage objectForKey:[NSString stringWithFormat:@"%@",resultCode]];
@@ -343,6 +343,7 @@
         }
     }else if (resultCode.intValue == 10023){
         [self getUserAccessTockenWith];
+        
     }
     return error;
 }
@@ -372,14 +373,17 @@
                 if ([serVerTime.returnCode intValue]==200) {
                     accessTocken = serVerTime.accessTockenString;
                     [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
-                    dispatch_async_on_main_queue(^{
-                    });
                 }else{
-                    [self getUserAccessTockenWith];
+                    
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                        [self getUserAccessTockenWith];
+//                    });
                 }
             }];
         }else{
-            [self getUserAccessTockenWith];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [self getUserAccessTockenWith];
+//            });
         }
     }];
 }

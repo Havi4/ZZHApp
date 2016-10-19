@@ -89,7 +89,7 @@
     backView.frame = (CGRect){70,20,self.view.frame.size.width - 140,44};
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom ];
     [leftButton setTitle:@"我的设备" forState:UIControlStateNormal];
-    [leftButton.titleLabel setFont:[UIFont systemFontOfSize:17]];
+    [leftButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     leftButton.frame = (CGRect){0,0,(self.view.frame.size.width - 140)/2,44};
     leftButton.tag = 9000;
@@ -120,7 +120,7 @@
     }
     switch (button.tag) {
         case 9000: {
-            [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
+            [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             UIButton *buttonRight = [self.view viewWithTag:9001];
             [buttonRight.titleLabel setFont:kDefaultWordFont];
@@ -138,7 +138,7 @@
             if (![self.childViewControllers containsObject:self.friendDeviceList]) {
                 [self addChildViewController:self.friendDeviceList];
             }
-            [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
+            [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             UIButton *buttonRight = [self.view viewWithTag:9000];
             [buttonRight.titleLabel setFont:kDefaultWordFont];

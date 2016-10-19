@@ -185,6 +185,7 @@
     lookButton.layer.masksToBounds = YES;
     lookButton.tag = 8000;
     [lookButton setTitle:@"开始配置" forState:UIControlStateNormal];
+    lookButton.titleLabel.font = kDefaultWordFont;
     [lookButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [lookButton addTarget:self action:@selector(searchHardware:) forControlEvents:UIControlEventTouchUpInside];
     [lookButton makeConstraints:^(MASConstraintMaker *make) {
@@ -207,6 +208,7 @@
     cancelButton.layer.cornerRadius = 0;
     cancelButton.layer.masksToBounds = YES;
     [cancelButton setTitle:@"暂不配置" forState:UIControlStateNormal];
+    cancelButton.titleLabel.font = kDefaultWordFont;
     [cancelButton addTarget:self action:@selector(cancelButtonDone:) forControlEvents:UIControlEventTouchUpInside];
     [cancelButton setTitleColor:[UIColor colorWithRed:0.467 green:0.467 blue:0.467 alpha:1.00] forState:UIControlStateNormal];
     [cancelButton makeConstraints:^(MASConstraintMaker *make) {

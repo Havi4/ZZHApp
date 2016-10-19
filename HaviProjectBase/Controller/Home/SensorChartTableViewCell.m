@@ -24,7 +24,7 @@
 @property (nonatomic,strong) LongpressShowView *pressView;
 @property (nonatomic,strong) UIImageView *iconImageView;
 @property (nonatomic,strong) UIImageView *iconImageView1;
-
+@property (nonatomic,strong) NSTimer *timer;
 
 @end
 
@@ -265,7 +265,7 @@
         CGPoint timeLocation = [gesture locationInView:self.scrollContainerView];
         
         
-        float hour = (timeLocation.x - (self.frame.size.width*4)/25/2)/((self.frame.size.width*4)/25);
+        float hour = (timeLocation.x-10)/((self.frame.size.width*4)/25);
         if (hour<0) {
             hour = 0;
             location = CGPointMake((self.frame.size.width*4)/25/2, location.y);
@@ -279,66 +279,38 @@
         NSString *hr = hourEnd < 10?[NSString stringWithFormat:@"0%d",hourEnd]:[NSString stringWithFormat:@"%d",hourEnd];
         NSString *mi = (int)minute>9?[NSString stringWithFormat:@"%d",(int)minute]:[NSString stringWithFormat:@"0%d",(int)minute];
         NSString *time = [NSString stringWithFormat:@"%@:%@",hr,mi];
-        NSString *tapTime = [NSString stringWithFormat:@"%@ %@",[[NSString stringWithFormat:@"%@",selectedDateToUse] substringToIndex:10],time];
+        NSString *year = @"";
+        if ([hr intValue]>18 || [hr intValue]==18) {
+            year = [NSString stringWithFormat:@"%@",[[selectedDateToUse dateByAddingHours:8] dateByAddingDays:-1]];
+        }else{
+            year = [NSString stringWithFormat:@"%@",[selectedDateToUse dateByAddingHours:8]];
+        }
+        NSString *tapTime = [NSString stringWithFormat:@"%@ %@:00",[year substringToIndex:10],[time substringWithRange:NSMakeRange(0, 2)]];
+        NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
+        dateF.dateFormat = @"yyyy-MM-dd HH:mm";
+        NSDate *date ;
+        date = [dateF dateFromString:tapTime];
+//        if ([hr intValue]>18 || [hr intValue]==18) {
+//            date = [[[dateF dateFromString:tapTime] dateByAddingHours:8] dateByAddingDays:-1];
+//        }else{
+//            date = [[[dateF dateFromString:tapTime] dateByAddingHours:8] dateByAddingDays:0];
+//        }
         NSMutableArray *arr = @[].mutableCopy;
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            for (int i =0; i<7; i++) {
+            for (int i= 0; i<16; i++) {
                 NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
                 dateF.dateFormat = @"yyyy-MM-dd HH:mm";
-                NSDate *date = [[dateF dateFromString:tapTime]dateByAddingHours:8];
-                NSDate *new = [date dateByAddingMinutes:4*(i-7)];
+                NSDate *new = [[date dateByAddingMinutes:4*(i)] dateByAddingHours:8];
                 NSString *newD = [NSString stringWithFormat:@"%@",new];
                 DeBugLog(@"%@",newD);
                 NSString *sub = [newD substringWithRange:NSMakeRange(11, 5)];
                 [arr addObject:sub];
-            }
-            [arr addObject:time];
-            for (int i =0; i<8; i++) {
-                NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
-                dateF.dateFormat = @"yyyy-MM-dd HH:mm";
-                NSDate *date = [[dateF dateFromString:tapTime]dateByAddingHours:8];
-                NSDate *new = [date dateByAddingMinutes:4*(i+1)];
-                NSString *newD = [NSString stringWithFormat:@"%@",new];
-                DeBugLog(@"%@",newD);
-                NSString *sub = [newD substringWithRange:NSMakeRange(11, 5)];
-                [arr addObject:sub];
+                
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.pressView.xValues = arr;
             });
         });
-        NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
-        dateF.dateFormat = @"yyyy-MM-dd HH:mm";
-        NSDate *date ;
-        if ([hr intValue]>18) {
-            date = [[[dateF dateFromString:tapTime]dateByAddingHours:8] dateByAddingDays:-1];
-        }else{
-            date = [[[dateF dateFromString:tapTime]dateByAddingHours:8] dateByAddingDays:0];
-        }
-        
-        NSDate *new = [date dateByAddingMinutes:0];
-        NSString *newD = [NSString stringWithFormat:@"%@",new];
-        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
-        NSDictionary *dic18 = @{
-                                @"UUID" : self.UUID,
-                                @"DataProperty":@(self.type+3),
-                                @"FromDate": [NSString stringWithFormat:@"%@%@%@",[newD substringWithRange:NSMakeRange(0, 4)],[newD substringWithRange:NSMakeRange(5, 2)],[newD substringWithRange:NSMakeRange(8, 2)]],
-                                @"FromTime": [NSString stringWithFormat:@"%@:00",[newD substringWithRange:NSMakeRange(11, 5)]],
-                                };
-        [client requestRealSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
-            if ([sensorModel.returnCode integerValue]==200) {
-                [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type startTime:[NSString stringWithFormat:@"%@%@%@",[newD substringWithRange:NSMakeRange(0, 4)],[newD substringWithRange:NSMakeRange(5, 2)],[newD substringWithRange:NSMakeRange(8, 2)]] endTime:[NSString stringWithFormat:@"%@:00",[newD substringWithRange:NSMakeRange(11, 5)]] callBack:^(id callBack)  {
-                    [self.pressView addlineView];
-                    _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
-                    self.pressView.heartViewLeft.values = (NSArray *)callBack;
-                    [self.pressView.heartViewLeft animate];
-                    
-                }];
-            }else{
-                self.pressView.heartViewLeft.values = nil;
-                [self.pressView removeLine];
-            }
-        }];
 
         self.pressView.heartViewLeft.curved = YES;
         self.pressView.heartViewLeft.minValue = 0;
@@ -356,7 +328,7 @@
         [chaBackView addSubview:self.yCoorBackView1];
         [chaBackView addSubview:self.iconImageView1];
         self.iconImageView1.image = self.type == 0? [UIImage imageNamed:@"icon_heart@3x"]: [UIImage imageNamed:@"icon_breath@3x"];
-
+        
         UILabel *cellDataLabel = [[UILabel alloc]init];
         cellDataLabel.font = [UIFont systemFontOfSize:25];
         cellDataLabel.text = @"--";
@@ -371,12 +343,79 @@
         [chaBackView addSubview:cellDataSub];
         cellDataSub.text = @"次/分";
         cellDataSub.font = [UIFont systemFontOfSize:15];
-
+        
         cellDataSub.textColor = [UIColor whiteColor];
         [cellDataSub makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(cellDataLabel.mas_right).offset(0);
             make.baseline.equalTo(cellDataLabel.mas_baseline).offset(0);
         }];
+        
+        NSDate *new = [date dateByAddingHours:8];
+        NSString *newD = [NSString stringWithFormat:@"%@",new];
+        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+        NSDictionary *dic18 = @{
+                                @"UUID" : self.UUID,
+                                @"DataProperty":@(self.type+3),
+                                @"FromDate": [NSString stringWithFormat:@"%@%@%@",[newD substringWithRange:NSMakeRange(0, 4)],[newD substringWithRange:NSMakeRange(5, 2)],[newD substringWithRange:NSMakeRange(8, 2)]],
+                                @"FromTime": [NSString stringWithFormat:@"%@:00",[tapTime substringWithRange:NSMakeRange(11, 5)]],
+                                };
+        [client requestRealSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
+            if ([sensorModel.returnCode integerValue]==200) {
+                [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type startTime:date endTime:[NSString stringWithFormat:@"%@:00",[tapTime substringWithRange:NSMakeRange(11, 5)]] callBack:^(id callBack)  {
+                    [self.pressView addlineView];
+                    _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
+                    self.pressView.heartViewLeft.values = (NSArray *)callBack;
+                    [self.pressView.heartViewLeft animate];
+                }];
+                
+                [SleepModelChange filterAverSensorDataWithTime:sensorModel callBack:^(int callBack) {
+                    if (callBack==0) {
+                        cellDataLabel.text = @"--";
+                    }else{
+                        
+                        cellDataLabel.text = [NSString stringWithFormat:@"%d",callBack];
+                    }
+                }];
+            }else{
+                self.pressView.heartViewLeft.values = nil;
+                [self.pressView removeLine];
+            }
+        }];
+
+        if ([new isLaterThan:[[NSDate date] dateByAddingHours:8]]) {
+            self.timer = [NSTimer timerWithTimeInterval:5 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+                NSDictionary *dic18 = @{
+                                        @"UUID" : self.UUID,
+                                        @"DataProperty":@(self.type+3),
+                                        @"FromDate": [NSString stringWithFormat:@"%@%@%@",[newD substringWithRange:NSMakeRange(0, 4)],[newD substringWithRange:NSMakeRange(5, 2)],[newD substringWithRange:NSMakeRange(8, 2)]],
+                                        @"FromTime": [NSString stringWithFormat:@"%@:00",[tapTime substringWithRange:NSMakeRange(11, 5)]],
+                                        };
+                [client requestRealSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
+                    if ([sensorModel.returnCode integerValue]==200) {
+                        [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type startTime:date endTime:[NSString stringWithFormat:@"%@:00",[tapTime substringWithRange:NSMakeRange(11, 5)]] callBack:^(id callBack)  {
+                            [self.pressView addlineView];
+                            _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
+                            self.pressView.heartViewLeft.values = (NSArray *)callBack;
+                            [self.pressView.heartViewLeft animate];
+                        }];
+                        
+                        [SleepModelChange filterAverSensorDataWithTime:sensorModel callBack:^(int callBack) {
+                            if (callBack==0) {
+                                cellDataLabel.text = @"--";
+                            }else{
+                                
+                                cellDataLabel.text = [NSString stringWithFormat:@"%d",callBack];
+                            }
+                        }];
+                    }else{
+                        self.pressView.heartViewLeft.values = nil;
+                        [self.pressView removeLine];
+                    }
+                }];
+            }];
+        }
+        
         
         SleepQualityModel *model = self.sleepModel;
         switch (self.type) {

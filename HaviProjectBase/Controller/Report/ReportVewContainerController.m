@@ -64,15 +64,16 @@
 
 - (void)initCenterViewControllers
 {
+    NSMutableArray *arr = @[].mutableCopy;
     if (gloableActiveDevice.detailDeviceList.count == 0) {
         ReportDataShowViewController *dataShow = [[ReportDataShowViewController alloc]init];
-        dataShow.title = gloableActiveDevice.nDescription.length == 0?@"":gloableActiveDevice.nDescription;
+        dataShow.title = @"";
         dataShow.deviceUUID = gloableActiveDevice.deviceUUID;
         dataShow.reportType = self.reportType;
+        [arr addObject:gloableActiveDevice.nDescription.length == 0?@"":gloableActiveDevice.nDescription];
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
     }else{
         @weakify(self);
-        NSMutableArray *arr = @[].mutableCopy;
         [gloableActiveDevice.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
             ReportDataShowViewController *dataShow = [[ReportDataShowViewController alloc]init];
@@ -82,9 +83,9 @@
             [arr addObject:obj.detailDescription];
             [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
         }];
-        self.naviBarTitle.titles = arr;
 
     }
+    self.naviBarTitle.titles = arr;
 }
 
 - (void)backToHome

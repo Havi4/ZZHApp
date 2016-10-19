@@ -149,7 +149,7 @@
     }
 }
 
-+ (void)filterRealSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType startTime:(NSString *)startTime endTime:(NSString *)endTime callBack:(void(^)(id callBack))block 
++ (void)filterRealSensorDataWithTime:(SensorDataModel *)sensorData withType:(SensorDataType)sensorType startTime:(NSDate *)startTime endTime:(NSString *)endTime callBack:(void(^)(id callBack))block
 {
     @synchronized(self) {
         if (sensorData) {
@@ -168,11 +168,11 @@
                     PropertyData *dic = [sensorInfo objectAtIndex:i];
                     NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
                     dateF.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-                    NSString *queryDateString = [NSString stringWithFormat:@"%@-%@-%@ %@",[startTime substringWithRange:NSMakeRange(0, 4)],[startTime substringWithRange:NSMakeRange(4, 2)],[startTime substringWithRange:NSMakeRange(6, 2)],endTime];
-                    NSDate *queryDate = [dateF dateFromString:queryDateString];
+                    NSDate *queryDate = [startTime  dateByAddingHours:8 ];
                     NSString *date = dic.propertyDate;
-                    NSDate *dateS = [dateF dateFromString:date];
+                    NSDate *dateS = [[dateF dateFromString:date] dateByAddingHours:8];
                     NSInteger minute = (NSInteger)[dateS minutesLaterThan:queryDate];
+                    DeBugLog(@"date is %@,sensorDate %@,mintue is %ld",queryDate,dateS,(long)minute);
                     if (minute < 60) {
                         [arr replaceObjectAtIndex:minute withObject:[NSNumber numberWithFloat:[dic.propertyValue floatValue]]];
                     }
@@ -585,6 +585,25 @@
             block(mutableArr,mutableTimeArr);
         });
     });
+}
+
++ (void)filterAverSensorDataWithTime:(SensorDataModel *)sensorData callBack:(void(^)(int callBack))block{
+    @synchronized(self) {
+        if (sensorData) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                int averX = 0;
+                SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
+                NSArray *sensorInfo = sensorArr.propertyDataList;
+                for (int i = 0; i<sensorInfo.count; i++) {
+                    PropertyData *dic = [sensorInfo objectAtIndex:i];
+                    averX += [dic.propertyValue intValue];
+                }
+                dispatch_async_on_main_queue(^{
+                    block((int)(averX/(sensorInfo.count)));
+                });
+            });
+        }
+    }
 }
 
 @end

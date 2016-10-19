@@ -197,7 +197,13 @@
                            };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     [client requestRequestToAddFriendParam:para andBlock:^(BaseModel *resultModel, NSError *error) {
-        [NSObject showHudTipStr:@"申请成功"];
+        if ([resultModel.returnCode intValue]==10037) {
+            [NSObject showHudTipStr:@"该好友已添加"];
+            
+        }else{
+            [self searchBarCancelButtonClicked:nil];
+            [NSObject showHudTipStr:@"申请成功"];
+        }
     }];
 }
 

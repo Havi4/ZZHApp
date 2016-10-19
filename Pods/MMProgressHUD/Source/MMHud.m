@@ -148,16 +148,16 @@ NSString * const MMProgressHUDFontNameNormal = @"HelveticaNeue-Light";
     }
     else {
         if (self.isIndeterminate) {
-            self.contentAreaFrame = CGRectMake(0.f,
-                                               CGRectGetMaxY(self.titleFrame) + MMProgressHUDContentPadding,
-                                               CGRectGetWidth(self.activityIndicator.frame),
-                                               CGRectGetHeight(self.activityIndicator.frame));
+////            self.contentAreaFrame = CGRectMake(0.f,
+//                                               CGRectGetMaxY(self.titleFrame) + MMProgressHUDContentPadding,
+//                                               CGRectGetWidth(self.activityIndicator.frame),
+//                                               CGRectGetHeight(self.activityIndicator.frame));
         }
         else {
             CGSize fittingSize = [[self progressViewClass] sizeThatFitsSize:MMProgressHUDProgressContentAreaSize maximumAvailableSize:MMProgressHUDProgressMaximumAreaSize];
             
             self.contentAreaFrame = (CGRect) {{0.f,
-                CGRectGetMaxY(self.titleFrame) + MMProgressHUDContentPadding}, fittingSize};
+                CGRectGetMaxY(self.titleFrame) + MMProgressHUDContentPadding}, MMProgressHUDProgressContentAreaSize};
         }
     }
 }
@@ -469,7 +469,7 @@ NSString * const MMProgressHUDFontNameNormal = @"HelveticaNeue-Light";
             self.imageView.image = nil;
             self.imageView.animationImages = self.animationImages;
             
-            [self.activityIndicator stopAnimating];
+//            [self.activityIndicator stopAnimating];
             
             if (self.animationLoopDuration) {
                 self.imageView.animationDuration = self.animationLoopDuration;
@@ -486,7 +486,7 @@ NSString * const MMProgressHUDFontNameNormal = @"HelveticaNeue-Light";
             self.imageView.animationImages = nil;
             self.imageView.image = self.image;
             
-            [self.activityIndicator stopAnimating];
+//            [self.activityIndicator stopAnimating];
             
             self.imageView.contentMode = [self contentModeForImage:self.imageView.image];
         }
@@ -494,15 +494,15 @@ NSString * const MMProgressHUDFontNameNormal = @"HelveticaNeue-Light";
             self.imageView.hidden = YES;
             
             if (self.isIndeterminate) {
-                [self.activityIndicator startAnimating];
+//                [self.activityIndicator startAnimating];
                 
                 self.imageView.image = nil;
                 self.imageView.animationImages = nil;
                 
-                [self.progressViewContainer addSubview:self.activityIndicator];
+//                [self.progressViewContainer addSubview:self.activityIndicator];
             }
             else {
-                [self.activityIndicator stopAnimating];
+//                [self.activityIndicator stopAnimating];
             }
         }
         
@@ -528,7 +528,7 @@ NSString * const MMProgressHUDFontNameNormal = @"HelveticaNeue-Light";
                  
                  self.imageView.contentMode = [self contentModeForImage:completionImage];
                  
-                 [self.activityIndicator stopAnimating];
+//                 [self.activityIndicator stopAnimating];
                  self.progressView.hidden = YES;
                  
                  self.imageView.image = completionImage;
