@@ -334,16 +334,56 @@
     //code为非0值时，表示有错
     NSNumber *resultCode = [responseJSON valueForKeyPath:@"ReturnCode"];
     
-    if (resultCode.intValue != 200 && resultCode.intValue != 10029 && resultCode.intValue != 10013 && resultCode.intValue != 10012) {
+    if (resultCode.intValue != 200 && resultCode.intValue != 10029 && resultCode.intValue != 10013 && resultCode.intValue != 10012 && resultCode.intValue != 10023) {
         error = [NSError errorWithDomain:[NSObject baseURLStr] code:resultCode.intValue userInfo:responseJSON];
         DeBugLog(@"***********服务器提示：%@********************",error);
         NSString *showError = [returnErrorMessage objectForKey:[NSString stringWithFormat:@"%@",resultCode]];
         if (autoShowError) {
             [NSObject showHudTipStr:showError];
         }
+    }else if (resultCode.intValue == 10023){
+        [self getUserAccessTockenWith];
     }
     return error;
 }
+
+- (void)getUserAccessTockenWith
+{
+    ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+    [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
+        if (!error) {
+            DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
+            if (serVerTime.serverTime.length==0) {
+                return;
+            }
+            NSDateFormatter *date = [[NSDateFormatter alloc]init];
+            [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *n = [date dateFromString:serVerTime.serverTime];
+            NSInteger time = [n timeIntervalSince1970];
+            NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
+            NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",thirdPartyLoginUserId,atTime];
+            NSString *md5String = [md5OriginalString md5String];
+            NSDictionary *dic = @{
+                                  @"UserId": thirdPartyLoginUserId,
+                                  @"Atime": [NSNumber numberWithInteger:(time)],
+                                  @"MD5":[md5String uppercaseString],
+                                  };
+            [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
+                if ([serVerTime.returnCode intValue]==200) {
+                    accessTocken = serVerTime.accessTockenString;
+                    [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
+                    dispatch_async_on_main_queue(^{
+                    });
+                }else{
+                    [self getUserAccessTockenWith];
+                }
+            }];
+        }else{
+            [self getUserAccessTockenWith];
+        }
+    }];
+}
+
 
 + (UIViewController *)appPresentedRootViewController
 {
