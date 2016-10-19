@@ -96,7 +96,7 @@
     [leftButton addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom ];
     [rightButton setTitle:@"好友设备" forState:UIControlStateNormal];
-    [rightButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [rightButton.titleLabel setFont:kDefaultWordFont];
     [rightButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     rightButton.frame = (CGRect){(self.view.frame.size.width - 140)/2,0,(self.view.frame.size.width - 140)/2,44};
     rightButton.tag = 9001;
@@ -123,7 +123,7 @@
             [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             UIButton *buttonRight = [self.view viewWithTag:9001];
-            [buttonRight.titleLabel setFont:[UIFont systemFontOfSize:16]];
+            [buttonRight.titleLabel setFont:kDefaultWordFont];
             [buttonRight setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
             self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"jia"] style:SCBarButtonItemStylePlain handler:^(id sender) {
                 [self addProduct:nil];
@@ -141,7 +141,7 @@
             [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             UIButton *buttonRight = [self.view viewWithTag:9000];
-            [buttonRight.titleLabel setFont:[UIFont systemFontOfSize:16]];
+            [buttonRight.titleLabel setFont:kDefaultWordFont];
             [buttonRight setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
             self.rightBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sousuo"] style:SCBarButtonItemStylePlain handler:^(id sender) {
                 [self searchDevice:nil];

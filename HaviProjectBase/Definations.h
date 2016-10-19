@@ -32,10 +32,10 @@
 //new-start
 //font
 #define StatusbarSize 20
-#define kDefaultWordFont      [UIFont systemFontOfSize:17]
+#define kDefaultWordFont      [UIFont systemFontOfSize:14]
 #define kTextPlaceHolderFont [UIFont systemFontOfSize:15]
 #define kTextFieldWordFont [UIFont systemFontOfSize:15]
-#define kTextNormalWordFont [UIFont systemFontOfSize:17]
+#define kTextNormalWordFont [UIFont systemFontOfSize:14]
 #define kTextTitleWordFont [UIFont systemFontOfSize:19]
 //color
 #define kTextPlaceHolderColor [UIColor lightGrayColor]

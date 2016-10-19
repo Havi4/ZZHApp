@@ -100,6 +100,7 @@
         _cellTextField.textPlaceHolder = @"请输入您的家庭地址";
         _cellTextField.textPlaceHolderColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
         _cellTextField.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _cellTextField.font = kDefaultWordFont;
         [_cellTextField becomeFirstResponder];
         _cellTextField.returnKeyType = UIReturnKeyDone;
 //        [_cellTextField becomeFirstResponder];

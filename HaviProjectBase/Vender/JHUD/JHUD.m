@@ -264,7 +264,7 @@
     self.messageLabel.textAlignment = NSTextAlignmentCenter ;
     self.messageLabel.text = @"Please wait ...";
     self.messageLabel.textColor = [UIColor lightGrayColor];
-    self.messageLabel.font = [UIFont systemFontOfSize:16];
+    self.messageLabel.font = kDefaultWordFont;
     self.messageLabel.backgroundColor = [UIColor clearColor];
     self.messageLabel.numberOfLines = 0;
     

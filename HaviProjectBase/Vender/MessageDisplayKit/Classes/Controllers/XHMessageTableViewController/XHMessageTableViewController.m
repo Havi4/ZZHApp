@@ -685,7 +685,7 @@ static CGPoint  delayOffset = {0.0};
     // 初始化消息页面布局
     [self initilzer];
     
-    [[XHMessageBubbleView appearance] setFont:[UIFont systemFontOfSize:16.0f]];
+    [[XHMessageBubbleView appearance] setFont:kDefaultWordFont];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -67,7 +67,7 @@
         self.dataLabel.font = [UIFont systemFontOfSize:30];
         UILabel *sub = [[UILabel alloc]init];
         sub.textColor = [UIColor whiteColor];
-        sub.text = @"次/天";
+        sub.text = @"次";
         sub.font = [UIFont systemFontOfSize:15];
         [_turnBackView addSubview:sub];
         [_turnBackView addSubview:self.dataLabel];

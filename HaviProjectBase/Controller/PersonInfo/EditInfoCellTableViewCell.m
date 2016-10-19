@@ -39,6 +39,7 @@
         _cellTextField.textPlaceHolder = @"地址";
         _cellTextField.textPlaceHolderColor = [UIColor lightGrayColor];
         _cellTextField.textLineColor = [UIColor colorWithRed:0.161 green:0.659 blue:0.902 alpha:1.00];
+        _cellTextField.font = kDefaultWordFont;
         _cellTextField.returnKeyType = UIReturnKeyDone;
         //        [_cellTextField becomeFirstResponder];
         //        _cellTextField.scrollEnabled = NO;

@@ -43,7 +43,7 @@
         [backImageView addSubview:titleLabel];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.dk_textColorPicker = kTextColorPicker;
-        titleLabel.font = [UIFont systemFontOfSize:16];
+        titleLabel.font = kDefaultWordFont;
         [titleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(backImageView.mas_centerY);
             make.left.equalTo(backImageView.mas_left).offset(10);

@@ -20,7 +20,7 @@
     if (self) {
         _title = [[UILabel alloc]init];
         _title.textColor = [UIColor colorWithRed:0.016 green:0.020 blue:0.024 alpha:1.00];
-        _title.font = [UIFont systemFontOfSize:16];
+        _title.font = kDefaultWordFont;
         [self addSubview:_title];
         [_title makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(46);
@@ -51,7 +51,7 @@
         UILabel *versionLabel = [[UILabel alloc]init];
         versionLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         versionLabel.textColor = [UIColor grayColor];
-        versionLabel.font= [UIFont systemFontOfSize:15];
+        versionLabel.font= [UIFont systemFontOfSize:13];
         [self addSubview:versionLabel];
         [versionLabel makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.mas_centerY);
@@ -94,6 +94,6 @@
         cell.imageView.image = [UIImage imageNamed:@"guanyu"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
 }
 @end

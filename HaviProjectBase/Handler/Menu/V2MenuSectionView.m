@@ -133,6 +133,8 @@ static CGFloat const kAvatarHeight = 70.0f;
     self.usernameLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.usernameLabel];
     self.userPhoneLabel = [[UILabel alloc]init];
+    self.userPhoneLabel.font = kDefaultWordFont;
+    self.usernameLabel.font = kDefaultWordFont;
     self.userPhoneLabel.textAlignment = NSTextAlignmentCenter;
     self.userPhoneLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.userPhoneLabel];

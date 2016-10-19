@@ -57,17 +57,17 @@
         
         leftTitleLabel = [[UILabel alloc]init];
         leftTitleLabel.textColor = [UIColor whiteColor];
-        leftTitleLabel.font = kNumberFont(15);
+        leftTitleLabel.font = kNumberFont(14);
         [leftBackView addSubview:leftTitleLabel];
         
         leftNumLabel = [[UILabel alloc]init];
         leftNumLabel.textColor = [UIColor whiteColor];
-        leftNumLabel.font = kNumberFont(27);
+        leftNumLabel.font = kNumberFont(25);
         [leftBackView addSubview:leftNumLabel];
         
         leftSubLabel = [[UILabel alloc]init];
         leftSubLabel.textColor = [UIColor whiteColor];
-        leftSubLabel.font = kNumberFont(11);
+        leftSubLabel.font = kNumberFont(10);
         [leftBackView addSubview:leftSubLabel];
         
         leftImage = [[YYAnimatedImageView alloc]init];
@@ -75,19 +75,19 @@
         
         rightTitleLabel = [[UILabel alloc]init];
         rightTitleLabel.textColor = [UIColor whiteColor];
-        rightTitleLabel.font = kNumberFont(15);
+        rightTitleLabel.font = kNumberFont(14);
 
         [rightBackView addSubview:rightTitleLabel];
         
         rightNumLabel = [[UILabel alloc]init];
         rightNumLabel.textColor = [UIColor whiteColor];
-        rightNumLabel.font = kNumberFont(27);
+        rightNumLabel.font = kNumberFont(25);
 
         [rightBackView addSubview:rightNumLabel];
         
         rightSubLabel = [[UILabel alloc]init];
         rightSubLabel.textColor = [UIColor whiteColor];
-        rightSubLabel.font = kNumberFont(11);
+        rightSubLabel.font = kNumberFont(10);
 
         [rightBackView addSubview:rightSubLabel];
         rightImage = [[YYAnimatedImageView alloc]init];

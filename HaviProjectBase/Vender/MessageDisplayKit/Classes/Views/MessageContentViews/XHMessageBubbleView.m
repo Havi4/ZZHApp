@@ -172,7 +172,7 @@
         return _font;
     }
     
-    return [UIFont systemFontOfSize:16.0f];
+    return kDefaultWordFont;
 }
 
 #pragma mark - Getters

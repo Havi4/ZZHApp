@@ -128,7 +128,7 @@
             _tipLable.frame = CGRectMake(8, 120, self.view.tz_width - 16, 60);
             _tipLable.textAlignment = NSTextAlignmentCenter;
             _tipLable.numberOfLines = 0;
-            _tipLable.font = [UIFont systemFontOfSize:16];
+            _tipLable.font = kDefaultWordFont;
             _tipLable.textColor = [UIColor blackColor];
             NSString *appName = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleDisplayName"];
             if (!appName) appName = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleName"];

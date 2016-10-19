@@ -72,7 +72,7 @@
         _titleIll = [[UILabel alloc]init];
         _titleIll.text = @"未确诊可不选";
         _titleIll.textColor = [UIColor grayColor];
-        _titleIll.font = [UIFont systemFontOfSize:16];
+        _titleIll.font = [UIFont systemFontOfSize:14];
 //        [_titlebackView addSubview:_titleIll];
 //        [_titleIll makeConstraints:^(MASConstraintMaker *make) {
 //            make.right.equalTo(_arrowView.mas_left).offset(-8);

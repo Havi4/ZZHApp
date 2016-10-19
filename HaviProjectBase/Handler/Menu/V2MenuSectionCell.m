@@ -12,7 +12,7 @@
 
 
 static CGFloat const kCellHeight = 50;
-static CGFloat const kFontSize   = 16;
+static CGFloat const kFontSize   = 14;
 
 @interface V2MenuSectionCell ()
 

@@ -96,7 +96,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"睡眠评分";
-        _titleLabel.font = [UIFont systemFontOfSize:18];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.frame = (CGRect){self.frame.size.width/2-50,(self.frame.size.height-50)/2-30,100,40};
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -124,7 +124,7 @@
         _sleepNumber.textAlignment = NSTextAlignmentCenter;
         _sleepNumber.textColor = [UIColor whiteColor];
         _sleepNumber.text = @"--";
-        _sleepNumber.font = [UIFont systemFontOfSize:60];
+        _sleepNumber.font = [UIFont systemFontOfSize:59];
         _sleepNumber.frame = (CGRect){self.frame.size.width/2-50-30,self.frame.size.height/2-50,100,90};
     }
     return _sleepNumber;

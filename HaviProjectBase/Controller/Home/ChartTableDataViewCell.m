@@ -38,7 +38,7 @@
         [backImageView addSubview:titleLabel];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.dk_textColorPicker = kTextColorPicker;
-        titleLabel.font = [UIFont systemFontOfSize:16];
+        titleLabel.font = kDefaultWordFont;
         [titleLabel makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(backImageView.mas_centerY);
             make.left.equalTo(backImageView.mas_left).offset(10);
@@ -98,7 +98,7 @@
         }else{
             dataLabel.text = [NSString stringWithFormat:@"%d",[dataModel.outOfBedTimes intValue]];
         }
-        dataSub.text = @"次/天";
+        dataSub.text = @"次";
     }else{
         titleLabel.text = @"体动次数";
         if ([dataModel.bodyMovementTimes intValue]==0) {
@@ -106,7 +106,7 @@
         }else{
             dataLabel.text = [NSString stringWithFormat:@"%d",[dataModel.bodyMovementTimes intValue]];
         }
-        dataSub.text = @"次/天";
+        dataSub.text = @"次";
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }

@@ -114,7 +114,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.text = @"空空如也,没有收到消息";
         label.frame = (CGRect){-44,126-20,200,30};
-        label.font = [UIFont systemFontOfSize:16];
+        label.font = kDefaultWordFont;
         [_messageLabel addSubview:label];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor lightGrayColor];

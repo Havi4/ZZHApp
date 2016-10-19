@@ -41,7 +41,7 @@
         }];
         _notiTitle = [[UILabel alloc]init];
         _notiTitle.text = @"文章推送";
-        _notiTitle.font = [UIFont systemFontOfSize:16];
+        _notiTitle.font = kDefaultWordFont;
         _notiTitle.textColor = [UIColor whiteColor];
         [self addSubview:_notiTitle];
         

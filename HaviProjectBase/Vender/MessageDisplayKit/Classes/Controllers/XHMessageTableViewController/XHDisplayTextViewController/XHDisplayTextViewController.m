@@ -19,7 +19,7 @@
 - (UITextView *)displayTextView {
     if (!_displayTextView) {
         UITextView *displayTextView = [[UITextView alloc] initWithFrame:self.view.frame];
-        displayTextView.font = [UIFont systemFontOfSize:16.0f];
+        displayTextView.font = kDefaultWordFont;
         displayTextView.textColor = [UIColor blackColor];
         displayTextView.userInteractionEnabled = YES;
         displayTextView.editable = NO;

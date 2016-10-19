@@ -152,11 +152,11 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
     
     self.calendarButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.calendarButton.frame = (CGRect){self.view.frame.size.width -16-44-45,20,50,44};
+    self.calendarButton.frame = (CGRect){self.view.frame.size.width -16-44-25,20,50,44};
     NSString *dateString = [NSString stringWithFormat:@"%@",selectedDateToUse];
     NSString *dateTime = [NSString stringWithFormat:@"%@/%@",[dateString substringWithRange:NSMakeRange(5, 2)],[dateString substringWithRange:NSMakeRange(8, 2)]];
     [self.calendarButton setTitle:dateTime forState:UIControlStateNormal];
-    self.calendarButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    self.calendarButton.titleLabel.font = kDefaultWordFont;
     [self.calendarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.calendarButton addTarget:self action:@selector(showCalendarView:) forControlEvents:UIControlEventTouchUpInside];
     [self.sc_navigationBar addSubview:self.calendarButton];
@@ -167,6 +167,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)tapchangeNet:(UIGestureRecognizer *)geture
 {
+    /*正式去掉
     if ([NSObject baseURLStrIsTest]) {
         [NSObject showHudTipStr:@"切换正式网络"];
         DeBugLog(@"正式网络切换ok");
@@ -176,6 +177,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
         [NSObject showHudTipStr:@"切换测试网络"];
         [NSObject changeBaseURLStrToTest:YES];
     }
+     */
 }
 
 - (void)initNaviBarView
@@ -234,18 +236,20 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 
 - (void)initCenterViewControllers
 {
+    NSMutableArray *arr = @[].mutableCopy;
     if (self.activeDeviceInfo.detailDeviceList.count == 0) {
+        
         isDoubleDevice = NO;
         CenterDataShowViewController *dataShow = [[CenterDataShowViewController alloc]init];
-        dataShow.title = self.activeDeviceInfo.nDescription.length == 0?@"":self.activeDeviceInfo.nDescription;
+        dataShow.title = @"";
         dataShow.anUUID = @"";
         dataShow.deviceUUID = self.activeDeviceInfo.deviceUUID;
         dataShow.sensorInfoDetail = self.sensorInfo;
         dataShow.view.frame = self.containerDataView.view.bounds;
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
+        [arr addObject:self.activeDeviceInfo.nDescription.length == 0?@"":self.activeDeviceInfo.nDescription];
     }else{
         isDoubleDevice = YES;
-        NSMutableArray *arr = @[].mutableCopy;
         for (int i =0 ; i<self.activeDeviceInfo.detailDeviceList.count; i++) {
             if (i == 0) {
                 DetailDeviceList *obj = [self.activeDeviceInfo.detailDeviceList objectAtIndex:0];
@@ -283,8 +287,8 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
 //            [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
 //            [arr addObject:obj.detailDescription];
 //        }];
-        self.naviBarTitle.titles = arr;
     }
+    self.naviBarTitle.titles = arr;
     
 }
 

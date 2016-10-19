@@ -224,7 +224,7 @@
         return;
     }
     NSDictionary *dic = @{
-                          @"CellPhone": @"", //手机号码
+                          @"CellPhone": self.cellPhoneNum, //手机号码
                           @"Email": @"", //邮箱地址，可留空，扩展注册用
                           @"Password": self.passWordText.text ,//传递明文，服务器端做加密存储
                           @"UserValidationServer" : kMeddoPlatform,

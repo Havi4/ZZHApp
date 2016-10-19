@@ -65,14 +65,15 @@
 
 - (void)initCenterViewControllers
 {
+    NSMutableArray *arr = @[].mutableCopy;
     if (gloableActiveDevice.detailDeviceList.count == 0) {
         ChartTableViewController *dataShow = [[ChartTableViewController alloc]init];
-        dataShow.title = gloableActiveDevice.nDescription;
+        dataShow.title = @"";
         dataShow.deviceUUID = gloableActiveDevice.deviceUUID;
         dataShow.sensorType = self.sensorType;
+        [arr addObject:gloableActiveDevice.nDescription];
         [self.containerDataView addViewControllers:dataShow needToRefresh:YES];
     }else{
-        NSMutableArray *arr = @[].mutableCopy;
         @weakify(self);
         [gloableActiveDevice.detailDeviceList enumerateObjectsUsingBlock:^(DetailDeviceList*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
@@ -84,9 +85,9 @@
             [arr addObject:obj.detailDescription];
         }];
         [self.containerDataView setCurrentIndex:selectPageIndex animated:NO];
-        self.naviBarTitle.titles = arr;
         [self.naviBarTitle setCurrentIndex:selectPageIndex];
     }
+    self.naviBarTitle.titles = arr;
 }
 
 #pragma mark setter

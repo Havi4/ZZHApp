@@ -13,7 +13,7 @@
 
 
 static CGFloat const kCellHeight = 100;
-static CGFloat const kFontSize   = 16;
+static CGFloat const kFontSize   = 14;
 
 @interface DataAnTableViewCell ()
 @property (nonatomic, strong) UIImageView *iconImageView;

@@ -56,7 +56,7 @@
         [self addSubview:_lightSleepView];
         
         _longSleepTitle = [[UILabel alloc]init];
-        _longSleepTitle.font = [UIFont systemFontOfSize:14];
+        _longSleepTitle.font = kDefaultWordFont;
         _longSleepTitle.text = @"睡眠时长";
         _longSleepTitle.textAlignment = NSTextAlignmentCenter;
         _longSleepTitle.textColor  = [UIColor whiteColor];
@@ -64,14 +64,14 @@
         
         _deepSleepTitle = [[UILabel alloc]init];
         _deepSleepTitle.text = @"深睡眠";
-        _deepSleepTitle.font = [UIFont systemFontOfSize:14];
+        _deepSleepTitle.font = kDefaultWordFont;
         _deepSleepTitle.textAlignment = NSTextAlignmentCenter;
         _deepSleepTitle.textColor = [UIColor whiteColor];
         [self addSubview:_deepSleepTitle];
         
         _lightSleepTitle = [[UILabel alloc]init];
         _lightSleepTitle.text = @"浅睡眠";
-        _lightSleepTitle.font = [UIFont systemFontOfSize:14];
+        _lightSleepTitle.font = kDefaultWordFont;
         _lightSleepTitle.textAlignment = NSTextAlignmentCenter;
         _lightSleepTitle.textColor = [UIColor whiteColor];
         [self addSubview:_lightSleepTitle];
@@ -80,21 +80,21 @@
         _longSleepNum.textColor = [UIColor whiteColor];
         _longSleepNum.text = @"--小时--分";
         _longSleepNum.textAlignment = NSTextAlignmentCenter;
-        _longSleepNum.font = [UIFont systemFontOfSize:14];
+        _longSleepNum.font = kDefaultWordFont;
         [self addSubview:_longSleepNum];
         
         _deepSleepNum = [[UILabel alloc]init];
         _deepSleepNum.textAlignment = NSTextAlignmentCenter;
         _deepSleepNum.textColor = [UIColor whiteColor];
         _deepSleepNum.text = @"--小时--分";
-        _deepSleepNum.font = [UIFont systemFontOfSize:14];
+        _deepSleepNum.font = kDefaultWordFont;
         [self addSubview:_deepSleepNum];
         
         _lightSleepNum = [[UILabel alloc]init];
         _lightSleepNum.textColor = [UIColor whiteColor];
         _lightSleepNum.textAlignment = NSTextAlignmentCenter;
         _lightSleepNum.text = @"--小时--分";
-        _lightSleepNum.font = [UIFont systemFontOfSize:14];
+        _lightSleepNum.font = kDefaultWordFont;
         [self addSubview:_lightSleepNum];
         
         [_bedImageView makeConstraints:^(MASConstraintMaker *make) {

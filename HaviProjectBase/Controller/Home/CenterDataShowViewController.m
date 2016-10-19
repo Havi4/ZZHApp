@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.backgroundImageView.image = [UIImage imageNamed:@""];
-    self.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor: [UIColor whiteColor],UITextAttributeFont : [UIFont boldSystemFontOfSize:14]};
     [self addTableViewDataHandle];
     [self initPushController];
     NSString *queryEndDate = [SleepModelChange chageDateFormatteToQueryString:[NSDate date]];
@@ -128,7 +128,7 @@
         _cellRecommend = [[UILabel alloc]init];
         _cellRecommend.textAlignment = NSTextAlignmentCenter;
         _cellRecommend.numberOfLines = 0;
-        _cellRecommend.font = [UIFont systemFontOfSize:16];
+        _cellRecommend.font = [UIFont systemFontOfSize:14];
         _cellRecommend.text = @"";
         _cellRecommend.userInteractionEnabled = YES;
         _cellRecommend.textColor = [UIColor whiteColor];

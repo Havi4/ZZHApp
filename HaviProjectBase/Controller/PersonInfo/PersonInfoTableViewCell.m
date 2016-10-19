@@ -36,8 +36,8 @@
         _cellInfoData.numberOfLines = 0;
         _cellInfoData.textAlignment = NSTextAlignmentRight;
         _cellInfoData.textColor = [UIColor lightGrayColor];
-        _cellInfoData.font = kTextNormalWordFont;
-        _cellInfoTitle.font = kTextNormalWordFont;
+        _cellInfoData.font = kDefaultWordFont;
+        _cellInfoTitle.font = kDefaultWordFont;
         //add contranints
         [_cellInfoIcon makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(15);

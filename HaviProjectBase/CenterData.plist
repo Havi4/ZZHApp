@@ -13,7 +13,7 @@
 		</dict>
 		<dict>
 			<key>cellSub</key>
-			<string>次/天</string>
+			<string>次</string>
 			<key>cellIcon</key>
 			<string>moveon</string>
 			<key>cellTitle</key>
@@ -31,7 +31,7 @@
 		</dict>
 		<dict>
 			<key>cellSub</key>
-			<string>次/天</string>
+			<string>次</string>
 			<key>cellIcon</key>
 			<string>getup</string>
 			<key>cellTitle</key>

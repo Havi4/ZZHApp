@@ -39,6 +39,7 @@
         NSString *title = [titles objectAtIndex:i];
         UILabel *label = [[UILabel alloc]initWithFrame:(CGRect){i*(self.frame.size.width),-5,self.frame.size.width,self.frame.size.height}];
         label.text = title;
+        label.font = kDefaultWordFont;
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         [_titleScrollView addSubview:label];
@@ -46,7 +47,7 @@
     
     _pageControl = [[UIPageControl alloc] init];
     _pageControl.frame = CGRectMake((self.frame.size.width-20)/2, self.frame.size.height-20, 20, 20);
-    _pageControl.numberOfPages = 2;
+    _pageControl.numberOfPages = titles.count;
     _pageControl.currentPage = 0;
     [self addSubview:_pageControl];
 }

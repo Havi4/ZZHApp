@@ -45,7 +45,7 @@
     
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        [_titleLabel setFont:[UIFont systemFontOfSize:16]];
+        [_titleLabel setFont:kDefaultWordFont];
         [_titleLabel setTextColor:[UIColor whiteColor]];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
