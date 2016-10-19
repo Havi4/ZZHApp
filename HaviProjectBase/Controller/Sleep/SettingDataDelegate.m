@@ -255,13 +255,15 @@
     
     //Create cancel action
     RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-        NSString *time = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]];
-        if ([time isEqualToString:@"0分钟"]) {
-            fswitch.on = NO;
-            [self changeUserLongSettingInfo:@"False" type:type];
-            [NSObject showHudTipStr:@"请选择正确的防护时间"];
-//            [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
-//            [self openDateSelectionController:SleepSettingLongTime];
+        if (type == SleepSettingLeaveBedTime) {
+            NSString *time = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]];
+            if ([time isEqualToString:@"0分钟"]) {
+                fswitch.on = NO;
+                [self changeUserLongSettingInfo:@"False" type:type];
+                [NSObject showHudTipStr:@"请选择正确的防护时间"];
+                //            [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
+                //            [self openDateSelectionController:SleepSettingLongTime];
+            }
         }
     }];
     

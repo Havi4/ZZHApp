@@ -190,9 +190,12 @@
         float vset = [[_sleepQulityDataValues objectAtIndex:i] floatValue];
 
         CGPoint xPoint = [[self.xPoints objectAtIndex:i]CGPointValue];
-        CGFloat height = (yCoordinateHeight-15-20)/24*gradePercent;
+        CGFloat height = (yCoordinateHeight-15-20-15)/12*gradePercent;
         if (height == 0 && vset) {
             height = 10;
+        }
+        if (height > (yCoordinateHeight-15-20)) {
+            height = (yCoordinateHeight);
         }
         __block SleepTimeLongBar *bar = [[SleepTimeLongBar alloc] initWithFrame:CGRectMake(xPoint.x-9, 15+(yCoordinateHeight-15)-height-5, 5,height)];
         bar.alpha = 1;
