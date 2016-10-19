@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/Home/CenterDataShowViewController.m"
-            timestampString = "498388190.056881"
+            timestampString = "498547915.041445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-getSleepDataWithStartTime:endTime:"
             landmarkType = "7">
          </BreakpointContent>

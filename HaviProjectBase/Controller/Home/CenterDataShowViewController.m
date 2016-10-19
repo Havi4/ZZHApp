@@ -165,7 +165,11 @@
             }else{
                 height = 315/1.174;
             }
-            _cellRecommend.frame = (CGRect){0,height-62,self.view.frame.size.width,50};
+            [_cellRecommend makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(cell.mas_centerX);
+                make.top.equalTo(@(height - 62));
+                make.height.equalTo(@50);
+            }];
 
 
         }else if (indexPath.row == 1 ||indexPath.row == 2){
