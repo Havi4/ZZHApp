@@ -53,7 +53,6 @@
     [self.view addSubview:p];
     p.selectIndex = 3;
     smtlk = [SmartLinkInstance sharedManagerWithDelegate:self];
-//    smtlk = [[HFSmtlkV30 alloc]initWithDelegate:self];
     smtlkState= 0;
     showKey= 1;
     macArray=[[NSMutableArray alloc] init];
@@ -363,13 +362,11 @@
     // 让模块停止发送信息。
 //    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
 //    [hud hideHUD];
-    [self.sliderView stop];
-    [NSObject showHudTipStr:@"配置成功"];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    DeviceListViewController *controller = [[DeviceListViewController alloc]init];
-    delegate.sideMenuController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self cancelButtonDone:nil];
-    
+//    DeviceListViewController *controller = [[DeviceListViewController alloc]init];
+//    delegate.sideMenuController.centerPanel = [[UINavigationController alloc] initWithRootViewController:controller];
+    [delegate.currentNavigationController popToRootViewControllerAnimated:YES];
+    [NSObject showHudTipStr:@"配置成功"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
