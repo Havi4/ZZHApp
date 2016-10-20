@@ -24,6 +24,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "GetWeatherAPI.h"
 #import "LoginBackViewController.h"
+#import "CheckVersionAPI.h"
 
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate>
 
@@ -35,7 +36,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -49,10 +49,6 @@
     
     if ([UserManager GetUserObj]) {
         [self getUserAccessTockenWith:launchOptions];//获取tocken时候开启，下面四行关闭
-//        [self setRootViewController];
-//        [self getUserLocationWith:launchOptions];
-//        [self getSuggestionList];
-//        [self uploadRegisterID];
         LoginBackViewController *back = [[LoginBackViewController alloc]init];
         self.window.rootViewController = back;
     }else{
@@ -89,6 +85,7 @@
                       selector:@selector(networkDidReceiveMessage:)
                           name:kJPFNetworkDidReceiveMessageNotification
                         object:nil];
+    [CheckVersionAPI checkVersion];
     return YES;
 }
 

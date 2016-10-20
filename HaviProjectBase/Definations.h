@@ -80,7 +80,7 @@
 
 #define IS_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 
-
+#define kCheckVersion @"kCheckVersion"
 //睡眠设置中
 
 

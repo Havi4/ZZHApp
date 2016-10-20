@@ -17,7 +17,7 @@
 #import "DeviceListViewController.h"
 #import "TSMessage.h"
 
-@interface BaseViewController ()<LXActivityDelegate>
+@interface BaseViewController ()<LXActivityDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, assign) float nSpaceNavY;
 @property (nonatomic, strong) UIImageView *statusBarView;//状态栏
@@ -47,6 +47,12 @@
         [TSMessage showNotificationWithTitle:NSLocalizedString(@"Tell the user something", nil)
                                     subtitle:NSLocalizedString(@"This is some neutral notification!", nil)
                                         type:TSMessageNotificationTypeMessage];
+    }];
+    
+    [[NSNotificationCenter defaultCenter]addObserverForName:kCheckVersion object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary *version= note.userInfo;
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[[version objectForKey:@"AppVersion"]objectForKey:@"Title"] message:[[version objectForKey:@"AppVersion"]objectForKey:@"Description"] delegate:self cancelButtonTitle:@"忽略" otherButtonTitles:@"更新", nil];
+        [alertView show];
     }];
 }
 
@@ -438,9 +444,15 @@
     @[MMItemMake(@"取消", MMItemTypeNormal, block),MMItemMake(@"确定", MMItemTypeNormal, block)];
     MMAlertView *alert = [[MMAlertView alloc]initWithTitle:@"提示" detail:@"您还没有绑定或者激活床垫设备,没有办法显示数据,是否现在绑定或者激活?" items:items];
     [alert show];
-//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有绑定或者激活床垫设备,没有办法显示数据,是否现在绑定或者激活?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//    [alert show];
     
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/us/app/zhi-zhao-hu/id921178759?mt=8"];
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
