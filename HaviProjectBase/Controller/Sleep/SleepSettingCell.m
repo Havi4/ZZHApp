@@ -138,6 +138,9 @@
                 if (time == 0) {
                     [[NSUserDefaults standardUserDefaults]registerDefaults:@{[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]:@"0分钟"}];
                     [[NSUserDefaults standardUserDefaults]synchronize];
+                }else{
+                    [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%d",98] forKey:[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
                 }
                 _cellInfoButton.titleLabel.font = kNumberFont(25);
 

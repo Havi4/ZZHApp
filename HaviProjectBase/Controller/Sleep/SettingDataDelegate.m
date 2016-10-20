@@ -137,16 +137,12 @@
     NSIndexPath *index = [self.myTableView indexPathForCell:cell];
     SleepSettingButtonType type;
     switch (index.section) {
-        case 4:{
-            type = SleepSettingSwitchAlertTime;
-//            [self controlLocalNotiOpen:(cellSwitch.on ? @"True" : @"False") type:type];
-            break;
-        }
         case 2:{
             type = SleepSettingSwitchLongTime;
 //            [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
             if (cellSwitch.on) {
                 [self openPickerController:SleepSettingLongTime];
+                [self changeUserLongSettingInfo:@"True" type:type];
             }else{
                 [self changeUserSleepSettingInfo:(cellSwitch.on ? @"True" : @"False") type:type];
             }
@@ -255,7 +251,7 @@
     
     //Create cancel action
     RMAction *cancelAction = [RMAction actionWithTitle:@"取消" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-        if (type == SleepSettingLeaveBedTime) {
+        if (type == SleepSettingLongTime) {
             NSString *time = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]];
             if ([time isEqualToString:@"0分钟"]) {
                 fswitch.on = NO;
@@ -368,6 +364,8 @@
             num += [[righttime substringToIndex:rangeMinute1.location] intValue];
             
             [self changeUserLongSettingInfo:@"True" type:type];
+            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%d",num] forKey:[NSString stringWithFormat:@"%@:time",thirdPartyLoginUserId]];
+            [[NSUserDefaults standardUserDefaults]synchronize];
             [self changeUserSleepSettingInfo:[NSString stringWithFormat:@"%d",num] type:SleepSettingLongTime];
         }];
         

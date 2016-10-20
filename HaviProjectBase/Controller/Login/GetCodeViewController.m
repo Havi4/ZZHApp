@@ -179,48 +179,86 @@
         [NSObject showHudTipStr:@"请输入正确的手机号"];
         return;
     }
-    ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
-    [hud showHUDWithView:kKeyWindow];
-    NSDictionary *dic = @{
-                          @"UserID": [NSString stringWithFormat:@"%@$%@",kMeddoPlatform,self.phoneText.text], //手机号码
-                          };
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
-    [client requestUserInfoWithParam:dic andBlock:^(UserInfoDetailModel *userInfo, NSError *error) {
-        if (error) {
-            [hud hideHUD];
-            [NSObject showHudTipStr:@"出错了"];
-            return;
-        }
-        if ([userInfo.returnCode intValue] != 10029) {
-            [NSObject showHudTipStr:@"该手机号已经注册"];
-            [hud hideHUD];
-        }else{
-            self.randomCode = [self getRandomNumber:1000 to:10000];
-            NSString *codeMessage = [NSString stringWithFormat:@"您的验证码是%d",self.randomCode];
-            NSLog(@"验证码是%@",codeMessage);
-            phoneGetCode = [NSString stringWithFormat:@"%d",self.randomCode];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kCodeValideTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                phoneGetCode = @"";
-            });
-            NSDictionary *dicPara = @{
-                                      @"cell" : self.phoneText.text,
-                                      @"codeMessage" : codeMessage,
-                                      };
-            GetInavlideCodeApi *client = [GetInavlideCodeApi shareInstance];
-            [client getInvalideCode:dicPara witchBlock:^(NSData *receiveData) {
-                NSString *string = [[NSString alloc]initWithData:receiveData encoding:NSUTF8StringEncoding];
-                NSRange range = [string rangeOfString:@"<error>"];
-                if ([[string substringFromIndex:range.location +range.length]intValue]==0) {
-                    [NSObject showHudTipStr:@"验证码发送成功"];
-                    timeToShow = 60;
-                    [self showTime];
+    [client requestServerTimeWithBlock:^(ServerTimeModel *serVerTime, NSError *error) {
+        if (!error) {
+            DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
+            if (serVerTime.serverTime.length==0) {
+                return;
+            }
+            NSDateFormatter *date = [[NSDateFormatter alloc]init];
+            [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *n = [date dateFromString:serVerTime.serverTime];
+            NSInteger time = [n timeIntervalSince1970];
+            NSString *atTime = [NSString stringWithFormat:@"%@%@%@%@%@%@",[serVerTime.serverTime substringWithRange:NSMakeRange(0, 4)],[serVerTime.serverTime substringWithRange:NSMakeRange(5, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(8, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(11, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(14, 2)],[serVerTime.serverTime substringWithRange:NSMakeRange(17, 2)]];
+            NSString *md5OriginalString = [NSString stringWithFormat:@"ZZHAPI:%@:%@",[NSString stringWithFormat:@"%@$%@",kMeddoPlatform,self.phoneText.text],atTime];
+            NSString *md5String = [md5OriginalString md5String];
+            NSDictionary *dic = @{
+                                  @"UserId": [NSString stringWithFormat:@"%@$%@",kMeddoPlatform,self.phoneText.text],
+                                  @"Atime": [NSNumber numberWithInteger:(time)],
+                                  @"MD5":[md5String uppercaseString],
+                                  };
+            [client requestAccessTockenWithParams:dic withBlock:^(AccessTockenModel *serVerTime, NSError *error) {
+                if (!error) {
+                    if ([serVerTime.returnCode intValue]==200) {
+                        
+                        accessTocken = serVerTime.accessTockenString;
+                        [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
+                        ZZHHUDManager *hud = [ZZHHUDManager shareHUDInstance];
+                        [hud showHUDWithView:kKeyWindow];
+                        NSDictionary *dic = @{
+                                              @"UserID": [NSString stringWithFormat:@"%@$%@",kMeddoPlatform,self.phoneText.text], //手机号码
+                                              };
+                        ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
+                        [client requestUserInfoWithParam:dic andBlock:^(UserInfoDetailModel *userInfo, NSError *error) {
+                            if (error) {
+                                [hud hideHUD];
+                                [NSObject showHudTipStr:@"出错了"];
+                                return;
+                            }
+                            if ([userInfo.returnCode intValue] != 10029) {
+                                [NSObject showHudTipStr:@"该手机号已经注册"];
+                                [hud hideHUD];
+                            }else{
+                                self.randomCode = [self getRandomNumber:1000 to:10000];
+                                NSString *codeMessage = [NSString stringWithFormat:@"您的验证码是%d",self.randomCode];
+                                NSLog(@"验证码是%@",codeMessage);
+                                phoneGetCode = [NSString stringWithFormat:@"%d",self.randomCode];
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kCodeValideTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                    phoneGetCode = @"";
+                                });
+                                NSDictionary *dicPara = @{
+                                                          @"cell" : self.phoneText.text,
+                                                          @"codeMessage" : codeMessage,
+                                                          };
+                                GetInavlideCodeApi *client = [GetInavlideCodeApi shareInstance];
+                                [client getInvalideCode:dicPara witchBlock:^(NSData *receiveData) {
+                                    NSString *string = [[NSString alloc]initWithData:receiveData encoding:NSUTF8StringEncoding];
+                                    NSRange range = [string rangeOfString:@"<error>"];
+                                    if ([[string substringFromIndex:range.location +range.length]intValue]==0) {
+                                        [NSObject showHudTipStr:@"验证码发送成功"];
+                                        timeToShow = 60;
+                                        [self showTime];
+                                    }else{
+                                        [NSObject showHudTipStr:@"验证码发送失败,请稍候重试"];
+                                    }
+                                }];
+                                
+                            }
+                        }];
+
+                    }else{
+                        
+                    }
                 }else{
-                    [NSObject showHudTipStr:@"验证码发送失败,请稍候重试"];
+                    
                 }
             }];
-
+        }else{
+            
         }
     }];
+
     
 }
 

@@ -389,9 +389,9 @@
         }];
         NSDate *checkDate = [dateF dateFromString:checkTime];
         if ([[checkDate dateByAddingHours:8] isLaterThan:[[NSDate date] dateByAddingHours:8]]) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(refreshView:) userInfo:@{@"time":date} repeats:YES];
+            self.viewTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadSubView) userInfo:nil repeats:YES];
         }
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(refreshView:) userInfo:@{@"time":date} repeats:YES];
-        self.viewTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadSubView) userInfo:nil repeats:YES];
         
         
 //        SleepQualityModel *model = self.sleepModel;

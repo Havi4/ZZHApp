@@ -58,7 +58,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "498643203.265621"
+                  timestampString = "498652033.815604"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "306"
@@ -73,7 +73,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "498643203.267309"
+                  timestampString = "498652033.817047"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "307"
@@ -106,7 +106,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "498643203.270301"
+                  timestampString = "498652033.821298"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "340"
@@ -121,7 +121,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/ThirdLoginCallBackManager.m"
-                  timestampString = "498643203.271813"
+                  timestampString = "498652033.822714"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "341"
@@ -410,7 +410,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/CalendarDateCaculate.m"
-                  timestampString = "498643203.311128"
+                  timestampString = "498652033.869928"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "134"
@@ -425,7 +425,7 @@
                   moduleName = "HaviProjectBase"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/Category/CalendarDateCaculate.m"
-                  timestampString = "498643203.31293"
+                  timestampString = "498652033.871407"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "134"
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/Sleep/SettingDataDelegate.m"
-            timestampString = "498535468.780095"
+            timestampString = "498651196.076513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "-openPickerController:"
             landmarkType = "7">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/Sleep/SettingDataDelegate.m"
-            timestampString = "498535468.780095"
+            timestampString = "498651196.076513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "-openPickerController:"
             landmarkType = "7">
          </BreakpointContent>
@@ -554,28 +554,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/Sleep/SettingDataDelegate.m"
-            timestampString = "498535468.780095"
+            timestampString = "498651196.076513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
             landmarkName = "-openPickerController:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HaviProjectBase/Controller/Sleep/SleepSettingCell.m"
-            timestampString = "498362793.646574"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "-configure:customObj:indexPath:withOtherInfo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -602,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/Sleep/SettingDataDelegate.m"
-            timestampString = "498535468.780095"
+            timestampString = "498651723.004566"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "528"
-            endingLineNumber = "528"
+            startingLineNumber = "526"
+            endingLineNumber = "526"
             landmarkName = "-changeUserSleepSettingInfo:type:"
             landmarkType = "7">
          </BreakpointContent>
@@ -698,12 +682,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HaviProjectBase/Controller/Home/SensorChartTableViewCell.m"
-            timestampString = "498643513.368625"
+            timestampString = "498643755.309979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
-            landmarkName = "-longPressToDo:"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
+            landmarkName = "-refreshView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -713,14 +697,110 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HaviProjectBase/Controller/Home/SensorChartTableViewCell.m"
-            timestampString = "498643755.309979"
+            filePath = "HaviProjectBase/Controller/Sleep/SettingDataDelegate.m"
+            timestampString = "498650709.506416"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
-            landmarkName = "-refreshView:"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-cellTapedSwitch:cellButton:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/Controller/Sleep/SettingDataDelegate.m"
+            timestampString = "498651196.076513"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "-openPickerController:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/Controller/Sleep/SettingDataDelegate.m"
+            timestampString = "498651723.004566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
+            landmarkName = "-openPickerController:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/Controller/Sleep/SettingDataDelegate.m"
+            timestampString = "498651196.076513"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-cellTapedSwitch:cellButton:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HaviProjectBase/NetWork/ZZHAPIManager.m"
+            timestampString = "498652027.105582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "-requestAccessTockenWithParams:withBlock:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ZZHAPIManager requestAccessTockenWithParams:withBlock:]"
+                  moduleName = "HaviProjectBase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/NetWork/ZZHAPIManager.m"
+                  timestampString = "498652032.426666"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "360">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__57-[ZZHAPIManager requestAccessTockenWithParams:withBlock:]_block_invoke"
+                  moduleName = "HaviProjectBase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/havi/WorkSapce/OC/ZZHApp/HaviProjectBase/NetWork/ZZHAPIManager.m"
+                  timestampString = "498652032.428584"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
