@@ -92,6 +92,8 @@
 
     }else if (indexPath.section == 1 && indexPath.row == 1){
         cell.imageView.image = [UIImage imageNamed:@"guanyu"];
+    }else if (indexPath.section == 1 && indexPath.row == 2){
+        cell.imageView.image = [UIImage imageNamed:@"guanyu"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     cell.textLabel.font = [UIFont systemFontOfSize:14];

@@ -113,21 +113,27 @@
 
 - (void)didSelectedCell:(NSIndexPath *)indexPath obj:(id)obj
 {
-    NSString *className = [[self.controllerClassArray objectOrNilAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    Class class = NSClassFromString(className);
-    if (class) {
-        UIViewController *controller = class.new;
-        if (indexPath.section == 0 && indexPath.row == 0) {
-            PersonManagerViewController *person = (PersonManagerViewController *)controller;
-            person.isNavi = YES;
-            [self.navigationController pushViewController:person animated:YES];
-
-        }else{
-            [self.navigationController pushViewController:controller animated:YES];
-
-        }
+    if(indexPath.section == 1 && indexPath.row == 2){
+        NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/us/app/zhi-zhao-hu/id921178759?mt=8"];
+        [[UIApplication sharedApplication] openURL:url];
     }else{
-        [self logoutMyId];
+    
+        NSString *className = [[self.controllerClassArray objectOrNilAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        Class class = NSClassFromString(className);
+        if (class) {
+            UIViewController *controller = class.new;
+            if (indexPath.section == 0 && indexPath.row == 0) {
+                PersonManagerViewController *person = (PersonManagerViewController *)controller;
+                person.isNavi = YES;
+                [self.navigationController pushViewController:person animated:YES];
+                
+            }else{
+                [self.navigationController pushViewController:controller animated:YES];
+                
+            }
+        }else{
+            [self logoutMyId];
+        }
     }
 }
 
