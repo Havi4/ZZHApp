@@ -133,7 +133,7 @@
 - (UIView*)yCoorBackView1
 {
     if (!_yCoorBackView1) {
-        _yCoorBackView1 = [[UIView alloc]initWithFrame:CGRectMake(5, 12, 15, 140)];
+        _yCoorBackView1 = [[UIView alloc]initWithFrame:CGRectMake(2, 12, 15, 140)];
         _yCoorBackView1.backgroundColor = [UIColor clearColor];
         UILabel *sixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 70, 20, 20)];
         sixLabel.text = self.type == 0? @"60" : @"15";
@@ -141,7 +141,7 @@
         sixLabel.textColor = [UIColor whiteColor];
         sixLabel.font = [UIFont systemFontOfSize:13];
         [_yCoorBackView1 addSubview:sixLabel];
-        UIView *sixLine = [[UIView alloc]initWithFrame:CGRectMake(19, 79.5, self.frame.size.width-19, 0.5)];
+        UIView *sixLine = [[UIView alloc]initWithFrame:CGRectMake(17, 79.5, self.frame.size.width-22, 0.5)];
         sixLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);
         [_yCoorBackView1 addSubview:sixLine];
         
@@ -151,7 +151,7 @@
         fiveLabel.dk_textColorPicker = kTextColorPicker;
         fiveLabel.font = [UIFont systemFontOfSize:13];
         [_yCoorBackView1 addSubview:fiveLabel];
-        UIView *fiveLine = [[UIView alloc]initWithFrame:CGRectMake(19, 114, self.frame.size.width-19, 0.5)];
+        UIView *fiveLine = [[UIView alloc]initWithFrame:CGRectMake(17, 114, self.frame.size.width-22, 0.5)];
         fiveLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);
         [_yCoorBackView1 addSubview:fiveLine];
         
@@ -161,7 +161,7 @@
         sevenLabel.dk_textColorPicker = kTextColorPicker;
         sevenLabel.font = [UIFont systemFontOfSize:13];
         [_yCoorBackView1 addSubview:sevenLabel];
-        UIView *sevenLine = [[UIView alloc]initWithFrame:CGRectMake(19, 43, self.frame.size.width-19, 0.5)];
+        UIView *sevenLine = [[UIView alloc]initWithFrame:CGRectMake(17, 43, self.frame.size.width-22, 0.5)];
         sevenLine.dk_backgroundColorPicker = DKColorWithColors([UIColor colorWithWhite:0.9 alpha:0.5], [UIColor colorWithWhite:0.9 alpha:0.5]);;
         [_yCoorBackView1 addSubview:sevenLine];
     }
@@ -308,7 +308,7 @@
                 NSDate *new = [[date dateByAddingMinutes:4*(i)] dateByAddingHours:8];
                 NSString *newD = [NSString stringWithFormat:@"%@",new];
                 DeBugLog(@"%@",newD);
-                NSString *sub = [newD substringWithRange:NSMakeRange(11, 5)];
+                NSString *sub = [newD substringWithRange:NSMakeRange(14, 2)];
                 [arr addObject:sub];
                 
             }
@@ -325,7 +325,7 @@
         UIView *chaBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 195)];
         
         UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(17, 20, self.frame.size.width-17, 165)];
-        scrollView.contentSize = CGSizeMake(2*self.frame.size.width, 165);
+        scrollView.contentSize = CGSizeMake(self.frame.size.width-17, 165);
         scrollView.showsHorizontalScrollIndicator = NO;
         scrollView.delegate = self;
         [scrollView addSubview:self.pressView];
@@ -394,6 +394,26 @@
         }
         
         
+//        SleepQualityModel *model = self.sleepModel;
+//        switch (self.type) {
+//            case 0:
+//            {
+//                if ([model.averageHeartRate intValue]==0) {
+//                    cellDataLabel.text = @"--";
+//                }else{
+//                    
+//                    cellDataLabel.text = [NSString stringWithFormat:@"%d",[model.averageHeartRate intValue]];
+//                }
+//                break;
+//            }
+//            case 1:{
+//                cellDataLabel.text = [NSString stringWithFormat:@"%d",[model.averageRespiratoryRate intValue]];
+//                break;
+//            }
+//                
+//            default:
+//                break;
+//        }
 
         DXPopover *popover = [DXPopover popover];
         popover.backgroundColor = [UIColor colorWithRed:0.161 green:0.718 blue:0.816 alpha:1.00];
@@ -435,14 +455,22 @@
                 [self.pressView.heartViewLeft animate];
             }];
             
-            [SleepModelChange filterAverSensorDataWithTime:sensorModel callBack:^(int callBack) {
-                if (callBack==0) {
-                    cellDataLabel.text = @"--";
-                }else{
-                    
-                    cellDataLabel.text = [NSString stringWithFormat:@"%d",callBack];
-                }
+            SensorDataInfo *sensorInfo = [sensorModel.sensorDataList objectAtIndex:0];
+            NSArray *_sortedDetailDevice = [sensorInfo.propertyDataList sortedArrayUsingComparator:^NSComparisonResult(PropertyData* _Nonnull obj1, PropertyData* _Nonnull obj2) {
+                return [obj1.propertyDate compare:obj2.propertyDate options:NSCaseInsensitiveSearch];
             }];
+            PropertyData *propertyData = [_sortedDetailDevice lastObject];
+            NSString *value = [NSString stringWithFormat:@"%@",propertyData.propertyValue];
+            if ([value intValue]==0) {
+                cellDataLabel.text = @"--";
+            }else{
+                
+                cellDataLabel.text = [NSString stringWithFormat:@"%d",[propertyData.propertyValue intValue]];
+            }
+
+            
+//            [SleepModelChange filterAverSensorDataWithTime:sensorModel callBack:^(int callBack) {
+//            }];
         }else{
             self.pressView.heartViewLeft.values = nil;
             [self.pressView removeLine];
@@ -467,7 +495,7 @@
 - (LongpressShowView *)pressView
 {
     if (_pressView == nil) {
-        CGRect rect = CGRectMake(0, 0, self.frame.size.width*2, 165);
+        CGRect rect = CGRectMake(0, 5, self.frame.size.width-19, 165);
         _pressView = [[LongpressShowView alloc]initWithFrame:rect];
         _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
     }

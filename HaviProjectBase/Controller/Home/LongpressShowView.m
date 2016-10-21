@@ -118,14 +118,18 @@
                 labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 10, 0.5, cY-10)];
                 CGFloat cY = self.frame.size.height - bottomLineMargin;
                 UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2-20, cY+3, 40, 10)];
-                if (i==0) {
-                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-10, cY+3, 40, 10);
-                }else if (i/4==15){
-                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-30, cY+3, 40, 10);
-                }
+//                if (i==0) {
+//                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-15, cY+3, 40, 10);
+//                }else if (i/4==15){
+//                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-25, cY+3, 40, 10);
+//                }
                 label.backgroundColor = [UIColor clearColor];
                 
-                label.text = [NSString stringWithFormat:@"%@",[values objectAtIndex:(i/4)]];
+                label.text = [NSString stringWithFormat:@"%d",[[values objectAtIndex:(i/4)] intValue]];
+                if (i/4==15){
+                    label.text = @"60";
+                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-25, cY+3, 40, 10);
+                }
                 label.tag = 1001;
                 label.dk_textColorPicker = kTextColorPicker;
                 label.font = [UIFont systemFontOfSize:10];
@@ -185,7 +189,7 @@
 - (MPGraphView *)heartViewLeft
 {
     if (_heartViewLeft==nil) {
-        _heartViewLeft=[[MPGraphView alloc] initWithFrame:CGRectMake(10, 5, xCoordinateWidth, yCoordinateHeight)];
+        _heartViewLeft=[[MPGraphView alloc] initWithFrame:CGRectMake(2, 5, xCoordinateWidth, yCoordinateHeight)];
         _heartViewLeft.waitToUpdate=NO;
         _heartViewLeft.lineWidth = 0.5;
         _heartViewLeft.backgroundColor = [UIColor clearColor];
