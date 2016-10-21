@@ -269,7 +269,7 @@
         CGPoint timeLocation = [gesture locationInView:self.scrollContainerView];
         
         
-        float hour = (timeLocation.x-10)/((self.frame.size.width*4)/25);
+        float hour = (timeLocation.x-20)/((self.frame.size.width*4)/25);
         if (hour<0) {
             hour = 0;
             location = CGPointMake((self.frame.size.width*4)/25/2, location.y);
@@ -308,7 +308,12 @@
                 NSDate *new = [[date dateByAddingMinutes:4*(i)] dateByAddingHours:8];
                 NSString *newD = [NSString stringWithFormat:@"%@",new];
                 DeBugLog(@"%@",newD);
-                NSString *sub = [newD substringWithRange:NSMakeRange(14, 2)];
+                NSString *sub;
+                if (i == 0) {
+                    sub = [newD substringWithRange:NSMakeRange(11, 4)];
+                }else{
+                    sub = [newD substringWithRange:NSMakeRange(14, 2)];
+                }
                 [arr addObject:sub];
                 
             }
@@ -387,10 +392,10 @@
                 [self.pressView removeLine];
             }
         }];
-        NSDate *checkDate = [dateF dateFromString:checkTime];
-        if ([[checkDate dateByAddingHours:8] isLaterThan:[[NSDate date] dateByAddingHours:8]]) {
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(refreshView:) userInfo:@{@"time":date} repeats:YES];
-            self.viewTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadSubView) userInfo:nil repeats:YES];
+        NSDate *checkDate = [dateF dateFromString:tapTime];
+        if ([[checkDate dateByAddingHours:9] isLaterThan:[[NSDate date] dateByAddingHours:8]]) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(refreshView:) userInfo:@{@"time":date} repeats:YES];
+            self.viewTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(reloadSubView) userInfo:nil repeats:YES];
         }
         
         

@@ -17,7 +17,7 @@
 
 +(void)checkVersion
 {
-    NSString *tockenUrl = [NSString stringWithFormat:@"%@v1/app/GetAppVersion?OSName=ios&Language=cn",kAppTestBaseURL];
+    NSString *tockenUrl = [NSString stringWithFormat:@"%@v1/app/GetAppVersion?OSName=ios&Language=cn",kAppBaseURL];
     [WTRequestCenter getWithURL:tockenUrl parameters:nil finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *versionDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
@@ -27,8 +27,8 @@
         // 本地版本号和最新版本号做对比,提示更新
         if ([miniumVersion compare:currentVersion options:NSNumericSearch] == NSOrderedDescending) {
             //最低版本大于当前版本  强制更新
-            NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/us/app/zhi-zhao-hu/id921178759?mt=8"];
-            [[UIApplication sharedApplication] openURL:url];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kCheckVersion object:nil userInfo:@{@"AppVersion":[versionDic objectForKey:@"AppVersion"],@"mustUpdate":@"YES"}];
+            
         } else if ([latestVersion compare:currentVersion options:NSNumericSearch] == NSOrderedDescending){
             [[NSNotificationCenter defaultCenter]postNotificationName:kCheckVersion object:nil userInfo:@{@"AppVersion":[versionDic objectForKey:@"AppVersion"]}];
         }

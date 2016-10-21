@@ -815,6 +815,7 @@
 		573211FD1DB884A400722C1D /* CheckVersionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 573211FC1DB884A400722C1D /* CheckVersionAPI.m */; };
 		57532C191DB0C6AA00136D71 /* zuo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57532C181DB0C6AA00136D71 /* zuo@3x.png */; };
 		57532C1B1DB0C6BB00136D71 /* you@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57532C1A1DB0C6BB00136D71 /* you@3x.png */; };
+		57682F8E1DB9E0A400B50E98 /* pingfen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57682F8D1DB9E0A400B50E98 /* pingfen@3x.png */; };
 		57864FC31DACFB1D00116B38 /* feiji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57864FC21DACFB1D00116B38 /* feiji@3x.png */; };
 		57D1CD7F1DAA0C9E00AE9186 /* IntroduceView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7C1DAA0C9E00AE9186 /* IntroduceView1.png */; };
 		57D1CD801DAA0C9E00AE9186 /* IntroduceView2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7D1DAA0C9E00AE9186 /* IntroduceView2.png */; };
@@ -2116,6 +2117,7 @@
 		573211FC1DB884A400722C1D /* CheckVersionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckVersionAPI.m; sourceTree = "<group>"; };
 		57532C181DB0C6AA00136D71 /* zuo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zuo@3x.png"; sourceTree = "<group>"; };
 		57532C1A1DB0C6BB00136D71 /* you@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "you@3x.png"; sourceTree = "<group>"; };
+		57682F8D1DB9E0A400B50E98 /* pingfen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pingfen@3x.png"; sourceTree = "<group>"; };
 		57864FC21DACFB1D00116B38 /* feiji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feiji@3x.png"; sourceTree = "<group>"; };
 		57D1CD7C1DAA0C9E00AE9186 /* IntroduceView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView1.png; sourceTree = "<group>"; };
 		57D1CD7D1DAA0C9E00AE9186 /* IntroduceView2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView2.png; sourceTree = "<group>"; };
@@ -2491,6 +2493,7 @@
 			isa = PBXGroup;
 			children = (
 				57864FC21DACFB1D00116B38 /* feiji@3x.png */,
+				57682F8D1DB9E0A400B50E98 /* pingfen@3x.png */,
 				57F852351DAA11E5005D8DF4 /* login.png */,
 				57F8523D1DAB620C005D8DF4 /* backlogin.png */,
 				2CA0D5281D9BBA5C00EEA00B /* blue_tracker@3x.png */,
@@ -4694,6 +4697,7 @@
 				2CE3CDF01D8E426B001DDD1C /* SenderVoiceNodePlaying@2x.png in Resources */,
 				2CF2E1DA1C7739760007A639 /* message_back@2x.png in Resources */,
 				2CE3CDE81D8E426B001DDD1C /* RecordingSignal006@2x.png in Resources */,
+				57682F8E1DB9E0A400B50E98 /* pingfen@3x.png in Resources */,
 				2C9EF2D81C7C1DEE000704E2 /* icon_wechat@2x.png in Resources */,
 				2C5872561C7AEB6F001C2F3A /* phone_1@2x.png in Resources */,
 				2CE3CDF31D8E426B001DDD1C /* VoiceBtn_Black@2x.png in Resources */,

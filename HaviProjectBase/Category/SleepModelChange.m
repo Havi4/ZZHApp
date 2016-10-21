@@ -156,6 +156,9 @@
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 SensorDataInfo *sensorArr = [sensorData.sensorDataList objectAtIndex:0];
                 NSArray *sensorInfo = sensorArr.propertyDataList;
+                NSArray *_sortedDetailDevice = [sensorInfo sortedArrayUsingComparator:^NSComparisonResult(PropertyData* _Nonnull obj1, PropertyData* _Nonnull obj2) {
+                    return [obj1.propertyDate compare:obj2.propertyDate options:NSCaseInsensitiveSearch];
+                }];
                 NSMutableArray *arr = [[NSMutableArray alloc]init];
                 for (int i=0; i<60; i++) {
                     if (SensorDataHeart == sensorType) {
@@ -164,8 +167,8 @@
                         [arr addObject:[NSNumber numberWithFloat:15]];
                     }
                 }
-                for (int i = 0; i<sensorInfo.count; i++) {
-                    PropertyData *dic = [sensorInfo objectAtIndex:i];
+                for (int i = 0; i<_sortedDetailDevice.count; i++) {
+                    PropertyData *dic = [_sortedDetailDevice objectAtIndex:i];
                     NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
                     dateF.dateFormat = @"yyyy-MM-dd HH:mm:ss";
                     NSDate *queryDate = [startTime  dateByAddingHours:8 ];

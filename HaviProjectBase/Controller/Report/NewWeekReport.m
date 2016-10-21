@@ -163,7 +163,7 @@
     for (int i=0; i<_sleepQulityDataValues.count; i++) {
         float gradePercent = [[_sleepQulityDataValues objectAtIndex:i] floatValue];
         CGPoint xPoint = [[self.xPoints objectAtIndex:i]CGPointValue];
-        CGFloat height = (yCoordinateHeight-15-20)/100*gradePercent*20;
+        CGFloat height = (yCoordinateHeight-15-20)/100*gradePercent;
         float test = [[_sleepTimeDataValues objectAtIndex:i] floatValue];
         if (height == 0 && test) {
             height = 10;

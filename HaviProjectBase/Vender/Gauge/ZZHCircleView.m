@@ -51,12 +51,16 @@
     [self addSubview:self.titleLabel];
 //    [self addSubview:self.subLabel];
     [self addSubview:self.animationView];
+    
     UILabel *fen = [[UILabel alloc]init];
     fen.text = @"分";
     fen.frame = (CGRect){self.frame.size.width/2+10,self.frame.size.height/2-10,40,40};
     fen.textColor = [UIColor whiteColor];
     fen.textAlignment = NSTextAlignmentCenter;
     [self addSubview:fen];
+//    [self.animationView makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(fen.mas_left).offset(-1);
+//    }];
     [self.animationView setValue:[NSNumber numberWithInt:0]];
     int radius = MIN(SCREEN_WIDTH, SCREEN_HEIGHT)/2-30;
     
@@ -77,7 +81,7 @@
         _animationView = [[JTNumberScrollAnimatedView alloc]init];
         _animationView.textColor = [UIColor whiteColor];
         _animationView.font = kNumberFont(50);
-        _animationView.frame = (CGRect){self.frame.size.width/2-30-10,self.frame.size.height/2-25,60,50};
+        _animationView.frame = (CGRect){self.frame.size.width/2-30-10,self.frame.size.height/2-25,65,50};
         _animationView.minLength = 1;
     }
     return _animationView;
@@ -223,16 +227,23 @@
 }
 
 -(void)setPercentage:(double)percentage{
+    if (percentage > 99) {
+        _animationView.frame = (CGRect){self.frame.size.width/2-47-10,self.frame.size.height/2-25,75,50};
+        _animationView.minLength = 1;
+    }else{
+        _animationView.frame = (CGRect){self.frame.size.width/2-30-10,self.frame.size.height/2-25,65,50};
+        _animationView.minLength = 1;
+    }
     [_progressLayer removeAllAnimations];
     _progressLayer.strokeStart = 0.0;
-    [self.animationView setValue:[NSNumber numberWithInt:percentage*20]];
+    [self.animationView setValue:[NSNumber numberWithInt:percentage]];
     [self.animationView startAnimation];
-    _progressLayer.strokeEnd = (percentage*20)/100;
+    _progressLayer.strokeEnd = (percentage)/100;
     CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     drawAnimation.duration            = 1.0;
     drawAnimation.removedOnCompletion = YES;
     drawAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-    drawAnimation.toValue = [NSNumber numberWithFloat:(percentage*20)/100];
+    drawAnimation.toValue = [NSNumber numberWithFloat:(percentage)/100];
     drawAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [_progressLayer addAnimation:drawAnimation forKey:@"drawCircleAnimation"];
 

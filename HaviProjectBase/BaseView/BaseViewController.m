@@ -27,8 +27,8 @@
 @property (nonatomic, strong) UIView *clearNavView;//透明导航栏
 @property (nonatomic, strong) UIView *clearRightV;//透明右侧button
 @property (nonatomic, strong) UILabel *clearNaviTitleLabel;//透明导航栏title
-
-
+@property (nonatomic, strong) NSString *updateString;
+@property (nonatomic, strong) NSString *updateTitle;
 @end
 
 @implementation BaseViewController
@@ -51,8 +51,18 @@
     
     [[NSNotificationCenter defaultCenter]addObserverForName:kCheckVersion object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         NSDictionary *version= note.userInfo;
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[[version objectForKey:@"AppVersion"]objectForKey:@"Title"] message:[[version objectForKey:@"AppVersion"]objectForKey:@"Description"] delegate:self cancelButtonTitle:@"忽略" otherButtonTitles:@"更新", nil];
-        [alertView show];
+        NSString *mustUpdate = [version objectForKey:@"mustUpdate"];
+        if ([mustUpdate isEqualToString:@"YES"]) {
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[[version objectForKey:@"AppVersion"]objectForKey:@"Title"] message:[[version objectForKey:@"AppVersion"]objectForKey:@"Description"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"更新", nil];
+            self.updateTitle = [[version objectForKey:@"AppVersion"]objectForKey:@"Title"];
+            self.updateString = [[version objectForKey:@"AppVersion"]objectForKey:@"Description"];
+            alertView.tag = 100;
+            [alertView show];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[[version objectForKey:@"AppVersion"]objectForKey:@"Title"] message:[[version objectForKey:@"AppVersion"]objectForKey:@"Description"] delegate:self cancelButtonTitle:@"忽略" otherButtonTitles:@"更新", nil];
+            alertView.tag = 101;
+            [alertView show];
+        }
     }];
 }
 
@@ -449,7 +459,15 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
+    if (alertView.tag == 101) {
+        if (buttonIndex == 1) {
+            NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/us/app/zhi-zhao-hu/id921178759?mt=8"];
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:self.updateTitle message:self.updateString delegate:self cancelButtonTitle:nil otherButtonTitles:@"更新", nil];
+        alertView.tag = 100;
+        [alertView show];
         NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/us/app/zhi-zhao-hu/id921178759?mt=8"];
         [[UIApplication sharedApplication] openURL:url];
     }
