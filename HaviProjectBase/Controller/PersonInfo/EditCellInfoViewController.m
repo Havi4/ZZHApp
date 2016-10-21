@@ -153,15 +153,19 @@
 
 - (BOOL)checkIsValiadForString:(NSString *)checkString
 {
-    NSString *regex = @"[a-zA-Z0-9\u4e00-\u9fa5]{2,6}";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    
-    if ([pred evaluateWithObject:checkString]) {
-        
-        return YES;
-    }else{
+//    NSString *regex = @"[a-zA-Z0-9\u4e00-\u9fa5]{2,6}";
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+//    
+//    if ([pred evaluateWithObject:checkString]) {
+//        
+//        return YES;
+//    }else{
+//        return NO;
+//    }
+    if (checkString.length < 2 || checkString.length > 8) {
         return NO;
     }
+    return YES;
 }
 
 - (BOOL)checkIsValiadForNum:(NSString *)checkString
