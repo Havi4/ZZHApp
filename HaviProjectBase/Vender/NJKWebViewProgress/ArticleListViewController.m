@@ -41,7 +41,7 @@
         if ([[self.articleList objectForKey:@"ArticleList"] count]>0) {
             self.articleList = obj;
             NSArray *_sortedDetailDevice = [[self.articleList objectForKey:@"ArticleList"] sortedArrayUsingComparator:^NSComparisonResult(NSDictionary* _Nonnull obj1, NSDictionary* _Nonnull obj2) {
-                return [[obj1 objectForKey:@"SystemDate"] compare:[obj2 objectForKey:@"SystemDate"] options:NSCaseInsensitiveSearch];
+                return [[obj2 objectForKey:@"SystemDate"] compare:[obj1 objectForKey:@"SystemDate"] options:NSCaseInsensitiveSearch];
             }];
             self.arr = _sortedDetailDevice;
             [self.tagTableView reloadData];
@@ -88,50 +88,47 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell11"];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell11"];
     UILabel *cellTitle ;
     UILabel *date ;
     UIView *backView ;
-    if (!cell) {
-        backView = [[UIView alloc]init];
-        cellTitle = [[UILabel alloc]init];
-        date = [[UILabel alloc]init];
-        
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell11"];
-        backView.backgroundColor = [UIColor whiteColor];
-        [cell addSubview:backView];
-        [backView makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cell.mas_left).offset(0);
-            make.right.equalTo(cell.mas_right).offset(0);
-            make.top.equalTo(cell.mas_top).offset(0);
-            make.bottom.equalTo(cell.mas_bottom).offset(0);
-        }];
-        
-        UIView *line = [[UIView alloc]init];
-        line.backgroundColor = [UIColor grayColor];
-        [cell addSubview:line];
-        [line makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cell.mas_left).offset(0);
-            make.bottom.equalTo(cell.mas_bottom).offset(0);
-            make.height.equalTo(@0.5);
-            make.width.equalTo(cell.mas_width);
-        }];
-        [cell addSubview:cellTitle];
-        cellTitle.font = [UIFont systemFontOfSize:15];
-        [cellTitle makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(cell.mas_centerY);
-            make.left.equalTo(cell.mas_left).offset(8);
-        }];
-        
-        [cell addSubview:date];
-        date.font = [UIFont systemFontOfSize:12];
-        [date makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(cell.mas_centerY);
-            make.right.equalTo(cell.mas_right).offset(-8);
-            make.left.equalTo(cellTitle.mas_right).offset(8);
-            make.width.equalTo(@70);
-        }];
-    }
+    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell11"];
+    backView = [[UIView alloc]init];
+    cellTitle = [[UILabel alloc]init];
+    date = [[UILabel alloc]init];
+    backView.backgroundColor = [UIColor whiteColor];
+    [cell addSubview:backView];
+    [backView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(cell.mas_left).offset(0);
+        make.right.equalTo(cell.mas_right).offset(0);
+        make.top.equalTo(cell.mas_top).offset(0);
+        make.bottom.equalTo(cell.mas_bottom).offset(0);
+    }];
+    
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor grayColor];
+    [cell addSubview:line];
+    [line makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(cell.mas_left).offset(0);
+        make.bottom.equalTo(cell.mas_bottom).offset(0);
+        make.height.equalTo(@0.5);
+        make.width.equalTo(cell.mas_width);
+    }];
+    [cell addSubview:cellTitle];
+    cellTitle.font = [UIFont systemFontOfSize:15];
+    [cellTitle makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(cell.mas_centerY);
+        make.left.equalTo(cell.mas_left).offset(8);
+    }];
+    
+    [cell addSubview:date];
+    date.font = [UIFont systemFontOfSize:12];
+    [date makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(cell.mas_centerY);
+        make.right.equalTo(cell.mas_right).offset(-8);
+        make.left.equalTo(cellTitle.mas_right).offset(8);
+        make.width.equalTo(@70);
+    }];
     cellTitle.text = [[self.arr objectAtIndex:indexPath.row] objectForKey:@"Title"];
     date.text = [[[self.arr objectAtIndex:indexPath.row] objectForKey:@"SystemDate"] substringToIndex:10];
     cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
