@@ -118,9 +118,10 @@
                 labelLine = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2, 10, 0.5, cY-10)];
                 CGFloat cY = self.frame.size.height - bottomLineMargin;
                 UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(cX+(xCoordinateWidth)/(count)/2-20, cY+3, 40, 10)];
-//                if (i==0) {
-//                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-15, cY+3, 40, 10);
-//                }else if (i/4==15){
+                if (i==0) {
+                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-15, cY+3, 40, 10);
+                }
+//                else if (i/4==15){
 //                    label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-25, cY+3, 40, 10);
 //                }
                 label.backgroundColor = [UIColor clearColor];

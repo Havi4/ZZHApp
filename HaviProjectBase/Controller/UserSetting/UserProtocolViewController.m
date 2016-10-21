@@ -27,12 +27,11 @@
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     
     UIWebView *view = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-    view.scrollView.scrollEnabled = YES;
-    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"protocol" ofType:@"html"];
-    NSURL *url = [NSURL fileURLWithPath:filePath];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    view.scrollView.scrollEnabled = YES;    
+    NSString * htmlstr = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://download.meddo99.com/misc/MeddoUserAgreement.htm"] encoding:NSUTF8StringEncoding error:nil];
+    //    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [view loadHTMLString:htmlstr baseURL:[NSURL URLWithString:htmlstr]];
     [self.view addSubview:view];
-    [view loadRequest:request];
 }
 
 - (void)backToHomeView:(UIButton *)sender

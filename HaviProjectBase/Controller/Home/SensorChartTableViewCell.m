@@ -264,7 +264,7 @@
     
     if(gesture.state == UIGestureRecognizerStateBegan)
     {
-        
+        self.dataArr = nil;
         CGPoint location = [gesture locationInView:[UIApplication sharedApplication].keyWindow];
         CGPoint timeLocation = [gesture locationInView:self.scrollContainerView];
         
@@ -309,11 +309,11 @@
                 NSString *newD = [NSString stringWithFormat:@"%@",new];
                 DeBugLog(@"%@",newD);
                 NSString *sub;
-                if (i == 0) {
-                    sub = [newD substringWithRange:NSMakeRange(11, 4)];
-                }else{
-                    sub = [newD substringWithRange:NSMakeRange(14, 2)];
-                }
+//                if (i == 0) {
+//                    sub = [newD substringWithRange:NSMakeRange(11, 5)];
+//                }else{
+//                }
+                sub = [newD substringWithRange:NSMakeRange(14, 2)];
                 [arr addObject:sub];
                 
             }
@@ -394,7 +394,7 @@
         }];
         NSDate *checkDate = [dateF dateFromString:tapTime];
         if ([[checkDate dateByAddingHours:9] isLaterThan:[[NSDate date] dateByAddingHours:8]]) {
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(refreshView:) userInfo:@{@"time":date} repeats:YES];
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(refreshView:) userInfo:@{@"time":tapTime} repeats:YES];
             self.viewTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(reloadSubView) userInfo:nil repeats:YES];
         }
         
@@ -441,8 +441,10 @@
 
 - (void)refreshView:(NSTimer*)timer
 {
-    NSDate *date = [timer.userInfo objectForKey:@"time"];
-    NSString *newD = [NSString stringWithFormat:@"%@",[date dateByAddingHours:8]];
+    NSString *dateString = [timer.userInfo objectForKey:@"time"];
+    NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
+    dateF.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSString *newD = [NSString stringWithFormat:@"%@",[[dateF dateFromString:dateString] dateByAddingHours:8]];
     ZZHAPIManager *client = [ZZHAPIManager sharedAPIManager];
     NSDictionary *dic18 = @{
                             @"UUID" : self.UUID,
@@ -452,7 +454,7 @@
                             };
     [client requestRealSensorDataParams:dic18 andBlock:^(SensorDataModel *sensorModel, NSError *error) {
         if ([sensorModel.returnCode integerValue]==200) {
-            [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type startTime:date endTime:[NSString stringWithFormat:@"%@:00",[newD substringWithRange:NSMakeRange(11, 5)]] callBack:^(id callBack)  {
+            [SleepModelChange filterRealSensorDataWithTime:sensorModel withType:self.type startTime:[dateF dateFromString:dateString] endTime:[NSString stringWithFormat:@"%@:00",[newD substringWithRange:NSMakeRange(11, 5)]] callBack:^(id callBack)  {
                 [self.pressView addlineView];
                 _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
                 self.dataArr = (NSArray *)callBack;
