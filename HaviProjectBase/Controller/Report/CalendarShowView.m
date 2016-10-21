@@ -610,8 +610,8 @@
         detailModel = longSleep;
         @strongify(self);
         NSString *sleepDuration = detailModel.sleepDuration;
-        int hour = [sleepDuration intValue];
-        if (hour == 0) {
+        int hour = [sleepDuration floatValue];
+        if ([sleepDuration floatValue] == 0) {
             self.headerLongData.text = @"--小时--分钟";
             return ;
         }
@@ -630,8 +630,8 @@
         detailModel1 = longSleep;
         @strongify(self);
         NSString *sleepDuration = detailModel1.sleepDuration;
-        int hour = [sleepDuration intValue];
-        if (hour == 0) {
+        int hour = [sleepDuration floatValue];
+        if ([sleepDuration floatValue] == 0) {
             self.headerShortData.text = @"--小时--分钟";
             return ;
         }

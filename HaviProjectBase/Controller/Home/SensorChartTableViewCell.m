@@ -477,6 +477,7 @@
 //            [SleepModelChange filterAverSensorDataWithTime:sensorModel callBack:^(int callBack) {
 //            }];
         }else{
+            self.dataArr = nil;
             self.pressView.heartViewLeft.values = nil;
             [self.pressView removeLine];
         }
@@ -485,16 +486,23 @@
 
 - (void)reloadSubView
 {
-    self.pressView.heartViewLeft.values = nil;
-    [self.pressView removeLine];
-    [self.pressView addlineView];
-    self.pressView.heartViewLeft.curved = YES;
-    self.pressView.heartViewLeft.minValue = 0;
-    self.pressView.heartViewLeft.maxValue = 150;
-    self.pressView.heartViewLeft.type = self.type;
-    _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
-    self.pressView.heartViewLeft.values = self.dataArr;
-    [self.pressView.heartViewLeft animate];
+    if (self.dataArr.count > 0) {
+        
+        self.pressView.heartViewLeft.values = nil;
+        [self.pressView removeLine];
+        [self.pressView addlineView];
+        self.pressView.heartViewLeft.curved = YES;
+        self.pressView.heartViewLeft.minValue = 0;
+        self.pressView.heartViewLeft.maxValue = 150;
+        self.pressView.heartViewLeft.type = self.type;
+        _pressView.heartViewLeft.graphColor = selectedThemeIndex==0?[UIColor whiteColor]:[UIColor whiteColor];
+        self.pressView.heartViewLeft.values = self.dataArr;
+        [self.pressView.heartViewLeft animate];
+    }else{
+        self.pressView.heartViewLeft.values = nil;
+        [self.pressView removeLine];
+        [self.pressView addlineView];
+    }
 }
 
 - (LongpressShowView *)pressView

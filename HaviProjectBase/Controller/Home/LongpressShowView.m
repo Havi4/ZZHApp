@@ -125,14 +125,14 @@
 //                }
                 label.backgroundColor = [UIColor clearColor];
                 
-                label.text = [NSString stringWithFormat:@"%d",[[values objectAtIndex:(i/4)] intValue]];
+                label.text = [NSString stringWithFormat:@"%@",[values objectAtIndex:(i/4)]];
                 if (i/4==15){
                     label.text = @"60";
                     label.frame = CGRectMake(cX+(xCoordinateWidth)/(count)/2-25, cY+3, 40, 10);
                 }
                 label.tag = 1001;
                 label.dk_textColorPicker = kTextColorPicker;
-                label.font = [UIFont systemFontOfSize:10];
+                label.font = [UIFont systemFontOfSize:9];
                 label.textAlignment = NSTextAlignmentCenter;
                 [self addSubview:label];
                 labelLine.backgroundColor = [UIColor whiteColor];
