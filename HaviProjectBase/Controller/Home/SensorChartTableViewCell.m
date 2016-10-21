@@ -285,9 +285,9 @@
         NSString *time = [NSString stringWithFormat:@"%@:%@",hr,mi];
         NSString *year = @"";
         if ([hr intValue]>18 || [hr intValue]==18) {
-            year = [NSString stringWithFormat:@"%@",[[selectedDateToUse dateByAddingHours:8] dateByAddingDays:-1]];
+            year = [NSString stringWithFormat:@"%@",[selectedDateToUse dateByAddingDays:-1]];
         }else{
-            year = [NSString stringWithFormat:@"%@",[selectedDateToUse dateByAddingHours:8]];
+            year = [NSString stringWithFormat:@"%@",selectedDateToUse];
         }
         NSString *tapTime = [NSString stringWithFormat:@"%@ %@:00",[year substringToIndex:10],[time substringWithRange:NSMakeRange(0, 2)]];
         NSDateFormatter *dateF = [[NSDateFormatter alloc]init];
@@ -394,26 +394,6 @@
         }
         
         
-//        SleepQualityModel *model = self.sleepModel;
-//        switch (self.type) {
-//            case 0:
-//            {
-//                if ([model.averageHeartRate intValue]==0) {
-//                    cellDataLabel.text = @"--";
-//                }else{
-//                    
-//                    cellDataLabel.text = [NSString stringWithFormat:@"%d",[model.averageHeartRate intValue]];
-//                }
-//                break;
-//            }
-//            case 1:{
-//                cellDataLabel.text = [NSString stringWithFormat:@"%d",[model.averageRespiratoryRate intValue]];
-//                break;
-//            }
-//                
-//            default:
-//                break;
-//        }
 
         DXPopover *popover = [DXPopover popover];
         popover.backgroundColor = [UIColor colorWithRed:0.161 green:0.718 blue:0.816 alpha:1.00];

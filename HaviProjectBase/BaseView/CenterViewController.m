@@ -138,7 +138,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 106.f;
     self.naviBarTitle.userInteractionEnabled = YES;
     [self.naviBarTitle addGestureRecognizer:geture];
     self.naviBarTitle.backgroundColor = [UIColor clearColor];
-    selectedDateToUse = [NSDate date];
+    selectedDateToUse = [[NSDate date] dateByAddingHours:8];
     self.backgroundImageView.image = [UIImage imageNamed:@"home_back@3x"];
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gn"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowMenuNotification object:nil];
