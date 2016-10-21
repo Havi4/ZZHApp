@@ -20,18 +20,16 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
+    self.backgroundImageView.image = [UIImage imageNamed:@""];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.leftBarItem = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"new_navi_back"] style:SCBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
     self.sc_navigationItem.title = @"用户协议";
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
     
-    UIWebView *view = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-    view.scrollView.scrollEnabled = YES;    
-    NSString * htmlstr = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://download.meddo99.com/misc/MeddoUserAgreement.htm"] encoding:NSUTF8StringEncoding error:nil];
-    //    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [view loadHTMLString:htmlstr baseURL:[NSURL URLWithString:htmlstr]];
-    [self.view addSubview:view];
+    
+    
 }
 
 - (void)backToHomeView:(UIButton *)sender
@@ -44,6 +42,17 @@
     }
    
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    UIWebView *view = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
+    view.scrollView.scrollEnabled = YES;
+    NSString * htmlstr = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://download.meddo99.com/misc/MeddoUserAgreement.htm"] encoding:NSUTF8StringEncoding error:nil];
+    //    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [view loadHTMLString:htmlstr baseURL:[NSURL URLWithString:htmlstr]];
+    [self.view addSubview:view];
 }
 
 - (void)didReceiveMemoryWarning {

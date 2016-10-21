@@ -24,7 +24,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self addSubview:self.cellTextField];
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:_cellTextField];
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:self.cellTextField];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidBeginEditingNotification object:self.cellTextField];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showText) name:@"cellEdit" object:nil
          ];
     }
@@ -78,12 +79,12 @@
             [NSObject showHudTipStr:@"姓名只能由2-8位数字、字母、中文组成"];
         }
     }else{
-         if ([self checkIsValiadForNum:textField.text]) {
-             self.tapTextSaveBlock(textField.text);
-             return YES;
-         }else{
-             [NSObject showHudTipStr:@"手机格式有误"];
-         }
+//         if ([self checkIsValiadForNum:textField.text]) {
+//             self.tapTextSaveBlock(textField.text);
+//             return YES;
+//         }else{
+//             [NSObject showHudTipStr:@"手机格式有误"];
+//         }
     }
     return YES;
 }

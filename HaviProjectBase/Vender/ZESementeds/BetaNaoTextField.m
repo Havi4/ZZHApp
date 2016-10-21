@@ -185,6 +185,10 @@
               self.placeHolderLabel.textColor = [UIColor lightGrayColor];
           }];
     }
+    if ([self.placeHolderLabel.text isEqualToString:@"请输入您的紧急联系人"]) {
+        [[NSUserDefaults standardUserDefaults]setObject:textField.text forKey:@"请输入您的紧急联系人"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
     
 }
 

@@ -99,9 +99,7 @@
     [self.view addSubview:self.webView];
     [self.webView insertSubview:self.hostInfoLabel belowSubview:self.webView.scrollView];
     [self.view addSubview:self.progressView];
-    NSString * htmlstr = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:self.urlString] encoding:NSUTF8StringEncoding error:nil];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlstr]]];
-    [self.webView loadHTMLString:htmlstr baseURL:[NSURL URLWithString:self.urlString]];
+    
     _docImageView = [[UIImageView alloc]init];
     _docImageView.image = [UIImage imageNamed:@"xiumeimei"];
     _docImageView.frame = (CGRect){self.view.frame.size.width - 50,self.view.frame.size.height - 70,40,60};
@@ -110,6 +108,13 @@
     [_docImageView addGestureRecognizer:tap];
     [self.view addSubview:_docImageView];
     [self.textTagCollectionView addTags:self.tagLists];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSString * htmlstr = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:self.urlString] encoding:NSUTF8StringEncoding error:nil];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlstr]]];
+    [self.webView loadHTMLString:htmlstr baseURL:[NSURL URLWithString:self.urlString]];
 }
 
 
@@ -735,6 +740,7 @@
     ArticleListViewController *article = [[ArticleListViewController alloc]init];
     article.articleList = self.articleList;
     article.stitle = tagText;
+    article.tag = tagText;
     [self.navigationController pushViewController:article animated:YES];
 }
 

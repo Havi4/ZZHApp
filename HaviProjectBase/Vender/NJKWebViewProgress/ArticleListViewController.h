@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString *stitle;
 
+@property (nonatomic, strong) NSString *tag;
+
 @end

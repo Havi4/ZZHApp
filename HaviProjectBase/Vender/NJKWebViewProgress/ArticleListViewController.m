@@ -8,12 +8,13 @@
 
 #import "ArticleListViewController.h"
 #import "ArticleViewController.h"
+#import "WTRequestCenter.h"
 
 @interface ArticleListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) UITableView *tagTableView;
-
+@property (nonatomic, strong) NSArray *arr;
 
 @end
 
@@ -25,6 +26,30 @@
     [self initNavigationBar];
     [self.view addSubview:self.tagTableView];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self getArticleListWithError:nil];
+}
+
+- (void)getArticleListWithError:(NSError *)error{
+    
+    NSString *url = [NSString stringWithFormat:@"%@v1/news/ArticleList?PageNum=0&Count=100&Tips=%@",[NSObject baseURLStrIsTest] ? kAppTestBaseURL: kAppBaseURL,self.tag];
+    
+    [NSObject showHud];
+    [WTRequestCenter getWithURL:url headers:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {
+        [NSObject hideHud];
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        DeBugLog(@"文章列表是%@",obj);
+        if ([[self.articleList objectForKey:@"ArticleList"] count]>0) {
+            self.articleList = obj;
+            NSArray *_sortedDetailDevice = [[self.articleList objectForKey:@"ArticleList"] sortedArrayUsingComparator:^NSComparisonResult(NSDictionary* _Nonnull obj1, NSDictionary* _Nonnull obj2) {
+                return [[obj1 objectForKey:@"SystemDate"] compare:[obj2 objectForKey:@"SystemDate"] options:NSCaseInsensitiveSearch];
+            }];
+            self.arr = _sortedDetailDevice;
+            [self.tagTableView reloadData];
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject hideHud];
+        [NSObject showHudTipStr:@"服务器出错了"];
+    }];
 }
 
 - (void)initNavigationBar
@@ -58,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.articleList objectForKey:@"ArticleList"] count];
+    return [self.arr count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,7 +122,7 @@
             make.centerY.equalTo(cell.mas_centerY);
             make.left.equalTo(cell.mas_left).offset(8);
         }];
-        cellTitle.text = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Title"];
+        
         [cell addSubview:date];
         date.font = [UIFont systemFontOfSize:12];
         [date makeConstraints:^(MASConstraintMaker *make) {
@@ -107,7 +132,8 @@
             make.width.equalTo(@70);
         }];
     }
-    date.text = [[[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"SystemDate"] substringToIndex:10];
+    cellTitle.text = [[self.arr objectAtIndex:indexPath.row] objectForKey:@"Title"];
+    date.text = [[[self.arr objectAtIndex:indexPath.row] objectForKey:@"SystemDate"] substringToIndex:10];
     cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
     
     return cell;
@@ -136,8 +162,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ArticleViewController *article = [[ArticleViewController alloc]init];
-    article.articleTitle = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Title"];
-    article.articleURL = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Url"];
+    article.articleTitle = [[self.arr objectAtIndex:indexPath.row] objectForKey:@"Title"];
+    article.articleURL = [[self.arr objectAtIndex:indexPath.row] objectForKey:@"Url"];
     [self.navigationController pushViewController:article animated:YES];
 }
 
