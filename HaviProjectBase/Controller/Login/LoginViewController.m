@@ -375,6 +375,8 @@
         if (!error) {
             DeBugLog(@"服务器时间是%@",serVerTime.serverTime);
             if (serVerTime.serverTime.length==0) {
+                [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
+                [self login:nil];
                 return;
             }
             NSDateFormatter *date = [[NSDateFormatter alloc]init];
@@ -397,20 +399,17 @@
                         [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:accessTocken forHTTPHeaderField:@"AccessToken"];
                         [self login:nil];
                     }else{
-                        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                        alertView.tag = 101;
-                        [alertView show];
+                        [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
+                        [self login:nil];
                     }
                 }else{
-                    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                    alertView.tag = 101;
-                    [alertView show];
+                    [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
+                    [self login:nil];
                 }
             }];
         }else{
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证用户失败,请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            alertView.tag = 101;
-            [alertView show];
+            [[[HaviNetWorkAPIClient sharedJSONClient] requestSerializer]setValue:@"A29#XXFDs1-FDKSD-JGLjx2" forHTTPHeaderField:@"AccessToken"];
+            [self login:nil];
         }
     }];
 }

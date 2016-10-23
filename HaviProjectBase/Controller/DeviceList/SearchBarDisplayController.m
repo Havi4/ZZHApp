@@ -21,13 +21,14 @@
 @property (nonatomic, strong) XHRealTimeBlur *backgroundView;
 @property (nonatomic, strong) SearchDeviceDelegate *searchDelegate;
 @property (nonatomic, strong) UILabel *messageLabel;
-@property (nonatomic, strong) NSArray *requestUser;
+@property (nonatomic, strong) NSMutableArray *requestUser;
 
 @end
 
 @implementation SearchBarDisplayController
 
 - (void)setActive:(BOOL)visible animated:(BOOL)animated {
+    self.requestUser = @[].mutableCopy;
     if(!visible) {
         [_searchTableView removeFromSuperview];
         [_backgroundView removeFromSuperview];
@@ -162,8 +163,16 @@
         }else{
             [self.messageLabel removeFromSuperview];
         }
-        self.searchDelegate.items = friendModel.userList;
-        self.requestUser = friendModel.userList;
+//        self.searchDelegate.items = friendModel.userList;
+        
+        self.requestUser = [NSMutableArray arrayWithArray:friendModel.userList];
+        NSArray *arr = friendModel.userList;
+        for (UserList *user in arr) {
+            if ([user.userID isEqualToString:thirdPartyLoginUserId]) {
+                [self.requestUser removeObject:user];
+            }
+        }
+        self.searchDelegate.items = self.requestUser;
         [self.searchTableView reloadData];
     }];
     
