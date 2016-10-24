@@ -215,7 +215,7 @@
                 city = placemark.administrativeArea;
             }
             
-            if (city && self.isIn) {
+            if (city.length >0 && self.isIn && province.length >0) {
                 @strongify(self);
                 self.isIn = NO;
                 [self sendLocationWith:city andProvie:province];
@@ -236,20 +236,23 @@
 
 - (void)sendLocationWith:(NSString *)city andProvie:(NSString *)province
 {
+    
     NSString *cityU = [[NSUserDefaults standardUserDefaults]objectForKey:@"city"];
     if (cityU.length == 0) {
         [[NSNotificationCenter defaultCenter]postNotificationName:kGetCurrentCity object:nil userInfo:@{@"city":[city substringToIndex:city.length-1]}];
+        return;
     }
-    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"city"] isEqualToString:[city substringToIndex:city.length-1]] && [[[NSUserDefaults standardUserDefaults]objectForKey:@"province"] isEqualToString:[province substringToIndex:city.length-1]]) {
+    
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"city"] isEqualToString:[city substringToIndex:city.length-1]] && [[[NSUserDefaults standardUserDefaults]objectForKey:@"province"] isEqualToString:[province substringToIndex:province.length-1]]) {
         return;
     }
     [[NSUserDefaults standardUserDefaults]setObject:[city substringToIndex:city.length-1] forKey:@"city"];
-    [[NSUserDefaults standardUserDefaults]setObject:[province substringToIndex:city.length-1] forKey:@"province"];
+    [[NSUserDefaults standardUserDefaults]setObject:[province substringToIndex:province.length-1] forKey:@"province"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     NSDictionary *dic19 = @{
                             @"city" : [city substringToIndex:city.length-1],
-                            @"province": [province substringToIndex:city.length-1]
+                            @"province": [province substringToIndex:province.length-1]
                             };
     [GetWeatherAPI getWeatherInfoWith:dic19 finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -431,7 +434,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[NSUserDefaults standardUserDefaults]registerDefaults:@{kAppPassWordKeyNoti : @"NO"}];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"city":@""}];
+    [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"city":@"上海市"}];
 }
 
 #pragma mark 设置引导画面
