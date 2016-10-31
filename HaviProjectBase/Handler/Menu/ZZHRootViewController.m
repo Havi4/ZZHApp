@@ -17,6 +17,7 @@
 #import "SleepSettingViewController.h"
 #import "APPSettingViewController.h"
 #import "ReportVewContainerController.h"
+#import "MYLoveViewController.h"
 
 CGFloat const kMenuWidth = 280.0;//侧栏的宽度
 
@@ -47,7 +48,8 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
 
 @property (nonatomic ,strong) SCNavigationController *reMonth;
 @property (nonatomic ,strong) SCNavigationController *reQuater;
-
+@property (nonatomic ,strong) SCNavigationController *myLoveNavi;
+@property (nonatomic, strong) MYLoveViewController *mylove;
 
 @end
 
@@ -216,6 +218,9 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
     self.settingNavi.enableInnerInactiveGesture = NO;
     self.message = [[MessageListViewController alloc]init];
     self.messageNavi = [[SCNavigationController alloc]initWithRootViewController:self.message];
+    
+    self.mylove = [[MYLoveViewController alloc]init];
+    self.myLoveNavi = [[SCNavigationController alloc]initWithRootViewController:self.mylove];
     [self.viewControllerContainView addSubview:[self viewControllerForIndex:0].view];
     self.currentSelectedIndex = 0;
 //
@@ -366,7 +371,10 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
             viewController = self.messageNavi;
             break;
         case 5:
-            viewController = self.settingNavi;
+            viewController = self.myLoveNavi;
+            break;
+        case 6:
+            viewController = self.setting;
             break;
         case 1001:{
             ReportVewContainerController *reportView = [[ReportVewContainerController alloc]init];

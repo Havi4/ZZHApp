@@ -50,9 +50,9 @@ static CGFloat const kAvatarHeight = 70.0f;
     if (self) {
         
         
-        self.sectionImageNameArray = @[@"shuju", @"fenxi", @"sheb", @"zhong", @"xinf", @"shed"];
+        self.sectionImageNameArray = @[@"shuju", @"fenxi", @"sheb", @"zhong", @"xinf",@"xinf", @"shed"];
 //  @[@"icon_todays_data_0", @"icon_data_analysis_0", @"icon_equipment_management_0", @"icon_alarm_clock_0", @"icon_message", @"icon_setting_0"];
-        self.sectionTitleArray = @[@"今日数据", @"数据分析", @"设备管理", @"睡眠设置", @"我的消息", @"设        定"];
+        self.sectionTitleArray = @[@"今日数据", @"数据分析", @"设备管理", @"睡眠设置", @"我的消息",@"我的收藏", @"设        定"];
 
         [self configureTableView];
         [self configureProfileView];

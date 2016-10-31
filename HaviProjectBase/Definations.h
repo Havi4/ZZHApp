@@ -14,6 +14,7 @@
 //#define kAppBaseURL @"http://testzzhapi.meddo99.com:8088/"
 #define kAppBaseURL @"http://webservice.meddo99.com:9000/"
 #define kAppTestBaseURL @"http://testzzhapi.meddo99.com:8088/"
+#define kTestAccessTocken @"A29#XXFDs1-FDKSD-JGLjx2"
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 
 #define kWXPlatform @"wx.com"
@@ -41,6 +42,7 @@
 #define kTextPlaceHolderColor [UIColor lightGrayColor]
 #define kTextFieldWordColor [UIColor lightGrayColor]
 #define kTextDefaultWordColor [UIColor grayColor]
+#define kTextWordColor [UIColor whiteColor]
 //time
 #define kCodeValideTime 10*60
 #define kNumberFont(_font) [UIFont fontWithName:@"Roboto-Light" size:_font]
