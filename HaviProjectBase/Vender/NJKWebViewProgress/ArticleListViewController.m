@@ -161,6 +161,9 @@
     ArticleViewController *article = [[ArticleViewController alloc]init];
     article.articleTitle = [[self.arr objectAtIndex:indexPath.row] objectForKey:@"Title"];
     article.articleURL = [[self.arr objectAtIndex:indexPath.row] objectForKey:@"Url"];
+    article.articleID = [[self.arr objectAtIndex:indexPath.row] objectForKey:@"ArticleId"];
+    article.isShowCollectionButton = YES;
+    article.isCollection = [[[self.arr objectAtIndex:indexPath.row] objectForKey:@"IsCollection"] isEqualToString:@"False"]?NO: YES;
     [self.navigationController pushViewController:article animated:YES];
 }
 

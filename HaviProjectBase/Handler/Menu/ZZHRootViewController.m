@@ -371,6 +371,12 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
             viewController = self.messageNavi;
             break;
         case 5:
+            if (self.mylove) {
+                self.mylove = nil;
+                self.myLoveNavi = nil;
+            }
+            self.mylove = [[MYLoveViewController alloc]init];
+            self.myLoveNavi = [[SCNavigationController alloc]initWithRootViewController:self.mylove];
             viewController = self.myLoveNavi;
             break;
         case 6:

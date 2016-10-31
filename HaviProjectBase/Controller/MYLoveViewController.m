@@ -41,6 +41,7 @@
     self.loveTableView.mj_footer.automaticallyChangeAlpha = YES;
 }
 
+
 - (UITableView *)loveTableView
 {
     if (!_loveTableView) {
@@ -119,6 +120,7 @@
     ArticleViewController *article = [[ArticleViewController alloc]init];
     article.articleTitle = [[self.articleArr objectAtIndex:indexPath.row] objectForKey:@"Title"];
     article.articleURL = [[self.articleArr objectAtIndex:indexPath.row] objectForKey:@"Url"];
+    article.isShowCollectionButton = NO;
     [self.navigationController pushViewController:article animated:YES];
 
 }

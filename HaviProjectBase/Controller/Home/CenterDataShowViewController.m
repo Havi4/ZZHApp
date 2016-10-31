@@ -145,11 +145,8 @@
     webViewController.tagLists = self.articleModel.tips;
     webViewController.urlString = self.articleModel.url;
     webViewController.articleTitle = self.articleModel.title;
+    webViewController.articleID = self.articleModel.articleId;
     [self.navigationController pushViewController:webViewController animated:YES];
-//    ArticleViewController *articleView = [[ArticleViewController alloc]init];
-//    articleView.articleURL = self.articleModel.url;
-//    articleView.articleTitle = self.articleModel.title;
-//    [self.navigationController pushViewController:articleView animated:YES];
 }
 
 - (void)addTableViewDataHandle

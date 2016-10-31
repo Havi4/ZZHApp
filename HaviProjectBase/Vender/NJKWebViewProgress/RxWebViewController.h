@@ -12,7 +12,11 @@
 
 @property (nonatomic, strong) NSString *articleTitle;
 
+@property (nonatomic, strong) NSString *articleID;
+
 @property (nonatomic, strong) NSArray *tagLists;
+
+@property (nonatomic, assign) BOOL *isCollection;
 /**
  *  origin url
  */

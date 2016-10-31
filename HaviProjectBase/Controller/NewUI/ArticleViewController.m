@@ -9,6 +9,8 @@
 #import "ArticleViewController.h"
 #import "NJKWebViewProgressView.h"
 #import "NJKWebViewProgress.h"
+#import "WTRequestCenter.h"
+
 @interface ArticleViewController ()<UIWebViewDelegate, NJKWebViewProgressDelegate>
 
 {
@@ -17,6 +19,8 @@
     NJKWebViewProgress *_progressProxy;
 
 }
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
+
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 
 @end
@@ -49,9 +53,40 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
-    
+    if (self.isShowCollectionButton && !self.isCollection) {
+        self.rightBarItem = [[SCBarButtonItem alloc]initWithTitle:@"收藏" style:SCBarButtonItemStylePlain withColor:[UIColor whiteColor] handler:^(id sender) {
+            [self collectionView];
+        }];
+        self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+    }
     self.sc_navigationItem.title = self.articleTitle;
 }
+
+- (void)collectionView
+{
+    NSString *url = [NSString stringWithFormat:@"%@v1/news/AddCollection", kAppBaseURL];
+    
+    NSDictionary *dicPara = @{
+                              @"UserId": thirdPartyLoginUserId,
+                              @"ArticleId": self.articleID,
+                              };
+    
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([[obj objectForKey:@"ReturnCode"] intValue]==200) {
+            [NSObject showHudTipStr:@"收藏成功"];
+        }else {
+            if ([[obj objectForKey:@"ReturnCode"] intValue]==10039){
+                [NSObject showHudTipStr:@"该文章已收藏"];
+            }else{
+                [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
+            }
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject showHudTipStr:[NSString stringWithFormat:@"%@",error]];
+    }];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {

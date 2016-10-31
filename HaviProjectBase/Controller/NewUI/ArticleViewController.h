@@ -12,5 +12,8 @@
 
 @property (nonatomic, strong) NSString *articleURL;
 @property (nonatomic, strong) NSString *articleTitle;
+@property (nonatomic, strong) NSString *articleID;
+@property (nonatomic, assign) BOOL isShowCollectionButton;
+@property (nonatomic, assign) BOOL isCollection;
 
 @end

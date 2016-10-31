@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) BOOL loading;
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
+@property (nonatomic, strong) SCBarButtonItem *rightBarItem;
 @property (nonatomic, strong) UIImageView *docImageView;
 @property (nonatomic, strong) UITableView *consultView;
 @property (nonatomic, strong) UITableView *tagTableView;
@@ -117,18 +118,30 @@
     [self.webView loadHTMLString:htmlstr baseURL:[NSURL URLWithString:self.urlString]];
 }
 
-
-//- (UITableView *)consultView
-//{
-//    if (!_consultView) {
-//        _consultView = [[UITableView alloc]initWithFrame:(CGRect){0,64,self.view.frame.size.width,self.view.frame.size.height-64} style:UITableViewStylePlain];
-//        _consultView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        _consultView.delegate = self;
-//        _consultView.dataSource = self;
-//        _consultView.backgroundColor = [UIColor redColor];
-//    }
-//    return _consultView;
-//}
+- (void)collectionView
+{
+    NSString *url = [NSString stringWithFormat:@"%@v1/news/AddCollection", kAppBaseURL];
+    
+    NSDictionary *dicPara = @{
+                              @"UserId": thirdPartyLoginUserId,
+                              @"ArticleId": self.articleID,
+                              };
+    
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":accessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if ([[obj objectForKey:@"ReturnCode"] intValue]==200) {
+            [NSObject showHudTipStr:@"收藏成功"];
+        }else {
+            if ([[obj objectForKey:@"ReturnCode"] intValue]==10039){
+                [NSObject showHudTipStr:@"该文章已收藏"];
+            }else{
+                [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
+            }
+        }
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject showHudTipStr:[NSString stringWithFormat:@"%@",error]];
+    }];
+}
 
 - (TTGTextTagCollectionView *)textTagCollectionView{
     if (!_textTagCollectionView) {
@@ -305,6 +318,9 @@
         ArticleViewController *article = [[ArticleViewController alloc]init];
         article.articleTitle = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Title"];
         article.articleURL = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"Url"];
+        article.articleID = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"ArticleId"];
+        article.isShowCollectionButton = YES;
+        article.isCollection = [[[self.articleList objectForKey:@"ArticleList"] objectAtIndex:indexPath.row] objectForKey:@"False"]?NO: YES;
         [self.navigationController pushViewController:article animated:YES];
     }
 }
@@ -341,8 +357,14 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
     self.sc_navigationItem.leftBarButtonItem = self.leftBarItem;
-    
+    if (!self.isCollection) {
+        self.rightBarItem = [[SCBarButtonItem alloc]initWithTitle:@"收藏" style:SCBarButtonItemStylePlain withColor:[UIColor whiteColor] handler:^(id sender) {
+            [self collectionView];
+        }];
+        self.sc_navigationItem.rightBarButtonItem = self.rightBarItem;
+    }
     self.sc_navigationItem.title = self.articleTitle;
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
