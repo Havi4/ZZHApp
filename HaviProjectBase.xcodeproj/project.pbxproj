@@ -824,6 +824,11 @@
 		5799CA801DCADBE1007F26D4 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5799CA7F1DCADBE1007F26D4 /* DiscoverViewController.m */; };
 		5799CA831DCADD9C007F26D4 /* find.png in Resources */ = {isa = PBXBuildFile; fileRef = 5799CA811DCADD9C007F26D4 /* find.png */; };
 		5799CA841DCADD9C007F26D4 /* sc.png in Resources */ = {isa = PBXBuildFile; fileRef = 5799CA821DCADD9C007F26D4 /* sc.png */; };
+		5799CA871DCAEB7A007F26D4 /* DiscoverCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5799CA861DCAEB7A007F26D4 /* DiscoverCollectionViewCell.m */; };
+		5799CA8B1DCB0668007F26D4 /* moon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5799CA881DCB0668007F26D4 /* moon.png */; };
+		5799CA8C1DCB0668007F26D4 /* q.png in Resources */ = {isa = PBXBuildFile; fileRef = 5799CA891DCB0668007F26D4 /* q.png */; };
+		5799CA8D1DCB0668007F26D4 /* sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5799CA8A1DCB0668007F26D4 /* sm.png */; };
+		5799CA9D1DCB17E4007F26D4 /* CardShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5799CA9C1DCB17E4007F26D4 /* CardShowViewController.m */; };
 		57D1CD7F1DAA0C9E00AE9186 /* IntroduceView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7C1DAA0C9E00AE9186 /* IntroduceView1.png */; };
 		57D1CD801DAA0C9E00AE9186 /* IntroduceView2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7D1DAA0C9E00AE9186 /* IntroduceView2.png */; };
 		57D1CD811DAA0C9E00AE9186 /* IntroduceView3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7E1DAA0C9E00AE9186 /* IntroduceView3.png */; };
@@ -859,6 +864,17 @@
 		57F852391DAA1D0E005D8DF4 /* AccessTockenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F852381DAA1D0E005D8DF4 /* AccessTockenModel.m */; };
 		57F8523C1DAB60D7005D8DF4 /* LoginBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F8523B1DAB60D6005D8DF4 /* LoginBackViewController.m */; };
 		57F8523E1DAB620C005D8DF4 /* backlogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F8523D1DAB620C005D8DF4 /* backlogin.png */; };
+		57FEAC4D1DCB21AB0067991C /* LZSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEAC491DCB21AB0067991C /* LZSwipeableView.m */; };
+		57FEAC4E1DCB21AB0067991C /* NSObject+LZSwipeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEAC4C1DCB21AB0067991C /* NSObject+LZSwipeCategory.m */; };
+		57FEAC561DCB21CF0067991C /* AVCardInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEAC501DCB21CF0067991C /* AVCardInfo.m */; };
+		57FEAC571DCB21CF0067991C /* AVKnackBottomToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEAC521DCB21CF0067991C /* AVKnackBottomToolView.m */; };
+		57FEAC581DCB21CF0067991C /* AVKnackBottomToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC531DCB21CF0067991C /* AVKnackBottomToolView.xib */; };
+		57FEAC591DCB21CF0067991C /* AVSwipeCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEAC551DCB21CF0067991C /* AVSwipeCardCell.m */; };
+		57FEAC5C1DCB25B70067991C /* s.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC5A1DCB25B70067991C /* s.png */; };
+		57FEAC5D1DCB25B70067991C /* wen.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC5B1DCB25B70067991C /* wen.png */; };
+		57FEAC5F1DCB25D60067991C /* pai.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC5E1DCB25D60067991C /* pai.png */; };
+		57FEAC621DCB3C460067991C /* bu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC601DCB3C460067991C /* bu@3x.png */; };
+		57FEAC631DCB3C460067991C /* like@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC611DCB3C460067991C /* like@3x.png */; };
 		5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */; };
 /* End PBXBuildFile section */
 
@@ -2162,6 +2178,13 @@
 		5799CA7F1DCADBE1007F26D4 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscoverViewController.m; path = NewUI/DiscoverViewController.m; sourceTree = "<group>"; };
 		5799CA811DCADD9C007F26D4 /* find.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = find.png; sourceTree = "<group>"; };
 		5799CA821DCADD9C007F26D4 /* sc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sc.png; sourceTree = "<group>"; };
+		5799CA851DCAEB7A007F26D4 /* DiscoverCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiscoverCollectionViewCell.h; path = NewUI/DiscoverCollectionViewCell.h; sourceTree = "<group>"; };
+		5799CA861DCAEB7A007F26D4 /* DiscoverCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscoverCollectionViewCell.m; path = NewUI/DiscoverCollectionViewCell.m; sourceTree = "<group>"; };
+		5799CA881DCB0668007F26D4 /* moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moon.png; sourceTree = "<group>"; };
+		5799CA891DCB0668007F26D4 /* q.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = q.png; sourceTree = "<group>"; };
+		5799CA8A1DCB0668007F26D4 /* sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sm.png; sourceTree = "<group>"; };
+		5799CA9B1DCB17E4007F26D4 /* CardShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardShowViewController.h; path = NewUI/CardShowViewController.h; sourceTree = "<group>"; };
+		5799CA9C1DCB17E4007F26D4 /* CardShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardShowViewController.m; path = NewUI/CardShowViewController.m; sourceTree = "<group>"; };
 		57D1CD7C1DAA0C9E00AE9186 /* IntroduceView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView1.png; sourceTree = "<group>"; };
 		57D1CD7D1DAA0C9E00AE9186 /* IntroduceView2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView2.png; sourceTree = "<group>"; };
 		57D1CD7E1DAA0C9E00AE9186 /* IntroduceView3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView3.png; sourceTree = "<group>"; };
@@ -2223,6 +2246,23 @@
 		57F8523A1DAB60D6005D8DF4 /* LoginBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBackViewController.h; sourceTree = "<group>"; };
 		57F8523B1DAB60D6005D8DF4 /* LoginBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBackViewController.m; sourceTree = "<group>"; };
 		57F8523D1DAB620C005D8DF4 /* backlogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backlogin.png; sourceTree = "<group>"; };
+		57FEAC481DCB21AB0067991C /* LZSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZSwipeableView.h; sourceTree = "<group>"; };
+		57FEAC491DCB21AB0067991C /* LZSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZSwipeableView.m; sourceTree = "<group>"; };
+		57FEAC4A1DCB21AB0067991C /* LZSwipeCostantDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZSwipeCostantDefine.h; sourceTree = "<group>"; };
+		57FEAC4B1DCB21AB0067991C /* NSObject+LZSwipeCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LZSwipeCategory.h"; sourceTree = "<group>"; };
+		57FEAC4C1DCB21AB0067991C /* NSObject+LZSwipeCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LZSwipeCategory.m"; sourceTree = "<group>"; };
+		57FEAC4F1DCB21CF0067991C /* AVCardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCardInfo.h; sourceTree = "<group>"; };
+		57FEAC501DCB21CF0067991C /* AVCardInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCardInfo.m; sourceTree = "<group>"; };
+		57FEAC511DCB21CF0067991C /* AVKnackBottomToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKnackBottomToolView.h; sourceTree = "<group>"; };
+		57FEAC521DCB21CF0067991C /* AVKnackBottomToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKnackBottomToolView.m; sourceTree = "<group>"; };
+		57FEAC531DCB21CF0067991C /* AVKnackBottomToolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVKnackBottomToolView.xib; sourceTree = "<group>"; };
+		57FEAC541DCB21CF0067991C /* AVSwipeCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSwipeCardCell.h; sourceTree = "<group>"; };
+		57FEAC551DCB21CF0067991C /* AVSwipeCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVSwipeCardCell.m; sourceTree = "<group>"; };
+		57FEAC5A1DCB25B70067991C /* s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s.png; sourceTree = "<group>"; };
+		57FEAC5B1DCB25B70067991C /* wen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wen.png; sourceTree = "<group>"; };
+		57FEAC5E1DCB25D60067991C /* pai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pai.png; sourceTree = "<group>"; };
+		57FEAC601DCB3C460067991C /* bu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bu@3x.png"; sourceTree = "<group>"; };
+		57FEAC611DCB3C460067991C /* like@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@3x.png"; sourceTree = "<group>"; };
 		63A2D9002C58A4DE4A995D75 /* Pods-HaviProjectBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.release.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2599,6 +2639,9 @@
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
+				5799CA881DCB0668007F26D4 /* moon.png */,
+				5799CA891DCB0668007F26D4 /* q.png */,
+				5799CA8A1DCB0668007F26D4 /* sm.png */,
 				5799CA811DCADD9C007F26D4 /* find.png */,
 				5799CA821DCADD9C007F26D4 /* sc.png */,
 				57864FC21DACFB1D00116B38 /* feiji@3x.png */,
@@ -3386,6 +3429,7 @@
 		2CD014FD1C6FFC3A001F9514 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				57FEAC471DCB21AB0067991C /* LZSwipeableView */,
 				57E140ED1DC6FE6400A3821B /* MJRefresh */,
 				2CDF0AA81D9BD21E00A215B8 /* tag */,
 				2C9D1FA41D9A3FC300CBF4D6 /* CWStatusBarNotification */,
@@ -4659,6 +4703,10 @@
 			children = (
 				5799CA7E1DCADBE1007F26D4 /* DiscoverViewController.h */,
 				5799CA7F1DCADBE1007F26D4 /* DiscoverViewController.m */,
+				5799CA851DCAEB7A007F26D4 /* DiscoverCollectionViewCell.h */,
+				5799CA861DCAEB7A007F26D4 /* DiscoverCollectionViewCell.m */,
+				5799CA9B1DCB17E4007F26D4 /* CardShowViewController.h */,
+				5799CA9C1DCB17E4007F26D4 /* CardShowViewController.m */,
 			);
 			name = Discover;
 			sourceTree = "<group>";
@@ -4771,6 +4819,30 @@
 				57E1410F1DC6FE6400A3821B /* MJRefreshStateHeader.m */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		57FEAC471DCB21AB0067991C /* LZSwipeableView */ = {
+			isa = PBXGroup;
+			children = (
+				57FEAC481DCB21AB0067991C /* LZSwipeableView.h */,
+				57FEAC491DCB21AB0067991C /* LZSwipeableView.m */,
+				57FEAC4A1DCB21AB0067991C /* LZSwipeCostantDefine.h */,
+				57FEAC4B1DCB21AB0067991C /* NSObject+LZSwipeCategory.h */,
+				57FEAC4C1DCB21AB0067991C /* NSObject+LZSwipeCategory.m */,
+				57FEAC4F1DCB21CF0067991C /* AVCardInfo.h */,
+				57FEAC501DCB21CF0067991C /* AVCardInfo.m */,
+				57FEAC511DCB21CF0067991C /* AVKnackBottomToolView.h */,
+				57FEAC521DCB21CF0067991C /* AVKnackBottomToolView.m */,
+				57FEAC531DCB21CF0067991C /* AVKnackBottomToolView.xib */,
+				57FEAC541DCB21CF0067991C /* AVSwipeCardCell.h */,
+				57FEAC551DCB21CF0067991C /* AVSwipeCardCell.m */,
+				57FEAC5E1DCB25D60067991C /* pai.png */,
+				57FEAC5A1DCB25B70067991C /* s.png */,
+				57FEAC5B1DCB25B70067991C /* wen.png */,
+				57FEAC601DCB3C460067991C /* bu@3x.png */,
+				57FEAC611DCB3C460067991C /* like@3x.png */,
+			);
+			path = LZSwipeableView;
 			sourceTree = "<group>";
 		};
 		CF7BFF0E6F0E4DC8986D8E4C /* Pods */ = {
@@ -4925,6 +4997,7 @@
 				2C9EF4E21C844FA3000704E2 /* chack.png in Resources */,
 				2CF2E24F1C7AB7E80007A639 /* papasscode_marker.png in Resources */,
 				2CF2E1261C74749B0007A639 /* icon_double@2x.png in Resources */,
+				57FEAC5C1DCB25B70067991C /* s.png in Resources */,
 				2C96AA7A1D41F65700ACCA08 /* fenxi@3x.png in Resources */,
 				2CE3CDF01D8E426B001DDD1C /* SenderVoiceNodePlaying@2x.png in Resources */,
 				2CF2E1DA1C7739760007A639 /* message_back@2x.png in Resources */,
@@ -4958,6 +5031,7 @@
 				2CE3CDDC1D8E426B001DDD1C /* ReceiverVoiceNodePlaying000@2x.png in Resources */,
 				2C9EF3221C7D4791000704E2 /* CenterData.plist in Resources */,
 				2C9EF4FB1C852E69000704E2 /* btn_x_0@2x.png in Resources */,
+				57FEAC581DCB21CF0067991C /* AVKnackBottomToolView.xib in Resources */,
 				2CD014761C62FB17001F9514 /* left_bg_night@2x.png in Resources */,
 				2C7F921D1D80F49A00EFAA1E /* weather_1.png in Resources */,
 				2CCBB5C01D93E273009FD1F8 /* voice1@2x.png in Resources */,
@@ -5065,6 +5139,7 @@
 				2CCBB5C21D93E273009FD1F8 /* picture@2x.png in Resources */,
 				2C94E5581D9117DC0062A33C /* yb.png in Resources */,
 				2CF2E24E1C7AB7E80007A639 /* papasscode_failed_bg@2x.png in Resources */,
+				57FEAC5D1DCB25B70067991C /* wen.png in Resources */,
 				2C2298111D6AF6280086ACF5 /* lxr@3x.png in Resources */,
 				2C96AA6D1D41E79100ACCA08 /* header_back@2x.png in Resources */,
 				2CD014E91C64CD22001F9514 /* home@2x.png in Resources */,
@@ -5080,6 +5155,7 @@
 				2CA0D52B1D9BBA5C00EEA00B /* bluec@3x.png in Resources */,
 				2CF2E24B1C7AB7E80007A639 /* failedBg.psd in Resources */,
 				2CF2E1651C759F530007A639 /* havi1_2@2x.png in Resources */,
+				57FEAC631DCB3C460067991C /* like@3x.png in Resources */,
 				2C2298171D6AF6280086ACF5 /* xb@3x.png in Resources */,
 				2CD0148E1C633FF3001F9514 /* icon_todays_data_0@2x.png in Resources */,
 				2CF2E1FC1C78A82C0007A639 /* DateTools.bundle in Resources */,
@@ -5112,6 +5188,7 @@
 				2CD4C3311D87F17200ECB1FF /* backItemImage_hl@2x.png in Resources */,
 				2CD014E51C64CD22001F9514 /* birthday@2x.png in Resources */,
 				2CE3CDDA1D8E426B001DDD1C /* multiMedia_HL@2x.png in Resources */,
+				5799CA8B1DCB0668007F26D4 /* moon.png in Resources */,
 				2C9EF2CE1C7C12CB000704E2 /* pic_bg_center_1@2x.png in Resources */,
 				2CD014C01C6393AF001F9514 /* person_background@2x.png in Resources */,
 				2CE3CDD21D8E426B001DDD1C /* input-bar-flat.png in Resources */,
@@ -5147,8 +5224,10 @@
 				2C96AA851D4203D300ACCA08 /* icon_message@2x.png in Resources */,
 				2C1D9FE41D4F191500FA6678 /* getup@3x.png in Resources */,
 				57E1414E1DC727B800A3821B /* Spinner2@2x.png in Resources */,
+				57FEAC621DCB3C460067991C /* bu@3x.png in Resources */,
 				2C1D9FE81D4F193000FA6678 /* light_sleep@3x.png in Resources */,
 				2C96AA7F1D41F65700ACCA08 /* zhong@3x.png in Resources */,
+				5799CA8D1DCB0668007F26D4 /* sm.png in Resources */,
 				2C457B511D86303900FFAB95 /* right.png in Resources */,
 				2C9EF4221C7FEFC1000704E2 /* pic_moon@2x.png in Resources */,
 				2CD014AB1C634CF5001F9514 /* month_1@2x.png in Resources */,
@@ -5156,6 +5235,7 @@
 				2C1D9FE21D4F190C00FA6678 /* long_sleep@3x.png in Resources */,
 				2CD014DA1C64C5A1001F9514 /* person_back_right@2x.png in Resources */,
 				2C358A441D586D8E00BEC198 /* leave@3x.png in Resources */,
+				57FEAC5F1DCB25D60067991C /* pai.png in Resources */,
 				2CE3CDF51D8E426B001DDD1C /* weChatBubble_Receiving_Solid@2x.png in Resources */,
 				2C9EF4481C80388E000704E2 /* ic_line_0.png in Resources */,
 				2CA0D51F1D9B9CDA00EEA00B /* guanyu@3x.png in Resources */,
@@ -5277,6 +5357,7 @@
 				2C9EF3461C7D7B51000704E2 /* leave_apng_0.apng in Resources */,
 				2CD014EC1C64CD22001F9514 /* weight@2x.png in Resources */,
 				2C96AA731D41F31F00ACCA08 /* profile_back@3x.png in Resources */,
+				5799CA8C1DCB0668007F26D4 /* q.png in Resources */,
 				2C457B521D86303900FFAB95 /* tuoy.png in Resources */,
 				2C1DA0361D5044F000FA6678 /* qq1@2x.png in Resources */,
 				2C22980F1D6AF6280086ACF5 /* g0@3x.png in Resources */,
@@ -5389,6 +5470,7 @@
 				2CCBB5B21D928995009FD1F8 /* HysteriaPlayer.m in Sources */,
 				2CF2E1591C7593FC0007A639 /* ReNameDoubleDeviceViewController.m in Sources */,
 				2C1DA01F1D4F2BF300FA6678 /* JTCalendarWeekDayView.m in Sources */,
+				57FEAC4D1DCB21AB0067991C /* LZSwipeableView.m in Sources */,
 				57F852391DAA1D0E005D8DF4 /* AccessTockenModel.m in Sources */,
 				2CE3CDC11D8E426B001DDD1C /* XHBubblePhotoImageView.m in Sources */,
 				2CE3CDBB1D8E426B001DDD1C /* SETextMagnifierCaret.m in Sources */,
@@ -5417,6 +5499,7 @@
 				573211FD1DB884A400722C1D /* CheckVersionAPI.m in Sources */,
 				2CE3CD8E1D8E426B001DDD1C /* UIImage+RoundedCorner.m in Sources */,
 				2CD014BD1C6355F1001F9514 /* PersonManagerViewController.m in Sources */,
+				57FEAC571DCB21CF0067991C /* AVKnackBottomToolView.m in Sources */,
 				2C358A461D586D8E00BEC198 /* VBPieChart.m in Sources */,
 				2CF2E2341C7AAEB00007A639 /* ThemeSelectConfigureObj.m in Sources */,
 				2CE3CDA21D8E426B001DDD1C /* XHHTTPClient.m in Sources */,
@@ -5459,6 +5542,7 @@
 				2C94E55E1D9147720062A33C /* DoctorInfomationViewController.m in Sources */,
 				2CE3CD911D8E426B001DDD1C /* UIScrollView+XHkeyboardControl.m in Sources */,
 				2CD75B6D1C61C2D000E7E076 /* GlobalModel.m in Sources */,
+				5799CA9D1DCB17E4007F26D4 /* CardShowViewController.m in Sources */,
 				2CD75B891C61C68900E7E076 /* HaviNetWorkAPIClient.m in Sources */,
 				2C358A471D586D8E00BEC198 /* VBPiePiece.m in Sources */,
 				2C9EF3D11C7F0ACE000704E2 /* SleepTimeTagView.m in Sources */,
@@ -5493,6 +5577,7 @@
 				2CE3CDBF1D8E426B001DDD1C /* SETextView.m in Sources */,
 				2C9EF53C1C859986000704E2 /* PinLockSetting.m in Sources */,
 				2C1DA03B1D5088C800FA6678 /* NaviTitleScrollView.m in Sources */,
+				57FEAC4E1DCB21AB0067991C /* NSObject+LZSwipeCategory.m in Sources */,
 				57E1411C1DC6FE6400A3821B /* MJRefreshAutoFooter.m in Sources */,
 				2CE3CDBA1D8E426B001DDD1C /* SETextLayout.m in Sources */,
 				2C11C9971D77DAA60032CA95 /* CLLocation+YCLocation.m in Sources */,
@@ -5540,6 +5625,7 @@
 				2C2298241D6C1DA80086ACF5 /* UIView+JHUD.m in Sources */,
 				2C9EF4DC1C844FA3000704E2 /* CalendarDayModel.m in Sources */,
 				2C96AA641D41101A00ACCA08 /* V2NavigationBar.m in Sources */,
+				5799CA871DCAEB7A007F26D4 /* DiscoverCollectionViewCell.m in Sources */,
 				2C72A1F71D59C37C00D85966 /* TurnAroundView.m in Sources */,
 				2C457B671D86961F00FFAB95 /* NJKWebViewProgressView.m in Sources */,
 				2CE3CD901D8E426B001DDD1C /* UIImage+XHRounded.m in Sources */,
@@ -5603,6 +5689,7 @@
 				2C9EF4741C80B692000704E2 /* QuaterCalenderView.m in Sources */,
 				2C9EF5351C8597C9000704E2 /* THPinNumPadView.m in Sources */,
 				2C94E5521D9114110062A33C /* SatisfactionTableViewCell.m in Sources */,
+				57FEAC561DCB21CF0067991C /* AVCardInfo.m in Sources */,
 				2CD014FC1C6EABDF001F9514 /* EditInfoCellTableViewCell.m in Sources */,
 				2CDF0AB41D9BD21E00A215B8 /* TTGTagCollectionLayout.m in Sources */,
 				2CD014F21C6E2024001F9514 /* EditCellInfoViewController.m in Sources */,
@@ -5691,6 +5778,7 @@
 				2C9EF3881C7DAA8C000704E2 /* SleepModelChange.m in Sources */,
 				2C9EF47C1C80B791000704E2 /* CHTumblrMenuView.m in Sources */,
 				2C9EF4BE1C83EA4A000704E2 /* UIBadgeView.m in Sources */,
+				57FEAC591DCB21CF0067991C /* AVSwipeCardCell.m in Sources */,
 				2CE3CDC81D8E426B001DDD1C /* XHEmotionCollectionViewCell.m in Sources */,
 				2C9EF4011C7FE23E000704E2 /* MPPlot.m in Sources */,
 				2C58727D1C7B17BC001C2F3A /* GetInavlideCodeApi.m in Sources */,
