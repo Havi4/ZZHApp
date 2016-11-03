@@ -15,6 +15,10 @@
 
 @interface CardShowViewController ()<LZSwipeableViewDataSource,
 LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
+{
+    UIButton *button;
+    UIButton *button1;
+}
 
 @property (nonatomic, strong) SCBarButtonItem *leftBarItem;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -64,10 +68,14 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
 
 - (void)loadData
 {
-    NSString *url = [NSString stringWithFormat:@"%@v1/news/SleepCognition?pageNum=%d&count=20&UserID=%@", kAppTestBaseURL,self.pageNum,thirdPartyLoginUserId];
+    NSString *url = [NSString stringWithFormat:@"%@v1/news/SleepCognition?pageNum=%d&count=10&UserID=%@", kAppTestBaseURL,self.pageNum,thirdPartyLoginUserId];
     [WTRequestCenter getWithURL:url headers:@{@"AccessToken":kTestAccessTocken,@"Content-Type":@"application/json"} parameters:nil option:WTRequestCenterCachePolicyNormal finished:^(NSURLResponse *response, NSData *data) {
         NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        [self.cardInfoList removeAllObjects];
         NSArray *arr = [obj objectForKey:@"SleepCognitionList"];
+        if (arr.count==0) {
+            [NSObject showHudTipStr:@"到底啦"];
+        }
         for (NSDictionary *question in arr) {
             
             NSArray *answer = [question objectForKey:@"Answers"];
@@ -89,7 +97,7 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
 - (void)setButtonView
 {
     [self.view addSubview:self.buttonBackView];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(((self.view.frame.size.width -180)/3), -15, 100, 50);
     button.backgroundColor = [UIColor clearColor];
     //设置button正常状态下的图片
@@ -106,7 +114,7 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
     button.titleLabel.font = [UIFont systemFontOfSize:14];
     [button addTarget:self action:@selector(unLike:) forControlEvents:UIControlEventTouchUpInside];
     [self.buttonBackView addSubview:button];
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button1 = [UIButton buttonWithType:UIButtonTypeCustom];
     button1.frame = CGRectMake((self.view.frame.size.width -180)/3*2 + 100, -15, 80, 50);
     button1.backgroundColor = [UIColor clearColor];
     //设置button正常状态下的图片
@@ -126,7 +134,7 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
     [self.buttonBackView addSubview:button1];
 }
 
-- (void)unLike:(UIButton *)button
+- (void)unLike:(UIButton *)sender
 {
     [self.swipeableView removeTopCardViewFromSwipe:LZSwipeableViewCellSwipeDirectionLeft];
     CAKeyframeAnimation * keyAnimaion = [CAKeyframeAnimation animation];
@@ -137,10 +145,10 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
     keyAnimaion.fillMode = kCAFillModeForwards;
     keyAnimaion.duration = 0.3;
     keyAnimaion.repeatCount = 1;
-    [button.layer addAnimation:keyAnimaion forKey:nil];
+    [sender.layer addAnimation:keyAnimaion forKey:nil];
 }
 
-- (void)like:(UIButton *)button
+- (void)like:(UIButton *)sender
 {
     [self.swipeableView removeTopCardViewFromSwipe:LZSwipeableViewCellSwipeDirectionRight];
     CAKeyframeAnimation * keyAnimaion = [CAKeyframeAnimation animation];
@@ -151,7 +159,7 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
     keyAnimaion.fillMode = kCAFillModeForwards;
     keyAnimaion.duration = 0.3;
     keyAnimaion.repeatCount = 1;
-    [button.layer addAnimation:keyAnimaion forKey:nil];
+    [sender.layer addAnimation:keyAnimaion forKey:nil];
 }
 
 - (UIView *)buttonBackView
@@ -230,6 +238,34 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
     
 }
 
+- (void)questionUseOrNo:(int)type withId:(NSString *)aID
+{
+    NSString *url = [NSString stringWithFormat:@"%@v1/news/SleepCognitionIsUse", kAppTestBaseURL];
+    
+    NSDictionary *dicPara = @{
+                              @"UserId": thirdPartyLoginUserId,
+                              @"SleepCognitionAId": aID,
+                              @"IsUse": type ==0?@"0":@"1"
+                              };
+    
+    [WTRequestCenter postWithURL:url header:@{@"AccessToken":kTestAccessTocken,@"Content-Type":@"application/json"} parameters:dicPara finished:^(NSURLResponse *response, NSData *data) {
+        NSDictionary *obj = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        /*
+        if ([[obj objectForKey:@"ReturnCode"] intValue]==200) {
+            [NSObject showHudTipStr:@"收藏成功"];
+        }else {
+            if ([[obj objectForKey:@"ReturnCode"] intValue]==10039){
+                [NSObject showHudTipStr:@"该文章已收藏"];
+            }else{
+                [NSObject showHudTipStr:[[obj objectForKey:@"Result"] objectForKey:@"error_msg"]];
+            }
+        }
+         */
+    } failed:^(NSURLResponse *response, NSError *error) {
+        [NSObject showHudTipStr:[NSString stringWithFormat:@"%@",error]];
+    }];
+}
+
 /*
 - (UIView *)footerViewForSwipeableView:(LZSwipeableView *)swipeableView{
     return [self showHeaderOrFooterView];
@@ -255,6 +291,32 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
 
 - (void)swipeableView:(LZSwipeableView *)swipeableView didCardRemovedAtIndex:(NSInteger)index withDirection:(LZSwipeableViewCellSwipeDirection)direction{
     NSLog(@"%zd",direction);
+    NSDictionary *cardDic = self.cardInfoList[index];
+    NSDictionary *answer = [cardDic objectForKey:@"Answers"];
+    NSString *aid = [answer objectForKey:@"AId"];
+    if (direction == 0) {
+        [self questionUseOrNo:1 withId:aid];
+        CAKeyframeAnimation * keyAnimaion = [CAKeyframeAnimation animation];
+        keyAnimaion.keyPath = @"transform.rotation";
+        keyAnimaion.values = @[@(-10 / 180.0 * M_PI),@(10 /180.0 * M_PI),@(-10/ 180.0 * M_PI),@(0 /180.0 * M_PI)];//度数转弧度
+        
+        keyAnimaion.removedOnCompletion = NO;
+        keyAnimaion.fillMode = kCAFillModeForwards;
+        keyAnimaion.duration = 0.3;
+        keyAnimaion.repeatCount = 1;
+        [button1.layer addAnimation:keyAnimaion forKey:nil];
+    }else if(direction == 1){
+        [self questionUseOrNo:0 withId:aid];
+        CAKeyframeAnimation * keyAnimaion = [CAKeyframeAnimation animation];
+        keyAnimaion.keyPath = @"transform.rotation";
+        keyAnimaion.values = @[@(-10 / 180.0 * M_PI),@(10 /180.0 * M_PI),@(-10/ 180.0 * M_PI),@(0 /180.0 * M_PI)];//度数转弧度
+        
+        keyAnimaion.removedOnCompletion = NO;
+        keyAnimaion.fillMode = kCAFillModeForwards;
+        keyAnimaion.duration = 0.3;
+        keyAnimaion.repeatCount = 1;
+        [button.layer addAnimation:keyAnimaion forKey:nil];
+    }
 }
 
 
@@ -264,7 +326,8 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
 
 
 - (void)swipeableView:(LZSwipeableView *)swipeableView didLastCardShow:(LZSwipeableViewCell *)cell{
-    
+    self.pageNum +=1;
+    [self loadData];
 }
 
 #pragma mark - AVKnackBottomToolViewDelegate

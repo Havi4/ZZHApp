@@ -89,14 +89,27 @@
     
     xFromCenter = [gestureRecognizer translationInView:self].x;
     yFromCenter = [gestureRecognizer translationInView:self].y;
-    
+    DeBugLog(@"坐标x ：%f y： %f",xFromCenter,yFromCenter);
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:{
             self.originalPoint = self.center;
             break;
         };
         case UIGestureRecognizerStateChanged:{
-            self.transform = CGAffineTransformMakeTranslation(xFromCenter, yFromCenter);
+            float centerX = self.bounds.size.width/2;
+            float centerY = self.bounds.size.height/2;
+            if (xFromCenter>0) {
+                CGAffineTransform trans = GetCGAffineTransformRotateAroundPoint(centerX,centerY,self.frame.size.width,self.frame.size.height ,xFromCenter/self.frame.size.width*3.14/2);
+                self.transform = CGAffineTransformIdentity;
+                self.transform = trans;
+            }else{
+                CGAffineTransform trans = GetCGAffineTransformRotateAroundPoint(centerX,centerY,0,self.frame.size.height ,xFromCenter/self.frame.size.width*3.14/2);
+                self.transform = CGAffineTransformIdentity;
+                self.transform = trans;
+            }
+            //self.layer.anchorPoint = CGPointMake(1, 1);
+            //self.transform = CGAffineTransformMakeRotation(xFromCenter/self.frame.size.width*3.14/2);
+            //self.transform = CGAffineTransformMakeTranslation(xFromCenter, yFromCenter);
             break;
         };
         case UIGestureRecognizerStateEnded: {
@@ -116,6 +129,17 @@
     }
 }
 
+CGAffineTransform  GetCGAffineTransformRotateAroundPoint(float centerX, float centerY, float x ,float y ,float angle)
+{
+    x = x - centerX; //计算(x,y)从(0,0)为原点的坐标系变换到(CenterX ，CenterY)为原点的坐标系下的坐标
+    y = y - centerY; //(0，0)坐标系的右横轴、下竖轴是正轴,(CenterX,CenterY)坐标系的正轴也一样
+    
+    CGAffineTransform  trans = CGAffineTransformMakeTranslation(x, y);
+    trans = CGAffineTransformRotate(trans,angle);
+    trans = CGAffineTransformTranslate(trans,-x, -y);
+    return trans;
+}
+
 // 拖拽手势结束时 处理当前卡片的位置
 - (void)afterSwipeAction
 {
@@ -124,11 +148,15 @@
             [self rightAction];
         } else if (xFromCenter < -ACTION_MARGIN) { // 左边飞走
             [self leftAction];
-        } else if (yFromCenter > ACTION_MARGIN) { // 底部飞走
+        }
+        /*
+        else if (yFromCenter > ACTION_MARGIN) { // 底部飞走
             [self bottomAction];
         } else if (yFromCenter < -ACTION_MARGIN) { // 上边飞走
             [self topAction];
-        }else { // 不飞走 回复原来位置
+        }
+         */
+        else { // 不飞走 回复原来位置
             [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 self.transform = CGAffineTransformIdentity;
                 self.center = self.originalPoint;

@@ -124,8 +124,9 @@
     for (int i = 0; i<arr.count; i++) {
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.frame = (CGRect){21*i,0,20,20};
-        //[imageView setImageWithURL:[NSURL URLWithString:[arr objectAtIndex:i]] placeholder:[UIImage imageNamed:@"head_placeholder"]];
-        imageView.image = [UIImage imageNamed:@"head_placeholder"];
+        imageView.layer.cornerRadius = 10;
+        imageView.layer.masksToBounds = YES;
+        [imageView setImageWithURL:[NSURL URLWithString:[arr objectAtIndex:i]] placeholder:[UIImage imageNamed:@"head_placeholder"]];
         [self.iconScrollView addSubview:imageView];
     }
     
