@@ -50,9 +50,9 @@ static CGFloat const kAvatarHeight = 70.0f;
     if (self) {
         
         
-        self.sectionImageNameArray = @[@"shuju", @"fenxi", @"sheb", @"zhong", @"xinf",@"xinf", @"shed"];
+        self.sectionImageNameArray = @[@"shuju", @"fenxi", @"sheb", @"zhong",@"find", @"xinf",@"sc", @"shed"];
 //  @[@"icon_todays_data_0", @"icon_data_analysis_0", @"icon_equipment_management_0", @"icon_alarm_clock_0", @"icon_message", @"icon_setting_0"];
-        self.sectionTitleArray = @[@"今日数据", @"数据分析", @"设备管理", @"睡眠设置", @"我的消息",@"我的收藏", @"设        定"];
+        self.sectionTitleArray = @[@"今日数据", @"数据分析", @"设备管理", @"睡眠设置",@"发现", @"我的消息",@"我的收藏", @"设定"];
 
         [self configureTableView];
         [self configureProfileView];
@@ -337,7 +337,7 @@ static CGFloat const kAvatarHeight = 70.0f;
     
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row != 1) {
-        if (indexPath.row == 4) {
+        if (indexPath.row == 5) {
             [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:kBadgeKey];
             [[NSUserDefaults standardUserDefaults]synchronize];
             [self.tableView reloadData];
@@ -350,6 +350,7 @@ static CGFloat const kAvatarHeight = 70.0f;
             self.didSelectedIndexBlock(indexPath.row);
         }
         [self.tableView reloadRow:1 inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     }else {
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indexPath.row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"tapcell" object:nil];

@@ -18,6 +18,7 @@
 #import "APPSettingViewController.h"
 #import "ReportVewContainerController.h"
 #import "MYLoveViewController.h"
+#import "DiscoverViewController.h"
 
 CGFloat const kMenuWidth = 280.0;//侧栏的宽度
 
@@ -50,6 +51,9 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
 @property (nonatomic ,strong) SCNavigationController *reQuater;
 @property (nonatomic ,strong) SCNavigationController *myLoveNavi;
 @property (nonatomic, strong) MYLoveViewController *mylove;
+@property (nonatomic ,strong) SCNavigationController *disCoverNavi;
+@property (nonatomic, strong) DiscoverViewController *disCover;
+
 
 @end
 
@@ -221,6 +225,8 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
     
     self.mylove = [[MYLoveViewController alloc]init];
     self.myLoveNavi = [[SCNavigationController alloc]initWithRootViewController:self.mylove];
+    self.disCover = [[DiscoverViewController alloc]init];
+    self.disCoverNavi = [[SCNavigationController alloc]initWithRootViewController:self.disCover];
     [self.viewControllerContainView addSubview:[self viewControllerForIndex:0].view];
     self.currentSelectedIndex = 0;
 //
@@ -368,9 +374,13 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
             viewController = self.sleepNavi;
             break;
         case 4:
+            viewController = self.disCoverNavi;
+            break;
+
+        case 5:
             viewController = self.messageNavi;
             break;
-        case 5:
+        case 6:
             if (self.mylove) {
                 self.mylove = nil;
                 self.myLoveNavi = nil;
@@ -379,7 +389,7 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
             self.myLoveNavi = [[SCNavigationController alloc]initWithRootViewController:self.mylove];
             viewController = self.myLoveNavi;
             break;
-        case 6:
+        case 7:
             viewController = self.settingNavi;
             break;
         case 1001:{

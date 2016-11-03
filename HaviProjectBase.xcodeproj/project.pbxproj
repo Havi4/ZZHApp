@@ -821,6 +821,9 @@
 		57532C1B1DB0C6BB00136D71 /* you@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57532C1A1DB0C6BB00136D71 /* you@3x.png */; };
 		57682F8E1DB9E0A400B50E98 /* pingfen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57682F8D1DB9E0A400B50E98 /* pingfen@3x.png */; };
 		57864FC31DACFB1D00116B38 /* feiji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57864FC21DACFB1D00116B38 /* feiji@3x.png */; };
+		5799CA801DCADBE1007F26D4 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5799CA7F1DCADBE1007F26D4 /* DiscoverViewController.m */; };
+		5799CA831DCADD9C007F26D4 /* find.png in Resources */ = {isa = PBXBuildFile; fileRef = 5799CA811DCADD9C007F26D4 /* find.png */; };
+		5799CA841DCADD9C007F26D4 /* sc.png in Resources */ = {isa = PBXBuildFile; fileRef = 5799CA821DCADD9C007F26D4 /* sc.png */; };
 		57D1CD7F1DAA0C9E00AE9186 /* IntroduceView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7C1DAA0C9E00AE9186 /* IntroduceView1.png */; };
 		57D1CD801DAA0C9E00AE9186 /* IntroduceView2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7D1DAA0C9E00AE9186 /* IntroduceView2.png */; };
 		57D1CD811DAA0C9E00AE9186 /* IntroduceView3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1CD7E1DAA0C9E00AE9186 /* IntroduceView3.png */; };
@@ -2155,6 +2158,10 @@
 		57532C1A1DB0C6BB00136D71 /* you@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "you@3x.png"; sourceTree = "<group>"; };
 		57682F8D1DB9E0A400B50E98 /* pingfen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pingfen@3x.png"; sourceTree = "<group>"; };
 		57864FC21DACFB1D00116B38 /* feiji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feiji@3x.png"; sourceTree = "<group>"; };
+		5799CA7E1DCADBE1007F26D4 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiscoverViewController.h; path = NewUI/DiscoverViewController.h; sourceTree = "<group>"; };
+		5799CA7F1DCADBE1007F26D4 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscoverViewController.m; path = NewUI/DiscoverViewController.m; sourceTree = "<group>"; };
+		5799CA811DCADD9C007F26D4 /* find.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = find.png; sourceTree = "<group>"; };
+		5799CA821DCADD9C007F26D4 /* sc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sc.png; sourceTree = "<group>"; };
 		57D1CD7C1DAA0C9E00AE9186 /* IntroduceView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView1.png; sourceTree = "<group>"; };
 		57D1CD7D1DAA0C9E00AE9186 /* IntroduceView2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView2.png; sourceTree = "<group>"; };
 		57D1CD7E1DAA0C9E00AE9186 /* IntroduceView3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroduceView3.png; sourceTree = "<group>"; };
@@ -2592,6 +2599,8 @@
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
+				5799CA811DCADD9C007F26D4 /* find.png */,
+				5799CA821DCADD9C007F26D4 /* sc.png */,
 				57864FC21DACFB1D00116B38 /* feiji@3x.png */,
 				57682F8D1DB9E0A400B50E98 /* pingfen@3x.png */,
 				57F852351DAA11E5005D8DF4 /* login.png */,
@@ -3786,6 +3795,7 @@
 		2CD75B7B1C61C3D700E7E076 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5799CA7D1DCADB39007F26D4 /* Discover */,
 				57E140E91DC6F3F400A3821B /* MyLove */,
 				2C457B3F1D85985900FFAB95 /* Doctor */,
 				2C9EF44D1C804849000704E2 /* Report */,
@@ -4644,6 +4654,15 @@
 			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
+		5799CA7D1DCADB39007F26D4 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				5799CA7E1DCADBE1007F26D4 /* DiscoverViewController.h */,
+				5799CA7F1DCADBE1007F26D4 /* DiscoverViewController.m */,
+			);
+			name = Discover;
+			sourceTree = "<group>";
+		};
 		57E140E91DC6F3F400A3821B /* MyLove */ = {
 			isa = PBXGroup;
 			children = (
@@ -5019,6 +5038,7 @@
 				2C11C98B1D76A6D70032CA95 /* erweim@3x.png in Resources */,
 				2C9EF3471C7D7B51000704E2 /* getup_apng_0.apng in Resources */,
 				2CE3CDF11D8E426B001DDD1C /* voice@2x.png in Resources */,
+				5799CA841DCADD9C007F26D4 /* sc.png in Resources */,
 				2CF2E24A1C7AB7E80007A639 /* digitCell.psd in Resources */,
 				57F852361DAA11E5005D8DF4 /* login.png in Resources */,
 				2CCBB5A41D92545E009FD1F8 /* star_fill.png in Resources */,
@@ -5180,6 +5200,7 @@
 				2C9EF4631C80586B000704E2 /* menology_1@2x.png in Resources */,
 				2C22982B1D6C481A0086ACF5 /* chang1@3x.png in Resources */,
 				2CF2E1521C7590930007A639 /* textbox_hollow_1@2x.png in Resources */,
+				5799CA831DCADD9C007F26D4 /* find.png in Resources */,
 				57532C1B1DB0C6BB00136D71 /* you@3x.png in Resources */,
 				2CE3CDE71D8E426B001DDD1C /* RecordingSignal005@2x.png in Resources */,
 				2C22980E1D6AF6280086ACF5 /* b1@3x.png in Resources */,
@@ -5705,6 +5726,7 @@
 				2CFB35841D891781003CB6B2 /* UIView+Layout.m in Sources */,
 				57E141291DC6FE6400A3821B /* MJRefreshStateHeader.m in Sources */,
 				2CF2E21D1C79D6600007A639 /* UserProtocolViewController.m in Sources */,
+				5799CA801DCADBE1007F26D4 /* DiscoverViewController.m in Sources */,
 				2CDF0AB61D9BD21E00A215B8 /* TTGTagCollectionView.m in Sources */,
 				2CF2E1341C747CF90007A639 /* ODRefreshControl.m in Sources */,
 				2CE3CDB51D8E426B001DDD1C /* SESelectionGrabber.m in Sources */,

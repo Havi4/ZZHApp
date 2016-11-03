@@ -12,7 +12,7 @@
 #define kColorBlueDefault             RGBA(63, 183, 252, 1)
 
 
-static CGFloat const kCellHeight = 100;
+static CGFloat const kCellHeight = 90;
 static CGFloat const kFontSize   = 14;
 
 @interface DataAnTableViewCell ()
