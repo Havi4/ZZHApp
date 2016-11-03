@@ -380,7 +380,7 @@ CGFloat const kMenuWidth = 280.0;//侧栏的宽度
             viewController = self.myLoveNavi;
             break;
         case 6:
-            viewController = self.setting;
+            viewController = self.settingNavi;
             break;
         case 1001:{
             ReportVewContainerController *reportView = [[ReportVewContainerController alloc]init];

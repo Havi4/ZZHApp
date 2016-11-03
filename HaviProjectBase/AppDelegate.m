@@ -18,6 +18,7 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import "ThirdLoginCallBackManager.h"
 #import "JPushNotiManager.h"
+#import <UserNotifications/UserNotifications.h>
 #import "PinLockSetting.h"
 #import "ZZHRootViewController.h"
 #import "CCLocationManager.h"
@@ -26,7 +27,7 @@
 #import "LoginBackViewController.h"
 #import "CheckVersionAPI.h"
 
-@interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate>
+@interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,JPUSHRegisterDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
@@ -304,12 +305,61 @@
     [WeiboSDK enableDebugMode:YES];
     //向微信注册
     [WXApi registerApp:kWXAPPKey];
-    //因为有闹钟的印象，清楚闹钟。
-    [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                   UIRemoteNotificationTypeSound |
-                                                   UIRemoteNotificationTypeAlert)
-                                       categories:nil];
-    [JPUSHService setupWithOption:launchOptions appKey:@"ea0d704f24539eb667b81002" channel:@"Publish channel" apsForProduction:YES];
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        NSMutableSet *categories = [NSMutableSet set];
+        UNNotificationAction * action = [UNNotificationAction actionWithIdentifier:@"callHe" title:@"拨打电话" options:UNNotificationActionOptionForeground];
+        UNNotificationAction * action2 = [UNNotificationAction actionWithIdentifier:@"cacel" title:@"取消" options:UNNotificationActionOptionNone];
+        UNNotificationCategory * category = [UNNotificationCategory categoryWithIdentifier:@"Meddo_CellPhone" actions:@[action,action2] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
+        UNNotificationCategory * category1 = [UNNotificationCategory categoryWithIdentifier:@"Meddo_Common" actions:@[action2] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
+        [categories addObject:category];
+        [categories addObject:category1];
+        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+        entity.categories =  categories;
+        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    }
+    else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        NSMutableSet *categories = [NSMutableSet set];
+        
+        UIMutableUserNotificationCategory *category = [[UIMutableUserNotificationCategory alloc] init];
+        
+        category.identifier = @"Meddo_CellPhone";
+        
+        UIMutableUserNotificationAction *action = [[UIMutableUserNotificationAction alloc] init];
+        action.identifier = @"callHe";
+        action.title = @"拨打电话";
+        action.activationMode = UIUserNotificationActivationModeBackground;
+        //        action.authenticationRequired = YES;
+        //YES显示为红色，NO显示为蓝色
+        action.destructive = NO;
+        NSArray *actions = @[ action ];
+        
+        [category setActions:actions forContext:UIUserNotificationActionContextMinimal];
+        
+        [categories addObject:category];
+        
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:categories];
+        
+        
+        
+    }
+    else {
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    //Required
+    [JPUSHService setupWithOption:launchOptions
+                           appKey:@"ea0d704f24539eb667b81002"
+                          channel:@"Publish channel"
+                 apsForProduction:NO];
     [JPUSHService crashLogON];
 
 }
@@ -563,6 +613,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [JPUSHService handleRemoteNotification:userInfo];
     JPushNotiManager *manager = [JPushNotiManager sharedInstance];
     [manager handPushApplication:application receiveRemoteNotification:userInfo];
 }
@@ -570,17 +621,66 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:
 (void (^)(UIBackgroundFetchResult))completionHandler
 {
+    [JPUSHService handleRemoteNotification:userInfo];
     JPushNotiManager *manager = [JPushNotiManager sharedInstance];
     [manager handPushApplication:application receiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+//    completionHandler(UIBackgroundFetchResultNewData);
 }
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(nullable NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler NS_DEPRECATED_IOS(8_0, 10_0) {
+    if ([identifier isEqualToString:@"callHe"]) {
+        NSString *alertString = [userInfo objectForKey:@"CellPhone"];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:alertString message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 103;
+        [alertView show];
+    }
+    completionHandler();
+}
+
+#pragma mark- JPUSHRegisterDelegate
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        NSString *identifier = response.actionIdentifier;
+        NSString *alertString = [userInfo objectForKey:@"CellPhone"];
+        if ([identifier isEqualToString:@"callHe"]) {
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:alertString message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alertView.tag = 103;
+            [alertView show];
+        }
+    }
+    completionHandler();
+}
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 101) {
         
         [self getUserAccessTockenWith:nil];
-    }else{
+    }else if(alertView.tag == 102){
         [self refreshAccessTocken];
+    }else if (alertView.tag == 103){
+        if (buttonIndex == 1) {
+            NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"13122785292"];
+            // NSLog(@"str======%@",str);
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            
+        }
     }
 }
 

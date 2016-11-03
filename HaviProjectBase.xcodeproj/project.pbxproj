@@ -243,7 +243,6 @@
 		2C9D1F8E1D9A051500CBF4D6 /* lixian.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F8C1D9A051500CBF4D6 /* lixian.png */; };
 		2C9D1F8F1D9A051500CBF4D6 /* tuoji.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F8D1D9A051500CBF4D6 /* tuoji.png */; };
 		2C9D1F911D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D1F901D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png */; };
-		2C9D1F941D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9D1F921D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a */; };
 		2C9D1F9E1D9A377300CBF4D6 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1F981D9A377300CBF4D6 /* TSBlurView.m */; };
 		2C9D1F9F1D9A377300CBF4D6 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1F9A1D9A377300CBF4D6 /* TSMessage.m */; };
 		2C9D1FA01D9A377300CBF4D6 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D1F9C1D9A377300CBF4D6 /* TSMessageView.m */; };
@@ -812,6 +811,11 @@
 		2CFB358A1D892A13003CB6B2 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB35881D892A13003CB6B2 /* TZTestCell.m */; };
 		2CFB358E1D893DD7003CB6B2 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB358D1D893DD7003CB6B2 /* AlbumAddBtn@2x.png */; };
 		2CFB35901D893DDF003CB6B2 /* photo_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB358F1D893DDF003CB6B2 /* photo_delete@2x.png */; };
+		5718CCE71DCACBA300EEC53A /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5718CCE61DCACBA300EEC53A /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5718CCE91DCACFC900EEC53A /* jpush-ios-2.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5718CCE81DCACFC900EEC53A /* jpush-ios-2.2.0.a */; };
+		5718CCEB1DCAD0CC00EEC53A /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5718CCEA1DCAD0CC00EEC53A /* libresolv.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5718CCED1DCAD0EF00EEC53A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5718CCEC1DCAD0EF00EEC53A /* CoreGraphics.framework */; };
+		5718CCEF1DCAD11200EEC53A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5718CCEE1DCAD11200EEC53A /* CFNetwork.framework */; };
 		573211FD1DB884A400722C1D /* CheckVersionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 573211FC1DB884A400722C1D /* CheckVersionAPI.m */; };
 		57532C191DB0C6AA00136D71 /* zuo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57532C181DB0C6AA00136D71 /* zuo@3x.png */; };
 		57532C1B1DB0C6BB00136D71 /* you@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57532C1A1DB0C6BB00136D71 /* you@3x.png */; };
@@ -1219,7 +1223,6 @@
 		2C9D1F8C1D9A051500CBF4D6 /* lixian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lixian.png; sourceTree = "<group>"; };
 		2C9D1F8D1D9A051500CBF4D6 /* tuoji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuoji.png; sourceTree = "<group>"; };
 		2C9D1F901D9A0F7D00CBF4D6 /* bed_no_sigle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bed_no_sigle@3x.png"; sourceTree = "<group>"; };
-		2C9D1F921D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
 		2C9D1F931D9A1F8E00CBF4D6 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		2C9D1F971D9A377300CBF4D6 /* TSBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBlurView.h; sourceTree = "<group>"; };
 		2C9D1F981D9A377300CBF4D6 /* TSBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBlurView.m; sourceTree = "<group>"; };
@@ -2141,6 +2144,11 @@
 		2CFB358F1D893DDF003CB6B2 /* photo_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_delete@2x.png"; sourceTree = "<group>"; };
 		4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HaviProjectBase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD59D461E54074340889743 /* Pods-HaviProjectBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.debug.xcconfig"; sourceTree = "<group>"; };
+		5718CCE61DCACBA300EEC53A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		5718CCE81DCACFC900EEC53A /* jpush-ios-2.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.2.0.a"; sourceTree = "<group>"; };
+		5718CCEA1DCAD0CC00EEC53A /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		5718CCEC1DCAD0EF00EEC53A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5718CCEE1DCAD11200EEC53A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		573211FB1DB884A400722C1D /* CheckVersionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckVersionAPI.h; sourceTree = "<group>"; };
 		573211FC1DB884A400722C1D /* CheckVersionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckVersionAPI.m; sourceTree = "<group>"; };
 		57532C181DB0C6AA00136D71 /* zuo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zuo@3x.png"; sourceTree = "<group>"; };
@@ -2216,6 +2224,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5718CCEF1DCAD11200EEC53A /* CFNetwork.framework in Frameworks */,
+				5718CCED1DCAD0EF00EEC53A /* CoreGraphics.framework in Frameworks */,
+				5718CCEB1DCAD0CC00EEC53A /* libresolv.tbd in Frameworks */,
+				5718CCE71DCACBA300EEC53A /* UserNotifications.framework in Frameworks */,
 				2C11C9991D77DD620032CA95 /* CoreLocation.framework in Frameworks */,
 				2C15EB7E1CDB1DB900A43086 /* CoreMotion.framework in Frameworks */,
 				2C15EB7C1CDB1DA800A43086 /* OpenGLES.framework in Frameworks */,
@@ -2228,7 +2240,6 @@
 				2C9EF51D1C858B4E000704E2 /* libSniffer.a in Frameworks */,
 				2C5872521C7AEAAE001C2F3A /* libz.tbd in Frameworks */,
 				2C5872501C7AEAA1001C2F3A /* libc++.tbd in Frameworks */,
-				2C9D1F941D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a in Frameworks */,
 				2C58724E1C7AEA30001C2F3A /* libsqlite3.0.tbd in Frameworks */,
 				2C2DCA121CC891F7008D28D1 /* libSmartLinkV30Lib.a in Frameworks */,
 				2CF2E2AC1C7AE9AE0007A639 /* Security.framework in Frameworks */,
@@ -2237,6 +2248,7 @@
 				5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */,
 				2CF2E2A21C7AE0E80007A639 /* TencentOpenAPI.framework in Frameworks */,
 				2CF2E29B1C7AE0660007A639 /* libWeChatSDK.a in Frameworks */,
+				5718CCE91DCACFC900EEC53A /* jpush-ios-2.2.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2260,6 +2272,10 @@
 		1B9E74FF866522760DA0D025 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5718CCEE1DCAD11200EEC53A /* CFNetwork.framework */,
+				5718CCEC1DCAD0EF00EEC53A /* CoreGraphics.framework */,
+				5718CCEA1DCAD0CC00EEC53A /* libresolv.tbd */,
+				5718CCE61DCACBA300EEC53A /* UserNotifications.framework */,
 				2C11C9981D77DD620032CA95 /* CoreLocation.framework */,
 				2C15EB811CDB1DE400A43086 /* PgySDK.framework */,
 				2C15EB7F1CDB1DCC00A43086 /* PgyUpdate.framework */,
@@ -3031,7 +3047,7 @@
 		2C9EF4B11C83D97B000704E2 /* JPushlib */ = {
 			isa = PBXGroup;
 			children = (
-				2C9D1F921D9A1F8E00CBF4D6 /* jpush-ios-2.1.9.a */,
+				5718CCE81DCACFC900EEC53A /* jpush-ios-2.2.0.a */,
 				2C9D1F931D9A1F8E00CBF4D6 /* JPUSHService.h */,
 			);
 			path = JPushlib;

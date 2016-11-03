@@ -123,3 +123,7 @@
 #define kBreathHorizonbleAlarmValue 40
 #define kBreathMinAlarmValue 5
 #define kBreathMaxAlarmValue 20
+
+#define IOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0 && [[UIDevice currentDevice].systemVersion doubleValue] < 9.0)
+#define IOS8_10 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && [[UIDevice currentDevice].systemVersion doubleValue] < 10.0)
+#define IOS10 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
