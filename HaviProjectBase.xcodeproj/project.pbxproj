@@ -875,6 +875,10 @@
 		57FEAC5F1DCB25D60067991C /* pai.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC5E1DCB25D60067991C /* pai.png */; };
 		57FEAC621DCB3C460067991C /* bu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC601DCB3C460067991C /* bu@3x.png */; };
 		57FEAC631DCB3C460067991C /* like@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC611DCB3C460067991C /* like@3x.png */; };
+		57FEAC651DCB975A0067991C /* qian.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEAC641DCB975A0067991C /* qian.png */; };
+		57FEAC681DCC1EBC0067991C /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEAC671DCC1EBC0067991C /* NewsViewController.m */; };
+		57FEAC6B1DCC1EFA0067991C /* TopChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEAC6A1DCC1EFA0067991C /* TopChannelView.m */; };
+		57FEAC6E1DCC1F9A0067991C /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEAC6D1DCC1F9A0067991C /* ContentViewController.m */; };
 		5FEBF7CEA0AEA1897FE270A9 /* libPods-HaviProjectBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2832C1D79FC5DEE1D9A0F3 /* libPods-HaviProjectBase.a */; };
 /* End PBXBuildFile section */
 
@@ -2263,6 +2267,13 @@
 		57FEAC5E1DCB25D60067991C /* pai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pai.png; sourceTree = "<group>"; };
 		57FEAC601DCB3C460067991C /* bu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bu@3x.png"; sourceTree = "<group>"; };
 		57FEAC611DCB3C460067991C /* like@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@3x.png"; sourceTree = "<group>"; };
+		57FEAC641DCB975A0067991C /* qian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qian.png; sourceTree = "<group>"; };
+		57FEAC661DCC1EBC0067991C /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = NewUI/NewsViewController.h; sourceTree = "<group>"; };
+		57FEAC671DCC1EBC0067991C /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = NewUI/NewsViewController.m; sourceTree = "<group>"; };
+		57FEAC691DCC1EFA0067991C /* TopChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopChannelView.h; sourceTree = "<group>"; };
+		57FEAC6A1DCC1EFA0067991C /* TopChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopChannelView.m; sourceTree = "<group>"; };
+		57FEAC6C1DCC1F9A0067991C /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentViewController.h; path = NewUI/ContentViewController.h; sourceTree = "<group>"; };
+		57FEAC6D1DCC1F9A0067991C /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentViewController.m; path = NewUI/ContentViewController.m; sourceTree = "<group>"; };
 		63A2D9002C58A4DE4A995D75 /* Pods-HaviProjectBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaviProjectBase.release.xcconfig"; path = "Pods/Target Support Files/Pods-HaviProjectBase/Pods-HaviProjectBase.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2639,6 +2650,7 @@
 		2C96A9FA1D40675D00ACCA08 /* v3.0UI */ = {
 			isa = PBXGroup;
 			children = (
+				57FEAC641DCB975A0067991C /* qian.png */,
 				5799CA881DCB0668007F26D4 /* moon.png */,
 				5799CA891DCB0668007F26D4 /* q.png */,
 				5799CA8A1DCB0668007F26D4 /* sm.png */,
@@ -4707,6 +4719,12 @@
 				5799CA861DCAEB7A007F26D4 /* DiscoverCollectionViewCell.m */,
 				5799CA9B1DCB17E4007F26D4 /* CardShowViewController.h */,
 				5799CA9C1DCB17E4007F26D4 /* CardShowViewController.m */,
+				57FEAC661DCC1EBC0067991C /* NewsViewController.h */,
+				57FEAC671DCC1EBC0067991C /* NewsViewController.m */,
+				57FEAC691DCC1EFA0067991C /* TopChannelView.h */,
+				57FEAC6A1DCC1EFA0067991C /* TopChannelView.m */,
+				57FEAC6C1DCC1F9A0067991C /* ContentViewController.h */,
+				57FEAC6D1DCC1F9A0067991C /* ContentViewController.m */,
 			);
 			name = Discover;
 			sourceTree = "<group>";
@@ -5181,6 +5199,7 @@
 				2CCBB5B31D928995009FD1F8 /* point1sec.mp3 in Resources */,
 				2CE3CDF61D8E426B001DDD1C /* weChatBubble_Sending_Solid@2x.png in Resources */,
 				2C1D9FDC1D4F18D800FA6678 /* moveon@3x.png in Resources */,
+				57FEAC651DCB975A0067991C /* qian.png in Resources */,
 				2CCBB5C11D93E273009FD1F8 /* voice_select@2x.png in Resources */,
 				2CD014951C634001001F9514 /* icon_alarm_clock_1@2x.png in Resources */,
 				2CA0D5201D9B9CDA00EEA00B /* mim@3x.png in Resources */,
@@ -5438,6 +5457,7 @@
 			files = (
 				2C9EF4F51C852CE6000704E2 /* BaseAnimation.m in Sources */,
 				2CD75B9D1C61F87E00E7E076 /* BaseViewController.m in Sources */,
+				57FEAC6B1DCC1EFA0067991C /* TopChannelView.m in Sources */,
 				2CD014A11C6347C3001F9514 /* DataShowTableViewCell.m in Sources */,
 				2CE3CDC71D8E426B001DDD1C /* XHVoiceRecordHUD.m in Sources */,
 				2C72A24B1D5DA62300D85966 /* BetaNaoTextField.m in Sources */,
@@ -5767,6 +5787,7 @@
 				2CF2E13D1C7579440007A639 /* ReactiveSingleViewController.m in Sources */,
 				2CE3CDAC1D8E426B001DDD1C /* XHMessage.m in Sources */,
 				2C9EF4F91C852CE6000704E2 /* SlideAnimation.m in Sources */,
+				57FEAC6E1DCC1F9A0067991C /* ContentViewController.m in Sources */,
 				2CD75B9A1C61F62B00E7E076 /* UIViewController+JASidePanel.m in Sources */,
 				2CE3CDA71D8E426B001DDD1C /* XHMessageVoiceFactory.m in Sources */,
 				2C457B5D1D86461A00FFAB95 /* ConversationListTableViewCell.m in Sources */,
@@ -5851,6 +5872,7 @@
 				2CD4C32E1D87EECB00ECB1FF /* RxWebViewNavigationViewController.m in Sources */,
 				2C11C9961D77DAA60032CA95 /* CCLocationManager.m in Sources */,
 				2CE3CD971D8E426B001DDD1C /* XHMessageBubbleHelper.m in Sources */,
+				57FEAC681DCC1EBC0067991C /* NewsViewController.m in Sources */,
 				2CFB35891D892A13003CB6B2 /* LxGridViewFlowLayout.m in Sources */,
 				2CE3CDC61D8E426B001DDD1C /* XHMessageTextView.m in Sources */,
 				57E1412D1DC6FE6400A3821B /* UIScrollView+MJExtension.m in Sources */,

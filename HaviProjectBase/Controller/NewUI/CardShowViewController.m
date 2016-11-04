@@ -64,6 +64,29 @@ LZSwipeableViewDelegate,AVKnackBottomToolViewDelegate>
     self.swipeableView.hidden = NO;
     [self setButtonView];
     [self loadData];
+    BOOL isShow = [[NSUserDefaults standardUserDefaults]boolForKey:@"isShow"];
+    if (isShow) {
+        UIView *backView = [[UIView alloc]initWithFrame:(CGRect){0,64,self.view.frame.size.width,self.view.frame.size.height-64}];
+        backView.backgroundColor = [UIColor blackColor];
+        backView.alpha = 0.7;
+        [self.view addSubview:backView];
+        UIImageView *image = [[UIImageView alloc]init];
+        image.image = [UIImage imageNamed:@"qian"];
+        [backView addSubview:image];
+        [image makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(backView.mas_centerY);
+            make.centerX.equalTo(backView.mas_centerX);
+            make.width.equalTo(backView.mas_width).multipliedBy(0.7);
+            make.height.equalTo(backView.mas_height).multipliedBy(0.7);
+        }];
+        image.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id sender) {
+            [backView removeFromSuperview];
+            [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isShow"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+        }];
+        [image addGestureRecognizer:tap];
+    }
 }
 
 - (void)loadData
