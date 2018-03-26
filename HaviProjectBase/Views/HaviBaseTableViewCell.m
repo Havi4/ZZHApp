@@ -23,6 +23,9 @@
         self.backgroundView.backgroundColor = [UIColor clearColor];
         self.backgroundColor = [UIColor clearColor];
     }
+    /*
+     havitest
+     */
     return self;
 }
 
